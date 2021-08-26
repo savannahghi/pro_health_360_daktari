@@ -1,15 +1,66 @@
 version: 2.1
+
+commands:
+  install_packages:
+    description: "Install flutter to latest version and install dependencies"
+    steps:
+      - checkout
+      - run :
+          name: Install flutter
+          command: bash install_flutter_ci.sh
+      - save_cache:
+          key: flutter_root_and_dependencies_cache
+          paths:
+            - $CIRCLE_WORKING_DIRECTORY/.dart_tool/
+            - $CIRCLE_WORKING_DIRECTORY/.flutter-plugins
+            - $CIRCLE_WORKING_DIRECTORY/.flutter-plugins-dependencies
+            - $CIRCLE_WORKING_DIRECTORY/.packages
+            - $CIRCLE_WORKING_DIRECTORY/.pub-cache/
+            - $CIRCLE_WORKING_DIRECTORY/.pub/
+            - $CIRCLE_WORKING_DIRECTORY/.pub/
+    
+  download_and_setup_keystore:
+    description:  "Setup service account and download keystore"
+    steps:
+      - run:
+          name: Setup service account
+          command: |
+            echo $GCLOUD_SERVICE_ACCOUNT_KEY_FILE > service.json
+            gcloud auth activate-service-account --key-file=service.json
+            gcloud config set project $GCLOUD_PROJECT_ID
+            gcloud config list
+            gsutil cp gs://sghi-android-keys-box/afyamoja_keystore.jks.encrypted .
+            gcloud kms decrypt --location europe-west3 --keyring android-keys --key android-crypto-key \
+            --ciphertext-file afyamoja_keystore.jks.encrypted \
+            --plaintext-file afyamoja_keystore.jks
+      - run: 
+          name: Generate key properties file
+          command: |
+            echo "storePassword=$KEY_STORE_PWD" | tee -a android/key.properties
+            echo "keyPassword=$KEY_STORE_PWD" | tee -a android/key.properties
+            echo "keyAlias=$KEY_STORE_ALIAS" | tee -a android/key.properties
+            echo "storeFile=$HOME/project/afyamoja_keystore.jks" | tee -a android/key.properties
+      - save_cache:
+          key: keystore_and_properties_cache
+          paths:
+            - $CIRCLE_WORKING_DIRECTORY/android/android/key.properties
+            - $CIRCLE_WORKING_DIRECTORY/afyamoja_keystore.jks
+            - $CIRCLE_WORKING_DIRECTORY/service.json
         
 jobs:
   run_tests_and_generate_coverage:
+    resource_class: large
     docker:
-      - image: cirrusci/flutter
+      - image: circleci/android:api-30-ndk
     steps:
-      - checkout
+      - install_packages
       - run:
-         name: "Setup flutter environment variable"
-         command: |
-           echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+          name: "Setup flutter environment variable"
+          command: |
+             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
       - run:
          name: Analyze, test and report coverage
          command: |
@@ -28,9 +79,40 @@ jobs:
             python3 check_coverage.py
       - store_artifacts:
           path: coverage/
+  
+  deploy_to_internal_firebase_app_tester:
+    resource_class: large
+    docker:
+      - image: circleci/android:api-30-ndk
+    steps:
+      - install_packages
+      - download_and_setup_keystore
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
+            - keystore_and_properties_cache
+      - run:
+          name: "Setup flutter environment variable"
+          command: |
+             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - run:
+          name: "Build and publish to firebase app distribution"
+          command: |
+            echo $APP_ENV_FILE > .env
+            echo $GOOGLE_SERVICES_FILE > $HOME/project/android/app/google-services.json
+            flutter build apk --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
 
 workflows:
   version: 2
-  test-build-deploy:
+  test_and_deploy:
    jobs:
      - run_tests_and_generate_coverage
+     - deploy_to_internal_firebase_app_tester:
+         requires:
+           - run_tests_and_generate_coverage
+         filters:
+           branches:
+             only:
+               - main
