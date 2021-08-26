@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/presentation/core/bewell_pro_app.dart';
+import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/app_contexts.dart';
 import 'package:bewell_pro_core/presentation/onboarding/common/landing_page.dart';
@@ -20,7 +20,7 @@ void main() {
     final Store<CoreState> store =
         Store<CoreState>(initialState: AppState.initial());
 
-    final Widget _beWellProApp = BewellProApp(
+    final Widget _beWellProApp = AfyaMojaApp(
       store: store,
       appContexts: testAppContexts,
     );
