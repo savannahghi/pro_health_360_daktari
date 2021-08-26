@@ -1,0 +1,5 @@
+google_cloud_bucket_name("hc-ios-keys")
+
+storage_mode("google_cloud")
+
+type("appstore")

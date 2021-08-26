@@ -1,0 +1,19 @@
+{
+  "hosting": [
+      {
+      "target" :"internal-healthcloud", 
+      "public": "build/web",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }    
+  ]
+}

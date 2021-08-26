@@ -1,0 +1,72 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    implicit-dynamic: true
+  errors:
+    todo: ignore
+    sdk_version_async_exported_from_core: ignore
+    missing_required_param: error
+    missing_return: error
+  exclude:
+    - "lib/generated_plugin_*.dart"
+    - "bin/cache/**"
+    - "lib/**/*.g.dart"
+    - "lib/**/*.freezed.dart"
+    - "test/**/*.mocks.dart"
+    - "lib/presentation/router/*.gr.dart"
+    - "test/**/*.mocks.dart"
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    argument_type_not_assignable: true
+    prefer_const_declarations: true
+    prefer_final_locals: true
+    unnecessary_brace_in_string_interps: true
+    avoid_void_async: true
+    leading_newlines_in_multiline_strings: true
+    await_only_futures: true
+    prefer_const_constructors_in_immutables: true
+    avoid_redundant_argument_values: true
+    sort_child_properties_last: true
+    unnecessary_parenthesis: true
+    avoid_unused_constructor_parameters: true
+    sized_box_for_whitespace: true
+    avoid_unnecessary_containers: true
+    prefer_const_literals_to_create_immutables: true
+    unnecessary_string_interpolations: true
+    empty_statements: true
+    sort_unnamed_constructors_first: true
+    void_checks: true
+    join_return_with_assignment: true
+    unnecessary_await_in_return: true
+    avoid_print: true
+    invalid_assignment: true
+    unnecessary_raw_strings: true
+    parameter_assignments: true
+    avoid_positional_boolean_parameters: true
+    unnecessary_statements: true
+    unnecessary_string_escapes: true
+    non_bool_condition: true
+    hash_and_equals: true
+    non_constant_identifier_names: true
+    prefer_interpolation_to_compose_strings: true
+    prefer_if_elements_to_conditional_expressions: true
+    always_specify_types: true
+    prefer_function_declarations_over_variables: true
+    avoid_bool_literals_in_conditional_expressions: true
+    overridden_fields: true
+    camel_case_types: true
+
+    # exceptions
+    prefer_constructors_over_static_methods: false
+    omit_local_variable_types: false
+    unnecessary_this: false
+    prefer_collection_literals: false
+    avoid_escaping_inner_quotes: false
+    file_names: false
+    constant_identifier_names: false
+    avoid_web_libraries_in_flutter: false
+    avoid_classes_with_only_static_members: false
