@@ -1,8 +1,8 @@
-# Contributing to `BeWell-Proessional-Community-Edition`
+# Contributing to `AfyaMoja`
 
 First off, thanks for taking the time to contribute!
 
-The following is a set of guidelines for contributing to `BeWell-Proessional-Community-Edition`, which is hosted in the [Savannah Global Health](https://github.com/savannahghi) Organization on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to `AfyaMoja`, which is hosted in the [Savannah Global Health](https://github.com/savannahghi) Organization on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
 
@@ -22,7 +22,7 @@ The following is a set of guidelines for contributing to `BeWell-Proessional-Com
 - [Your First Code Contribution](#your-first-code-contribution)
 - [Pull Requests](#pull-requests)
 
-[Styleguides](#styleguides)
+[Style guides](#style-guides)
 
 - [Git Commit Messages](#git-commit-messages)
 - [Importing packages](#packages-import)
@@ -43,8 +43,8 @@ We have an official message board (Support center) through which we can interact
 
 ### Savannah Informatics Limited (SIL) Software and Packages
 
-`BeWell-Proessional-Community-Edition` is an open source project &mdash; it's one among many other shared libraries that make up the wider ecosystem of software made and open sourced by `Savannah Informatics Limited`.
-When you initially consider contributing to `BeWell-Proessional-Community-Edition`, you might be unsure about which of those repositories implements the functionality you want to change or report a bug for. This section should help you with that.
+`AfyaMoja` is an open source project &mdash; it's one among many other shared libraries and applications that make up the wider ecosystem of software made and open sourced by `Savannah Informatics Limited`.
+When you initially consider contributing to `AfyaMoja`, you might be unsure about which of those repositories implements the functionality you want to change or report a bug for. This section should help you with that.
 
 Here's a list of the big ones:
 
@@ -67,9 +67,9 @@ When we make a significant decision in how we maintain the project and what we c
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for `BeWell-Proessional-Community-Edition`. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer:, and find related reports :mag_right:.
+This section guides you through submitting a bug report for `AfyaMoja`. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer:, and find related reports :mag_right:.
 
-Before creating bug reports, please check the project's list of open issues/bug reports as you might find out that you don't need to create one. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](https://github.com/atom/.github/blob/master/.github/ISSUE_TEMPLATE/bug_report.md), the information it asks for helps us resolve issues faster.
+Before creating bug reports, please check the project's list of open [issues/bug](https://github.com/savannahghi/AfyaMoja/issues) reports as you might find out that you don't need to create one. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](https://github.com/savannahghi/AfyaMoja/blob/main/.github/feature_request.md), the information it asks for helps us resolve issues faster.
 
 > **Note:** If you find a **Closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
@@ -117,7 +117,7 @@ Before creating enhancement suggestions, please check [the list of already propo
 #### Before Submitting An Enhancement Suggestion
 
 - **Check the [project changelog](https://github.com/)** for tips — you might discover that the enhancement is already in the works and(or) is available in this or a previous version. Most importantly, check if you're using [the latest version of this project](https://github.com/#update-to-the-latest-version).
-- **Check if there's already [a package](https://atom.io/packages) which provides that enhancement among the list of related projects.**
+- **Check if there's already [a package](https://github.com/savannahghi) which provides that enhancement among the list of related projects.**
 - **Perform a [cursory search](https://github.com/search?q=+is%3Aissue+user%3)** to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 
 #### How Do I Submit A (Good) Enhancement Suggestion?
@@ -146,7 +146,7 @@ Both issue lists are sorted by total number of comments. While not perfect, numb
 
 #### Local development
 
-`BeWell-Proessional-Community-Edition` and all packages can be developed locally. For instructions on how to do this, (develop, test & deploy) see the project's readme file
+`AfyaMoja` and all packages can be developed locally. For instructions on how to do this, (develop, test & deploy) see the project's readme file
 
 ### Pull Requests
 
@@ -160,11 +160,11 @@ The process described here has several goals:
 Please follow these steps to have your contribution considered by the maintainers:
 
 1. Follow all instructions in [the template](PULL_REQUEST_TEMPLATE.md)
-2. Follow the [styleguides](#styleguides)
+2. Follow the [style guides](#style-guides)
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
-## Styleguides
+## Style guides
 
 ### Git Commit Messages
 
