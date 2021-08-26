@@ -40,7 +40,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   NavigateAction.setNavigatorKey(globalAppNavigatorKey);
 
-  final AppSetupData _appSetupData = getAppSetupData(appContexts.last);
+  final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
   final BeWellStateDatabase stateDB =
       BeWellStateDatabase(dataBaseName: DatabaseName);
@@ -82,13 +82,14 @@ Future<void> initApp(List<AppContext> appContexts) async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
         options
-          ..dsn = _appSetupData.sentryDNS
+          ..dsn = appSetupData.sentryDNS
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
         AfyaMojaApp(
           store: store,
-          appContexts: _appSetupData.appContexts,
+          appContexts: appSetupData.appContexts,
+          customContext: appSetupData.customContext,
         ),
       ),
     );

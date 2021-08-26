@@ -1,19 +1,25 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:healthcloud/infrastructure/afyamoja_endpoint_context.dart';
 
 import 'auth_manager.dart';
 
 class AfyaMojaApp extends StatefulWidget {
-  const AfyaMojaApp({Key? key, required this.store, required this.appContexts})
-      : super(key: key);
+  const AfyaMojaApp({
+    Key? key,
+    required this.store,
+    required this.appContexts,
+    this.customContext,
+  }) : super(key: key);
 
   final List<AppContext> appContexts;
   final Store<CoreState> store;
+  final BaseContext? customContext;
 
   @override
   _AfyaMojaAppState createState() => _AfyaMojaAppState();
@@ -46,9 +52,10 @@ class _AfyaMojaAppState extends State<AfyaMojaApp> {
         builder: (BuildContext context, CoreState state) {
           return AppWrapper(
             appName: appName,
+            baseContext: widget.customContext,
             graphQLClient: GraphQlClient(
               widget.store.state.userState!.auth!.idToken!,
-              EndpointContext.getGraphQLEndpoint(widget.appContexts),
+              AfyaMojaEndpointContext.getGraphQLEndpoint(widget.appContexts),
             ),
             appContexts: widget.appContexts,
             child: Builder(
