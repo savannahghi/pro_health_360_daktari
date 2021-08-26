@@ -5,7 +5,7 @@ import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_state_persistor.dart';
-import 'package:healthcloud/presentation/core/bewell_pro_app.dart';
+import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/domain_constants.dart';
 import 'package:bewell_pro_core/presentation/core/widgets/unrecoverable_error_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -86,7 +86,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
-        BewellProApp(
+        AfyaMojaApp(
           store: store,
           appContexts: _appSetupData.appContexts,
         ),

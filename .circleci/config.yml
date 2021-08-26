@@ -1,0 +1,37 @@
+version: 2.1
+        
+jobs:
+  run_tests_and_generate_coverage:
+    docker:
+      - image: cirrusci/flutter
+    steps:
+      - checkout
+      - run:
+         name: "Setup flutter environment variable"
+         command: |
+           echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - run:
+         name: Analyze, test and report coverage
+         command: |
+            flutter clean
+            flutter pub get
+            flutter analyze
+            flutter test --coverage test/
+            sudo apt-get -qq update
+            sudo apt-get install -qqy lcov python3-pip
+            pip3 install -Uqqq lxml && pip3 install -Uqqq beautifulsoup4
+            lcov --remove coverage/lcov.info 'lib/*.g.dart' 'lib/shared/strings/messages_all.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/application/core/services/connectivity_helper.dart' -o coverage/lcov.info
+            genhtml -q -o coverage coverage/lcov.info
+            python3 check_coverage.py
+      - store_artifacts:
+          path: coverage/
+
+workflows:
+  version: 2
+  test-build-deploy:
+   jobs:
+     - run_tests_and_generate_coverage

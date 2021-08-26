@@ -8,18 +8,18 @@ import 'package:dart_fcm/dart_fcm.dart';
 
 import 'auth_manager.dart';
 
-class BewellProApp extends StatefulWidget {
-  const BewellProApp({Key? key, required this.store, required this.appContexts})
+class AfyaMojaApp extends StatefulWidget {
+  const AfyaMojaApp({Key? key, required this.store, required this.appContexts})
       : super(key: key);
 
   final List<AppContext> appContexts;
   final Store<CoreState> store;
 
   @override
-  _BewellProAppState createState() => _BewellProAppState();
+  _AfyaMojaAppState createState() => _AfyaMojaAppState();
 }
 
-class _BewellProAppState extends State<BewellProApp> {
+class _AfyaMojaAppState extends State<AfyaMojaApp> {
   bool hasFinishedLaunching = false;
   static const Key globalStoreProviderKey = Key('global_store_provider');
 
