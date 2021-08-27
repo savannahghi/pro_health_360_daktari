@@ -10,11 +10,12 @@ void main() {
       expect(Tables.userState.name, 'userState');
       expect(Tables.clinicalState.name, 'clinicalState');
       expect(Tables.navigationState.name, 'navigationState');
+      expect(Tables.practitionerKYCState.name, 'practitionerKYCState');
     });
 
     test('migrations', () {
       expect(migrations, isA<List<String>>());
-      expect(migrations.length, 5);
+      expect(migrations.length, 6);
     });
   });
 }

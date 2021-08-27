@@ -38,3 +38,10 @@ ThemeData buildTheme() {
     ),
   );
 }
+
+BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
+      color: Colors.white,
+      border: Border.all(
+        color: Theme.of(context).primaryColor.withOpacity(0.1),
+      ),
+    );

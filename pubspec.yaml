@@ -17,6 +17,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_graphql_client: ^0.1.23
+  freezed: ^0.14.2
+  freezed_annotation: ^0.14.2
+  json_annotation: ^4.0.1
+  json_serializable: ^4.1.3
+  misc_utilities: ^0.1.27-nullsafety
   quiver: ^3.0.1
 
 dev_dependencies:

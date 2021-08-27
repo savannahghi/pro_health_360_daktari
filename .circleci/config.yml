@@ -20,11 +20,10 @@ jobs:
             sudo apt-get -qq update
             sudo apt-get install -qqy lcov python3-pip
             pip3 install -Uqqq lxml && pip3 install -Uqqq beautifulsoup4
-            lcov --remove coverage/lcov.info 'lib/*.g.dart' 'lib/shared/strings/messages_all.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/*.g.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info
-            lcov --remove coverage/lcov.info 'lib/application/core/services/connectivity_helper.dart' -o coverage/lcov.info
             genhtml -q -o coverage coverage/lcov.info
             python3 check_coverage.py
       - store_artifacts:
