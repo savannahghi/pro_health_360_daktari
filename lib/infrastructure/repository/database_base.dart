@@ -30,6 +30,7 @@ enum Tables {
   userState,
   clinicalState,
   navigationState,
+  practitionerKYCState
 }
 
 /// [TablesEx] extends [Tables] enum to get the values as
@@ -47,6 +48,8 @@ extension TablesEx on Tables {
         return 'clinicalState';
       case Tables.navigationState:
         return 'navigationState';
+      case Tables.practitionerKYCState:
+        return 'practitionerKYCState';
     }
   }
 }

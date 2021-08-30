@@ -1,3 +1,4 @@
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
@@ -50,7 +51,9 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
         lastPersistedState.miscState != newState.miscState ||
         lastPersistedState.userFeedState != newState.userFeedState ||
         lastPersistedState.userState != newState.userState ||
-        lastPersistedState.clinicalState != newState.clinicalState) {
+        lastPersistedState.clinicalState != newState.clinicalState ||
+        lastPersistedState.practitionerKYCState !=
+            newState.practitionerKYCState) {
       await persistState(
         newState,
         BeWellDatabaseMobile<Database>(
@@ -112,6 +115,12 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
     await database.saveState(
         data: newState.navigationState!.toJson(),
         table: Tables.navigationState);
+
+    // save practitionerKYC state
+    await database.saveState(
+      data: newState.practitionerKYCState!.toJson(),
+      table: Tables.practitionerKYCState,
+    );
   }
 
   @visibleForTesting
@@ -136,6 +145,10 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
       // retrieve navigation state
       navigationState: Navigation.fromJson(
           await database.retrieveState(Tables.navigationState)),
+
+      // retrieve practitionerKYC state
+      practitionerKYCState: PractitionerKYCState.fromJson(
+          await database.retrieveState(Tables.practitionerKYCState)),
 
       wait: Wait(),
     );

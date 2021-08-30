@@ -76,6 +76,7 @@ void main() {
       buildWhenMock('userState', 10);
       buildWhenMock('clinicalState', 10);
       buildWhenMock('navigationState', 10);
+      buildWhenMock('practitionerKYCState', 10);
       expect(await db.isDatabaseEmpty(), false);
     });
 
@@ -85,6 +86,7 @@ void main() {
       buildWhenMock('userState', 0);
       buildWhenMock('clinicalState', 0);
       buildWhenMock('navigationState', 0);
+      buildWhenMock('practitionerKYCState', 0);
       expect(await db.isDatabaseEmpty(), true);
     });
   });

@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+
+import 'mocks.dart';
 
 Map<String, dynamic>? setupFirebaseAuthMocks(
     [void Function(MethodCall call)? customHandlers]) {
@@ -46,4 +50,18 @@ Map<String, dynamic>? setupFirebaseAuthMocks(
 
     return null;
   });
+}
+
+/// Kyc file upload mock
+MethodChannel setupFileUploadMock(List<MethodCall> methodCalls) {
+  const MethodChannel channel =
+      MethodChannel('plugins.flutter.io/image_picker');
+
+  channel.setMockMethodCallHandler((MethodCall methodCall) async {
+    methodCalls.add(methodCall);
+
+    final File file = File(testPath('test_resources/test_file.png'));
+    return file.path;
+  });
+  return channel;
 }
