@@ -16,8 +16,8 @@ void main() {
   when(initDb.database()).thenAnswer(
       (Invocation realInvocation) => Future<MockStateDB>.value(mockDb));
 
-  final BeWellDatabaseMobile<MockStateDB> db =
-      BeWellDatabaseMobile<MockStateDB>(initializeDB: initDb);
+  final AfyaMojaDatabaseMobile<MockStateDB> db =
+      AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDb);
 
   Future<List<Map<String, Object?>>> returnVal(int count) =>
       Future<List<Map<String, Object?>>>.value(
@@ -36,8 +36,8 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final BeWellDatabaseMobile<MockStateDB> _db =
-        BeWellDatabaseMobile<MockStateDB>(initializeDB: initDB);
+    final AfyaMojaDatabaseMobile<MockStateDB> _db =
+        AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
     expect(_db.clearDatabase(), throwsException);
   });
@@ -50,8 +50,8 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final BeWellDatabaseMobile<MockStateDB> _db =
-        BeWellDatabaseMobile<MockStateDB>(initializeDB: initDB);
+    final AfyaMojaDatabaseMobile<MockStateDB> _db =
+        AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
     expect(_db.clearDatabase(), throwsException);
   });

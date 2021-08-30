@@ -12,12 +12,13 @@ import 'package:bewell_pro_core/application/redux/states/user_feed_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 
-/// [BeWellStateDatabase] is the middleware that interacts with the database on behalf
-/// of the application. From the apps perspective, it doesn't care which database
-/// its saving its state on. HCStateDatabase therefore offers different implementations
+/// [AfyaMojaStateDatabase] is the middleware that interacts with the database
+/// on behalf of the application. From the app's perspective, it doesn't care
+/// which database its saving its state on. HCStateDatabase therefore offers
+/// different implementations
 /// for its method.
-class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
-  BeWellStateDatabase(
+class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
+  AfyaMojaStateDatabase(
       {Duration throttle = const Duration(seconds: 2),
       Duration saveDuration = Duration.zero,
       required this.dataBaseName})
@@ -35,7 +36,7 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   @override
   Future<void> deleteState() async {
-    await BeWellDatabaseMobile<Database>(
+    await AfyaMojaDatabaseMobile<Database>(
             initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
         .clearDatabase();
   }
@@ -56,7 +57,7 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
             newState.practitionerKYCState) {
       await persistState(
         newState,
-        BeWellDatabaseMobile<Database>(
+        AfyaMojaDatabaseMobile<Database>(
           initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
         ),
       );
@@ -69,13 +70,13 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   /// - else, we retrieve the state from the database
   @override
   Future<AppState> readState() async {
-    if (await BeWellDatabaseMobile<Database>(
+    if (await AfyaMojaDatabaseMobile<Database>(
             initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
         .isDatabaseEmpty()) {
       return AppState.initial();
     } else {
       return retrieveState(
-        BeWellDatabaseMobile<Database>(
+        AfyaMojaDatabaseMobile<Database>(
             initializeDB: InitializeDB<Database>(dbName: this.dataBaseName)),
       );
     }
@@ -88,14 +89,14 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   /// initialize the database
   Future<void> init() async {
-    await BeWellDatabaseMobile<Database>(
+    await AfyaMojaDatabaseMobile<Database>(
             initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
         .database;
   }
 
   @visibleForTesting
   Future<void> persistState(
-      AppState newState, BeWellDatabaseBase<dynamic> database) async {
+      AppState newState, AfyaMojaDatabaseBase<dynamic> database) async {
     // save MISC state
     await database.saveState(
         data: newState.miscState!.toJson(), table: Tables.miscState);
@@ -124,7 +125,7 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   }
 
   @visibleForTesting
-  Future<AppState> retrieveState(BeWellDatabaseBase<dynamic> database) async {
+  Future<AppState> retrieveState(AfyaMojaDatabaseBase<dynamic> database) async {
     return const AppState().copyWith(
       // retrieve MISC state
       miscState:

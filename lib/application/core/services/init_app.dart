@@ -43,8 +43,8 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
-  final BeWellStateDatabase stateDB =
-      BeWellStateDatabase(dataBaseName: DatabaseName);
+  final AfyaMojaStateDatabase stateDB =
+      AfyaMojaStateDatabase(dataBaseName: DatabaseName);
 
   await stateDB.init();
 

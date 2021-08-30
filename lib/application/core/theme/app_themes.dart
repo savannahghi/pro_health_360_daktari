@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_themes/colors.dart';
 
-final ThemeData bewellProAndroidTheme = buildTheme();
+final ThemeData afyaMojaProAndroidTheme = buildTheme();
 //use accordingly with guidance from the title
 ThemeData buildTheme() {
   final ThemeData base = ThemeData.light();

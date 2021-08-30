@@ -14,7 +14,7 @@
 
 Looks like we are done with the prerequisites :-)
 
-### How to setup and run bewell-professional
+### How to setup and run AfyaMoja
 
 1. Clone the project by running `git clone https://github.com/savannahghi/AfyaMoja.git` or download the code
 2. `cd AfyaMoja`
