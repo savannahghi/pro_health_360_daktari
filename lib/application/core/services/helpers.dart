@@ -5,6 +5,7 @@ import 'package:bewell_pro_core/domain/core/value_objects/app_contexts.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:healthcloud/infrastructure/endpoints.dart';
 
 /// Returns the correct [AppSetupData] based on the [AppContext]
 ///
@@ -19,11 +20,49 @@ AppSetupData getAppSetupData(AppContext context) {
       return AppSetupData(
         appContexts: testAppContexts,
         sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+        customContext: const BaseContext(
+          anonymousLoginEndpoint: testAnonymousLoginEndpoint,
+          graphqlEndpoint: testGraphqlEndpoint,
+          setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
+          refreshTokenEndpoint: testRefreshTokenEndpoint,
+          retryResendOtpEndpoint: testRetryResendOtpEndpoint,
+          pinResetEndpoint: testPinResetEndpoint,
+          userRecoveryPhoneNumbersEndpoint:
+              testUserRecoveryPhoneNumbersEndpoint,
+          verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
+          verifyPhoneEndpoint: testVerifyPhoneEndpoint,
+          sendContactVerificationOTPEndpoint:
+              testSendContactVerificationOTPEndpoint,
+          sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
+          loginByPhoneEndpoint: testLoginByPhoneEndpoint,
+          updateUserPinEndpoint: testUpdateUserPinEndpoint,
+          uploadFileEndPoint: testUploadFileEndPoint,
+          createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
+        ),
       );
     case AppContext.AppDemo:
       return AppSetupData(
         appContexts: demoAppContexts,
         sentryDNS: FlutterConfig.get('PROD_SENTRY_DNS') as String,
+        customContext: const BaseContext(
+          anonymousLoginEndpoint: testAnonymousLoginEndpoint,
+          graphqlEndpoint: testGraphqlEndpoint,
+          setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
+          refreshTokenEndpoint: testRefreshTokenEndpoint,
+          retryResendOtpEndpoint: testRetryResendOtpEndpoint,
+          pinResetEndpoint: testPinResetEndpoint,
+          userRecoveryPhoneNumbersEndpoint:
+              testUserRecoveryPhoneNumbersEndpoint,
+          verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
+          verifyPhoneEndpoint: testVerifyPhoneEndpoint,
+          sendContactVerificationOTPEndpoint:
+              testSendContactVerificationOTPEndpoint,
+          sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
+          loginByPhoneEndpoint: testLoginByPhoneEndpoint,
+          updateUserPinEndpoint: testUpdateUserPinEndpoint,
+          uploadFileEndPoint: testUploadFileEndPoint,
+          createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
+        ),
       );
     case AppContext.AppProd:
       return AppSetupData(
@@ -34,11 +73,49 @@ AppSetupData getAppSetupData(AppContext context) {
       return AppSetupData(
         appContexts: e2eAppContexts,
         sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+        customContext: const BaseContext(
+          anonymousLoginEndpoint: testAnonymousLoginEndpoint,
+          graphqlEndpoint: testGraphqlEndpoint,
+          setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
+          refreshTokenEndpoint: testRefreshTokenEndpoint,
+          retryResendOtpEndpoint: testRetryResendOtpEndpoint,
+          pinResetEndpoint: testPinResetEndpoint,
+          userRecoveryPhoneNumbersEndpoint:
+              testUserRecoveryPhoneNumbersEndpoint,
+          verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
+          verifyPhoneEndpoint: testVerifyPhoneEndpoint,
+          sendContactVerificationOTPEndpoint:
+              testSendContactVerificationOTPEndpoint,
+          sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
+          loginByPhoneEndpoint: testLoginByPhoneEndpoint,
+          updateUserPinEndpoint: testUpdateUserPinEndpoint,
+          uploadFileEndPoint: testUploadFileEndPoint,
+          createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
+        ),
       );
     default:
       return AppSetupData(
         appContexts: testAppContexts,
         sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+        customContext: const BaseContext(
+          anonymousLoginEndpoint: testAnonymousLoginEndpoint,
+          graphqlEndpoint: testGraphqlEndpoint,
+          setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
+          refreshTokenEndpoint: testRefreshTokenEndpoint,
+          retryResendOtpEndpoint: testRetryResendOtpEndpoint,
+          pinResetEndpoint: testPinResetEndpoint,
+          userRecoveryPhoneNumbersEndpoint:
+              testUserRecoveryPhoneNumbersEndpoint,
+          verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
+          verifyPhoneEndpoint: testVerifyPhoneEndpoint,
+          sendContactVerificationOTPEndpoint:
+              testSendContactVerificationOTPEndpoint,
+          sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
+          loginByPhoneEndpoint: testLoginByPhoneEndpoint,
+          updateUserPinEndpoint: testUpdateUserPinEndpoint,
+          uploadFileEndPoint: testUploadFileEndPoint,
+          createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
+        ),
       );
   }
 }

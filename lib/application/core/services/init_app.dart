@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_state_persistor.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
@@ -40,7 +41,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   NavigateAction.setNavigatorKey(globalAppNavigatorKey);
 
-  final AppSetupData _appSetupData = getAppSetupData(appContexts.last);
+  final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
   final BeWellStateDatabase stateDB =
       BeWellStateDatabase(dataBaseName: DatabaseName);
@@ -82,13 +83,32 @@ Future<void> initApp(List<AppContext> appContexts) async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
         options
-          ..dsn = _appSetupData.sentryDNS
+          ..dsn = appSetupData.sentryDNS
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
         AfyaMojaApp(
           store: store,
-          appContexts: _appSetupData.appContexts,
+          appContexts: appSetupData.appContexts,
+          customContext: const BaseContext(
+            graphqlEndpoint: testGraphqlEndpoint,
+            anonymousLoginEndpoint: testAnonymousLoginEndpoint,
+            createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
+            loginByPhoneEndpoint: testLoginByPhoneEndpoint,
+            pinResetEndpoint: testPinResetEndpoint,
+            refreshTokenEndpoint: testRefreshTokenEndpoint,
+            retryResendOtpEndpoint: testRetryResendOtpEndpoint,
+            sendContactVerificationOTPEndpoint:
+                testSendContactVerificationOTPEndpoint,
+            sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
+            setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
+            userRecoveryPhoneNumbersEndpoint:
+                testUserRecoveryPhoneNumbersEndpoint,
+            updateUserPinEndpoint: testUpdateUserPinEndpoint,
+            uploadFileEndPoint: testUploadFileEndPoint,
+            verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
+            verifyPhoneEndpoint: testVerifyPhoneEndpoint,
+          ),
         ),
       ),
     );
