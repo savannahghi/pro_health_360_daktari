@@ -1,8 +1,8 @@
 const String DatabaseName = 'bw.store.db';
 
-/// [BeWellDatabaseBase] defines an interface to be fulfilled so that a storage component
+/// [AfyaMojaDatabaseBase] defines an interface to be fulfilled so that a storage component
 /// may work, for each exclusive platform. (Mobile and Web)
-abstract class BeWellDatabaseBase<T> {
+abstract class AfyaMojaDatabaseBase<T> {
   /// get the [database] instance
   Future<T> get database;
 

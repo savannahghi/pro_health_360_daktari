@@ -5,18 +5,19 @@ import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:healthcloud/infrastructure/repository/sqlite.dart';
 import 'package:sqflite/sqflite.dart';
 
-/// [BeWellDatabaseMobile] is the main entry for interacting with the database for healthcloud mobile
-/// It uses sqlite which is a common RDMS. Unlike other key:value storage, sqlite offers
-/// high flexibility when storing structured data.
-/// The idea is to store, sessions, permissions(highly structured) and anything else
-/// that required persistence.
-/// When a new state has been added, it needs to be serialized so that it may be saved in the database
-/// The command to serialize is [flutter pub run build_runner build --delete-conflicting-outputs]
+/// [AfyaMojaDatabaseMobile] is the main entry for interacting with the
+/// database for healthcloud mobile. It uses sqlite which is a common RDMS.
+/// Unlike other key:value storage, sqlite offers high flexibility when
+/// storing structured data. The idea is to store, sessions,
+/// permissions(highly structured) and anything else that required persistence.
+/// When a new state has been added, it needs to be serialized so that it may
+/// be saved in the database. The command to serialize is
+/// [flutter pub run build_runner build --delete-conflicting-outputs]
 /// Ref : https://flutter.dev/docs/development/data-and-backend/json
 ///     : https://pub.dev/packages/built_value
-class BeWellDatabaseMobile<T extends DatabaseExecutor>
-    implements BeWellDatabaseBase<T> {
-  BeWellDatabaseMobile({this.initializeDB});
+class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
+    implements AfyaMojaDatabaseBase<T> {
+  AfyaMojaDatabaseMobile({this.initializeDB});
 
   final InitializeDB<T>? initializeDB;
 

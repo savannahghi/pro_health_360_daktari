@@ -96,7 +96,7 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
         }
 
         return MaterialApp(
-          theme: bewellProAndroidTheme,
+          theme: afyaMojaProAndroidTheme,
           debugShowCheckedModeBanner: showDebugModeBanner(widget.appContexts),
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: <NavigatorObserver>[

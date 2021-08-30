@@ -3,7 +3,7 @@ import 'package:healthcloud/infrastructure/repository/migrations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('BeWellDatabaseBase', () {
+  group('AfyaMojaDatabaseMobile', () {
     test('Tables enum returns correct values', () {
       expect(Tables.miscState.name, 'miscState');
       expect(Tables.userFeedState.name, 'userFeedState');
