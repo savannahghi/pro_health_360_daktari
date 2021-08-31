@@ -19,4 +19,7 @@ final List<String> migrations = <String>[
   '''
   CREATE TABLE IF NOT EXISTS ${Tables.practitionerKYCState.name} (id INTEGER PRIMARY KEY, 
           practitionerKYCState TEXT)''',
+  '''
+  CREATE TABLE IF NOT EXISTS ${Tables.userRegistrationState.name} (id INTEGER PRIMARY KEY, 
+          userRegistrationState TEXT)''',
 ];

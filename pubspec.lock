@@ -49,7 +49,7 @@ packages:
       name: bewell_pro_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.11-nullsafety"
+    version: "1.1.13-nullsafety"
   boolean_selector:
     dependency: transitive
     description:
@@ -614,7 +614,7 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.1+1"
+    version: "8.1.1+2"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
@@ -1329,7 +1329,7 @@ packages:
       name: timezone
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   timing:
     dependency: transitive
     description:
@@ -1413,7 +1413,7 @@ packages:
       name: user_profile
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.21-nullsafety"
+    version: "0.1.22-nullsafety"
   uuid:
     dependency: transitive
     description:

@@ -1,4 +1,5 @@
 import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:app_wrapper/app_wrapper.dart';
@@ -40,7 +41,7 @@ Future<void> buildTestWidget({
   await tester.pumpWidget(
     AppWrapperBase(
       graphQLClient: graphQlClient ?? mockSILGraphQlClient,
-      appName: appName,
+      appName: AppBrand().appName.value,
       appContexts: testAppContexts,
       deviceCapabilities: deviceCapabilities,
       child: StoreProvider<CoreState>(
