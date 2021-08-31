@@ -72,6 +72,8 @@ class AppRouterGenerator extends RouteGenerator {
           return MaterialPageRoute<OrganizationPractitionerKYCStepFour>(
               builder: (_) => const OrganizationPractitionerKYCStepFour());
       }
+    } else {
+      return superRoute;
     }
   }
 }
