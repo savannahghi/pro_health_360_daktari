@@ -1,3 +1,4 @@
+import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/clinical_state.dart';
@@ -19,6 +20,7 @@ class AppState extends CoreState {
     ConnectivityState? connectivityState,
     ClinicalState? clinicalState,
     Navigation? navigationState,
+    UserRegistrationState? userRegistrationState,
     Wait? wait,
   }) : super(
           clinicalState: clinicalState,
@@ -27,6 +29,7 @@ class AppState extends CoreState {
           userState: userState,
           connectivityState: connectivityState,
           navigationState: navigationState,
+          userRegistrationState: userRegistrationState,
           wait: wait,
         );
 
@@ -38,6 +41,7 @@ class AppState extends CoreState {
         connectivityState: ConnectivityState.initial(),
         clinicalState: ClinicalState.initial(),
         navigationState: Navigation.initial(),
+        userRegistrationState: UserRegistrationState.initial(),
         wait: Wait(),
       );
 
@@ -50,6 +54,7 @@ class AppState extends CoreState {
     ConnectivityState? connectivityState,
     ClinicalState? clinicalState,
     Navigation? navigationState,
+    UserRegistrationState? userRegistrationState,
     Wait? wait,
   }) {
     return AppState(
@@ -60,6 +65,7 @@ class AppState extends CoreState {
       connectivityState: connectivityState ?? this.connectivityState,
       clinicalState: clinicalState ?? this.clinicalState,
       navigationState: navigationState ?? this.navigationState,
+      userRegistrationState: userRegistrationState ?? this.userRegistrationState,
       wait: wait ?? this.wait,
     );
   }
@@ -73,6 +79,7 @@ class AppState extends CoreState {
         connectivityState,
         clinicalState,
         navigationState,
+        userRegistrationState,
         wait
       ];
 }

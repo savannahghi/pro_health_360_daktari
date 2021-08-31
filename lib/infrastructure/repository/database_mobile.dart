@@ -47,8 +47,9 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
     final int t4 = await countTableRecords(Tables.clinicalState);
     final int t5 = await countTableRecords(Tables.navigationState);
     final int t6 = await countTableRecords(Tables.practitionerKYCState);
+    final int t7 = await countTableRecords(Tables.userRegistrationState);
 
-    final int counts = t1 + t2 + t3 + t4 + t5 + t6;
+    final int counts = t1 + t2 + t3 + t4 + t5 + t6 + t7;
     if (counts > 0) {
       return false;
     }

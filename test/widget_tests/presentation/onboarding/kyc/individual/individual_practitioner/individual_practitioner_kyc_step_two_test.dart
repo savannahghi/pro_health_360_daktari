@@ -1,3 +1,5 @@
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -27,6 +29,7 @@ void main() {
     final List<MethodCall> methodCalls = <MethodCall>[];
 
     setUp(() {
+      AppBrand().appLogo.add(cameraIconUrl);
       store = Store<CoreState>(initialState: AppState.initial());
       setupFileUploadMock(methodCalls);
       methodCalls.clear();

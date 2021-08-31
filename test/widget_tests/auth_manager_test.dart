@@ -1,4 +1,6 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
@@ -13,6 +15,7 @@ import '../mocks/mock_utils.dart';
 void main() {
   group('AuthManager', () {
     setUpAll(() async {
+      AppBrand().appLogo.add(cameraIconUrl);
       setupFirebaseAuthMocks();
       await Firebase.initializeApp();
     });

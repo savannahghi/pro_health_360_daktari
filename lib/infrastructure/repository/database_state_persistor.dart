@@ -1,3 +1,4 @@
+import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -54,7 +55,9 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
         lastPersistedState.userState != newState.userState ||
         lastPersistedState.clinicalState != newState.clinicalState ||
         lastPersistedState.practitionerKYCState !=
-            newState.practitionerKYCState) {
+            newState.practitionerKYCState ||
+        lastPersistedState.userRegistrationState !=
+            newState.userRegistrationState) {
       await persistState(
         newState,
         AfyaMojaDatabaseMobile<Database>(
@@ -122,6 +125,12 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
       data: newState.practitionerKYCState!.toJson(),
       table: Tables.practitionerKYCState,
     );
+
+    // save userRegistrationState state
+    await database.saveState(
+      data: newState.userRegistrationState!.toJson(),
+      table: Tables.userRegistrationState,
+    );
   }
 
   @visibleForTesting
@@ -150,6 +159,10 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
       // retrieve practitionerKYC state
       practitionerKYCState: PractitionerKYCState.fromJson(
           await database.retrieveState(Tables.practitionerKYCState)),
+
+      // retrieve practitionerKYC state
+      userRegistrationState: UserRegistrationState.fromJson(
+          await database.retrieveState(Tables.userRegistrationState)),
 
       wait: Wait(),
     );

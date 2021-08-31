@@ -1,3 +1,5 @@
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
 import 'package:healthcloud/application/redux/actions/kyc_state_actions/organization/organization_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -25,6 +27,7 @@ void main() {
     final List<MethodCall> methodCalls = <MethodCall>[];
 
     setUpAll(() {
+      AppBrand().appLogo.add(cameraIconUrl);
       setupFileUploadMock(methodCalls);
       store.dispatch(
         OrganizationPractitionerKYCAction(

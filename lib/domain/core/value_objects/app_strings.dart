@@ -2,6 +2,7 @@ import 'package:healthcloud/domain/core/entities/practice_service.dart';
 import 'package:misc_utilities/misc.dart';
 
 const String helpCenterTitle = 'AfyaMoja support center';
+const String appName = 'Afya Moja';
 
 const String provideAllRequiredInfoString =
     'Please provide all the required information';
