@@ -1,3 +1,5 @@
+import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
+import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
@@ -16,6 +18,16 @@ void main() {
       AppRouterGenerator.generateRoute;
 
   final BuildContext context = MockBuildContext();
+
+  test('Test router returns HelpCenterPage', () {
+    const RouteSettings settings = RouteSettings(name: helpCenterRoute);
+
+    final MaterialPageRoute<HelpCenterPage> route =
+        routeGenerator(settings)! as MaterialPageRoute<HelpCenterPage>;
+
+    expect(route, isA<MaterialPageRoute<HelpCenterPage>>());
+    expect(route.builder(context), isA<HelpCenterPage>());
+  });
 
   test('Test router returns IndividualPractitionerKYCStepOne', () {
     const RouteSettings settings =

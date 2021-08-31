@@ -1,4 +1,6 @@
 import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
+import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
@@ -25,6 +27,15 @@ class AppRouterGenerator extends RouteGenerator {
             logoutAction: AfyaMojaLogoutAction(),
           );
         },
+      );
+    }
+
+    if (superRoute is MaterialPageRoute<HelpCenterPage>) {
+      return MaterialPageRoute<HelpCenterPage>(
+        builder: (_) => HelpCenterPage(
+          title: helpCenterTitle,
+          logoutAction: AfyaMojaLogoutAction(),
+        ),
       );
     }
 
