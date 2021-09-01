@@ -5,13 +5,13 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('AfyaMojaDatabaseMobile', () {
     test('Tables enum returns correct values', () {
-      expect(Tables.miscState.name, 'miscState');
-      expect(Tables.userFeedState.name, 'userFeedState');
-      expect(Tables.userState.name, 'userState');
-      expect(Tables.clinicalState.name, 'clinicalState');
-      expect(Tables.navigationState.name, 'navigationState');
-      expect(Tables.practitionerKYCState.name, 'practitionerKYCState');
-      expect(Tables.userRegistrationState.name, 'userRegistrationState');
+      expect(Tables.MiscState.name, 'miscState');
+      expect(Tables.UserFeedState.name, 'userFeedState');
+      expect(Tables.UserState.name, 'userState');
+      expect(Tables.ClinicalState.name, 'clinicalState');
+      expect(Tables.NavigationState.name, 'navigationState');
+      expect(Tables.PractitionerKYCState.name, 'practitionerKYCState');
+      expect(Tables.UserRegistrationState.name, 'userRegistrationState');
     });
 
     test('migrations', () {

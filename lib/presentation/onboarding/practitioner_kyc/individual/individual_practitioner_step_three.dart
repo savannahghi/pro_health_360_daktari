@@ -1,6 +1,6 @@
 import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/actions/kyc_state_actions/save_kyc_details_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_event_strings.dart';
@@ -108,8 +108,7 @@ class _IndividualPractitionerKYCStepThreeState
                                     payload:
                                         (StoreProvider.state<CoreState>(context)
                                                 as AppState?)!
-                                            .practitionerKYCState!
-                                            .individualPractitioner!,
+                                            .practitionerKYCState!,
                                   ),
                                 ),
                               );

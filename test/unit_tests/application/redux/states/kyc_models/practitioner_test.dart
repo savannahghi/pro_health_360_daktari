@@ -1,18 +1,18 @@
 import 'package:domain_objects/value_objects.dart';
-import 'package:healthcloud/application/redux/states/practitioner_kyc_models/practitioner.dart';
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('IndividualPractitioner:', () {
+  group('PractitionerKYCState:', () {
     test('equality test', () {
-      final IndividualPractitioner state = IndividualPractitioner.initial();
+      final PractitionerKYCState state = PractitionerKYCState.initial();
 
-      expect(state, IndividualPractitioner.initial());
+      expect(state, PractitionerKYCState.initial());
     });
 
-    test('should convert data from json to a IndividualPractitioner class', () {
+    test('should convert data from json to a PractitionerKYCState class', () {
       final Map<String, dynamic> data = <String, dynamic>{
         'identificationDoc': const Identification(
                 type: 'MILITARY', docNumber: '12345', uploadID: 'photoFilename')
@@ -27,8 +27,7 @@ void main() {
         'kraPinUploadId': UNKNOWN
       };
 
-      expect(
-          IndividualPractitioner.fromJson(data), isA<IndividualPractitioner>());
+      expect(PractitionerKYCState.fromJson(data), isA<PractitionerKYCState>());
     });
   });
 }

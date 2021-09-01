@@ -20,14 +20,14 @@ class KYCPagesBottomActions extends StatelessWidget {
           buttonColor: healthcloudPrimaryColor,
           borderColor: healthcloudPrimaryColor,
           textColor: healthcloudPrimaryColor,
-          buttonKey: backKycButton,
+          buttonKey: kycBackButtonKey,
           onPressed: () {
             Navigator.pop(context);
           },
           text: backText,
         ),
         SILPrimaryButton(
-          buttonKey: nextStepKycButton,
+          buttonKey: kycNextButtonKey,
           onPressed: () => onNextOrFinish.call(),
           text: nextText,
         ),

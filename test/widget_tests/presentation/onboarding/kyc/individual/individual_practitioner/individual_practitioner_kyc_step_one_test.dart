@@ -1,6 +1,6 @@
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -45,13 +45,13 @@ void main() {
 
         expect(find.byKey(doctorRadioKey), findsOneWidget);
 
-        await tester.enterText(find.byKey(kycRegNumber), '');
+        await tester.enterText(find.byKey(kycRegNumberKey), '');
         await tester.pump();
 
         // display an error message
         // expect to find the next button and navigate to step three
         final Finder nextButton =
-            find.byKey(nextStepKycButton, skipOffstage: false);
+            find.byKey(kycNextButtonKey, skipOffstage: false);
         await tester.ensureVisible(nextButton);
 
         await tester.tap(nextButton);
@@ -92,17 +92,17 @@ void main() {
       );
 
       expect(find.text('What is your profession?'), findsOneWidget);
-      expect(find.byKey(kycRegNumber), findsOneWidget);
-      expect(find.byKey(kycLicenceNumber), findsOneWidget);
-      expect(find.byKey(kycLicenceNumber), findsOneWidget);
+      expect(find.byKey(kycRegNumberKey), findsOneWidget);
+      expect(find.byKey(kycLicenceNumberKey), findsOneWidget);
+      expect(find.byKey(kycLicenceNumberKey), findsOneWidget);
 
-      await tester.tap(find.byKey(kycLicenceNumUpload));
+      await tester.tap(find.byKey(kycLicenceNumUploadKey));
       await tester.pumpAndSettle();
 
-      await tester.enterText(find.byKey(kycRegNumber), '123456789');
+      await tester.enterText(find.byKey(kycRegNumberKey), '123456789');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycLicenceNumber), '123456789');
+      await tester.enterText(find.byKey(kycLicenceNumberKey), '123456789');
       await tester.pumpAndSettle();
 
       // uncheck confirmed checkbox
@@ -123,34 +123,20 @@ void main() {
         await tester.pump();
       }
 
-      expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .individualPractitioner!
-              .cadre,
-          'NURSE');
-      expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .individualPractitioner!
-              .registrationNumber,
+      expect((store.state as AppState).practitionerKYCState!.cadre, 'NURSE');
+      expect((store.state as AppState).practitionerKYCState!.registrationNumber,
           'some-reg-number');
       expect(
           (store.state as AppState)
               .practitionerKYCState!
-              .individualPractitioner!
               .practiceLicenseUploadID,
           'some-doc-id');
-      expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .individualPractitioner!
-              .practiceLicenseID,
+      expect((store.state as AppState).practitionerKYCState!.practiceLicenseID,
           'some-id');
 
       // Perform the license upload
       final Finder fileUpload =
-          find.byKey(kycLicenceNumUpload, skipOffstage: false);
+          find.byKey(kycLicenceNumUploadKey, skipOffstage: false);
       await tester.ensureVisible(fileUpload);
 
       await tester.tap(fileUpload);
@@ -158,7 +144,7 @@ void main() {
 
       // expect to find the next button and navigate to step three
       final Finder nextButton =
-          find.byKey(nextStepKycButton, skipOffstage: false);
+          find.byKey(kycNextButtonKey, skipOffstage: false);
       await tester.ensureVisible(nextButton);
 
       await tester.tap(nextButton);

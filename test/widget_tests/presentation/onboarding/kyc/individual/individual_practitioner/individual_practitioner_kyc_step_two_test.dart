@@ -1,7 +1,7 @@
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_page_bottom_actions.dart';
@@ -63,18 +63,18 @@ void main() {
         expect(find.text('Identification document details'), findsOneWidget);
         expect(find.byType(Form), findsOneWidget);
         expect(find.byType(FileManager), findsNWidgets(2));
-        expect(find.byKey(kycIdNumber), findsOneWidget);
-        expect(find.byKey(kycIdOptions), findsOneWidget);
+        expect(find.byKey(kycIdNumberKey), findsOneWidget);
+        expect(find.byKey(kycIdOptionsKey), findsOneWidget);
         expect(find.text('National ID'), findsOneWidget);
 
         // Enter id number
         await tester.tap(find.text('National ID'));
         await tester.pump();
-        await tester.enterText(find.byKey(kycIdNumber), '12345678');
+        await tester.enterText(find.byKey(kycIdNumberKey), '12345678');
         await tester.pump();
 
         // Enter KRA Pin
-        await tester.enterText(find.byKey(kycKraNumber), 'QA8945wuhue');
+        await tester.enterText(find.byKey(kycKraNumberKey), 'QA8945wuhue');
         await tester.pump();
 
         // Here it is necessary to call `.last` as the first widget returned belongs to the
@@ -90,13 +90,13 @@ void main() {
             findsOneWidget);
 
         // Upload KYC ID
-        final Finder kycIdFileUpload = find.byKey(kycIdOptionUpload);
+        final Finder kycIdFileUpload = find.byKey(kycIdOptionUploadKey);
         expect(kycIdFileUpload, findsOneWidget);
         await tester.tap(kycIdFileUpload);
         await tester.pumpAndSettle();
 
         final Finder kraFileUploadId =
-            find.byKey(kycKraNumberUpload, skipOffstage: false);
+            find.byKey(kycKraNumberUploadKey, skipOffstage: false);
         await tester.ensureVisible(kraFileUploadId);
         await tester.tap(kraFileUploadId);
         await tester.pumpAndSettle();
@@ -107,7 +107,7 @@ void main() {
 
         /// expect to find the next button and navigate to step three
         final Finder nextButton =
-            find.byKey(nextStepKycButton, skipOffstage: false);
+            find.byKey(kycNextButtonKey, skipOffstage: false);
         await tester.ensureVisible(nextButton);
 
         await tester.tap(nextButton);
@@ -131,17 +131,17 @@ void main() {
       expect(find.byType(Form), findsOneWidget);
       expect(find.byType(FileManager), findsWidgets);
       expect(find.byType(KYCPagesBottomActions), findsOneWidget);
-      expect(find.byKey(kycIdNumber), findsOneWidget);
+      expect(find.byKey(kycIdNumberKey), findsOneWidget);
 
-      await tester.enterText(find.byKey(kycIdNumber), '');
+      await tester.enterText(find.byKey(kycIdNumberKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycKraNumber), '');
+      await tester.enterText(find.byKey(kycKraNumberKey), '');
       await tester.pump();
 
       /// expect to find the next button and navigate to step three
       final Finder nextButton =
-          find.byKey(nextStepKycButton, skipOffstage: false);
+          find.byKey(kycNextButtonKey, skipOffstage: false);
       await tester.ensureVisible(nextButton);
 
       await tester.tap(nextButton);
@@ -166,7 +166,7 @@ void main() {
 
       // expect to find the next button and navigate to step three
       final Finder nextButton =
-          find.byKey(nextStepKycButton, skipOffstage: false);
+          find.byKey(kycNextButtonKey, skipOffstage: false);
       await tester.ensureVisible(nextButton);
 
       await tester.tap(nextButton);

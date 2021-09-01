@@ -102,7 +102,7 @@ class _KYCLicenceAndRegistrationNumberState
             margin: const EdgeInsets.only(bottom: 15),
             decoration: decoration(context: context),
             child: SILRadio<String>(
-              radioButtonKey: kycOrganizationLimitedCompRadioButton,
+              radioButtonKey: kycOrganizationLimitedCompRadioButtonKey,
               value: organizationTypeOneValueText,
               text: organizationTypeOneText,
               onChanged: (String? val) {
@@ -121,7 +121,7 @@ class _KYCLicenceAndRegistrationNumberState
             margin: const EdgeInsets.only(bottom: 15),
             decoration: decoration(context: context),
             child: SILRadio<String>(
-              radioButtonKey: kycOrganizationTrustRadioButton,
+              radioButtonKey: kycOrganizationTrustRadioButtonKey,
               value: organizationTypeTwoValueText,
               text: organizationTypeTwoText,
               onChanged: (String? value) {
@@ -140,7 +140,7 @@ class _KYCLicenceAndRegistrationNumberState
             margin: const EdgeInsets.only(bottom: 15),
             decoration: decoration(context: context),
             child: SILRadio<String>(
-              radioButtonKey: kycOrganizationUniversityRadioButton,
+              radioButtonKey: kycOrganizationUniversityRadioButtonKey,
               value: organizationTypeThreeValueText,
               text: organizationTypeThreeText,
               onChanged: (String? v) {
@@ -162,7 +162,7 @@ class _KYCLicenceAndRegistrationNumberState
           mediumVerticalSizedBox,
           // Certificate of Incorporation input
           SILFormTextField(
-            key: kycOrganizationCertIncorporation,
+            key: kycOrganizationCertIncorporationKey,
             labelText: incorporationCertificateLabel,
             hintText: incorporationCertificateHintText,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -173,7 +173,7 @@ class _KYCLicenceAndRegistrationNumberState
 
           // Certificate of Incorporation upload
           FileManager(
-            galleryImageKey: kycOrganizationCertIncorporationUpload,
+            galleryImageKey: kycOrganizationCertIncorporationUploadKey,
             onChanged: widget.certificateOfIncorporationDocID!,
             fileTitle: incorporationCertificateUploadText,
             uploadAndReturnIdFunction: uploadFileAndGetId,
@@ -253,7 +253,7 @@ class _KYCLicenceAndRegistrationNumberState
           mediumVerticalSizedBox,
           // Registration number
           SILFormTextField(
-            key: kycRegNumber,
+            key: kycRegNumberKey,
             labelText: regNoLabel,
             hintText: regHintText,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -273,7 +273,7 @@ class _KYCLicenceAndRegistrationNumberState
           mediumVerticalSizedBox,
           // License input
           SILFormTextField(
-            key: kycLicenceNumber,
+            key: kycLicenceNumberKey,
             labelText: widget.licenseLabel,
             hintText: widget.licenseHint,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -290,7 +290,7 @@ class _KYCLicenceAndRegistrationNumberState
 
           // Upload for the license
           FileManager(
-            galleryImageKey: kycLicenceNumUpload,
+            galleryImageKey: kycLicenceNumUploadKey,
             onChanged: widget.licenseUploadIDOnChanged!,
             fileTitle: widget.isLicenceUploadRequired
                 ? licenceUploadText

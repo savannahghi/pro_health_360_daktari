@@ -5,13 +5,16 @@ import 'package:async_redux/async_redux.dart';
 class PractitionerKYCStateViewModel extends Vm {
   final PractitionerKYCState state;
   final Wait wait;
+  final bool kycSubmitted;
 
-  PractitionerKYCStateViewModel({required this.state, required this.wait});
+  PractitionerKYCStateViewModel(
+      {required this.state, required this.wait, required this.kycSubmitted});
 
   static PractitionerKYCStateViewModel fromState(AppState state) {
     return PractitionerKYCStateViewModel(
       state: state.practitionerKYCState!,
       wait: state.wait!,
+      kycSubmitted: state.practitionerKYCState!.kycSubmitted,
     );
   }
 
@@ -23,8 +26,18 @@ class PractitionerKYCStateViewModel extends Vm {
     return identical(this, old) ||
         old is PractitionerKYCStateViewModel &&
             runtimeType == old.runtimeType &&
-            state.individualPractitioner == old.state.individualPractitioner &&
-            state.organizationPractitioner ==
-                old.state.organizationPractitioner;
+            state.identificationDoc == old.state.identificationDoc &&
+            state.supportingDocuments == old.state.supportingDocuments &&
+            state.registrationNumber == old.state.registrationNumber &&
+            state.practiceLicenseID == old.state.practiceLicenseID &&
+            state.practiceLicenseUploadID ==
+                old.state.practiceLicenseUploadID &&
+            state.practiceServices == old.state.practiceServices &&
+            state.cadre == old.state.cadre &&
+            state.practitionerSetupComplete ==
+                old.state.practitionerSetupComplete &&
+            state.kraPin == old.state.kraPin &&
+            state.kraPinUploadId == old.state.kraPinUploadId &&
+            state.kycType == old.state.kycType;
   }
 }

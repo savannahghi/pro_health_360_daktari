@@ -44,7 +44,7 @@ class DirectorIdentificationCard extends StatelessWidget {
             ],
           ),
           IconButton(
-            key: kycRemoveDirectorIdentificationDocument,
+            key: kycRemoveDirectorIdentificationDocumentKey,
             icon: Icon(
               Icons.delete,
               color: Colors.red.withOpacity(0.9),

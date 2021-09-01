@@ -41,13 +41,13 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
 
   @override
   Future<bool> isDatabaseEmpty() async {
-    final int t1 = await countTableRecords(Tables.miscState);
-    final int t2 = await countTableRecords(Tables.userFeedState);
-    final int t3 = await countTableRecords(Tables.userState);
-    final int t4 = await countTableRecords(Tables.clinicalState);
-    final int t5 = await countTableRecords(Tables.navigationState);
-    final int t6 = await countTableRecords(Tables.practitionerKYCState);
-    final int t7 = await countTableRecords(Tables.userRegistrationState);
+    final int t1 = await countTableRecords(Tables.MiscState);
+    final int t2 = await countTableRecords(Tables.UserFeedState);
+    final int t3 = await countTableRecords(Tables.UserState);
+    final int t4 = await countTableRecords(Tables.ClinicalState);
+    final int t5 = await countTableRecords(Tables.NavigationState);
+    final int t6 = await countTableRecords(Tables.PractitionerKYCState);
+    final int t7 = await countTableRecords(Tables.UserRegistrationState);
 
     final int counts = t1 + t2 + t3 + t4 + t5 + t6 + t7;
     if (counts > 0) {

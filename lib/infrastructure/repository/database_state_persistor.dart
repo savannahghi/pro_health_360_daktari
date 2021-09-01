@@ -102,34 +102,34 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
       AppState newState, AfyaMojaDatabaseBase<dynamic> database) async {
     // save MISC state
     await database.saveState(
-        data: newState.miscState!.toJson(), table: Tables.miscState);
+        data: newState.miscState!.toJson(), table: Tables.MiscState);
 
     // save user feed state
     await database.saveState(
-        data: newState.userFeedState!.toJson(), table: Tables.userFeedState);
+        data: newState.userFeedState!.toJson(), table: Tables.UserFeedState);
 
     // save user state
     await database.saveState(
-        data: newState.userState!.toJson(), table: Tables.userState);
+        data: newState.userState!.toJson(), table: Tables.UserState);
 
     await database.saveState(
-        data: newState.clinicalState!.toJson(), table: Tables.clinicalState);
+        data: newState.clinicalState!.toJson(), table: Tables.ClinicalState);
 
     // save navigation state
     await database.saveState(
         data: newState.navigationState!.toJson(),
-        table: Tables.navigationState);
+        table: Tables.NavigationState);
 
     // save practitionerKYC state
     await database.saveState(
       data: newState.practitionerKYCState!.toJson(),
-      table: Tables.practitionerKYCState,
+      table: Tables.PractitionerKYCState,
     );
 
     // save userRegistrationState state
     await database.saveState(
       data: newState.userRegistrationState!.toJson(),
-      table: Tables.userRegistrationState,
+      table: Tables.UserRegistrationState,
     );
   }
 
@@ -138,31 +138,31 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
     return const AppState().copyWith(
       // retrieve MISC state
       miscState:
-          MiscState.fromJson(await database.retrieveState(Tables.miscState)),
+          MiscState.fromJson(await database.retrieveState(Tables.MiscState)),
 
       // retrieve user feed state
       userFeedState: UserFeedState.fromJson(
-          await database.retrieveState(Tables.userFeedState)),
+          await database.retrieveState(Tables.UserFeedState)),
 
       // retrieve user state
       userState:
-          UserState.fromJson(await database.retrieveState(Tables.userState)),
+          UserState.fromJson(await database.retrieveState(Tables.UserState)),
 
       // retrieve clinical state
       clinicalState: ClinicalState.fromJson(
-          await database.retrieveState(Tables.clinicalState)),
+          await database.retrieveState(Tables.ClinicalState)),
 
       // retrieve navigation state
       navigationState: Navigation.fromJson(
-          await database.retrieveState(Tables.navigationState)),
+          await database.retrieveState(Tables.NavigationState)),
 
       // retrieve practitionerKYC state
       practitionerKYCState: PractitionerKYCState.fromJson(
-          await database.retrieveState(Tables.practitionerKYCState)),
+          await database.retrieveState(Tables.PractitionerKYCState)),
 
       // retrieve practitionerKYC state
       userRegistrationState: UserRegistrationState.fromJson(
-          await database.retrieveState(Tables.userRegistrationState)),
+          await database.retrieveState(Tables.UserRegistrationState)),
 
       wait: Wait(),
     );

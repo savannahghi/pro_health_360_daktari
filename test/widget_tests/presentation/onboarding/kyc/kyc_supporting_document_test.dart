@@ -43,27 +43,27 @@ void main() {
       await tester.pumpAndSettle();
 
       /// Enter text for supporting document page
-      await tester.enterText(find.byKey(kycSupportingDocumentTitle), 'title');
+      await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), 'title');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentTitle), '');
-      await tester.pump();
-
-      await tester.enterText(
-          find.byKey(kycSupportingDocumentDescription), 'description');
+      await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentDescription), 'description');
+          find.byKey(kycSupportingDocumentDescriptionKey), 'description');
+      await tester.pump();
+
+      await tester.enterText(
+          find.byKey(kycSupportingDocumentDescriptionKey), 'description');
       await tester.pump();
 
       /// Find the supporting document form fields and widgets
       expect(find.text(doneAddingDoc), findsOneWidget);
 
-      expect(find.byKey(kycSupportingDocumentTitle), findsOneWidget);
-      expect(find.byKey(kycSupportingDocumentDescription), findsOneWidget);
-      expect(find.byKey(kycSupportingDocumentUpload), findsOneWidget);
-      expect(find.byKey(kycAddSupportingDocumentButton), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
+      expect(find.byKey(kycAddSupportingDocumentButtonKey), findsOneWidget);
 
       /// find other widgets
       expect(find.byType(FileManager), findsOneWidget);
@@ -101,25 +101,25 @@ void main() {
 
       /// Enter text for supporting document page
 
-      await tester.enterText(find.byKey(kycSupportingDocumentTitle), '');
+      await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescription), '');
+      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescription), '');
+      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
       await tester.pump();
 
       /// Find the supporting document form fields and widgets
       expect(find.text(doneAddingDoc), findsOneWidget);
-      expect(find.byKey(kycSupportingDocumentTitle), findsOneWidget);
-      expect(find.byKey(kycSupportingDocumentDescription), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
       expect(
           find.byKey(
-            kycSupportingDocumentUpload,
+            kycSupportingDocumentUploadKey,
           ),
           findsOneWidget);
-      expect(find.byKey(kycAddSupportingDocumentButton), findsOneWidget);
+      expect(find.byKey(kycAddSupportingDocumentButtonKey), findsOneWidget);
 
       /// find other widgets
       expect(find.byType(FileManager), findsOneWidget);

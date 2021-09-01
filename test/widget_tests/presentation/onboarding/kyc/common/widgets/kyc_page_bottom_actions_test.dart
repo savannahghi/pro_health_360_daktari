@@ -23,8 +23,8 @@ void main() {
           }));
 
       expect(find.byType(KYCPagesBottomActions), findsOneWidget);
-      expect(find.byKey(backKycButton), findsOneWidget);
-      expect(find.byKey(nextStepKycButton), findsOneWidget);
+      expect(find.byKey(kycBackButtonKey), findsOneWidget);
+      expect(find.byKey(kycNextButtonKey), findsOneWidget);
     });
 
     testWidgets('back button works correctly', (WidgetTester tester) async {
@@ -38,12 +38,12 @@ void main() {
           }));
 
       expect(find.byType(KYCPagesBottomActions), findsOneWidget);
-      expect(find.byKey(backKycButton), findsOneWidget);
+      expect(find.byKey(kycBackButtonKey), findsOneWidget);
 
-      await tester.tap(find.byKey(backKycButton));
+      await tester.tap(find.byKey(kycBackButtonKey));
       await tester.pumpAndSettle();
 
-      expect(find.byKey(backKycButton), findsNothing);
+      expect(find.byKey(kycBackButtonKey), findsNothing);
     });
   });
 }
