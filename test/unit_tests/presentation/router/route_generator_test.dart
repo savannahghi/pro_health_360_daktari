@@ -20,7 +20,7 @@ void main() {
   final BuildContext context = MockBuildContext();
 
   test('Test router returns HelpCenterPage', () {
-    const RouteSettings settings = RouteSettings(name: helpCenterRoute);
+    const RouteSettings settings = RouteSettings(name: helpCenterPageRoute);
 
     final MaterialPageRoute<HelpCenterPage> route =
         routeGenerator(settings)! as MaterialPageRoute<HelpCenterPage>;
