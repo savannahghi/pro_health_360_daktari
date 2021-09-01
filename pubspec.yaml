@@ -11,7 +11,7 @@ environment:
   flutter: ">=2.0.0"
 
 dependencies:
-  bewell_pro_core: ^1.1.13-nullsafety
+  bewell_pro_core: ^1.1.16-nullsafety
   cupertino_icons: ^1.0.3
   domain_objects: ^0.0.27-nullsafety
   flutter:
