@@ -1151,7 +1151,7 @@ packages:
     source: hosted
     version: "5.1.0"
   sentry_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sentry_flutter
       url: "https://pub.dartlang.org"

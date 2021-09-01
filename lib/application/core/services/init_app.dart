@@ -18,8 +18,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// Responsible for putting together everything that the app needs in order
 /// to run safely.
