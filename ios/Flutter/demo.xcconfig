@@ -1,0 +1,8 @@
+#include "Generated.xcconfig"
+
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-demo.xcconfig"
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-demo.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER=com.savannah.healthcloud
+FLUTTER_TARGET=lib/bin/main_demo.dart
+APP_NAME=Afya Moja Demo
