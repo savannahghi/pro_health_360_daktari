@@ -19,6 +19,7 @@ class AppState extends CoreState {
     ClinicalState? clinicalState,
     Navigation? navigationState,
     UserRegistrationState? userRegistrationState,
+    SupplierProfile? supplierProfileState,
     Wait? wait,
   }) : super(
           clinicalState: clinicalState,
@@ -29,6 +30,7 @@ class AppState extends CoreState {
           navigationState: navigationState,
           userRegistrationState: userRegistrationState,
           wait: wait,
+          supplierProfileState: supplierProfileState,
         );
 
   factory AppState.initial() => AppState(
@@ -55,6 +57,7 @@ class AppState extends CoreState {
     ClinicalState? clinicalState,
     Navigation? navigationState,
     UserRegistrationState? userRegistrationState,
+    SupplierProfile? supplierProfileState,
     Wait? wait,
   }) {
     return AppState(
@@ -68,6 +71,7 @@ class AppState extends CoreState {
       userRegistrationState:
           userRegistrationState ?? this.userRegistrationState,
       wait: wait ?? this.wait,
+      supplierProfileState: supplierProfileState ?? this.supplierProfileState,
     );
   }
 
@@ -81,6 +85,7 @@ class AppState extends CoreState {
         clinicalState,
         navigationState,
         userRegistrationState,
+        supplierProfileState,
         wait
       ];
 }

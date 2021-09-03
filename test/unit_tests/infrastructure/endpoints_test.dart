@@ -4,53 +4,55 @@ import 'package:healthcloud/infrastructure/afyamoja_endpoint_context.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
 
 void main() {
-  group('test endpoints', () {
-    test('test endpoints', () {
+  group('AfyaMojaEndpointContext', () {
+    test(
+        'should return the correct test endpoints when [testAppContexts]'
+        ' is passed', () {
       expect(AfyaMojaEndpointContext.getGraphQLEndpoint(testAppContexts),
-          testGraphqlEndpoint);
+          kTestGraphqlEndpoint);
 
       expect(AfyaMojaEndpointContext.loginByPhoneEndpoint(testAppContexts),
-          testLoginByPhoneEndpoint);
+          kTestLoginByPhoneEndpoint);
 
       expect(AfyaMojaEndpointContext.resetPinResetEndpoint(testAppContexts),
-          testPinResetEndpoint);
+          kTestPinResetEndpoint);
 
       expect(AfyaMojaEndpointContext.updateUserPinEndpoint(testAppContexts),
-          testUpdateUserPinEndpoint);
+          kTestUpdateUserPinEndpoint);
 
       expect(AfyaMojaEndpointContext.verifyPhoneEndpoint(testAppContexts),
-          testVerifyPhoneEndpoint);
+          kTestVerifyPhoneEndpoint);
 
       expect(AfyaMojaEndpointContext.createUserByPhoneEndpoint(testAppContexts),
-          testCreateUserByPhoneEndpoint);
+          kTestCreateUserByPhoneEndpoint);
 
       expect(AfyaMojaEndpointContext.retrySendOtpEndpoint(testAppContexts),
-          testRetryResendOtpEndpoint);
+          kTestRetryResendOtpEndpoint);
 
       expect(AfyaMojaEndpointContext.refreshTokenEndpoint(testAppContexts),
-          testRefreshTokenEndpoint);
+          kTestRefreshTokenEndpoint);
 
       expect(AfyaMojaEndpointContext.anonymousLoginEndpoint(testAppContexts),
-          testAnonymousLoginEndpoint);
+          kTestAnonymousLoginEndpoint);
 
       expect(AfyaMojaEndpointContext.userRecoveryPhoneNumbers(testAppContexts),
-          testUserRecoveryPhoneNumbersEndpoint);
+          kTestUserRecoveryPhoneNumbersEndpoint);
 
       expect(AfyaMojaEndpointContext.sendRecoverAccountOTP(testAppContexts),
-          testSendRecoverAccountOtpEndpoint);
+          kTestSendRecoverAccountOtpEndpoint);
 
       expect(AfyaMojaEndpointContext.setPrimaryPhoneNumber(testAppContexts),
-          testSetPrimaryPhoneNumberEndpoint);
+          kTestSetPrimaryPhoneNumberEndpoint);
 
       expect(AfyaMojaEndpointContext.uploadFileEndpoint(testAppContexts),
-          testUploadFileEndPoint);
+          kTestUploadFileEndPoint);
 
       expect(
           AfyaMojaEndpointContext.sendContactVerificationOTP(testAppContexts),
-          testSendContactVerificationOTPEndpoint);
+          kTestSendContactVerificationOTPEndpoint);
 
       expect(AfyaMojaEndpointContext.verifyContactOTP(testAppContexts),
-          testVerifyContactOTPEndpoint);
+          kTestVerifyContactOTPEndpoint);
     });
   });
 }

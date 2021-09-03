@@ -5,21 +5,26 @@ import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/infrastructure/afyamoja_endpoint_context.dart';
-
-import 'auth_manager.dart';
+import 'package:healthcloud/presentation/core/auth_manager.dart';
 
 class AfyaMojaApp extends StatefulWidget {
   const AfyaMojaApp({
     Key? key,
     required this.store,
     required this.appContexts,
-    this.customContext,
+    this.customEndpointContext,
   }) : super(key: key);
 
+  /// The context under which this app is running
   final List<AppContext> appContexts;
+
+  /// A set of custom endpoints to be passed into the AppWrapper widget
+  final BaseContext? customEndpointContext;
+
+  /// The store to be used to initialize the StoreProvider with
   final Store<CoreState> store;
-  final BaseContext? customContext;
 
   @override
   _AfyaMojaAppState createState() => _AfyaMojaAppState();
@@ -27,7 +32,6 @@ class AfyaMojaApp extends StatefulWidget {
 
 class _AfyaMojaAppState extends State<AfyaMojaApp> {
   bool hasFinishedLaunching = false;
-  static const Key globalStoreProviderKey = Key('global_store_provider');
 
   @override
   void didChangeDependencies() {
@@ -52,7 +56,7 @@ class _AfyaMojaAppState extends State<AfyaMojaApp> {
         builder: (BuildContext context, CoreState state) {
           return AppWrapper(
             appName: AppBrand().appName.value,
-            baseContext: widget.customContext,
+            baseContext: widget.customEndpointContext,
             graphQLClient: GraphQlClient(
               widget.store.state.userState!.auth!.idToken!,
               AfyaMojaEndpointContext.getGraphQLEndpoint(widget.appContexts),
