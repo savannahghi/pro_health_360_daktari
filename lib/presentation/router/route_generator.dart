@@ -37,21 +37,6 @@ class AppRouterGenerator extends RouteGenerator {
       );
     }
 
-    if (superRoute is MaterialPageRoute<KYCIntroPage>) {
-      final KycIntroArguments args = settings!.arguments! as KycIntroArguments;
-
-      return MaterialPageRoute<KYCIntroPage>(
-        builder: (BuildContext context) => KYCIntroPage(
-          title: args.title,
-          description: args.description,
-          continueFunc: () {
-            Navigator.of(context, rootNavigator: true)
-                .pushNamed(args.continueRoute);
-          },
-        ),
-      );
-    }
-
     if (superRoute is MaterialPageRoute<DefaultErrorRoute>) {
       switch (settings?.name) {
         case individualPractitionerKYCStepOneRoute:
