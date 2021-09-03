@@ -68,6 +68,21 @@ class AppRouterGenerator extends RouteGenerator {
           return MaterialPageRoute<IndividualPractitionerKYCStepThree>(
             builder: (_) => const IndividualPractitionerKYCStepThree(),
           );
+
+        case kycIntroPageRoute:
+          final KycIntroArguments args =
+              settings!.arguments! as KycIntroArguments;
+
+          return MaterialPageRoute<KYCIntroPage>(
+            builder: (BuildContext context) => KYCIntroPage(
+              title: args.title,
+              description: args.description,
+              continueFunc: () {
+                Navigator.of(context, rootNavigator: true)
+                    .pushNamed(args.continueRoute);
+              },
+            ),
+          );
       }
     } else {
       return superRoute;
