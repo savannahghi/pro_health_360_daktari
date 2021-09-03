@@ -8,7 +8,6 @@ import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_state_persistor.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
@@ -95,25 +94,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
         AfyaMojaApp(
           store: store,
           appContexts: appSetupData.appContexts,
-          customContext: const BaseContext(
-            graphqlEndpoint: testGraphqlEndpoint,
-            anonymousLoginEndpoint: testAnonymousLoginEndpoint,
-            createUserByPhoneEndpoint: testCreateUserByPhoneEndpoint,
-            loginByPhoneEndpoint: testLoginByPhoneEndpoint,
-            pinResetEndpoint: testPinResetEndpoint,
-            refreshTokenEndpoint: testRefreshTokenEndpoint,
-            retryResendOtpEndpoint: testRetryResendOtpEndpoint,
-            sendContactVerificationOTPEndpoint:
-                testSendContactVerificationOTPEndpoint,
-            sendRecoverAccountOtpEndpoint: testSendRecoverAccountOtpEndpoint,
-            setPrimaryPhoneNumberEndpoint: testSetPrimaryPhoneNumberEndpoint,
-            userRecoveryPhoneNumbersEndpoint:
-                testUserRecoveryPhoneNumbersEndpoint,
-            updateUserPinEndpoint: testUpdateUserPinEndpoint,
-            uploadFileEndPoint: testUploadFileEndPoint,
-            verifyContactOTPEndpoint: testVerifyContactOTPEndpoint,
-            verifyPhoneEndpoint: testVerifyPhoneEndpoint,
-          ),
+          customEndpointContext: appSetupData.customContext,
         ),
       ),
     );

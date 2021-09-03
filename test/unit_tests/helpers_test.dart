@@ -1,5 +1,4 @@
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,44 +12,14 @@ void main() {
 
   test('getAppSetupData should return the correct instance of AppSetupData',
       () async {
-    expect(
-      getAppSetupData(testAppContexts.last),
-      AppSetupData(
-        appContexts: testAppContexts,
-        sentryDNS: 'test_dev_sentry_dns',
-      ),
-    );
+    expect(getAppSetupData(testAppContexts.last), devAppSetupData);
 
-    expect(
-      getAppSetupData(demoAppContexts.last),
-      AppSetupData(
-        appContexts: demoAppContexts,
-        sentryDNS: 'test_prod_sentry_dns',
-      ),
-    );
+    expect(getAppSetupData(demoAppContexts.last), devAppSetupData);
 
-    expect(
-      getAppSetupData(prodAppContexts.last),
-      AppSetupData(
-        appContexts: prodAppContexts,
-        sentryDNS: 'test_prod_sentry_dns',
-      ),
-    );
+    expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
 
-    expect(
-      getAppSetupData(e2eAppContexts.last),
-      AppSetupData(
-        appContexts: e2eAppContexts,
-        sentryDNS: 'test_dev_sentry_dns',
-      ),
-    );
+    expect(getAppSetupData(e2eAppContexts.last), devAppSetupData);
 
-    expect(
-      getAppSetupData(AppContext.BewellCONSUMER),
-      AppSetupData(
-        appContexts: testAppContexts,
-        sentryDNS: 'test_dev_sentry_dns',
-      ),
-    );
+    expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
   });
 }

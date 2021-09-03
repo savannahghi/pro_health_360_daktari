@@ -1,5 +1,7 @@
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:healthcloud/infrastructure/endpoints.dart' as local_endpoints;
+/// This show only exposed the AppContext and BaseContext to prevent conflicts
+/// between the endpoint constants in the library, and the local ones
+import 'package:app_wrapper/app_wrapper.dart' show AppContext, EndpointContext;
+import 'package:healthcloud/infrastructure/endpoints.dart';
 
 /// [AfyaMojaEndpointContext] returns the correct server endpoint depending on the context
 /// that the app is running on
@@ -8,13 +10,8 @@ class AfyaMojaEndpointContext extends EndpointContext {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdGraphqlEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoGraphqlEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eGraphqlEndpoint;
-    }
-    return local_endpoints.testGraphqlEndpoint;
+
+    return kTestGraphqlEndpoint;
   }
 
   static String loginByPhoneEndpoint(List<AppContext> contexts) {
@@ -22,15 +19,7 @@ class AfyaMojaEndpointContext extends EndpointContext {
       return kProdLoginByPhoneEndpoint;
     }
 
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoLoginByPhoneEndpoint;
-    }
-
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eLoginByPhoneEndpoint;
-    }
-
-    return local_endpoints.testLoginByPhoneEndpoint;
+    return kTestLoginByPhoneEndpoint;
   }
 
   static String uploadFileEndpoint(List<AppContext> contexts) {
@@ -38,164 +27,102 @@ class AfyaMojaEndpointContext extends EndpointContext {
       return kProdUploadFileEndPoint;
     }
 
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoUploadFileEndPoint;
-    }
-
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eUploadFileEndPoint;
-    }
-
-    return local_endpoints.testUploadFileEndPoint;
+    return kTestUploadFileEndPoint;
   }
 
   static String resetPinResetEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdPinResetEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoPinResetEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2ePinResetEndpoint;
-    }
-    return local_endpoints.testPinResetEndpoint;
+
+    return kTestPinResetEndpoint;
   }
 
   static String updateUserPinEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdUpdateUserPinEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoUpdateUserPinEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eUpdateUserPinEndpoint;
-    }
-    return local_endpoints.testUpdateUserPinEndpoint;
+
+    return kTestUpdateUserPinEndpoint;
   }
 
   static String verifyPhoneEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdVerifyPhoneEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoVerifyPhoneEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eVerifyPhoneEndpoint;
-    }
-    return local_endpoints.testVerifyPhoneEndpoint;
+
+    return kTestVerifyPhoneEndpoint;
   }
 
   static String createUserByPhoneEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdCreateUserByPhoneEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoCreateUserByPhoneEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eCreateUserByPhoneEndpoint;
-    }
-    return local_endpoints.testCreateUserByPhoneEndpoint;
+
+    return kTestCreateUserByPhoneEndpoint;
   }
 
   static String retrySendOtpEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdRetryResendOtpEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoRetryResendOtpEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eRetryResendOtpEndpoint;
-    }
-    return local_endpoints.testRetryResendOtpEndpoint;
+
+    return kTestRetryResendOtpEndpoint;
   }
 
   static String refreshTokenEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdRefreshTokenEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoRefreshTokenEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eRefreshTokenEndpoint;
-    }
-    return local_endpoints.testRefreshTokenEndpoint;
+
+    return kTestRefreshTokenEndpoint;
   }
 
   static String anonymousLoginEndpoint(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdAnonymousLoginEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoAnonymousLoginEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eAnonymousLoginEndpoint;
-    }
-    return local_endpoints.testAnonymousLoginEndpoint;
+
+    return kTestAnonymousLoginEndpoint;
   }
 
   static String userRecoveryPhoneNumbers(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdUserRecoveryPhoneNumbersEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoUserRecoveryPhoneNumbersEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eUserRecoveryPhoneNumbersEndpoint;
-    }
-    return local_endpoints.testUserRecoveryPhoneNumbersEndpoint;
+
+    return kTestUserRecoveryPhoneNumbersEndpoint;
   }
 
   static String sendRecoverAccountOTP(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdSendRecoverAccountOtpEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoSendRecoverAccountOtpEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eSendRecoverAccountOtpEndpoint;
-    }
-    return local_endpoints.testSendRecoverAccountOtpEndpoint;
+
+    return kTestSendRecoverAccountOtpEndpoint;
   }
 
   static String setPrimaryPhoneNumber(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdSetPrimaryPhoneNumberEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoSetPrimaryPhoneNumberEndpoint;
-    }
-    if (contexts.contains(AppContext.AppE2E)) {
-      return ke2eSetPrimaryPhoneNumberEndpoint;
-    }
-    return local_endpoints.testSetPrimaryPhoneNumberEndpoint;
+
+    return kTestSetPrimaryPhoneNumberEndpoint;
   }
 
   static String sendContactVerificationOTP(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdSendContactVerificationOTPEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoSendContactVerificationOTPEndpoint;
-    }
-    return local_endpoints.testSendContactVerificationOTPEndpoint;
+
+    return kTestSendContactVerificationOTPEndpoint;
   }
 
   static String verifyContactOTP(List<AppContext> contexts) {
     if (contexts.contains(AppContext.AppProd)) {
       return kProdVerifyContactOTPEndpoint;
     }
-    if (contexts.contains(AppContext.AppDemo)) {
-      return kDemoVerifyContactOTPEndpoint;
-    }
-    return local_endpoints.testVerifyContactOTPEndpoint;
+
+    return kTestVerifyContactOTPEndpoint;
   }
 }
