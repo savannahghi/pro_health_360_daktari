@@ -96,14 +96,6 @@ List<SupportingDocument> removeSupportingDoc(
             doc.title != title && doc.description != description)
         .toList();
 
-Identification? getIdentificationDoc(
-    String? idType, String? idNumber, String? docUploadId) {
-  if (idType != null && idNumber != null && docUploadId != null) {
-    return Identification(
-        type: idType, docNumber: idNumber, uploadID: docUploadId);
-  }
-}
-
 SupportingDocument? getSupportingDoc(String? supportingDocumentTitle,
     String? supportingDocumentDescription, String? supportingDocumentUpload) {
   if (supportingDocumentTitle != null &&
@@ -128,17 +120,6 @@ List<SupportingDocument> deconstructSupportingDocuments(
     ];
   } else {
     return <SupportingDocument>[newSupportingDocument];
-  }
-}
-
-List<Identification> deconstructIdentificationDocuments(
-    {required List<Identification> identificationsFromState,
-    Identification? newIdentification}) {
-  if (newIdentification == null) return identificationsFromState;
-  if (identificationsFromState.isNotEmpty) {
-    return <Identification>[...identificationsFromState, newIdentification];
-  } else {
-    return <Identification>[newIdentification];
   }
 }
 
