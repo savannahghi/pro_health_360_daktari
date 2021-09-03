@@ -59,12 +59,11 @@ void main() {
                   result = await store.dispatch(
                     SaveKYCDetailsAction(
                       context: context,
-                      queryString: addOrganizationPractitionerKYCMutation,
-                      variables: organizationPractitionerKYCMutationVariables(
+                      queryString: addIndividualPractitionerKYCMutation,
+                      variables: individualPractitionerKYCMutationVariables(
                           payload: (StoreProvider.state<CoreState>(context)
                                   as AppState?)!
-                              .practitionerKYCState!
-                              .organizationPractitioner!),
+                              .practitionerKYCState!),
                       kycName: organizationPractitionerKYCString,
                     ),
                   );

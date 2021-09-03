@@ -61,7 +61,7 @@ void main() {
     when(mockDb.rawQuery('SELECT COUNT(*) FROM miscState'))
         .thenAnswer((_) async => returnVal(10));
 
-    expect(await db.countTableRecords(Tables.miscState), 10);
+    expect(await db.countTableRecords(Tables.MiscState), 10);
   });
 
   group('isDatabaseEmpty', () {
@@ -104,18 +104,18 @@ void main() {
       ),
     );
 
-    expect(await db.retrieveState(Tables.userFeedState), mockUserFeed);
+    expect(await db.retrieveState(Tables.UserFeedState), mockUserFeed);
   });
 
   test('saveState should call rawInsert', () async {
-    final String tableName = Tables.userFeedState.name;
+    final String tableName = Tables.UserFeedState.name;
 
     final String query = 'INSERT INTO $tableName($tableName) VALUES(?)';
 
     when(mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
         .thenAnswer((_) => Future<int>.value(10));
 
-    await db.saveState(data: mockUserFeed, table: Tables.userFeedState);
+    await db.saveState(data: mockUserFeed, table: Tables.UserFeedState);
     verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
         .called(1);
   });

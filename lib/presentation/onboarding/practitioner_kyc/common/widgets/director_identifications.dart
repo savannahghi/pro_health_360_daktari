@@ -51,7 +51,7 @@ class _KYCDirectorIdentificationsState
           width: double.infinity,
           height: number48,
           child: SILSecondaryButton(
-            buttonKey: kycAddDirectorIdentificationButton,
+            buttonKey: kycAddDirectorIdentificationButtonKey,
             onPressed: () async {
               dynamic result = await _addDirectorIDBottomSheet(context);
               if (result == null) {
@@ -123,7 +123,7 @@ class _KYCDirectorIdentificationsState
                     width: double.infinity,
                     height: number48,
                     child: SILPrimaryButton(
-                      buttonKey: kycBottomSheetAddDirecorIdentificationButton,
+                      buttonKey: kycBottomSheetAddDirecorIdentificationButtonKey,
                       onPressed: () {
                         if (idNumber == null || docID == null) {
                           sheetSetState(() {

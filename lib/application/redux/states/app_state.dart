@@ -10,8 +10,6 @@ import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/entities.dart';
 
 class AppState extends CoreState {
-  final PractitionerKYCState? practitionerKYCState;
-
   const AppState({
     this.practitionerKYCState,
     MiscState? miscState,
@@ -45,6 +43,8 @@ class AppState extends CoreState {
         wait: Wait(),
       );
 
+  final PractitionerKYCState? practitionerKYCState;
+
   @override
   AppState copyWith({
     PractitionerKYCState? practitionerKYCState,
@@ -65,7 +65,8 @@ class AppState extends CoreState {
       connectivityState: connectivityState ?? this.connectivityState,
       clinicalState: clinicalState ?? this.clinicalState,
       navigationState: navigationState ?? this.navigationState,
-      userRegistrationState: userRegistrationState ?? this.userRegistrationState,
+      userRegistrationState:
+          userRegistrationState ?? this.userRegistrationState,
       wait: wait ?? this.wait,
     );
   }

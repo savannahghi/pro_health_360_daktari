@@ -325,6 +325,14 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains('checkSupplierKYCSubmitted')) {
+      return Future<http.Response>.value(http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'checkSupplierKYCSubmitted': false}
+          }),
+          201));
+    }
+
     if (queryString.contains('getFeed')) {
       return Future<http.Response>.value(
         http.Response(json.encode(mockUserFeed), 201),

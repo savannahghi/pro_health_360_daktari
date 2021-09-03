@@ -57,7 +57,7 @@ class _KYCIdDocAndKraPINState extends State<KYCIdDocAndKraPIN> {
           ),
           mediumVerticalSizedBox,
           SILSelectOptionField(
-            dropDownInputKey: kycIdOptions,
+            dropDownInputKey: kycIdOptionsKey,
             hintText: selectIdLabel,
             options: identificationOptions,
             value: getIdType(idType: selectedIdType!, userString: true),
@@ -72,7 +72,7 @@ class _KYCIdDocAndKraPINState extends State<KYCIdDocAndKraPIN> {
           ),
           mediumVerticalSizedBox,
           SILFormTextField(
-            key: kycIdNumber,
+            key: kycIdNumberKey,
             labelText:
                 idLabel(getIdType(idType: selectedIdType!, userString: true)),
             hintText:
@@ -89,7 +89,7 @@ class _KYCIdDocAndKraPINState extends State<KYCIdDocAndKraPIN> {
           ),
           mediumVerticalSizedBox,
           FileManager(
-            galleryImageKey: kycIdOptionUpload,
+            galleryImageKey: kycIdOptionUploadKey,
             onChanged: widget.idDocIDOnChanged!,
             fileTitle: getIdType(idType: selectedIdType!, userString: true),
             uploadAndReturnIdFunction: uploadFileAndGetId,
@@ -104,7 +104,7 @@ class _KYCIdDocAndKraPINState extends State<KYCIdDocAndKraPIN> {
           ),
           mediumVerticalSizedBox,
           SILFormTextField(
-            key: kycKraNumber,
+            key: kycKraNumberKey,
             labelText: kraLabel,
             hintText: kraHintText,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -119,7 +119,7 @@ class _KYCIdDocAndKraPINState extends State<KYCIdDocAndKraPIN> {
           ),
           mediumVerticalSizedBox,
           FileManager(
-            galleryImageKey: kycKraNumberUpload,
+            galleryImageKey: kycKraNumberUploadKey,
             onChanged: widget.kraNumIDOnChanged!,
             fileTitle: kraTitle,
             uploadAndReturnIdFunction: uploadFileAndGetId,

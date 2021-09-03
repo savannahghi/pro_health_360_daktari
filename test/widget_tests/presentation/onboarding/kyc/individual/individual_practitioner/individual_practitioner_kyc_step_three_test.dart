@@ -1,7 +1,7 @@
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -67,25 +67,25 @@ void main() {
         await tester.pump();
 
         /// add to open  supporting documents widget
-        await tester.tap(find.byKey(kycAddSupportingDocumentButton));
+        await tester.tap(find.byKey(kycAddSupportingDocumentButtonKey));
         await tester.pumpAndSettle();
 
         ///expect to find supporting document widget
-        expect(find.byKey(kycSupportingDocumentTitle), findsOneWidget);
+        expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
 
-        expect(find.byKey(kycSupportingDocumentDescription), findsOneWidget);
+        expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
 
-        expect(find.byKey(kycSupportingDocumentUpload), findsOneWidget);
+        expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
 
         await tester.enterText(
-            find.byKey(kycSupportingDocumentTitle), 'some-title');
+            find.byKey(kycSupportingDocumentTitleKey), 'some-title');
         await tester.pump();
 
         await tester.enterText(
-            find.byKey(kycSupportingDocumentDescription), 'some-description');
+            find.byKey(kycSupportingDocumentDescriptionKey), 'some-description');
         await tester.pump();
 
-        await tester.tap(find.byKey(kycSupportingDocumentUpload));
+        await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
         await tester.pumpAndSettle();
 
         //tap done adding documents to upload the supporting documents
@@ -136,22 +136,22 @@ void main() {
       await tester.pumpAndSettle();
 
       /// add to open  supporting documents widget
-      await tester.tap(find.byKey(kycAddSupportingDocumentButton));
+      await tester.tap(find.byKey(kycAddSupportingDocumentButtonKey));
       await tester.pumpAndSettle();
 
       ///expect to find supporting document widget
-      expect(find.byKey(kycSupportingDocumentTitle), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
 
-      expect(find.byKey(kycSupportingDocumentDescription), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
 
-      expect(find.byKey(kycSupportingDocumentUpload), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
 
-      await tester.enterText(find.byKey(kycSupportingDocumentTitle), '');
+      await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescription), '');
+      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
       await tester.pump();
-      await tester.tap(find.byKey(kycSupportingDocumentUpload));
+      await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
       await tester.pump();
 
       //tap done adding documents to upload the supporting documents
@@ -188,25 +188,25 @@ void main() {
       expect(find.byType(IndividualPractitionerKYCStepThree), findsOneWidget);
 
       /// add to open  supporting documents widget
-      await tester.tap(find.byKey(kycAddSupportingDocumentButton));
+      await tester.tap(find.byKey(kycAddSupportingDocumentButtonKey));
       await tester.pumpAndSettle();
 
       ///expect to find
-      expect(find.byKey(kycSupportingDocumentTitle), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
 
-      expect(find.byKey(kycSupportingDocumentDescription), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
 
-      expect(find.byKey(kycSupportingDocumentUpload), findsOneWidget);
+      expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentTitle), 'some-title');
+          find.byKey(kycSupportingDocumentTitleKey), 'some-title');
       await tester.pump();
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentDescription), 'some-description');
+          find.byKey(kycSupportingDocumentDescriptionKey), 'some-description');
       await tester.pump();
 
-      await tester.tap(find.byKey(kycSupportingDocumentUpload));
+      await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
       await tester.pump();
 
       /// Tap Add supporting documents button

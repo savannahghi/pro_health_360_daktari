@@ -21,14 +21,32 @@ class _$PractitionerKYCStateTearOff {
   const _$PractitionerKYCStateTearOff();
 
   _PractitionerKYCState call(
-      {@JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
-          required KYCType kycType,
-      IndividualPractitioner? individualPractitioner,
-      OrganizationPractitioner? organizationPractitioner}) {
+      {Identification? identificationDoc,
+      List<SupportingDocument>? supportingDocuments,
+      String? registrationNumber,
+      String? practiceLicenseID,
+      String? practiceLicenseUploadID,
+      List<String>? practiceServices,
+      String? cadre,
+      bool practitionerSetupComplete = false,
+      bool kycSubmitted = false,
+      required String kraPin,
+      required String kraPinUploadId,
+      @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
+          required KYCType kycType}) {
     return _PractitionerKYCState(
+      identificationDoc: identificationDoc,
+      supportingDocuments: supportingDocuments,
+      registrationNumber: registrationNumber,
+      practiceLicenseID: practiceLicenseID,
+      practiceLicenseUploadID: practiceLicenseUploadID,
+      practiceServices: practiceServices,
+      cadre: cadre,
+      practitionerSetupComplete: practitionerSetupComplete,
+      kycSubmitted: kycSubmitted,
+      kraPin: kraPin,
+      kraPinUploadId: kraPinUploadId,
       kycType: kycType,
-      individualPractitioner: individualPractitioner,
-      organizationPractitioner: organizationPractitioner,
     );
   }
 
@@ -42,12 +60,20 @@ const $PractitionerKYCState = _$PractitionerKYCStateTearOff();
 
 /// @nodoc
 mixin _$PractitionerKYCState {
-  @JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
+  Identification? get identificationDoc => throw _privateConstructorUsedError;
+  List<SupportingDocument>? get supportingDocuments =>
+      throw _privateConstructorUsedError;
+  String? get registrationNumber => throw _privateConstructorUsedError;
+  String? get practiceLicenseID => throw _privateConstructorUsedError;
+  String? get practiceLicenseUploadID => throw _privateConstructorUsedError;
+  List<String>? get practiceServices => throw _privateConstructorUsedError;
+  String? get cadre => throw _privateConstructorUsedError;
+  bool get practitionerSetupComplete => throw _privateConstructorUsedError;
+  bool get kycSubmitted => throw _privateConstructorUsedError;
+  String get kraPin => throw _privateConstructorUsedError;
+  String get kraPinUploadId => throw _privateConstructorUsedError;
+  @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
   KYCType get kycType => throw _privateConstructorUsedError;
-  IndividualPractitioner? get individualPractitioner =>
-      throw _privateConstructorUsedError;
-  OrganizationPractitioner? get organizationPractitioner =>
-      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,13 +87,21 @@ abstract class $PractitionerKYCStateCopyWith<$Res> {
           $Res Function(PractitionerKYCState) then) =
       _$PractitionerKYCStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
-          KYCType kycType,
-      IndividualPractitioner? individualPractitioner,
-      OrganizationPractitioner? organizationPractitioner});
+      {Identification? identificationDoc,
+      List<SupportingDocument>? supportingDocuments,
+      String? registrationNumber,
+      String? practiceLicenseID,
+      String? practiceLicenseUploadID,
+      List<String>? practiceServices,
+      String? cadre,
+      bool practitionerSetupComplete,
+      bool kycSubmitted,
+      String kraPin,
+      String kraPinUploadId,
+      @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
+          KYCType kycType});
 
-  $IndividualPractitionerCopyWith<$Res>? get individualPractitioner;
-  $OrganizationPractitionerCopyWith<$Res>? get organizationPractitioner;
+  $IdentificationCopyWith<$Res>? get identificationDoc;
 }
 
 /// @nodoc
@@ -81,47 +115,79 @@ class _$PractitionerKYCStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? identificationDoc = freezed,
+    Object? supportingDocuments = freezed,
+    Object? registrationNumber = freezed,
+    Object? practiceLicenseID = freezed,
+    Object? practiceLicenseUploadID = freezed,
+    Object? practiceServices = freezed,
+    Object? cadre = freezed,
+    Object? practitionerSetupComplete = freezed,
+    Object? kycSubmitted = freezed,
+    Object? kraPin = freezed,
+    Object? kraPinUploadId = freezed,
     Object? kycType = freezed,
-    Object? individualPractitioner = freezed,
-    Object? organizationPractitioner = freezed,
   }) {
     return _then(_value.copyWith(
+      identificationDoc: identificationDoc == freezed
+          ? _value.identificationDoc
+          : identificationDoc // ignore: cast_nullable_to_non_nullable
+              as Identification?,
+      supportingDocuments: supportingDocuments == freezed
+          ? _value.supportingDocuments
+          : supportingDocuments // ignore: cast_nullable_to_non_nullable
+              as List<SupportingDocument>?,
+      registrationNumber: registrationNumber == freezed
+          ? _value.registrationNumber
+          : registrationNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceLicenseID: practiceLicenseID == freezed
+          ? _value.practiceLicenseID
+          : practiceLicenseID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceLicenseUploadID: practiceLicenseUploadID == freezed
+          ? _value.practiceLicenseUploadID
+          : practiceLicenseUploadID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceServices: practiceServices == freezed
+          ? _value.practiceServices
+          : practiceServices // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      cadre: cadre == freezed
+          ? _value.cadre
+          : cadre // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practitionerSetupComplete: practitionerSetupComplete == freezed
+          ? _value.practitionerSetupComplete
+          : practitionerSetupComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kycSubmitted: kycSubmitted == freezed
+          ? _value.kycSubmitted
+          : kycSubmitted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kraPin: kraPin == freezed
+          ? _value.kraPin
+          : kraPin // ignore: cast_nullable_to_non_nullable
+              as String,
+      kraPinUploadId: kraPinUploadId == freezed
+          ? _value.kraPinUploadId
+          : kraPinUploadId // ignore: cast_nullable_to_non_nullable
+              as String,
       kycType: kycType == freezed
           ? _value.kycType
           : kycType // ignore: cast_nullable_to_non_nullable
               as KYCType,
-      individualPractitioner: individualPractitioner == freezed
-          ? _value.individualPractitioner
-          : individualPractitioner // ignore: cast_nullable_to_non_nullable
-              as IndividualPractitioner?,
-      organizationPractitioner: organizationPractitioner == freezed
-          ? _value.organizationPractitioner
-          : organizationPractitioner // ignore: cast_nullable_to_non_nullable
-              as OrganizationPractitioner?,
     ));
   }
 
   @override
-  $IndividualPractitionerCopyWith<$Res>? get individualPractitioner {
-    if (_value.individualPractitioner == null) {
+  $IdentificationCopyWith<$Res>? get identificationDoc {
+    if (_value.identificationDoc == null) {
       return null;
     }
 
-    return $IndividualPractitionerCopyWith<$Res>(_value.individualPractitioner!,
-        (value) {
-      return _then(_value.copyWith(individualPractitioner: value));
-    });
-  }
-
-  @override
-  $OrganizationPractitionerCopyWith<$Res>? get organizationPractitioner {
-    if (_value.organizationPractitioner == null) {
-      return null;
-    }
-
-    return $OrganizationPractitionerCopyWith<$Res>(
-        _value.organizationPractitioner!, (value) {
-      return _then(_value.copyWith(organizationPractitioner: value));
+    return $IdentificationCopyWith<$Res>(_value.identificationDoc!, (value) {
+      return _then(_value.copyWith(identificationDoc: value));
     });
   }
 }
@@ -134,15 +200,22 @@ abstract class _$PractitionerKYCStateCopyWith<$Res>
       __$PractitionerKYCStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
-          KYCType kycType,
-      IndividualPractitioner? individualPractitioner,
-      OrganizationPractitioner? organizationPractitioner});
+      {Identification? identificationDoc,
+      List<SupportingDocument>? supportingDocuments,
+      String? registrationNumber,
+      String? practiceLicenseID,
+      String? practiceLicenseUploadID,
+      List<String>? practiceServices,
+      String? cadre,
+      bool practitionerSetupComplete,
+      bool kycSubmitted,
+      String kraPin,
+      String kraPinUploadId,
+      @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
+          KYCType kycType});
 
   @override
-  $IndividualPractitionerCopyWith<$Res>? get individualPractitioner;
-  @override
-  $OrganizationPractitionerCopyWith<$Res>? get organizationPractitioner;
+  $IdentificationCopyWith<$Res>? get identificationDoc;
 }
 
 /// @nodoc
@@ -158,74 +231,184 @@ class __$PractitionerKYCStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? identificationDoc = freezed,
+    Object? supportingDocuments = freezed,
+    Object? registrationNumber = freezed,
+    Object? practiceLicenseID = freezed,
+    Object? practiceLicenseUploadID = freezed,
+    Object? practiceServices = freezed,
+    Object? cadre = freezed,
+    Object? practitionerSetupComplete = freezed,
+    Object? kycSubmitted = freezed,
+    Object? kraPin = freezed,
+    Object? kraPinUploadId = freezed,
     Object? kycType = freezed,
-    Object? individualPractitioner = freezed,
-    Object? organizationPractitioner = freezed,
   }) {
     return _then(_PractitionerKYCState(
+      identificationDoc: identificationDoc == freezed
+          ? _value.identificationDoc
+          : identificationDoc // ignore: cast_nullable_to_non_nullable
+              as Identification?,
+      supportingDocuments: supportingDocuments == freezed
+          ? _value.supportingDocuments
+          : supportingDocuments // ignore: cast_nullable_to_non_nullable
+              as List<SupportingDocument>?,
+      registrationNumber: registrationNumber == freezed
+          ? _value.registrationNumber
+          : registrationNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceLicenseID: practiceLicenseID == freezed
+          ? _value.practiceLicenseID
+          : practiceLicenseID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceLicenseUploadID: practiceLicenseUploadID == freezed
+          ? _value.practiceLicenseUploadID
+          : practiceLicenseUploadID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practiceServices: practiceServices == freezed
+          ? _value.practiceServices
+          : practiceServices // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      cadre: cadre == freezed
+          ? _value.cadre
+          : cadre // ignore: cast_nullable_to_non_nullable
+              as String?,
+      practitionerSetupComplete: practitionerSetupComplete == freezed
+          ? _value.practitionerSetupComplete
+          : practitionerSetupComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kycSubmitted: kycSubmitted == freezed
+          ? _value.kycSubmitted
+          : kycSubmitted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kraPin: kraPin == freezed
+          ? _value.kraPin
+          : kraPin // ignore: cast_nullable_to_non_nullable
+              as String,
+      kraPinUploadId: kraPinUploadId == freezed
+          ? _value.kraPinUploadId
+          : kraPinUploadId // ignore: cast_nullable_to_non_nullable
+              as String,
       kycType: kycType == freezed
           ? _value.kycType
           : kycType // ignore: cast_nullable_to_non_nullable
               as KYCType,
-      individualPractitioner: individualPractitioner == freezed
-          ? _value.individualPractitioner
-          : individualPractitioner // ignore: cast_nullable_to_non_nullable
-              as IndividualPractitioner?,
-      organizationPractitioner: organizationPractitioner == freezed
-          ? _value.organizationPractitioner
-          : organizationPractitioner // ignore: cast_nullable_to_non_nullable
-              as OrganizationPractitioner?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@Implements(KRADetails)
 class _$_PractitionerKYCState implements _PractitionerKYCState {
-  const _$_PractitionerKYCState(
-      {@JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
-          required this.kycType,
-      this.individualPractitioner,
-      this.organizationPractitioner});
+  _$_PractitionerKYCState(
+      {this.identificationDoc,
+      this.supportingDocuments,
+      this.registrationNumber,
+      this.practiceLicenseID,
+      this.practiceLicenseUploadID,
+      this.practiceServices,
+      this.cadre,
+      this.practitionerSetupComplete = false,
+      this.kycSubmitted = false,
+      required this.kraPin,
+      required this.kraPinUploadId,
+      @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
+          required this.kycType});
 
   factory _$_PractitionerKYCState.fromJson(Map<String, dynamic> json) =>
       _$_$_PractitionerKYCStateFromJson(json);
 
   @override
-  @JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
+  final Identification? identificationDoc;
+  @override
+  final List<SupportingDocument>? supportingDocuments;
+  @override
+  final String? registrationNumber;
+  @override
+  final String? practiceLicenseID;
+  @override
+  final String? practiceLicenseUploadID;
+  @override
+  final List<String>? practiceServices;
+  @override
+  final String? cadre;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool practitionerSetupComplete;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool kycSubmitted;
+  @override
+  final String kraPin;
+  @override
+  final String kraPinUploadId;
+  @override
+  @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
   final KYCType kycType;
-  @override
-  final IndividualPractitioner? individualPractitioner;
-  @override
-  final OrganizationPractitioner? organizationPractitioner;
 
   @override
   String toString() {
-    return 'PractitionerKYCState(kycType: $kycType, individualPractitioner: $individualPractitioner, organizationPractitioner: $organizationPractitioner)';
+    return 'PractitionerKYCState(identificationDoc: $identificationDoc, supportingDocuments: $supportingDocuments, registrationNumber: $registrationNumber, practiceLicenseID: $practiceLicenseID, practiceLicenseUploadID: $practiceLicenseUploadID, practiceServices: $practiceServices, cadre: $cadre, practitionerSetupComplete: $practitionerSetupComplete, kycSubmitted: $kycSubmitted, kraPin: $kraPin, kraPinUploadId: $kraPinUploadId, kycType: $kycType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PractitionerKYCState &&
-            (identical(other.kycType, kycType) ||
+            (identical(other.identificationDoc, identificationDoc) ||
                 const DeepCollectionEquality()
-                    .equals(other.kycType, kycType)) &&
-            (identical(other.individualPractitioner, individualPractitioner) ||
-                const DeepCollectionEquality().equals(
-                    other.individualPractitioner, individualPractitioner)) &&
+                    .equals(other.identificationDoc, identificationDoc)) &&
+            (identical(other.supportingDocuments, supportingDocuments) ||
+                const DeepCollectionEquality()
+                    .equals(other.supportingDocuments, supportingDocuments)) &&
+            (identical(other.registrationNumber, registrationNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.registrationNumber, registrationNumber)) &&
+            (identical(other.practiceLicenseID, practiceLicenseID) ||
+                const DeepCollectionEquality()
+                    .equals(other.practiceLicenseID, practiceLicenseID)) &&
             (identical(
-                    other.organizationPractitioner, organizationPractitioner) ||
+                    other.practiceLicenseUploadID, practiceLicenseUploadID) ||
                 const DeepCollectionEquality().equals(
-                    other.organizationPractitioner, organizationPractitioner)));
+                    other.practiceLicenseUploadID, practiceLicenseUploadID)) &&
+            (identical(other.practiceServices, practiceServices) ||
+                const DeepCollectionEquality()
+                    .equals(other.practiceServices, practiceServices)) &&
+            (identical(other.cadre, cadre) ||
+                const DeepCollectionEquality().equals(other.cadre, cadre)) &&
+            (identical(other.practitionerSetupComplete,
+                    practitionerSetupComplete) ||
+                const DeepCollectionEquality().equals(
+                    other.practitionerSetupComplete,
+                    practitionerSetupComplete)) &&
+            (identical(other.kycSubmitted, kycSubmitted) ||
+                const DeepCollectionEquality()
+                    .equals(other.kycSubmitted, kycSubmitted)) &&
+            (identical(other.kraPin, kraPin) ||
+                const DeepCollectionEquality().equals(other.kraPin, kraPin)) &&
+            (identical(other.kraPinUploadId, kraPinUploadId) ||
+                const DeepCollectionEquality()
+                    .equals(other.kraPinUploadId, kraPinUploadId)) &&
+            (identical(other.kycType, kycType) ||
+                const DeepCollectionEquality().equals(other.kycType, kycType)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(kycType) ^
-      const DeepCollectionEquality().hash(individualPractitioner) ^
-      const DeepCollectionEquality().hash(organizationPractitioner);
+      const DeepCollectionEquality().hash(identificationDoc) ^
+      const DeepCollectionEquality().hash(supportingDocuments) ^
+      const DeepCollectionEquality().hash(registrationNumber) ^
+      const DeepCollectionEquality().hash(practiceLicenseID) ^
+      const DeepCollectionEquality().hash(practiceLicenseUploadID) ^
+      const DeepCollectionEquality().hash(practiceServices) ^
+      const DeepCollectionEquality().hash(cadre) ^
+      const DeepCollectionEquality().hash(practitionerSetupComplete) ^
+      const DeepCollectionEquality().hash(kycSubmitted) ^
+      const DeepCollectionEquality().hash(kraPin) ^
+      const DeepCollectionEquality().hash(kraPinUploadId) ^
+      const DeepCollectionEquality().hash(kycType);
 
   @JsonKey(ignore: true)
   @override
@@ -239,26 +422,52 @@ class _$_PractitionerKYCState implements _PractitionerKYCState {
   }
 }
 
-abstract class _PractitionerKYCState implements PractitionerKYCState {
-  const factory _PractitionerKYCState(
-      {@JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
-          required KYCType kycType,
-      IndividualPractitioner? individualPractitioner,
-      OrganizationPractitioner?
-          organizationPractitioner}) = _$_PractitionerKYCState;
+abstract class _PractitionerKYCState
+    implements PractitionerKYCState, KRADetails {
+  factory _PractitionerKYCState(
+      {Identification? identificationDoc,
+      List<SupportingDocument>? supportingDocuments,
+      String? registrationNumber,
+      String? practiceLicenseID,
+      String? practiceLicenseUploadID,
+      List<String>? practiceServices,
+      String? cadre,
+      bool practitionerSetupComplete,
+      bool kycSubmitted,
+      required String kraPin,
+      required String kraPinUploadId,
+      @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
+          required KYCType kycType}) = _$_PractitionerKYCState;
 
   factory _PractitionerKYCState.fromJson(Map<String, dynamic> json) =
       _$_PractitionerKYCState.fromJson;
 
   @override
-  @JsonKey(unknownEnumValue: KYCType.unknown, defaultValue: KYCType.unknown)
+  Identification? get identificationDoc => throw _privateConstructorUsedError;
+  @override
+  List<SupportingDocument>? get supportingDocuments =>
+      throw _privateConstructorUsedError;
+  @override
+  String? get registrationNumber => throw _privateConstructorUsedError;
+  @override
+  String? get practiceLicenseID => throw _privateConstructorUsedError;
+  @override
+  String? get practiceLicenseUploadID => throw _privateConstructorUsedError;
+  @override
+  List<String>? get practiceServices => throw _privateConstructorUsedError;
+  @override
+  String? get cadre => throw _privateConstructorUsedError;
+  @override
+  bool get practitionerSetupComplete => throw _privateConstructorUsedError;
+  @override
+  bool get kycSubmitted => throw _privateConstructorUsedError;
+  @override
+  String get kraPin => throw _privateConstructorUsedError;
+  @override
+  String get kraPinUploadId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(unknownEnumValue: KYCType.Unknown, defaultValue: KYCType.Unknown)
   KYCType get kycType => throw _privateConstructorUsedError;
-  @override
-  IndividualPractitioner? get individualPractitioner =>
-      throw _privateConstructorUsedError;
-  @override
-  OrganizationPractitioner? get organizationPractitioner =>
-      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PractitionerKYCStateCopyWith<_PractitionerKYCState> get copyWith =>

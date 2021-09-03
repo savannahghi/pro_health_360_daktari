@@ -9,26 +9,46 @@ part of 'practitioner_kyc_state.dart';
 _$_PractitionerKYCState _$_$_PractitionerKYCStateFromJson(
     Map<String, dynamic> json) {
   return _$_PractitionerKYCState(
+    identificationDoc: json['identificationDoc'] == null
+        ? null
+        : Identification.fromJson(
+            json['identificationDoc'] as Map<String, dynamic>),
+    supportingDocuments: (json['supportingDocuments'] as List<dynamic>?)
+        ?.map((e) => SupportingDocument.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    registrationNumber: json['registrationNumber'] as String?,
+    practiceLicenseID: json['practiceLicenseID'] as String?,
+    practiceLicenseUploadID: json['practiceLicenseUploadID'] as String?,
+    practiceServices: (json['practiceServices'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    cadre: json['cadre'] as String?,
+    practitionerSetupComplete:
+        json['practitionerSetupComplete'] as bool? ?? false,
+    kycSubmitted: json['kycSubmitted'] as bool? ?? false,
+    kraPin: json['kraPin'] as String,
+    kraPinUploadId: json['kraPinUploadId'] as String,
     kycType: _$enumDecodeNullable(_$KYCTypeEnumMap, json['kycType'],
-            unknownValue: KYCType.unknown) ??
-        KYCType.unknown,
-    individualPractitioner: json['individualPractitioner'] == null
-        ? null
-        : IndividualPractitioner.fromJson(
-            json['individualPractitioner'] as Map<String, dynamic>),
-    organizationPractitioner: json['organizationPractitioner'] == null
-        ? null
-        : OrganizationPractitioner.fromJson(
-            json['organizationPractitioner'] as Map<String, dynamic>),
+            unknownValue: KYCType.Unknown) ??
+        KYCType.Unknown,
   );
 }
 
 Map<String, dynamic> _$_$_PractitionerKYCStateToJson(
         _$_PractitionerKYCState instance) =>
     <String, dynamic>{
+      'identificationDoc': instance.identificationDoc,
+      'supportingDocuments': instance.supportingDocuments,
+      'registrationNumber': instance.registrationNumber,
+      'practiceLicenseID': instance.practiceLicenseID,
+      'practiceLicenseUploadID': instance.practiceLicenseUploadID,
+      'practiceServices': instance.practiceServices,
+      'cadre': instance.cadre,
+      'practitionerSetupComplete': instance.practitionerSetupComplete,
+      'kycSubmitted': instance.kycSubmitted,
+      'kraPin': instance.kraPin,
+      'kraPinUploadId': instance.kraPinUploadId,
       'kycType': _$KYCTypeEnumMap[instance.kycType],
-      'individualPractitioner': instance.individualPractitioner,
-      'organizationPractitioner': instance.organizationPractitioner,
     };
 
 K _$enumDecode<K, V>(
@@ -69,7 +89,6 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$KYCTypeEnumMap = {
-  KYCType.unknown: 'unknown',
-  KYCType.individualPractitioner: 'individualPractitioner',
-  KYCType.organizationPractitioner: 'organizationPractitioner',
+  KYCType.Unknown: 'Unknown',
+  KYCType.PractitionerKYCState: 'PractitionerKYCState',
 };

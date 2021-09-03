@@ -1,5 +1,1 @@
-enum KYCType {
-  unknown,
-  individualPractitioner,
-  organizationPractitioner,
-}
+enum KYCType { Unknown, PractitionerKYCState }

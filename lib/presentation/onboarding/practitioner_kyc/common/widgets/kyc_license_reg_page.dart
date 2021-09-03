@@ -88,98 +88,6 @@ class _KYCLicenceAndRegistrationNumberState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // If the KYC type is an organization
-        if (widget.isOrganization) ...<Widget>[
-          // Organization type prompt
-          Text(
-            orgTypeName,
-            style: TextThemes.normalSize16Text(Colors.black87),
-          ),
-          mediumVerticalSizedBox,
-
-          // LIMITED COMPANY
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            margin: const EdgeInsets.only(bottom: 15),
-            decoration: decoration(context: context),
-            child: SILRadio<String>(
-              radioButtonKey: kycOrganizationLimitedCompRadioButton,
-              value: organizationTypeOneValueText,
-              text: organizationTypeOneText,
-              onChanged: (String? val) {
-                setState(() {
-                  selectedOrganizationType = val;
-                });
-                widget.organizationTypeOnChanged!(val);
-              },
-              groupValue: selectedOrganizationType,
-            ),
-          ),
-
-          // TRUST
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            margin: const EdgeInsets.only(bottom: 15),
-            decoration: decoration(context: context),
-            child: SILRadio<String>(
-              radioButtonKey: kycOrganizationTrustRadioButton,
-              value: organizationTypeTwoValueText,
-              text: organizationTypeTwoText,
-              onChanged: (String? value) {
-                setState(() {
-                  selectedOrganizationType = value;
-                });
-                widget.organizationTypeOnChanged!(value);
-              },
-              groupValue: selectedOrganizationType,
-            ),
-          ),
-
-          // UNIVERSITY
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            margin: const EdgeInsets.only(bottom: 15),
-            decoration: decoration(context: context),
-            child: SILRadio<String>(
-              radioButtonKey: kycOrganizationUniversityRadioButton,
-              value: organizationTypeThreeValueText,
-              text: organizationTypeThreeText,
-              onChanged: (String? v) {
-                setState(() {
-                  selectedOrganizationType = v;
-                });
-                widget.organizationTypeOnChanged!(v);
-              },
-              groupValue: selectedOrganizationType,
-            ),
-          ),
-          mediumVerticalSizedBox,
-
-          /// Certificate of Incorporation Details
-          Text(
-            orgCertIncorporation,
-            style: TextThemes.normalSize16Text(Colors.black87),
-          ),
-          mediumVerticalSizedBox,
-          // Certificate of Incorporation input
-          SILFormTextField(
-            key: kycOrganizationCertIncorporation,
-            labelText: incorporationCertificateLabel,
-            hintText: incorporationCertificateHintText,
-            borderColor: Colors.grey.withOpacity(0.6),
-            textStyle: TextThemes.normalSize16Text(),
-            onChanged: widget.onCertificateOfIncorporationNumberChanged,
-          ),
-          mediumVerticalSizedBox,
-
-          // Certificate of Incorporation upload
-          FileManager(
-            galleryImageKey: kycOrganizationCertIncorporationUpload,
-            onChanged: widget.certificateOfIncorporationDocID!,
-            fileTitle: incorporationCertificateUploadText,
-            uploadAndReturnIdFunction: uploadFileAndGetId,
-            platformLoader: const SILPlatformLoader(),
-          ),
-        ],
         mediumVerticalSizedBox,
 
         // If the KYC type is a practitioner
@@ -253,7 +161,7 @@ class _KYCLicenceAndRegistrationNumberState
           mediumVerticalSizedBox,
           // Registration number
           SILFormTextField(
-            key: kycRegNumber,
+            key: kycRegNumberKey,
             labelText: regNoLabel,
             hintText: regHintText,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -273,7 +181,7 @@ class _KYCLicenceAndRegistrationNumberState
           mediumVerticalSizedBox,
           // License input
           SILFormTextField(
-            key: kycLicenceNumber,
+            key: kycLicenceNumberKey,
             labelText: widget.licenseLabel,
             hintText: widget.licenseHint,
             borderColor: Colors.grey.withOpacity(0.6),
@@ -290,7 +198,7 @@ class _KYCLicenceAndRegistrationNumberState
 
           // Upload for the license
           FileManager(
-            galleryImageKey: kycLicenceNumUpload,
+            galleryImageKey: kycLicenceNumUploadKey,
             onChanged: widget.licenseUploadIDOnChanged!,
             fileTitle: widget.isLicenceUploadRequired
                 ? licenceUploadText

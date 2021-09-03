@@ -92,3 +92,25 @@ const String organizationPractitionerKYCString = 'Organization Practitioner';
 const String orgTypeRequired = 'Organization type is required';
 const String addDirectorIDs = 'Add your director identifications';
 const String backText = 'Back';
+
+const String informationRequired =
+    'Please provide all the required information';
+const String successMessage = 'Information saved successfully';
+const String addEmail = 'Add Email Address';
+const String thanksText = 'Okay, Thank You';
+const String primaryEmailAddressNotFilled =
+    'It seems you have not added your primary email address. Kindly add it so that your are able to fill in your KYC details';
+const String kycAlreadySubmitted =
+    'It seems you have already submitted your KYC details. Kindly be patient as your KYC is being processed. An email confirmation will be sent to you after processing';
+const String okay = 'Okay';
+const String continueButtonText = 'Continue';
+const String doItLater = 'Do it later';
+
+String individualTitle(String title) {
+  return 'About your $title';
+}
+
+String individualDescription(String description) {
+  return 'Help us know more about your $description by providing us with '
+      'required details';
+}

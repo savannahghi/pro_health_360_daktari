@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:healthcloud/application/core/graphql/queries.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/update_kyc_submission_status.dart';
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -10,6 +14,7 @@ import 'package:bewell_pro_core/domain/clinical/value_objects/system_enums.dart'
 import 'package:bewell_pro_core/domain/core/entities/processed_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:async_redux/async_redux.dart';
 
 ///[Get Upload ID]
 ///get ID of uploaded file
@@ -91,14 +96,6 @@ List<SupportingDocument> removeSupportingDoc(
             doc.title != title && doc.description != description)
         .toList();
 
-Identification? getIdentificationDoc(
-    String? idType, String? idNumber, String? docUploadId) {
-  if (idType != null && idNumber != null && docUploadId != null) {
-    return Identification(
-        type: idType, docNumber: idNumber, uploadID: docUploadId);
-  }
-}
-
 SupportingDocument? getSupportingDoc(String? supportingDocumentTitle,
     String? supportingDocumentDescription, String? supportingDocumentUpload) {
   if (supportingDocumentTitle != null &&
@@ -126,17 +123,39 @@ List<SupportingDocument> deconstructSupportingDocuments(
   }
 }
 
-List<Identification> deconstructIdentificationDocuments(
-    {required List<Identification> identificationsFromState,
-    Identification? newIdentification}) {
-  if (newIdentification == null) return identificationsFromState;
-  if (identificationsFromState.isNotEmpty) {
-    return <Identification>[...identificationsFromState, newIdentification];
-  } else {
-    return <Identification>[newIdentification];
-  }
-}
-
 List<Identification> removeIdentificationDoc(
         List<Identification> docs, String idNumber) =>
     docs.where((Identification doc) => doc.docNumber != idNumber).toList();
+
+Future<void> hasSupplierSubmittedKYC(BuildContext context) async {
+  final Map<String, dynamic> fetchSupplierKYCSubmitted =
+      await SimpleCall.callAPI(
+    queryString: checkSupplierKYCSubmittedQuery,
+    variables: <String, dynamic>{},
+    graphClient: AppWrapperBase.of(context)!.graphQLClient,
+  ) as Map<String, dynamic>;
+
+  bool supplierKYCSubmitted = false;
+
+  if (!fetchSupplierKYCSubmitted.containsKey('error')) {
+    supplierKYCSubmitted =
+        fetchSupplierKYCSubmitted['data']['checkSupplierKYCSubmitted'] as bool;
+  }
+
+  StoreProvider.dispatch<CoreState>(
+    context,
+    UpdateKYCSubmissionStatusAction(kycSubmitted: supplierKYCSubmitted),
+  );
+}
+
+bool userEmailFilled(BuildContext context) {
+  final CoreState state = StoreProvider.state<CoreState>(context)!;
+  if (state.userState!.userProfile!.primaryEmailAddress != null) {
+    if (state.userState!.userProfile!.primaryEmailAddress!.getValue() !=
+        UNKNOWNEMAIL) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+}

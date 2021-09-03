@@ -1,4 +1,4 @@
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';

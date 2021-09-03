@@ -63,7 +63,7 @@ class _KYCSupportingDocumentsState extends State<KYCSupportingDocuments> {
                 Divider(thickness: 0.5, color: Colors.grey.withOpacity(0.5)),
                 smallVerticalSizedBox,
                 SILFormTextField(
-                  key: kycSupportingDocumentTitle,
+                  key: kycSupportingDocumentTitleKey,
                   labelText: documentTitle,
                   hintText: documentTitleHint,
                   borderColor: Colors.grey.withOpacity(0.6),
@@ -72,7 +72,7 @@ class _KYCSupportingDocumentsState extends State<KYCSupportingDocuments> {
                 ),
                 mediumVerticalSizedBox,
                 SILFormTextField(
-                  key: kycSupportingDocumentDescription,
+                  key: kycSupportingDocumentDescriptionKey,
                   maxLines: 2,
                   labelText: documentDescription,
                   hintText: documentDescriptionHint,
@@ -83,7 +83,7 @@ class _KYCSupportingDocumentsState extends State<KYCSupportingDocuments> {
                 mediumVerticalSizedBox,
                 FileManager(
                   onChanged: (String? val) => docID = val,
-                  galleryImageKey: kycSupportingDocumentUpload,
+                  galleryImageKey: kycSupportingDocumentUploadKey,
                   fileTitle: documentUpload,
                   uploadAndReturnIdFunction: uploadFileAndGetId,
                   platformLoader: const SILPlatformLoader(),
@@ -154,7 +154,7 @@ class _KYCSupportingDocumentsState extends State<KYCSupportingDocuments> {
           child: SILSecondaryButton(
             buttonColor: healthcloudPrimaryColor,
             borderColor: healthcloudPrimaryColor,
-            buttonKey: kycAddSupportingDocumentButton,
+            buttonKey: kycAddSupportingDocumentButtonKey,
             onPressed: () async {
               dynamic result = await _addSupportingDocBottomSheet(context);
               if (result == null) {

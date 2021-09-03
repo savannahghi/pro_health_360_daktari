@@ -1,5 +1,5 @@
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/practitioner_kyc_models/practitioner.dart';
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:async_redux/async_redux.dart';
 
@@ -46,8 +46,8 @@ class IndividualPractitionerViewModel extends Vm {
         ]);
 
   static IndividualPractitionerViewModel fromState(AppState appState) {
-    final IndividualPractitioner practitionerState =
-        appState.practitionerKYCState!.individualPractitioner!;
+    final PractitionerKYCState practitionerState =
+        appState.practitionerKYCState!;
 
     return IndividualPractitionerViewModel(
       registrationNo: practitionerState.registrationNumber,

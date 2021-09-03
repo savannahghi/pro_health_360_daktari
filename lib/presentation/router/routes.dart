@@ -7,14 +7,4 @@ const String individualPractitionerKYCStepTwoRoute =
 const String individualPractitionerKYCStepThreeRoute =
     '/IndividualPractitionerKYCStepThree';
 
-const String organizationPractitionerKYCStepOneRoute =
-    '/organizationPractitionerKYCStepOne';
-
-const String organizationPractitionerKYCStepTwoRoute =
-    '/organizationPractitionerKYCStepTwo';
-
-const String organizationPractitionerKYCStepFourRoute =
-    '/organizationPractitionerKYCStepFour';
-
-const String organizationPractitionerKYCStepThreeRoute =
-    '/organizationPractitionerKYCStepThree';
+const String kycIntroPageRoute = '/kycIntroPage';
