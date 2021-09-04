@@ -105,6 +105,113 @@ jobs:
             BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
             firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
 
+  deploy_to_play_store_alpha:
+    resource_class: large
+    docker:
+      - image: circleci/android:api-30-ndk
+    steps:
+      - install_packages
+      - download_and_setup_keystore
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
+            - keystore_and_properties_cache
+      - run:
+          name: "Setup flutter environment variable"
+          command: |
+             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - run:
+          name: "Build and publish to play store alpha track"
+          command: |
+            echo $APP_ENV_FILE > .env
+            echo $GOOGLE_SERVICES_FILE > $HOME/project/android/app/google-services.json
+            mkdir $HOME/project/dump/
+
+            flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha \
+            --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_demo.dart \
+            --dart-define=APPVERSION=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha
+
+            gsutil cp gs://sghi-fls-android-box/fls-android.zip .
+            mkdir $HOME/fls/
+            unzip -x fls-android.zip -d $HOME/fls/
+            export PATH=PATH="$PATH:/$HOME/fls/"
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/bundle/release/app-release.aab
+            echo $GPLAY_PUBLISHER_ACCOUNT > pub_service.json
+            fls-android track --build-number=$CIRCLE_BUILD_NUM --package-name=$PACKAGE_NAME --bundle-path=$BUNDLE_FILE_PATH --track-name=alpha --service-account-path=$HOME/project/pub_service.json --release-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha has been deployed successfully"
+
+  deploy_to_play_store_beta:
+    resource_class: large
+    docker:
+      - image: circleci/android:api-30-ndk
+    steps:
+      - install_packages
+      - download_and_setup_keystore
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
+            - keystore_and_properties_cache
+      - run:
+          name: "Setup flutter environment variable"
+          command: |
+             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - run:
+          name: "Build and publish to play store beta track"
+          command: |
+            echo $APP_ENV_FILE > .env
+            echo $GOOGLE_SERVICES_FILE > $HOME/project/android/app/google-services.json
+            mkdir $HOME/project/dump/
+
+            flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-beta \
+            --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_demo.dart \
+            --dart-define=APPVERSION=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-beta
+
+            gsutil cp gs://sghi-fls-android-box/fls-android.zip .
+            mkdir $HOME/fls/
+            unzip -x fls-android.zip -d $HOME/fls/
+            export PATH=PATH="$PATH:/$HOME/fls/"
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/bundle/release/app-release.aab
+            echo $GPLAY_PUBLISHER_ACCOUNT > pub_service.json
+            fls-android track --build-number=$CIRCLE_BUILD_NUM --package-name=$PACKAGE_NAME --bundle-path=$BUNDLE_FILE_PATH --track-name=beta --service-account-path=$HOME/project/pub_service.json --release-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-beta
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-beta has been deployed successfully"
+
+
+  deploy_to_play_store_prod:
+    resource_class: large
+    docker:
+      - image: circleci/android:api-30-ndk
+    steps:
+      - install_packages
+      - download_and_setup_keystore
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
+            - keystore_and_properties_cache
+      - run:
+          name: "Setup flutter environment variable"
+          command: |
+             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+      - run:
+          name: "Build and publish to play store prod track"
+          command: |
+            echo $APP_ENV_FILE > .env
+            echo $GOOGLE_SERVICES_FILE > $HOME/project/android/app/google-services.json
+            mkdir $HOME/project/dump/
+
+            flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-prod \
+            --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_prod.dart \
+            --dart-define=APPVERSION=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-prod
+
+            gsutil cp gs://sghi-fls-android-box/fls-android.zip .
+            mkdir $HOME/fls/
+            unzip -x fls-android.zip -d $HOME/fls/
+            export PATH=PATH="$PATH:/$HOME/fls/"
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/bundle/release/app-release.aab
+            echo $GPLAY_PUBLISHER_ACCOUNT > pub_service.json
+            fls-android track --build-number=$CIRCLE_BUILD_NUM --package-name=$PACKAGE_NAME --bundle-path=$BUNDLE_FILE_PATH --track-name=production --service-account-path=$HOME/project/pub_service.json --release-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-prod
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-prod has been deployed successfully"
+
+
 workflows:
   version: 2
   test_and_deploy:
@@ -117,3 +224,24 @@ workflows:
            branches:
              only:
                - main
+     - deploy_to_play_store_alpha:
+         requires:
+           - run_tests_and_generate_coverage
+         filters:
+           branches:
+             only:
+               - alpha
+     - deploy_to_play_store_beta:
+         requires:
+           - run_tests_and_generate_coverage
+         filters:
+           branches:
+             only:
+               - beta
+     - deploy_to_play_store_prod:
+         requires:
+           - run_tests_and_generate_coverage
+         filters:
+           branches:
+             only:
+               - prod
