@@ -110,6 +110,8 @@ _temp/
 
 #debug_sil.keysore
 debug_sil.keystore
+*.jks
+*key.properties
 
 # environment variables
 .env
