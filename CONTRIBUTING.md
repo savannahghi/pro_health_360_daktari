@@ -48,16 +48,16 @@ When you initially consider contributing to `AfyaMoja`, you might be unsure abou
 
 Here's a list of the big ones:
 
-- [app_wrapper](https://github.com/savannahghi/app_wrapper) - A shared library for `BeWell-Consumer` and `BeWell-Professional` Responsible for putting together everything that the app needs in order to run safely. Similar to a pre-flight checklist that brings together app requirements and exposes them to app's element tree.
-- [domain_objects](https://github.com/savannahghi/domain_objects) - A shared library for `BeWell-Consumer` and `BeWell-Professional` Responsible for aggregating core domain objects.
-- [dart_fcm](https://github.com/savannahghi/dart_fcm) - A shared library for `BeWell-Consumer` and `BeWell-Professional` that is responsible for exposing firebase messaging services.
-- [user_feed](https://github.com/savannahghi/user_feed) - A shared library for `BeWell-Consumer` and `BeWell-Professional` that is responsible for rendering and refreshing user-feed and engagement data.
-- [flutter_graphql_client](https://github.com/savannahghi/flutter_graphql_client) - A shared library for `BeWell-Consumer` and `BeWell-Professional` that is responsible for exposing graphql_client and helper methods for use in the various apps
-- [debug_logger](https://github.com/savannahghi/debug_logger) - A shared library that is responsible for displaying various logging options used for development and debugging
-- [misc_utilities](https://github.com/savannahghi/misc_utilities) -A shared library for `BeWell-Consumer` and `BeWell-Professional` that is a wrapper for various shared helper methods and functions
-- [shared_themes](https://github.com/savannahghi/shared_themes) -A shared library for `BeWell-Consumer` and `BeWell-Professional` that is responsible for defining and providing theme/style guidelines
-- [shared_ui_components](https://github.com/savannahghi/shared_ui_components) - A shared library for `BeWell-Consumer` and `BeWell-Professional` that is responsible for rendering and exposing dumb widgets and ui components
-- [user_profile](https://github.com/savannahghi/user_profile) - A shared library between [BeWell-Consumer] and [BeWell-Professional] and is responsible for the user profile displayed on both apps.
+- [app_wrapper](https://github.com/savannahghi/app_wrapper) - A shared library responsible for putting together everything that the app needs in order to run safely. Similar to a pre-flight checklist that brings together app requirements and exposes them to app's element tree.
+- [domain_objects](https://github.com/savannahghi/domain_objects) - A shared library responsible for aggregating core domain objects.
+- [dart_fcm](https://github.com/savannahghi/dart_fcm) - A shared library for responsible for exposing firebase messaging services.
+- [user_feed](https://github.com/savannahghi/user_feed) - A shared library responsible for rendering and refreshing user-feed and engagement data.
+- [flutter_graphql_client](https://github.com/savannahghi/flutter_graphql_client) - A shared library responsible for exposing graphql_client and helper methods for use in the various apps
+- [debug_logger](https://github.com/savannahghi/debug_logger) - A shared library responsible for displaying various logging options used for development and debugging
+- [misc_utilities](https://github.com/savannahghi/misc_utilities) - A shared library that contains various shared helper methods and functions
+- [shared_themes](https://github.com/savannahghi/shared_themes) - A shared library responsible for defining and providing theme/style guidelines
+- [shared_ui_components](https://github.com/savannahghi/shared_ui_components) - A shared library for responsible for rendering and exposing widgets and ui components
+- [user_profile](https://github.com/savannahghi/user_profile) - A shared library responsible for the user profile displayed within the app.
 
 ### Design Decisions
 

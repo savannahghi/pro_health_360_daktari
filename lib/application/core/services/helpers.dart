@@ -1,10 +1,14 @@
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/app_contexts.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:healthcloud/infrastructure/endpoints.dart';
+import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
+
+/// This show only exposed the AppContext and BaseContext to prevent conflicts
+/// between the endpoint constants in the library, and the local ones
+import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 
 /// Returns the correct [AppSetupData] based on the [AppContext]
 ///
@@ -16,32 +20,61 @@ import 'package:flutter_config/flutter_config.dart';
 AppSetupData getAppSetupData(AppContext context) {
   switch (context) {
     case AppContext.AppTest:
-      return AppSetupData(
-        appContexts: testAppContexts,
-        sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
-      );
+      return devAppSetupData;
     case AppContext.AppDemo:
-      return AppSetupData(
-        appContexts: demoAppContexts,
-        sentryDNS: FlutterConfig.get('PROD_SENTRY_DNS') as String,
-      );
+      return devAppSetupData;
     case AppContext.AppProd:
-      return AppSetupData(
-        appContexts: prodAppContexts,
-        sentryDNS: FlutterConfig.get('PROD_SENTRY_DNS') as String,
-      );
+      return prodAppSetupData;
     case AppContext.AppE2E:
-      return AppSetupData(
-        appContexts: e2eAppContexts,
-        sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
-      );
+      return devAppSetupData;
     default:
-      return AppSetupData(
-        appContexts: testAppContexts,
-        sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
-      );
+      return devAppSetupData;
   }
 }
+
+final AppSetupData devAppSetupData = AppSetupData(
+  appContexts: testAppContexts,
+  sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kTestAnonymousLoginEndpoint,
+    graphqlEndpoint: kTestGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kTestSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kTestRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kTestRetryResendOtpEndpoint,
+    pinResetEndpoint: kTestPinResetEndpoint,
+    userRecoveryPhoneNumbersEndpoint: kTestUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: kTestVerifyContactOTPEndpoint,
+    verifyPhoneEndpoint: kTestVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint: kTestSendContactVerificationOTPEndpoint,
+    sendRecoverAccountOtpEndpoint: kTestSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kTestLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kTestUpdateUserPinEndpoint,
+    uploadFileEndPoint: kTestUploadFileEndPoint,
+    createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
+  ),
+);
+
+final AppSetupData prodAppSetupData = AppSetupData(
+  appContexts: prodAppContexts,
+  sentryDNS: FlutterConfig.get('PROD_SENTRY_DNS') as String,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kProdAnonymousLoginEndpoint,
+    graphqlEndpoint: kProdGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kProdSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kProdRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kProdRetryResendOtpEndpoint,
+    pinResetEndpoint: kProdPinResetEndpoint,
+    userRecoveryPhoneNumbersEndpoint: kProdUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: kProdVerifyContactOTPEndpoint,
+    verifyPhoneEndpoint: kProdVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint: kProdSendContactVerificationOTPEndpoint,
+    sendRecoverAccountOtpEndpoint: kProdSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kProdLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kProdUpdateUserPinEndpoint,
+    uploadFileEndPoint: kProdUploadFileEndPoint,
+    createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,
+  ),
+);
 
 /// Returns a list of secondary phone numbers
 List<PhoneNumber>? deconstructSecondaryPhoneNumber(

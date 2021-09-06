@@ -1,8 +1,8 @@
 const String DatabaseName = 'bw.store.db';
 
-/// [BeWellDatabaseBase] defines an interface to be fulfilled so that a storage component
+/// [AfyaMojaDatabaseBase] defines an interface to be fulfilled so that a storage component
 /// may work, for each exclusive platform. (Mobile and Web)
-abstract class BeWellDatabaseBase<T> {
+abstract class AfyaMojaDatabaseBase<T> {
   /// get the [database] instance
   Future<T> get database;
 
@@ -25,11 +25,13 @@ abstract class BeWellDatabaseBase<T> {
 
 /// [Tables] definitions
 enum Tables {
-  miscState,
-  userFeedState,
-  userState,
-  clinicalState,
-  navigationState,
+  MiscState,
+  UserFeedState,
+  UserState,
+  ClinicalState,
+  NavigationState,
+  PractitionerKYCState,
+  UserRegistrationState
 }
 
 /// [TablesEx] extends [Tables] enum to get the values as
@@ -37,16 +39,20 @@ enum Tables {
 extension TablesEx on Tables {
   String get name {
     switch (this) {
-      case Tables.miscState:
+      case Tables.MiscState:
         return 'miscState';
-      case Tables.userFeedState:
+      case Tables.UserFeedState:
         return 'userFeedState';
-      case Tables.userState:
+      case Tables.UserState:
         return 'userState';
-      case Tables.clinicalState:
+      case Tables.ClinicalState:
         return 'clinicalState';
-      case Tables.navigationState:
+      case Tables.NavigationState:
         return 'navigationState';
+      case Tables.PractitionerKYCState:
+        return 'practitionerKYCState';
+      case Tables.UserRegistrationState:
+        return 'userRegistrationState';
     }
   }
 }

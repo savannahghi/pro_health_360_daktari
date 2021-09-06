@@ -2,7 +2,12 @@ import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+import 'package:healthcloud/application/core/services/app_setup_data.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_state_persistor.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
@@ -12,11 +17,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:app_wrapper/app_wrapper.dart';
-
-import 'app_setup_data.dart';
-import 'helpers.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// Responsible for putting together everything that the app needs in order
 /// to run safely.
@@ -40,10 +42,10 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   NavigateAction.setNavigatorKey(globalAppNavigatorKey);
 
-  final AppSetupData _appSetupData = getAppSetupData(appContexts.last);
+  final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
-  final BeWellStateDatabase stateDB =
-      BeWellStateDatabase(dataBaseName: DatabaseName);
+  final AfyaMojaStateDatabase stateDB =
+      AfyaMojaStateDatabase(dataBaseName: DatabaseName);
 
   await stateDB.init();
 
@@ -78,17 +80,21 @@ Future<void> initApp(List<AppContext> appContexts) async {
     return const UnrecoverableErrorWidget();
   };
 
+  // Add New App Branding details
+  AppBrand()..appName.add(appName)..appLogo.add(appLogo);
+
   runZonedGuarded(() async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
         options
-          ..dsn = _appSetupData.sentryDNS
+          ..dsn = appSetupData.sentryDNS
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
         AfyaMojaApp(
           store: store,
-          appContexts: _appSetupData.appContexts,
+          appContexts: appSetupData.appContexts,
+          customEndpointContext: appSetupData.customContext,
         ),
       ),
     );

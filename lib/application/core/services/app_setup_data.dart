@@ -13,9 +13,13 @@ class AppSetupData {
   /// For test and e2e we return the test sentry DNS
   String sentryDNS;
 
+  // Custom context for setting up different endpoints
+  final BaseContext? customContext;
+
   AppSetupData({
     required this.appContexts,
     required this.sentryDNS,
+    this.customContext,
   });
 
   @override
