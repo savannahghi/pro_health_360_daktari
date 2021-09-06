@@ -5,18 +5,19 @@ import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:healthcloud/infrastructure/repository/sqlite.dart';
 import 'package:sqflite/sqflite.dart';
 
-/// [BeWellDatabaseMobile] is the main entry for interacting with the database for healthcloud mobile
-/// It uses sqlite which is a common RDMS. Unlike other key:value storage, sqlite offers
-/// high flexibility when storing structured data.
-/// The idea is to store, sessions, permissions(highly structured) and anything else
-/// that required persistence.
-/// When a new state has been added, it needs to be serialized so that it may be saved in the database
-/// The command to serialize is [flutter pub run build_runner build --delete-conflicting-outputs]
+/// [AfyaMojaDatabaseMobile] is the main entry for interacting with the
+/// database for healthcloud mobile. It uses sqlite which is a common RDMS.
+/// Unlike other key:value storage, sqlite offers high flexibility when
+/// storing structured data. The idea is to store, sessions,
+/// permissions(highly structured) and anything else that required persistence.
+/// When a new state has been added, it needs to be serialized so that it may
+/// be saved in the database. The command to serialize is
+/// [flutter pub run build_runner build --delete-conflicting-outputs]
 /// Ref : https://flutter.dev/docs/development/data-and-backend/json
 ///     : https://pub.dev/packages/built_value
-class BeWellDatabaseMobile<T extends DatabaseExecutor>
-    implements BeWellDatabaseBase<T> {
-  BeWellDatabaseMobile({this.initializeDB});
+class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
+    implements AfyaMojaDatabaseBase<T> {
+  AfyaMojaDatabaseMobile({this.initializeDB});
 
   final InitializeDB<T>? initializeDB;
 
@@ -40,13 +41,15 @@ class BeWellDatabaseMobile<T extends DatabaseExecutor>
 
   @override
   Future<bool> isDatabaseEmpty() async {
-    final int t1 = await countTableRecords(Tables.miscState);
-    final int t2 = await countTableRecords(Tables.userFeedState);
-    final int t3 = await countTableRecords(Tables.userState);
-    final int t4 = await countTableRecords(Tables.clinicalState);
-    final int t5 = await countTableRecords(Tables.navigationState);
+    final int t1 = await countTableRecords(Tables.MiscState);
+    final int t2 = await countTableRecords(Tables.UserFeedState);
+    final int t3 = await countTableRecords(Tables.UserState);
+    final int t4 = await countTableRecords(Tables.ClinicalState);
+    final int t5 = await countTableRecords(Tables.NavigationState);
+    final int t6 = await countTableRecords(Tables.PractitionerKYCState);
+    final int t7 = await countTableRecords(Tables.UserRegistrationState);
 
-    final int counts = t1 + t2 + t3 + t4 + t5;
+    final int counts = t1 + t2 + t3 + t4 + t5 + t6 + t7;
     if (counts > 0) {
       return false;
     }

@@ -9,7 +9,6 @@ class UpdateUserStateAction extends ReduxAction<CoreState> {
   UpdateUserStateAction({
     this.inActivitySetInTime,
     this.userProfile,
-    this.supplierProfile,
     this.communicationSettings,
     this.auth,
     this.isSignedIn,
@@ -22,7 +21,6 @@ class UpdateUserStateAction extends ReduxAction<CoreState> {
   final CommunicationSettings? communicationSettings;
   final bool? isSignedIn;
   final String? signedInTime;
-  final SupplierProfile? supplierProfile;
   final String? tokenExpiryTime;
   final UserProfile? userProfile;
 

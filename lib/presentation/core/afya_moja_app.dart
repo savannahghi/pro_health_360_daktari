@@ -1,18 +1,29 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.dart';
-import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-
-import 'auth_manager.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/infrastructure/afyamoja_endpoint_context.dart';
+import 'package:healthcloud/presentation/core/auth_manager.dart';
 
 class AfyaMojaApp extends StatefulWidget {
-  const AfyaMojaApp({Key? key, required this.store, required this.appContexts})
-      : super(key: key);
+  const AfyaMojaApp({
+    Key? key,
+    required this.store,
+    required this.appContexts,
+    this.customEndpointContext,
+  }) : super(key: key);
 
+  /// The context under which this app is running
   final List<AppContext> appContexts;
+
+  /// A set of custom endpoints to be passed into the AppWrapper widget
+  final BaseContext? customEndpointContext;
+
+  /// The store to be used to initialize the StoreProvider with
   final Store<CoreState> store;
 
   @override
@@ -21,7 +32,6 @@ class AfyaMojaApp extends StatefulWidget {
 
 class _AfyaMojaAppState extends State<AfyaMojaApp> {
   bool hasFinishedLaunching = false;
-  static const Key globalStoreProviderKey = Key('global_store_provider');
 
   @override
   void didChangeDependencies() {
@@ -45,16 +55,17 @@ class _AfyaMojaAppState extends State<AfyaMojaApp> {
         converter: (Store<CoreState> store) => store.state,
         builder: (BuildContext context, CoreState state) {
           return AppWrapper(
-            appName: appName,
+            appName: AppBrand().appName.value,
+            baseContext: widget.customEndpointContext,
             graphQLClient: GraphQlClient(
               widget.store.state.userState!.auth!.idToken!,
-              EndpointContext.getGraphQLEndpoint(widget.appContexts),
+              AfyaMojaEndpointContext.getGraphQLEndpoint(widget.appContexts),
             ),
             appContexts: widget.appContexts,
             child: Builder(
               builder: (BuildContext context) {
                 return AuthManager(
-                  appName: appName,
+                  appName: AppBrand().appName.value,
                   appContexts: widget.appContexts,
                   store: widget.store,
                 );
