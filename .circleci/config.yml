@@ -105,6 +105,7 @@ jobs:
             flutter build apk --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
             BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
             firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
+      - run: cat .env
 
   deploy_to_play_store_alpha:
     resource_class: large
