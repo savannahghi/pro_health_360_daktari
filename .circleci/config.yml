@@ -100,6 +100,7 @@ jobs:
           name: "Build and publish to firebase app distribution"
           command: |
             echo $APP_ENV_FILE > .env
+            cat .env
             echo $GOOGLE_SERVICES_FILE > $HOME/project/android/app/google-services.json
             flutter build apk --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
             BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
@@ -218,12 +219,13 @@ workflows:
    jobs:
      - run_tests_and_generate_coverage
      - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+          #  - run_tests_and_generate_coverage
          filters:
            branches:
              only:
-               - main
+               - develop
+               - debug_pipeline
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage
