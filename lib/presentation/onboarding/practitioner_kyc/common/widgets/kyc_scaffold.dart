@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class KYCScaffold extends StatelessWidget {
   const KYCScaffold({Key? key, required this.child}) : super(key: key);
+
   final Widget child;
 
   @override

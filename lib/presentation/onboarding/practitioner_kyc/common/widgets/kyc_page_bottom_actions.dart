@@ -8,8 +8,8 @@ class KYCPagesBottomActions extends StatelessWidget {
   const KYCPagesBottomActions(
       {required this.onNextOrFinish, this.nextText = next});
 
-  final Function onNextOrFinish;
   final String nextText;
+  final Function onNextOrFinish;
 
   @override
   Widget build(BuildContext context) {

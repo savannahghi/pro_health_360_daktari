@@ -13,10 +13,11 @@ class SupportingDocumentsResultCard extends StatelessWidget {
     required this.uploadID,
     required this.removeDocFunc,
   }) : super(key: key);
-  final String documentTitle;
+
   final String documentDescription;
-  final String uploadID;
+  final String documentTitle;
   final RemoveDocFunc removeDocFunc;
+  final String uploadID;
 
   @override
   Widget build(BuildContext context) {

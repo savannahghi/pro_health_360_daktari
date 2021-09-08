@@ -123,7 +123,8 @@ class _KYCDirectorIdentificationsState
                     width: double.infinity,
                     height: number48,
                     child: SILPrimaryButton(
-                      buttonKey: kycBottomSheetAddDirecorIdentificationButtonKey,
+                      buttonKey:
+                          kycBottomSheetAddDirecorIdentificationButtonKey,
                       onPressed: () {
                         if (idNumber == null || docID == null) {
                           sheetSetState(() {

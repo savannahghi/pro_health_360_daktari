@@ -23,12 +23,13 @@ class IndividualPractitionerKYCStepTwo extends StatefulWidget {
 
 class _IndividualPractitionerKYCStepTwoState
     extends State<IndividualPractitionerKYCStepTwo> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? idNumber;
   String idDocType = nationalIdText;
+  String? idNumber;
   String? idUploadId;
   String? kraPin;
   String? kraUploadId;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void processAndNavigateIndividualPractitionerKYC(
       {required GlobalKey<FormState> formKey,

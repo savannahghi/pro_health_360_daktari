@@ -3,23 +3,12 @@ import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart
 import 'package:async_redux/async_redux.dart';
 
 class PractitionerKYCStateViewModel extends Vm {
-  final PractitionerKYCState state;
-  final Wait wait;
-  final bool kycSubmitted;
-
   PractitionerKYCStateViewModel(
       {required this.state, required this.wait, required this.kycSubmitted});
 
-  static PractitionerKYCStateViewModel fromState(AppState state) {
-    return PractitionerKYCStateViewModel(
-      state: state.practitionerKYCState!,
-      wait: state.wait!,
-      kycSubmitted: state.practitionerKYCState!.kycSubmitted,
-    );
-  }
-
-  @override
-  int get hashCode => state.hashCode;
+  final bool kycSubmitted;
+  final PractitionerKYCState state;
+  final Wait wait;
 
   @override
   bool operator ==(Object old) {
@@ -39,5 +28,16 @@ class PractitionerKYCStateViewModel extends Vm {
             state.kraPin == old.state.kraPin &&
             state.kraPinUploadId == old.state.kraPinUploadId &&
             state.kycType == old.state.kycType;
+  }
+
+  @override
+  int get hashCode => state.hashCode;
+
+  static PractitionerKYCStateViewModel fromState(AppState state) {
+    return PractitionerKYCStateViewModel(
+      state: state.practitionerKYCState!,
+      wait: state.wait!,
+      kycSubmitted: state.practitionerKYCState!.kycSubmitted,
+    );
   }
 }
