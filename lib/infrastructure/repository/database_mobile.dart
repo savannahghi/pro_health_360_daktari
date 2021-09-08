@@ -56,15 +56,6 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
     return true;
   }
 
-  Future<Map<String, dynamic>> retrieveWorker(Tables table) async {
-    final T _db = await this.database;
-    final List<Map<dynamic, dynamic>> states = await _db
-        .rawQuery('SELECT * FROM ${table.name} ORDER BY id DESC LIMIT 1');
-    final Map<String, dynamic> _state = Map<String, dynamic>.from(states.first);
-
-    return _state;
-  }
-
   /// [retrieveState] get the current states.
   @override
   Future<Map<String, dynamic>> retrieveState(Tables table) async {
@@ -88,5 +79,14 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
     await _db.rawInsert('INSERT INTO $_tableName($_tableName) VALUES(?)',
         <dynamic>[dataAsString]);
     return;
+  }
+
+  Future<Map<String, dynamic>> retrieveWorker(Tables table) async {
+    final T _db = await this.database;
+    final List<Map<dynamic, dynamic>> states = await _db
+        .rawQuery('SELECT * FROM ${table.name} ORDER BY id DESC LIMIT 1');
+    final Map<String, dynamic> _state = Map<String, dynamic>.from(states.first);
+
+    return _state;
   }
 }

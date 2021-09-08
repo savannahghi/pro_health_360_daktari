@@ -83,22 +83,21 @@ Future<void> initApp(List<AppContext> appContexts) async {
   // Add New App Branding details
   AppBrand()..appName.add(appName)..appLogo.add(appLogo);
 
-  runZonedGuarded(() async {
-    await SentryFlutter.init(
-      (SentryFlutterOptions options) {
-        options
-          ..dsn = appSetupData.sentryDNS
-          ..diagnosticLevel = SentryLevel.error;
-      },
-      appRunner: () => runApp(
-        AfyaMojaApp(
-          store: store,
-          appContexts: appSetupData.appContexts,
-          customEndpointContext: appSetupData.customContext,
+  runZonedGuarded(
+    () async {
+      await SentryFlutter.init(
+        (SentryFlutterOptions options) {
+          options
+            ..dsn = appSetupData.sentryDNS
+            ..diagnosticLevel = SentryLevel.error;
+        },
+        appRunner: () => runApp(
+          AfyaMojaApp(store: store, appSetupData: appSetupData),
         ),
-      ),
-    );
-  }, (Object exception, StackTrace stackTrace) async {
-    await Sentry.captureException(exception, stackTrace: stackTrace);
-  });
+      );
+    },
+    (Object exception, StackTrace stackTrace) async {
+      await Sentry.captureException(exception, stackTrace: stackTrace);
+    },
+  );
 }

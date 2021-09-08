@@ -4,21 +4,6 @@ import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:async_redux/async_redux.dart';
 
 class IndividualPractitionerViewModel extends Vm {
-  final String? registrationNo;
-  final String? license;
-  final String? cadre;
-  final List<String>? services;
-
-  final String? idType;
-  final String? idNumber;
-  final String? idDocId;
-
-  final String? kraPinNumber;
-  final String? kraPinDocId;
-  final List<SupportingDocument>? supportingDocuments;
-
-  final Wait wait;
-
   IndividualPractitionerViewModel({
     required this.registrationNo,
     required this.license,
@@ -44,6 +29,18 @@ class IndividualPractitionerViewModel extends Vm {
           supportingDocuments,
           wait
         ]);
+
+  final String? cadre;
+  final String? idDocId;
+  final String? idNumber;
+  final String? idType;
+  final String? kraPinDocId;
+  final String? kraPinNumber;
+  final String? license;
+  final String? registrationNo;
+  final List<String>? services;
+  final List<SupportingDocument>? supportingDocuments;
+  final Wait wait;
 
   static IndividualPractitionerViewModel fromState(AppState appState) {
     final PractitionerKYCState practitionerState =
