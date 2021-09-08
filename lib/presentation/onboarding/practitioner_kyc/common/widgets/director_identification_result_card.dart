@@ -7,14 +7,14 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class DirectorIdentificationCard extends StatelessWidget {
-  final Identification identification;
-  final RemoveIdentificationDoc removeDocumentFunc;
-
   const DirectorIdentificationCard({
     Key? key,
     required this.identification,
     required this.removeDocumentFunc,
   }) : super(key: key);
+
+  final Identification identification;
+  final RemoveIdentificationDoc removeDocumentFunc;
 
   @override
   Widget build(BuildContext context) {

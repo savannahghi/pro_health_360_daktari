@@ -3,14 +3,15 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class KYCPageHeader extends StatelessWidget {
-  final String title;
-  final int currentStep;
-  final int totalSteps;
   const KYCPageHeader({
     required this.title,
     required this.currentStep,
     required this.totalSteps,
   });
+
+  final int currentStep;
+  final String title;
+  final int totalSteps;
 
   @override
   Widget build(BuildContext context) {

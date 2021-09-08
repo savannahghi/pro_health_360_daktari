@@ -5,24 +5,18 @@ import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/infrastructure/afyamoja_endpoint_context.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 
 class AfyaMojaApp extends StatefulWidget {
   const AfyaMojaApp({
     Key? key,
     required this.store,
-    required this.appContexts,
-    this.customEndpointContext,
+    required this.appSetupData,
   }) : super(key: key);
 
-  /// The context under which this app is running
-  final List<AppContext> appContexts;
-
-  /// A set of custom endpoints to be passed into the AppWrapper widget
-  final BaseContext? customEndpointContext;
-
+  final AppSetupData appSetupData;
   /// The store to be used to initialize the StoreProvider with
   final Store<CoreState> store;
 
@@ -56,17 +50,17 @@ class _AfyaMojaAppState extends State<AfyaMojaApp> {
         builder: (BuildContext context, CoreState state) {
           return AppWrapper(
             appName: AppBrand().appName.value,
-            baseContext: widget.customEndpointContext,
+            baseContext: widget.appSetupData.customContext,
             graphQLClient: GraphQlClient(
               widget.store.state.userState!.auth!.idToken!,
-              AfyaMojaEndpointContext.getGraphQLEndpoint(widget.appContexts),
+              widget.appSetupData.customContext!.graphqlEndpoint,
             ),
-            appContexts: widget.appContexts,
+            appContexts: widget.appSetupData.appContexts,
             child: Builder(
               builder: (BuildContext context) {
                 return AuthManager(
                   appName: AppBrand().appName.value,
-                  appContexts: widget.appContexts,
+                  appContexts: widget.appSetupData.appContexts,
                   store: widget.store,
                 );
               },
