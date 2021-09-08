@@ -12,11 +12,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 
 class SaveKYCDetailsAction extends ReduxAction<CoreState> {
-  final BuildContext context;
-  final String queryString;
-  final Map<String, dynamic> variables;
-  final String kycName;
-
   SaveKYCDetailsAction({
     required this.context,
     required this.queryString,
@@ -24,14 +19,19 @@ class SaveKYCDetailsAction extends ReduxAction<CoreState> {
     required this.kycName,
   });
 
-  @override
-  void before() {
-    dispatch(WaitAction<CoreState>.add(kycSavingFlag));
-  }
+  final BuildContext context;
+  final String kycName;
+  final String queryString;
+  final Map<String, dynamic> variables;
 
   @override
   void after() {
     dispatch(WaitAction<CoreState>.remove(kycSavingFlag));
+  }
+
+  @override
+  void before() {
+    dispatch(WaitAction<CoreState>.add(kycSavingFlag));
   }
 
   @override

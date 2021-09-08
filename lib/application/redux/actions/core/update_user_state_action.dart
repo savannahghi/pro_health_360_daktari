@@ -16,9 +16,9 @@ class UpdateUserStateAction extends ReduxAction<CoreState> {
     this.tokenExpiryTime,
   });
 
-  final String? inActivitySetInTime;
   final AuthCredentialResponse? auth;
   final CommunicationSettings? communicationSettings;
+  final String? inActivitySetInTime;
   final bool? isSignedIn;
   final String? signedInTime;
   final String? tokenExpiryTime;
