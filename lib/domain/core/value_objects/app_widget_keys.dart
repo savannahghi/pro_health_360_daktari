@@ -55,3 +55,7 @@ const Key kycBottomSheetAddDirecorIdentificationButtonKey =
     Key('kyc_bottom_sheet_add_director_identification_button');
 
 const Key kycDoItLaterButtonKey = Key('kyc_do_it_later_button');
+
+const Key afyaMojaloginKey = Key('afyamoja_loginKey');
+const Key afyaMojaphoneLoginPinInputKey = Key('afyamoja_phone_login_key');
+const Key afyaMojabackButton = Key('afyamoja_back_button_key');
