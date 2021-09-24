@@ -1,16 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:bewell_pro_core/application/core/graphql/mutations.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:mockito/mockito.dart';
-import 'package:http/http.dart' as http;
-import 'package:user_feed/user_feed.dart' as feed_obj;
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
+import 'package:user_feed/user_feed.dart' as feed_obj;
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
@@ -34,6 +35,7 @@ class MockDeviceCapabilities extends IDeviceCapabilities {}
 final MockDeviceCapabilities deviceCapabilities = MockDeviceCapabilities();
 
 const Size tabletPortrait = Size(720, 1280);
+const Size tabletLandscape = Size(1280, 720);
 
 String testPath(String relativePath) {
   final Directory current = Directory.current;
@@ -187,6 +189,54 @@ final MockSILGraphQlClient mockSILGraphQlClient =
     MockSILGraphQlClient.withResponse(
         'idToken', 'endpoint', http.Response('success response', 200));
 
+final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
+  'profile': <String, dynamic>{
+    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'userName': '@gifted_leavitt53101254',
+    'verifiedIdentifiers': <Map<String, String>>[
+      <String, String>{
+        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+        'timeStamp': '2021-04-30T09:50:01.50004Z',
+        'loginProvider': 'PHONE'
+      }
+    ],
+    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
+    'primaryPhone': '+254717356476',
+    'primaryEmailAddress': 'savannahtestacc@gmail.com',
+    'secondaryPhoneNumbers': null,
+    'secondaryEmailAddresses': null,
+    'terms_accepted': true,
+    'suspended': false,
+    'photoUploadID': UNKNOWN,
+    'userBioData': <String, String>{
+      'firstName': 'BeWell',
+      'lastName': 'Test',
+      'dateOfBirth': '2003-04-30',
+      'gender': 'male'
+    }
+  },
+  'customerProfile': null,
+  'communicationSettings': <String, dynamic>{
+    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
+    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'allowWhatsApp': true,
+    'allowTextSMS': true,
+    'allowPush': true,
+    'allowEmail': true
+  },
+  'auth': <String, dynamic>{
+    'customToken': 'custom-token',
+    'id_token': 'id_token',
+    'expires_in': '3600',
+    'refresh_token': 'refresh_token',
+    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+    'is_admin': false,
+    'is_anonymous': false,
+    'can_experiment': false,
+    'change_pin': false,
+  },
+};
+
 final Map<String, dynamic> mockUserFeed = <String, dynamic>{
   'data': <String, dynamic>{
     'getFeed': <String, dynamic>{
@@ -242,6 +292,82 @@ final Map<String, dynamic> mockUserFeed = <String, dynamic>{
   }
 };
 
+final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
+  'profile': <String, dynamic>{
+    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'userName': '@gifted_leavitt53101254',
+    'verifiedIdentifiers': <Map<String, String>>[
+      <String, String>{
+        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+        'timeStamp': '2021-04-30T09:50:01.50004Z',
+        'loginProvider': 'PHONE'
+      }
+    ],
+    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
+    'primaryPhone': '+254717356476',
+    'primaryEmailAddress': 'savannahtestacc@gmail.com',
+    'secondaryPhoneNumbers': null,
+    'secondaryEmailAddresses': null,
+    'terms_accepted': true,
+    'suspended': false,
+    'photoUploadID': UNKNOWN,
+    'userBioData': <String, String>{
+      'firstName': 'BeWell',
+      'lastName': 'Test',
+      'dateOfBirth': '2003-04-30',
+      'gender': 'male'
+    }
+  },
+  'customerProfile': null,
+  'communicationSettings': <String, dynamic>{
+    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
+    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'allowWhatsApp': true,
+    'allowTextSMS': true,
+    'allowPush': true,
+    'allowEmail': true
+  },
+  'auth': <String, dynamic>{
+    'customToken': 'custom-token',
+    'id_token': 'id_token',
+    'expires_in': '3600',
+    'refresh_token': 'refresh_token',
+    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+    'is_anonymous': false,
+    'is_admin': false,
+    'can_experiment': false,
+    'change_pin': true,
+  },
+};
+
+/// a short client for providing custom responses
+///
+/// a good use case is when you want to return error responses
+class MockShortGraphQlClient extends IGraphQlClient {
+  MockShortGraphQlClient.withResponse(
+      String idToken, String endpoint, this.response) {
+    super.idToken = idToken;
+    super.endpoint = endpoint;
+  }
+
+  final http.Response response;
+
+  @override
+  Future<http.Response> callRESTAPI(
+      {required String endpoint,
+      required String method,
+      Map<String, dynamic>? variables}) {
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<http.Response> query(
+      String queryString, Map<String, dynamic> variables,
+      [ContentType contentType = ContentType.json]) {
+    return Future<http.Response>.value(response);
+  }
+}
+
 class MockSILGraphQlClient extends IGraphQlClient {
   MockSILGraphQlClient();
 
@@ -274,6 +400,12 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (endpoint.contains('login_by_phone')) {
+      return Future<http.Response>.value(
+        http.Response(json.encode(mockAuthLoginResponse), 201),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(
         json.encode(
@@ -292,6 +424,44 @@ class MockSILGraphQlClient extends IGraphQlClient {
   Future<http.Response> query(
       String queryString, Map<String, dynamic> variables,
       [ContentType contentType = ContentType.json]) async {
+    final String otpVariables = json.encode(<String, dynamic>{
+      'msisdn': '+254717356476',
+      'email': 'abiud.orina@savannahinformatics.com'
+    });
+
+    final String errorOtpVariables = json.encode(<String, dynamic>{
+      'msisdn': '+254717356477',
+      'email': 'abiud.orina@savannahinformatics.com'
+    });
+
+    if (queryString == registerDeviceTokenMutation) {
+      return Future<http.Response>.value(http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'registerPushToken': true}
+          }),
+          201));
+    }
+
+    if (json.encode(variables) == otpVariables) {
+      return Future<http.Response>.value(
+        http.Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'generateAndEmailOTP': '123456'}
+            }),
+            201),
+      );
+    }
+
+    if (json.encode(variables) == errorOtpVariables) {
+      return Future<http.Response>.value(
+        http.Response(
+            json.encode(<String, dynamic>{
+              'Error': 'this is a sample error with an ID token'
+            }),
+            201),
+      );
+    }
+
     if (queryString.contains('addOrganizationPractitionerKYC')) {
       return Future<http.Response>.value(
         http.Response(
@@ -336,6 +506,36 @@ class MockSILGraphQlClient extends IGraphQlClient {
     if (queryString.contains('getFeed')) {
       return Future<http.Response>.value(
         http.Response(json.encode(mockUserFeed), 201),
+      );
+    }
+
+    if (variables['phonenumber'] == '+254712345678') {
+      return Future<http.Response>.value(
+        http.Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                // add your data here
+                'otp': '1234'
+              }
+            }),
+            201),
+      );
+    }
+
+    if (queryString.contains('updateUserProfile')) {
+      return Future<http.Response>.value(
+        http.Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'updateUserProfile': <String, dynamic>{
+                  'userBioData': <String, String>{
+                    'firstName': 'Test',
+                    'lastName': 'Name'
+                  }
+                },
+              }
+            }),
+            201),
       );
     }
 
