@@ -49,7 +49,7 @@ packages:
       name: bewell_pro_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.19-nullsafety"
+    version: "1.1.25-nullsafety"
   boolean_selector:
     dependency: transitive
     description:
@@ -378,7 +378,7 @@ packages:
       name: domain_objects
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.27-nullsafety"
+    version: "0.0.31-nullsafety"
   dotted_border:
     dependency: transitive
     description:
@@ -586,7 +586,7 @@ packages:
       name: flutter_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.0.0"
   flutter_image_compress:
     dependency: transitive
     description:
@@ -869,7 +869,7 @@ packages:
       name: misc_utilities
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.27-nullsafety"
+    version: "0.1.29-nullsafety"
   mockito:
     dependency: "direct dev"
     description:
@@ -912,13 +912,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  numerus:
-    dependency: transitive
-    description:
-      name: numerus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
   octo_image:
     dependency: transitive
     description:
@@ -1163,14 +1156,14 @@ packages:
       name: shared_themes
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   shared_ui_components:
     dependency: transitive
     description:
       name: shared_ui_components
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.37-nullsafety"
+    version: "0.1.38-nullsafety"
   shelf:
     dependency: transitive
     description:
@@ -1406,7 +1399,7 @@ packages:
       name: user_feed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.39-nullsafety"
+    version: "0.1.43-nullsafety"
   user_profile:
     dependency: transitive
     description:
