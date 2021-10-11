@@ -1,7 +1,10 @@
-import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
+// Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 
 class UpdateKYCSubmissionStatusAction extends ReduxAction<CoreState> {
   UpdateKYCSubmissionStatusAction({required this.kycSubmitted});

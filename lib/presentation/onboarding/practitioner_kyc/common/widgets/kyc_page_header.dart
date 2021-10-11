@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -28,7 +31,7 @@ class KYCPageHeader extends StatelessWidget {
                     TextSpan(
                         text: 'STEP $currentStep ',
                         style: TextThemes.boldSize14Text(
-                            Theme.of(context).accentColor)),
+                            Theme.of(context).colorScheme.secondary)),
                     TextSpan(text: '/ $totalSteps'),
                   ],
                 ),
@@ -42,7 +45,7 @@ class KYCPageHeader extends StatelessWidget {
               Container(
                 width: 100,
                 height: 2,
-                color: Theme.of(context).accentColor.withOpacity(0.8),
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
               )
             ],
           ),

@@ -1,16 +1,21 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bewell_pro_core/domain/core/value_objects/numbers_constants.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_types.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/director_identification_result_card.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_id_doc_and_kra.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/numbers_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 class KYCDirectorIdentifications extends StatefulWidget {
   final List<Identification> docs;

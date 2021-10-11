@@ -1,11 +1,8 @@
-import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_types.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/supporting_documents_result_card.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/numbers_constants.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bewell_pro_core/domain/core/value_objects/numbers_constants.dart';
 import 'package:misc_utilities/file_manager.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
@@ -13,6 +10,14 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_types.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
+import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/supporting_documents_result_card.dart';
 
 class KYCSupportingDocuments extends StatefulWidget {
   const KYCSupportingDocuments({

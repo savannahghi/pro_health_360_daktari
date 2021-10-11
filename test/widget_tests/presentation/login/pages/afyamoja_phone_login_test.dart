@@ -1,5 +1,10 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/actions/misc_state_actions/batch_update_misc_state_action.dart';
 import 'package:bewell_pro_core/application/redux/flags/flags.dart';
@@ -11,16 +16,16 @@ import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_aler
 import 'package:bewell_pro_core/presentation/onboarding/profile/change_pin.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/afyamoja_phone_login_page.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/afyamoja_phone_login_page.dart';
 import '../../../../mocks/mock_utils.dart';
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

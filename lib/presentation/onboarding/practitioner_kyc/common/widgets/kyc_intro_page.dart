@@ -1,6 +1,11 @@
-import 'package:bewell_pro_core/presentation/onboarding/login/widgets/onboarding_scaffold.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bewell_pro_core/presentation/onboarding/login/widgets/onboarding_scaffold.dart';
+
+// Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_pre_check.dart';
 
 /// Shows a page introducing the type of kyc the user is required to fill

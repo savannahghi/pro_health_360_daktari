@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:domain_objects/value_objects.dart';
+import 'package:test/test.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('PractitionerKYCState:', () {

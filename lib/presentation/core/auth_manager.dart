@@ -1,3 +1,10 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/domain_constants.dart';
@@ -5,17 +12,15 @@ import 'package:bewell_pro_core/presentation/onboarding/login/widgets/onboarding
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
-import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/app_theme.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
+import 'package:healthcloud/presentation/router/route_generator.dart';
 
 class AuthManager extends StatefulWidget {
   const AuthManager({

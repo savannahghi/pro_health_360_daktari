@@ -1,9 +1,14 @@
-import 'package:bewell_pro_core/presentation/router/routes.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
+
+// Package imports:
+import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:user_feed/user_feed.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 
 Map<String, Function> getAfyaMojaFeedActionCallbacks(
     {required BuildContext context}) {

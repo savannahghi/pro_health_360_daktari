@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('kyc_utils', () {

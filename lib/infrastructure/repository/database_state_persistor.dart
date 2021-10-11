@@ -1,17 +1,22 @@
-import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
-import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/infrastructure/repository/database_base.dart';
-import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
-import 'package:domain_objects/entities.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/clinical_state.dart';
 import 'package:bewell_pro_core/application/redux/states/misc_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_feed_state.dart';
+import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
+import 'package:domain_objects/entities.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
+import 'package:healthcloud/infrastructure/repository/database_base.dart';
+import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
+import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 
 /// [AfyaMojaStateDatabase] is the middleware that interacts with the database
 /// on behalf of the application. From the app's perspective, it doesn't care

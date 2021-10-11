@@ -1,5 +1,8 @@
-import 'package:healthcloud/infrastructure/repository/sqlite.dart';
+// Package imports:
 import 'package:sqflite/sqflite.dart';
+
+// Project imports:
+import 'package:healthcloud/infrastructure/repository/sqlite.dart';
 
 class InitializeDB<T extends DatabaseExecutor> extends InitializeDBHelper<T> {
   InitializeDB({required String dbName}) : super(dbName: dbName);

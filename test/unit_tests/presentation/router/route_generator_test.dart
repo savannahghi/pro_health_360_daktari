@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import '../../../mocks/mocks.dart';
 
 void main() {

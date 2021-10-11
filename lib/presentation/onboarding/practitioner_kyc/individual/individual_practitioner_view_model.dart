@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
-import 'package:async_redux/async_redux.dart';
 
 class IndividualPractitionerViewModel extends Vm {
   IndividualPractitionerViewModel({

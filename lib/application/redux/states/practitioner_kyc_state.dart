@@ -1,8 +1,11 @@
+// Package imports:
+import 'package:domain_objects/value_objects.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/kra_details.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 
 part 'practitioner_kyc_state.freezed.dart';

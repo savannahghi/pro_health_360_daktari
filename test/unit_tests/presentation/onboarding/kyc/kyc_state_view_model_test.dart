@@ -1,7 +1,10 @@
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/practitioner_kyc_state_view_model.dart';
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/practitioner_kyc_state_view_model.dart';
 
 void main() {
   final AppState state = AppState.initial();

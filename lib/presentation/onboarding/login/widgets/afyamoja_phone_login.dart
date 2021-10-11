@@ -1,3 +1,9 @@
+// Flutter imports:
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:bewell_pro_core/application/core/services/input_validators.dart';
@@ -10,10 +16,6 @@ import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.d
 import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
@@ -21,6 +23,9 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 
 class AfyaMojaPhoneLogin extends StatefulWidget {
   @override

@@ -1,14 +1,19 @@
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_types.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:misc_utilities/file_manager.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_types.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
 
 class KYCIdDocAndKraPIN extends StatefulWidget {
   const KYCIdDocAndKraPIN({

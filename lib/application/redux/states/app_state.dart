@@ -1,13 +1,16 @@
-import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
-import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/clinical_state.dart';
 import 'package:bewell_pro_core/application/redux/states/connectivity_state.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/application/redux/states/misc_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_feed_state.dart';
+import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/entities.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 
 class AppState extends CoreState {
   const AppState({

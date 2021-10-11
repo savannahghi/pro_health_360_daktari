@@ -1,5 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -10,14 +22,6 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widg
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_supporting_documents.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/supporting_documents_result_card.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 import '../../../../../../mocks/mock_utils.dart';
 import '../../../../../../mocks/test_helpers.dart';
 

@@ -1,10 +1,15 @@
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
