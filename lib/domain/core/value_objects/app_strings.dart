@@ -1,5 +1,8 @@
-import 'package:healthcloud/domain/core/entities/practice_service.dart';
+// Package imports:
 import 'package:misc_utilities/misc.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/entities/practice_service.dart';
 
 const String helpCenterTitle = 'AfyaMoja support center';
 const String appName = 'Afya Moja';

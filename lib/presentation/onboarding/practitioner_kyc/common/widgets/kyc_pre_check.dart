@@ -1,19 +1,23 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/numbers_constants.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/practitioner_kyc_state_view_model.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_pre_check_error_banner.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/spaces.dart';
-
-import 'package:shared_ui_components/buttons.dart';
 
 class KYCPreCheck extends StatefulWidget {
   const KYCPreCheck({required this.continueFunc});

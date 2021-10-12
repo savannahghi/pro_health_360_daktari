@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+
+// Package imports:
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 
 class KYCPreCheckErrorBanner extends StatelessWidget {
   const KYCPreCheckErrorBanner({required this.bannerText});

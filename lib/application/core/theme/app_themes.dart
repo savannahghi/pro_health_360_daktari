@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/colors.dart';
 
 final ThemeData afyaMojaProAndroidTheme = buildTheme();
@@ -9,8 +12,7 @@ ThemeData buildTheme() {
   const ButtonThemeData buttonTheme = ButtonThemeData();
 
   return base.copyWith(
-    // cyan
-    accentColor: healthcloudAccentColor,
+    colorScheme: base.colorScheme.copyWith(secondary: healthcloudAccentColor),
 
     primaryColor: healthcloudPrimaryColor,
 

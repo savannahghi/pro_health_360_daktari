@@ -1,15 +1,19 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:misc_utilities/file_manager.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_supporting_documents.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/supporting_documents_result_card.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:misc_utilities/file_manager.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 import '../../../../mocks/test_helpers.dart';
 
 void main() {

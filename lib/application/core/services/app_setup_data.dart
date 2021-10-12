@@ -1,5 +1,8 @@
-import 'package:app_wrapper/app_wrapper.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:quiver/core.dart';
 
 /// Contains the initial data required to initialize the app.

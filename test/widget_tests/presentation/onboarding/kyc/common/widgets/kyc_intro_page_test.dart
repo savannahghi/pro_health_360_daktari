@@ -1,10 +1,14 @@
-import 'package:flutter_test/flutter_test.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_intro_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_pre_check.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-
 import '../../../../../../mocks/test_helpers.dart';
 
 void main() {

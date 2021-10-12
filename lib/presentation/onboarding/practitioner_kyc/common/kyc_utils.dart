@@ -1,20 +1,26 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:bewell_pro_core/application/core/services/helpers.dart';
+import 'package:bewell_pro_core/application/core/services/onboarding.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+import 'package:bewell_pro_core/domain/clinical/value_objects/system_enums.dart';
+import 'package:bewell_pro_core/domain/core/entities/processed_response.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/application/redux/actions/kyc_state_actions/update_kyc_submission_status.dart';
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
-import 'package:bewell_pro_core/application/core/services/onboarding.dart';
-import 'package:bewell_pro_core/domain/clinical/value_objects/system_enums.dart';
-import 'package:bewell_pro_core/domain/core/entities/processed_response.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:async_redux/async_redux.dart';
 
 ///[Get Upload ID]
 ///get ID of uploaded file

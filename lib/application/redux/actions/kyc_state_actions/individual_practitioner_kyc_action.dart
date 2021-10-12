@@ -1,10 +1,13 @@
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 import 'package:healthcloud/domain/core/entities/identification.dart';
 import 'package:healthcloud/domain/core/entities/supporting_documents.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 
 class IndividualPractitionerKYCAction extends ReduxAction<CoreState> {
   IndividualPractitionerKYCAction({

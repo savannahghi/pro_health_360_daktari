@@ -1,6 +1,11 @@
-import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
-import 'package:bewell_pro_core/presentation/core/widgets/app_scaffold.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bewell_pro_core/presentation/core/widgets/app_scaffold.dart';
+
+// Project imports:
+import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
 
 class KYCScaffold extends StatelessWidget {
   const KYCScaffold({Key? key, required this.child}) : super(key: key);

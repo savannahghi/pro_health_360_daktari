@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/migrations.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('AfyaMojaDatabaseMobile', () {

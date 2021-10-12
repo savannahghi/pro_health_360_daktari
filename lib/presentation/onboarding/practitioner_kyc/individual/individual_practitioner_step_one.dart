@@ -1,4 +1,20 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:bewell_pro_core/application/core/services/helpers.dart';
+import 'package:bewell_pro_core/application/redux/states/core_state.dart';
+import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/inputs.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/practice_service.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/kyc_utils.dart';
@@ -8,17 +24,6 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widg
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_scaffold.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_view_model.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:healthcloud/application/redux/actions/kyc_state_actions/individual_practitioner_kyc_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/inputs.dart';
 
 class IndividualPractitionerKYCStepOne extends StatefulWidget {
   @override
