@@ -47,3 +47,9 @@ BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.1),
       ),
     );
+
+class AppColors {
+  static const Color profileListCardColor = Color(0xfff9f2fe);
+  static const Color lightGreyBackgroundColor = Color(0xfff6f6f6);
+  static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);  
+}
