@@ -54,6 +54,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     updateUserPinEndpoint: kTestUpdateUserPinEndpoint,
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
   ),
 );
 
@@ -76,6 +77,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
     updateUserPinEndpoint: kProdUpdateUserPinEndpoint,
     uploadFileEndPoint: kProdUploadFileEndPoint,
     createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
   ),
 );
 

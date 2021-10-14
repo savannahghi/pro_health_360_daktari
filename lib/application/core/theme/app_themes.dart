@@ -12,9 +12,9 @@ ThemeData buildTheme() {
   const ButtonThemeData buttonTheme = ButtonThemeData();
 
   return base.copyWith(
-    colorScheme: base.colorScheme.copyWith(secondary: healthcloudAccentColor),
+    colorScheme: base.colorScheme.copyWith(secondary: AppColors.textAltColor),
 
-    primaryColor: healthcloudPrimaryColor,
+    primaryColor: AppColors.primaryColor,
 
     // grey
     backgroundColor: healthcloudBackgroundColor,
@@ -51,5 +51,8 @@ BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
 class AppColors {
   static const Color profileListCardColor = Color(0xfff9f2fe);
   static const Color lightGreyBackgroundColor = Color(0xfff6f6f6);
-  static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);  
+  static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);
+  static const Color primaryColor = Color(0xFF1CA4A6);
+  static const Color textAltColor = Color(0xFF5F2788);
+  static const Color textInputFillColor = Color(0xFFF9F2FE);
 }

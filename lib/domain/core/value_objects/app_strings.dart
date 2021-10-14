@@ -72,6 +72,13 @@ List<String> identificationOptions =
 
 String idLabel(String val) => 'Enter $val number';
 
+//Phone Login
+const String phoneLoginPageTitle = 'Welcome to My Afya Hub';
+const String phoneLoginPageDescription = 'Enter your provided pin to continue';
+const String phoneNumberString = 'Phone Number';
+const String pinString = 'PIN';
+const String forgotPinString = 'Forgot Pin';
+
 const String idRequired = 'ID Number is required';
 const String kraPINText = 'KRA PIN details';
 const String kraLabel = 'Add your KRA PIN';
