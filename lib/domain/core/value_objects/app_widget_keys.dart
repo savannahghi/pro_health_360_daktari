@@ -60,3 +60,7 @@ const Key kycDoItLaterButtonKey = Key('kyc_do_it_later_button');
 const Key afyaMojaloginKey = Key('afyamoja_loginKey');
 const Key afyaMojaphoneLoginPinInputKey = Key('afyamoja_phone_login_key');
 const Key afyaMojabackButton = Key('afyamoja_back_button_key');
+
+// appbar keys
+const Key appBarBackButtonKey = Key('app_bar_back_button_key');
+const Key appBarMoreButtonKey = Key('app_bar_more_button_key');
