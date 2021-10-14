@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/presentation/community/community_list_page.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
@@ -64,5 +65,14 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<IndividualPractitionerKYCStepThree>>());
     expect(route.builder(context), isA<IndividualPractitionerKYCStepThree>());
+  });
+
+  test('Test router returns CommunityListView', () {
+    const RouteSettings settings = RouteSettings(name: communityPage);
+
+    final MaterialPageRoute<CommunityListViewPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
+    expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
+    expect(route?.builder(context), isA<CommunityListViewPage>());
   });
 }

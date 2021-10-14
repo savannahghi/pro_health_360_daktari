@@ -12,12 +12,12 @@ ThemeData buildTheme() {
   const ButtonThemeData buttonTheme = ButtonThemeData();
 
   return base.copyWith(
-    colorScheme: base.colorScheme.copyWith(secondary: AppColors.textAltColor),
+    colorScheme: base.colorScheme.copyWith(secondary: AppColors.secondaryColor),
 
     primaryColor: AppColors.primaryColor,
 
     // grey
-    backgroundColor: healthcloudBackgroundColor,
+    backgroundColor: AppColors.lightGreyBackgroundColor,
 
     // red
     errorColor: dangerColor,
@@ -41,18 +41,21 @@ ThemeData buildTheme() {
   );
 }
 
+class AppColors {
+  static const Color primaryColor = Color(0xFF1CA4A6);
+  static const Color secondaryColor = Color(0xFF5F2788);
+  static const Color accentColor = Color(0xFFA3C717);
+  static const Color lightGreyBackgroundColor = Color(0xFFF6F6F6);
+  static const Color listItemBackgroundColor = Color(0xFF707070);
+  static const Color profileListCardColor = Color(0xfff9f2fe);
+  static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);
+  static const Color textInputFillColor = Color(0xFFF9F2FE);
+  static const Color textAltColor = Color(0xFF5F2788);
+}
+
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
       color: Colors.white,
       border: Border.all(
         color: Theme.of(context).primaryColor.withOpacity(0.1),
       ),
     );
-
-class AppColors {
-  static const Color profileListCardColor = Color(0xfff9f2fe);
-  static const Color lightGreyBackgroundColor = Color(0xfff6f6f6);
-  static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);
-  static const Color primaryColor = Color(0xFF1CA4A6);
-  static const Color textAltColor = Color(0xFF5F2788);
-  static const Color textInputFillColor = Color(0xFFF9F2FE);
-}
