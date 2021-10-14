@@ -22,6 +22,7 @@ class AfyaMojaApp extends StatefulWidget {
   }) : super(key: key);
 
   final AppSetupData appSetupData;
+
   /// The store to be used to initialize the StoreProvider with
   final Store<CoreState> store;
 

@@ -1,9 +1,9 @@
-// Flutter imports:
+//Flutter Imports
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
+//Package Imports
 import 'package:async_redux/async_redux.dart';
 import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:bewell_pro_core/application/core/services/input_validators.dart';
@@ -16,23 +16,28 @@ import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.d
 import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
-// Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+//Project Imports
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/phone_input.dart';
 
-class AfyaMojaPhoneLogin extends StatefulWidget {
+class PhoneLogin extends StatefulWidget {
   @override
-  _AfyaMojaPhoneLoginState createState() => _AfyaMojaPhoneLoginState();
+  PhoneLoginState createState() => PhoneLoginState();
 }
 
-class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
+class PhoneLoginState extends State<PhoneLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _phoneNumber;
   final TextEditingController _phoneNumberInputController =
@@ -86,12 +91,21 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
           child: Column(
             children: <Widget>[
               /// Phone number input
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  phoneNumberString,
+                  style: TextThemes.boldSize14Text(Colors.grey),
+                ),
+              ),
+              verySmallVerticalSizedBox,
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: SILPhoneInput(
+                child: MyAfyaHubPhoneInput(
+                  backgroundColor: AppColors.textAltColor.withOpacity(0.2),
                   phoneNumberFormatter: formatPhoneNumber,
                   inputController: _phoneNumberInputController,
                   labelText: phoneNumberInputLabelText,
@@ -109,29 +123,42 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
                     }
                     _phoneNumber = value;
                   },
+                  suffixIcon: Positioned(
+                    right: 12,
+                    height: 20,
+                    width: 20,
+                    child: SvgPicture.asset(
+                      alertCircleIcon,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
 
-              smallVerticalSizedBox,
-              mediumVerticalSizedBox,
-
-              /// PIN input
-              SILFormTextField(
-                key: afyaMojaphoneLoginPinInputKey,
-                borderColor: Colors.grey[350],
+              largeVerticalSizedBox,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  pinString,
+                  style: TextThemes.boldSize14Text(Colors.grey),
+                ),
+              ),
+              verySmallVerticalSizedBox,
+              CustomTextField(
+                autovalidateMode: AutovalidateMode.disabled,
+                customFillColor: AppColors.textAltColor.withOpacity(0.2),
+                formFieldKey: phoneLoginPinInputKey,
+                borderColor: Colors.grey[200],
                 maxLength: 4,
-                customFillColor: Colors.white,
                 maxLines: 1,
                 keyboardType: TextInputType.number,
                 obscureText: true,
-                hintText: loginHintPin,
-                labelText: loginTextPin,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
                 validator: (String? value) {
                   return InputValidators.validatePin(value: value);
                 },
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 onChanged: (String val) {
                   if (vm.state.miscState!.invalidCredentials! ||
                       vm.state.miscState!.unKnownPhoneNo!) {
@@ -146,6 +173,8 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
                   _pinCode = val;
                 },
               ),
+              smallVerticalSizedBox,
+              mediumVerticalSizedBox,
 
               /// error alert box for invalid credentials
               if (vm.state.miscState!.invalidCredentials!) ...<Widget>[
@@ -156,10 +185,13 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
                     text: resetPin,
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async => triggerNavigationEvent(
-                          context: context, route: recoverPinRoute),
+                            context: context,
+                            route: recoverPinRoute,
+                          ),
                     style: TextThemes.heavySize14Text().copyWith(
-                        color: healthcloudPrimaryColor,
-                        decoration: TextDecoration.underline),
+                      color: healthcloudPrimaryColor,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
                 mediumVerticalSizedBox,
@@ -176,8 +208,9 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
                       ..onTap = () async => triggerNavigationEvent(
                           context: context, route: phoneSignupRoute),
                     style: TextThemes.heavySize14Text().copyWith(
-                        color: healthcloudPrimaryColor,
-                        decoration: TextDecoration.underline),
+                      color: healthcloudPrimaryColor,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
                 mediumVerticalSizedBox,
@@ -188,38 +221,43 @@ class _AfyaMojaPhoneLoginState extends State<AfyaMojaPhoneLogin> {
                 size15VerticalSizedBox,
               ],
 
-              size15VerticalSizedBox,
+              SizedBox(height: MediaQuery.of(context).size.height / 10),
 
               /// login button
               if (!vm.state.wait!.isWaitingFor(phoneLoginStateFlag))
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: SILPrimaryButton(
-                    buttonKey: afyaMojaloginKey,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: loginKey,
                     onPressed: () => login(
-                        context: context,
-                        phoneNumber: _phoneNumber,
-                        pin: _pinCode),
+                      context: context,
+                      phoneNumber: _phoneNumber,
+                      pin: _pinCode,
+                    ),
                     buttonColor: Theme.of(context).primaryColor,
                     borderColor: Theme.of(context).primaryColor,
                     text: phoneLoginText,
                   ),
                 ),
 
-              mediumVerticalSizedBox,
+              smallVerticalSizedBox,
 
-              /// Back button
+              /// Forgot Pin button
               SizedBox(
                 width: double.infinity,
                 height: 48,
                 child: TextButton(
-                  key: afyaMojabackButton,
+                  key: forgotPinButton,
                   onPressed: () async => triggerNavigationEvent(
-                      context: context,
-                      route: landingPageRoute,
-                      shouldReplace: true),
-                  child: const Opacity(opacity: 0.6, child: Text(loginBack)),
+                    context: context,
+                    route: landingPageRoute,
+                    shouldReplace: true,
+                  ),
+                  child: Text(
+                    forgotPinString,
+                    style: TextThemes.boldSize16Text(AppColors.textAltColor),
+                  ),
                 ),
               ),
             ],

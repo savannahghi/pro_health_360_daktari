@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:flutter/material.dart';
+import 'package:afya_moja_core/phone_input.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
@@ -16,16 +16,16 @@ import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_aler
 import 'package:bewell_pro_core/presentation/onboarding/profile/change_pin.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/afyamoja_phone_login_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:http/http.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 import '../../../../mocks/mock_utils.dart';
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -49,22 +49,23 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockSILGraphQlClient,
-          widget: AfyaMojaPhoneLoginPage(),
+          widget: PhoneLoginPage(),
         );
 
-        final Finder phoneLoginButton = find.byKey(afyaMojaloginKey);
-        final Finder phoneInput = find.byKey(afyaMojaphoneLoginPinInputKey);
+        final Finder phoneLoginButton = find.byKey(loginKey);
+        final Finder phoneInput = find.byKey(phoneLoginPinInputKey);
 
         expect(phoneLoginButton, findsOneWidget);
         expect(phoneInput, findsOneWidget);
 
         // Enter phone number
-        await tester.enterText(find.byType(SILPhoneInput), '0712345678');
+        await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
 
         // Enter PIN
         await tester.enterText(phoneInput, '1234');
 
         // Tap the login button
+        await tester.ensureVisible(find.byKey(loginKey));
         await tester.tap(phoneLoginButton);
         await tester.pump();
 
@@ -100,18 +101,18 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: AfyaMojaPhoneLoginPage(),
+          widget: PhoneLoginPage(),
         );
 
         // Enter phone number
-        await tester.enterText(find.byType(SILPhoneInput), '0712345678');
+        await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
 
         // Enter PIN
-        await tester.enterText(
-            find.byKey(afyaMojaphoneLoginPinInputKey), '1234');
+        await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
 
         // Tap the login button
-        await tester.tap(find.byKey(afyaMojaloginKey));
+        await tester.ensureVisible(find.byKey(loginKey));
+        await tester.tap(find.byKey(loginKey));
         await tester.pumpAndSettle();
 
         final UserResponse mockResponse =
@@ -137,20 +138,21 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: AfyaMojaPhoneLoginPage(),
+        widget: PhoneLoginPage(),
         graphQlClient: graphQlClient,
       );
 
-      expect(find.byType(SILPhoneInput), findsOneWidget);
+      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
 
       // Enter phone number
-      await tester.enterText(find.byType(SILPhoneInput), '0712345678');
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
 
       // Enter PIN
-      await tester.enterText(find.byKey(afyaMojaphoneLoginPinInputKey), '1234');
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
 
       // Tap the login button
-      await tester.tap(find.byKey(afyaMojaloginKey));
+      await tester.ensureVisible(find.byKey(loginKey));
+      await tester.tap(find.byKey(loginKey));
       await tester.pumpAndSettle();
 
       expect(store.state.miscState!.invalidCredentials, true);
@@ -162,7 +164,7 @@ void main() {
         'shows the error alert widget when invalid credentials are provided',
         (WidgetTester tester) async {
       await buildTestWidget(
-          store: store, tester: tester, widget: AfyaMojaPhoneLoginPage());
+          store: store, tester: tester, widget: PhoneLoginPage());
       await tester.pumpAndSettle();
 
       store.dispatch(BatchUpdateMiscStateAction(invalidCredentials: true));
@@ -171,7 +173,7 @@ void main() {
       expect(find.byType(ErrorAlertBox), findsOneWidget);
 
       // Enter PIN
-      await tester.enterText(find.byKey(afyaMojaphoneLoginPinInputKey), '1234');
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
 
       expect(store.state.miscState!.invalidCredentials, false);
       expect(store.state.miscState!.unKnownPhoneNo, false);
@@ -181,7 +183,7 @@ void main() {
         'shows the error alert widget when an unknown phone number is added',
         (WidgetTester tester) async {
       await buildTestWidget(
-          store: store, tester: tester, widget: AfyaMojaPhoneLoginPage());
+          store: store, tester: tester, widget: PhoneLoginPage());
       await tester.pumpAndSettle();
 
       store.dispatch(BatchUpdateMiscStateAction(unKnownPhoneNo: true));
@@ -189,7 +191,7 @@ void main() {
 
       expect(find.byType(ErrorAlertBox), findsOneWidget);
 
-      await tester.enterText(find.byType(SILPhoneInput), '0712345678');
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
 
       expect(store.state.miscState!.invalidCredentials, false);
       expect(store.state.miscState!.unKnownPhoneNo, false);
@@ -199,7 +201,7 @@ void main() {
         (WidgetTester tester) async {
       store.dispatch(WaitAction<CoreState>.add(phoneLoginStateFlag));
       await buildTestWidget(
-          store: store, tester: tester, widget: AfyaMojaPhoneLoginPage());
+          store: store, tester: tester, widget: PhoneLoginPage());
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });
 
@@ -208,14 +210,15 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        widget: AfyaMojaPhoneLoginPage(),
+        widget: PhoneLoginPage(),
       );
 
-      await tester.tap(find.byKey(afyaMojabackButton));
+      await tester.ensureVisible(find.byKey(forgotPinButton));
+      await tester.tap(find.byKey(forgotPinButton));
       await tester.pumpAndSettle();
 
       expect(find.byType(AfyaMojaLandingPage), findsOneWidget);
-      expect(find.byType(AfyaMojaPhoneLoginPage), findsNothing);
+      expect(find.byType(PhoneLoginPage), findsNothing);
     });
   });
 }

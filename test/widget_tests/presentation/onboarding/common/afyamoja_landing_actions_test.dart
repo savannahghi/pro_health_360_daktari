@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_actions.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/afyamoja_phone_login_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
@@ -35,7 +35,7 @@ void main() {
 
       /// Verify navigates
       expect(find.byType(AfyaMojaLandingActions), findsNothing);
-      expect(find.byType(AfyaMojaPhoneLoginPage), findsOneWidget);
+      expect(find.byType(PhoneLoginPage), findsOneWidget);
     });
   });
 }

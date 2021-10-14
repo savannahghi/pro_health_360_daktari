@@ -8,6 +8,7 @@ analyzer:
     sdk_version_async_exported_from_core: ignore
     missing_required_param: error
     missing_return: error
+    invalid_annotation_target: ignore
   exclude:
     - "lib/generated_plugin_*.dart"
     - "bin/cache/**"
@@ -75,3 +76,4 @@ linter:
     avoid_web_libraries_in_flutter: false
     avoid_classes_with_only_static_members: false
     directives_ordering: false
+    require_trailing_commas: false

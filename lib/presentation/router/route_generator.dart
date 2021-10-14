@@ -6,7 +6,8 @@ import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_
 import 'package:bewell_pro_core/presentation/core/home/pages/home_page.dart';
 import 'package:bewell_pro_core/presentation/core/widgets/default_error_route.dart';
 import 'package:bewell_pro_core/presentation/onboarding/common/landing_page.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:bewell_pro_core/presentation/onboarding/login/pages/phone_login_page.dart'
+    as bewell_pro_core;
 import 'package:bewell_pro_core/presentation/router/router_generator.dart';
 
 // Project imports:
@@ -14,7 +15,7 @@ import 'package:healthcloud/application/core/services/feed_content_callbacks.dar
 import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/afyamoja_phone_login_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_intro_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
@@ -52,9 +53,9 @@ class AppRouterGenerator extends RouteGenerator {
       );
     }
 
-    if (superRoute is MaterialPageRoute<PhoneLoginPage>) {
-      return MaterialPageRoute<AfyaMojaPhoneLoginPage>(
-        builder: (_) => AfyaMojaPhoneLoginPage(),
+    if (superRoute is MaterialPageRoute<bewell_pro_core.PhoneLoginPage>) {
+      return MaterialPageRoute<PhoneLoginPage>(
+        builder: (_) => PhoneLoginPage(),
       );
     }
 
