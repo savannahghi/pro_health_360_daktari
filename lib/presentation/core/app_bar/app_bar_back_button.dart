@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 
@@ -15,7 +20,8 @@ class AppBarBackButton extends StatelessWidget {
       child: InkWell(
         key: appBarBackButtonKey,
         borderRadius: BorderRadius.circular(50),
-        splashColor: Theme.of(context).primaryColor,
+        splashColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+        onTap: () => Navigator.pop(context),
         child: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: SvgPicture.asset(

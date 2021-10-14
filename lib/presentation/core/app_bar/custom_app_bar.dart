@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:healthcloud/presentation/core/app_bar/app_bar_back_button.dart';
 import 'package:healthcloud/presentation/core/app_bar/app_bar_more_button.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// [CustomAppBar] is a custom [AppBar] used for navigation and showing basic

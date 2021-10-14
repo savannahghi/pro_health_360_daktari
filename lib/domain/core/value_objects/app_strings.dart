@@ -117,3 +117,14 @@ String individualDescription(String description) {
   return 'Help us know more about your $description by providing us with '
       'required details';
 }
+
+//User Profile
+const String correctionRequestString = 'Request for correction';
+const String myProfileString = 'My Profile';
+const String name = 'Dr. Wanyonje Joseph';
+const String profession = 'Doctor';
+const String clinicName = 'Kawangware Medical Center';
+const String phoneNumber = '0712345678';
+const String emailAddress = 'emailAddress@kkcenter.com';
+const String licenseNumber = 'PF 14509';
+const String gender = 'Male';
