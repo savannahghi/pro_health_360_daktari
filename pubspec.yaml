@@ -17,6 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_graphql_client: ^0.1.23
+  flutter_svg: ^0.22.0
   freezed: ^0.14.2
   freezed_annotation: ^0.14.2
   json_annotation: ^4.0.1
