@@ -14,6 +14,7 @@ import 'package:bewell_pro_core/presentation/router/router_generator.dart';
 import 'package:healthcloud/application/core/services/feed_content_callbacks.dart';
 import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_intro_page.dart';
@@ -61,6 +62,11 @@ class AppRouterGenerator extends RouteGenerator {
 
     if (superRoute is MaterialPageRoute<DefaultErrorRoute>) {
       switch (settings?.name) {
+        case communityPage:
+          return MaterialPageRoute<CommunityListViewPage>(
+            builder: (_) => const CommunityListViewPage(),
+          );
+
         case individualPractitionerKYCStepOneRoute:
           return MaterialPageRoute<IndividualPractitionerKYCStepOne>(
             builder: (_) => IndividualPractitionerKYCStepOne(),

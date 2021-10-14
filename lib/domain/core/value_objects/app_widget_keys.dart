@@ -1,13 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+const Key communityListViewKey = Key('community_list_view_key');
+
 const Key globalStoreProviderKey = Key('global_store_provider');
-
-const Key kycOrganizationLimitedCompRadioButtonKey =
-    Key('org_coach_limited_comp_radio_button');
-
-const Key kycOrganizationCertIncorporationUploadKey =
-    Key('org_pharmaceutical_cert_incorporation_upload');
 
 const Key doctorRadioKey = Key('doctor_radio_key');
 

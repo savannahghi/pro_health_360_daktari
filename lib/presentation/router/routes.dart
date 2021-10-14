@@ -8,3 +8,5 @@ const String individualPractitionerKYCStepThreeRoute =
     '/IndividualPractitionerKYCStepThree';
 
 const String kycIntroPageRoute = '/kycIntroPage';
+
+const String communityPage = '/communityPage';
