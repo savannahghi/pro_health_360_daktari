@@ -60,3 +60,6 @@ const Key appBarMoreButtonKey = Key('app_bar_more_button_key');
 const Key loginKey = Key('login_Key');
 const Key phoneLoginPinInputKey = Key('phone_login_key');
 const Key forgotPinButton = Key('forgot_pin_button_key');
+const Key appBarUserKey = Key('app_bar_user_key');
+const Key profileUpdateCardKey = Key('profile_update_card_key');
+const Key contactRequestCardKey = Key('contact_request_card_key');

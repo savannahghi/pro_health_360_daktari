@@ -52,6 +52,7 @@ class AppColors {
   static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);
   static const Color textInputFillColor = Color(0xFFF9F2FE);
   static const Color textAltColor = Color(0xFF5F2788);
+  static const Color malachiteColor = Color(0xff00BE33);
 }
 
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
