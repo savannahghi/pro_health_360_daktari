@@ -50,6 +50,7 @@ String getDisplayName(UserState state) {
 
   return '$formattedFirstName $formattedLastName';
 }
+
 final List<RequestItem> serviceRequestItems = <RequestItem>[
   RequestItem(
     route: kycIntroPageRoute,
@@ -70,3 +71,24 @@ final List<RequestItem> serviceRequestItems = <RequestItem>[
     totalNumber: 4,
   ),
 ];
+
+String? userPinValidator(dynamic val) {
+  final String value = val as String;
+  if (value.isEmpty) {
+    return 'A PIN is required';
+  }
+  if (!RegExp(r'^-?[0-9]+$').hasMatch(value)) {
+    return 'Only digits are allowed, 0-9';
+  }
+  if (value.length < 4) {
+    return 'Enter a four digit PIN';
+  }
+  return null;
+}
+
+bool confirmPinValidator(String pin, String confirmPin) {
+  if (pin != confirmPin) {
+    return false;
+  }
+  return true;
+}

@@ -46,6 +46,19 @@ const String uploadYourKraString =
     'Kindly upload your KRA PIN certificate photo';
 const String idDocumentDetailsText = 'Identification document details';
 
+//Create New Pin Page
+const String confirmPinString = 'Confirm PIN';
+const String createNewPINTitleString = 'Welcome to My Afya Hub';
+const String createNewPINSubTitleString =
+    'Please update your pin to make it personal';
+const String phoneNumberString = 'Phone Number';
+const String newPinString = 'New PIN';
+const String pinMustMatchString = 'PIN must match';
+const String acceptTermsAndConditionsString = 'I accept Terms and Conditions';
+const String acceptTermsString =
+    'Kindly accept terms and conditions to continue';
+const String comingSoon = 'Coming Soon';
+
 final List<PracticeService> practiceServicesList = <PracticeService>[
   PracticeService(display: 'OutPatient Services', value: 'OUTPATIENT_SERVICES'),
   PracticeService(display: 'InPatient Services', value: 'INPATIENT_SERVICES'),
@@ -74,7 +87,6 @@ String idLabel(String val) => 'Enter $val number';
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to My Afya Hub';
 const String phoneLoginPageDescription = 'Enter your provided pin to continue';
-const String phoneNumberString = 'Phone Number';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
 

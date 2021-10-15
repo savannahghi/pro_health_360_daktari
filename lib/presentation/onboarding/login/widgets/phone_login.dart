@@ -105,7 +105,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: MyAfyaHubPhoneInput(
-                  backgroundColor: AppColors.textAltColor.withOpacity(0.2),
+                  backgroundColor: AppColors.inputBackgroundColor,
                   phoneNumberFormatter: formatPhoneNumber,
                   inputController: _phoneNumberInputController,
                   labelText: phoneNumberInputLabelText,
@@ -146,7 +146,7 @@ class PhoneLoginState extends State<PhoneLogin> {
               verySmallVerticalSizedBox,
               CustomTextField(
                 autovalidateMode: AutovalidateMode.disabled,
-                customFillColor: AppColors.textAltColor.withOpacity(0.2),
+                customFillColor: AppColors.inputBackgroundColor,
                 formFieldKey: phoneLoginPinInputKey,
                 borderColor: Colors.grey[200],
                 maxLength: 4,

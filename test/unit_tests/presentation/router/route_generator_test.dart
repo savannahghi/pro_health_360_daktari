@@ -11,6 +11,7 @@ import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
+import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import '../../../mocks/mocks.dart';
@@ -29,6 +30,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<HelpCenterPage>>());
     expect(route.builder(context), isA<HelpCenterPage>());
+  });
+
+  test('Test router returns CreateNewPinPage', () {
+    const RouteSettings settings = RouteSettings(name: setPinRoute);
+
+    final MaterialPageRoute<CreateNewPINPage> route =
+        routeGenerator(settings)! as MaterialPageRoute<CreateNewPINPage>;
+
+    expect(route, isA<MaterialPageRoute<CreateNewPINPage>>());
+    expect(route.builder(context), isA<CreateNewPINPage>());
   });
 
   test('Test router returns IndividualPractitionerKYCStepOne', () {

@@ -2,8 +2,16 @@
 import 'package:flutter/material.dart';
 
 const Key communityListViewKey = Key('community_list_view_key');
-
 const Key globalStoreProviderKey = Key('global_store_provider');
+
+//Create New Pin
+const Key createPINContinueButtonKey = Key('create_pin_continue_button_key');
+const Key confirmPinInputKey = Key('confirm_pin_input_key');
+const Key resetPinKey = Key('reset_pin_key');
+const Key pinInputKey = Key('pin_input_key');
+
+const Key kycOrganizationLimitedCompRadioButtonKey =
+    Key('org_coach_limited_comp_radio_button');
 
 const Key doctorRadioKey = Key('doctor_radio_key');
 

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:bewell_pro_core/presentation/onboarding/login/pages/set_pin_page.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -17,6 +18,7 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_intro_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
@@ -45,6 +47,12 @@ class AppRouterGenerator extends RouteGenerator {
           title: helpCenterTitle,
           logoutAction: AfyaMojaLogoutAction(),
         ),
+      );
+    }
+
+    if (superRoute is MaterialPageRoute<SetPinPage>) {
+      return MaterialPageRoute<CreateNewPINPage>(
+        builder: (_) => CreateNewPINPage(),
       );
     }
 

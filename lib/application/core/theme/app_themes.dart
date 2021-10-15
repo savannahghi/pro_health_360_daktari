@@ -55,6 +55,7 @@ class AppColors {
   static const Color malachiteColor = Color(0xff00BE33);
   static const Color lightGreyColor = Color(0xffd6d6d6);
   static const Color greyTextColor = Color(0xff707070);
+  static const Color inputBackgroundColor = Color(0xFFF9F2FE);
 }
 
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
