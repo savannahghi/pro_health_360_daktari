@@ -1,8 +1,7 @@
 // Package imports:
-import 'package:misc_utilities/misc.dart';
-
 // Project imports:
 import 'package:healthcloud/domain/core/entities/practice_service.dart';
+import 'package:misc_utilities/misc.dart';
 
 const String helpCenterTitle = 'AfyaMoja support center';
 const String appName = 'Afya Moja';
@@ -135,3 +134,14 @@ const String phoneNumber = '0712345678';
 const String emailAddress = 'emailAddress@kkcenter.com';
 const String licenseNumber = 'PF 14509';
 const String gender = 'Male';
+
+// Home Page
+const String searchUser = 'Search user';
+const String firstName = 'John';
+const String time = '09:56 pm';
+const String username = 'John Doe';
+const String comingSoonText = 'Coming Soon';
+const String addNewUserText = 'Add New User';
+const String serviceRequestsText = 'Service Requests';
+const String profileUpdateText = 'Profile Update';
+const String contactRequestText = 'Contact Request';
