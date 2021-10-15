@@ -42,7 +42,8 @@ class _IndividualPractitionerKYCStepThreeState
         child: StoreConnector<CoreState, IndividualPractitionerViewModel>(
           converter: (Store<CoreState> store) {
             return IndividualPractitionerViewModel.fromState(
-                store.state as AppState);
+              store.state as AppState,
+            );
           },
           builder: (BuildContext context, IndividualPractitionerViewModel vm) {
             return Form(
@@ -81,14 +82,18 @@ class _IndividualPractitionerKYCStepThreeState
                           ),
                         );
                       },
-                      removeDocumentFunc: (
-                          {required String title,
-                          required String description}) {
+                      removeDocumentFunc: ({
+                        required String title,
+                        required String description,
+                      }) {
                         StoreProvider.dispatch<CoreState>(
                           context,
                           IndividualPractitionerKYCAction(
                             supportingDocsBatchUpdate: removeSupportingDoc(
-                                vm.supportingDocuments!, title, description),
+                              vm.supportingDocuments!,
+                              title,
+                              description,
+                            ),
                           ),
                         );
                       },
@@ -100,29 +105,32 @@ class _IndividualPractitionerKYCStepThreeState
                       ),
                     if (!vm.wait.isWaitingFor(kycSavingFlag))
                       KYCPagesBottomActions(
-                          onNextOrFinish: () async {
-                            if (_formKey.currentState!.validate()) {
-                              triggerEvent(
-                                  individualPractitionerEvent, context);
-                              StoreProvider.dispatch<CoreState>(
-                                context,
-                                SaveKYCDetailsAction(
-                                  kycName: individualPractitionerKYCString,
-                                  context: context,
-                                  queryString:
-                                      addIndividualPractitionerKYCMutation,
-                                  variables:
-                                      individualPractitionerKYCMutationVariables(
-                                    payload:
-                                        (StoreProvider.state<CoreState>(context)
-                                                as AppState?)!
-                                            .practitionerKYCState!,
-                                  ),
+                        onNextOrFinish: () async {
+                          if (_formKey.currentState!.validate()) {
+                            triggerEvent(
+                              individualPractitionerEvent,
+                              context,
+                            );
+                            StoreProvider.dispatch<CoreState>(
+                              context,
+                              SaveKYCDetailsAction(
+                                kycName: individualPractitionerKYCString,
+                                context: context,
+                                queryString:
+                                    addIndividualPractitionerKYCMutation,
+                                variables:
+                                    individualPractitionerKYCMutationVariables(
+                                  payload:
+                                      (StoreProvider.state<CoreState>(context)
+                                              as AppState?)!
+                                          .practitionerKYCState!,
                                 ),
-                              );
-                            }
-                          },
-                          nextText: saveText)
+                              ),
+                            );
+                          }
+                        },
+                        nextText: saveText,
+                      )
                   ],
                 ),
               ),

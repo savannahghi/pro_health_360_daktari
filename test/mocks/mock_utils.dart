@@ -11,8 +11,9 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'mocks.dart';
 
-Map<String, dynamic>? setupFirebaseAuthMocks(
-    [void Function(MethodCall call)? customHandlers]) {
+Map<String, dynamic>? setupFirebaseAuthMocks([
+  void Function(MethodCall call)? customHandlers,
+]) {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelFirebase.channel

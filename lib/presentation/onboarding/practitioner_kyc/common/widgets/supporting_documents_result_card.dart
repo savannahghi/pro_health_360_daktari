@@ -66,7 +66,9 @@ class SupportingDocumentsResultCard extends StatelessWidget {
             ),
             onPressed: () {
               removeDocFunc(
-                  title: documentTitle, description: documentDescription);
+                title: documentTitle,
+                description: documentDescription,
+              );
             },
           ),
         ],

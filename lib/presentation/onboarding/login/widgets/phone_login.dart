@@ -206,7 +206,9 @@ class PhoneLoginState extends State<PhoneLogin> {
                     text: phoneLoginCreateAccountText,
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async => triggerNavigationEvent(
-                          context: context, route: phoneSignupRoute),
+                            context: context,
+                            route: phoneSignupRoute,
+                          ),
                     style: TextThemes.heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
                       decoration: TextDecoration.underline,

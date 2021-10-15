@@ -19,19 +19,21 @@ class IndividualPractitionerViewModel extends Vm {
     required this.kraPinDocId,
     this.supportingDocuments,
     required this.wait,
-  }) : super(equals: <Object?>[
-          registrationNo,
-          license,
-          cadre,
-          services,
-          idType,
-          idNumber,
-          idDocId,
-          kraPinNumber,
-          kraPinDocId,
-          supportingDocuments,
-          wait
-        ]);
+  }) : super(
+          equals: <Object?>[
+            registrationNo,
+            license,
+            cadre,
+            services,
+            idType,
+            idNumber,
+            idDocId,
+            kraPinNumber,
+            kraPinDocId,
+            supportingDocuments,
+            wait
+          ],
+        );
 
   final String? cadre;
   final String? idDocId;

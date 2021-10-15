@@ -24,7 +24,9 @@ class UserProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.lightGreyBackgroundColor,
-      appBar: const CustomAppBar(title: myProfileString,),
+      appBar: const CustomAppBar(
+        title: myProfileString,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
@@ -56,7 +58,8 @@ class UserProfilePage extends StatelessWidget {
                       title,
                       maxLines: 2,
                       style: TextThemes.veryBoldSize14Text(
-                          Theme.of(context).primaryColor),
+                        Theme.of(context).primaryColor,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                     iconBackgroundColor: AppColors.profileListCardColor,

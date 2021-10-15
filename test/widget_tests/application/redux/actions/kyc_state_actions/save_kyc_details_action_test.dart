@@ -39,20 +39,21 @@ void main() {
       'idToken',
       'endpoint',
       http.Response(
-          json.encode(
-            <String, dynamic>{
-              'data': <String, dynamic>{
-                'kraPIN': <String>['12345678'],
-                'organizationTypeName': 'Demo Organization',
-                'certificateOfIncorporation': '',
-                'certificateOfInCorporationUploadID': '',
-                'organizationCertificate': '',
-                'cadre': '',
-                'getFeed': mockFeedContent,
-              }
-            },
-          ),
-          201),
+        json.encode(
+          <String, dynamic>{
+            'data': <String, dynamic>{
+              'kraPIN': <String>['12345678'],
+              'organizationTypeName': 'Demo Organization',
+              'certificateOfIncorporation': '',
+              'certificateOfInCorporationUploadID': '',
+              'organizationCertificate': '',
+              'cadre': '',
+              'getFeed': mockFeedContent,
+            }
+          },
+        ),
+        201,
+      ),
     );
     await mockNetworkImages(
       () async {
@@ -68,9 +69,10 @@ void main() {
                       context: context,
                       queryString: addIndividualPractitionerKYCMutation,
                       variables: individualPractitionerKYCMutationVariables(
-                          payload: (StoreProvider.state<CoreState>(context)
-                                  as AppState?)!
-                              .practitionerKYCState!),
+                        payload: (StoreProvider.state<CoreState>(context)
+                                as AppState?)!
+                            .practitionerKYCState!,
+                      ),
                       kycName: organizationPractitionerKYCString,
                     ),
                   );

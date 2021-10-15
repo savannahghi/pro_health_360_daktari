@@ -6,8 +6,11 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
 
 class PractitionerKYCStateViewModel extends Vm {
-  PractitionerKYCStateViewModel(
-      {required this.state, required this.wait, required this.kycSubmitted});
+  PractitionerKYCStateViewModel({
+    required this.state,
+    required this.wait,
+    required this.kycSubmitted,
+  });
 
   final bool kycSubmitted;
   final PractitionerKYCState state;

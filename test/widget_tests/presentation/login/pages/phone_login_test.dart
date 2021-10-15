@@ -73,8 +73,10 @@ void main() {
             UserResponse.fromJson(mockAuthLoginResponse);
 
         expect(store.state.userState!.userProfile, mockResponse.profile);
-        expect(store.state.userState!.communicationSettings,
-            mockResponse.communicationSettings);
+        expect(
+          store.state.userState!.communicationSettings,
+          mockResponse.communicationSettings,
+        );
         expect(store.state.userState!.auth, mockResponse.auth);
 
         await tester.pumpAndSettle();
@@ -90,13 +92,15 @@ void main() {
         await Firebase.initializeApp();
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
-                'idToken',
-                'endpoint',
-                Response(
-                    json.encode(
-                      mockChangePinAuthLoginResponse,
-                    ),
-                    200));
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(
+              mockChangePinAuthLoginResponse,
+            ),
+            200,
+          ),
+        );
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -119,8 +123,10 @@ void main() {
             UserResponse.fromJson(mockChangePinAuthLoginResponse);
 
         expect(store.state.userState!.userProfile, mockResponse.profile);
-        expect(store.state.userState!.communicationSettings,
-            mockResponse.communicationSettings);
+        expect(
+          store.state.userState!.communicationSettings,
+          mockResponse.communicationSettings,
+        );
         expect(store.state.userState!.auth, mockResponse.auth);
 
         await tester.pumpAndSettle();
@@ -132,8 +138,11 @@ void main() {
         'should show an error message if invalid credentials are entered',
         (WidgetTester tester) async {
       final MockShortGraphQlClient graphQlClient =
-          MockShortGraphQlClient.withResponse('idToken', 'endpoint',
-              Response(json.encode(<String, dynamic>{'code': 8}), 400));
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(json.encode(<String, dynamic>{'code': 8}), 400),
+      );
 
       await buildTestWidget(
         store: store,
@@ -164,7 +173,10 @@ void main() {
         'shows the error alert widget when invalid credentials are provided',
         (WidgetTester tester) async {
       await buildTestWidget(
-          store: store, tester: tester, widget: PhoneLoginPage());
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+      );
       await tester.pumpAndSettle();
 
       store.dispatch(BatchUpdateMiscStateAction(invalidCredentials: true));
@@ -183,7 +195,10 @@ void main() {
         'shows the error alert widget when an unknown phone number is added',
         (WidgetTester tester) async {
       await buildTestWidget(
-          store: store, tester: tester, widget: PhoneLoginPage());
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+      );
       await tester.pumpAndSettle();
 
       store.dispatch(BatchUpdateMiscStateAction(unKnownPhoneNo: true));
@@ -201,7 +216,10 @@ void main() {
         (WidgetTester tester) async {
       store.dispatch(WaitAction<CoreState>.add(phoneLoginStateFlag));
       await buildTestWidget(
-          store: store, tester: tester, widget: PhoneLoginPage());
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+      );
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });
 

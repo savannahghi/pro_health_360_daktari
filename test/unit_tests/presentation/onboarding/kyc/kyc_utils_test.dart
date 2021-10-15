@@ -11,17 +11,20 @@ void main() {
     test('removeSupportingDoc removes the intended SupportingDocument', () {
       const List<SupportingDocument> supportingDocs = <SupportingDocument>[
         SupportingDocument(
-            description: 'first description',
-            title: 'first title',
-            upload: 'first upload'),
+          description: 'first description',
+          title: 'first title',
+          upload: 'first upload',
+        ),
         SupportingDocument(
-            description: 'second description',
-            title: 'second title',
-            upload: 'second upload'),
+          description: 'second description',
+          title: 'second title',
+          upload: 'second upload',
+        ),
         SupportingDocument(
-            description: 'third description',
-            title: 'third title',
-            upload: 'third upload'),
+          description: 'third description',
+          title: 'third title',
+          upload: 'third upload',
+        ),
       ];
 
       List<SupportingDocument> removedDocs =
@@ -29,11 +32,17 @@ void main() {
       expect(removedDocs, supportingDocs);
 
       removedDocs = removeSupportingDoc(
-          supportingDocs, 'first title', 'first description');
+        supportingDocs,
+        'first title',
+        'first description',
+      );
       expect(removedDocs, supportingDocs.skip(1).toList());
 
       removedDocs = removeSupportingDoc(
-          supportingDocs, 'second title', 'third description');
+        supportingDocs,
+        'second title',
+        'third description',
+      );
       expect(removedDocs, <SupportingDocument>[supportingDocs.first]);
     });
 
@@ -44,15 +53,21 @@ void main() {
       ];
 
       expect(
-          addOrRemoveService(
-                  services: servicesList, value: 'PHARMACY', shouldAdd: false)
-              .length,
-          1);
+        addOrRemoveService(
+          services: servicesList,
+          value: 'PHARMACY',
+          shouldAdd: false,
+        ).length,
+        1,
+      );
       expect(
-          addOrRemoveService(
-                  services: servicesList, shouldAdd: true, value: 'PHARMACY')
-              .length,
-          2);
+        addOrRemoveService(
+          services: servicesList,
+          shouldAdd: true,
+          value: 'PHARMACY',
+        ).length,
+        2,
+      );
     });
 
     test('removeIdentificationDoc', () {
@@ -62,8 +77,10 @@ void main() {
       ];
 
       expect(removeIdentificationDoc(identifications, ''), identifications);
-      expect(removeIdentificationDoc(identifications, 'number 1'),
-          identifications.skip(1).toList());
+      expect(
+        removeIdentificationDoc(identifications, 'number 1'),
+        identifications.skip(1).toList(),
+      );
     });
   });
 }

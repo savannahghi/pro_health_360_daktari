@@ -19,13 +19,16 @@ void main() {
 
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        widget: Builder(
+          builder: (BuildContext context) {
             return KYCPagesBottomActions(
               onNextOrFinish: () {},
             );
-          }));
+          },
+        ),
+      );
 
       expect(find.byType(KYCPagesBottomActions), findsOneWidget);
       expect(find.byKey(kycBackButtonKey), findsOneWidget);
@@ -34,13 +37,16 @@ void main() {
 
     testWidgets('back button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        widget: Builder(
+          builder: (BuildContext context) {
             return KYCPagesBottomActions(
               onNextOrFinish: () {},
             );
-          }));
+          },
+        ),
+      );
 
       expect(find.byType(KYCPagesBottomActions), findsOneWidget);
       expect(find.byKey(kycBackButtonKey), findsOneWidget);

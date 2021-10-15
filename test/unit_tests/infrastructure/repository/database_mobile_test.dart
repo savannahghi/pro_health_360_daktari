@@ -18,7 +18,8 @@ void main() {
   final MockInitializeDB initDb = MockInitializeDB();
 
   when(initDb.database()).thenAnswer(
-      (Invocation realInvocation) => Future<MockStateDB>.value(mockDb));
+    (Invocation realInvocation) => Future<MockStateDB>.value(mockDb),
+  );
 
   final AfyaMojaDatabaseMobile<MockStateDB> db =
       AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDb);
@@ -33,9 +34,10 @@ void main() {
   test('should call initialize and clear database : mock', () {
     expect(() => InitializeDB<MockStateDB>(dbName: 'test_db'), returnsNormally);
     expect(
-        () => InitializeDB<MockStateDB>(dbName: 'test_db')
-            .database(preInitializedDB: mockDb),
-        returnsNormally);
+      () => InitializeDB<MockStateDB>(dbName: 'test_db')
+          .database(preInitializedDB: mockDb),
+      returnsNormally,
+    );
 
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
@@ -48,8 +50,10 @@ void main() {
 
   test('should throw exception on real state db. Missing plugin', () {
     expect(() => InitializeDB<MockStateDB>(dbName: 'test_db'), returnsNormally);
-    expect(() => InitializeDB<MockStateDB>(dbName: 'test_db').database(),
-        throwsException);
+    expect(
+      () => InitializeDB<MockStateDB>(dbName: 'test_db').database(),
+      throwsException,
+    );
 
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
@@ -98,9 +102,9 @@ void main() {
   });
 
   test('retrieveState should return state from userFeedState table', () async {
-    when(mockDb
-            .rawQuery('SELECT * FROM userFeedState ORDER BY id DESC LIMIT 1'))
-        .thenAnswer(
+    when(
+      mockDb.rawQuery('SELECT * FROM userFeedState ORDER BY id DESC LIMIT 1'),
+    ).thenAnswer(
       (_) => Future<List<Map<String, Object?>>>.value(
         <Map<String, Object?>>[
           <String, Object?>{'userFeedState': json.encode(mockUserFeed)}

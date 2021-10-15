@@ -36,16 +36,20 @@ void main() {
 
     testWidgets('navigates to ProfileContactDetails',
         (WidgetTester tester) async {
-      await store.dispatch(BatchUpdateUserStateAction(
+      await store.dispatch(
+        BatchUpdateUserStateAction(
           userProfile: UserProfile(
-        primaryPhoneNumber: PhoneNumber.withValue('+2547123455678'),
-      )));
+            primaryPhoneNumber: PhoneNumber.withValue('+2547123455678'),
+          ),
+        ),
+      );
 
       await mockNetworkImages(() async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            widget: Builder(builder: (BuildContext context) {
+          tester: tester,
+          store: store,
+          widget: Builder(
+            builder: (BuildContext context) {
               final Map<String, Function> callbacks =
                   getAfyaMojaFeedActionCallbacks(context: context);
               final Function callback = callbacks[kVerifyEmail]!;
@@ -56,7 +60,9 @@ void main() {
                   child: const Text(''),
                 ),
               );
-            }));
+            },
+          ),
+        );
         await tester.tap(find.byKey(key));
         await tester.pumpAndSettle();
 
@@ -66,9 +72,10 @@ void main() {
 
     testWidgets('displays Snackbar', (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        widget: Builder(
+          builder: (BuildContext context) {
             final Map<String, Function> callbacks =
                 getAfyaMojaFeedActionCallbacks(context: context);
             final Function callback = callbacks[kCompleteProfile]!;
@@ -79,7 +86,9 @@ void main() {
                 child: const Text(''),
               ),
             );
-          }));
+          },
+        ),
+      );
 
       await tester.tap(find.byKey(key));
       await tester.pumpAndSettle();
@@ -104,9 +113,10 @@ void main() {
 
       mockNetworkImages(() async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            widget: Builder(builder: (BuildContext context) {
+          tester: tester,
+          store: store,
+          widget: Builder(
+            builder: (BuildContext context) {
               final Map<String, Function> callbacks =
                   getAfyaMojaFeedActionCallbacks(context: context);
               final Function callback =
@@ -118,7 +128,9 @@ void main() {
                   child: const Text(''),
                 ),
               );
-            }));
+            },
+          ),
+        );
 
         await tester.tap(find.byKey(key));
         await tester.pumpAndSettle();

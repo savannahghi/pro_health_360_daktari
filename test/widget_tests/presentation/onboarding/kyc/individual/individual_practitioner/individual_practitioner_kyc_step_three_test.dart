@@ -57,9 +57,10 @@ void main() {
         (WidgetTester tester) async {
       await mockNetworkImages(() async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            widget: const IndividualPractitionerKYCStepThree());
+          tester: tester,
+          store: store,
+          widget: const IndividualPractitionerKYCStepThree(),
+        );
 
         // expect to find the rendered widgets
         expect(find.byType(IndividualPractitionerKYCStepThree), findsOneWidget);
@@ -82,11 +83,15 @@ void main() {
         expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
 
         await tester.enterText(
-            find.byKey(kycSupportingDocumentTitleKey), 'some-title');
+          find.byKey(kycSupportingDocumentTitleKey),
+          'some-title',
+        );
         await tester.pump();
 
         await tester.enterText(
-            find.byKey(kycSupportingDocumentDescriptionKey), 'some-description');
+          find.byKey(kycSupportingDocumentDescriptionKey),
+          'some-description',
+        );
         await tester.pump();
 
         await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
@@ -125,9 +130,10 @@ void main() {
     testWidgets('should validate the form fields correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: const IndividualPractitionerKYCStepThree());
+        tester: tester,
+        store: store,
+        widget: const IndividualPractitionerKYCStepThree(),
+      );
 
       await tester.pumpAndSettle();
 
@@ -153,7 +159,10 @@ void main() {
       await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
+      await tester.enterText(
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        '',
+      );
       await tester.pump();
       await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
       await tester.pump();
@@ -185,9 +194,10 @@ void main() {
     testWidgets('should remove a supporting document',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: const IndividualPractitionerKYCStepThree());
+        tester: tester,
+        store: store,
+        widget: const IndividualPractitionerKYCStepThree(),
+      );
 
       expect(find.byType(IndividualPractitionerKYCStepThree), findsOneWidget);
 
@@ -203,11 +213,15 @@ void main() {
       expect(find.byKey(kycSupportingDocumentUploadKey), findsOneWidget);
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentTitleKey), 'some-title');
+        find.byKey(kycSupportingDocumentTitleKey),
+        'some-title',
+      );
       await tester.pump();
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentDescriptionKey), 'some-description');
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        'some-description',
+      );
       await tester.pump();
 
       await tester.tap(find.byKey(kycSupportingDocumentUploadKey));
@@ -254,15 +268,18 @@ void main() {
 
     testWidgets('should render SILPlatformLoader when kycSavingFlag is set',
         (WidgetTester tester) async {
-      store.dispatch(WaitAction<CoreState>.add(
-        kycSavingFlag,
-        ref: '${kycSavingFlag}_ref',
-      ));
+      store.dispatch(
+        WaitAction<CoreState>.add(
+          kycSavingFlag,
+          ref: '${kycSavingFlag}_ref',
+        ),
+      );
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: const IndividualPractitionerKYCStepThree());
+        tester: tester,
+        store: store,
+        widget: const IndividualPractitionerKYCStepThree(),
+      );
 
       expect(find.byType(IndividualPractitionerKYCStepThree), findsOneWidget);
       expect(find.byType(Form), findsOneWidget);

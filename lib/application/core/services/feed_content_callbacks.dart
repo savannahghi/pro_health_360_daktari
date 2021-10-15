@@ -10,8 +10,9 @@ import 'package:user_feed/user_feed.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 
-Map<String, Function> getAfyaMojaFeedActionCallbacks(
-    {required BuildContext context}) {
+Map<String, Function> getAfyaMojaFeedActionCallbacks({
+  required BuildContext context,
+}) {
   return <String, Function>{
     kCompleteProfile: () {
       ScaffoldMessenger.of(context)
