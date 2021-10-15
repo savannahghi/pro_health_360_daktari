@@ -145,3 +145,5 @@ const String addNewUserText = 'Add New User';
 const String serviceRequestsText = 'Service Requests';
 const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
+//Service Requests
+const String serviceRequestString = 'Service requests';

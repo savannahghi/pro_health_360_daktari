@@ -53,6 +53,8 @@ class AppColors {
   static const Color textInputFillColor = Color(0xFFF9F2FE);
   static const Color textAltColor = Color(0xFF5F2788);
   static const Color malachiteColor = Color(0xff00BE33);
+  static const Color lightGreyColor = Color(0xffd6d6d6);
+  static const Color greyTextColor = Color(0xff707070);
 }
 
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(

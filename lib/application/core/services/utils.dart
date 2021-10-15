@@ -4,6 +4,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:healthcloud/domain/core/entities/request_item.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -49,3 +50,23 @@ String getDisplayName(UserState state) {
 
   return '$formattedFirstName $formattedLastName';
 }
+final List<RequestItem> serviceRequestItems = <RequestItem>[
+  RequestItem(
+    route: kycIntroPageRoute,
+    title: 'Pin Reset',
+    imageAssetPath: pinResetImageSvgPath,
+    totalNumber: 5,
+  ),
+  RequestItem(
+    route: kycIntroPageRoute,
+    title: 'Red Flags',
+    imageAssetPath: redFlagImageSvgPath,
+    totalNumber: 3,
+  ),
+  RequestItem(
+    route: kycIntroPageRoute,
+    title: 'Profile Update',
+    imageAssetPath: profileUpdateImageSvgPath,
+    totalNumber: 4,
+  ),
+];

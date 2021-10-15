@@ -17,9 +17,8 @@ import 'package:healthcloud/presentation/profile/widgets/user_details_card_widge
 // Project imports:
 
 class UserProfilePage extends StatelessWidget {
-  /// [UserProfilePage] is to display the user information
+  /// [UserProfilePage] is used to display the user information
   ///
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
