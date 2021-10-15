@@ -28,7 +28,9 @@ class AfyaMojaLandingActions extends StatelessWidget {
             borderColor: Colors.transparent,
             text: landingSignIn,
             onPressed: () async => triggerNavigationEvent(
-                context: context, route: phoneLoginRoute),
+              context: context,
+              route: phoneLoginRoute,
+            ),
           ),
         ),
       ],

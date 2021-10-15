@@ -54,9 +54,11 @@ class AfyaMojaLandingPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal:
-                            ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                                context: context)),
+                      horizontal:
+                          ResponsiveWidget.preferredPaddingOnStretchedScreens(
+                        context: context,
+                      ),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -68,7 +70,8 @@ class AfyaMojaLandingPage extends StatelessWidget {
                           runSpacing: 40,
                           children: <Widget>[
                             if (!ResponsiveWidget.isSmallScreenAndOnLandscape(
-                                context: context))
+                              context: context,
+                            ))
                               LandingPageImage()
                             else
                               smallVerticalSizedBox,
@@ -131,8 +134,10 @@ class AfyaMojaLandingPage extends StatelessWidget {
   }
 }
 
-Widget termsAndConditions(BuildContext context,
-    [TextAlign align = TextAlign.center]) {
+Widget termsAndConditions(
+  BuildContext context, [
+  TextAlign align = TextAlign.center,
+]) {
   return Container(
     margin: const EdgeInsets.all(8.0),
     child: RichText(
@@ -162,9 +167,10 @@ Widget termsAndConditions(BuildContext context,
                 }
 
                 triggerNavigationEvent(
-                    context: context,
-                    route: termsAndConditionsRoute,
-                    args: termsUrl);
+                  context: context,
+                  route: termsAndConditionsRoute,
+                  args: termsUrl,
+                );
               },
           ),
         ],

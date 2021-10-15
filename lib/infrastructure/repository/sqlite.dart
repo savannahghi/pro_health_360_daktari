@@ -22,7 +22,10 @@ Future<void> onCreateCallback(Database db, int version) async {
 }
 
 Future<void> onUpgradeCallback(
-    Database db, int oldVersion, int newVersion) async {
+  Database db,
+  int oldVersion,
+  int newVersion,
+) async {
   await migrate(db, oldVersion, newVersion);
 }
 

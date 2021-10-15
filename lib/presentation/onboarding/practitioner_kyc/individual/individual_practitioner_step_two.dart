@@ -36,9 +36,10 @@ class _IndividualPractitionerKYCStepTwoState
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void processAndNavigateIndividualPractitionerKYC(
-      {required GlobalKey<FormState> formKey,
-      required IndividualPractitionerViewModel vm}) {
+  void processAndNavigateIndividualPractitionerKYC({
+    required GlobalKey<FormState> formKey,
+    required IndividualPractitionerViewModel vm,
+  }) {
     if (_formKey.currentState!.validate()) {
       StoreProvider.dispatch<CoreState>(
         context,
@@ -51,10 +52,11 @@ class _IndividualPractitionerKYCStepTwoState
         ),
       );
       if (!validateKYCFields(
-          context: context,
-          idType: vm.idType,
-          idUploadId: idUploadId,
-          kraUploadId: kraUploadId)) return;
+        context: context,
+        idType: vm.idType,
+        idUploadId: idUploadId,
+        kraUploadId: kraUploadId,
+      )) return;
 
       triggerNavigationEvent(
         context: context,
@@ -70,7 +72,8 @@ class _IndividualPractitionerKYCStepTwoState
         child: StoreConnector<CoreState, IndividualPractitionerViewModel>(
           converter: (Store<CoreState> store) {
             return IndividualPractitionerViewModel.fromState(
-                store.state as AppState);
+              store.state as AppState,
+            );
           },
           builder: (BuildContext context, IndividualPractitionerViewModel vm) {
             return Form(
@@ -118,7 +121,9 @@ class _IndividualPractitionerKYCStepTwoState
                     KYCPagesBottomActions(
                       onNextOrFinish: () =>
                           processAndNavigateIndividualPractitionerKYC(
-                              formKey: _formKey, vm: vm),
+                        formKey: _formKey,
+                        vm: vm,
+                      ),
                     ),
                   ],
                 ),

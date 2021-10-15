@@ -10,8 +10,10 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 
 class KYCPagesBottomActions extends StatelessWidget {
-  const KYCPagesBottomActions(
-      {required this.onNextOrFinish, this.nextText = next});
+  const KYCPagesBottomActions({
+    required this.onNextOrFinish,
+    this.nextText = next,
+  });
 
   final String nextText;
   final Function onNextOrFinish;

@@ -48,89 +48,92 @@ class _KYCSupportingDocumentsState extends State<KYCSupportingDocuments> {
       backgroundColor: Colors.transparent,
       builder: (BuildContext bc) {
         return StatefulBuilder(
-            builder: (BuildContext context, StateSetter sheetSetState) {
-          return Container(
-            padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    addSupportingDocs,
-                    style: TextThemes.boldSize18Text(healthcloudPrimaryColor),
-                  ),
-                ),
-                smallVerticalSizedBox,
-                Divider(thickness: 0.5, color: Colors.grey.withOpacity(0.5)),
-                smallVerticalSizedBox,
-                SILFormTextField(
-                  key: kycSupportingDocumentTitleKey,
-                  labelText: documentTitle,
-                  hintText: documentTitleHint,
-                  borderColor: Colors.grey.withOpacity(0.6),
-                  textStyle: TextThemes.normalSize16Text(),
-                  onChanged: (String val) => title = val,
-                ),
-                mediumVerticalSizedBox,
-                SILFormTextField(
-                  key: kycSupportingDocumentDescriptionKey,
-                  maxLines: 2,
-                  labelText: documentDescription,
-                  hintText: documentDescriptionHint,
-                  borderColor: Colors.grey.withOpacity(0.6),
-                  textStyle: TextThemes.normalSize16Text(),
-                  onChanged: (String val) => description = val,
-                ),
-                mediumVerticalSizedBox,
-                FileManager(
-                  onChanged: (String? val) => docID = val,
-                  galleryImageKey: kycSupportingDocumentUploadKey,
-                  fileTitle: documentUpload,
-                  uploadAndReturnIdFunction: uploadFileAndGetId,
-                  platformLoader: const SILPlatformLoader(),
-                ),
-                mediumVerticalSizedBox,
-                if (showWarningMsg) ...<Widget>[
-                  Text(
-                    allFieldsRequired,
-                    style: TextThemes.normalSize15Text(Colors.red),
+          builder: (BuildContext context, StateSetter sheetSetState) {
+            return Container(
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      addSupportingDocs,
+                      style: TextThemes.boldSize18Text(healthcloudPrimaryColor),
+                    ),
                   ),
                   smallVerticalSizedBox,
-                ],
-                SizedBox(
-                  width: double.infinity,
-                  height: number48,
-                  child: SILPrimaryButton(
-                    onPressed: () {
-                      if (title == null ||
-                          description == null ||
-                          docID == null) {
-                        sheetSetState(() {
-                          showWarningMsg = true;
-                        });
-                        return;
-                      }
-                      sheetSetState(() {
-                        showWarningMsg = false;
-                      });
-                      Navigator.pop(context, <String, String>{
-                        'title': title!,
-                        'description': description!,
-                        'docID': docID!,
-                      });
-                    },
-                    text: doneAddingDoc,
-                    customRadius: 5,
+                  Divider(thickness: 0.5, color: Colors.grey.withOpacity(0.5)),
+                  smallVerticalSizedBox,
+                  SILFormTextField(
+                    key: kycSupportingDocumentTitleKey,
+                    labelText: documentTitle,
+                    hintText: documentTitleHint,
+                    borderColor: Colors.grey.withOpacity(0.6),
+                    textStyle: TextThemes.normalSize16Text(),
+                    onChanged: (String val) => title = val,
                   ),
-                )
-              ],
-            ),
-          );
-        });
+                  mediumVerticalSizedBox,
+                  SILFormTextField(
+                    key: kycSupportingDocumentDescriptionKey,
+                    maxLines: 2,
+                    labelText: documentDescription,
+                    hintText: documentDescriptionHint,
+                    borderColor: Colors.grey.withOpacity(0.6),
+                    textStyle: TextThemes.normalSize16Text(),
+                    onChanged: (String val) => description = val,
+                  ),
+                  mediumVerticalSizedBox,
+                  FileManager(
+                    onChanged: (String? val) => docID = val,
+                    galleryImageKey: kycSupportingDocumentUploadKey,
+                    fileTitle: documentUpload,
+                    uploadAndReturnIdFunction: uploadFileAndGetId,
+                    platformLoader: const SILPlatformLoader(),
+                  ),
+                  mediumVerticalSizedBox,
+                  if (showWarningMsg) ...<Widget>[
+                    Text(
+                      allFieldsRequired,
+                      style: TextThemes.normalSize15Text(Colors.red),
+                    ),
+                    smallVerticalSizedBox,
+                  ],
+                  SizedBox(
+                    width: double.infinity,
+                    height: number48,
+                    child: SILPrimaryButton(
+                      onPressed: () {
+                        if (title == null ||
+                            description == null ||
+                            docID == null) {
+                          sheetSetState(() {
+                            showWarningMsg = true;
+                          });
+                          return;
+                        }
+                        sheetSetState(() {
+                          showWarningMsg = false;
+                        });
+                        Navigator.pop(context, <String, String>{
+                          'title': title!,
+                          'description': description!,
+                          'docID': docID!,
+                        });
+                      },
+                      text: doneAddingDoc,
+                      customRadius: 5,
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        );
       },
     );
   }

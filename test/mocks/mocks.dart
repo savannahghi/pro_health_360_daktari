@@ -31,9 +31,10 @@ class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
 
   @override
   Future<MockStateDB> database({MockStateDB? preInitializedDB}) =>
-      super.noSuchMethod(Invocation.getter(#database),
-              returnValue: Future<MockStateDB>.value(MockStateDB()))
-          as Future<MockStateDB>;
+      super.noSuchMethod(
+        Invocation.getter(#database),
+        returnValue: Future<MockStateDB>.value(MockStateDB()),
+      ) as Future<MockStateDB>;
 }
 
 class MockDeviceCapabilities extends IDeviceCapabilities {}
@@ -53,8 +54,10 @@ String testPath(String relativePath) {
 
 class MockStateDB extends Mock implements Database {
   @override
-  Future<List<Map<String, Object?>>> rawQuery(String sql,
-          [List<Object?>? arguments]) =>
+  Future<List<Map<String, Object?>>> rawQuery(
+    String sql, [
+    List<Object?>? arguments,
+  ]) =>
       super.noSuchMethod(
         Invocation.method(#rawQuery, <dynamic>[sql, arguments]),
         returnValue: Future<List<Map<String, Object?>>>.value(
@@ -92,8 +95,11 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<T> devInvokeSqlMethod<T>(String method, String sql,
-      [List<Object?>? arguments]) {
+  Future<T> devInvokeSqlMethod<T>(
+    String method,
+    String sql, [
+    List<Object?>? arguments,
+  ]) {
     throw UnimplementedError();
   }
 
@@ -108,8 +114,12 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<int> insert(String table, Map<String, Object?> values,
-      {String? nullColumnHack, ConflictAlgorithm? conflictAlgorithm}) {
+  Future<int> insert(
+    String table,
+    Map<String, Object?> values, {
+    String? nullColumnHack,
+    ConflictAlgorithm? conflictAlgorithm,
+  }) {
     throw UnimplementedError();
   }
 
@@ -120,16 +130,18 @@ class MockStateDB extends Mock implements Database {
   String get path => 'test';
 
   @override
-  Future<List<Map<String, Object?>>> query(String table,
-      {bool? distinct,
-      List<String>? columns,
-      String? where,
-      List<Object?>? whereArgs,
-      String? groupBy,
-      String? having,
-      String? orderBy,
-      int? limit,
-      int? offset}) {
+  Future<List<Map<String, Object?>>> query(
+    String table, {
+    bool? distinct,
+    List<String>? columns,
+    String? where,
+    List<Object?>? whereArgs,
+    String? groupBy,
+    String? having,
+    String? orderBy,
+    int? limit,
+    int? offset,
+  }) {
     throw UnimplementedError();
   }
 
@@ -149,16 +161,21 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<T> transaction<T>(Future<T> Function(Transaction txn) action,
-      {bool? exclusive}) {
+  Future<T> transaction<T>(
+    Future<T> Function(Transaction txn) action, {
+    bool? exclusive,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<int> update(String table, Map<String, Object?> values,
-      {String? where,
-      List<Object?>? whereArgs,
-      ConflictAlgorithm? conflictAlgorithm}) {
+  Future<int> update(
+    String table,
+    Map<String, Object?> values, {
+    String? where,
+    List<Object?>? whereArgs,
+    ConflictAlgorithm? conflictAlgorithm,
+  }) {
     throw UnimplementedError();
   }
 }
@@ -168,7 +185,10 @@ class MockStateDB extends Mock implements Database {
 /// a good use case is when you want to return error responses
 class MockShortSILGraphQlClient extends IGraphQlClient {
   MockShortSILGraphQlClient.withResponse(
-      String idToken, String endpoint, this.response) {
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
     super.idToken = idToken;
     super.endpoint = endpoint;
   }
@@ -176,24 +196,30 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
   final http.Response response;
 
   @override
-  Future<http.Response> callRESTAPI(
-      {required String endpoint,
-      required String method,
-      Map<String, dynamic>? variables}) {
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
     return Future<http.Response>.value(response);
   }
 
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
     return Future<http.Response>.value(response);
   }
 }
 
 final MockSILGraphQlClient mockSILGraphQlClient =
     MockSILGraphQlClient.withResponse(
-        'idToken', 'endpoint', http.Response('success response', 200));
+  'idToken',
+  'endpoint',
+  http.Response('success response', 200),
+);
 
 final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
   'profile': <String, dynamic>{
@@ -351,7 +377,10 @@ final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
 /// a good use case is when you want to return error responses
 class MockShortGraphQlClient extends IGraphQlClient {
   MockShortGraphQlClient.withResponse(
-      String idToken, String endpoint, this.response) {
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
     super.idToken = idToken;
     super.endpoint = endpoint;
   }
@@ -359,17 +388,20 @@ class MockShortGraphQlClient extends IGraphQlClient {
   final http.Response response;
 
   @override
-  Future<http.Response> callRESTAPI(
-      {required String endpoint,
-      required String method,
-      Map<String, dynamic>? variables}) {
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
     return Future<http.Response>.value(response);
   }
 
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
     return Future<http.Response>.value(response);
   }
 }
@@ -389,10 +421,11 @@ class MockSILGraphQlClient extends IGraphQlClient {
   late final http.Response response;
 
   @override
-  Future<http.Response> callRESTAPI(
-      {required String endpoint,
-      required String method,
-      Map<String, dynamic>? variables}) {
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
     if (endpoint.contains('upload')) {
       return Future<http.Response>.value(
         http.Response(
@@ -428,8 +461,10 @@ class MockSILGraphQlClient extends IGraphQlClient {
 
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) async {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) async {
     final String otpVariables = json.encode(<String, dynamic>{
       'msisdn': '+254717356476',
       'email': 'abiud.orina@savannahinformatics.com'
@@ -441,72 +476,82 @@ class MockSILGraphQlClient extends IGraphQlClient {
     });
 
     if (queryString == registerDeviceTokenMutation) {
-      return Future<http.Response>.value(http.Response(
+      return Future<http.Response>.value(
+        http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{'registerPushToken': true}
           }),
-          201));
+          201,
+        ),
+      );
     }
 
     if (json.encode(variables) == otpVariables) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'generateAndEmailOTP': '123456'}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'generateAndEmailOTP': '123456'}
+          }),
+          201,
+        ),
       );
     }
 
     if (json.encode(variables) == errorOtpVariables) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'Error': 'this is a sample error with an ID token'
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'Error': 'this is a sample error with an ID token'
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('addOrganizationPractitionerKYC')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'input': <String, dynamic>{
-                'kraPIN': <String>['12345678'],
-                'organizationTypeName': 'Demo Organization',
-                'certificateOfIncorporation': '',
-                'certificateOfInCorporationUploadID': '',
-                'organizationCertificate': '',
-                'cadre': ''
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'input': <String, dynamic>{
+              'kraPIN': <String>['12345678'],
+              'organizationTypeName': 'Demo Organization',
+              'certificateOfIncorporation': '',
+              'certificateOfInCorporationUploadID': '',
+              'organizationCertificate': '',
+              'cadre': ''
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('addIndividualPractitionerKYC')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'input': <String, dynamic>{
-                'kraPIN': <String>['12345678'],
-                'supportingDocumentsUploadID  ': '',
-                'registrationNumber': '',
-                'practiceLicenseID': '',
-                'cadre': ''
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'input': <String, dynamic>{
+              'kraPIN': <String>['12345678'],
+              'supportingDocumentsUploadID  ': '',
+              'registrationNumber': '',
+              'practiceLicenseID': '',
+              'cadre': ''
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('checkSupplierKYCSubmitted')) {
-      return Future<http.Response>.value(http.Response(
+      return Future<http.Response>.value(
+        http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{'checkSupplierKYCSubmitted': false}
           }),
-          201));
+          201,
+        ),
+      );
     }
 
     if (queryString.contains('getFeed')) {
@@ -518,30 +563,32 @@ class MockSILGraphQlClient extends IGraphQlClient {
     if (variables['phonenumber'] == '+254712345678') {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                // add your data here
-                'otp': '1234'
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              // add your data here
+              'otp': '1234'
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('updateUserProfile')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'updateUserProfile': <String, dynamic>{
-                  'userBioData': <String, String>{
-                    'firstName': 'Test',
-                    'lastName': 'Name'
-                  }
-                },
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'updateUserProfile': <String, dynamic>{
+                'userBioData': <String, String>{
+                  'firstName': 'Test',
+                  'lastName': 'Name'
+                }
+              },
+            }
+          }),
+          201,
+        ),
       );
     }
 

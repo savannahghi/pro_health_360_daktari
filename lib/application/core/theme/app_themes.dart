@@ -24,8 +24,9 @@ ThemeData buildTheme() {
 
     // text color
     textSelectionTheme: const TextSelectionThemeData(
-        selectionColor: healthcloudTextColor,
-        selectionHandleColor: healthcloudTextColorPurple),
+      selectionColor: healthcloudTextColor,
+      selectionHandleColor: healthcloudTextColorPurple,
+    ),
 
     // Button theme
     buttonTheme: buttonTheme.copyWith(

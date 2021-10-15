@@ -63,7 +63,10 @@ class SaveKYCDetailsAction extends ReduxAction<CoreState> {
       UserFeedStore().refreshFeed.add(true);
 
       showAlertSnackBar(
-          context: context, message: kycSaveSuccessMsg, title: '');
+        context: context,
+        message: kycSaveSuccessMsg,
+        title: '',
+      );
       await triggerNavigationEvent(context: context, route: homePageRoute);
     }
   }

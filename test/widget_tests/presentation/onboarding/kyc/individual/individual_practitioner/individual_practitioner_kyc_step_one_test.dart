@@ -65,8 +65,10 @@ void main() {
 
         expect(find.byType(ErrorAlertBox), findsOneWidget);
         expect(find.byType(SnackBar), findsOneWidget);
-        expect(find.text('Please provide all the required information'),
-            findsOneWidget);
+        expect(
+          find.text('Please provide all the required information'),
+          findsOneWidget,
+        );
       });
     });
 
@@ -120,7 +122,9 @@ void main() {
       await tester.pump();
 
       expect(
-          find.text('Please tick all services that you offer'), findsOneWidget);
+        find.text('Please tick all services that you offer'),
+        findsOneWidget,
+      );
 
       for (int i = 0; i < practiceServicesList.length; i++) {
         final Finder checkBox =
@@ -131,15 +135,18 @@ void main() {
       }
 
       expect((store.state as AppState).practitionerKYCState!.cadre, 'NURSE');
-      expect((store.state as AppState).practitionerKYCState!.registrationNumber,
-          'some-reg-number');
       expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .practiceLicenseUploadID,
-          'some-doc-id');
-      expect((store.state as AppState).practitionerKYCState!.practiceLicenseID,
-          'some-id');
+        (store.state as AppState).practitionerKYCState!.registrationNumber,
+        'some-reg-number',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseUploadID,
+        'some-doc-id',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseID,
+        'some-id',
+      );
 
       // Perform the license upload
       final Finder fileUpload =
@@ -210,7 +217,9 @@ void main() {
       await tester.pump();
 
       expect(
-          find.text('Please tick all services that you offer'), findsOneWidget);
+        find.text('Please tick all services that you offer'),
+        findsOneWidget,
+      );
 
       for (int i = 0; i < practiceServicesList.length; i++) {
         final Finder checkBox =
@@ -221,15 +230,18 @@ void main() {
       }
 
       expect((store.state as AppState).practitionerKYCState!.cadre, 'NURSE');
-      expect((store.state as AppState).practitionerKYCState!.registrationNumber,
-          'some-reg-number');
       expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .practiceLicenseUploadID,
-          'some-doc-id');
-      expect((store.state as AppState).practitionerKYCState!.practiceLicenseID,
-          'some-id');
+        (store.state as AppState).practitionerKYCState!.registrationNumber,
+        'some-reg-number',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseUploadID,
+        'some-doc-id',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseID,
+        'some-id',
+      );
 
       // Perform the license upload
       final Finder fileUpload =
@@ -300,7 +312,9 @@ void main() {
       await tester.pump();
 
       expect(
-          find.text('Please tick all services that you offer'), findsOneWidget);
+        find.text('Please tick all services that you offer'),
+        findsOneWidget,
+      );
 
       for (int i = 0; i < practiceServicesList.length; i++) {
         final Finder checkBox =
@@ -311,15 +325,18 @@ void main() {
       }
 
       expect((store.state as AppState).practitionerKYCState!.cadre, 'NURSE');
-      expect((store.state as AppState).practitionerKYCState!.registrationNumber,
-          'some-reg-number');
       expect(
-          (store.state as AppState)
-              .practitionerKYCState!
-              .practiceLicenseUploadID,
-          'some-doc-id');
-      expect((store.state as AppState).practitionerKYCState!.practiceLicenseID,
-          'some-id');
+        (store.state as AppState).practitionerKYCState!.registrationNumber,
+        'some-reg-number',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseUploadID,
+        'some-doc-id',
+      );
+      expect(
+        (store.state as AppState).practitionerKYCState!.practiceLicenseID,
+        'some-id',
+      );
 
       // Perform the license upload
       final Finder fileUpload =

@@ -24,11 +24,11 @@ import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 /// different implementations
 /// for its method.
 class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
-  AfyaMojaStateDatabase(
-      {Duration throttle = const Duration(seconds: 2),
-      Duration saveDuration = Duration.zero,
-      required this.dataBaseName})
-      : _throttle = throttle,
+  AfyaMojaStateDatabase({
+    Duration throttle = const Duration(seconds: 2),
+    Duration saveDuration = Duration.zero,
+    required this.dataBaseName,
+  })  : _throttle = throttle,
         _saveDuration = saveDuration;
 
   final Duration? _saveDuration;
@@ -43,8 +43,8 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   @override
   Future<void> deleteState() async {
     await AfyaMojaDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .clearDatabase();
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).clearDatabase();
   }
 
   @override
@@ -79,13 +79,14 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   @override
   Future<AppState> readState() async {
     if (await AfyaMojaDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .isDatabaseEmpty()) {
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).isDatabaseEmpty()) {
       return AppState.initial();
     } else {
       return retrieveState(
         AfyaMojaDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName)),
+          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+        ),
       );
     }
   }
@@ -98,32 +99,43 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   /// initialize the database
   Future<void> init() async {
     await AfyaMojaDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .database;
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).database;
   }
 
   @visibleForTesting
   Future<void> persistState(
-      AppState newState, AfyaMojaDatabaseBase<dynamic> database) async {
+    AppState newState,
+    AfyaMojaDatabaseBase<dynamic> database,
+  ) async {
     // save MISC state
     await database.saveState(
-        data: newState.miscState!.toJson(), table: Tables.MiscState);
+      data: newState.miscState!.toJson(),
+      table: Tables.MiscState,
+    );
 
     // save user feed state
     await database.saveState(
-        data: newState.userFeedState!.toJson(), table: Tables.UserFeedState);
+      data: newState.userFeedState!.toJson(),
+      table: Tables.UserFeedState,
+    );
 
     // save user state
     await database.saveState(
-        data: newState.userState!.toJson(), table: Tables.UserState);
+      data: newState.userState!.toJson(),
+      table: Tables.UserState,
+    );
 
     await database.saveState(
-        data: newState.clinicalState!.toJson(), table: Tables.ClinicalState);
+      data: newState.clinicalState!.toJson(),
+      table: Tables.ClinicalState,
+    );
 
     // save navigation state
     await database.saveState(
-        data: newState.navigationState!.toJson(),
-        table: Tables.NavigationState);
+      data: newState.navigationState!.toJson(),
+      table: Tables.NavigationState,
+    );
 
     // save practitionerKYC state
     await database.saveState(
@@ -147,7 +159,8 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
 
       // retrieve user feed state
       userFeedState: UserFeedState.fromJson(
-          await database.retrieveState(Tables.UserFeedState)),
+        await database.retrieveState(Tables.UserFeedState),
+      ),
 
       // retrieve user state
       userState:
@@ -155,19 +168,23 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
 
       // retrieve clinical state
       clinicalState: ClinicalState.fromJson(
-          await database.retrieveState(Tables.ClinicalState)),
+        await database.retrieveState(Tables.ClinicalState),
+      ),
 
       // retrieve navigation state
       navigationState: Navigation.fromJson(
-          await database.retrieveState(Tables.NavigationState)),
+        await database.retrieveState(Tables.NavigationState),
+      ),
 
       // retrieve practitionerKYC state
       practitionerKYCState: PractitionerKYCState.fromJson(
-          await database.retrieveState(Tables.PractitionerKYCState)),
+        await database.retrieveState(Tables.PractitionerKYCState),
+      ),
 
       // retrieve practitionerKYC state
       userRegistrationState: UserRegistrationState.fromJson(
-          await database.retrieveState(Tables.UserRegistrationState)),
+        await database.retrieveState(Tables.UserRegistrationState),
+      ),
 
       wait: Wait(),
     );

@@ -79,9 +79,10 @@ class IndividualPractitionerKYCAction extends ReduxAction<CoreState> {
           practiceServices ?? individualPractitionerFromState!.practiceServices,
       supportingDocuments: supportingDocsBatchUpdate ??
           deconstructSupportingDocuments(
-              newSupportingDocument: supportingDocument,
-              supportingDocumentsFromState:
-                  individualPractitionerFromState!.supportingDocuments!),
+            newSupportingDocument: supportingDocument,
+            supportingDocumentsFromState:
+                individualPractitionerFromState!.supportingDocuments!,
+          ),
     );
 
     final AppState newState =

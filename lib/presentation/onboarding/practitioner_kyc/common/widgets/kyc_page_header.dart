@@ -29,9 +29,11 @@ class KYCPageHeader extends StatelessWidget {
                   style: TextThemes.boldSize14Text(),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'STEP $currentStep ',
-                        style: TextThemes.boldSize14Text(
-                            Theme.of(context).colorScheme.secondary)),
+                      text: 'STEP $currentStep ',
+                      style: TextThemes.boldSize14Text(
+                        Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
                     TextSpan(text: '/ $totalSteps'),
                   ],
                 ),

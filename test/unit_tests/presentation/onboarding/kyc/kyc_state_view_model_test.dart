@@ -15,7 +15,9 @@ void main() {
     final PractitionerKYCStateViewModel kycState =
         PractitionerKYCStateViewModel.fromState(store.state);
     expect(kycState, PractitionerKYCStateViewModel.fromState(store.state));
-    expect(kycState.hashCode,
-        PractitionerKYCStateViewModel.fromState(store.state).hashCode);
+    expect(
+      kycState.hashCode,
+      PractitionerKYCStateViewModel.fromState(store.state).hashCode,
+    );
   });
 }

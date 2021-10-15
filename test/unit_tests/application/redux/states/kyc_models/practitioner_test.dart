@@ -18,8 +18,10 @@ void main() {
     test('should convert data from json to a PractitionerKYCState class', () {
       final Map<String, dynamic> data = <String, dynamic>{
         'identificationDoc': const Identification(
-                type: 'MILITARY', docNumber: '12345', uploadID: 'photoFilename')
-            .toJson(),
+          type: 'MILITARY',
+          docNumber: '12345',
+          uploadID: 'photoFilename',
+        ).toJson(),
         'supportingDocuments': <SupportingDocument>[],
         'registrationNumber': UNKNOWN,
         'practiceLicenseID': UNKNOWN,

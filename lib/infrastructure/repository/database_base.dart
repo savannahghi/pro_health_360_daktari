@@ -7,8 +7,10 @@ abstract class AfyaMojaDatabaseBase<T> {
   Future<T> get database;
 
   /// [saveState] stores the state in the linked [database]
-  Future<void> saveState(
-      {required Map<String, dynamic> data, required Tables table});
+  Future<void> saveState({
+    required Map<String, dynamic> data,
+    required Tables table,
+  });
 
   /// [countTableRecords] get how many records belong to specific table as in the
   /// case of SQLite, and key as in the case of local storage

@@ -54,14 +54,19 @@ void main() {
 
     testWidgets('should enter form fields correctly',
         (WidgetTester tester) async {
-      store.dispatch(WaitAction<CoreState>.remove(kycSavingFlag,
-          ref: '${kycSavingFlag}_ref'));
+      store.dispatch(
+        WaitAction<CoreState>.remove(
+          kycSavingFlag,
+          ref: '${kycSavingFlag}_ref',
+        ),
+      );
 
       await mockNetworkImages(() async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            widget: IndividualPractitionerKYCStepTwo());
+          tester: tester,
+          store: store,
+          widget: IndividualPractitionerKYCStepTwo(),
+        );
 
         expect(find.byType(IndividualPractitionerKYCStepTwo), findsOneWidget);
         expect(find.text('Identification document details'), findsOneWidget);
@@ -88,10 +93,13 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(
-            find.byWidgetPredicate((Widget widget) =>
+          find.byWidgetPredicate(
+            (Widget widget) =>
                 widget is DropdownButton<String> &&
-                widget.value == DocumentType.Passport.name),
-            findsOneWidget);
+                widget.value == DocumentType.Passport.name,
+          ),
+          findsOneWidget,
+        );
 
         // Upload KYC ID
         final Finder kycIdFileUpload = find.byKey(kycIdOptionUploadKey);
@@ -127,9 +135,10 @@ void main() {
     testWidgets('should validate the form fields correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: IndividualPractitionerKYCStepTwo());
+        tester: tester,
+        store: store,
+        widget: IndividualPractitionerKYCStepTwo(),
+      );
 
       expect(find.byType(IndividualPractitionerKYCStepTwo), findsOneWidget);
       expect(find.byType(Form), findsOneWidget);
@@ -155,14 +164,17 @@ void main() {
     testWidgets('should render silPlatformLoader when kycSavingFlag is set',
         (WidgetTester tester) async {
       store.dispatch(
-        WaitAction<CoreState>.remove(kycSavingFlag,
-            ref: '${kycSavingFlag}_ref'),
+        WaitAction<CoreState>.remove(
+          kycSavingFlag,
+          ref: '${kycSavingFlag}_ref',
+        ),
       );
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          widget: IndividualPractitionerKYCStepTwo());
+        tester: tester,
+        store: store,
+        widget: IndividualPractitionerKYCStepTwo(),
+      );
 
       expect(find.byType(IndividualPractitionerKYCStepTwo), findsOneWidget);
       expect(find.byType(Form), findsOneWidget);

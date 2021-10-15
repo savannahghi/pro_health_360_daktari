@@ -74,10 +74,12 @@ Future<void> initApp(List<AppContext> appContexts) async {
   /// Shows an error image (spaceman) with a prompt to call tech-support in release mode
   ErrorWidget.builder = (FlutterErrorDetails details) {
     bool inDebug = false;
-    assert(() {
-      inDebug = true;
-      return true;
-    }());
+    assert(
+      () {
+        inDebug = true;
+        return true;
+      }(),
+    );
     // In debug mode, use the normal error widget which shows
     if (inDebug) {
       return ErrorWidget(details.exception);
@@ -87,7 +89,9 @@ Future<void> initApp(List<AppContext> appContexts) async {
   };
 
   // Add New App Branding details
-  AppBrand()..appName.add(appName)..appLogo.add(appLogo);
+  AppBrand()
+    ..appName.add(appName)
+    ..appLogo.add(appLogo);
 
   runZonedGuarded(
     () async {

@@ -29,7 +29,10 @@ void main() {
         widget: KYCSupportingDocuments(
           docs: const <SupportingDocument>[
             SupportingDocument(
-                title: 'title', description: 'description', upload: 'upload')
+              title: 'title',
+              description: 'description',
+              upload: 'upload',
+            )
           ],
           supportingDocOnChanged: () {},
           removeDocumentFunc: ({String description = '', String title = ''}) {},
@@ -47,18 +50,25 @@ void main() {
       await tester.pumpAndSettle();
 
       /// Enter text for supporting document page
-      await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), 'title');
+      await tester.enterText(
+        find.byKey(kycSupportingDocumentTitleKey),
+        'title',
+      );
       await tester.pump();
 
       await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentDescriptionKey), 'description');
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        'description',
+      );
       await tester.pump();
 
       await tester.enterText(
-          find.byKey(kycSupportingDocumentDescriptionKey), 'description');
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        'description',
+      );
       await tester.pump();
 
       /// Find the supporting document form fields and widgets
@@ -86,7 +96,10 @@ void main() {
         widget: KYCSupportingDocuments(
           docs: const <SupportingDocument>[
             SupportingDocument(
-                title: 'title', description: 'description', upload: 'upload')
+              title: 'title',
+              description: 'description',
+              upload: 'upload',
+            )
           ],
           supportingDocOnChanged: () {},
           removeDocumentFunc: ({String description = '', String title = ''}) {},
@@ -108,10 +121,16 @@ void main() {
       await tester.enterText(find.byKey(kycSupportingDocumentTitleKey), '');
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
+      await tester.enterText(
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        '',
+      );
       await tester.pump();
 
-      await tester.enterText(find.byKey(kycSupportingDocumentDescriptionKey), '');
+      await tester.enterText(
+        find.byKey(kycSupportingDocumentDescriptionKey),
+        '',
+      );
       await tester.pump();
 
       /// Find the supporting document form fields and widgets
@@ -119,10 +138,11 @@ void main() {
       expect(find.byKey(kycSupportingDocumentTitleKey), findsOneWidget);
       expect(find.byKey(kycSupportingDocumentDescriptionKey), findsOneWidget);
       expect(
-          find.byKey(
-            kycSupportingDocumentUploadKey,
-          ),
-          findsOneWidget);
+        find.byKey(
+          kycSupportingDocumentUploadKey,
+        ),
+        findsOneWidget,
+      );
       expect(find.byKey(kycAddSupportingDocumentButtonKey), findsOneWidget);
 
       /// find other widgets

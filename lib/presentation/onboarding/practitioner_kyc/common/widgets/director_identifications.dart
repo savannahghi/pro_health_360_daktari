@@ -88,7 +88,9 @@ class _KYCDirectorIdentificationsState
               padding: const EdgeInsets.all(15),
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[

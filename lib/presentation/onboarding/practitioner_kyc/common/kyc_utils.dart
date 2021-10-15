@@ -35,15 +35,17 @@ Future<String> uploadFileAndGetId({
 
     /// initialize the [uploadFileEndpoint]
     final String endPoint = EndpointContext.uploadFileEndpoint(
-        AppWrapperBase.of(context)!.appContexts);
+      AppWrapperBase.of(context)!.appContexts,
+    );
 
     final ProcessedResponse processedResponse = processResponse(
-        await _httpClient.callRESTAPI(
-          endpoint: endPoint,
-          variables: fileData,
-          method: AppRequestTypes.POST.name,
-        ),
-        context);
+      await _httpClient.callRESTAPI(
+        endpoint: endPoint,
+        variables: fileData,
+        method: AppRequestTypes.POST.name,
+      ),
+      context,
+    );
     if (processedResponse.ok == true) {
       final Map<String, dynamic> body =
           json.decode(processedResponse.response.body) as Map<String, dynamic>;
@@ -96,14 +98,22 @@ bool validateKYCFields({
 }
 
 List<SupportingDocument> removeSupportingDoc(
-        List<SupportingDocument> docs, String title, String description) =>
+  List<SupportingDocument> docs,
+  String title,
+  String description,
+) =>
     docs
-        .where((SupportingDocument doc) =>
-            doc.title != title && doc.description != description)
+        .where(
+          (SupportingDocument doc) =>
+              doc.title != title && doc.description != description,
+        )
         .toList();
 
-SupportingDocument? getSupportingDoc(String? supportingDocumentTitle,
-    String? supportingDocumentDescription, String? supportingDocumentUpload) {
+SupportingDocument? getSupportingDoc(
+  String? supportingDocumentTitle,
+  String? supportingDocumentDescription,
+  String? supportingDocumentUpload,
+) {
   if (supportingDocumentTitle != null &&
       supportingDocumentDescription != null &&
       supportingDocumentUpload != null) {
@@ -115,9 +125,10 @@ SupportingDocument? getSupportingDoc(String? supportingDocumentTitle,
   }
 }
 
-List<SupportingDocument> deconstructSupportingDocuments(
-    {required List<SupportingDocument> supportingDocumentsFromState,
-    SupportingDocument? newSupportingDocument}) {
+List<SupportingDocument> deconstructSupportingDocuments({
+  required List<SupportingDocument> supportingDocumentsFromState,
+  SupportingDocument? newSupportingDocument,
+}) {
   if (newSupportingDocument == null) return supportingDocumentsFromState;
   if (supportingDocumentsFromState.isNotEmpty) {
     return <SupportingDocument>[
@@ -130,7 +141,9 @@ List<SupportingDocument> deconstructSupportingDocuments(
 }
 
 List<Identification> removeIdentificationDoc(
-        List<Identification> docs, String idNumber) =>
+  List<Identification> docs,
+  String idNumber,
+) =>
     docs.where((Identification doc) => doc.docNumber != idNumber).toList();
 
 Future<void> hasSupplierSubmittedKYC(BuildContext context) async {

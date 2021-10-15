@@ -28,8 +28,10 @@ void main() {
         kraPinUploadId: UNKNOWN,
       ).toJson();
 
-      expect(PractitionerKYCState.fromJson(practitionerKYCState),
-          isA<PractitionerKYCState>());
+      expect(
+        PractitionerKYCState.fromJson(practitionerKYCState),
+        isA<PractitionerKYCState>(),
+      );
     });
   });
 }

@@ -40,7 +40,8 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
   Future<int> countTableRecords(Tables table) async {
     final T _db = await this.database;
     final int? count = Sqflite.firstIntValue(
-        await _db.rawQuery('SELECT COUNT(*) FROM ${table.name}'));
+      await _db.rawQuery('SELECT COUNT(*) FROM ${table.name}'),
+    );
     return Future<int>.value(count);
   }
 
@@ -75,14 +76,18 @@ class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
   /// IMPORTANT: THIS METHOD WORKS ON THE ASSUMPTION THAT THE TABLE NAME
   /// MATCHES THE INSERTION FIELD NAME
   @override
-  Future<void> saveState(
-      {required Map<String, dynamic> data, required Tables table}) async {
+  Future<void> saveState({
+    required Map<String, dynamic> data,
+    required Tables table,
+  }) async {
     final String _tableName = table.name;
 
     final T _db = await this.database;
     final String dataAsString = jsonEncode(data);
-    await _db.rawInsert('INSERT INTO $_tableName($_tableName) VALUES(?)',
-        <dynamic>[dataAsString]);
+    await _db.rawInsert(
+      'INSERT INTO $_tableName($_tableName) VALUES(?)',
+      <dynamic>[dataAsString],
+    );
     return;
   }
 

@@ -83,7 +83,9 @@ final AppSetupData prodAppSetupData = AppSetupData(
 
 /// Returns a list of secondary phone numbers
 List<PhoneNumber>? deconstructSecondaryPhoneNumber(
-    CoreState state, UserProfile? userProfile) {
+  CoreState state,
+  UserProfile? userProfile,
+) {
   if (userProfile?.secondaryPhoneNumbers != null) {
     /// overwrite secondary phones to avoid complex pattern matching
     return userProfile?.secondaryPhoneNumbers;
@@ -97,7 +99,9 @@ List<PhoneNumber>? deconstructSecondaryPhoneNumber(
 
 /// Returns a list of secondary email addresses
 List<EmailAddress>? deconstructSecondaryEmailAddresses(
-    CoreState state, UserProfile? userProfile) {
+  CoreState state,
+  UserProfile? userProfile,
+) {
   if (userProfile?.secondaryEmailAddresses != null) {
     /// overwrite secondary emails to avoid complex pattern matching
     return userProfile?.secondaryEmailAddresses;

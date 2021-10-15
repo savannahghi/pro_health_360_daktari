@@ -71,8 +71,12 @@ Future<void> buildTestWidget({
 ///
 /// This widget also opens the drawer for you so that you can begin your
 /// widget interactions immediately
-Future<void> buildDrawerTestWidget(WidgetTester tester, DrawerType drawerType,
-    {Store<AppState>? store, IGraphQlClient? graphQlClient}) async {
+Future<void> buildDrawerTestWidget(
+  WidgetTester tester,
+  DrawerType drawerType, {
+  Store<AppState>? store,
+  IGraphQlClient? graphQlClient,
+}) async {
   await buildTestWidget(
     tester: tester,
     graphQlClient: graphQlClient,
@@ -93,14 +97,16 @@ Future<void> buildDrawerTestWidget(WidgetTester tester, DrawerType drawerType,
     widget: Builder(
       builder: (BuildContext context) {
         StoreProvider.dispatch<CoreState>(
-            context,
-            UpdateUserStateAction(
-              userProfile: UserProfile(
-                userBioData: BioData(
-                    firstName: Name.withValue('Bewell'),
-                    lastName: Name.withValue('Test')),
+          context,
+          UpdateUserStateAction(
+            userProfile: UserProfile(
+              userBioData: BioData(
+                firstName: Name.withValue('Bewell'),
+                lastName: Name.withValue('Test'),
               ),
-            ));
+            ),
+          ),
+        );
         return SILPrimaryButton(
           text: drawerTestRootText,
           onPressed: () => Scaffold.of(context).openEndDrawer(),

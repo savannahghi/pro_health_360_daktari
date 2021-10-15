@@ -41,13 +41,14 @@ void main() {
             widget: Builder(
               builder: (BuildContext context) {
                 return SILPrimaryButton(
-                    buttonKey: const Key('get_upload_id'),
-                    onPressed: () async {
-                      uploadID = await uploadFileAndGetId(
-                        fileData: fileData,
-                        context: context,
-                      );
-                    });
+                  buttonKey: const Key('get_upload_id'),
+                  onPressed: () async {
+                    uploadID = await uploadFileAndGetId(
+                      fileData: fileData,
+                      context: context,
+                    );
+                  },
+                );
               },
             ),
           );
@@ -71,11 +72,12 @@ void main() {
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
-                  buttonKey: const Key('validate_kyc_fields'),
-                  onPressed: () async {
-                    result =
-                        validateKYCFields(context: context, idType: 'Passport');
-                  });
+                buttonKey: const Key('validate_kyc_fields'),
+                onPressed: () async {
+                  result =
+                      validateKYCFields(context: context, idType: 'Passport');
+                },
+              );
             },
           ),
         );
@@ -100,13 +102,15 @@ void main() {
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
-                  buttonKey: const Key('validate_kyc_fields'),
-                  onPressed: () async {
-                    result = validateKYCFields(
-                        context: context,
-                        idType: 'Passport',
-                        idUploadId: 'not null');
-                  });
+                buttonKey: const Key('validate_kyc_fields'),
+                onPressed: () async {
+                  result = validateKYCFields(
+                    context: context,
+                    idType: 'Passport',
+                    idUploadId: 'not null',
+                  );
+                },
+              );
             },
           ),
         );

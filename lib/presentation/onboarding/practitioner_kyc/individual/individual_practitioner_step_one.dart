@@ -78,7 +78,8 @@ class _IndividualPractitionerKYCStepOneState
         child: StoreConnector<CoreState, IndividualPractitionerViewModel>(
           converter: (Store<CoreState> store) {
             return IndividualPractitionerViewModel.fromState(
-                store.state as AppState);
+              store.state as AppState,
+            );
           },
           builder: (BuildContext context, IndividualPractitionerViewModel vm) {
             return Form(

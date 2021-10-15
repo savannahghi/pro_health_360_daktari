@@ -16,14 +16,16 @@ void main() {
 
     testWidgets('should render correctly with default values',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          appBar: const CustomAppBar(
-            title: title,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            appBar: const CustomAppBar(
+              title: title,
+            ),
+            body: Container(),
           ),
-          body: Container(),
         ),
-      ));
+      );
 
       expect(find.byType(AppBarBackButton), findsOneWidget);
       expect(find.text(title), findsOneWidget);
@@ -31,15 +33,17 @@ void main() {
 
     testWidgets('should render correctly with showMoreButton set to true',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          appBar: const CustomAppBar(
-            title: title,
-            showMoreButton: true,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            appBar: const CustomAppBar(
+              title: title,
+              showMoreButton: true,
+            ),
+            body: Container(),
           ),
-          body: Container(),
         ),
-      ));
+      );
       final Finder backButton = find.byKey(appBarBackButtonKey);
 
       expect(backButton, findsOneWidget);

@@ -76,4 +76,3 @@ linter:
     avoid_web_libraries_in_flutter: false
     avoid_classes_with_only_static_members: false
     directives_ordering: false
-    require_trailing_commas: false
