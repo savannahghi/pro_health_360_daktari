@@ -21,6 +21,11 @@ const String helpCircleIcon = 'assets/icons/help_circle_icon.svg';
 const String alertCircleIcon = 'assets/icons/alert_circle_icon.svg';
 const String blendedBackgroundImg = 'assets/images/feather_bg.jpg';
 
+//Content Page
+const String contentPageImage = 'assets/images/content_page_image.svg';
+const String contentManagementButtonIcon =
+    'assets/icons/content_management_button_icon.svg';
+
 // home
 const String addNewUserIconSvg = 'assets/icons/add_new_user.svg';
 const String serviceRequestsIconSvg = 'assets/icons/service_requests.svg';

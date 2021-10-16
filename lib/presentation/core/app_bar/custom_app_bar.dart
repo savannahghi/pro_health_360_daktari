@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -62,7 +63,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Text(
               title ?? '',
               style: TextThemes.veryBoldSize16Text(
-                showMoreButton ? Colors.white : Theme.of(context).primaryColor,
+                showMoreButton ? Colors.white : AppColors.textAltColor,
               ),
             ),
 

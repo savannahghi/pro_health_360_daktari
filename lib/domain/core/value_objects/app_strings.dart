@@ -84,6 +84,12 @@ List<String> identificationOptions =
 
 String idLabel(String val) => 'Enter $val number';
 
+//Content Page
+const String contentPageDescription =
+    'To publish new content, please log in to ghost below, create your content and publish';
+const String contentManagementString = 'Content management';
+const String contentPageTitle = 'Create content';
+
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to My Afya Hub';
 const String phoneLoginPageDescription = 'Enter your provided pin to continue';

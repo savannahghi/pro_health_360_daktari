@@ -6,6 +6,7 @@ import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/community/community_list_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
@@ -40,6 +41,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<CreateNewPINPage>>());
     expect(route.builder(context), isA<CreateNewPINPage>());
+  });
+
+  test('Test router returns ContentPage', () {
+    const RouteSettings settings = RouteSettings(name: contentPage);
+
+    final MaterialPageRoute<ContentPage> route =
+        routeGenerator(settings)! as MaterialPageRoute<ContentPage>;
+
+    expect(route, isA<MaterialPageRoute<ContentPage>>());
+    expect(route.builder(context), isA<ContentPage>());
   });
 
   test('Test router returns IndividualPractitionerKYCStepOne', () {

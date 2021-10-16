@@ -10,3 +10,5 @@ const String individualPractitionerKYCStepThreeRoute =
 const String kycIntroPageRoute = '/kycIntroPage';
 
 const String communityPage = '/communityPage';
+
+const String contentPage = '/contentPage';
