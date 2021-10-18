@@ -44,6 +44,7 @@ final MockDeviceCapabilities deviceCapabilities = MockDeviceCapabilities();
 
 const Size tabletPortrait = Size(720, 1280);
 const Size tabletLandscape = Size(1280, 720);
+const Size typicalLargePhoneScreenSizePortrait = Size(300, 800);
 
 String testPath(String relativePath) {
   final Directory current = Directory.current;
@@ -624,6 +625,24 @@ String testKYCKraNumber = 'A2345788';
 String testKYCIdNumber = '12345678';
 String testKYCIdType = 'National ID';
 String testKYCRegistrationNumber = '12345678';
+
+Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
+  'id': 'id',
+  'questionStem': 'question_stem',
+  'description': 'description',
+  'responseType': 'response_type',
+  'flavour': 'flavour',
+  'active': true,
+  'sequence': 1,
+};
+
+Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
+  'id': 'id',
+  'timeStamp': '2021-05-06T05:34:24Z',
+  'userId': 'userId',
+  'securityQuestionId': 'securityQuestionId',
+  'response': 'response',
+};
 
 final Map<String, dynamic> mockFeedContent = <String, dynamic>{
   'uid': 'LMqDCyyciFMWHfOsvYa76L6dya73',
