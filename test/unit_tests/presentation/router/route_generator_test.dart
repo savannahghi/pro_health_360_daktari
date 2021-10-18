@@ -14,8 +14,10 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import '../../../mocks/mocks.dart';
 
 void main() {
@@ -106,5 +108,23 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>?;
     expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());
     expect(route?.builder(context), isA<SecurityQuestionsPage>());
+  });
+
+  test('Test router returns UserProfilePage', () {
+    const RouteSettings settings = RouteSettings(name: profilePage);
+
+    final MaterialPageRoute<UserProfilePage>? route =
+        routeGenerator(settings) as MaterialPageRoute<UserProfilePage>?;
+    expect(route, isA<MaterialPageRoute<UserProfilePage>>());
+    expect(route?.builder(context), isA<UserProfilePage>());
+  });
+
+  test('Test router returns PINResetRequestsPage', () {
+    const RouteSettings settings = RouteSettings(name: pinResetRequestsPage);
+
+    final MaterialPageRoute<PINResetRequestsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PINResetRequestsPage>?;
+    expect(route, isA<MaterialPageRoute<PINResetRequestsPage>>());
+    expect(route?.builder(context), isA<PINResetRequestsPage>());
   });
 }

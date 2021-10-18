@@ -173,8 +173,12 @@ const String addNewUserText = 'Add New User';
 const String serviceRequestsText = 'Service Requests';
 const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
+
 //Service Requests
 const String serviceRequestString = 'Service requests';
+const String approveString = 'Approve';
+const String searchString = 'Search';
+
 // Notifications
 const String notificationsText = 'Notifications';
 const String customDate = 'July 12 2021';

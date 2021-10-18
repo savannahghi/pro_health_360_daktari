@@ -71,3 +71,7 @@ const Key forgotPinButton = Key('forgot_pin_button_key');
 const Key appBarUserKey = Key('app_bar_user_key');
 const Key profileUpdateCardKey = Key('profile_update_card_key');
 const Key contactRequestCardKey = Key('contact_request_card_key');
+
+//Service Requests keys
+const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
+const Key pinRequestApproveCheckboxKey = Key('pin_request_approve_checkbox_key');
