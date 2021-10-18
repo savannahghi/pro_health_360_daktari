@@ -12,3 +12,5 @@ const String kycIntroPageRoute = '/kycIntroPage';
 const String communityPage = '/communityPage';
 
 const String contentPage = '/contentPage';
+
+const String securityQuestionsPage = '/securityQuestionsPage';

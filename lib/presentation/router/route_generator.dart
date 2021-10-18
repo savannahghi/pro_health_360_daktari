@@ -24,6 +24,7 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widg
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
+import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 
 class AppRouterGenerator extends RouteGenerator {
@@ -79,6 +80,11 @@ class AppRouterGenerator extends RouteGenerator {
         case contentPage:
           return MaterialPageRoute<ContentPage>(
             builder: (_) => ContentPage(),
+          );
+
+        case securityQuestionsPage:
+          return MaterialPageRoute<SecurityQuestionsPage>(
+            builder: (_) => const SecurityQuestionsPage(),
           );
 
         case individualPractitionerKYCStepOneRoute:

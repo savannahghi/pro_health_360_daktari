@@ -96,6 +96,16 @@ const String phoneLoginPageDescription = 'Enter your provided pin to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
 
+//Security Questions
+const String setSecurityQuestionsString = 'Set security questions';
+const String securityQuestionsDescriptionString =
+    'Choose one security question. Make sure to remember the answer';
+const String whereWereYouBornString = 'Where were you born?';
+const String whatsTheNameOfYourPetString = 'What is the name of your pet?';
+const String whatsYourFavoriteFoodString = 'What is your favorite food?';
+const String whereDidYouFirstLiveString = 'Where did you first live?';
+const String answerHereString = 'Answer here';
+
 const String idRequired = 'ID Number is required';
 const String kraPINText = 'KRA PIN details';
 const String kraLabel = 'Add your KRA PIN';

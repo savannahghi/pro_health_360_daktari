@@ -13,6 +13,7 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import '../../../mocks/mocks.dart';
@@ -96,5 +97,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
     expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
     expect(route?.builder(context), isA<CommunityListViewPage>());
+  });
+
+  test('Test router returns SecurityQuestionsPage', () {
+    const RouteSettings settings = RouteSettings(name: securityQuestionsPage);
+
+    final MaterialPageRoute<SecurityQuestionsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>?;
+    expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());
+    expect(route?.builder(context), isA<SecurityQuestionsPage>());
   });
 }
