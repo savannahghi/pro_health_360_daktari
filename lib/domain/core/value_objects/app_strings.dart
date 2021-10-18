@@ -204,3 +204,20 @@ const String confirmString = 'Confirm';
 // Notifications
 const String notificationsText = 'Notifications';
 const String customDate = 'July 12 2021';
+
+// Register patient page
+const String CCCNumberLabel = 'CCC Number *';
+const String preferredClinicLabel = 'Preferred clinic *';
+const String firstNameLabel = 'First Name';
+const String lastNameLabel = 'Last Name';
+const String birthDateLabel = 'Birtdate';
+const String genderLabel = 'Gender';
+const String idNoLabel = 'ID No.';
+const String phoneNoLabel = 'Phone No.';
+const String physicalLocationLabel = 'Physical Location';
+const String nextOfKinLabel = 'Next of Kin';
+const String relationLabel = 'Relation';
+const String appAccessText = 'App Access';
+const String myAfyaHubInviteText = 'Invite to MyAfya Hub';
+const String groupsLabel = 'Groups/Community';
+const String registerBtnText = 'Register';
