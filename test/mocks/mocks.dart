@@ -12,6 +12,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:user_feed/user_feed.dart' as feed_obj;
@@ -213,6 +214,25 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
     return Future<http.Response>.value(response);
   }
 }
+
+Map<String, dynamic> mockIconDetails = <String, dynamic>{
+  'url': alertCircleIcon
+};
+
+Map<String, dynamic> mockNotificationActions = <String, dynamic>{
+  'name': 'Calendar',
+  'route': ' ',
+  'icon': mockIconDetails
+};
+
+Map<String, dynamic> mockNotification = <String, dynamic>{
+  'icon': mockIconDetails,
+  'description':
+      'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+  'date': 'July 21 2021',
+  'actions': <dynamic>[mockNotificationActions],
+  'status': 'Missed'
+};
 
 final MockSILGraphQlClient mockSILGraphQlClient =
     MockSILGraphQlClient.withResponse(

@@ -1,8 +1,11 @@
 // Project imports:
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
+import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/domain/core/entities/request_item.dart';
 
@@ -92,3 +95,21 @@ bool confirmPinValidator(String pin, String confirmPin) {
   }
   return true;
 }
+
+List<NotificationDetails> notifications = <NotificationDetails>[
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: surveyCollectionNotificationIcon),
+    description: 'Your Survey is collecting responses',
+    date: customDate,
+  ),
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
+    description: 'Upcoming tele-consult with Dennis Kilonzo at 2.00pm.',
+    date: customDate,
+  ),
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
+    description: 'New tele-consult request',
+    date: customDate,
+  ),
+];
