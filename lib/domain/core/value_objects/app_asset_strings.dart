@@ -27,8 +27,20 @@ const String serviceRequestsIconSvg = 'assets/icons/service_requests.svg';
 const String profileUpdateIconSvg = 'assets/icons/profile_update.svg';
 const String contactRequestIconSvg = 'assets/icons/contact_request.svg';
 const String magnifierToolIconSvg = 'assets/icons/magnifier_tool.svg';
+
 //Service requests section assets
-const String serviceHeaderImageSvgPath = 'assets/images/service_request_header_image.svg';
+const String serviceHeaderImageSvgPath =
+    'assets/images/service_request_header_image.svg';
 const String pinResetImageSvgPath = 'assets/images/pin_reset_image.svg';
 const String redFlagImageSvgPath = 'assets/images/red_flag_image.svg';
-const String profileUpdateImageSvgPath = 'assets/images/profile_update_image.svg';
+const String profileUpdateImageSvgPath =
+    'assets/images/profile_update_image.svg';
+
+//Notification Icons
+const String teleConsultNotificationIcon =
+    'assets/icons/tele_consult_notification_icon.svg';
+
+const String teleConsultVideoNotificationIcon =
+    'assets/icons/tele_consult_video_notification_icon.svg';
+
+const String surveyCollectionNotificationIcon = 'assets/icons/survey_icon.svg';

@@ -136,7 +136,7 @@ String individualDescription(String description) {
       'required details';
 }
 
-//User Profile
+// User Profile
 const String correctionRequestString = 'Request for correction';
 const String myProfileString = 'My Profile';
 const String name = 'Dr. Wanyonje Joseph';
@@ -159,3 +159,6 @@ const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
 //Service Requests
 const String serviceRequestString = 'Service requests';
+// Notifications
+const String notificationsText = 'Notifications';
+const String customDate = 'July 12 2021';
