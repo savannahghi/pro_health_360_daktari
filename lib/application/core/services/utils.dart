@@ -116,7 +116,10 @@ List<NotificationDetails> notifications = <NotificationDetails>[
 ];
 
 final List<PINResetRequest> pinResetRequests = <PINResetRequest>[
-  PINResetRequest(clientName: 'James Doe Kinyanjui', phoneNumber: '0712345678',),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
+  ),
   PINResetRequest(
     clientName: 'James Doe Kinyanjui',
     phoneNumber: '0712345678',
