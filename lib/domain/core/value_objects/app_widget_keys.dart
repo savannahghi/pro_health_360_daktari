@@ -87,3 +87,7 @@ const Key ageSelectOptionFieldKey = Key('age_select_option_field');
 const Key locationSelectOptionFieldKey = Key('location_select_option_field');
 const Key clinicSelectOptionFieldKey = Key('clinic_select_option_field');
 const Key selectOptionFieldKey = Key('select_option_field');
+
+// add new patient page
+const Key myAfyaHubInviteKey = Key('appAccessKey');
+const Key patientRegisterBtnKey = Key('patientRegisterButton');

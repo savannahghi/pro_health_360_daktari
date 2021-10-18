@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
@@ -136,5 +137,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ForgotPinPage>?;
     expect(route, isA<MaterialPageRoute<ForgotPinPage>>());
     expect(route?.builder(context), isA<ForgotPinPage>());
+  });
+
+  test('Test router returns AddNewPatientPage', () {
+    const RouteSettings settings = RouteSettings(name: addNewPatientPage);
+
+    final MaterialPageRoute<AddNewPatientPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<AddNewPatientPage>?;
+    expect(route, isA<MaterialPageRoute<AddNewPatientPage>>());
+    expect(route?.builder(context), isA<AddNewPatientPage>());
   });
 }
