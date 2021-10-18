@@ -43,6 +43,9 @@ ThemeData buildTheme() {
 }
 
 class AppColors {
+  static const Color easternBlueColor = Color(0xFF1CA4A6);
+  static const Color dodgerBlueColor = Color(0xFF407BFC);
+  static const Color galleryColor = Color(0xFFEBEBEB);
   static const Color primaryColor = Color(0xFF1CA4A6);
   static const Color secondaryColor = Color(0xFF5F2788);
   static const Color accentColor = Color(0xFFA3C717);
@@ -53,6 +56,7 @@ class AppColors {
   static const Color textInputFillColor = Color(0xFFF9F2FE);
   static const Color textAltColor = Color(0xFF5F2788);
   static const Color malachiteColor = Color(0xff00BE33);
+  static const Color mountainMeadowColor = Color(0xff1DBE71);
   static const Color lightGreyColor = Color(0xffd6d6d6);
   static const Color greyTextColor = Color(0xff707070);
   static const Color inputBackgroundColor = Color(0xFFF9F2FE);

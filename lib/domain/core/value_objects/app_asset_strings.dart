@@ -41,6 +41,10 @@ const String redFlagImageSvgPath = 'assets/images/red_flag_image.svg';
 const String profileUpdateImageSvgPath =
     'assets/images/profile_update_image.svg';
 
+// Surveys
+const String surveysImageSvgPath = 'assets/images/forms_rafiki.svg';
+const String shareIconSvgPath = 'assets/icons/share_icon.svg';
+
 //Notification Icons
 const String teleConsultNotificationIcon =
     'assets/icons/tele_consult_notification_icon.svg';

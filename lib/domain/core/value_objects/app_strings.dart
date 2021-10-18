@@ -179,6 +179,22 @@ const String serviceRequestString = 'Service requests';
 const String approveString = 'Approve';
 const String searchString = 'Search';
 
+// Surveys
+const String surveysString = 'Surveys';
+const String createSurveyString = 'Create Survey';
+const String toCreateNewSurveyDescriptionString =
+    'To create a new survey, log in to survey monkey, create your survey and share your survey to a targeted audience';
+const String alreadyHaveYourSurveyLinkString = 'Already have your survey link?';
+const String shareSurveyString = 'Share Survey';
+const String surveyLinkString = 'Survey Link';
+const String shareToString = 'Share to';
+const String bandString = 'Band';
+const String chooseOneString = 'Choose One';
+const String ageString = 'Age';
+const String locationString = 'Location';
+const String clinicString = 'Clinic';
+const String confirmString = 'Confirm';
+
 // Notifications
 const String notificationsText = 'Notifications';
 const String customDate = 'July 12 2021';

@@ -62,7 +62,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Text(
               title ?? '',
               style: TextThemes.veryBoldSize16Text(
-                showMoreButton ? Colors.white : Theme.of(context).colorScheme.secondary,
+                showMoreButton
+                    ? Colors.white
+                    : Theme.of(context).colorScheme.secondary,
               ),
             ),
 

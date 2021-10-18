@@ -74,4 +74,12 @@ const Key contactRequestCardKey = Key('contact_request_card_key');
 
 //Service Requests keys
 const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
-const Key pinRequestApproveCheckboxKey = Key('pin_request_approve_checkbox_key');
+const Key pinRequestApproveCheckboxKey =
+    Key('pin_request_approve_checkbox_key');
+
+// Surveys
+const Key bandSelectOptionFieldKey = Key('band_select_option_field');
+const Key ageSelectOptionFieldKey = Key('age_select_option_field');
+const Key locationSelectOptionFieldKey = Key('location_select_option_field');
+const Key clinicSelectOptionFieldKey = Key('clinic_select_option_field');
+const Key selectOptionFieldKey = Key('select_option_field');
