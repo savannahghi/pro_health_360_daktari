@@ -21,7 +21,11 @@ class AppBarBackButton extends StatelessWidget {
         key: appBarBackButtonKey,
         borderRadius: BorderRadius.circular(50),
         splashColor: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-        onTap: () => Navigator.pop(context),
+         onTap: () async {
+          if (Navigator.canPop(context)) {
+            Navigator.of(context).pop();
+          }
+        },
         child: Padding(
           padding: const EdgeInsets.only(left: 15),
           child: SvgPicture.asset(

@@ -14,3 +14,6 @@ const String communityPage = '/communityPage';
 const String contentPage = '/contentPage';
 
 const String securityQuestionsPage = '/securityQuestionsPage';
+const String profilePage = '/profilePage';
+
+const String pinResetRequestsPage = '/pinResetRequestsPage';

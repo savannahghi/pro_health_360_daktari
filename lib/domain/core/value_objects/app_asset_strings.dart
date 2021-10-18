@@ -49,3 +49,4 @@ const String teleConsultVideoNotificationIcon =
     'assets/icons/tele_consult_video_notification_icon.svg';
 
 const String surveyCollectionNotificationIcon = 'assets/icons/survey_icon.svg';
+const String searchIconSvg = 'assets/icons/search_icon.svg';

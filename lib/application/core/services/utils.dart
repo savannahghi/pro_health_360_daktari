@@ -3,6 +3,7 @@ import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
+import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -56,19 +57,19 @@ String getDisplayName(UserState state) {
 
 final List<RequestItem> serviceRequestItems = <RequestItem>[
   RequestItem(
-    route: kycIntroPageRoute,
+    route: pinResetRequestsPage,
     title: 'Pin Reset',
     imageAssetPath: pinResetImageSvgPath,
     totalNumber: 5,
   ),
   RequestItem(
-    route: kycIntroPageRoute,
+    route: '',
     title: 'Red Flags',
     imageAssetPath: redFlagImageSvgPath,
     totalNumber: 3,
   ),
   RequestItem(
-    route: kycIntroPageRoute,
+    route: '',
     title: 'Profile Update',
     imageAssetPath: profileUpdateImageSvgPath,
     totalNumber: 4,
@@ -111,5 +112,25 @@ List<NotificationDetails> notifications = <NotificationDetails>[
     icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
     description: 'New tele-consult request',
     date: customDate,
+  ),
+];
+
+final List<PINResetRequest> pinResetRequests = <PINResetRequest>[
+  PINResetRequest(clientName: 'James Doe Kinyanjui', phoneNumber: '0712345678',),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
+  ),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
+  ),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
+  ),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
   ),
 ];

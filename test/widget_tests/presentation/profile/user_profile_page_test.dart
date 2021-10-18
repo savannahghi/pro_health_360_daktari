@@ -29,11 +29,6 @@ void main() {
       final Finder backButton = find.byKey(appBarBackButtonKey);
       expect(userProfileListItem, findsNWidgets(userProfileItems.length));
       expect(backButton, findsOneWidget);
-
-      await tester.ensureVisible(backButton);
-      await tester.tap(backButton);
-      await tester.pumpAndSettle();
-      expect(backButton, findsNothing);
     });
   });
 }
