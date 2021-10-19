@@ -21,7 +21,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
@@ -223,7 +223,7 @@ void main() {
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });
 
-    testWidgets('navigates to LandingPage when back button is tapped',
+    testWidgets('navigates to ForgotPinPage when back button is tapped',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -235,7 +235,7 @@ void main() {
       await tester.tap(find.byKey(forgotPinButton));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AfyaMojaLandingPage), findsOneWidget);
+      expect(find.byType(ForgotPinPage), findsOneWidget);
       expect(find.byType(PhoneLoginPage), findsNothing);
     });
   });

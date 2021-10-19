@@ -54,3 +54,6 @@ const String teleConsultVideoNotificationIcon =
 
 const String surveyCollectionNotificationIcon = 'assets/icons/survey_icon.svg';
 const String searchIconSvg = 'assets/icons/search_icon.svg';
+
+//Forgot Pin Page
+const String shieldIcon = 'assets/icons/shield_icon.svg';

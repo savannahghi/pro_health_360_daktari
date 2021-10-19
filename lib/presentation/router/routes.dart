@@ -17,3 +17,4 @@ const String securityQuestionsPage = '/securityQuestionsPage';
 const String profilePage = '/profilePage';
 
 const String pinResetRequestsPage = '/pinResetRequestsPage';
+const String forgotPinPage = '/forgotPinPage';
