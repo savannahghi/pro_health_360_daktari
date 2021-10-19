@@ -20,6 +20,7 @@ import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
+import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
 import '../../../mocks/mocks.dart';
 
@@ -155,5 +156,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<RedFlagsPage>?;
     expect(route, isA<MaterialPageRoute<RedFlagsPage>>());
     expect(route?.builder(context), isA<RedFlagsPage>());
+  });
+
+  test('Test router returns ProfileUpdateRequestsPage', () {
+    const RouteSettings settings = RouteSettings(name: profileUpdateRequestsPage);
+
+    final MaterialPageRoute<ProfileUpdateRequestsPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<ProfileUpdateRequestsPage>?;
+    expect(route, isA<MaterialPageRoute<ProfileUpdateRequestsPage>>());
+    expect(route?.builder(context), isA<ProfileUpdateRequestsPage>());
   });
 }
