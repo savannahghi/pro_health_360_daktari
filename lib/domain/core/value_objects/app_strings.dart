@@ -184,6 +184,13 @@ const String contactRequestText = 'Contact Request';
 const String serviceRequestString = 'Service requests';
 const String approveString = 'Approve';
 const String searchString = 'Search';
+const String reachOutString = 'Reach out';
+const String needsAttentionString = ' needs attention';
+const String redFlagString = 'Red Flags';
+const String cancelString = 'Cancel';
+const String scheduleString = 'Schedule a';
+const String forString = 'for';
+const String meetingTimString = 'Friday 24th September 2021 at 3:30pm';
 
 // Surveys
 const String surveysString = 'Surveys';
