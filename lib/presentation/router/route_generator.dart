@@ -18,6 +18,7 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/common/widgets/kyc_intro_page.dart';
@@ -87,6 +88,11 @@ class AppRouterGenerator extends RouteGenerator {
         case securityQuestionsPage:
           return MaterialPageRoute<SecurityQuestionsPage>(
             builder: (_) => const SecurityQuestionsPage(),
+          );
+
+        case forgotPinPage:
+          return MaterialPageRoute<ForgotPinPage>(
+            builder: (_) => ForgotPinPage(),
           );
 
         case individualPractitionerKYCStepOneRoute:

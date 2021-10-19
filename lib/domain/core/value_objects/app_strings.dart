@@ -59,6 +59,12 @@ const String acceptTermsString =
     'Kindly accept terms and conditions to continue';
 const String comingSoon = 'Coming Soon';
 
+//Forgot PIN Page
+const String resetPassword = 'Reset password?';
+const String resetPasswordDescription = 'Enter your phone number';
+const String sendOTPString = 'Send OTP';
+const String emailOrPhone = 'Email/Phone';
+
 final List<PracticeService> practiceServicesList = <PracticeService>[
   PracticeService(display: 'OutPatient Services', value: 'OUTPATIENT_SERVICES'),
   PracticeService(display: 'InPatient Services', value: 'INPATIENT_SERVICES'),

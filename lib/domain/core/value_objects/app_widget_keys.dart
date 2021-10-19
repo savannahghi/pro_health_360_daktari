@@ -10,6 +10,10 @@ const Key confirmPinInputKey = Key('confirm_pin_input_key');
 const Key resetPinKey = Key('reset_pin_key');
 const Key pinInputKey = Key('pin_input_key');
 
+// Forgot Pin
+const Key forgotPinInput = Key('forgot_pin_input_key');
+const Key sendOTPButtonKey = Key('sent_OTP_Key');
+
 const Key kycOrganizationLimitedCompRadioButtonKey =
     Key('org_coach_limited_comp_radio_button');
 

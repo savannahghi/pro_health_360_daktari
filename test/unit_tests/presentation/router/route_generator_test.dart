@@ -7,6 +7,7 @@ import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/community/community_list_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
@@ -126,5 +127,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<PINResetRequestsPage>?;
     expect(route, isA<MaterialPageRoute<PINResetRequestsPage>>());
     expect(route?.builder(context), isA<PINResetRequestsPage>());
+  });
+
+  test('Test router returns ForgotPinPage', () {
+    const RouteSettings settings = RouteSettings(name: forgotPinPage);
+
+    final MaterialPageRoute<ForgotPinPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ForgotPinPage>?;
+    expect(route, isA<MaterialPageRoute<ForgotPinPage>>());
+    expect(route?.builder(context), isA<ForgotPinPage>());
   });
 }
