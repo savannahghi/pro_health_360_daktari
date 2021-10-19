@@ -61,6 +61,7 @@ class AppColors {
   static const Color greyTextColor = Color(0xff707070);
   static const Color inputBackgroundColor = Color(0xFFF9F2FE);
   static const Color buttonAltColor = Color(0xFF06103B);
+  static const Color blueBerryColor = Color(0xff407bfc);
 }
 
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(

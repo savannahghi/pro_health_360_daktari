@@ -5,6 +5,7 @@ const String warningImage = 'assets/icons/warning.png';
 //App Bar Icon Paths
 const String backIconSvgPath = 'assets/icons/app_bar_back_icon.svg';
 const String moreIconSvgPath = 'assets/icons/more_icon.svg';
+const String notificationSvgIconPath = 'assets/icons/notification_icon.svg';
 //User profile page assets
 const String mySavedIconSvgPath = 'assets/icons/my_saved_icon.svg';
 const String emailIconSvgPath = 'assets/icons/email_icon.svg';
@@ -40,6 +41,8 @@ const String pinResetImageSvgPath = 'assets/images/pin_reset_image.svg';
 const String redFlagImageSvgPath = 'assets/images/red_flag_image.svg';
 const String profileUpdateImageSvgPath =
     'assets/images/profile_update_image.svg';
+const String googleMeetImageSvgPath = 'assets/images/google_meet_image.svg';
+const String zoomLogoImageSvgPath = 'assets/images/zoom_logo_image.svg';
 
 // Surveys
 const String surveysImageSvgPath = 'assets/images/forms_rafiki.svg';

@@ -19,3 +19,5 @@ const String profilePage = '/profilePage';
 const String pinResetRequestsPage = '/pinResetRequestsPage';
 const String forgotPinPage = '/forgotPinPage';
 const String addNewPatientPage = '/addNewPatientPage';
+
+const String redFlagsPage = '/redFlagsPage';

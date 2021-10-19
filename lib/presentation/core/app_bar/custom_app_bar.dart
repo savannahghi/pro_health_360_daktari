@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:healthcloud/presentation/core/app_bar/app_bar_notification.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -21,6 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.trailingWidget = const AppBarMoreButton(),
     this.showMoreButton = false,
+    this.showNotificationIcon = false,
   });
 
   final Widget? leadingWidget;
@@ -30,6 +32,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // whether to show the more button. Defaults to false because
   // only the Community screens use it
   final bool showMoreButton;
+  // whether to show the notification icon. Defaults to false because
+  // only [RedFlagsPage] use it
+  final bool showNotificationIcon;
 
   @override
   Size get preferredSize => const Size.fromHeight(50.0);
@@ -56,7 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: <Widget>[
             leadingWidget ??
                 AppBarBackButton(
-                  color: showMoreButton ? Colors.white : Colors.black,
+                  color: showMoreButton ? Colors.white : Theme.of(context).colorScheme.secondary,
                 ),
 
             Text(
@@ -70,7 +75,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
             // This can never be null because the default widget is already
             // set in the constructor
-            if (showMoreButton) const AppBarMoreButton() else trailingWidget!,
+            if (showMoreButton)
+              const AppBarMoreButton()
+            else if (showNotificationIcon)
+              const AppBarNotification()
+            else
+              trailingWidget!,
           ],
         ),
       ),

@@ -9,6 +9,7 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/domain/core/entities/request_item.dart';
+import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -63,7 +64,7 @@ final List<RequestItem> serviceRequestItems = <RequestItem>[
     totalNumber: 5,
   ),
   RequestItem(
-    route: '',
+    route: redFlagsPage,
     title: 'Red Flags',
     imageAssetPath: redFlagImageSvgPath,
     totalNumber: 3,
@@ -136,4 +137,14 @@ final List<PINResetRequest> pinResetRequests = <PINResetRequest>[
     clientName: 'James Doe Kinyanjui',
     phoneNumber: '0712345678',
   ),
+  PINResetRequest(
+    clientName: 'James Doe Kinyanjui',
+    phoneNumber: '0712345678',
+  ),
+];
+
+final List<RedFlagItem> reFlagItems = <RedFlagItem>[
+  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
+  RedFlagItem(clientName: 'Kevin', feelingDescription: 'Feeling depressed'),
+  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling Hopeless'),
 ];
