@@ -30,6 +30,7 @@ import 'package:healthcloud/presentation/onboarding/security_questions/security_
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
+import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
 
 class AppRouterGenerator extends RouteGenerator {
@@ -144,6 +145,10 @@ class AppRouterGenerator extends RouteGenerator {
         case redFlagsPage:
           return MaterialPageRoute<RedFlagsPage>(
             builder: (_) => RedFlagsPage(),
+          );
+          case profileUpdateRequestsPage:
+          return MaterialPageRoute<ProfileUpdateRequestsPage>(
+            builder: (_) => ProfileUpdateRequestsPage(),
           );
       }
     } else {

@@ -70,7 +70,7 @@ final List<RequestItem> serviceRequestItems = <RequestItem>[
     totalNumber: 3,
   ),
   RequestItem(
-    route: '',
+    route: profileUpdateRequestsPage,
     title: 'Profile Update',
     imageAssetPath: profileUpdateImageSvgPath,
     totalNumber: 4,
