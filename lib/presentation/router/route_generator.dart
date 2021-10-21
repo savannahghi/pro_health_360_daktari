@@ -20,6 +20,7 @@ import 'package:healthcloud/presentation/community/pages/community_list_page.dar
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -173,13 +174,20 @@ class AppRouterGenerator extends RouteGenerator {
           return MaterialPageRoute<PINResetRequestsPage>(
             builder: (_) => PINResetRequestsPage(),
           );
+
         case redFlagsPage:
           return MaterialPageRoute<RedFlagsPage>(
             builder: (_) => RedFlagsPage(),
           );
+
         case profileUpdateRequestsPage:
           return MaterialPageRoute<ProfileUpdateRequestsPage>(
             builder: (_) => ProfileUpdateRequestsPage(),
+          );
+
+        case searchPage:
+          return MaterialPageRoute<SearchPage>(
+            builder: (_) => const SearchPage(),
           );
       }
     } else {

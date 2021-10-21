@@ -9,6 +9,7 @@ import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 
@@ -202,5 +203,14 @@ void main() {
             as MaterialPageRoute<ProfileUpdateRequestsPage>?;
     expect(route, isA<MaterialPageRoute<ProfileUpdateRequestsPage>>());
     expect(route?.builder(context), isA<ProfileUpdateRequestsPage>());
+  });
+
+  test('Test router returns SearchPage', () {
+    const RouteSettings settings = RouteSettings(name: searchPage);
+
+    final MaterialPageRoute<SearchPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SearchPage>?;
+    expect(route, isA<MaterialPageRoute<SearchPage>>());
+    expect(route?.builder(context), isA<SearchPage>());
   });
 }
