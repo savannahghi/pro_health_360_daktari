@@ -65,6 +65,15 @@ const String resetPasswordDescription = 'Enter your phone number';
 const String sendOTPString = 'Send OTP';
 const String emailOrPhone = 'Email/Phone';
 
+//Verify OTP Page
+const String verifyPhoneNumberTitle =
+    'A one time PIN has been sent to your phone or email';
+const String verifyPhoneNumberDescription =
+    'A one time PIN has been sent to your phone';
+const String enterOTPString = 'Enter OTP to proceed';
+const String confirmOTPButtonString = 'Confirm OTP';
+const String invalidOTPString = 'Invalid OTP *';
+
 final List<PracticeService> practiceServicesList = <PracticeService>[
   PracticeService(display: 'OutPatient Services', value: 'OUTPATIENT_SERVICES'),
   PracticeService(display: 'InPatient Services', value: 'INPATIENT_SERVICES'),

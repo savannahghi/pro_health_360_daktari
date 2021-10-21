@@ -23,3 +23,5 @@ const String addNewPatientPage = '/addNewPatientPage';
 const String redFlagsPage = '/redFlagsPage';
 
 const String profileUpdateRequestsPage = '/profileUpdateRequestsPage';
+
+const String verifyOTPPage = '/verifyOTPPage';

@@ -16,6 +16,7 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -158,8 +159,22 @@ void main() {
     expect(route?.builder(context), isA<RedFlagsPage>());
   });
 
+  test('Test router returns  verify otp page', () {
+    const RouteSettings settings = RouteSettings(
+      name: verifyOTPPage,
+      arguments: 1234,
+    );
+
+    final MaterialPageRoute<VerifyOTPPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<VerifyOTPPage>?;
+
+    expect(route, isA<MaterialPageRoute<VerifyOTPPage>>());
+    expect(route?.builder(context), isA<VerifyOTPPage>());
+  });
+
   test('Test router returns ProfileUpdateRequestsPage', () {
-    const RouteSettings settings = RouteSettings(name: profileUpdateRequestsPage);
+    const RouteSettings settings =
+        RouteSettings(name: profileUpdateRequestsPage);
 
     final MaterialPageRoute<ProfileUpdateRequestsPage>? route =
         routeGenerator(settings)
