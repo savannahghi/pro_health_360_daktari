@@ -27,6 +27,7 @@ import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
 import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
@@ -133,6 +134,15 @@ class AppRouterGenerator extends RouteGenerator {
             ),
           );
 
+        case verifyOTPPage:
+          final int args = settings!.arguments! as int;
+
+          return MaterialPageRoute<VerifyOTPPage>(
+            builder: (_) => VerifyOTPPage(
+              otp: args,
+            ),
+          );
+
         case profilePage:
           return MaterialPageRoute<UserProfilePage>(
             builder: (_) => UserProfilePage(),
@@ -146,7 +156,7 @@ class AppRouterGenerator extends RouteGenerator {
           return MaterialPageRoute<RedFlagsPage>(
             builder: (_) => RedFlagsPage(),
           );
-          case profileUpdateRequestsPage:
+        case profileUpdateRequestsPage:
           return MaterialPageRoute<ProfileUpdateRequestsPage>(
             builder: (_) => ProfileUpdateRequestsPage(),
           );

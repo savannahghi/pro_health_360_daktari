@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/phone_input.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.dart';
+import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:user_profile/helpers.dart';
@@ -84,7 +86,7 @@ class ForgotPinPage extends StatelessWidget {
                 ),
               ),
               mediumVerticalSizedBox,
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: MyAfyaHubPrimaryButton(
@@ -92,6 +94,12 @@ class ForgotPinPage extends StatelessWidget {
                   buttonColor: AppColors.buttonAltColor,
                   borderColor: Colors.transparent,
                   text: sendOTPString,
+                  onPressed: () async => triggerNavigationEvent(
+                    context: context,
+                    route: verifyOTPPage,
+                    shouldReplace: true,
+                    args: 1234,
+                  ),
                 ),
               ),
             ],
