@@ -60,3 +60,6 @@ const String searchIconSvg = 'assets/icons/search_icon.svg';
 
 //Forgot Pin Page
 const String shieldIcon = 'assets/icons/shield_icon.svg';
+
+// Add group page
+const String addImage = 'assets/icons/add_image.svg';

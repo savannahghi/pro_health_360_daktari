@@ -239,3 +239,15 @@ const String appAccessText = 'App Access';
 const String myAfyaHubInviteText = 'Invite to MyAfya Hub';
 const String groupsLabel = 'Groups/Community';
 const String registerBtnText = 'Register';
+
+// add new group page
+const String enterGroupNameText = 'Enter Group name';
+const String aboutGroupText = 'About Group';
+const String bandLabelText = 'Band';
+const String ageLabelText = 'Age';
+const String locationLabelText = 'Location';
+const String clinicLabelText = 'Clinic';
+const String activeModerationLabelText = 'Active Moderation';
+const String chooseOneHintText = 'choose one';
+const String approvalNoteText =
+    'All messages have to be approved to be seen by the group members';
