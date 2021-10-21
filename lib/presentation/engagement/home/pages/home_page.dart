@@ -17,7 +17,7 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
-import 'package:healthcloud/presentation/engagement/home/widgets/search_widget.dart';
+import 'package:afya_moja_core/search_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -76,7 +76,11 @@ class _HomePageState extends State<HomePage> {
                         style: TextThemes.boldSize24Text(Colors.white),
                       ),
                       size15VerticalSizedBox,
-                      const SearchWidget(),
+                      SearchWidget(
+                        onTap: () {
+                          Navigator.pushNamed(context, searchPage);
+                        },
+                      ),
                       smallVerticalSizedBox,
                     ],
                   ),

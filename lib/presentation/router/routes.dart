@@ -34,3 +34,4 @@ const String addNewGroupPage = '/addNewGroupPage';
 const String newBroadcastPage = '/newBroadcastPage';
 
 const String surveysPage = '/surveys';
+const String searchPage = '/searchPage';

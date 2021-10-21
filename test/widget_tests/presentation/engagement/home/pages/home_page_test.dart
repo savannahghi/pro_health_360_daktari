@@ -11,6 +11,7 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
@@ -127,6 +128,29 @@ void main() {
       await tester.tap(find.text(surveysString));
       await tester.pumpAndSettle();
       expect(find.byType(SurveysPage), findsWidgets);
+    });
+
+    testWidgets('navigates to SearchPage', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return StoreProvider<AppState>(
+              store: store,
+              child: const HomePage(),
+            );
+          },
+        ),
+      );
+
+      expect(find.byType(AppbarUser), findsOneWidget);
+      expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
+      expect(find.byType(ActionCard), findsWidgets);
+
+      await tester.tap(find.text(searchUser));
+      await tester.pumpAndSettle();
+      expect(find.byType(SearchPage), findsWidgets);
     });
   });
 }

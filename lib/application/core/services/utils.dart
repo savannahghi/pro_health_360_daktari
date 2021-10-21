@@ -2,11 +2,13 @@
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
+import 'package:flutter/material.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/domain/core/entities/request_item.dart';
 import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
@@ -147,4 +149,15 @@ final List<RedFlagItem> reFlagItems = <RedFlagItem>[
   RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
   RedFlagItem(clientName: 'Kevin', feelingDescription: 'Feeling depressed'),
   RedFlagItem(clientName: 'John', feelingDescription: 'Feeling Hopeless'),
+];
+
+const List<Widget> patientSearchResults = <Widget>[
+  PatientSearchItem(username: 'Dennis Kilonzo Musau', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Kplangas Koech', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Kilonzo Musau', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Kplangas Koech', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
+  PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
 ];

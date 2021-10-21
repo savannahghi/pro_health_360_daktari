@@ -190,6 +190,8 @@ const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
 const String contentString = 'Content';
 const String surveysString = 'Surveys';
+const String noResultsFoundText = 'Oops!... no results found';
+const String addNewPatientText = 'add new patient';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';

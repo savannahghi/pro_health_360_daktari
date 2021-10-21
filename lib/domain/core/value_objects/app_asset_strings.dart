@@ -33,6 +33,7 @@ const String serviceRequestsIconSvg = 'assets/icons/service_requests.svg';
 const String profileUpdateIconSvg = 'assets/icons/profile_update.svg';
 const String contactRequestIconSvg = 'assets/icons/contact_request.svg';
 const String magnifierToolIconSvg = 'assets/icons/magnifier_tool.svg';
+const String noResultsFoundImage = 'assets/images/search_rafiki.svg';
 
 //Service requests section assets
 const String serviceHeaderImageSvgPath =
