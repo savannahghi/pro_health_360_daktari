@@ -81,7 +81,7 @@ const Key contactRequestCardKey = Key('contact_request_card_key');
 const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
 const Key pinRequestApproveCheckboxKey =
     Key('pin_request_approve_checkbox_key');
-    const Key reachOutButtonKey = Key('reach_out_button_key');
+const Key reachOutButtonKey = Key('reach_out_button_key');
 const Key dialogConfirmButtonKey = Key('dialog_confirm_button_key');
 const Key dialogCancelButtonKey = Key('dialog_cancel_button_key');
 const Key googleMeetButtonKey = Key('google_meet_button_key');
@@ -97,3 +97,10 @@ const Key selectOptionFieldKey = Key('select_option_field');
 // add new patient page
 const Key myAfyaHubInviteKey = Key('appAccessKey');
 const Key patientRegisterBtnKey = Key('patientRegisterButton');
+
+// add new group page
+const Key bandDropdownKey = Key('bandDropdownKey');
+const Key locationDropdownKey = Key('locationDropdownKey');
+const Key clinicDropdownKey = Key('clinicDropdownKey');
+const Key ageDropdownKey = Key('ageDropdownKey');
+const Key moderationActiveSwitchKey = Key('moderationActiveSwitch');

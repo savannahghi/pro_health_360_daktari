@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/presentation/community/community_list_page.dart';
+import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
+import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
@@ -150,6 +151,16 @@ void main() {
     expect(route, isA<MaterialPageRoute<AddNewPatientPage>>());
     expect(route?.builder(context), isA<AddNewPatientPage>());
   });
+
+  test('Test router returns AddNewGroupPage', () {
+    const RouteSettings settings = RouteSettings(name: addNewGroupPage);
+
+    final MaterialPageRoute<AddNewGroupPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<AddNewGroupPage>?;
+    expect(route, isA<MaterialPageRoute<AddNewGroupPage>>());
+    expect(route?.builder(context), isA<AddNewGroupPage>());
+  });
+
   test('Test router returns RedFlagsPage', () {
     const RouteSettings settings = RouteSettings(name: redFlagsPage);
 
