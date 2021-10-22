@@ -1,10 +1,11 @@
-import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 
 class AddNewPatientPage extends StatefulWidget {
   const AddNewPatientPage({
@@ -24,7 +25,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Add new patient'),
+      appBar: const CustomAppBar(title: addNewPatientTitleText),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -32,22 +33,20 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
             child: Column(
               children: <Widget>[
                 SvgPicture.asset(
-                  'assets/images/new_entries_rafiki.svg',
+                  newEntriesImage,
                 ),
                 const SizedBox(height: 24),
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: CCCNumberLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: CCCNumberLabel,
                       ),
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: preferredClinicLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: preferredClinicLabel,
                       ),
                     ),
                   ],
@@ -56,16 +55,14 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: firstNameLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: firstNameLabel,
                       ),
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: lastNameLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: lastNameLabel,
                       ),
                     ),
                   ],
@@ -74,16 +71,14 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: birthDateLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: birthDateLabel,
                       ),
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: genderLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: genderLabel,
                       ),
                     ),
                   ],
@@ -92,16 +87,14 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: idNoLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: idNoLabel,
                       ),
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: phoneNoLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: phoneNoLabel,
                       ),
                     ),
                   ],
@@ -110,9 +103,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: physicalLocationLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: physicalLocationLabel,
                       ),
                     ),
                   ],
@@ -121,16 +113,14 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: nextOfKinLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: nextOfKinLabel,
                       ),
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: relationLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: relationLabel,
                       ),
                     ),
                   ],
@@ -139,9 +129,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                 Row(
                   children: const <Widget>[
                     Flexible(
-                      child: CustomTextField(
-                        fieldLabel: phoneNoLabel,
-                        customFillColor: Color(0xFFF9F2FE),
+                      child: PatientDetailsTextFormField(
+                        label: phoneNoLabel,
                       ),
                     ),
                   ],

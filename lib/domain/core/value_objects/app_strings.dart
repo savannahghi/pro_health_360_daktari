@@ -205,7 +205,7 @@ const String contactRequestText = 'Contact Request';
 const String contentString = 'Content';
 const String surveysString = 'Surveys';
 const String noResultsFoundText = 'Oops!... no results found';
-const String addNewPatientText = 'add new patient';
+const String addNewPatientText = 'Add new patient';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';
@@ -240,12 +240,12 @@ const String confirmString = 'Confirm';
 const String notificationsText = 'Notifications';
 const String customDate = 'July 12 2021';
 
-// Register patient page
+// Add patient page
 const String CCCNumberLabel = 'CCC Number *';
 const String preferredClinicLabel = 'Preferred clinic *';
 const String firstNameLabel = 'First Name';
 const String lastNameLabel = 'Last Name';
-const String birthDateLabel = 'Birtdate';
+const String birthDateLabel = 'Birthdate';
 const String genderLabel = 'Gender';
 const String idNoLabel = 'ID No.';
 const String phoneNoLabel = 'Phone No.';
@@ -256,6 +256,7 @@ const String appAccessText = 'App Access';
 const String myAfyaHubInviteText = 'Invite to MyAfya Hub';
 const String groupsLabel = 'Groups/Community';
 const String registerBtnText = 'Register';
+const String addNewPatientTitleText = 'Add new patient';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';
