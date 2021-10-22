@@ -27,3 +27,5 @@ const String profileUpdateRequestsPage = '/profileUpdateRequestsPage';
 const String verifyOTPPage = '/verifyOTPPage';
 
 const String addNewGroupPage = '/addNewGroupPage';
+
+const String newBroadcastPage = '/newBroadcastPage';

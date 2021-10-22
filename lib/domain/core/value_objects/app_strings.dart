@@ -251,3 +251,8 @@ const String activeModerationLabelText = 'Active Moderation';
 const String chooseOneHintText = 'choose one';
 const String approvalNoteText =
     'All messages have to be approved to be seen by the group members';
+
+// new broadcast page
+const String newBroadcastText = 'New Broadcast';
+const String broadcastToText = 'Broadcast to';
+const String broadcastNameText = 'Broadcast Name';
