@@ -69,3 +69,6 @@ const String addImage = 'assets/icons/add_image.svg';
 const String addUserIconPath = 'assets/icons/add-user.svg';
 const String attachFileIcon = 'assets/icons/attach_file.svg';
 const String sendTextIcon = 'assets/icons/send_text.svg';
+
+// Add patient page
+const String newEntriesImage = 'assets/images/new_entries_rafiki.svg';
