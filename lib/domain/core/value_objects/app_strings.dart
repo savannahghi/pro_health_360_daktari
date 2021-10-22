@@ -217,7 +217,7 @@ const String redFlagString = 'Red Flags';
 const String cancelString = 'Cancel';
 const String scheduleString = 'Schedule a';
 const String forString = 'for';
-const String meetingTimString = 'Friday 24th September 2021 at 3:30pm';
+const String meetingTimeString = 'Friday 24th September 2021 at 3:30pm';
 const String reviewString = 'Review';
 const String wantProfiledUpdatedString = ' wants to update their profile';
 
