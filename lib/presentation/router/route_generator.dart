@@ -15,6 +15,7 @@ import 'package:bewell_pro_core/presentation/router/router_generator.dart';
 import 'package:healthcloud/application/core/services/feed_content_callbacks.dart';
 import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
@@ -183,6 +184,11 @@ class AppRouterGenerator extends RouteGenerator {
         case profileUpdateRequestsPage:
           return MaterialPageRoute<ProfileUpdateRequestsPage>(
             builder: (_) => ProfileUpdateRequestsPage(),
+          );
+
+        case communityChatScreen:
+          return MaterialPageRoute<CommunityChatPage>(
+            builder: (_) => const CommunityChatPage(),
           );
 
         case searchPage:

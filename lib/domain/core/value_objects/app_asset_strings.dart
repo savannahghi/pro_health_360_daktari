@@ -67,3 +67,5 @@ const String addImage = 'assets/icons/add_image.svg';
 
 // New broadcast page
 const String addUserIconPath = 'assets/icons/add-user.svg';
+const String attachFileIcon = 'assets/icons/attach_file.svg';
+const String sendTextIcon = 'assets/icons/send_text.svg';

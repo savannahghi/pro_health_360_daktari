@@ -104,6 +104,20 @@ const String contentPageDescription =
     'To publish new content, please log in to ghost below, create your content and publish';
 const String contentManagementString = 'Content management';
 const String contentPageTitle = 'Create content';
+const String rejectChatDialogTitle = 'Reject message';
+const String rejectChatDialogDescription =
+    'Are you sure you want to reject these message ?';
+const String banUserText = 'Ban user';
+const String reportSpamText = 'Report spam';
+const String cancelText = '';
+String deleteAllMessagesText(String userName) =>
+    'Reject all $userName messages';
+
+//Community Page
+const String communityChatScreenPageTitle = 'Ruaka Questions Group';
+const String typeYourMessageHereString = 'Type your message here';
+const String approveText = 'Approve';
+const String rejectText = 'Reject';
 
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to My Afya Hub';
