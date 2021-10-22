@@ -1,7 +1,9 @@
+import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -42,6 +44,10 @@ class ProfileUpdateRequestListItem extends StatelessWidget {
             ),
             GestureDetector(
               key: reachOutButtonKey,
+              onTap: () => triggerNavigationEvent(
+                context: context,
+                route: clientHealthPage,
+              ),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 decoration: BoxDecoration(

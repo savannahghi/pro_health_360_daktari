@@ -1,11 +1,12 @@
 // Flutter imports:
+import 'package:afya_moja_core/user_details_card_widget.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/presentation/service_requests/widgets/red_flag_list_item.dart';
+import 'package:healthcloud/presentation/service_requests/widgets/profile_update_request_list_item.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -16,14 +17,9 @@ import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 
-class RedFlagsPage extends StatefulWidget {
-  @override
-  State<RedFlagsPage> createState() => _RedFlagsPageState();
-}
-
-class _RedFlagsPageState extends State<RedFlagsPage> {
-  /// [RedFlagsPage] is used to display a list of red
-  /// flags that demand immediate attention
+class ClientHealthPage extends StatelessWidget {
+  /// [ClientHealthPage] is used to display a list of
+  /// profile update requests from clients
   ///
   @override
   Widget build(BuildContext context) {
@@ -41,20 +37,18 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(title: redFlagString, showNotificationIcon: true,),
+        appBar: const CustomAppBar(),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    redFlagImageSvgPath,
-                    width: 180,
-                  ),
-                ),
+              UserDetailsCard(
+                userInitials: 'WJ',
+                name: 'Eugene',
+                cccNumber: '1234',
+                age: '20',
+                phoneNumber: '0712345678',
+                home: 'Ruiru',
+                isAdmin: true,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -113,12 +107,9 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                     ...List<Widget>.generate(reFlagItems.length, (int index) {
                       final String clientName =
                           reFlagItems.elementAt(index).clientName;
-                      final String feeling =
-                          reFlagItems.elementAt(index).feelingDescription;
 
-                      return RedFlagListItem(
+                      return ProfileUpdateRequestListItem(
                         clientName: clientName,
-                        feelingDescription: feeling,
                       );
                     }),
                     veryLargeVerticalSizedBox,
