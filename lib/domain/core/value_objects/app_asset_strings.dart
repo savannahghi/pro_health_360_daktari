@@ -72,3 +72,15 @@ const String sendTextIcon = 'assets/icons/send_text.svg';
 
 // Add patient page
 const String newEntriesImage = 'assets/images/new_entries_rafiki.svg';
+//My Health Icons
+const String viralLoadIcon = 'assets/icons/viral_load_icon.svg';
+const String nextRefillIcon = 'assets/icons/next_refill_icon.svg';
+const String healthDiaryIcon = 'assets/icons/health_diary_icon.svg';
+const String appointmentIcon = 'assets/icons/appointments_icon.svg';
+const String clinicIcon = 'assets/icons/clinic_icon.svg';
+const String clientProfileIcon = 'assets/icons/client_profile_icon.svg';
+
+//Client Details Card
+const String phoneCallIcon = 'assets/icons/phone_call_icon.svg';
+const String homeLocationIcon = 'assets/icons/home_location_icon.svg';
+const String editProfileIconSvg = 'assets/icons/edit_profile_icon.svg';

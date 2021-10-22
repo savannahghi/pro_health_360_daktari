@@ -6,6 +6,7 @@ import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
+import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
@@ -222,5 +223,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SearchPage>?;
     expect(route, isA<MaterialPageRoute<SearchPage>>());
     expect(route?.builder(context), isA<SearchPage>());
+  });
+
+  test('Test router returns ClientHealthPage', () {
+    const RouteSettings settings = RouteSettings(name: clientHealthPage);
+
+    final MaterialPageRoute<ClientHealthPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ClientHealthPage>?;
+    expect(route, isA<MaterialPageRoute<ClientHealthPage>>());
+    expect(route?.builder(context), isA<ClientHealthPage>());
+
   });
 }

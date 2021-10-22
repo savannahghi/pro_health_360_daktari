@@ -54,6 +54,7 @@ class AppColors {
   static const Color listItemBackgroundColor = Color(0xFF707070);
   static const Color profileListCardColor = Color(0xfff9f2fe);
   static const Color userDetailsCardBackgroundColor = Color(0xff0097c4);
+  static const Color clientDetailsCardBackgroundColor = Color(0xff119496);
   static const Color textInputFillColor = Color(0xFFF9F2FE);
   static const Color textAltColor = Color(0xFF5F2788);
   static const Color malachiteColor = Color(0xff00BE33);
@@ -64,6 +65,7 @@ class AppColors {
   static const Color buttonAltColor = Color(0xFF06103B);
   static const Color blueBerryColor = Color(0xff407bfc);
   static const Color newGroupLabelColor = Color(0xFF407BFC);
+  static const Color diaryListCardColor = Color(0xff17d1d4);
 }
 
 BoxDecoration decoration({required BuildContext context}) => BoxDecoration(

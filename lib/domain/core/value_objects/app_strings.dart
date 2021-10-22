@@ -274,3 +274,31 @@ const String approvalNoteText =
 const String newBroadcastText = 'New Broadcast';
 const String broadcastToText = 'Broadcast to';
 const String broadcastNameText = 'Broadcast Name';
+//Client Health Page
+const String myHealthPageTitle = 'My Health';
+const String initials = 'WJ';
+const String myHealthViralLoad = 'Viral load';
+const String myHealthViralLoadReading = '600';
+const String myHealthViralLoadReadingUnit = '/ml';
+const String myHealthNextRefill = 'Next refill';
+const String myHealthNextRefillDate = '19';
+const String myHealthNextRefillMonth = 'Aug';
+const String myHealthPageHealthDiary = 'My Health Diary';
+const String myHealthPageAppointments = 'Appointments';
+const String newEntryString = 'New Entry';
+const String transferOut = 'Transfer out';
+
+//Client Details Card
+const String inviteToMyAfyaHubString = 'Invite to My Afya Hub';
+const String viewProfileString = 'View profile';
+const String userInitialsStrings = 'WJ';
+const String userCCCNumberString = '12345678';
+const String ageExampleString = '18';
+const String homeExampleString = 'Karen';
+String formatCCCNumber(String cccNumber) {
+  return 'CCC No: $cccNumber';
+}
+
+String formatAge(String age) {
+  return 'Age: $age yrs';
+}
