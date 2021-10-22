@@ -7,6 +7,7 @@ import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
+import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
@@ -159,6 +160,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<AddNewGroupPage>?;
     expect(route, isA<MaterialPageRoute<AddNewGroupPage>>());
     expect(route?.builder(context), isA<AddNewGroupPage>());
+  });
+
+  test('Test router returns NewBroadcastMessagePage', () {
+    const RouteSettings settings = RouteSettings(name: newBroadcastPage);
+
+    final MaterialPageRoute<NewBroadcastMessagePage>? route =
+        routeGenerator(settings) as MaterialPageRoute<NewBroadcastMessagePage>?;
+    expect(route, isA<MaterialPageRoute<NewBroadcastMessagePage>>());
+    expect(route?.builder(context), isA<NewBroadcastMessagePage>());
   });
 
   test('Test router returns RedFlagsPage', () {

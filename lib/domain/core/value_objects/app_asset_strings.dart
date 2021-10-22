@@ -63,3 +63,6 @@ const String shieldIcon = 'assets/icons/shield_icon.svg';
 
 // Add group page
 const String addImage = 'assets/icons/add_image.svg';
+
+// New broadcast page
+const String addUserIconPath = 'assets/icons/add-user.svg';

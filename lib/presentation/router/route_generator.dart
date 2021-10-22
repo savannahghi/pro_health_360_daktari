@@ -17,6 +17,7 @@ import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_actio
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
+import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -93,6 +94,11 @@ class AppRouterGenerator extends RouteGenerator {
         case addNewGroupPage:
           return MaterialPageRoute<AddNewGroupPage>(
             builder: (_) => const AddNewGroupPage(),
+          );
+
+        case newBroadcastPage:
+          return MaterialPageRoute<NewBroadcastMessagePage>(
+            builder: (_) => const NewBroadcastMessagePage(),
           );
 
         case securityQuestionsPage:
