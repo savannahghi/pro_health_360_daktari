@@ -1,10 +1,10 @@
 // Flutter imports:
 import 'package:bewell_pro_core/presentation/onboarding/login/pages/set_pin_page.dart';
+import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
-import 'package:bewell_pro_core/presentation/core/home/pages/home_page.dart';
 import 'package:bewell_pro_core/presentation/core/widgets/default_error_route.dart';
 import 'package:bewell_pro_core/presentation/onboarding/common/landing_page.dart';
 import 'package:bewell_pro_core/presentation/onboarding/login/pages/phone_login_page.dart'
@@ -19,6 +19,7 @@ import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -35,19 +36,17 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
+import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 
 class AppRouterGenerator extends RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings? settings) {
     final Route<dynamic>? superRoute = RouteGenerator.generateRoute(settings);
 
-    if (superRoute is MaterialPageRoute<HomePage>) {
+    if (settings?.name == homePageRoute) {
       return MaterialPageRoute<HomePage>(
         builder: (BuildContext context) {
-          return HomePage(
-            feedContentCallbacks:
-                getAfyaMojaFeedActionCallbacks(context: context),
-            logoutAction: AfyaMojaLogoutAction(),
-          );
+          return const HomePage();
         },
       );
     }
@@ -114,6 +113,16 @@ class AppRouterGenerator extends RouteGenerator {
         case addNewPatientPage:
           return MaterialPageRoute<AddNewPatientPage>(
             builder: (_) => const AddNewPatientPage(),
+          );
+
+        case serviceRequestsPage:
+          return MaterialPageRoute<ServiceRequestsPage>(
+            builder: (_) => ServiceRequestsPage(),
+          );
+
+        case surveysPage:
+          return MaterialPageRoute<SurveysPage>(
+            builder: (_) => const SurveysPage(),
           );
 
         case individualPractitionerKYCStepOneRoute:
