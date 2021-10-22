@@ -104,3 +104,11 @@ const Key locationDropdownKey = Key('locationDropdownKey');
 const Key clinicDropdownKey = Key('clinicDropdownKey');
 const Key ageDropdownKey = Key('ageDropdownKey');
 const Key moderationActiveSwitchKey = Key('moderationActiveSwitch');
+//Client Details Card
+const Key inviteButtonKey = Key('invite_button_key');
+const Key viewProfileButtonKey = Key('view_profile_button_key');
+const Key editUserProfileButtonKey = Key('edit_user_profile_button_key');
+
+//Client Health Page
+const Key newEntryButtonKey = Key('new_entry_button_key');
+const Key addButtonKey = Key('add_button_key');

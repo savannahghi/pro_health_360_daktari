@@ -1,4 +1,5 @@
 //Flutter imports
+import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter/material.dart';
 
 // Package Imports
@@ -14,11 +15,15 @@ import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/client_details/widgets/add_profile_entry_row_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/domain/core/entities/request_item.dart';
 import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -241,3 +246,84 @@ const List<Widget> messages = <Widget>[
     ),
   ),
 ];
+
+final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
+  UserProfileItemObj(
+    iconAssetPath: clientProfileIcon,
+    route: kycIntroPageRoute,
+    title: 'Relations',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: teleConsultNotificationIcon,
+    route: kycIntroPageRoute,
+    title: 'Medical data',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: clinicIcon,
+    route: kycIntroPageRoute,
+    title: 'Clinic information',
+  ),
+];
+
+Future<void> addNewProfileEntryBottomSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    backgroundColor: Colors.transparent,
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 340,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 10.0,
+        ),
+        padding: const EdgeInsets.all(
+          20.0,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(2.0),
+        ),
+        child: Stack(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                const AddProfileEntryRowItem(
+                  leadingText: 'Weight',
+                  trailingText: 'BMI',
+                ),
+                smallVerticalSizedBox,
+                const AddProfileEntryRowItem(
+                  leadingText: 'VL',
+                  trailingText: 'CD4',
+                ),
+                smallVerticalSizedBox,
+                const AddProfileEntryRowItem(
+                  leadingText: 'Regimen Type',
+                  trailingText: 'Regimen',
+                ),
+                smallVerticalSizedBox,
+                const AddProfileEntryRowItem(
+                  leadingText: 'TPT Status',
+                  trailingText: 'Next Appointment',
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                child: MyAfyaHubPrimaryButton(
+                  buttonKey: addButtonKey,
+                  onPressed: () => Navigator.of(context).pop(),
+                  buttonColor: Theme.of(context).colorScheme.secondary,
+                  text: 'Add',
+                  textStyle: TextThemes.boldSize14Text(Colors.white),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    },
+  );
+}

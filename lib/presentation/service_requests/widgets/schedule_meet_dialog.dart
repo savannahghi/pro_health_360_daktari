@@ -100,7 +100,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
             ),
             smallVerticalSizedBox,
             Text(
-              meetingTimString,
+              meetingTimeString,
               style: TextThemes.boldSize15Text(
                 AppColors.blueBerryColor,
               ),
