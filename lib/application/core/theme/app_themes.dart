@@ -45,6 +45,7 @@ ThemeData buildTheme() {
 class AppColors {
   static const Color easternBlueColor = Color(0xFF1CA4A6);
   static const Color dodgerBlueColor = Color(0xFF407BFC);
+  static const Color lightSkyBlueColor = Color(0xFFF6F7FB);
   static const Color galleryColor = Color(0xFFEBEBEB);
   static const Color primaryColor = Color(0xFF1CA4A6);
   static const Color secondaryColor = Color(0xFF5F2788);

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
@@ -203,6 +204,15 @@ void main() {
             as MaterialPageRoute<ProfileUpdateRequestsPage>?;
     expect(route, isA<MaterialPageRoute<ProfileUpdateRequestsPage>>());
     expect(route?.builder(context), isA<ProfileUpdateRequestsPage>());
+  });
+
+  test('Test router returns CommunityChatScreen', () {
+    const RouteSettings settings = RouteSettings(name: communityChatScreen);
+
+    final MaterialPageRoute<CommunityChatPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<CommunityChatPage>?;
+    expect(route, isA<MaterialPageRoute<CommunityChatPage>>());
+    expect(route?.builder(context), isA<CommunityChatPage>());
   });
 
   test('Test router returns SearchPage', () {
