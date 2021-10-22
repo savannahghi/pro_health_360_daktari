@@ -11,7 +11,6 @@ import 'package:bewell_pro_core/application/redux/flags/flags.dart';
 import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
-import 'package:bewell_pro_core/presentation/core/home/pages/home_page.dart';
 import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:bewell_pro_core/presentation/onboarding/profile/change_pin.dart';
 import 'package:domain_objects/entities.dart';
@@ -21,6 +20,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:http/http.dart';

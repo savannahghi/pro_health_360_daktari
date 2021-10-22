@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
@@ -94,11 +95,7 @@ class _HomePageState extends State<HomePage> {
                       title: addNewUserText,
                       iconUrl: addNewUserIconSvg,
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed(addNewPatientPage);
                       },
                     ),
                     ActionCard(
@@ -106,11 +103,7 @@ class _HomePageState extends State<HomePage> {
                       title: serviceRequestsText,
                       iconUrl: serviceRequestsIconSvg,
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed(serviceRequestsPage);
                       },
                     ),
                   ],
@@ -125,28 +118,19 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     ActionCard(
-                      key: profileUpdateCardKey,
-                      counter: '4',
-                      title: profileUpdateText,
-                      iconUrl: profileUpdateIconSvg,
+                      key: contentCardKey,
+                      title: contentString,
+                      iconUrl: contentPageImage,
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed(contentPage);
                       },
                     ),
                     ActionCard(
-                      key: contactRequestCardKey,
-                      title: contactRequestText,
-                      iconUrl: contactRequestIconSvg,
+                      key: surveysCardKey,
+                      title: surveysString,
+                      iconUrl: surveysImageSvgPath,
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed(surveysPage);
                       },
                     ),
                   ],

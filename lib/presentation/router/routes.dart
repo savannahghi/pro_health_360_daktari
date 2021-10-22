@@ -18,7 +18,10 @@ const String profilePage = '/profilePage';
 
 const String pinResetRequestsPage = '/pinResetRequestsPage';
 const String forgotPinPage = '/forgotPinPage';
+
 const String addNewPatientPage = '/addNewPatientPage';
+
+const String serviceRequestsPage = '/ServiceRequestsPage';
 
 const String redFlagsPage = '/redFlagsPage';
 
@@ -29,3 +32,5 @@ const String verifyOTPPage = '/verifyOTPPage';
 const String addNewGroupPage = '/addNewGroupPage';
 
 const String newBroadcastPage = '/newBroadcastPage';
+
+const String surveysPage = '/surveys';

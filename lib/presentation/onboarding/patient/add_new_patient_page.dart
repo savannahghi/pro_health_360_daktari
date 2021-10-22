@@ -1,8 +1,10 @@
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 
 class AddNewPatientPage extends StatefulWidget {
   const AddNewPatientPage({
@@ -22,12 +24,17 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(title: 'Add new patient'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                SvgPicture.asset(
+                  'assets/images/new_entries_rafiki.svg',
+                ),
+                const SizedBox(height: 24),
                 Row(
                   children: const <Widget>[
                     Flexible(

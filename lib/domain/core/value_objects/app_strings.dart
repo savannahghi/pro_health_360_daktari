@@ -188,6 +188,8 @@ const String addNewUserText = 'Add New User';
 const String serviceRequestsText = 'Service Requests';
 const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
+const String contentString = 'Content';
+const String surveysString = 'Surveys';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';
@@ -204,7 +206,6 @@ const String reviewString = 'Review';
 const String wantProfiledUpdatedString = ' wants to update their profile';
 
 // Surveys
-const String surveysString = 'Surveys';
 const String createSurveyString = 'Create Survey';
 const String toCreateNewSurveyDescriptionString =
     'To create a new survey, log in to survey monkey, create your survey and share your survey to a targeted audience';
