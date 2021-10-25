@@ -77,6 +77,9 @@ const Key appBarUserKey = Key('app_bar_user_key');
 const Key contentCardKey = Key('content_card_key');
 const Key surveysCardKey = Key('surveys_card_key');
 
+// bottom nav
+const Key bottomNavKey = Key('sil_bottom_nav_key');
+
 //Service Requests keys
 const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
 const Key pinRequestApproveCheckboxKey =

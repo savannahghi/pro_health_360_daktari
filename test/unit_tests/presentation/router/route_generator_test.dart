@@ -9,7 +9,9 @@ import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
+import 'package:healthcloud/presentation/notifications/notifications_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 
@@ -107,6 +109,24 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
     expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
     expect(route?.builder(context), isA<CommunityListViewPage>());
+  });
+
+  test('Test router returns HomePage', () {
+    const RouteSettings settings = RouteSettings(name: homePage);
+
+    final MaterialPageRoute<HomePage>? route =
+        routeGenerator(settings) as MaterialPageRoute<HomePage>?;
+    expect(route, isA<MaterialPageRoute<HomePage>>());
+    expect(route?.builder(context), isA<HomePage>());
+  });
+
+  test('Test router returns NotificationsPage', () {
+    const RouteSettings settings = RouteSettings(name: notificationsPage);
+
+    final MaterialPageRoute<NotificationsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<NotificationsPage>?;
+    expect(route, isA<MaterialPageRoute<NotificationsPage>>());
+    expect(route?.builder(context), isA<NotificationsPage>());
   });
 
   test('Test router returns SecurityQuestionsPage', () {

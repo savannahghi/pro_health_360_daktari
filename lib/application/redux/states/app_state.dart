@@ -8,6 +8,7 @@ import 'package:bewell_pro_core/application/redux/states/user_feed_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
 import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/entities.dart';
+import 'package:healthcloud/application/redux/states/afyamoja_misc_state.dart';
 
 // Project imports:
 import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
@@ -15,6 +16,7 @@ import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart
 class AppState extends CoreState {
   const AppState({
     this.practitionerKYCState,
+    this.afyaMojaMiscState,
     MiscState? miscState,
     UserFeedState? userFeedState,
     UserState? userState,
@@ -38,6 +40,7 @@ class AppState extends CoreState {
 
   factory AppState.initial() => AppState(
         practitionerKYCState: PractitionerKYCState.initial(),
+        afyaMojaMiscState: AfyaMojaMiscState.initial(),
         miscState: MiscState.initial(),
         userFeedState: UserFeedState.initial(),
         userState: UserState.initial(),
@@ -49,10 +52,12 @@ class AppState extends CoreState {
       );
 
   final PractitionerKYCState? practitionerKYCState;
+  final AfyaMojaMiscState? afyaMojaMiscState;
 
   @override
   AppState copyWith({
     PractitionerKYCState? practitionerKYCState,
+    AfyaMojaMiscState? afyaMojaMiscState,
     MiscState? miscState,
     UserFeedState? userFeedState,
     UserState? userState,
@@ -65,6 +70,7 @@ class AppState extends CoreState {
   }) {
     return AppState(
       practitionerKYCState: practitionerKYCState ?? this.practitionerKYCState,
+      afyaMojaMiscState: afyaMojaMiscState ?? this.afyaMojaMiscState,
       miscState: miscState ?? this.miscState,
       userFeedState: userFeedState ?? this.userFeedState,
       userState: userState ?? this.userState,
@@ -81,6 +87,7 @@ class AppState extends CoreState {
   @override
   List<Object?> get props => <Object?>[
         practitionerKYCState,
+        afyaMojaMiscState,
         miscState,
         userFeedState,
         userState,

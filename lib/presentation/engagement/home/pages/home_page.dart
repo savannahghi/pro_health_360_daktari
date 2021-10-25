@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/afyamoja_bottom_navigation_bar.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
@@ -143,6 +144,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        bottomNavigationBar: const AfyaMojaBottomNavigationBar(),
       ),
     );
   }

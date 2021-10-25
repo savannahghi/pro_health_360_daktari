@@ -35,6 +35,12 @@ const String contactRequestIconSvg = 'assets/icons/contact_request.svg';
 const String magnifierToolIconSvg = 'assets/icons/magnifier_tool.svg';
 const String noResultsFoundImage = 'assets/images/search_rafiki.svg';
 
+// Bottom nav icon paths
+const String homeIconSvgPath = 'assets/icons/home_icon.svg';
+const String communityIconSvgPath = 'assets/icons/community_icon.svg';
+const String notificationsIconSvgPath =
+    'assets/icons/notifications_present_icon.svg';
+
 //Service requests section assets
 const String serviceHeaderImageSvgPath =
     'assets/images/service_request_header_image.svg';

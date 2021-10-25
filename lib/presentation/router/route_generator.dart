@@ -21,6 +21,7 @@ import 'package:healthcloud/presentation/community/pages/new_broadcast_message_p
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
+import 'package:healthcloud/presentation/notifications/notifications_page.dart';
 import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -74,8 +75,8 @@ class AppRouterGenerator extends RouteGenerator {
     }
 
     if (superRoute is MaterialPageRoute<bewell_pro_core.PhoneLoginPage>) {
-      return MaterialPageRoute<PhoneLoginPage>(
-        builder: (_) => PhoneLoginPage(),
+      return MaterialPageRoute<HomePage>(
+        builder: (_) => const HomePage(),
       );
     }
 
@@ -84,6 +85,16 @@ class AppRouterGenerator extends RouteGenerator {
         case communityPage:
           return MaterialPageRoute<CommunityListViewPage>(
             builder: (_) => const CommunityListViewPage(),
+          );
+
+        case homePage:
+          return MaterialPageRoute<HomePage>(
+            builder: (_) => const HomePage(),
+          );
+
+        case notificationsPage:
+          return MaterialPageRoute<NotificationsPage>(
+            builder: (_) => const NotificationsPage(),
           );
 
         case contentPage:

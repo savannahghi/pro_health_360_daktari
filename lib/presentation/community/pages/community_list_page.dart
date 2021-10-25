@@ -1,6 +1,10 @@
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/community/widgets/community_page_app_bar.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/afyamoja_bottom_navigation_bar.dart';
 
 class CommunityListViewPage extends StatelessWidget {
   const CommunityListViewPage({Key? key}) : super(key: key);
@@ -37,20 +41,28 @@ class CommunityListViewPage extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          ListView.builder(
-            key: communityListViewKey,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: items.length,
-            itemBuilder: (_, int index) {
-              return GestureDetector(child: items[index]);
-            },
-          ),
-        ],
+    final Store<AppState> _store =
+        Store<AppState>(initialState: AppState.initial());
+
+    return StoreProvider<AppState>(
+      store: _store,
+      child: Scaffold(
+        appBar: const CommunityPageAppBar(),
+        body: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            ListView.builder(
+              key: communityListViewKey,
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: items.length,
+              itemBuilder: (_, int index) {
+                return GestureDetector(child: items[index]);
+              },
+            ),
+          ],
+        ),
+        bottomNavigationBar: const AfyaMojaBottomNavigationBar(),
       ),
     );
   }
