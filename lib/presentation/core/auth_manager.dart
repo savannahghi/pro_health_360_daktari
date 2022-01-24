@@ -1,26 +1,24 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/domain_constants.dart';
 import 'package:bewell_pro_core/presentation/onboarding/login/widgets/onboarding_scaffold.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
+import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/app_theme.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-
-// Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
-import 'package:healthcloud/presentation/router/route_generator.dart';
 
 class AuthManager extends StatefulWidget {
   const AuthManager({
@@ -31,7 +29,7 @@ class AuthManager extends StatefulWidget {
 
   final List<AppContext> appContexts;
   final String appName;
-  final Store<CoreState> store;
+  final Store<AppState> store;
 
   @override
   _AuthManagerState createState() => _AuthManagerState();
@@ -73,7 +71,7 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
     WidgetsBinding.instance!.addObserver(this);
   }
 
-  Future<void> updateInactivityTime(Store<CoreState> store) async {
+  Future<void> updateInactivityTime(Store<AppState> store) async {
     store.dispatch(
       UpdateUserStateAction(
         inActivitySetInTime: DateTime.now().toIso8601String(),

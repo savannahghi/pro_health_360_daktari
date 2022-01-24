@@ -3,12 +3,12 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
 // Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
+import 'package:mockito/mockito.dart';
+
 import '../../../mocks/mocks.dart';
 
 void main() {
@@ -79,51 +79,51 @@ void main() {
     }
 
     test('isDatabaseEmpty should return false', () async {
+      buildWhenMock('homeState', 10);
+      buildWhenMock('onboardingState', 10);
+      buildWhenMock('bottomNavigationState', 10);
       buildWhenMock('miscState', 10);
-      buildWhenMock('userFeedState', 10);
-      buildWhenMock('userState', 10);
-      buildWhenMock('clinicalState', 10);
-      buildWhenMock('navigationState', 10);
-      buildWhenMock('practitionerKYCState', 10);
-      buildWhenMock('userRegistrationState', 10);
+      buildWhenMock('staffState', 10);
+      buildWhenMock('surveyState', 10);
+      buildWhenMock('serviceRequestState', 10);
       expect(await db.isDatabaseEmpty(), false);
     });
 
     test('isDatabaseEmpty should return true', () async {
+      buildWhenMock('homeState', 0);
+      buildWhenMock('onboardingState', 0);
+      buildWhenMock('bottomNavigationState', 0);
       buildWhenMock('miscState', 0);
-      buildWhenMock('userFeedState', 0);
-      buildWhenMock('userState', 0);
-      buildWhenMock('clinicalState', 0);
-      buildWhenMock('navigationState', 0);
-      buildWhenMock('practitionerKYCState', 0);
-      buildWhenMock('userRegistrationState', 0);
+      buildWhenMock('staffState', 0);
+      buildWhenMock('surveyState', 0);
+      buildWhenMock('serviceRequestState', 0);
       expect(await db.isDatabaseEmpty(), true);
     });
   });
 
-  test('retrieveState should return state from userFeedState table', () async {
+  test('retrieveState should return state from miscState table', () async {
     when(
-      mockDb.rawQuery('SELECT * FROM userFeedState ORDER BY id DESC LIMIT 1'),
+      mockDb.rawQuery('SELECT * FROM miscState ORDER BY id DESC LIMIT 1'),
     ).thenAnswer(
       (_) => Future<List<Map<String, Object?>>>.value(
         <Map<String, Object?>>[
-          <String, Object?>{'userFeedState': json.encode(mockUserFeed)}
+          <String, Object?>{'miscState': json.encode(mockUserFeed)}
         ],
       ),
     );
 
-    expect(await db.retrieveState(Tables.UserFeedState), mockUserFeed);
+    expect(await db.retrieveState(Tables.MiscState), mockUserFeed);
   });
 
   test('saveState should call rawInsert', () async {
-    final String tableName = Tables.UserFeedState.name;
+    final String tableName = Tables.HomeState.name;
 
     final String query = 'INSERT INTO $tableName($tableName) VALUES(?)';
 
     when(mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
         .thenAnswer((_) => Future<int>.value(10));
 
-    await db.saveState(data: mockUserFeed, table: Tables.UserFeedState);
+    await db.saveState(data: mockUserFeed, table: Tables.HomeState);
     verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
         .called(1);
   });

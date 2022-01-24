@@ -1,25 +1,20 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
 import 'package:bewell_pro_core/presentation/router/routes.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
+import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
+import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
-
 // Project imports:
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_one.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_three.dart';
-import 'package:healthcloud/presentation/onboarding/practitioner_kyc/individual/individual_practitioner_step_two.dart';
-import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
@@ -28,6 +23,7 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
+
 import '../../../mocks/mocks.dart';
 
 void main() {
@@ -64,42 +60,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ContentPage>>());
     expect(route.builder(context), isA<ContentPage>());
-  });
-
-  test('Test router returns IndividualPractitionerKYCStepOne', () {
-    const RouteSettings settings =
-        RouteSettings(name: individualPractitionerKYCStepOneRoute);
-
-    final MaterialPageRoute<IndividualPractitionerKYCStepOne> route =
-        routeGenerator(settings)!
-            as MaterialPageRoute<IndividualPractitionerKYCStepOne>;
-
-    expect(route, isA<MaterialPageRoute<IndividualPractitionerKYCStepOne>>());
-    expect(route.builder(context), isA<IndividualPractitionerKYCStepOne>());
-  });
-
-  test('Test router returns individualPractitionerKYCStepTwoRoute', () {
-    const RouteSettings settings =
-        RouteSettings(name: individualPractitionerKYCStepTwoRoute);
-
-    final MaterialPageRoute<IndividualPractitionerKYCStepTwo> route =
-        routeGenerator(settings)!
-            as MaterialPageRoute<IndividualPractitionerKYCStepTwo>;
-
-    expect(route, isA<MaterialPageRoute<IndividualPractitionerKYCStepTwo>>());
-    expect(route.builder(context), isA<IndividualPractitionerKYCStepTwo>());
-  });
-
-  test('Test router returns individualPractitionerKYCStepThreeRoute', () {
-    const RouteSettings settings =
-        RouteSettings(name: individualPractitionerKYCStepThreeRoute);
-
-    final MaterialPageRoute<IndividualPractitionerKYCStepThree> route =
-        routeGenerator(settings)!
-            as MaterialPageRoute<IndividualPractitionerKYCStepThree>;
-
-    expect(route, isA<MaterialPageRoute<IndividualPractitionerKYCStepThree>>());
-    expect(route.builder(context), isA<IndividualPractitionerKYCStepThree>());
   });
 
   test('Test router returns CommunityListView', () {
@@ -232,6 +192,5 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ClientHealthPage>?;
     expect(route, isA<MaterialPageRoute<ClientHealthPage>>());
     expect(route?.builder(context), isA<ClientHealthPage>());
-
   });
 }

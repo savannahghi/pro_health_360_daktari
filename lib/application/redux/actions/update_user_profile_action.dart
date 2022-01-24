@@ -1,11 +1,8 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:domain_objects/entities.dart';
-
-// Project imports:
-
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/user_state.dart';
 
 /// - [userProfile]
 
@@ -22,14 +19,14 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final UserProfile userProfile = state.userState!.userProfile!;
+    final UserProfile userProfile = state.staffState!.userState!.userProfile!;
 
-    final BioData? bio = state.userState!.userProfile!.userBioData;
+    final BioData? bio = state.staffState!.userState!.userProfile!.userBioData;
 
     final CommunicationSettings settings =
-        state.userState!.communicationSettings!;
+        state.staffState!.userState!.communicationSettings!;
 
-    final AppState newState = state.copyWith.call(
+    final StaffState newStaffState = state.staffState!.copyWith(
       userState: UserState(
         userProfile: UserProfile(
           id: this.profile?.id ?? userProfile.id,
@@ -70,6 +67,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
         ),
       ),
     );
+
+    final AppState newState = state.copyWith.call(staffState: newStaffState);
 
     return newState;
   }

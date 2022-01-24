@@ -1,59 +1,57 @@
 //Flutter imports
 import 'package:afya_moja_core/buttons.dart';
-import 'package:flutter/material.dart';
-
 // Package Imports
 import 'package:afya_moja_core/community_chat_widgets.dart';
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
-
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
+import 'package:healthcloud/application/redux/states/user_state.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
+import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
+import 'package:healthcloud/domain/core/entities/request_item.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:healthcloud/domain/core/entities/request_item.dart';
-import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: mySavedIconSvgPath,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Surveys',
   ),
   UserProfileItemObj(
     iconAssetPath: appointmentIconSvgPath,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Appointments',
   ),
   UserProfileItemObj(
     iconAssetPath: helpCircleIcon,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Help/Contact Admin',
   ),
   UserProfileItemObj(
     iconAssetPath: feedbackIconSvgPath,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Resolved Requests',
   ),
   UserProfileItemObj(
     iconAssetPath: faqsIconSvgPath,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'FAQs',
   ),
   UserProfileItemObj(
     iconAssetPath: settingsIconSvgPath,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Settings',
   ),
 ];
@@ -250,17 +248,17 @@ const List<Widget> messages = <Widget>[
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: clientProfileIcon,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Relations',
   ),
   UserProfileItemObj(
     iconAssetPath: teleConsultNotificationIcon,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Medical data',
   ),
   UserProfileItemObj(
     iconAssetPath: clinicIcon,
-    route: kycIntroPageRoute,
+    route: surveysPage,
     title: 'Clinic information',
   ),
 ];

@@ -3,24 +3,24 @@ import 'package:healthcloud/infrastructure/repository/database_base.dart';
 
 final List<String> migrations = <String>[
   '''
+  CREATE TABLE IF NOT EXISTS ${Tables.HomeState.name} (id INTEGER PRIMARY KEY, 
+          homeState TEXT)''',
+  '''
+  CREATE TABLE IF NOT EXISTS ${Tables.OnboardingState.name} (id INTEGER PRIMARY KEY, 
+          onboardingState TEXT)''',
+  '''
+  CREATE TABLE IF NOT EXISTS ${Tables.BottomNavigationState.name} (id INTEGER PRIMARY KEY, 
+          bottomNavigationState TEXT)''',
+  '''
   CREATE TABLE IF NOT EXISTS ${Tables.MiscState.name} (id INTEGER PRIMARY KEY, 
           miscState TEXT)''',
   '''
-  CREATE TABLE IF NOT EXISTS ${Tables.UserFeedState.name} (id INTEGER PRIMARY KEY, 
-          userFeedState TEXT)''',
+  CREATE TABLE IF NOT EXISTS ${Tables.StaffState.name} (id INTEGER PRIMARY KEY, 
+          staffState TEXT)''',
   '''
-  CREATE TABLE IF NOT EXISTS ${Tables.UserState.name} (id INTEGER PRIMARY KEY, 
-          userState TEXT)''',
+  CREATE TABLE IF NOT EXISTS ${Tables.SurveyState.name} (id INTEGER PRIMARY KEY, 
+          surveyState TEXT)''',
   '''
-  CREATE TABLE IF NOT EXISTS ${Tables.ClinicalState.name} (id INTEGER PRIMARY KEY, 
-          clinicalState TEXT)''',
-  '''
-  CREATE TABLE IF NOT EXISTS ${Tables.NavigationState.name} (id INTEGER PRIMARY KEY, 
-          navigationState TEXT)''',
-  '''
-  CREATE TABLE IF NOT EXISTS ${Tables.PractitionerKYCState.name} (id INTEGER PRIMARY KEY, 
-          practitionerKYCState TEXT)''',
-  '''
-  CREATE TABLE IF NOT EXISTS ${Tables.UserRegistrationState.name} (id INTEGER PRIMARY KEY, 
-          userRegistrationState TEXT)''',
+  CREATE TABLE IF NOT EXISTS ${Tables.ServiceRequestState.name} (id INTEGER PRIMARY KEY, 
+          serviceRequestState TEXT)''',
 ];
