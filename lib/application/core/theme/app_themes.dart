@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:shared_themes/colors.dart';
 
@@ -67,10 +66,3 @@ class AppColors {
   static const Color newGroupLabelColor = Color(0xFF407BFC);
   static const Color diaryListCardColor = Color(0xff17d1d4);
 }
-
-BoxDecoration decoration({required BuildContext context}) => BoxDecoration(
-      color: Colors.white,
-      border: Border.all(
-        color: Theme.of(context).primaryColor.withOpacity(0.1),
-      ),
-    );

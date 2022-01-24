@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/user_state.dart';
 
 class UserStateViewModel {
   final UserState userState;
@@ -9,6 +9,8 @@ class UserStateViewModel {
   UserStateViewModel({required this.userState});
 
   static UserStateViewModel fromStore(Store<AppState> store) {
-    return UserStateViewModel(userState: store.state.userState!);
+    return UserStateViewModel(
+      userState: store.state.staffState?.userState ?? UserState.initial(),
+    );
   }
 }

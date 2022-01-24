@@ -2,9 +2,8 @@
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/phone_input.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:healthcloud/application/redux/states/app_state.dart';
 //Project Imports
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -15,10 +14,10 @@ import '../../../../mocks/test_helpers.dart';
 
 void main() {
   group('PhoneLogin', () {
-    late Store<CoreState> store;
+    late Store<AppState> store;
 
     setUp(() {
-      store = Store<CoreState>(initialState: CoreState.initial());
+      store = Store<AppState>(initialState: AppState.initial());
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {

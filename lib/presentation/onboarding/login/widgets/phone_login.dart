@@ -1,37 +1,33 @@
 //Flutter Imports
+//Project Imports
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/phone_input.dart';
+//Package Imports
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-//Package Imports
-import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
-import 'package:bewell_pro_core/application/core/services/input_validators.dart';
-import 'package:bewell_pro_core/application/redux/actions/misc_state_actions/batch_update_misc_state_action.dart';
-import 'package:bewell_pro_core/application/redux/actions/user_state_actions/phone_login_action.dart';
-import 'package:bewell_pro_core/application/redux/flags/flags.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/application/redux/view_models/core_state_view_model.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
+import 'package:healthcloud/application/core/services/input_invalidators.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:healthcloud/application/redux/actions/core/phone_login_action.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-
-//Project Imports
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/phone_input.dart';
 
 class PhoneLogin extends StatefulWidget {
   @override
@@ -51,7 +47,7 @@ class PhoneLoginState extends State<PhoneLogin> {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
-      StoreProvider.dispatch<CoreState>(
+      StoreProvider.dispatch<AppState>(
         context,
         BatchUpdateMiscStateAction(
           phoneNumber: UNKNOWN,
@@ -69,12 +65,12 @@ class PhoneLoginState extends State<PhoneLogin> {
     required String? pin,
   }) async {
     if (_formKey.currentState!.validate()) {
-      StoreProvider.dispatch<CoreState>(
+      StoreProvider.dispatch<AppState>(
         context,
         BatchUpdateMiscStateAction(phoneNumber: phoneNumber, pinCode: pin),
       );
 
-      await StoreProvider.dispatch<CoreState>(
+      await StoreProvider.dispatch<AppState>(
         context,
         PhoneLoginAction(context: context),
       );
@@ -83,10 +79,9 @@ class PhoneLoginState extends State<PhoneLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<CoreState, CoreStateViewModel>(
-      converter: (Store<CoreState> store) =>
-          CoreStateViewModel.fromStore(store),
-      builder: (BuildContext context, CoreStateViewModel vm) {
+    return StoreConnector<AppState, AppStateViewModel>(
+      converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
+      builder: (BuildContext context, AppStateViewModel vm) {
         return Form(
           key: _formKey,
           child: Column(
@@ -114,7 +109,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                   onChanged: (String? value) {
                     if (vm.state.miscState!.invalidCredentials! ||
                         vm.state.miscState!.unKnownPhoneNo!) {
-                      StoreProvider.dispatch<CoreState>(
+                      StoreProvider.dispatch<AppState>(
                         context,
                         BatchUpdateMiscStateAction(
                           invalidCredentials: false,
@@ -163,7 +158,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                 onChanged: (String val) {
                   if (vm.state.miscState!.invalidCredentials! ||
                       vm.state.miscState!.unKnownPhoneNo!) {
-                    StoreProvider.dispatch<CoreState>(
+                    StoreProvider.dispatch<AppState>(
                       context,
                       BatchUpdateMiscStateAction(
                         invalidCredentials: false,
