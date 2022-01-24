@@ -96,8 +96,8 @@ class BatchUpdateUserStateAction extends ReduxAction<AppState> {
           : state.staffState?.userState!.auth,
     );
 
-    final StaffState newStaffState =
-        state.staffState!.copyWith(userState: newUserState);
+    final StaffState? newStaffState =
+        state.staffState?.copyWith(userState: newUserState);
 
     return state.copyWith(staffState: newStaffState);
   }
