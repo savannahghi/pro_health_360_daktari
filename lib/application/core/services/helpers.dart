@@ -34,7 +34,7 @@ AppSetupData getAppSetupData(AppContext context) {
     case AppContext.AppTest:
       return devAppSetupData;
     case AppContext.AppDemo:
-      return devAppSetupData;
+      return demoAppSetupData;
     case AppContext.AppProd:
       return prodAppSetupData;
     case AppContext.AppE2E:
@@ -63,6 +63,32 @@ final AppSetupData devAppSetupData = AppSetupData(
     updateUserPinEndpoint: kTestUpdateUserPinEndpoint,
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
+    requestPinResetEndpoint: '',
+    respondedSecurityQuestionsEndpoint: '',
+    verifySecurityQuestionsEndpoint: '',
+  ),
+);
+
+final AppSetupData demoAppSetupData = AppSetupData(
+  appContexts: demoAppContexts,
+  sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kDemoAnonymousLoginEndpoint,
+    graphqlEndpoint: kDemoGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kDemoSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kDemoRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kDemoRetryResendOtpEndpoint,
+    pinResetEndpoint: kDemoPinResetEndpoint,
+    userRecoveryPhoneNumbersEndpoint: kDemoUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: kDemoVerifyContactOTPEndpoint,
+    verifyPhoneEndpoint: kDemoVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint: kDemoSendContactVerificationOTPEndpoint,
+    sendRecoverAccountOtpEndpoint: kDemoSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kDemoLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kDemoUpdateUserPinEndpoint,
+    uploadFileEndPoint: kDemoUploadFileEndPoint,
+    createUserByPhoneEndpoint: kDemoCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
     requestPinResetEndpoint: '',
     respondedSecurityQuestionsEndpoint: '',

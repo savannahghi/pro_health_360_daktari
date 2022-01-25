@@ -1,33 +1,70 @@
-/* TEST ENDPOINTS */
+/* TEST ENDPOINTS 
+
+We are using staging endpoints here so as to match what the backend does.
+
+The environment that these endpoints call is STRICTLY for internal DEVs only
+*/
 const String kTestGraphqlEndpoint =
     'https://gateway.test.savannahghi.org/graphql';
 const String kTestLoginByPhoneEndpoint =
-    'https://onboarding-testing.savannahghi.org/login_by_phone';
+    'https://mycarehub-staging.savannahghi.org/login_by_phone';
 const String kTestPinResetEndpoint =
-    'https://onboarding-testing.savannahghi.org/request_pin_reset';
+    'https://mycarehub-staging.savannahghi.org/request_pin_reset';
 const String kTestUpdateUserPinEndpoint =
-    'https://onboarding-testing.savannahghi.org/reset_pin';
+    'https://mycarehub-staging.savannahghi.org/reset_pin';
 const String kTestVerifyPhoneEndpoint =
-    'https://onboarding-testing.savannahghi.org/verify_phone';
+    'https://mycarehub-staging.savannahghi.org/verify_phone';
 const String kTestCreateUserByPhoneEndpoint =
-    'https://onboarding-testing.savannahghi.org/create_user_by_phone';
+    'https://mycarehub-staging.savannahghi.org/create_user_by_phone';
 const String kTestRetryResendOtpEndpoint =
-    'https://onboarding-testing.savannahghi.org/send_retry_otp';
+    'https://mycarehub-staging.savannahghi.org/send_retry_otp';
 const String kTestRefreshTokenEndpoint =
-    'https://onboarding-testing.savannahghi.org/refresh_token';
+    'https://mycarehub-staging.savannahghi.org/refresh_token';
 const String kTestAnonymousLoginEndpoint =
-    'https://onboarding-testing.savannahghi.org/login_anonymous';
+    'https://mycarehub-staging.savannahghi.org/login_anonymous';
 const String kTestUserRecoveryPhoneNumbersEndpoint =
-    'https://onboarding-testing.savannahghi.org/user_recovery_phonenumbers';
+    'https://mycarehub-staging.savannahghi.org/user_recovery_phonenumbers';
 const String kTestSendRecoverAccountOtpEndpoint =
-    'https://onboarding-testing.savannahghi.org/send_otp';
+    'https://mycarehub-staging.savannahghi.org/send_otp';
 const String kTestSetPrimaryPhoneNumberEndpoint =
-    'https://onboarding-testing.savannahghi.org/set_primary_phonenumber';
+    'https://mycarehub-staging.savannahghi.org/set_primary_phonenumber';
 const String kTestUploadFileEndPoint =
     'https://engagement-testing.savannahghi.org/upload';
 const String kTestSendContactVerificationOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/send_otp';
 const String kTestVerifyContactOTPEndpoint =
+    'https://edi-testing.healthcloud.co.ke/verify_otp';
+
+/*DEMO ENDPOINTS  */
+const String kDemoGraphqlEndpoint =
+    'https://gateway.test.savannahghi.org/graphql';
+const String kDemoLoginByPhoneEndpoint =
+    'https://mycarehub-testing.savannahghi.org/login_by_phone';
+const String kDemoPinResetEndpoint =
+    'https://mycarehub-testing.savannahghi.org/request_pin_reset';
+const String kDemoUpdateUserPinEndpoint =
+    'https://mycarehub-testing.savannahghi.org/reset_pin';
+const String kDemoVerifyPhoneEndpoint =
+    'https://mycarehub-testing.savannahghi.org/verify_phone';
+const String kDemoCreateUserByPhoneEndpoint =
+    'https://mycarehub-testing.savannahghi.org/create_user_by_phone';
+const String kDemoRetryResendOtpEndpoint =
+    'https://mycarehub-testing.savannahghi.org/send_retry_otp';
+const String kDemoRefreshTokenEndpoint =
+    'https://mycarehub-testing.savannahghi.org/refresh_token';
+const String kDemoAnonymousLoginEndpoint =
+    'https://mycarehub-testing.savannahghi.org/login_anonymous';
+const String kDemoUserRecoveryPhoneNumbersEndpoint =
+    'https://mycarehub-testing.savannahghi.org/user_recovery_phonenumbers';
+const String kDemoSendRecoverAccountOtpEndpoint =
+    'https://mycarehub-testing.savannahghi.org/send_otp';
+const String kDemoSetPrimaryPhoneNumberEndpoint =
+    'https://mycarehub-testing.savannahghi.org/set_primary_phonenumber';
+const String kDemoUploadFileEndPoint =
+    'https://engagement-testing.savannahghi.org/upload';
+const String kDemoSendContactVerificationOTPEndpoint =
+    'https://edi-testing.healthcloud.co.ke/send_otp';
+const String kDemoVerifyContactOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/verify_otp';
 
 /* PROD ENDPOINTS */

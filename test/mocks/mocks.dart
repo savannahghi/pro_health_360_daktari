@@ -212,6 +212,29 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
   }
 }
 
+final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
+  'expiresIn': '3600',
+  'idToken': 'some id token',
+  'refreshToken': 'some refresh token'
+};
+
+final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
+  'active': true,
+  'contact': '+254717356476',
+  'contactType': 'PHONE',
+  'optedIn': true
+};
+
+final Map<String, dynamic> mockFacility = <String, dynamic>{
+  'id': 'some_id',
+  'name': 'facility name',
+  'code': 123,
+  'phone': '+254717356476',
+  'active': false,
+  'county': 'Nairobi',
+  'description': 'detailed description',
+};
+
 Map<String, dynamic> mockIconDetails = <String, dynamic>{
   'url': alertCircleIcon
 };
@@ -404,7 +427,7 @@ class MockSILGraphQlClient extends IGraphQlClient {
 
     if (endpoint.contains('login_by_phone')) {
       return Future<http.Response>.value(
-        http.Response(json.encode(mockAuthLoginResponse), 201),
+        http.Response(json.encode(mockLoginResponse), 201),
       );
     }
 
@@ -604,7 +627,43 @@ Map<String, dynamic> mockFAQtag = <String, dynamic>{
   'slug': 'faqs',
 };
 
+final Map<String, dynamic> mockUser = <String, dynamic>{
+  'userID': 'UNKNOWN',
+  'userName': 'UNKNOWN',
+  'displayName': 'UNKNOWN',
+  'firstName': 'UNKNOWN',
+  'middleName': 'UNKNOWN',
+  'lastName': 'UNKNOWN',
+  'userType': 'UNKNOWN',
+  'gender': Gender.unknown.name,
+  'active': false,
+  'primaryContact': <String, dynamic>{
+    'contactType': 'PHONE',
+    'contactValue': 'UNKNOWN',
+    'active': false,
+    'optedIn': false,
+  },
+  'lastSuccessfulLogin': 'UNKNOWN',
+  'lastFailedLogin': 'UNKNOWN',
+  'failedLoginCount': 0,
+  'nextAllowedLogin': 'UNKNOWN',
+  'pinChangeRequired': false,
+  'hasSetPin': false,
+  'isPhoneVerified': false,
+  'termsAccepted': false,
+  'acceptedTermsID': 0,
+  'suspended': false,
+  'avatar': 'UNKNOWN'
+};
+
 final Map<String, dynamic> mockStaffState = <String, dynamic>{
+  'id': 'UNKNOWN',
+  'user_id': 'UNKNOWN',
+  'active': false,
+  'staff_number': 'UNKNOWN',
+  'facilities': <dynamic>[],
+  'default_facility': 'UNKNOWN',
+  'user': mockUser,
   'userState': <String, dynamic>{
     'userProfile': <String, dynamic>{
       'id': 'UNKNOWN',
@@ -680,6 +739,14 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
 };
 
 final Map<String, dynamic> appstateMock = <String, dynamic>{
+  'credentials': <String, dynamic>{
+    'expiresIn': 'UNKNOWN',
+    'idToken': 'UNKNOWN',
+    'refreshToken': 'UNKNOWN',
+    'tokenExpiryTimestamp': 'UNKNOWN',
+    'isSignedIn': false,
+    'signedInTime': 'UNKNOWN',
+  },
   'homeState': <String, dynamic>{},
   'onboardingState': <String, dynamic>{},
   'bottomNavigationState': <String, dynamic>{'currentBottomNavIndex': 0},
@@ -687,4 +754,26 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
   'staffState': mockStaffState,
   'surveyState': <String, dynamic>{},
   'serviceRequestState': <String, dynamic>{},
+};
+
+final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
+  'code': 0,
+  'message': 'success',
+  'credentials': <String, dynamic>{
+    'expiresIn': '3600',
+    'idToken': 'some id token',
+    'refreshToken': 'some-refresh-token',
+    'tokenExpiryTimestamp': 'UNKNOWN',
+    'isSignedIn': false,
+    'signedInTime': 'UNKNOWN',
+  },
+  'staffProfile': <String, dynamic>{
+    'id': 'UNKNOWN',
+    'user_id': 'UNKNOWN',
+    'active': false,
+    'staff_number': 'UNKNOWN',
+    'facilities': <dynamic>[],
+    'default_facility': 'UNKNOWN',
+    'user': mockUser,
+  }
 };

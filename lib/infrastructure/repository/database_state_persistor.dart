@@ -8,9 +8,9 @@ import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart'
 import 'package:healthcloud/application/redux/states/home_state.dart';
 import 'package:healthcloud/application/redux/states/misc_state.dart';
 import 'package:healthcloud/application/redux/states/onboarding_state.dart';
-import 'package:healthcloud/application/redux/states/staff_state.dart';
 import 'package:healthcloud/application/redux/states/survey_requests_state.dart';
 import 'package:healthcloud/application/redux/states/survey_state.dart';
+import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';

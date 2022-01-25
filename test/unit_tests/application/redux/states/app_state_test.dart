@@ -1,6 +1,6 @@
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/staff_state.dart';
 import 'package:healthcloud/application/redux/states/user_state.dart';
+import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
 import 'package:test/test.dart';
 
 import '../../../../mocks/mocks.dart';

@@ -25,7 +25,7 @@ void main() {
       () async {
     expect(getAppSetupData(testAppContexts.last), devAppSetupData);
 
-    expect(getAppSetupData(demoAppContexts.last), devAppSetupData);
+    expect(getAppSetupData(demoAppContexts.last), demoAppSetupData);
 
     expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
 
@@ -149,7 +149,7 @@ void main() {
       await tester.pump();
 
       expect(route, isNotNull);
-      // expect(route, '/userNames');
+      expect(route, '/homePage');
     });
 
     testWidgets(
