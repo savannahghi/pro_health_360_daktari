@@ -46,7 +46,7 @@ class AppColors {
   static const Color dodgerBlueColor = Color(0xFF407BFC);
   static const Color lightSkyBlueColor = Color(0xFFF6F7FB);
   static const Color galleryColor = Color(0xFFEBEBEB);
-  static const Color primaryColor = Color(0xFF1CA4A6);
+  static const Color primaryColor = Color(0xFF9269AD);
   static const Color secondaryColor = Color(0xFF5F2788);
   static const Color accentColor = Color(0xFFA3C717);
   static const Color lightGreyBackgroundColor = Color(0xFFF6F6F6);

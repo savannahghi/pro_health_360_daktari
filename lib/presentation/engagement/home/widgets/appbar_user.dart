@@ -10,6 +10,7 @@ import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/application/redux/view_models/user_state_view_model.dart';
 // Project imports
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -22,6 +23,11 @@ class AppbarUser extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12.0),
       child: GestureDetector(
         key: appBarUserKey,
+        onTap: () {
+          Navigator.of(
+            context,
+          ).pushNamed(AppRoutes.profilePage);
+        },
         child: StoreConnector<AppState, UserStateViewModel>(
           converter: (Store<AppState> store) =>
               UserStateViewModel.fromStore(store),

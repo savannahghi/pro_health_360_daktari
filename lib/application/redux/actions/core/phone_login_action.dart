@@ -3,25 +3,26 @@ import 'dart:convert';
 import 'package:afya_moja_core/enums.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart'
-    as local_actions;
+import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/misc_state.dart';
+import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
+import 'package:healthcloud/domain/core/entities/core/user.dart';
+import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/login_constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 
@@ -76,47 +77,53 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       final Map<String, dynamic> responseMap =
           json.decode(processedResponse.response.body) as Map<String, dynamic>;
 
-      final UserResponse responseAsObject = UserResponse.fromJson(responseMap);
+      final PhoneLoginResponse loginResponse =
+          PhoneLoginResponse.fromJson(responseMap);
 
-      dispatch(
-        local_actions.BatchUpdateUserStateAction(
-          userProfile: responseAsObject.profile,
-          communicationSettings: responseAsObject.communicationSettings,
-          auth: responseAsObject.auth,
-          isSignedIn: true,
-          inActivitySetInTime: DateTime.now().toIso8601String(),
-          signedInTime: DateTime.now().toIso8601String(),
-          tokenExpiryTime: DateTime.now()
-              .add(const Duration(seconds: kTokenExpiryDuration))
-              .toIso8601String(),
-        ),
+      final DateTime now = DateTime.now();
+      AuthCredentials? authCredentials = loginResponse.credentials?.copyWith(
+        signedInTime: now.toIso8601String(),
+        isSignedIn: true,
       );
 
-      dispatch(
-        BottomNavAction(
-          currentBottomNavIndex: 1,
-        ),
-      );
+      final String? expiresIn = loginResponse.credentials?.expiresIn;
+      if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
+        final DateTime tokenExpiryTimestamp =
+            now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
 
-      // Clear the misc state
-      dispatch(
-        BatchUpdateMiscStateAction(
-          phoneNumber: UNKNOWN,
-          pinCode: UNKNOWN,
-          invalidCredentials: false,
-          unKnownPhoneNo: false,
-        ),
-      );
-
-      if (!responseAsObject.auth!.isChangePin!) {
-        final OnboardingPathConfig path = onboardingPath(state: state);
-        dispatch(
-          NavigateAction<AppState>.pushNamedAndRemoveAll(
-            path.route,
-            arguments: path.arguments,
-          ),
+        authCredentials = authCredentials?.copyWith(
+          tokenExpiryTimestamp: tokenExpiryTimestamp.toIso8601String(),
         );
       }
+
+      dispatch(
+        AuthStatusAction(
+          idToken: authCredentials?.idToken,
+          refreshToken: authCredentials?.refreshToken,
+          expiresIn: authCredentials?.expiresIn,
+          isSignedIn: true,
+          signedInTime: authCredentials?.signedInTime,
+          tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
+        ),
+      );
+
+      final User? user =
+          loginResponse.staffState?.user?.copyWith(pinChangeRequired: false);
+
+      dispatch(UpdateUserAction(user: user));
+
+      dispatch(UpdateStaffProfileAction(id: loginResponse.staffState?.id));
+
+      final OnboardingPathConfig path = onboardingPath(state: state);
+      dispatch(
+        NavigateAction<AppState>.pushNamedAndRemoveAll(
+          path.route,
+          arguments: path.arguments,
+        ),
+      );
+      dispatch(
+        BottomNavAction(currentBottomNavIndex: 0),
+      );
 
       return state;
     } else {

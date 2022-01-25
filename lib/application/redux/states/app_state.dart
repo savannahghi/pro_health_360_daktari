@@ -4,9 +4,10 @@ import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart'
 import 'package:healthcloud/application/redux/states/home_state.dart';
 import 'package:healthcloud/application/redux/states/misc_state.dart';
 import 'package:healthcloud/application/redux/states/onboarding_state.dart';
-import 'package:healthcloud/application/redux/states/staff_state.dart';
 import 'package:healthcloud/application/redux/states/survey_requests_state.dart';
 import 'package:healthcloud/application/redux/states/survey_state.dart';
+import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
+import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'app_state.freezed.dart';
@@ -17,6 +18,7 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState {
   factory AppState({
+    AuthCredentials? credentials,
     HomeState? homeState,
     OnboardingState? onboardingState,
     BottomNavigationState? bottomNavigationState,
@@ -31,6 +33,7 @@ class AppState with _$AppState {
       _$AppStateFromJson(json);
 
   factory AppState.initial() => AppState(
+        credentials: AuthCredentials.initial(),
         homeState: HomeState.initial(),
         onboardingState: OnboardingState.initial(),
         bottomNavigationState: BottomNavigationState.initial(),

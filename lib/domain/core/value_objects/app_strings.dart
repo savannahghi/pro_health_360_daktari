@@ -92,7 +92,7 @@ const String approveText = 'Approve';
 const String rejectText = 'Reject';
 
 //Phone Login
-const String phoneLoginPageTitle = 'Welcome to My Afya Hub';
+const String phoneLoginPageTitle = 'Welcome to Afya Moja';
 const String phoneLoginPageDescription = 'Enter your provided pin to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
