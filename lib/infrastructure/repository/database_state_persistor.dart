@@ -1,19 +1,16 @@
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/clinical_state.dart';
-import 'package:bewell_pro_core/application/redux/states/misc_state.dart';
-import 'package:bewell_pro_core/application/redux/states/user_feed_state.dart';
-import 'package:bewell_pro_core/application/redux/states/user_registration_state.dart';
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
-import 'package:domain_objects/entities.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
-
-// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/practitioner_kyc_state.dart';
+import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart';
+import 'package:healthcloud/application/redux/states/home_state.dart';
+import 'package:healthcloud/application/redux/states/misc_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding_state.dart';
+import 'package:healthcloud/application/redux/states/staff_state.dart';
+import 'package:healthcloud/application/redux/states/survey_requests_state.dart';
+import 'package:healthcloud/application/redux/states/survey_state.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
@@ -55,14 +52,13 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
     await Future<dynamic>.delayed(saveDuration!);
 
     if (lastPersistedState == null ||
+        lastPersistedState.homeState != newState.homeState ||
+        lastPersistedState.onboardingState != newState.onboardingState ||
         lastPersistedState.miscState != newState.miscState ||
-        lastPersistedState.userFeedState != newState.userFeedState ||
-        lastPersistedState.userState != newState.userState ||
-        lastPersistedState.clinicalState != newState.clinicalState ||
-        lastPersistedState.practitionerKYCState !=
-            newState.practitionerKYCState ||
-        lastPersistedState.userRegistrationState !=
-            newState.userRegistrationState) {
+        lastPersistedState.staffState != newState.staffState ||
+        lastPersistedState.surveyState != newState.surveyState ||
+        lastPersistedState.serviceRequestState !=
+            newState.serviceRequestState) {
       await persistState(
         newState,
         AfyaMojaDatabaseMobile<Database>(
@@ -108,82 +104,84 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
     AppState newState,
     AfyaMojaDatabaseBase<dynamic> database,
   ) async {
+    // save home state
+    await database.saveState(
+      data: newState.homeState!.toJson(),
+      table: Tables.HomeState,
+    );
+
+    // save onboarding state
+    await database.saveState(
+      data: newState.onboardingState!.toJson(),
+      table: Tables.OnboardingState,
+    );
+
+    // save bottom navigation state
+    await database.saveState(
+      data: newState.bottomNavigationState!.toJson(),
+      table: Tables.BottomNavigationState,
+    );
+
     // save MISC state
     await database.saveState(
       data: newState.miscState!.toJson(),
       table: Tables.MiscState,
     );
 
-    // save user feed state
+    // save staff state
     await database.saveState(
-      data: newState.userFeedState!.toJson(),
-      table: Tables.UserFeedState,
+      data: newState.staffState!.toJson(),
+      table: Tables.StaffState,
     );
 
-    // save user state
+    // save survey state
     await database.saveState(
-      data: newState.userState!.toJson(),
-      table: Tables.UserState,
+      data: newState.surveyState!.toJson(),
+      table: Tables.SurveyState,
     );
 
+    // save service request state
     await database.saveState(
-      data: newState.clinicalState!.toJson(),
-      table: Tables.ClinicalState,
-    );
-
-    // save navigation state
-    await database.saveState(
-      data: newState.navigationState!.toJson(),
-      table: Tables.NavigationState,
-    );
-
-    // save practitionerKYC state
-    await database.saveState(
-      data: newState.practitionerKYCState!.toJson(),
-      table: Tables.PractitionerKYCState,
-    );
-
-    // save userRegistrationState state
-    await database.saveState(
-      data: newState.userRegistrationState!.toJson(),
-      table: Tables.UserRegistrationState,
+      data: newState.serviceRequestState!.toJson(),
+      table: Tables.ServiceRequestState,
     );
   }
 
   @visibleForTesting
   Future<AppState> retrieveState(AfyaMojaDatabaseBase<dynamic> database) async {
-    return const AppState().copyWith(
+    return AppState().copyWith(
+      // retrieve home state
+      homeState: HomeState.fromJson(
+        await database.retrieveState(Tables.HomeState),
+      ),
+
+      // retrieve onboarding state
+      onboardingState: OnboardingState.fromJson(
+        await database.retrieveState(Tables.OnboardingState),
+      ),
+
+      // retrieve bottom navigation state
+      bottomNavigationState: BottomNavigationState.fromJson(
+        await database.retrieveState(Tables.BottomNavigationState),
+      ),
+
       // retrieve MISC state
       miscState:
           MiscState.fromJson(await database.retrieveState(Tables.MiscState)),
 
-      // retrieve user feed state
-      userFeedState: UserFeedState.fromJson(
-        await database.retrieveState(Tables.UserFeedState),
+      // retrieve staff state
+      staffState: StaffState.fromJson(
+        await database.retrieveState(Tables.StaffState),
       ),
 
-      // retrieve user state
-      userState:
-          UserState.fromJson(await database.retrieveState(Tables.UserState)),
-
-      // retrieve clinical state
-      clinicalState: ClinicalState.fromJson(
-        await database.retrieveState(Tables.ClinicalState),
+      // retrieve survey state
+      surveyState: SurveyState.fromJson(
+        await database.retrieveState(Tables.SurveyState),
       ),
 
-      // retrieve navigation state
-      navigationState: Navigation.fromJson(
-        await database.retrieveState(Tables.NavigationState),
-      ),
-
-      // retrieve practitionerKYC state
-      practitionerKYCState: PractitionerKYCState.fromJson(
-        await database.retrieveState(Tables.PractitionerKYCState),
-      ),
-
-      // retrieve practitionerKYC state
-      userRegistrationState: UserRegistrationState.fromJson(
-        await database.retrieveState(Tables.UserRegistrationState),
+      // retrieve service request state
+      serviceRequestState: ServiceRequestState.fromJson(
+        await database.retrieveState(Tables.ServiceRequestState),
       ),
 
       wait: Wait(),

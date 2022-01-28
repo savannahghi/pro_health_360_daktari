@@ -1,14 +1,13 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
-import 'package:domain_objects/entities.dart';
-
+import 'package:domain_objects/entities.dart' as domain;
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/staff_state.dart';
+import 'package:healthcloud/application/redux/states/user_state.dart';
 
-class UpdateUserStateAction extends ReduxAction<CoreState> {
+class UpdateUserStateAction extends ReduxAction<AppState> {
   UpdateUserStateAction({
     this.inActivitySetInTime,
     this.userProfile,
@@ -19,77 +18,86 @@ class UpdateUserStateAction extends ReduxAction<CoreState> {
     this.tokenExpiryTime,
   });
 
-  final AuthCredentialResponse? auth;
-  final CommunicationSettings? communicationSettings;
+  final domain.AuthCredentialResponse? auth;
+  final domain.CommunicationSettings? communicationSettings;
   final String? inActivitySetInTime;
   final bool? isSignedIn;
   final String? signedInTime;
   final String? tokenExpiryTime;
-  final UserProfile? userProfile;
+  final domain.UserProfile? userProfile;
 
   @override
   AppState reduce() {
-    final UserState? newUserState = store.state.userState?.copyWith.call(
-      inActivitySetInTime:
-          inActivitySetInTime ?? store.state.userState?.inActivitySetInTime,
-      userProfile: state.userState?.userProfile?.copyWith(
-        id: this.userProfile?.id ?? state.userState?.userProfile?.id,
+    final UserState? newUserState =
+        store.state.staffState?.userState?.copyWith.call(
+      inActivitySetInTime: inActivitySetInTime ??
+          store.state.staffState?.userState?.inActivitySetInTime,
+      userProfile: state.staffState?.userState?.userProfile?.copyWith(
+        id: this.userProfile?.id ??
+            state.staffState?.userState?.userProfile?.id,
         username: this.userProfile?.username ??
-            state.userState?.userProfile?.username,
+            state.staffState?.userState?.userProfile?.username,
         primaryPhoneNumber: this.userProfile?.primaryPhoneNumber ??
-            state.userState?.userProfile?.primaryPhoneNumber,
+            state.staffState?.userState?.userProfile?.primaryPhoneNumber,
         primaryEmailAddress: this.userProfile?.primaryEmailAddress ??
-            state.userState?.userProfile?.primaryEmailAddress,
+            state.staffState?.userState?.userProfile?.primaryEmailAddress,
         secondaryPhoneNumbers:
             deconstructSecondaryPhoneNumber(state, this.userProfile),
         secondaryEmailAddresses:
             deconstructSecondaryEmailAddresses(state, this.userProfile),
         termsAccepted: this.userProfile?.termsAccepted ??
-            state.userState?.userProfile?.termsAccepted,
+            state.staffState?.userState?.userProfile?.termsAccepted,
         suspended: this.userProfile?.suspended ??
-            state.userState?.userProfile?.suspended,
+            state.staffState?.userState?.userProfile?.suspended,
         photoUploadID: this.userProfile?.photoUploadID ??
-            state.userState?.userProfile?.photoUploadID,
+            state.staffState?.userState?.userProfile?.photoUploadID,
         userBioData: this.userProfile?.userBioData ??
-            state.userState?.userProfile?.userBioData,
+            state.staffState?.userState?.userProfile?.userBioData,
       ),
       communicationSettings:
-          state.userState?.communicationSettings?.copyWith.call(
+          state.staffState?.userState?.communicationSettings?.copyWith.call(
         profileID: this.communicationSettings?.profileID ??
-            state.userState?.communicationSettings?.profileID,
+            state.staffState?.userState?.communicationSettings?.profileID,
         allowEmail: this.communicationSettings?.allowEmail ??
-            state.userState?.communicationSettings?.allowEmail,
+            state.staffState?.userState?.communicationSettings?.allowEmail,
         allowPush: this.communicationSettings?.allowPush ??
-            state.userState?.communicationSettings?.allowPush,
+            state.staffState?.userState?.communicationSettings?.allowPush,
         allowText: this.communicationSettings?.allowText ??
-            state.userState?.communicationSettings?.allowText,
+            state.staffState?.userState?.communicationSettings?.allowText,
         allowWhatsApp: this.communicationSettings?.allowWhatsApp ??
-            state.userState?.communicationSettings?.allowWhatsApp,
+            state.staffState?.userState?.communicationSettings?.allowWhatsApp,
       ),
-      isSignedIn: this.isSignedIn ?? state.userState?.isSignedIn,
-      tokenExpiryTime: this.tokenExpiryTime ?? state.userState?.tokenExpiryTime,
-      signedInTime: this.signedInTime ?? state.userState?.signedInTime,
-      auth: state.userState?.auth?.copyWith.call(
-        canExperiment:
-            this.auth?.canExperiment ?? state.userState?.auth?.canExperiment,
-        idToken: this.auth?.idToken ?? state.userState?.auth?.idToken,
-        customToken:
-            this.auth?.customToken ?? state.userState?.auth?.customToken,
-        expiresIn: this.auth?.expiresIn ?? state.userState?.auth?.expiresIn,
-        refreshToken:
-            this.auth?.refreshToken ?? state.userState?.auth?.refreshToken,
-        isAdmin: this.auth?.isAdmin ?? state.userState?.auth?.isAdmin,
-        isChangePin:
-            this.auth?.isChangePin ?? state.userState?.auth?.isChangePin,
-        isAnonymous:
-            this.auth?.isAnonymous ?? state.userState?.auth?.isAnonymous,
-        uid: this.auth?.uid ?? state.userState?.auth?.uid,
+      isSignedIn: this.isSignedIn ?? state.staffState?.userState?.isSignedIn,
+      tokenExpiryTime:
+          this.tokenExpiryTime ?? state.staffState?.userState?.tokenExpiryTime,
+      signedInTime:
+          this.signedInTime ?? state.staffState?.userState?.signedInTime,
+      auth: state.staffState?.userState?.auth?.copyWith.call(
+        canExperiment: this.auth?.canExperiment ??
+            state.staffState?.userState?.auth?.canExperiment,
+        idToken:
+            this.auth?.idToken ?? state.staffState?.userState?.auth?.idToken,
+        customToken: this.auth?.customToken ??
+            state.staffState?.userState?.auth?.customToken,
+        expiresIn: this.auth?.expiresIn ??
+            state.staffState?.userState?.auth?.expiresIn,
+        refreshToken: this.auth?.refreshToken ??
+            state.staffState?.userState?.auth?.refreshToken,
+        isAdmin:
+            this.auth?.isAdmin ?? state.staffState?.userState?.auth?.isAdmin,
+        isChangePin: this.auth?.isChangePin ??
+            state.staffState?.userState?.auth?.isChangePin,
+        isAnonymous: this.auth?.isAnonymous ??
+            state.staffState?.userState?.auth?.isAnonymous,
+        uid: this.auth?.uid ?? state.staffState?.userState?.auth?.uid,
       ),
     );
 
-    final AppState appState = state as AppState;
-    final AppState newState = appState.copyWith(
+    final StaffState? newStaffState = state.staffState?.copyWith(
       userState: newUserState,
+    );
+    final AppState newState = state.copyWith(
+      staffState: newStaffState,
     );
     return newState;
   }

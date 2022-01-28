@@ -1,26 +1,25 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
 import 'package:bewell_pro_core/domain/clinical/value_objects/system_enums.dart';
 import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/app_contexts.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/app_string_constants.dart';
 import 'package:bewell_pro_core/domain/core/value_objects/domain_constants.dart';
 import 'package:domain_objects/entities.dart';
+// import 'package:domain_objects/entities.dart' as domain;
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 // Project imports:
 import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
+import 'package:shared_ui_components/buttons.dart';
+
 import 'mocks.dart';
 
 /// [buildTestWidget] is a widget wrapper used for testing
@@ -31,14 +30,14 @@ import 'mocks.dart';
 Future<void> buildTestWidget({
   required WidgetTester tester,
   required Widget widget,
-  Store<CoreState>? store,
+  Store<AppState>? store,
   IGraphQlClient? graphQlClient,
   List<NavigatorObserver>? navigatorObservers,
   Widget? endDrawer,
   Duration? duration,
 }) async {
-  final Store<CoreState> _store =
-      Store<CoreState>(initialState: AppState.initial());
+  final Store<AppState> _store =
+      Store<AppState>(initialState: AppState.initial());
 
   NavigateAction.setNavigatorKey(globalAppNavigatorKey);
 
@@ -48,7 +47,7 @@ Future<void> buildTestWidget({
       appName: AppBrand().appName.value,
       appContexts: testAppContexts,
       deviceCapabilities: deviceCapabilities,
-      child: StoreProvider<CoreState>(
+      child: StoreProvider<AppState>(
         store: store ?? _store,
         child: MaterialApp(
           onGenerateRoute: AppRouterGenerator.generateRoute,
@@ -96,7 +95,7 @@ Future<void> buildDrawerTestWidget(
     ),
     widget: Builder(
       builder: (BuildContext context) {
-        StoreProvider.dispatch<CoreState>(
+        StoreProvider.dispatch<AppState>(
           context,
           UpdateUserStateAction(
             userProfile: UserProfile(

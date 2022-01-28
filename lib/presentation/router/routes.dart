@@ -1,14 +1,3 @@
-const String individualPractitionerKYCStepOneRoute =
-    '/IndividualPractitionerKYCStepOne';
-
-const String individualPractitionerKYCStepTwoRoute =
-    '/IndividualPractitionerKYCStepTwo';
-
-const String individualPractitionerKYCStepThreeRoute =
-    '/IndividualPractitionerKYCStepThree';
-
-const String kycIntroPageRoute = '/kycIntroPage';
-
 const String communityPage = '/communityPage';
 
 const String contentPage = '/contentPage';
@@ -37,3 +26,5 @@ const String surveysPage = '/surveys';
 const String searchPage = '/searchPage';
 const String communityChatScreen = '/communityChatScreen';
 const String clientHealthPage = '/clientHealthPage';
+const String phoneSignupRoute = '/phoneSignup';
+const String recoverPinRoute = '/recoverPin';

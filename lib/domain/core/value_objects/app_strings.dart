@@ -1,8 +1,3 @@
-// Package imports:
-// Project imports:
-import 'package:healthcloud/domain/core/entities/practice_service.dart';
-import 'package:misc_utilities/misc.dart';
-
 const String helpCenterTitle = 'AfyaMoja support center';
 const String appName = 'Afya Moja';
 
@@ -74,30 +69,7 @@ const String enterOTPString = 'Enter OTP to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
 
-final List<PracticeService> practiceServicesList = <PracticeService>[
-  PracticeService(display: 'OutPatient Services', value: 'OUTPATIENT_SERVICES'),
-  PracticeService(display: 'InPatient Services', value: 'INPATIENT_SERVICES'),
-  PracticeService(display: 'Pharmacy', value: 'PHARMACY'),
-  PracticeService(display: 'Maternity', value: 'MATERNITY'),
-  PracticeService(display: 'Lab Services', value: 'LAB_SERVICES'),
-  PracticeService(display: 'Other Services', value: 'OTHER'),
-];
-
-String uploadYourIdentificationDocument(String idType) =>
-    'Kindly upload your ${getIdType(idType: idType, userString: true)} photo';
-
 const String selectIdLabel = 'Select Identification document type';
-
-final List<Map<String, String>> identificationTypes = <Map<String, String>>[
-  <String, String>{'api': 'NATIONALID', 'user': 'National ID'},
-  <String, String>{'api': 'MILITARY', 'user': 'Military ID'},
-  <String, String>{'api': 'PASSPORT', 'user': 'Passport'},
-];
-
-List<String> identificationOptions =
-    identificationTypes.map((Map<String, String> e) => e['user']!).toList();
-
-String idLabel(String val) => 'Enter $val number';
 
 //Content Page
 const String contentPageDescription =
@@ -171,15 +143,6 @@ const String kycAlreadySubmitted =
 const String okay = 'Okay';
 const String continueButtonText = 'Continue';
 const String doItLater = 'Do it later';
-
-String individualTitle(String title) {
-  return 'About your $title';
-}
-
-String individualDescription(String description) {
-  return 'Help us know more about your $description by providing us with '
-      'required details';
-}
 
 // User Profile
 const String correctionRequestString = 'Request for correction';
@@ -302,3 +265,35 @@ String formatCCCNumber(String cccNumber) {
 String formatAge(String age) {
   return 'Age: $age yrs';
 }
+
+const String noAccount =
+    'No account with that phone number. Use the number you registered with or ';
+const String checkConnectionText =
+    'Slow internet connection. Please check your connection and try again';
+const String userPhoneExistsText = 'User with that phone number exists.';
+const String userEmailExistsText = 'User with that email address exists.';
+const String usernameExistsText = 'That username is already in use.';
+const String noUserFoundText = 'We could not find a user with those details.';
+const String wrongCredentialsText = 'Wrong login details provided';
+const String noPINFoundText = 'No PIN found for this user.';
+String contactSupport(String phoneNo) {
+  return 'Sorry, an unknown error occurred. Try again or contact us $phoneNo';
+}
+
+const String errorPhoneLogin = 'Error: Unable to login by phone';
+
+// PhoneNumberFormConstants
+const String phoneNumberInputLabelText = 'Phone number';
+
+const String wrongCredentials =
+    'Sorry, the credentials you entered are incorrect. Please try again or ';
+const String resetPin = 'reset your PIN';
+const String phoneLoginCreateAccountText = 'create an account';
+
+const String confirmPinPrompt = 'A 4 digit PIN is required';
+const String confirmPinMatch = 'PINs do not match';
+const String loginPinDigits = 'Only numbers are allowed, 0-9';
+const String loginPinLength = 'Enter a four digit PIN';
+const String phoneLoginText = 'Sign In';
+
+const String drawerTestRootText = 'You have closed the drawer';

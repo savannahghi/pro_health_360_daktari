@@ -112,3 +112,6 @@ const Key editUserProfileButtonKey = Key('edit_user_profile_button_key');
 //Client Health Page
 const Key newEntryButtonKey = Key('new_entry_button_key');
 const Key addButtonKey = Key('add_button_key');
+
+// error alert box keys
+const Key errorAlertBoxKey = Key('error_alert_box_key');

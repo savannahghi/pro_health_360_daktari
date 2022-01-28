@@ -1,15 +1,13 @@
 // Dart imports:
 import 'dart:io';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';

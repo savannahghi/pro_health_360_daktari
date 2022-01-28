@@ -2,23 +2,21 @@
 import 'dart:convert';
 import 'dart:io';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:bewell_pro_core/application/core/graphql/mutations.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+// Project imports:
+import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:user_feed/user_feed.dart' as feed_obj;
-
-// Project imports:
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
@@ -613,7 +611,9 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
-    return Future<http.Response>.value();
+    return Future<http.Response>.value(
+      http.Response(json.encode(<String, dynamic>{}), 201),
+    );
   }
 }
 
@@ -694,6 +694,119 @@ final Map<String, dynamic> mockFeedContent = <String, dynamic>{
   'items': <dynamic>[]
 };
 
+Map<String, dynamic> helpCenterFAQMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'getFaqsContent': <dynamic>[
+      <String, dynamic>{
+        'id': '5f89b9120251c700391da360',
+        'createdAt': '2020-10-16T18:15:30+03:00',
+        'excerpt': 'PRO',
+        'featureImage':
+            'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+        'html': 'Reach 100 percent coverage first',
+        'publishedAt': '2020-10-16T18:19:34+03:00',
+        'slug': 'how-to-add-your-cover',
+        'title': 'How to add your cover',
+        'readingTime': 0,
+        'tags': <dynamic>[
+          <String, dynamic>{
+            'id': '5f89b94a0251c700391da364',
+            'name': 'faqs',
+            'slug': 'faqs'
+          }
+        ]
+      }
+    ]
+  }
+};
 
+Map<String, dynamic> mockFAQtag = <String, dynamic>{
+  'id': '5f89b94a0251c700391da364',
+  'name': 'faqs',
+  'slug': 'faqs',
+};
 
-// ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type
+final Map<String, dynamic> mockStaffState = <String, dynamic>{
+  'userState': <String, dynamic>{
+    'userProfile': <String, dynamic>{
+      'id': 'UNKNOWN',
+      'userName': 'UNKNOWN',
+      'primaryPhone': null,
+      'primaryEmailAddress': 'unknown@bewell.co.ke',
+      'secondaryPhoneNumbers': null,
+      'secondaryEmailAddresses': null,
+      'terms_accepted': false,
+      'suspended': false,
+      'photoUploadID': 'UNKNOWN',
+      'covers': null,
+      'userBioData': <String, dynamic>{
+        'firstName': 'UNKNOWN',
+        'lastName': 'UNKNOWN',
+        'dateOfBirth': 'UNKNOWN',
+        'gender': 'unknown'
+      },
+      'homeAddress': null,
+      'workAddress': null,
+      'referralLink': null,
+      'assistant': null
+    },
+    'customerProfile': null,
+    'communicationSettings': <String, dynamic>{
+      'profileID': 'UNKNOWN',
+      'allowWhatsApp': false,
+      'allowTextSMS': false,
+      'allowPush': false,
+      'allowEmail': false
+    },
+    'auth': <String, dynamic>{
+      'customToken': 'UNKNOWN',
+      'id_token': 'UNKNOWN',
+      'expires_in': 'UNKNOWN',
+      'refresh_token': 'UNKNOWN',
+      'uid': 'UNKNOWN',
+      'is_admin': false,
+      'is_anonymous': true,
+      'can_experiment': false,
+      'change_pin': null
+    },
+    'isSignedIn': false,
+    'signedInTime': 'UNKNOWN',
+    'inActivitySetInTime': 'UNKNOWN',
+    'tokenExpiryTime': 'UNKNOWN'
+  }
+};
+
+final Map<String, dynamic> mockMiscState = <String, dynamic>{
+  'visitCount': 'UNKNOWN',
+  'title': 'UNKNOWN',
+  'message': 'UNKNOWN',
+  'phoneNumber': 'UNKNOWN',
+  'otpCode': 'UNKNOWN',
+  'pinCode': 'UNKNOWN',
+  'acceptedTerms': false,
+  'faqList': <dynamic>[],
+  'eventState': <String, dynamic>{
+    'eventName': 'UNKNOWN',
+    'eventPayload': 'UNKNOWN'
+  },
+  'defaultLocation': 'UNKNOWN',
+  'createPin': 'UNKNOWN',
+  'confirmPin': 'UNKNOWN',
+  'invalidCredentials': false,
+  'unKnownPhoneNo': false,
+  'accountExists': false,
+  'invalidPin': false,
+  'patientSearchTerm': null,
+  'hasCompletedEnteringOTP': false,
+  'isResendingOTP': false
+};
+
+final Map<String, dynamic> appstateMock = <String, dynamic>{
+  'homeState': <String, dynamic>{},
+  'onboardingState': <String, dynamic>{},
+  'bottomNavigationState': <String, dynamic>{'currentBottomNavIndex': 0},
+  'miscState': mockMiscState,
+  'staffState': mockStaffState,
+  'surveyState': <String, dynamic>{},
+  'serviceRequestState': <String, dynamic>{},
+};

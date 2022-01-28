@@ -1,19 +1,17 @@
 // Flutter imports
-import 'package:bewell_pro_core/application/redux/states/user_state.dart';
-import 'package:flutter/material.dart';
-
 // Package imports
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/application/redux/view_models/user_state_view_model.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class AppbarUser extends StatelessWidget {
   const AppbarUser({Key? key}) : super(key: key);

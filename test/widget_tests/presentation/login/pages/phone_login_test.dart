@@ -3,40 +3,44 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/phone_input.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/redux/actions/misc_state_actions/batch_update_misc_state_action.dart';
-import 'package:bewell_pro_core/application/redux/flags/flags.dart';
-import 'package:bewell_pro_core/application/redux/states/core_state.dart';
-import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:bewell_pro_core/presentation/onboarding/profile/change_pin.dart';
+// import 'package:bewell_pro_core/application/redux/actions/misc_state_actions/batch_update_misc_state_action.dart';
+// import 'package:bewell_pro_core/application/redux/flags/flags.dart';
+// import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
+// import 'package:bewell_pro_core/domain/core/value_objects/asset_strings.dart';
+// import 'package:bewell_pro_core/presentation/onboarding/login/widgets/error_alert_box.dart';
+// import 'package:bewell_pro_core/presentation/onboarding/profile/change_pin.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/common_behavior_object.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
 import '../../../../mocks/mock_utils.dart';
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
   group('PhoneLogin', () {
-    late Store<CoreState> store;
+    late Store<AppState> store;
 
     setUp(() {
       AppBrand().appLogo.add(cameraIconUrl);
-      store = Store<CoreState>(initialState: CoreState.initial());
+      store = Store<AppState>(initialState: AppState.initial());
     });
 
     testWidgets(
@@ -72,65 +76,18 @@ void main() {
         final UserResponse mockResponse =
             UserResponse.fromJson(mockAuthLoginResponse);
 
-        expect(store.state.userState!.userProfile, mockResponse.profile);
         expect(
-          store.state.userState!.communicationSettings,
+          store.state.staffState!.userState!.userProfile,
+          mockResponse.profile,
+        );
+        expect(
+          store.state.staffState!.userState!.communicationSettings,
           mockResponse.communicationSettings,
         );
-        expect(store.state.userState!.auth, mockResponse.auth);
+        expect(store.state.staffState!.userState!.auth, mockResponse.auth);
 
         await tester.pumpAndSettle();
         expect(find.byType(HomePage), findsOneWidget);
-      });
-    });
-
-    testWidgets(
-        'should navigate to profile change pin page '
-        'if change pin is true', (WidgetTester tester) async {
-      await mockNetworkImages(() async {
-        setupFirebaseAuthMocks();
-        await Firebase.initializeApp();
-        final MockShortGraphQlClient mockShortGraphQlClient =
-            MockShortGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(
-              mockChangePinAuthLoginResponse,
-            ),
-            200,
-          ),
-        );
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          graphQlClient: mockShortGraphQlClient,
-          widget: PhoneLoginPage(),
-        );
-
-        // Enter phone number
-        await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
-
-        // Enter PIN
-        await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
-
-        // Tap the login button
-        await tester.ensureVisible(find.byKey(loginKey));
-        await tester.tap(find.byKey(loginKey));
-        await tester.pumpAndSettle();
-
-        final UserResponse mockResponse =
-            UserResponse.fromJson(mockChangePinAuthLoginResponse);
-
-        expect(store.state.userState!.userProfile, mockResponse.profile);
-        expect(
-          store.state.userState!.communicationSettings,
-          mockResponse.communicationSettings,
-        );
-        expect(store.state.userState!.auth, mockResponse.auth);
-
-        await tester.pumpAndSettle();
-        expect(find.byType(ProfileChangePin), findsOneWidget);
       });
     });
 
@@ -214,7 +171,7 @@ void main() {
 
     testWidgets('shows a loading indicator when processing',
         (WidgetTester tester) async {
-      store.dispatch(WaitAction<CoreState>.add(phoneLoginStateFlag));
+      store.dispatch(WaitAction<AppState>.add(phoneLoginStateFlag));
       await buildTestWidget(
         store: store,
         tester: tester,

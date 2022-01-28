@@ -27,13 +27,13 @@ abstract class AfyaMojaDatabaseBase<T> {
 
 /// [Tables] definitions
 enum Tables {
+  HomeState,
+  OnboardingState,
+  BottomNavigationState,
   MiscState,
-  UserFeedState,
-  UserState,
-  ClinicalState,
-  NavigationState,
-  PractitionerKYCState,
-  UserRegistrationState
+  StaffState,
+  SurveyState,
+  ServiceRequestState,
 }
 
 /// [TablesEx] extends [Tables] enum to get the values as
@@ -41,20 +41,20 @@ enum Tables {
 extension TablesEx on Tables {
   String get name {
     switch (this) {
+      case Tables.HomeState:
+        return 'homeState';
+      case Tables.OnboardingState:
+        return 'onboardingState';
+      case Tables.BottomNavigationState:
+        return 'bottomNavigationState';
       case Tables.MiscState:
         return 'miscState';
-      case Tables.UserFeedState:
-        return 'userFeedState';
-      case Tables.UserState:
-        return 'userState';
-      case Tables.ClinicalState:
-        return 'clinicalState';
-      case Tables.NavigationState:
-        return 'navigationState';
-      case Tables.PractitionerKYCState:
-        return 'practitionerKYCState';
-      case Tables.UserRegistrationState:
-        return 'userRegistrationState';
+      case Tables.StaffState:
+        return 'staffState';
+      case Tables.SurveyState:
+        return 'surveyState';
+      case Tables.ServiceRequestState:
+        return 'serviceRequestState';
     }
   }
 }

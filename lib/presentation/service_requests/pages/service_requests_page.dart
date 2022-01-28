@@ -1,17 +1,15 @@
 // Flutter imports:
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/presentation/core/category_item_card.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/core/category_item_card.dart';
 
 // Project imports:
 
@@ -81,8 +79,9 @@ class ServiceRequestsPage extends StatelessWidget {
                                 .imageAssetPath;
                             final String title =
                                 serviceRequestItems.elementAt(index).title;
-                            final int totalNumber =
-                                serviceRequestItems.elementAt(index).totalNumber;
+                            final int totalNumber = serviceRequestItems
+                                .elementAt(index)
+                                .totalNumber;
                             final String route =
                                 serviceRequestItems.elementAt(index).route;
 
@@ -105,7 +104,6 @@ class ServiceRequestsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
                   ],
                 ),
               ),
