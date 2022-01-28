@@ -4,6 +4,7 @@ import 'package:domain_objects/entities.dart' as domain;
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/staff_state.dart';
 import 'package:healthcloud/application/redux/states/user_state.dart';
 
 class UpdateUserStateAction extends ReduxAction<AppState> {
