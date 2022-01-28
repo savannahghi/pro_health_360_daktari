@@ -5,4 +5,4 @@
 
 PRODUCT_BUNDLE_IDENTIFIER=com.savannah.healthcloud
 FLUTTER_TARGET=lib/bin/main_prod.dart
-APP_NAME=Afya Moja
+APP_NAME=myCareHub
