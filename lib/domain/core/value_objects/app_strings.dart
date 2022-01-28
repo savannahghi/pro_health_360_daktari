@@ -1,5 +1,5 @@
 const String helpCenterTitle = 'AfyaMoja support center';
-const String appName = 'Afya Moja';
+const String appName = 'myCareHub';
 
 const String provideAllRequiredInfoString =
     'Please provide all the required information';
