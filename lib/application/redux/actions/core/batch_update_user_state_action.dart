@@ -2,6 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart' as core_entities;
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/staff_state.dart';
 import 'package:healthcloud/application/redux/states/user_state.dart';
 
 /// [BatchUpdateUserStateAction] is used to update the packages internal state. If a state changes requires
