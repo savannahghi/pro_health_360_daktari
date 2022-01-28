@@ -611,7 +611,9 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
-    return Future<http.Response>.value();
+    return Future<http.Response>.value(
+      http.Response(json.encode(<String, dynamic>{}), 201),
+    );
   }
 }
 
@@ -724,7 +726,87 @@ Map<String, dynamic> mockFAQtag = <String, dynamic>{
   'slug': 'faqs',
 };
 
+final Map<String, dynamic> mockStaffState = <String, dynamic>{
+  'userState': <String, dynamic>{
+    'userProfile': <String, dynamic>{
+      'id': 'UNKNOWN',
+      'userName': 'UNKNOWN',
+      'primaryPhone': null,
+      'primaryEmailAddress': 'unknown@bewell.co.ke',
+      'secondaryPhoneNumbers': null,
+      'secondaryEmailAddresses': null,
+      'terms_accepted': false,
+      'suspended': false,
+      'photoUploadID': 'UNKNOWN',
+      'covers': null,
+      'userBioData': <String, dynamic>{
+        'firstName': 'UNKNOWN',
+        'lastName': 'UNKNOWN',
+        'dateOfBirth': 'UNKNOWN',
+        'gender': 'unknown'
+      },
+      'homeAddress': null,
+      'workAddress': null,
+      'referralLink': null,
+      'assistant': null
+    },
+    'customerProfile': null,
+    'communicationSettings': <String, dynamic>{
+      'profileID': 'UNKNOWN',
+      'allowWhatsApp': false,
+      'allowTextSMS': false,
+      'allowPush': false,
+      'allowEmail': false
+    },
+    'auth': <String, dynamic>{
+      'customToken': 'UNKNOWN',
+      'id_token': 'UNKNOWN',
+      'expires_in': 'UNKNOWN',
+      'refresh_token': 'UNKNOWN',
+      'uid': 'UNKNOWN',
+      'is_admin': false,
+      'is_anonymous': true,
+      'can_experiment': false,
+      'change_pin': null
+    },
+    'isSignedIn': false,
+    'signedInTime': 'UNKNOWN',
+    'inActivitySetInTime': 'UNKNOWN',
+    'tokenExpiryTime': 'UNKNOWN'
+  }
+};
 
+final Map<String, dynamic> mockMiscState = <String, dynamic>{
+  'visitCount': 'UNKNOWN',
+  'title': 'UNKNOWN',
+  'message': 'UNKNOWN',
+  'phoneNumber': 'UNKNOWN',
+  'otpCode': 'UNKNOWN',
+  'pinCode': 'UNKNOWN',
+  'acceptedTerms': false,
+  'faqList': <dynamic>[],
+  'eventState': <String, dynamic>{
+    'eventName': 'UNKNOWN',
+    'eventPayload': 'UNKNOWN'
+  },
+  'defaultLocation': 'UNKNOWN',
+  'createPin': 'UNKNOWN',
+  'confirmPin': 'UNKNOWN',
+  'invalidCredentials': false,
+  'unKnownPhoneNo': false,
+  'accountExists': false,
+  'invalidPin': false,
+  'patientSearchTerm': null,
+  'hasCompletedEnteringOTP': false,
+  'isResendingOTP': false
+};
 
-
-// ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type
+final Map<String, dynamic> appstateMock = <String, dynamic>{
+  'homeState': <String, dynamic>{},
+  'onboardingState': <String, dynamic>{},
+  'bottomNavigationState': <String, dynamic>{'currentBottomNavIndex': 0},
+  'miscState': mockMiscState,
+  'staffState': mockStaffState,
+  'surveyState': <String, dynamic>{},
+  'serviceRequestState': <String, dynamic>{},
+};
