@@ -3,9 +3,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/gradient_drawable">@drawable/gradient_drawable</item>
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/project_logo" />
-    </item>
+    <!-- You can insert your own image assets here -->
+    <item android:drawable="@drawable/project_logo" android:gravity="center"/>
 </layer-list>
