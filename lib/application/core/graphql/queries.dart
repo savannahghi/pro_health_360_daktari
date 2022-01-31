@@ -1,5 +1,8 @@
-const String checkSupplierKYCSubmittedQuery = '''
-query checkSupplierKYCSubmitted{
-  checkSupplierKYCSubmitted
+const String getTermsQuery = r'''
+query getCurrentTerms($flavour: Flavour!) {
+  getCurrentTerms(flavour: $flavour) {
+    termsID
+    text
+  }
 }
 ''';

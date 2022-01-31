@@ -1,6 +1,8 @@
 class AppRoutes {
   static const String homePage = '/homePage';
 
+  static const String termsAndConditions = '/termsAndConditions';
+
   static const String setPinPage = '/setpinPage';
 
   static const String loginPage = '/loginPage';

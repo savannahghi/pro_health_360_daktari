@@ -37,9 +37,9 @@ class _$MiscStateTearOff {
       bool? unKnownPhoneNo,
       bool? accountExists,
       bool? invalidPin,
-      String? patientSearchTerm,
       bool? hasCompletedEnteringOTP,
-      bool? isResendingOTP}) {
+      bool? isResendingOTP,
+      String? error}) {
     return _MiscState(
       visitCount: visitCount,
       title: title,
@@ -57,9 +57,9 @@ class _$MiscStateTearOff {
       unKnownPhoneNo: unKnownPhoneNo,
       accountExists: accountExists,
       invalidPin: invalidPin,
-      patientSearchTerm: patientSearchTerm,
       hasCompletedEnteringOTP: hasCompletedEnteringOTP,
       isResendingOTP: isResendingOTP,
+      error: error,
     );
   }
 
@@ -103,10 +103,11 @@ mixin _$MiscState {
 
   /// [invalidPin] used when running pin verification procedure.
   bool? get invalidPin => throw _privateConstructorUsedError;
-  String? get patientSearchTerm => throw _privateConstructorUsedError;
   bool? get hasCompletedEnteringOTP =>
       throw _privateConstructorUsedError; // TODO: remove it is unused
-  bool? get isResendingOTP => throw _privateConstructorUsedError;
+  bool? get isResendingOTP =>
+      throw _privateConstructorUsedError; // TODO: remove, it is unused
+  String? get error => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -135,9 +136,9 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? unKnownPhoneNo,
       bool? accountExists,
       bool? invalidPin,
-      String? patientSearchTerm,
       bool? hasCompletedEnteringOTP,
-      bool? isResendingOTP});
+      bool? isResendingOTP,
+      String? error});
 
   $EventStateCopyWith<$Res>? get eventState;
 }
@@ -168,9 +169,9 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? unKnownPhoneNo = freezed,
     Object? accountExists = freezed,
     Object? invalidPin = freezed,
-    Object? patientSearchTerm = freezed,
     Object? hasCompletedEnteringOTP = freezed,
     Object? isResendingOTP = freezed,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       visitCount: visitCount == freezed
@@ -237,10 +238,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.invalidPin
           : invalidPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      patientSearchTerm: patientSearchTerm == freezed
-          ? _value.patientSearchTerm
-          : patientSearchTerm // ignore: cast_nullable_to_non_nullable
-              as String?,
       hasCompletedEnteringOTP: hasCompletedEnteringOTP == freezed
           ? _value.hasCompletedEnteringOTP
           : hasCompletedEnteringOTP // ignore: cast_nullable_to_non_nullable
@@ -249,6 +246,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.isResendingOTP
           : isResendingOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -287,9 +288,9 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       bool? unKnownPhoneNo,
       bool? accountExists,
       bool? invalidPin,
-      String? patientSearchTerm,
       bool? hasCompletedEnteringOTP,
-      bool? isResendingOTP});
+      bool? isResendingOTP,
+      String? error});
 
   @override
   $EventStateCopyWith<$Res>? get eventState;
@@ -322,9 +323,9 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? unKnownPhoneNo = freezed,
     Object? accountExists = freezed,
     Object? invalidPin = freezed,
-    Object? patientSearchTerm = freezed,
     Object? hasCompletedEnteringOTP = freezed,
     Object? isResendingOTP = freezed,
+    Object? error = freezed,
   }) {
     return _then(_MiscState(
       visitCount: visitCount == freezed
@@ -391,10 +392,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.invalidPin
           : invalidPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      patientSearchTerm: patientSearchTerm == freezed
-          ? _value.patientSearchTerm
-          : patientSearchTerm // ignore: cast_nullable_to_non_nullable
-              as String?,
       hasCompletedEnteringOTP: hasCompletedEnteringOTP == freezed
           ? _value.hasCompletedEnteringOTP
           : hasCompletedEnteringOTP // ignore: cast_nullable_to_non_nullable
@@ -403,6 +400,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.isResendingOTP
           : isResendingOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -427,9 +428,9 @@ class _$_MiscState implements _MiscState {
       this.unKnownPhoneNo,
       this.accountExists,
       this.invalidPin,
-      this.patientSearchTerm,
       this.hasCompletedEnteringOTP,
-      this.isResendingOTP});
+      this.isResendingOTP,
+      this.error});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -481,15 +482,15 @@ class _$_MiscState implements _MiscState {
   /// [invalidPin] used when running pin verification procedure.
   final bool? invalidPin;
   @override
-  final String? patientSearchTerm;
-  @override
   final bool? hasCompletedEnteringOTP;
   @override // TODO: remove it is unused
   final bool? isResendingOTP;
+  @override // TODO: remove, it is unused
+  final String? error;
 
   @override
   String toString() {
-    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, eventState: $eventState, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, patientSearchTerm: $patientSearchTerm, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP)';
+    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, eventState: $eventState, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP, error: $error)';
   }
 
   @override
@@ -543,16 +544,15 @@ class _$_MiscState implements _MiscState {
             (identical(other.invalidPin, invalidPin) ||
                 const DeepCollectionEquality()
                     .equals(other.invalidPin, invalidPin)) &&
-            (identical(other.patientSearchTerm, patientSearchTerm) ||
-                const DeepCollectionEquality()
-                    .equals(other.patientSearchTerm, patientSearchTerm)) &&
             (identical(
                     other.hasCompletedEnteringOTP, hasCompletedEnteringOTP) ||
                 const DeepCollectionEquality().equals(
                     other.hasCompletedEnteringOTP, hasCompletedEnteringOTP)) &&
             (identical(other.isResendingOTP, isResendingOTP) ||
                 const DeepCollectionEquality()
-                    .equals(other.isResendingOTP, isResendingOTP)));
+                    .equals(other.isResendingOTP, isResendingOTP)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
   }
 
   @override
@@ -574,9 +574,9 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(unKnownPhoneNo) ^
       const DeepCollectionEquality().hash(accountExists) ^
       const DeepCollectionEquality().hash(invalidPin) ^
-      const DeepCollectionEquality().hash(patientSearchTerm) ^
       const DeepCollectionEquality().hash(hasCompletedEnteringOTP) ^
-      const DeepCollectionEquality().hash(isResendingOTP);
+      const DeepCollectionEquality().hash(isResendingOTP) ^
+      const DeepCollectionEquality().hash(error);
 
   @JsonKey(ignore: true)
   @override
@@ -607,9 +607,9 @@ abstract class _MiscState implements MiscState {
       bool? unKnownPhoneNo,
       bool? accountExists,
       bool? invalidPin,
-      String? patientSearchTerm,
       bool? hasCompletedEnteringOTP,
-      bool? isResendingOTP}) = _$_MiscState;
+      bool? isResendingOTP,
+      String? error}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -661,11 +661,11 @@ abstract class _MiscState implements MiscState {
   /// [invalidPin] used when running pin verification procedure.
   bool? get invalidPin => throw _privateConstructorUsedError;
   @override
-  String? get patientSearchTerm => throw _privateConstructorUsedError;
-  @override
   bool? get hasCompletedEnteringOTP => throw _privateConstructorUsedError;
   @override // TODO: remove it is unused
   bool? get isResendingOTP => throw _privateConstructorUsedError;
+  @override // TODO: remove, it is unused
+  String? get error => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

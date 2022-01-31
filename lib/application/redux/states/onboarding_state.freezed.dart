@@ -20,8 +20,10 @@ OnboardingState _$OnboardingStateFromJson(Map<String, dynamic> json) {
 class _$OnboardingStateTearOff {
   const _$OnboardingStateTearOff();
 
-  _OnboardingState call() {
-    return _OnboardingState();
+  _OnboardingState call({TermsAndConditions? termsAndConditions}) {
+    return _OnboardingState(
+      termsAndConditions: termsAndConditions,
+    );
   }
 
   OnboardingState fromJson(Map<String, Object> json) {
@@ -34,7 +36,13 @@ const $OnboardingState = _$OnboardingStateTearOff();
 
 /// @nodoc
 mixin _$OnboardingState {
+  TermsAndConditions? get termsAndConditions =>
+      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OnboardingStateCopyWith<OnboardingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -42,6 +50,9 @@ abstract class $OnboardingStateCopyWith<$Res> {
   factory $OnboardingStateCopyWith(
           OnboardingState value, $Res Function(OnboardingState) then) =
       _$OnboardingStateCopyWithImpl<$Res>;
+  $Res call({TermsAndConditions? termsAndConditions});
+
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
 }
 
 /// @nodoc
@@ -52,13 +63,43 @@ class _$OnboardingStateCopyWithImpl<$Res>
   final OnboardingState _value;
   // ignore: unused_field
   final $Res Function(OnboardingState) _then;
+
+  @override
+  $Res call({
+    Object? termsAndConditions = freezed,
+  }) {
+    return _then(_value.copyWith(
+      termsAndConditions: termsAndConditions == freezed
+          ? _value.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditions?,
+    ));
+  }
+
+  @override
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions {
+    if (_value.termsAndConditions == null) {
+      return null;
+    }
+
+    return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions!,
+        (value) {
+      return _then(_value.copyWith(termsAndConditions: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$OnboardingStateCopyWith<$Res> {
+abstract class _$OnboardingStateCopyWith<$Res>
+    implements $OnboardingStateCopyWith<$Res> {
   factory _$OnboardingStateCopyWith(
           _OnboardingState value, $Res Function(_OnboardingState) then) =
       __$OnboardingStateCopyWithImpl<$Res>;
+  @override
+  $Res call({TermsAndConditions? termsAndConditions});
+
+  @override
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
 }
 
 /// @nodoc
@@ -71,28 +112,54 @@ class __$OnboardingStateCopyWithImpl<$Res>
 
   @override
   _OnboardingState get _value => super._value as _OnboardingState;
+
+  @override
+  $Res call({
+    Object? termsAndConditions = freezed,
+  }) {
+    return _then(_OnboardingState(
+      termsAndConditions: termsAndConditions == freezed
+          ? _value.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditions?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_OnboardingState implements _OnboardingState {
-  _$_OnboardingState();
+  _$_OnboardingState({this.termsAndConditions});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$_$_OnboardingStateFromJson(json);
 
   @override
+  final TermsAndConditions? termsAndConditions;
+
+  @override
   String toString() {
-    return 'OnboardingState()';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _OnboardingState);
+    return identical(this, other) ||
+        (other is _OnboardingState &&
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                const DeepCollectionEquality()
+                    .equals(other.termsAndConditions, termsAndConditions)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(termsAndConditions);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
+      __$OnboardingStateCopyWithImpl<_OnboardingState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -101,8 +168,17 @@ class _$_OnboardingState implements _OnboardingState {
 }
 
 abstract class _OnboardingState implements OnboardingState {
-  factory _OnboardingState() = _$_OnboardingState;
+  factory _OnboardingState({TermsAndConditions? termsAndConditions}) =
+      _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
+
+  @override
+  TermsAndConditions? get termsAndConditions =>
+      throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

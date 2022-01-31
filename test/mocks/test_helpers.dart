@@ -9,8 +9,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
+import 'package:flutter_config/flutter_config.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
+import 'package:healthcloud/domain/core/value_objects/app_name_constants.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'mocks.dart';
@@ -29,19 +32,21 @@ Future<void> buildTestWidget({
   Widget? endDrawer,
   Duration? duration,
 }) async {
-  final Store<AppState> _store =
-      Store<AppState>(initialState: AppState.initial());
+  FlutterConfig.loadValueForTesting(<String, String>{
+    'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
+    'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+  });
 
   NavigateAction.setNavigatorKey(globalAppNavigatorKey);
 
   await tester.pumpWidget(
-    AppWrapperBase(
-      graphQLClient: graphQlClient ?? mockSILGraphQlClient,
-      appName: 'Test app',
-      appContexts: testAppContexts,
-      deviceCapabilities: deviceCapabilities,
-      child: StoreProvider<AppState>(
-        store: store ?? _store,
+    StoreProvider<AppState>(
+      store: store ?? Store<AppState>(initialState: AppState.initial()),
+      child: AppWrapper(
+        appName: testAppName,
+        appContexts: testAppContexts,
+        baseContext: devAppSetupData.customContext,
+        graphQLClient: graphQlClient ?? mockSILGraphQlClient,
         child: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: globalAppNavigatorKey,

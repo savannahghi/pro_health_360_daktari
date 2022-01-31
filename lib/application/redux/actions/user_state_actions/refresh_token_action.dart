@@ -31,10 +31,7 @@ class RefreshTokenAction extends ReduxAction<AppState> {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     final String refreshTokenEndpoint =
-        AppWrapperBase.of(context)!.customContext?.refreshTokenEndpoint ??
-            EndpointContext.refreshTokenEndpoint(
-              AppWrapperBase.of(context)!.appContexts,
-            );
+        AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
 
     final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
       'refreshToken': store.state.credentials!.refreshToken

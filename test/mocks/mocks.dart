@@ -11,12 +11,13 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/core/graphql/mutations.dart';
+import 'package:healthcloud/application/core/graphql/queries.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+// Project imports:
+import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-
-// Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
@@ -256,8 +257,8 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'status': 'Missed'
 };
 
-final MockSILGraphQlClient mockSILGraphQlClient =
-    MockSILGraphQlClient.withResponse(
+final MockTestGraphQlClient mockSILGraphQlClient =
+    MockTestGraphQlClient.withResponse(
   'idToken',
   'endpoint',
   http.Response('success response', 200),
@@ -311,7 +312,6 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
   },
 };
 
-
 final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
   'profile': <String, dynamic>{
     'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
@@ -360,6 +360,11 @@ final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
   },
 };
 
+final Map<String, dynamic> termsMock = <String, dynamic>{
+  'termsID': 10001,
+  'text': 'Dummy PRO Terms'
+};
+
 /// a short client for providing custom responses
 ///
 /// a good use case is when you want to return error responses
@@ -394,10 +399,10 @@ class MockShortGraphQlClient extends IGraphQlClient {
   }
 }
 
-class MockSILGraphQlClient extends IGraphQlClient {
-  MockSILGraphQlClient();
+class MockTestGraphQlClient extends IGraphQlClient {
+  MockTestGraphQlClient();
 
-  MockSILGraphQlClient.withResponse(
+  MockTestGraphQlClient.withResponse(
     String idToken,
     String endpoint,
     this.response,
@@ -485,52 +490,6 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
-    if (queryString.contains('addOrganizationPractitionerKYC')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'input': <String, dynamic>{
-              'kraPIN': <String>['12345678'],
-              'organizationTypeName': 'Demo Organization',
-              'certificateOfIncorporation': '',
-              'certificateOfInCorporationUploadID': '',
-              'organizationCertificate': '',
-              'cadre': ''
-            }
-          }),
-          201,
-        ),
-      );
-    }
-
-    if (queryString.contains('addIndividualPractitionerKYC')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'input': <String, dynamic>{
-              'kraPIN': <String>['12345678'],
-              'supportingDocumentsUploadID  ': '',
-              'registrationNumber': '',
-              'practiceLicenseID': '',
-              'cadre': ''
-            }
-          }),
-          201,
-        ),
-      );
-    }
-
-    if (queryString.contains('checkSupplierKYCSubmitted')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{'checkSupplierKYCSubmitted': false}
-          }),
-          201,
-        ),
-      );
-    }
-
     if (variables['phonenumber'] == '+254712345678') {
       return Future<http.Response>.value(
         http.Response(
@@ -563,20 +522,33 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(getTermsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getCurrentTerms': termsMock}
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(acceptTermsAndConditionsMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'acceptTerms': true}
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
   }
 }
-
-String testKYCSupportingDocumentTitle = 'document-title';
-String testKYCSupportingDocumentDescription = 'document-description';
-String testKYCCertificateOfIncorporationNumber = '12345678';
-String testKYCLicenceNumber = '84678939';
-String testKYCKraNumber = 'A2345788';
-String testKYCIdNumber = '12345678';
-String testKYCIdType = 'National ID';
-String testKYCRegistrationNumber = '12345678';
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'id': 'id',
@@ -595,7 +567,6 @@ Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
   'securityQuestionId': 'securityQuestionId',
   'response': 'response',
 };
-
 
 Map<String, dynamic> helpCenterFAQMock = <String, dynamic>{
   'data': <String, dynamic>{
@@ -750,7 +721,9 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
     'signedInTime': 'UNKNOWN',
   },
   'homeState': <String, dynamic>{},
-  'onboardingState': <String, dynamic>{},
+  'onboardingState': <String, dynamic>{
+    'termsAndConditions': <String, dynamic>{'termsID': 0, 'text': 'UNKNOWN'}
+  },
   'bottomNavigationState': <String, dynamic>{'currentBottomNavIndex': 0},
   'miscState': mockMiscState,
   'staffState': mockStaffState,

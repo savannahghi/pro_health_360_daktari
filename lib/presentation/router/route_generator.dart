@@ -15,6 +15,7 @@ import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -32,6 +33,11 @@ class RouteGenerator {
           builder: (BuildContext context) {
             return const HomePage();
           },
+        );
+
+      case AppRoutes.termsAndConditions:
+        return MaterialPageRoute<TermsAndConditionsPage>(
+          builder: (_) => const TermsAndConditionsPage(),
         );
 
       case AppRoutes.setPinPage:

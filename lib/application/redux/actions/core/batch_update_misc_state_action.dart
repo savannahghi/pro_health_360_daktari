@@ -28,6 +28,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
   final bool? invalidPin;
   final bool? hasCompletedEnteringOTP;
   final bool? isResendingOTP;
+  final String? error;
 
   BatchUpdateMiscStateAction({
     this.invalidPin,
@@ -45,6 +46,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
     this.confirmPin,
     this.hasCompletedEnteringOTP,
     this.isResendingOTP,
+    this.error,
   });
 
   @override
@@ -68,6 +70,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
         hasCompletedEnteringOTP:
             hasCompletedEnteringOTP ?? state.miscState!.hasCompletedEnteringOTP,
         isResendingOTP: isResendingOTP ?? state.miscState!.isResendingOTP,
+        error: error,
       ),
     );
 
