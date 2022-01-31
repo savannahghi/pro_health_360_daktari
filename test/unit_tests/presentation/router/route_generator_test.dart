@@ -1,7 +1,3 @@
-// Flutter imports:
-// Package imports:
-import 'package:bewell_pro_core/presentation/core/help_center/pages/help_center_page.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
@@ -14,7 +10,6 @@ import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart'
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
-// Project imports:
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
@@ -28,22 +23,12 @@ import '../../../mocks/mocks.dart';
 
 void main() {
   const Route<dynamic>? Function(RouteSettings settings) routeGenerator =
-      AppRouterGenerator.generateRoute;
+      RouteGenerator.generateRoute;
 
   final BuildContext context = MockBuildContext();
 
-  test('Test router returns HelpCenterPage', () {
-    const RouteSettings settings = RouteSettings(name: helpCenterPageRoute);
-
-    final MaterialPageRoute<HelpCenterPage> route =
-        routeGenerator(settings)! as MaterialPageRoute<HelpCenterPage>;
-
-    expect(route, isA<MaterialPageRoute<HelpCenterPage>>());
-    expect(route.builder(context), isA<HelpCenterPage>());
-  });
-
   test('Test router returns CreateNewPinPage', () {
-    const RouteSettings settings = RouteSettings(name: setPinRoute);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.setPinPage);
 
     final MaterialPageRoute<CreateNewPINPage> route =
         routeGenerator(settings)! as MaterialPageRoute<CreateNewPINPage>;
@@ -53,7 +38,7 @@ void main() {
   });
 
   test('Test router returns ContentPage', () {
-    const RouteSettings settings = RouteSettings(name: contentPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.contentPage);
 
     final MaterialPageRoute<ContentPage> route =
         routeGenerator(settings)! as MaterialPageRoute<ContentPage>;
@@ -63,7 +48,7 @@ void main() {
   });
 
   test('Test router returns CommunityListView', () {
-    const RouteSettings settings = RouteSettings(name: communityPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.communityPage);
 
     final MaterialPageRoute<CommunityListViewPage>? route =
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
@@ -72,7 +57,8 @@ void main() {
   });
 
   test('Test router returns SecurityQuestionsPage', () {
-    const RouteSettings settings = RouteSettings(name: securityQuestionsPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.securityQuestionsPage);
 
     final MaterialPageRoute<SecurityQuestionsPage>? route =
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>?;
@@ -81,7 +67,7 @@ void main() {
   });
 
   test('Test router returns UserProfilePage', () {
-    const RouteSettings settings = RouteSettings(name: profilePage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.profilePage);
 
     final MaterialPageRoute<UserProfilePage>? route =
         routeGenerator(settings) as MaterialPageRoute<UserProfilePage>?;
@@ -90,7 +76,8 @@ void main() {
   });
 
   test('Test router returns PINResetRequestsPage', () {
-    const RouteSettings settings = RouteSettings(name: pinResetRequestsPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pinResetRequestsPage);
 
     final MaterialPageRoute<PINResetRequestsPage>? route =
         routeGenerator(settings) as MaterialPageRoute<PINResetRequestsPage>?;
@@ -99,7 +86,7 @@ void main() {
   });
 
   test('Test router returns ForgotPinPage', () {
-    const RouteSettings settings = RouteSettings(name: forgotPinPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.forgotPinPage);
 
     final MaterialPageRoute<ForgotPinPage>? route =
         routeGenerator(settings) as MaterialPageRoute<ForgotPinPage>?;
@@ -108,7 +95,8 @@ void main() {
   });
 
   test('Test router returns AddNewPatientPage', () {
-    const RouteSettings settings = RouteSettings(name: addNewPatientPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.addNewPatientPage);
 
     final MaterialPageRoute<AddNewPatientPage>? route =
         routeGenerator(settings) as MaterialPageRoute<AddNewPatientPage>?;
@@ -117,7 +105,8 @@ void main() {
   });
 
   test('Test router returns AddNewGroupPage', () {
-    const RouteSettings settings = RouteSettings(name: addNewGroupPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.addNewGroupPage);
 
     final MaterialPageRoute<AddNewGroupPage>? route =
         routeGenerator(settings) as MaterialPageRoute<AddNewGroupPage>?;
@@ -126,7 +115,8 @@ void main() {
   });
 
   test('Test router returns NewBroadcastMessagePage', () {
-    const RouteSettings settings = RouteSettings(name: newBroadcastPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.newBroadcastPage);
 
     final MaterialPageRoute<NewBroadcastMessagePage>? route =
         routeGenerator(settings) as MaterialPageRoute<NewBroadcastMessagePage>?;
@@ -135,7 +125,7 @@ void main() {
   });
 
   test('Test router returns RedFlagsPage', () {
-    const RouteSettings settings = RouteSettings(name: redFlagsPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.redFlagsPage);
 
     final MaterialPageRoute<RedFlagsPage>? route =
         routeGenerator(settings) as MaterialPageRoute<RedFlagsPage>?;
@@ -145,7 +135,7 @@ void main() {
 
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
-      name: verifyOTPPage,
+      name: AppRoutes.verifyOTPPage,
       arguments: 1234,
     );
 
@@ -158,7 +148,7 @@ void main() {
 
   test('Test router returns ProfileUpdateRequestsPage', () {
     const RouteSettings settings =
-        RouteSettings(name: profileUpdateRequestsPage);
+        RouteSettings(name: AppRoutes.profileUpdateRequestsPage);
 
     final MaterialPageRoute<ProfileUpdateRequestsPage>? route =
         routeGenerator(settings)
@@ -168,7 +158,8 @@ void main() {
   });
 
   test('Test router returns CommunityChatScreen', () {
-    const RouteSettings settings = RouteSettings(name: communityChatScreen);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.communityChatScreen);
 
     final MaterialPageRoute<CommunityChatPage>? route =
         routeGenerator(settings) as MaterialPageRoute<CommunityChatPage>?;
@@ -177,7 +168,7 @@ void main() {
   });
 
   test('Test router returns SearchPage', () {
-    const RouteSettings settings = RouteSettings(name: searchPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.searchPage);
 
     final MaterialPageRoute<SearchPage>? route =
         routeGenerator(settings) as MaterialPageRoute<SearchPage>?;
@@ -186,7 +177,8 @@ void main() {
   });
 
   test('Test router returns ClientHealthPage', () {
-    const RouteSettings settings = RouteSettings(name: clientHealthPage);
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.clientHealthPage);
 
     final MaterialPageRoute<ClientHealthPage>? route =
         routeGenerator(settings) as MaterialPageRoute<ClientHealthPage>?;

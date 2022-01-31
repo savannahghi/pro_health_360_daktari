@@ -182,7 +182,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async => triggerNavigationEvent(
                             context: context,
-                            route: recoverPinRoute,
+                            route: AppRoutes.recoverPinRoute,
                           ),
                     style: TextThemes.heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
@@ -203,7 +203,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async => triggerNavigationEvent(
                             context: context,
-                            route: phoneSignupRoute,
+                            route: AppRoutes.phoneSignupRoute,
                           ),
                     style: TextThemes.heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
@@ -249,7 +249,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                   key: forgotPinButton,
                   onPressed: () async => triggerNavigationEvent(
                     context: context,
-                    route: forgotPinPage,
+                    route: AppRoutes.forgotPinPage,
                     shouldReplace: true,
                   ),
                   child: Text(

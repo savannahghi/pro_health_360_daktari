@@ -4,7 +4,6 @@ import 'dart:io';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:bewell_pro_core/application/core/graphql/mutations.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -493,17 +492,6 @@ class MockSILGraphQlClient extends IGraphQlClient {
       'msisdn': '+254717356477',
       'email': 'abiud.orina@savannahinformatics.com'
     });
-
-    if (queryString == registerDeviceTokenMutation) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{'registerPushToken': true}
-          }),
-          201,
-        ),
-      );
-    }
 
     if (json.encode(variables) == otpVariables) {
       return Future<http.Response>.value(

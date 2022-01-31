@@ -1,15 +1,13 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/constants.dart';
@@ -78,19 +76,7 @@ ProcessedResponse processResponse(
 /// Does a check on user profile on whether logged in user has bio data and partnerType and
 /// redirects accordingly
 OnboardingPathConfig onboardingPath({required AppState state}) {
-  final BioData? userBio =
-      state.staffState!.userState!.userProfile!.userBioData;
-
-  //  check the validity bio names. This check is here in the event the name as set on 'UNKNOWN'
-  // which is not a valid name
-  if (userBio!.firstName == null ||
-      userBio.lastName == null ||
-      userBio.firstName!.getValue() == UNKNOWN ||
-      userBio.lastName!.getValue() == UNKNOWN) {
-    return OnboardingPathConfig(userNamesRoute);
-  }
-
-  return OnboardingPathConfig(homePageRoute);
+  return OnboardingPathConfig(AppRoutes.homePage);
 }
 
 /// Extracts the code from the body of the response

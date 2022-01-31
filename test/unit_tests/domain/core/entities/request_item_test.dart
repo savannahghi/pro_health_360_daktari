@@ -8,7 +8,7 @@ import 'package:healthcloud/presentation/router/routes.dart';
 void main() {
   final Map<String, dynamic> data = <String, dynamic>{
     'title': 'Red flags',
-    'route': redFlagsPage,
+    'route': AppRoutes.redFlagsPage,
     'imageAssetPath': emailIconSvgPath,
     'totalNumber': 6
   };
@@ -16,7 +16,7 @@ void main() {
     expect(
       RequestItem(
         title: 'Red flags',
-        route: redFlagsPage,
+        route: AppRoutes.redFlagsPage,
         imageAssetPath: emailIconSvgPath,
         totalNumber: 6,
       ).toJson(),

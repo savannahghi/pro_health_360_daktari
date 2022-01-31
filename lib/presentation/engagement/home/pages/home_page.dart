@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                       size15VerticalSizedBox,
                       SearchWidget(
                         onTap: () {
-                          Navigator.pushNamed(context, searchPage);
+                          Navigator.pushNamed(context, AppRoutes.searchPage);
                         },
                       ),
                       smallVerticalSizedBox,
@@ -97,7 +97,8 @@ class _HomePageState extends State<HomePage> {
                       title: addNewUserText,
                       iconUrl: addNewUserIconSvg,
                       onTap: () {
-                        Navigator.of(context).pushNamed(addNewPatientPage);
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.addNewPatientPage);
                       },
                     ),
                     ActionCard(
@@ -105,7 +106,8 @@ class _HomePageState extends State<HomePage> {
                       title: serviceRequestsText,
                       iconUrl: serviceRequestsIconSvg,
                       onTap: () {
-                        Navigator.of(context).pushNamed(serviceRequestsPage);
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.serviceRequestsPage);
                       },
                     ),
                   ],
@@ -124,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                       title: contentString,
                       iconUrl: contentPageImage,
                       onTap: () {
-                        Navigator.of(context).pushNamed(contentPage);
+                        Navigator.of(context).pushNamed(AppRoutes.contentPage);
                       },
                     ),
                     ActionCard(
@@ -132,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                       title: surveysString,
                       iconUrl: surveysImageSvgPath,
                       onTap: () {
-                        Navigator.of(context).pushNamed(surveysPage);
+                        Navigator.of(context).pushNamed(AppRoutes.surveysPage);
                       },
                     ),
                   ],

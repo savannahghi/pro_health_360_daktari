@@ -2,18 +2,17 @@ import 'dart:async';
 
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/application/core/services/helpers.dart';
-import 'package:bewell_pro_core/application/core/services/onboarding.dart';
-import 'package:bewell_pro_core/domain/core/entities/processed_response.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/exception_strings.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/login_constants.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:healthcloud/application/core/services/helpers.dart';
+import 'package:healthcloud/application/core/services/onboarding.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
+import 'package:healthcloud/domain/core/value_objects/login_constants.dart';
 
 /// [RefreshTokenAction] is used to refresh the Auth Token once it has expired
 ///
@@ -69,7 +68,7 @@ class RefreshTokenAction extends ReduxAction<AppState> {
       return state;
     } else {
       await captureException(
-        errorRefreshingToken,
+        'Error refreshing token',
         error: processedResponse.message,
         response: processedResponse.response.body,
         variables: refreshTokenVariables,

@@ -2,23 +2,14 @@
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/domain/clinical/value_objects/system_enums.dart';
-import 'package:bewell_pro_core/domain/core/entities/common_behavior_object.dart';
-import 'package:bewell_pro_core/domain/core/value_objects/domain_constants.dart';
-import 'package:domain_objects/entities.dart';
-// import 'package:domain_objects/entities.dart' as domain;
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-// Project imports:
-import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import 'mocks.dart';
 
@@ -44,13 +35,13 @@ Future<void> buildTestWidget({
   await tester.pumpWidget(
     AppWrapperBase(
       graphQLClient: graphQlClient ?? mockSILGraphQlClient,
-      appName: AppBrand().appName.value,
+      appName: 'Test app',
       appContexts: testAppContexts,
       deviceCapabilities: deviceCapabilities,
       child: StoreProvider<AppState>(
         store: store ?? _store,
         child: MaterialApp(
-          onGenerateRoute: AppRouterGenerator.generateRoute,
+          onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: navigatorObservers ?? <NavigatorObserver>[],
           home: Scaffold(endDrawer: endDrawer, body: widget),
@@ -58,60 +49,6 @@ Future<void> buildTestWidget({
       ),
     ),
     duration,
-  );
-}
-
-/// [buildDrawerTestWidget] is a widget wrapper used for testing clinical drawers.
-/// It wraps the widget with a `StoreProvider`, `AppWrapperBase`,
-/// `MaterialApp` and a `Scaffold`
-///
-/// It provides a [endDrawer] property to the `Scaffold` with the current active drawer.
-/// Tap [SILPrimaryButton] to open drawer.
-///
-/// This widget also opens the drawer for you so that you can begin your
-/// widget interactions immediately
-Future<void> buildDrawerTestWidget(
-  WidgetTester tester,
-  DrawerType drawerType, {
-  Store<AppState>? store,
-  IGraphQlClient? graphQlClient,
-}) async {
-  await buildTestWidget(
-    tester: tester,
-    graphQlClient: graphQlClient,
-    store: store,
-    endDrawer: SizedBox(
-      width: tabletPortrait.width,
-      height: tabletPortrait.height,
-      child: Drawer(
-        child: ListView(
-          children: <Widget>[
-            activeDrawer(
-              drawer: drawerType.name,
-            )
-          ],
-        ),
-      ),
-    ),
-    widget: Builder(
-      builder: (BuildContext context) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          UpdateUserStateAction(
-            userProfile: UserProfile(
-              userBioData: BioData(
-                firstName: Name.withValue('Bewell'),
-                lastName: Name.withValue('Test'),
-              ),
-            ),
-          ),
-        );
-        return SILPrimaryButton(
-          text: drawerTestRootText,
-          onPressed: () => Scaffold.of(context).openEndDrawer(),
-        );
-      },
-    ),
   );
 }
 

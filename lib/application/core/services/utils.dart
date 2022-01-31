@@ -26,32 +26,32 @@ import 'package:shared_themes/text_themes.dart';
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: mySavedIconSvgPath,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Surveys',
   ),
   UserProfileItemObj(
     iconAssetPath: appointmentIconSvgPath,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Appointments',
   ),
   UserProfileItemObj(
     iconAssetPath: helpCircleIcon,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Help/Contact Admin',
   ),
   UserProfileItemObj(
     iconAssetPath: feedbackIconSvgPath,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Resolved Requests',
   ),
   UserProfileItemObj(
     iconAssetPath: faqsIconSvgPath,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'FAQs',
   ),
   UserProfileItemObj(
     iconAssetPath: settingsIconSvgPath,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Settings',
   ),
 ];
@@ -81,19 +81,19 @@ Alignment placeMessage(dynamic message) {
 
 final List<RequestItem> serviceRequestItems = <RequestItem>[
   RequestItem(
-    route: pinResetRequestsPage,
+    route: AppRoutes.pinResetRequestsPage,
     title: 'Pin Reset',
     imageAssetPath: pinResetImageSvgPath,
     totalNumber: 5,
   ),
   RequestItem(
-    route: redFlagsPage,
+    route: AppRoutes.redFlagsPage,
     title: 'Red Flags',
     imageAssetPath: redFlagImageSvgPath,
     totalNumber: 3,
   ),
   RequestItem(
-    route: profileUpdateRequestsPage,
+    route: AppRoutes.profileUpdateRequestsPage,
     title: 'Profile Update',
     imageAssetPath: profileUpdateImageSvgPath,
     totalNumber: 4,
@@ -248,17 +248,17 @@ const List<Widget> messages = <Widget>[
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: clientProfileIcon,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Relations',
   ),
   UserProfileItemObj(
     iconAssetPath: teleConsultNotificationIcon,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Medical data',
   ),
   UserProfileItemObj(
     iconAssetPath: clinicIcon,
-    route: surveysPage,
+    route: AppRoutes.surveysPage,
     title: 'Clinic information',
   ),
 ];

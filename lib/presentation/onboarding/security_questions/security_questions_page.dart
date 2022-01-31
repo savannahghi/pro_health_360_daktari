@@ -63,11 +63,10 @@ class SecurityQuestionsPage extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.all(10.0),
                   child: ExpandableQuestion(
+                    dateController: TextEditingController(),
                     question: question.questionStem,
                     hintText: answerHereString,
-                    onChanged: (String value) {
-                      return;
-                    },
+                    onChanged: (String? value) {},
                   ),
                 );
               },
