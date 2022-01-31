@@ -1,6 +1,7 @@
 // Flutter Imports
 // Package Imports
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/helpers.dart';
 import 'package:afya_moja_core/phone_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:user_profile/helpers.dart';
 
 class ForgotPinPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

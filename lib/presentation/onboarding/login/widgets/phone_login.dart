@@ -2,6 +2,7 @@
 //Project Imports
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/helpers.dart';
 import 'package:afya_moja_core/phone_input.dart';
 //Package Imports
 import 'package:async_redux/async_redux.dart';
@@ -23,7 +24,6 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';

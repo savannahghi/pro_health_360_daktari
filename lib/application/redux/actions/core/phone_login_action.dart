@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:afya_moja_core/enums.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
@@ -23,7 +24,6 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/login_constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
@@ -52,7 +52,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     final Map<String, String> credentials = <String, String>{
       'phoneNumber': miscState!.phoneNumber!,
       'pin': miscState.pinCode!,
-      'flavour': Flavour.PRO.name,
+      'flavour': Flavour.pro.name,
     };
 
     final String phoneLoginEndpoint =

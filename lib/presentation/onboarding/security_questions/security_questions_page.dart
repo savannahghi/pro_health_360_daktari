@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/enums.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,7 +8,6 @@ import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/entities/security_questions/security_question.dart';
@@ -23,25 +23,25 @@ class SecurityQuestionsPage extends StatelessWidget {
         id: 'sec_q_1',
         questionStem: whereWereYouBornString,
         responseType: '',
-        flavour: Flavour.CONSUMER.name,
+        flavour: Flavour.consumer.name,
       ),
       SecurityQuestion(
         id: 'sec_q_2',
         questionStem: whatsTheNameOfYourPetString,
         responseType: '',
-        flavour: Flavour.CONSUMER.name,
+        flavour: Flavour.consumer.name,
       ),
       SecurityQuestion(
         id: 'sec_q_3',
         questionStem: whatsYourFavoriteFoodString,
         responseType: '',
-        flavour: Flavour.CONSUMER.name,
+        flavour: Flavour.consumer.name,
       ),
       SecurityQuestion(
         id: 'sec_q_4',
         questionStem: whereDidYouFirstLiveString,
         responseType: '',
-        flavour: Flavour.CONSUMER.name,
+        flavour: Flavour.consumer.name,
       ),
     ];
 
