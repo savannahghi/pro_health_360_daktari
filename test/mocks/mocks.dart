@@ -15,7 +15,6 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:user_feed/user_feed.dart' as feed_obj;
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
@@ -287,60 +286,6 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
   },
 };
 
-final Map<String, dynamic> mockUserFeed = <String, dynamic>{
-  'data': <String, dynamic>{
-    'getFeed': <String, dynamic>{
-      'uid': 'LMqDCyyciFMWHfOsvYa76L6dya73',
-      'isAnonymous': false,
-      'flavour': feed_obj.Flavour.PRO.name,
-      'actions': <dynamic>[
-        <String, dynamic>{
-          'id': '1nO8hIc8ZXThjaqmQFL1XHVXgCp',
-          'sequenceNumber': 1,
-          'name': 'SEARCH_PATIENT',
-          'actionType': feed_obj.ActionType.SECONDARY.name,
-          'handling': feed_obj.Handling.FULL_PAGE.name,
-          'allowAnonymous': false
-        }
-      ],
-      'nudges': <dynamic>[
-        <String, dynamic>{
-          'id': '1608729954',
-          'sequenceNumber': 1608729964,
-          'visibility': feed_obj.Visibility.SHOW.name,
-          'status': feed_obj.Status.PENDING.name,
-          'title': 'Complete your rider KYC',
-          'text':
-              'Fill in your Be.Well business KYC in order to start transacting',
-          'actions': <dynamic>[
-            <String, dynamic>{
-              'id': '1608647889',
-              'sequenceNumber': 1608647899,
-              'name': 'COMPLETE_INDIVIDUAL_RIDER_KYC',
-              'actionType': feed_obj.ActionType.PRIMARY.name,
-              'handling': feed_obj.Handling.FULL_PAGE.name,
-              'allowAnonymous': false
-            }
-          ],
-          'groups': <String>['hOcaUv8dqqgmWYf9HEhjdudgf0b2'],
-          'users': <String>['hOcaUv8dqqgmWYf9HEhjdudgf0b2'],
-          'links': <dynamic>[
-            <String, dynamic>{
-              'id': '1608729974',
-              'url': 'https://assets.healthcloud.co.ke/bewell_logo.png',
-              'linkType': feed_obj.LinkType.PNG_IMAGE.name
-            }
-          ],
-          'notificationChannels': <String>[
-            feed_obj.Channel.EMAIL.name,
-            feed_obj.Channel.FCM.name
-          ],
-        },
-      ],
-      'items': <dynamic>[]
-    },
-  }
-};
 
 final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
   'profile': <String, dynamic>{
@@ -561,12 +506,6 @@ class MockSILGraphQlClient extends IGraphQlClient {
       );
     }
 
-    if (queryString.contains('getFeed')) {
-      return Future<http.Response>.value(
-        http.Response(json.encode(mockUserFeed), 201),
-      );
-    }
-
     if (variables['phonenumber'] == '+254712345678') {
       return Future<http.Response>.value(
         http.Response(
@@ -632,55 +571,6 @@ Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
   'response': 'response',
 };
 
-final Map<String, dynamic> mockFeedContent = <String, dynamic>{
-  'uid': 'LMqDCyyciFMWHfOsvYa76L6dya73',
-  'isAnonymous': false,
-  'flavour': feed_obj.Flavour.PRO.name,
-  'actions': <dynamic>[
-    <String, dynamic>{
-      'id': '1nO8hIc8ZXThjaqmQFL1XHVXgCp',
-      'sequenceNumber': 1,
-      'name': 'SEARCH_PATIENT',
-      'actionType': feed_obj.ActionType.SECONDARY.name,
-      'handling': feed_obj.Handling.FULL_PAGE.name,
-      'allowAnonymous': false
-    }
-  ],
-  'nudges': <dynamic>[
-    <String, dynamic>{
-      'id': '1608729954',
-      'sequenceNumber': 1608729964,
-      'visibility': feed_obj.Visibility.SHOW.name,
-      'status': feed_obj.Status.PENDING.name,
-      'title': 'Complete your rider KYC',
-      'text': 'Fill in your Be.Well business KYC in order to start transacting',
-      'actions': <dynamic>[
-        <String, dynamic>{
-          'id': '1608647889',
-          'sequenceNumber': 1608647899,
-          'name': 'COMPLETE_INDIVIDUAL_RIDER_KYC',
-          'actionType': feed_obj.ActionType.PRIMARY.name,
-          'handling': feed_obj.Handling.FULL_PAGE.name,
-          'allowAnonymous': false
-        }
-      ],
-      'groups': <String>['hOcaUv8dqqgmWYf9HEhjdudgf0b2'],
-      'users': <String>['hOcaUv8dqqgmWYf9HEhjdudgf0b2'],
-      'links': <dynamic>[
-        <String, dynamic>{
-          'id': '1608729974',
-          'url': 'https://assets.healthcloud.co.ke/bewell_logo.png',
-          'linkType': feed_obj.LinkType.PNG_IMAGE.name
-        }
-      ],
-      'notificationChannels': <String>[
-        feed_obj.Channel.EMAIL.name,
-        feed_obj.Channel.FCM.name
-      ],
-    },
-  ],
-  'items': <dynamic>[]
-};
 
 Map<String, dynamic> helpCenterFAQMock = <String, dynamic>{
   'data': <String, dynamic>{

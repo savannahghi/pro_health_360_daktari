@@ -1,7 +1,6 @@
-// Dart imports:
+// Package imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
@@ -66,7 +65,7 @@ void main() {
 
   test('countTableRecords should return 0 entries when checking miscState',
       () async {
-    when(mockDb.rawQuery('SELECT COUNT(*) FROM miscState'))
+    when(mockDb.rawQuery('SELECT COUNT(*) FROM ${Tables.MiscState.name}'))
         .thenAnswer((_) async => returnVal(10));
 
     expect(await db.countTableRecords(Tables.MiscState), 10);
@@ -100,31 +99,46 @@ void main() {
       expect(await db.isDatabaseEmpty(), true);
     });
   });
-
-  test('retrieveState should return state from miscState table', () async {
+test('retrieveWorker should return record from database', () async {
     when(
-      mockDb.rawQuery('SELECT * FROM miscState ORDER BY id DESC LIMIT 1'),
-    ).thenAnswer(
-      (_) => Future<List<Map<String, Object?>>>.value(
-        <Map<String, Object?>>[
-          <String, Object?>{'miscState': json.encode(mockUserFeed)}
-        ],
+      mockDb.rawQuery(
+        'SELECT * FROM bottomNavigationState ORDER BY id DESC LIMIT 1',
       ),
+    ).thenAnswer((_) => returnVal(4));
+    expect(
+      await db.retrieveWorker(Tables.BottomNavigationState),
+      <String, Object?>{'users': 4},
     );
+  });
 
-    expect(await db.retrieveState(Tables.MiscState), mockUserFeed);
+  test('retrieveState should return state from bottomNavigationState table', () async {
+    when(
+      mockDb.rawQuery(
+        'SELECT * FROM bottomNavigationState ORDER BY id DESC LIMIT 1',
+      ),
+    ).thenAnswer(
+      (_) => Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
+        <String, Object?>{
+          'bottomNavigationState':
+              json.encode(<String, String>{'currentBottomNavIndex': '2'})
+        }
+      ]),
+    );
+    expect(
+      await db.retrieveState(Tables.BottomNavigationState),
+      <String, String>{'currentBottomNavIndex': '2'},
+    );
   });
 
   test('saveState should call rawInsert', () async {
-    final String tableName = Tables.HomeState.name;
-
+    final String tableName = Tables.BottomNavigationState.name;
+    final Map<String, dynamic> data = <String, dynamic>{'currentBottomNavIndex': 1};
     final String query = 'INSERT INTO $tableName($tableName) VALUES(?)';
-
-    when(mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
-        .thenAnswer((_) => Future<int>.value(10));
-
-    await db.saveState(data: mockUserFeed, table: Tables.HomeState);
-    verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(mockUserFeed)]))
+    when(mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
+        .thenAnswer((_) => Future<int>.value(1));
+    await db.saveState(data: data, table: Tables.BottomNavigationState);
+    verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
         .called(1);
   });
+
 }
