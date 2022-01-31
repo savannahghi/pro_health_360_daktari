@@ -1,12 +1,17 @@
-import 'package:healthcloud/domain/core/entities/profile/doctor.dart';
-import 'package:intl/intl.dart';
-import 'package:afya_moja_core/information_list_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:shared_themes/text_themes.dart';
+
+// Package imports:
+import 'package:afya_moja_core/information_list_card.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/domain/core/entities/profile/doctor.dart';
 
 class MyHealthTimeline extends StatelessWidget {
   const MyHealthTimeline({Key? key}) : super(key: key);
@@ -45,7 +50,7 @@ class MyHealthTimeline extends StatelessWidget {
       children: <Widget>[
         Text(
           'My Health Timeline',
-          style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+          style: boldSize14Text(AppColors.greyTextColor),
         ),
         const SizedBox(height: 20),
         Stack(
@@ -99,7 +104,7 @@ class MyHealthTimeline extends StatelessWidget {
               item.isDiary ? AppColors.diaryListCardColor : null,
           title: Text(
             item.title,
-            style: TextThemes.normalSize12Text(AppColors.buttonAltColor),
+            style: normalSize12Text(AppColors.buttonAltColor),
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +113,7 @@ class MyHealthTimeline extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 item.time,
-                style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+                style: normalSize10Text(AppColors.greyTextColor),
               ),
             ],
           ),
@@ -133,12 +138,12 @@ class MyHealthTimeline extends StatelessWidget {
           children: <Widget>[
             Text(
               'Dr $firstName $lastName',
-              style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+              style: normalSize10Text(AppColors.greyTextColor),
             ),
             const SizedBox(width: 8),
             Text(
               venue,
-              style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+              style: normalSize10Text(AppColors.greyTextColor),
             ),
           ],
         ),
@@ -168,11 +173,11 @@ class TimelineIndicator extends StatelessWidget {
             children: <Widget>[
               Text(
                 date.day.toString(),
-                style: TextThemes.boldSize22Text(AppColors.greyTextColor),
+                style: boldSize22Text(AppColors.greyTextColor),
               ),
               Text(
                 '${date.month}/${date.year}',
-                style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+                style: normalSize10Text(AppColors.greyTextColor),
               ),
             ],
           ),

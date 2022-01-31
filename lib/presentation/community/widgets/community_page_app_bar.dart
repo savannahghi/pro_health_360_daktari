@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/presentation/core/app_bar/app_bar_back_button.dart';
 import 'package:healthcloud/presentation/core/app_bar/app_bar_more_button.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class CommunityPageAppBar extends StatelessWidget with PreferredSizeWidget {
   const CommunityPageAppBar({this.title});
@@ -30,7 +35,7 @@ class CommunityPageAppBar extends StatelessWidget with PreferredSizeWidget {
             const AppBarBackButton(color: Colors.white),
             Text(
               title ?? '',
-              style: TextThemes.veryBoldSize16Text(Colors.white),
+              style: veryBoldSize16Text(Colors.white),
             ),
             const AppBarMoreButton()
           ],

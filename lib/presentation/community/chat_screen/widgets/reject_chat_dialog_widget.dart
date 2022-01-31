@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class RejectChatDialogWidget extends StatelessWidget {
   const RejectChatDialogWidget({required this.userName});
@@ -39,13 +44,13 @@ class RejectChatDialogWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 cancelText,
-                style: TextThemes.veryHeavySize14Text()
+                style: veryHeavySize14Text()
                     .copyWith(color: AppColors.blueBerryColor),
               ),
               size15HorizontalSizedBox,
               Text(
                 rejectText,
-                style: TextThemes.veryHeavySize14Text()
+                style: veryHeavySize14Text()
                     .copyWith(color: Colors.red),
               ),
             ],

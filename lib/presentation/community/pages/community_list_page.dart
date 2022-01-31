@@ -1,5 +1,10 @@
-import 'package:afya_moja_core/community_list_item.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/community_list_item.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 
 class CommunityListViewPage extends StatelessWidget {

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/inputs.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -66,7 +66,7 @@ class _VerifyOTPPageState extends State<VerifyOTPPage> {
                       alignment: Alignment.topCenter,
                       child: Text(
                         verifyPhoneNumberTitle,
-                        style: TextThemes.boldSize16Text(Colors.grey),
+                        style: boldSize16Text(Colors.grey),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -76,7 +76,7 @@ class _VerifyOTPPageState extends State<VerifyOTPPage> {
                       child: Text(
                         enterOTPString,
                         style:
-                            TextThemes.boldSize16Text(AppColors.secondaryColor),
+                            boldSize16Text(AppColors.secondaryColor),
                       ),
                     ),
                     mediumVerticalSizedBox,
@@ -89,7 +89,7 @@ class _VerifyOTPPageState extends State<VerifyOTPPage> {
                     if (!isValid && otpEditingController.value.text.isNotEmpty)
                       Text(
                         invalidOTPString,
-                        style: TextThemes.boldSize16Text(Colors.red),
+                        style: boldSize16Text(Colors.red),
                       ),
                   ],
                 ),

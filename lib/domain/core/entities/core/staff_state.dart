@@ -1,8 +1,9 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/application/redux/states/user_state.dart';
+
 // Project imports:
+import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/domain/core/entities/core/facility.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 

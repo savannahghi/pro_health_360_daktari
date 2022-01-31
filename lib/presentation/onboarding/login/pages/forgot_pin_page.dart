@@ -1,20 +1,22 @@
-// Flutter Imports
-// Package Imports
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/helpers.dart';
 import 'package:afya_moja_core/phone_input.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-// Project Imports
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ForgotPinPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -45,7 +47,7 @@ class ForgotPinPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Text(
                   resetPassword,
-                  style: TextThemes.boldSize16Text(Colors.grey),
+                  style: boldSize16Text(Colors.grey),
                 ),
               ),
               mediumVerticalSizedBox,
@@ -55,7 +57,7 @@ class ForgotPinPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   resetPasswordDescription,
-                  style: TextThemes.boldSize14Text(Colors.grey),
+                  style: boldSize14Text(Colors.grey),
                 ),
               ),
               verySmallVerticalSizedBox,
@@ -69,7 +71,7 @@ class ForgotPinPage extends StatelessWidget {
                   phoneNumberFormatter: formatPhoneNumber,
                   inputController: _phoneNumberInputController,
                   labelText: phoneNumberInputLabelText,
-                  labelStyle: TextThemes.boldSize16Text(),
+                  labelStyle: boldSize16Text(),
                   onChanged: (String? value) {},
                   suffixIcon: Positioned(
                     right: 12,

@@ -2,19 +2,17 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/presentation/service_requests/widgets/pin_request_list_item_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
+import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:shared_themes/text_themes.dart';
-
-// Project imports:
+import 'package:healthcloud/presentation/service_requests/widgets/pin_request_list_item_widget.dart';
 
 class PINResetRequestsPage extends StatelessWidget {
   /// [PINResetRequestsPage] is used to display a list
@@ -92,7 +90,7 @@ class PINResetRequestsPage extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Text(
                               searchString,
-                              style: TextThemes.normalSize12Text(
+                              style: normalSize12Text(
                                 AppColors.greyTextColor,
                               ),
                             ),

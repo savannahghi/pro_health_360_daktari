@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/colors.dart';
 import 'package:afya_moja_core/community_chat_widgets.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -70,7 +70,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                     children: <Widget>[
                       Text(
                         widget.senderName,
-                        style: TextThemes.normalSize10Text()
+                        style: normalSize10Text()
                             .copyWith(color: userInitialsColor),
                       ),
                       smallHorizontalSizedBox,
@@ -83,7 +83,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     widget.message,
-                    style: TextThemes.normalSize12Text()
+                    style: normalSize12Text()
                         .copyWith(color: whiteColor),
                   ),
                 ),
@@ -91,7 +91,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                   alignment: Alignment.bottomRight,
                   child: Text(
                     widget.time,
-                    style: TextThemes.normalSize10Text()
+                    style: normalSize10Text()
                         .copyWith(color: userInitialsColor),
                   ),
                 ),
@@ -110,7 +110,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                     child: GestureDetector(
                       child: Text(
                         approveText,
-                        style: TextThemes.heavySize12Text()
+                        style: heavySize12Text()
                             .copyWith(color: Colors.green),
                       ),
                     ),
@@ -141,7 +141,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                       },
                       child: Text(
                         rejectText,
-                        style: TextThemes.heavySize12Text()
+                        style: heavySize12Text()
                             .copyWith(color: Colors.red),
                       ),
                     ),

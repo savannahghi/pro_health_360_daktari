@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 class ProfileHealthDetailsWidget extends StatelessWidget {
   ///[ProfileHealthDetailsWidget] displays profile health details widget
@@ -35,7 +40,7 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 verySmallHorizontalSizedBox,
                 Text(
                   title,
-                  style: TextThemes.normalSize14Text(AppColors.buttonAltColor),
+                  style: normalSize14Text(AppColors.buttonAltColor),
                 ),
               ],
             ),
@@ -44,13 +49,13 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     text: description,
-                    style: TextThemes.veryBoldSize32Text(
+                    style: veryBoldSize32Text(
                       AppColors.buttonAltColor,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: descriptionSubScript,
-                        style: TextThemes.normalSize14Text(
+                        style: normalSize14Text(
                           AppColors.buttonAltColor,
                         ),
                       )

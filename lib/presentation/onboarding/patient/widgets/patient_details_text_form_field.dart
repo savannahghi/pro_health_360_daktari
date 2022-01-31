@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 class PatientDetailsTextFormField extends StatelessWidget {
   const PatientDetailsTextFormField({

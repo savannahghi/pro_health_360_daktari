@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 
 /// [BatchUpdateMiscStateAction] is the ONLY action that should be called to update [miscState]

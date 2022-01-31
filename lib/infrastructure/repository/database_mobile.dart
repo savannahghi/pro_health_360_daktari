@@ -2,12 +2,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+// Package imports:
+import 'package:sqflite/sqflite.dart';
+
 // Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:healthcloud/infrastructure/repository/sqlite.dart';
-// Package imports:
-import 'package:sqflite/sqflite.dart';
 
 /// [AfyaMojaDatabaseMobile] is the main entry for interacting with the
 /// database for healthcloud mobile. It uses sqlite which is a common RDMS.

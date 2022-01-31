@@ -1,18 +1,18 @@
 // Flutter imports:
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/spaces.dart';
 
 // Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ShareClassificationWidget extends StatelessWidget {
   const ShareClassificationWidget({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class ShareClassificationWidget extends StatelessWidget {
           child: Text(
             shareToString,
             textAlign: TextAlign.center,
-            style: TextThemes.normalSize14Text().copyWith(
+            style: normalSize14Text().copyWith(
               color: AppColors.greyTextColor,
             ),
           ),
@@ -49,7 +49,7 @@ class ShareClassificationWidget extends StatelessWidget {
                   Text(
                     bandString,
                     textAlign: TextAlign.center,
-                    style: TextThemes.normalSize16Text().copyWith(
+                    style: normalSize16Text().copyWith(
                       color: AppColors.dodgerBlueColor,
                     ),
                   ),
@@ -57,7 +57,7 @@ class ShareClassificationWidget extends StatelessWidget {
                   Text(
                     chooseOneString,
                     textAlign: TextAlign.center,
-                    style: TextThemes.normalSize12Text().copyWith(
+                    style: normalSize12Text().copyWith(
                       color: AppColors.lightGreyColor,
                       fontStyle: FontStyle.italic,
                     ),
@@ -81,7 +81,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   ageString,
                   textAlign: TextAlign.center,
-                  style: TextThemes.normalSize16Text().copyWith(
+                  style: normalSize16Text().copyWith(
                     color: AppColors.dodgerBlueColor,
                   ),
                 ),
@@ -103,7 +103,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   locationString,
                   textAlign: TextAlign.center,
-                  style: TextThemes.normalSize16Text().copyWith(
+                  style: normalSize16Text().copyWith(
                     color: AppColors.dodgerBlueColor,
                   ),
                 ),
@@ -125,7 +125,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   clinicString,
                   textAlign: TextAlign.center,
-                  style: TextThemes.normalSize16Text().copyWith(
+                  style: normalSize16Text().copyWith(
                     color: AppColors.dodgerBlueColor,
                   ),
                 ),

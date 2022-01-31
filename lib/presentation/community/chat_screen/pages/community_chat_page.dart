@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:misc_utilities/misc.dart';
 import 'package:afya_moja_core/community_chat_widgets.dart';
+import 'package:misc_utilities/misc.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';

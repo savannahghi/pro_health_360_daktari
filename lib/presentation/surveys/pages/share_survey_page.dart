@@ -1,19 +1,19 @@
 // Flutter imports:
-import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:shared_themes/spaces.dart';
 
 // Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/surveys/widgets/share_classification_widget.dart';
 import 'package:healthcloud/presentation/surveys/widgets/survey_link_input_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ShareSurveyPage extends StatelessWidget {
   const ShareSurveyPage();

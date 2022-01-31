@@ -1,8 +1,12 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:misc_utilities/misc.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -14,8 +18,6 @@ import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dar
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
-import 'package:misc_utilities/misc.dart';
-
 import '../../../../../mocks/test_helpers.dart';
 
 void main() {

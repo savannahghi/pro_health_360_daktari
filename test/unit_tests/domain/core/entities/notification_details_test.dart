@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 
+// Project imports:
+import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import '../../../../mocks/mocks.dart';
 
 void main() {

@@ -1,9 +1,9 @@
 // Flutter imports:
-import 'package:afya_moja_core/enums.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/enums.dart';
 import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:misc_utilities/number_constants.dart';

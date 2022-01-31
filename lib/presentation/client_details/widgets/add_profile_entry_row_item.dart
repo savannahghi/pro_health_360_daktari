@@ -1,5 +1,10 @@
-import 'package:afya_moja_core/custom_text_field.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/custom_text_field.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 class AddProfileEntryRowItem extends StatelessWidget {

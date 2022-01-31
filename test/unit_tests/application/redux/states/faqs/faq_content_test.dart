@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/states/faqs/faq_content.dart';
 
 // Project imports:
+import 'package:healthcloud/application/redux/states/faqs/faq_content.dart';
 import '../../../../../mocks/mocks.dart';
 
 void main() {

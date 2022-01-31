@@ -1,8 +1,11 @@
 // Flutter imports:
+import 'package:flutter/foundation.dart';
+
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart';
 import 'package:healthcloud/application/redux/states/home_state.dart';

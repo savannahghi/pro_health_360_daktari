@@ -1,16 +1,18 @@
 // Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
-
 import 'mocks.dart';
 
 /// [buildTestWidget] is a widget wrapper used for testing

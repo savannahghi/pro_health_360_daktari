@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/domain/core/entities/core/contact.dart';

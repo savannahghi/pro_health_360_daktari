@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/states/event_state/event_state.dart';
 
 void main() {

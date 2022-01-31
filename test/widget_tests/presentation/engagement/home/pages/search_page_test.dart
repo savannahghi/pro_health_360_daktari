@@ -1,4 +1,4 @@
-// Flutter imports:
+// Package imports:
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:flutter_test/flutter_test.dart';
 

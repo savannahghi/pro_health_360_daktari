@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+
+// Package imports:
 import 'package:misc_utilities/misc.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 class SelectOptionField extends StatelessWidget {
   /// [SILSelectOptionField] customized for selection options.

@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/schedule_meet_dialog.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class RedFlagListItem extends StatelessWidget {
   /// [RedFlagListItem] is a shared widget used in [RedFlagsPage]
@@ -31,17 +36,17 @@ class RedFlagListItem extends StatelessWidget {
                     TextSpan(
                       text: clientName,
                       style:
-                          TextThemes.boldSize13Text(AppColors.blueBerryColor),
+                          boldSize13Text(AppColors.blueBerryColor),
                     ),
                     TextSpan(
                       text: needsAttentionString,
-                      style: TextThemes.normalSize13Text(
+                      style: normalSize13Text(
                         AppColors.greyTextColor,
                       ),
                     ),
                     TextSpan(
                       text: ' [$feelingDescription]',
-                      style: TextThemes.boldSize14Text(
+                      style: boldSize14Text(
                         Colors.red,
                       ),
                     ),
@@ -67,7 +72,7 @@ class RedFlagListItem extends StatelessWidget {
                 ),
                 child: Text(
                   reachOutString,
-                  style: TextThemes.boldSize13Text(
+                  style: boldSize13Text(
                     Colors.white,
                   ),
                 ),

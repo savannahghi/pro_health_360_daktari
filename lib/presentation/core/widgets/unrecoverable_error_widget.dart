@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 
 class UnrecoverableErrorWidget extends StatelessWidget {
   const UnrecoverableErrorWidget({Key? key}) : super(key: key);
@@ -35,7 +40,7 @@ class UnrecoverableErrorWidget extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child: Text(
             UserFeedBackTexts.getErrorMessage(),
-            style: TextThemes.boldSize15Text(Colors.black87),
+            style: boldSize15Text(Colors.black87),
             textDirection: TextDirection.ltr,
           ),
         ),
