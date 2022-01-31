@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 // Project imports:
 import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';

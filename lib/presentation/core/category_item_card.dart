@@ -1,10 +1,13 @@
-// ignore_for_file: require_trailing_commas
-
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 class CategoryItemCard extends StatelessWidget {
   /// [CategoryItemCard] is as shared widget in [HomePage] and
@@ -16,7 +19,7 @@ class CategoryItemCard extends StatelessWidget {
       {Key? key,
       required this.iconPath,
       required this.title,
-      this.unresolvedNumber = 0})
+      this.unresolvedNumber = 0,})
       : super(key: key);
 
   final String iconPath;
@@ -44,12 +47,12 @@ class CategoryItemCard extends StatelessWidget {
                       height: 70,
                     ),
                     smallVerticalSizedBox,
-                    Text(title, style: TextThemes.boldSize12Text(AppColors.greyTextColor)),
+                    Text(title, style: boldSize12Text(AppColors.greyTextColor)),
                     smallVerticalSizedBox,
                   ],
                 ),
               ),
-            )),
+            ),),
         if (unresolvedNumber > 0)
           Positioned(
             top: -5,
@@ -64,7 +67,7 @@ class CategoryItemCard extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(unresolvedNumber.toString(),
-                    style: const TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white),),
               ),
             ),
           ),

@@ -1,10 +1,10 @@
-// Flutter imports
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
-// Project imports
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
 

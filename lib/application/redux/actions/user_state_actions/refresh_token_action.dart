@@ -1,11 +1,17 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart';

@@ -1,11 +1,11 @@
-// Flutter imports
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Package imports
-import 'package:shared_themes/text_themes.dart';
-
-// Project imports
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -32,7 +32,7 @@ class ContentPage extends StatelessWidget {
               child: Text(
                 contentPageDescription,
                 textAlign: TextAlign.center,
-                style: TextThemes.normalSize16Text(),
+                style: normalSize16Text(),
               ),
             ),
             GestureDetector(
@@ -63,7 +63,7 @@ class ContentPage extends StatelessWidget {
                       Flexible(
                         child: Text(
                           contentManagementString,
-                          style: TextThemes.boldSize16Text(Colors.white),
+                          style: boldSize16Text(Colors.white),
                         ),
                       )
                     ],

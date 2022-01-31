@@ -1,13 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:healthcloud/presentation/core/app_bar/app_bar_notification.dart';
 
 // Package imports:
-import 'package:shared_themes/text_themes.dart';
+import 'package:afya_moja_core/text_themes.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/core/app_bar/app_bar_back_button.dart';
 import 'package:healthcloud/presentation/core/app_bar/app_bar_more_button.dart';
+import 'package:healthcloud/presentation/core/app_bar/app_bar_notification.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// [CustomAppBar] is a custom [AppBar] used for navigation and showing basic
@@ -66,7 +66,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
             Text(
               title ?? '',
-              style: TextThemes.veryBoldSize16Text(
+              style: veryBoldSize16Text(
                 showMoreButton
                     ? Colors.white
                     : Theme.of(context).colorScheme.secondary,

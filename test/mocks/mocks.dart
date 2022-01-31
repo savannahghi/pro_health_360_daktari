@@ -2,19 +2,21 @@
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:domain_objects/value_objects.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-// Project imports:
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+
+// Project imports:
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 

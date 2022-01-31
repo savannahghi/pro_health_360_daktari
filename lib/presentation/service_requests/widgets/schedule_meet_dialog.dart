@@ -1,13 +1,18 @@
-import 'package:afya_moja_core/buttons.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ScheduleMeetDialog extends StatefulWidget {
   /// [ScheduleMeetDialog] is a shared widget used in [RedFlagsPage]
@@ -33,7 +38,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
           children: <Widget>[
             Text(
               scheduleString,
-              style: TextThemes.boldSize15Text(
+              style: boldSize15Text(
                 AppColors.greyTextColor,
               ),
             ),
@@ -94,14 +99,14 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
             smallVerticalSizedBox,
             Text(
               forString,
-              style: TextThemes.boldSize15Text(
+              style: boldSize15Text(
                 AppColors.greyTextColor,
               ),
             ),
             smallVerticalSizedBox,
             Text(
               meetingTimeString,
-              style: TextThemes.boldSize15Text(
+              style: boldSize15Text(
                 AppColors.blueBerryColor,
               ),
               textAlign: TextAlign.center,
@@ -115,7 +120,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
                   borderColor: Colors.transparent,
                   text: cancelString,
                   buttonColor: Colors.red,
-                  textStyle: TextThemes.veryBoldSize14Text(
+                  textStyle: veryBoldSize14Text(
                     Colors.white,
                   ),
                   customPadding: const EdgeInsets.all(
@@ -134,7 +139,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
                   buttonColor: selectedType == MeetingType.Unknown
                       ? Colors.grey.withOpacity(0.8)
                       : AppColors.malachiteColor,
-                  textStyle: TextThemes.veryBoldSize14Text(
+                  textStyle: veryBoldSize14Text(
                     Colors.white,
                   ),
                   onPressed: () {

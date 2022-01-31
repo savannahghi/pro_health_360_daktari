@@ -1,24 +1,26 @@
 // Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/services/helpers.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/app_theme.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 // Project imports:
+import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/app_theme.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class AuthManager extends StatefulWidget {
   const AuthManager({

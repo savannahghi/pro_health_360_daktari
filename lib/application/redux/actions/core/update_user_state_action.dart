@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart' as domain;
+
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';

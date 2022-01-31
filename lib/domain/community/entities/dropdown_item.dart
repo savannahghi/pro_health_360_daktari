@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dropdown_item.freezed.dart';

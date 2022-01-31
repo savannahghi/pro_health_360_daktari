@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:afya_moja_core/onboarding_scaffold.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:shared_themes/spaces.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///
@@ -52,7 +52,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       newPinString,
-                      style: TextThemes.boldSize14Text(),
+                      style: boldSize14Text(),
                     ),
                   ),
                   verySmallVerticalSizedBox,
@@ -80,7 +80,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       confirmPinString,
-                      style: TextThemes.boldSize14Text(),
+                      style: boldSize14Text(),
                     ),
                   ),
                   verySmallVerticalSizedBox,
@@ -109,7 +109,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                     controlAffinity: ListTileControlAffinity.leading,
                     title: Text(
                       acceptTermsAndConditionsString,
-                      style: TextThemes.boldSize14Text(AppColors.textAltColor),
+                      style: boldSize14Text(AppColors.textAltColor),
                     ),
                     value: isTermsAccepted,
                     onChanged: (bool? value) {

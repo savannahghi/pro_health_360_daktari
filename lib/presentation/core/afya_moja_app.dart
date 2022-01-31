@@ -1,10 +1,14 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+
 // Project imports:
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';

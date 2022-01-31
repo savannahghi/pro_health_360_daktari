@@ -1,13 +1,18 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/actions/user_state_actions/refresh_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/phone_login.dart';
-import 'package:http/http.dart';
-
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
 

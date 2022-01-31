@@ -1,12 +1,13 @@
-// Flutter imports
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Project imports
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({Key? key}) : super(key: key);

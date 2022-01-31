@@ -1,15 +1,16 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
-
 import '../mocks/mock_utils.dart';
 
 void main() {

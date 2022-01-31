@@ -1,7 +1,9 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
-
 import '../../../mocks/test_helpers.dart';
 
 void main() {

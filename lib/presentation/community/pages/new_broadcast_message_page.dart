@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/community/entities/add_group_data_config.dart';
 import 'package:healthcloud/domain/community/entities/dropdown_item.dart';

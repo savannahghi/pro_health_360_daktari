@@ -2,14 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_test/flutter_test.dart';
-import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/inputs.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
-
 import '../../../../mocks/mocks.dart';
 
 void main() {

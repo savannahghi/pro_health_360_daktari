@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
+
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ErrorAlertBox extends StatelessWidget {
   final String message;
@@ -20,9 +25,9 @@ class ErrorAlertBox extends StatelessWidget {
       child: RichText(
         key: errorAlertBoxTextKey,
         text: TextSpan(
-          style: TextThemes.normalSize14Text(Colors.black87),
+          style: normalSize14Text(Colors.black87),
           children: <TextSpan>[
-            TextSpan(text: message, style: TextThemes.boldSize15Text()),
+            TextSpan(text: message, style: boldSize15Text()),
             if (actionSpan != null) actionSpan!,
           ],
         ),

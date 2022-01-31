@@ -1,12 +1,12 @@
-// Flutter imports
-import 'package:afya_moja_core/inputs.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports
+// Package imports:
+import 'package:afya_moja_core/inputs.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Project imports
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 
 class SurveyLinkInputWidget extends StatelessWidget {

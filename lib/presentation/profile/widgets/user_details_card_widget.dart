@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -51,17 +51,17 @@ class UserDetailsCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   name,
-                  style: TextThemes.veryBoldSize16Text(Colors.white),
+                  style: veryBoldSize16Text(Colors.white),
                 ),
                 smallVerticalSizedBox,
                 Text(
                   profession,
-                  style: TextThemes.boldSize16Text(Colors.white),
+                  style: boldSize16Text(Colors.white),
                 ),
                 smallVerticalSizedBox,
                 Text(
                   clinicName,
-                  style: TextThemes.lightSize16Text(Colors.white),
+                  style: lightSize16Text(Colors.white),
                 ),
                 largeVerticalSizedBox,
                 Row(
@@ -74,7 +74,7 @@ class UserDetailsCard extends StatelessWidget {
                     size15HorizontalSizedBox,
                     Text(
                       emailAddress,
-                      style: TextThemes.boldSize14Text(Colors.white),
+                      style: boldSize14Text(Colors.white),
                     ),
                   ],
                 ),
@@ -89,7 +89,7 @@ class UserDetailsCard extends StatelessWidget {
                     size15HorizontalSizedBox,
                     Text(
                       phoneNumber,
-                      style: TextThemes.boldSize14Text(Colors.white),
+                      style: boldSize14Text(Colors.white),
                     ),
                   ],
                 ),
@@ -104,7 +104,7 @@ class UserDetailsCard extends StatelessWidget {
                     size15HorizontalSizedBox,
                     Text(
                       gender,
-                      style: TextThemes.boldSize14Text(Colors.white),
+                      style: boldSize14Text(Colors.white),
                     ),
                   ],
                 ),
@@ -119,7 +119,7 @@ class UserDetailsCard extends StatelessWidget {
                     size15HorizontalSizedBox,
                     Text(
                       licenseNumber,
-                      style: TextThemes.boldSize14Text(Colors.white),
+                      style: boldSize14Text(Colors.white),
                     ),
                   ],
                 ),

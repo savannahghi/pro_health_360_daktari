@@ -1,16 +1,22 @@
-//Flutter Imports
-//Project Imports
+// Flutter imports:
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/helpers.dart';
 import 'package:afya_moja_core/phone_input.dart';
-//Package Imports
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/input_invalidators.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -24,10 +30,6 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class PhoneLogin extends StatefulWidget {
   @override
@@ -91,7 +93,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   phoneNumberString,
-                  style: TextThemes.boldSize14Text(Colors.grey),
+                  style: boldSize14Text(Colors.grey),
                 ),
               ),
               verySmallVerticalSizedBox,
@@ -105,7 +107,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                   phoneNumberFormatter: formatPhoneNumber,
                   inputController: _phoneNumberInputController,
                   labelText: phoneNumberInputLabelText,
-                  labelStyle: TextThemes.boldSize16Text(),
+                  labelStyle: boldSize16Text(),
                   onChanged: (String? value) {
                     if (vm.state.miscState!.invalidCredentials! ||
                         vm.state.miscState!.unKnownPhoneNo!) {
@@ -136,7 +138,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   pinString,
-                  style: TextThemes.boldSize14Text(Colors.grey),
+                  style: boldSize14Text(Colors.grey),
                 ),
               ),
               verySmallVerticalSizedBox,
@@ -184,7 +186,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                             context: context,
                             route: AppRoutes.recoverPinRoute,
                           ),
-                    style: TextThemes.heavySize14Text().copyWith(
+                    style: heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
                       decoration: TextDecoration.underline,
                     ),
@@ -205,7 +207,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                             context: context,
                             route: AppRoutes.phoneSignupRoute,
                           ),
-                    style: TextThemes.heavySize14Text().copyWith(
+                    style: heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
                       decoration: TextDecoration.underline,
                     ),
@@ -254,7 +256,7 @@ class PhoneLoginState extends State<PhoneLogin> {
                   ),
                   child: Text(
                     forgotPinString,
-                    style: TextThemes.boldSize16Text(AppColors.textAltColor),
+                    style: boldSize16Text(AppColors.textAltColor),
                   ),
                 ),
               ),

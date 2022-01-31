@@ -1,17 +1,17 @@
 // Flutter imports:
-import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 // Project imports:
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class SurveysPage extends StatelessWidget {
   const SurveysPage();
@@ -34,7 +34,7 @@ class SurveysPage extends StatelessWidget {
               child: Text(
                 toCreateNewSurveyDescriptionString,
                 textAlign: TextAlign.center,
-                style: TextThemes.normalSize16Text(),
+                style: normalSize16Text(),
               ),
             ),
             SizedBox(
@@ -57,7 +57,7 @@ class SurveysPage extends StatelessWidget {
               child: Text(
                 alreadyHaveYourSurveyLinkString,
                 textAlign: TextAlign.center,
-                style: TextThemes.normalSize16Text(),
+                style: normalSize16Text(),
               ),
             ),
             SizedBox(

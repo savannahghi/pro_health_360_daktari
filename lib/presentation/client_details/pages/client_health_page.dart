@@ -1,23 +1,23 @@
 // Flutter imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/information_list_card.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/information_list_card.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/client_details/widgets/client_details_card_widget.dart';
 import 'package:healthcloud/presentation/client_details/widgets/my_health_timeline.dart';
 import 'package:healthcloud/presentation/client_details/widgets/profile_health_details_widget.dart';
-import 'package:shared_themes/spaces.dart';
-
-// Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ClientHealthPage extends StatefulWidget {
   /// [ClientHealthPage] is used to approve client profile updates and to
@@ -90,7 +90,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                           child: InformationListCard(
                             title: Text(
                               myHealthPageHealthDiary,
-                              style: TextThemes.normalSize14Text(
+                              style: normalSize14Text(
                                 AppColors.buttonAltColor,
                               ),
                             ),
@@ -114,7 +114,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                           child: InformationListCard(
                             title: Text(
                               myHealthPageAppointments,
-                              style: TextThemes.normalSize14Text(
+                              style: normalSize14Text(
                                 AppColors.buttonAltColor,
                               ),
                             ),
@@ -155,7 +155,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                           title: Text(
                             title,
                             maxLines: 2,
-                            style: TextThemes.veryBoldSize14Text(
+                            style: veryBoldSize14Text(
                               AppColors.buttonAltColor,
                             ),
                             overflow: TextOverflow.ellipsis,
@@ -182,7 +182,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                       width: 150,
                       child: MyAfyaHubPrimaryButton(
                         text: transferOut,
-                        textStyle: TextThemes.boldSize14Text(Colors.white),
+                        textStyle: boldSize14Text(Colors.white),
                         buttonColor: Colors.red,
                         customRadius: 15,
                       ),
@@ -217,7 +217,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                 verySmallVerticalSizedBox,
                 Text(
                   newEntryString,
-                  style: TextThemes.veryBoldSize15Text(Colors.white),
+                  style: veryBoldSize15Text(Colors.white),
                 )
               ],
             ),

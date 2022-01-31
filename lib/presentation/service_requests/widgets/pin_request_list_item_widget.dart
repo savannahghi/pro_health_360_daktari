@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:shared_themes/spaces.dart';
+
+// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class PINRequestListItem extends StatefulWidget {
   /// [PINRequestListItem] is a shared widget used in [PINResetRequestsPage]
@@ -51,12 +56,12 @@ class _PINRequestListItemState extends State<PINRequestListItem> {
             smallHorizontalSizedBox,
             Text(
               widget.clientName,
-              style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+              style: boldSize14Text(AppColors.greyTextColor),
             ),
             smallHorizontalSizedBox,
             Text(
               widget.phoneNumber,
-              style: TextThemes.boldSize14Text(
+              style: boldSize14Text(
                 AppColors.greyTextColor,
               ),
             ),
@@ -76,7 +81,7 @@ class _PINRequestListItemState extends State<PINRequestListItem> {
                 ),
                 child: Text(
                   approveString,
-                  style: TextThemes.boldSize13Text(
+                  style: boldSize13Text(
                     Colors.white,
                   ),
                 ),

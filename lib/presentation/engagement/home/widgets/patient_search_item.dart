@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-// Project imports
-import 'package:shared_themes/text_themes.dart';
+import 'package:afya_moja_core/text_themes.dart';
 
 class PatientSearchItem extends StatelessWidget {
   const PatientSearchItem({
@@ -23,11 +22,11 @@ class PatientSearchItem extends StatelessWidget {
         children: <Widget>[
           Text(
             username,
-            style: TextThemes.normalSize12Text(),
+            style: normalSize12Text(),
           ),
           Text(
             'CCC No. $cccNumber',
-            style: TextThemes.normalSize12Text(),
+            style: normalSize12Text(),
           ),
         ],
       ),

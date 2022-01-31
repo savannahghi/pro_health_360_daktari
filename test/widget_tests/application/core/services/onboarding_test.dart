@@ -1,14 +1,19 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_themes/constants.dart';
 
+// Project imports:
+import 'package:healthcloud/application/core/services/onboarding.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 

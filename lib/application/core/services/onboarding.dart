@@ -1,16 +1,22 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:http/http.dart' as http;
+import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/constants.dart';
+
+// Project imports:
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/constants.dart';
 
 /// Processes all non-authenticated HTTP api calls made in the app
 ProcessedResponse processResponse(

@@ -1,18 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-
 import '../mocks/test_helpers.dart';
 
 void main() {
