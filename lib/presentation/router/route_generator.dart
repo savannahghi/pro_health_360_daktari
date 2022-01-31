@@ -1,12 +1,3 @@
-// Flutter imports:
-// Package imports:
-import 'package:bewell_pro_core/presentation/core/widgets/default_error_route.dart';
-import 'package:bewell_pro_core/presentation/onboarding/common/landing_page.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/pages/phone_login_page.dart'
-    as bewell_pro_core;
-import 'package:bewell_pro_core/presentation/onboarding/login/pages/set_pin_page.dart';
-import 'package:bewell_pro_core/presentation/router/router_generator.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
@@ -16,7 +7,6 @@ import 'package:healthcloud/presentation/community/pages/new_broadcast_message_p
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
-import 'package:healthcloud/presentation/onboarding/common/afyamoja_landing_page.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -31,129 +21,114 @@ import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.d
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 
-class AppRouterGenerator extends RouteGenerator {
-  static Route<dynamic>? generateRoute(RouteSettings? settings) {
-    final Route<dynamic>? superRoute = RouteGenerator.generateRoute(settings);
+class RouteGenerator {
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case AppRoutes.homePage:
+        return MaterialPageRoute<HomePage>(
+          builder: (BuildContext context) {
+            return const HomePage();
+          },
+        );
 
-    if (settings?.name == homePageRoute) {
-      return MaterialPageRoute<HomePage>(
-        builder: (BuildContext context) {
-          return const HomePage();
-        },
-      );
-    }
+      case AppRoutes.setPinPage:
+        return MaterialPageRoute<CreateNewPINPage>(
+          builder: (_) => CreateNewPINPage(),
+        );
 
-    if (superRoute is MaterialPageRoute<SetPinPage>) {
-      return MaterialPageRoute<CreateNewPINPage>(
-        builder: (_) => CreateNewPINPage(),
-      );
-    }
+      case AppRoutes.loginPage:
+        return MaterialPageRoute<PhoneLoginPage>(
+          builder: (_) => PhoneLoginPage(),
+        );
 
-    if (superRoute is MaterialPageRoute<LandingPage>) {
-      return MaterialPageRoute<AfyaMojaLandingPage>(
-        builder: (_) => AfyaMojaLandingPage(),
-      );
-    }
+      case AppRoutes.communityPage:
+        return MaterialPageRoute<CommunityListViewPage>(
+          builder: (_) => const CommunityListViewPage(),
+        );
 
-    if (superRoute is MaterialPageRoute<bewell_pro_core.PhoneLoginPage>) {
-      return MaterialPageRoute<PhoneLoginPage>(
-        builder: (_) => PhoneLoginPage(),
-      );
-    }
+      case AppRoutes.contentPage:
+        return MaterialPageRoute<ContentPage>(
+          builder: (_) => ContentPage(),
+        );
 
-    if (superRoute is MaterialPageRoute<DefaultErrorRoute>) {
-      switch (settings?.name) {
-        case communityPage:
-          return MaterialPageRoute<CommunityListViewPage>(
-            builder: (_) => const CommunityListViewPage(),
-          );
+      case AppRoutes.addNewGroupPage:
+        return MaterialPageRoute<AddNewGroupPage>(
+          builder: (_) => const AddNewGroupPage(),
+        );
 
-        case contentPage:
-          return MaterialPageRoute<ContentPage>(
-            builder: (_) => ContentPage(),
-          );
+      case AppRoutes.newBroadcastPage:
+        return MaterialPageRoute<NewBroadcastMessagePage>(
+          builder: (_) => const NewBroadcastMessagePage(),
+        );
 
-        case addNewGroupPage:
-          return MaterialPageRoute<AddNewGroupPage>(
-            builder: (_) => const AddNewGroupPage(),
-          );
+      case AppRoutes.securityQuestionsPage:
+        return MaterialPageRoute<SecurityQuestionsPage>(
+          builder: (_) => const SecurityQuestionsPage(),
+        );
 
-        case newBroadcastPage:
-          return MaterialPageRoute<NewBroadcastMessagePage>(
-            builder: (_) => const NewBroadcastMessagePage(),
-          );
+      case AppRoutes.forgotPinPage:
+        return MaterialPageRoute<ForgotPinPage>(
+          builder: (_) => ForgotPinPage(),
+        );
 
-        case securityQuestionsPage:
-          return MaterialPageRoute<SecurityQuestionsPage>(
-            builder: (_) => const SecurityQuestionsPage(),
-          );
+      case AppRoutes.addNewPatientPage:
+        return MaterialPageRoute<AddNewPatientPage>(
+          builder: (_) => const AddNewPatientPage(),
+        );
 
-        case forgotPinPage:
-          return MaterialPageRoute<ForgotPinPage>(
-            builder: (_) => ForgotPinPage(),
-          );
+      case AppRoutes.serviceRequestsPage:
+        return MaterialPageRoute<ServiceRequestsPage>(
+          builder: (_) => ServiceRequestsPage(),
+        );
 
-        case addNewPatientPage:
-          return MaterialPageRoute<AddNewPatientPage>(
-            builder: (_) => const AddNewPatientPage(),
-          );
+      case AppRoutes.surveysPage:
+        return MaterialPageRoute<SurveysPage>(
+          builder: (_) => const SurveysPage(),
+        );
 
-        case serviceRequestsPage:
-          return MaterialPageRoute<ServiceRequestsPage>(
-            builder: (_) => ServiceRequestsPage(),
-          );
+      case AppRoutes.verifyOTPPage:
+        final int args = settings.arguments! as int;
 
-        case surveysPage:
-          return MaterialPageRoute<SurveysPage>(
-            builder: (_) => const SurveysPage(),
-          );
+        return MaterialPageRoute<VerifyOTPPage>(
+          builder: (_) => VerifyOTPPage(
+            otp: args,
+          ),
+        );
 
-        case verifyOTPPage:
-          final int args = settings!.arguments! as int;
+      case AppRoutes.profilePage:
+        return MaterialPageRoute<UserProfilePage>(
+          builder: (_) => UserProfilePage(),
+        );
 
-          return MaterialPageRoute<VerifyOTPPage>(
-            builder: (_) => VerifyOTPPage(
-              otp: args,
-            ),
-          );
+      case AppRoutes.pinResetRequestsPage:
+        return MaterialPageRoute<PINResetRequestsPage>(
+          builder: (_) => PINResetRequestsPage(),
+        );
 
-        case profilePage:
-          return MaterialPageRoute<UserProfilePage>(
-            builder: (_) => UserProfilePage(),
-          );
+      case AppRoutes.redFlagsPage:
+        return MaterialPageRoute<RedFlagsPage>(
+          builder: (_) => RedFlagsPage(),
+        );
 
-        case pinResetRequestsPage:
-          return MaterialPageRoute<PINResetRequestsPage>(
-            builder: (_) => PINResetRequestsPage(),
-          );
+      case AppRoutes.profileUpdateRequestsPage:
+        return MaterialPageRoute<ProfileUpdateRequestsPage>(
+          builder: (_) => ProfileUpdateRequestsPage(),
+        );
 
-        case redFlagsPage:
-          return MaterialPageRoute<RedFlagsPage>(
-            builder: (_) => RedFlagsPage(),
-          );
+      case AppRoutes.communityChatScreen:
+        return MaterialPageRoute<CommunityChatPage>(
+          builder: (_) => const CommunityChatPage(),
+        );
 
-        case profileUpdateRequestsPage:
-          return MaterialPageRoute<ProfileUpdateRequestsPage>(
-            builder: (_) => ProfileUpdateRequestsPage(),
-          );
+      case AppRoutes.searchPage:
+        return MaterialPageRoute<SearchPage>(
+          builder: (_) => const SearchPage(),
+        );
 
-        case communityChatScreen:
-          return MaterialPageRoute<CommunityChatPage>(
-            builder: (_) => const CommunityChatPage(),
-          );
-
-        case searchPage:
-          return MaterialPageRoute<SearchPage>(
-            builder: (_) => const SearchPage(),
-          );
-
-        case clientHealthPage:
-          return MaterialPageRoute<ClientHealthPage>(
-            builder: (_) => ClientHealthPage(),
-          );
-      }
-    } else {
-      return superRoute;
+      case AppRoutes.clientHealthPage:
+        return MaterialPageRoute<ClientHealthPage>(
+          builder: (_) => ClientHealthPage(),
+        );
     }
   }
 }

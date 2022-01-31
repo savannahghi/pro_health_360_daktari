@@ -1,9 +1,8 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/presentation/onboarding/login/widgets/onboarding_scaffold.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +14,7 @@ import 'package:healthcloud/application/redux/actions/core/update_user_state_act
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/app_theme.dart';
@@ -89,9 +89,8 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
             theme: AppTheme.getAppTheme('flavour'),
             home: const Scaffold(
               body: OnboardingScaffold(
-                dimension: 0,
+                description: '',
                 title: '',
-                icon: Icons.security,
                 child: Center(child: SILPlatformLoader()),
               ),
             ),
@@ -106,8 +105,8 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
             SentryNavigatorObserver(),
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: appInitialRoute.valueOrNull ?? landingPageRoute,
-          onGenerateRoute: AppRouterGenerator.generateRoute,
+          initialRoute: appInitialRoute.valueOrNull ?? AppRoutes.landingPage,
+          onGenerateRoute: RouteGenerator.generateRoute,
         );
       },
     );

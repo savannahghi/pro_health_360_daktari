@@ -8,13 +8,11 @@ publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
 
 dependencies:
-  afya_moja_core: ^0.0.25
-  app_wrapper: ^0.1.28
+  afya_moja_core: ^0.0.34
+  app_wrapper: ^0.1.32
   async_redux: ^12.0.0
-  bewell_pro_core: ^1.1.25-nullsafety
   cupertino_icons: ^1.0.3
   dart_fcm: ^0.0.24
   debug_logger: ^0.0.23
@@ -41,10 +39,10 @@ dependencies:
   rxdart: ^0.27.2
   sentry_flutter: ^5.1.0
   shared_themes: ^0.1.1
-  shared_ui_components: ^0.1.38-nullsafety
+  shared_ui_components: ^0.1.46-nullsafety
   sqflite: ^2.0.0+4
   user_feed: ^0.1.45-nullsafety
-  user_profile: ^0.1.23-nullsafety
+  user_profile: ^0.1.24-nullsafety
 
 dev_dependencies:
   build_runner: ^2.0.4
@@ -57,10 +55,6 @@ dev_dependencies:
   mockito: ^5.0.1
   mocktail_image_network: ^0.1.0
   test: ^1.16.5
-
-dependency_overrides:
-  photo_view: ^0.13.0
-  sms_autofill: 2.1.2
 
 flutter:
   uses-material-design: true

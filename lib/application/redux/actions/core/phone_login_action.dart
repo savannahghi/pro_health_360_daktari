@@ -20,7 +20,6 @@ import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dar
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/events.dart';
 import 'package:healthcloud/domain/core/value_objects/login_constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
@@ -110,8 +109,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       );
 
       if (!responseAsObject.auth!.isChangePin!) {
-        triggerEvent(loginEvent, context);
-
         final OnboardingPathConfig path = onboardingPath(state: state);
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveAll(

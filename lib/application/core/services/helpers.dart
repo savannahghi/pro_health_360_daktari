@@ -1,11 +1,8 @@
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart'
-    show AppContext, AppWrapperBase, BaseContext;
+import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:domain_objects/entities.dart' as domain;
 import 'package:domain_objects/value_objects.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
@@ -16,13 +13,11 @@ import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dar
 import 'package:healthcloud/application/redux/actions/user_state_actions/refresh_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/user_state.dart';
-import 'package:healthcloud/domain/core/entities/core/event_object.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
-import 'package:healthcloud/domain/core/value_objects/events.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// This show only exposed the AppContext and BaseContext to prevent conflicts
 /// between the endpoint constants in the library, and the local ones
@@ -69,6 +64,9 @@ final AppSetupData devAppSetupData = AppSetupData(
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
+    requestPinResetEndpoint: '',
+    respondedSecurityQuestionsEndpoint: '',
+    verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -92,6 +90,9 @@ final AppSetupData prodAppSetupData = AppSetupData(
     uploadFileEndPoint: kProdUploadFileEndPoint,
     createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
+    requestPinResetEndpoint: '',
+    respondedSecurityQuestionsEndpoint: '',
+    verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -145,57 +146,16 @@ Future<void> triggerNavigationEvent({
 }) async {
   /// Navigation Function
   if (shouldReplace) {
-    triggerEvent(navigationEvent, context, route: route);
     await Navigator.of(context).pushReplacementNamed(route, arguments: args);
   } else if (shouldRemoveUntil) {
-    triggerEvent(navigationEvent, context, route: route);
     await Navigator.of(context).pushNamedAndRemoveUntil(
       route,
       ModalRoute.withName(route),
       arguments: args,
     );
   } else {
-    triggerEvent(navigationEvent, context, route: route);
     await Navigator.of(context).pushNamed(route, arguments: args);
   }
-}
-
-String getAppContext(List<AppContext> contexts) {
-  if (contexts.contains(AppContext.AppProd)) {
-    return 'prod';
-  }
-  if (contexts.contains(AppContext.AppDemo)) {
-    return 'demo';
-  }
-  return 'test';
-}
-
-void triggerEvent(String eventName, BuildContext context, {String? route}) {
-  final UserState userState =
-      StoreProvider.state<AppState>(context)!.staffState!.userState!;
-
-  final EventObject eventObjectPayload = EventObject(
-    firstName: userState.userProfile!.userBioData!.firstName?.getValue(),
-    lastName: userState.userProfile!.userBioData!.lastName?.getValue(),
-    uid: userState.auth!.uid,
-    route: route,
-    primaryPhoneNumber: userState.userProfile!.primaryPhoneNumber?.getValue(),
-    flavour: Flavour.PRO.name,
-    timestamp: DateTime.now(),
-  );
-
-  final String appContext =
-      getAppContext(AppWrapperBase.of(context)!.appContexts);
-
-  /// The environment specific event name
-  final String contextEventName = '${eventName}_$appContext';
-
-  final FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics();
-
-  firebaseAnalytics.logEvent(
-    name: contextEventName,
-    parameters: eventObjectPayload.toJson(),
-  );
 }
 
 /// Used to capture User Exceptions and logged to BeWell Sentry
@@ -255,13 +215,13 @@ Future<String> getInitialRoute({required BuildContext context}) async {
 
     switch (tokenStatus) {
       case AuthTokenStatus.requiresLogin:
-        return phoneLoginRoute;
+        return AppRoutes.loginPage;
       case AuthTokenStatus.requiresPin:
-        return pinVerificationRoute;
+        return AppRoutes.verifyOTPPage;
       default: // Happy case => Get the onboarding path and
     }
 
-    if (onboardingPath(state: state).route == homePageRoute) {
+    if (onboardingPath(state: state).route == AppRoutes.homePage) {
       StoreProvider.dispatch<AppState>(
         context,
         BottomNavAction(currentBottomNavIndex: 0),
@@ -271,7 +231,7 @@ Future<String> getInitialRoute({required BuildContext context}) async {
     return onboardingPath(state: state).route;
   }
 
-  return landingPageRoute;
+  return AppRoutes.loginPage;
 }
 
 /// [getAuthTokenStatus] is used to check if the Auth Token has expired or if it needs refreshing

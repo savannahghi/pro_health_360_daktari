@@ -1,5 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+
+const Key signinKey = Key('signin_key');
+
+const Key errorAlertBoxTextKey = Key('errorAlertBoxTextKey');
 
 const Key communityListViewKey = Key('community_list_view_key');
 const Key globalStoreProviderKey = Key('global_store_provider');
@@ -22,8 +25,6 @@ const Key doctorRadioKey = Key('doctor_radio_key');
 const Key nurseRadioKey = Key('nurse_radio_key');
 
 const Key clinicalOfficerRadioKey = Key('clinical_officer_radio_key');
-
-const Key kycRegNumberKey = Key('kyc_reg_number');
 
 const Key kycLicenceNumberKey = Key('kyc_licence_number');
 

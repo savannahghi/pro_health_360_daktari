@@ -46,7 +46,7 @@ class ProfileUpdateRequestListItem extends StatelessWidget {
               key: reachOutButtonKey,
               onTap: () => triggerNavigationEvent(
                 context: context,
-                route: clientHealthPage,
+                route: AppRoutes.clientHealthPage,
               ),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),

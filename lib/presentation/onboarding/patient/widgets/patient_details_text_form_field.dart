@@ -1,4 +1,3 @@
-import 'package:bewell_pro_core/application/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -19,7 +18,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
             label,
             style: const TextStyle(
               fontSize: 14,
-              color: greyTextColor,
+              color: AppColors.greyTextColor,
             ),
           ),
         ),

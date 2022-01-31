@@ -1,5 +1,4 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:bewell_pro_core/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
@@ -7,6 +6,7 @@ import 'package:healthcloud/application/redux/actions/core/batch_update_user_sta
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/phone_login.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
 import '../../../../mocks/mocks.dart';
@@ -34,7 +34,7 @@ void main() {
 
       triggerNavigationEvent(
         context: context,
-        route: phoneLoginRoute,
+        route: AppRoutes.loginPage,
         shouldRemoveUntil: true,
       );
 
@@ -56,7 +56,7 @@ void main() {
 
       triggerNavigationEvent(
         context: context,
-        route: phoneLoginRoute,
+        route: AppRoutes.loginPage,
         shouldReplace: true,
       );
 

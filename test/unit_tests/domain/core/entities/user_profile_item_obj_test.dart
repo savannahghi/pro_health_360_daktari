@@ -9,14 +9,14 @@ void main() {
   final Map<String, dynamic> data = <String, dynamic>{
     'iconAssetPath': emailIconSvgPath,
     'title': 'Red Flags',
-    'route': redFlagsPage,
+    'route': AppRoutes.redFlagsPage,
   };
   test('UserProfileItemObj toJson', () {
     expect(
       UserProfileItemObj(
         iconAssetPath: emailIconSvgPath,
         title: 'Red Flags',
-        route: redFlagsPage,
+        route: AppRoutes.redFlagsPage,
       ).toJson(),
       data,
     );
