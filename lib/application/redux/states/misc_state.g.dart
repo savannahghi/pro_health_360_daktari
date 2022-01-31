@@ -29,9 +29,9 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     unKnownPhoneNo: json['unKnownPhoneNo'] as bool?,
     accountExists: json['accountExists'] as bool?,
     invalidPin: json['invalidPin'] as bool?,
-    patientSearchTerm: json['patientSearchTerm'] as String?,
     hasCompletedEnteringOTP: json['hasCompletedEnteringOTP'] as bool?,
     isResendingOTP: json['isResendingOTP'] as bool?,
+    error: json['error'] as String?,
   );
 }
 
@@ -53,7 +53,7 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'unKnownPhoneNo': instance.unKnownPhoneNo,
       'accountExists': instance.accountExists,
       'invalidPin': instance.invalidPin,
-      'patientSearchTerm': instance.patientSearchTerm,
       'hasCompletedEnteringOTP': instance.hasCompletedEnteringOTP,
       'isResendingOTP': instance.isResendingOTP,
+      'error': instance.error,
     };

@@ -42,9 +42,10 @@ class MiscState with _$MiscState {
 
     /// [invalidPin] used when running pin verification procedure.
     bool? invalidPin,
-    String? patientSearchTerm,
     bool? hasCompletedEnteringOTP, // TODO: remove it is unused
     bool? isResendingOTP, // TODO: remove, it is unused
+
+    String? error,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>

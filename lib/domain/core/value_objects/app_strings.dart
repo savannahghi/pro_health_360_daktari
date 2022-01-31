@@ -297,3 +297,21 @@ const String loginPinLength = 'Enter a four digit PIN';
 const String phoneLoginText = 'Sign In';
 
 const String drawerTestRootText = 'You have closed the drawer';
+
+const String somethingWentWrongText =
+    'Sorry, an unknown error occurred, please try again or get help from '
+    'our help center.';
+
+// Terms and conditions
+const String portalTermsText = 'Portal terms and conditions';
+const String readAndAcceptText =
+    'Please review the terms of service below and accept them';
+const String acceptTermsText = 'I agree with the terms and conditions';
+
+const String closeString = 'Close';
+
+// HTTP requests
+const String httpPOST = 'POST';
+const String httpGET = 'GET';
+
+const String genericErrorOccurred = 'Sorry, an error occurred';

@@ -10,7 +10,7 @@ import 'package:afya_moja_core/enums.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
 
 // Project imports:
@@ -29,7 +29,6 @@ import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dar
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
-import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
@@ -39,45 +38,40 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   final BuildContext context;
 
   @override
-  Future<void> after() async {
-    super.after();
-    dispatch(WaitAction<AppState>.remove(phoneLoginStateFlag));
-  }
-
-  @override
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(phoneLoginStateFlag));
   }
 
   @override
+  Future<void> after() async {
+    dispatch(WaitAction<AppState>.remove(phoneLoginStateFlag));
+    super.after();
+  }
+
+  @override
   Future<AppState?> reduce() async {
-    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
 
     final MiscState? miscState = state.miscState;
 
-    final Map<String, String> credentials = <String, String>{
+    final Map<String, String> variables = <String, String>{
       'phoneNumber': miscState!.phoneNumber!,
       'pin': miscState.pinCode!,
       'flavour': Flavour.pro.name,
     };
 
     final String phoneLoginEndpoint =
-        AppWrapperBase.of(context)!.customContext?.loginByPhoneEndpoint ??
-            EndpointContext.loginByPhoneEndpoint(
-              AppWrapperBase.of(this.context)!.appContexts,
-            );
+        AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
 
-    final ProcessedResponse processedResponse = processResponse(
-      await SimpleCall.callRestAPI(
-        endpoint: phoneLoginEndpoint,
-        method: AppRequestTypes.POST.name,
-        variables: credentials,
-        graphClient: client,
-        raw: true,
-      ) as http.Response,
-      context,
+    final Response httpResponse = await httpClient.callRESTAPI(
+      endpoint: phoneLoginEndpoint,
+      method: httpPOST,
+      variables: variables,
     );
+
+    final ProcessedResponse processedResponse =
+        processResponse(httpResponse, context);
 
     if (processedResponse.ok) {
       final Map<String, dynamic> responseMap =

@@ -16,6 +16,7 @@ import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
@@ -188,5 +189,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ClientHealthPage>?;
     expect(route, isA<MaterialPageRoute<ClientHealthPage>>());
     expect(route?.builder(context), isA<ClientHealthPage>());
+  });
+
+  test('Test router returns TermsAndConditionsPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.termsAndConditions);
+
+    final MaterialPageRoute<TermsAndConditionsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>?;
+
+    expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
+    expect(route?.builder(context), isA<TermsAndConditionsPage>());
   });
 }

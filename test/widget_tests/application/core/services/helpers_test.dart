@@ -18,8 +18,8 @@ import '../../../../mocks/test_helpers.dart';
 
 void main() {
   group('Helpers', () {
-    final MockSILGraphQlClient mockSILGraphQlClient =
-        MockSILGraphQlClient.withResponse(
+    final MockTestGraphQlClient mockSILGraphQlClient =
+        MockTestGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response('', 200),
