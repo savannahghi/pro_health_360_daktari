@@ -19,9 +19,6 @@ _$_StaffState _$_$_StaffStateFromJson(Map<String, dynamic> json) {
     user: json['user'] == null
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
-    userState: json['userState'] == null
-        ? null
-        : UserState.fromJson(json['userState'] as Map<String, dynamic>),
   );
 }
 
@@ -34,5 +31,4 @@ Map<String, dynamic> _$_$_StaffStateToJson(_$_StaffState instance) =>
       'facilities': instance.facilities,
       'default_facility': instance.defaultFacility,
       'user': instance.user,
-      'userState': instance.userState,
     };

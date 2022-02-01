@@ -39,7 +39,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       expect(
-        store.state.staffState!.userState!.inActivitySetInTime!.isNotEmpty,
+        store.state.credentials!.expiresIn!.isNotEmpty,
         true,
       );
     });

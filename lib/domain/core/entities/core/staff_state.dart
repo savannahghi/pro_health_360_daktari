@@ -1,9 +1,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-// Project imports:
-import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/domain/core/entities/core/facility.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 
@@ -20,9 +17,6 @@ class StaffState with _$StaffState {
     @JsonKey(name: 'facilities') List<Facility>? facilities,
     @JsonKey(name: 'default_facility') String? defaultFacility,
     @JsonKey(name: 'user') User? user,
-
-    // TODO(Paul) remove UserState
-    UserState? userState,
   }) = _StaffState;
 
   factory StaffState.fromJson(Map<String, dynamic> json) =>
@@ -36,6 +30,5 @@ class StaffState with _$StaffState {
         facilities: <Facility>[],
         defaultFacility: UNKNOWN,
         user: User.initial(),
-        userState: UserState.initial(),
       );
 }

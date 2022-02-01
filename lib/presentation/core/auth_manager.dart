@@ -16,7 +16,7 @@ import 'package:shared_ui_components/platform_loader.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/core/update_user_state_action.dart';
+import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
@@ -75,8 +75,8 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
 
   Future<void> updateInactivityTime(Store<AppState> store) async {
     store.dispatch(
-      UpdateUserStateAction(
-        inActivitySetInTime: DateTime.now().toIso8601String(),
+      AuthStatusAction(
+        expiresIn: DateTime.now().toIso8601String(),
       ),
     );
   }
