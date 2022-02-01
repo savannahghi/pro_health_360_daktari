@@ -1,10 +1,10 @@
 // Package imports:
-import 'package:test/test.dart';
-
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
+import 'package:healthcloud/domain/core/entities/core/user.dart';
+import 'package:test/test.dart';
+
 import '../../../../mocks/mocks.dart';
 
 void main() {
@@ -15,7 +15,7 @@ void main() {
 
       state = state.copyWith(
         staffState: StaffState.initial().copyWith(
-          userState: UserState.initial().copyWith(isSignedIn: true),
+          user: User.initial().copyWith(active: true),
         ),
       );
 

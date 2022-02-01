@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart';
+import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/phone_login.dart';
@@ -112,9 +112,9 @@ void main() {
             DateTime.now().add(const Duration(minutes: 12));
 
         await store.dispatch(
-          BatchUpdateUserStateAction(
+          AuthStatusAction(
             isSignedIn: true,
-            tokenExpiryTime: futureTwelveMinutes.toIso8601String(),
+            tokenExpiryTimestamp: futureTwelveMinutes.toIso8601String(),
           ),
         );
 
@@ -151,9 +151,9 @@ void main() {
             DateTime.now().add(const Duration(minutes: 8));
 
         await store.dispatch(
-          BatchUpdateUserStateAction(
+          AuthStatusAction(
             isSignedIn: true,
-            tokenExpiryTime: futureEightMinutes.toIso8601String(),
+            tokenExpiryTimestamp: futureEightMinutes.toIso8601String(),
           ),
         );
 
@@ -190,9 +190,9 @@ void main() {
             DateTime.now().subtract(const Duration(hours: 8));
 
         await store.dispatch(
-          BatchUpdateUserStateAction(
+          AuthStatusAction(
             isSignedIn: true,
-            tokenExpiryTime: futureEightHours.toIso8601String(),
+            tokenExpiryTimestamp: futureEightHours.toIso8601String(),
           ),
         );
 
@@ -229,7 +229,9 @@ void main() {
             DateTime.now().subtract(const Duration(hours: 22));
 
         await store.dispatch(
-          BatchUpdateUserStateAction(tokenExpiryTime: hours.toIso8601String()),
+          AuthStatusAction(
+            tokenExpiryTimestamp: hours.toIso8601String(),
+          ),
         );
 
         late AuthTokenStatus? tokenStatus;

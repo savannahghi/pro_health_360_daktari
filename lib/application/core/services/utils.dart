@@ -1,16 +1,12 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/community_chat_widgets.dart';
 import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
 import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:shared_themes/spaces.dart';
-
-// Project imports:
-import 'package:healthcloud/application/redux/states/user_state.dart';
+import 'package:flutter/material.dart';
+import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
 import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
@@ -24,6 +20,7 @@ import 'package:healthcloud/presentation/client_details/widgets/add_profile_entr
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -58,13 +55,11 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-String getDisplayName(UserState state) {
-  final String firstName =
-      state.userProfile?.userBioData?.firstName?.getValue() ?? UNKNOWN;
+String getDisplayName(User? user) {
+  final String firstName = user?.firstName ?? UNKNOWN;
   final String formattedFirstName = firstName.replaceAll(' ', '');
 
-  final String lastName =
-      state.userProfile?.userBioData?.lastName?.getValue() ?? UNKNOWN;
+  final String lastName = user?.lastName ?? UNKNOWN;
   final String formattedLastName = lastName.replaceAll(' ', '');
 
   return '$formattedFirstName $formattedLastName';

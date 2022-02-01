@@ -60,7 +60,7 @@ class _AfyaMojaAppState extends State<AfyaMojaApp> {
             appName: AppBrand().appName.value,
             baseContext: widget.appSetupData.customContext,
             graphQLClient: GraphQlClient(
-              widget.store.state.staffState!.userState!.auth!.idToken!,
+              widget.store.state.credentials!.idToken!,
               widget.appSetupData.customContext!.graphqlEndpoint,
             ),
             appContexts: widget.appSetupData.appContexts,

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart' as domain;
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -12,11 +11,10 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_user_state_action.dart';
+import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/refresh_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/user_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
@@ -125,40 +123,6 @@ final AppSetupData prodAppSetupData = AppSetupData(
   ),
 );
 
-/// Returns a list of secondary phone numbers
-List<PhoneNumber>? deconstructSecondaryPhoneNumber(
-  AppState state,
-  domain.UserProfile? userProfile,
-) {
-  if (userProfile?.secondaryPhoneNumbers != null) {
-    /// overwrite secondary phones to avoid complex pattern matching
-    return userProfile?.secondaryPhoneNumbers;
-  } else {
-    if (state.staffState?.userState!.userProfile!.secondaryPhoneNumbers !=
-        null) {
-      return state.staffState?.userState!.userProfile!.secondaryPhoneNumbers;
-    }
-  }
-  return null;
-}
-
-/// Returns a list of secondary email addresses
-List<EmailAddress>? deconstructSecondaryEmailAddresses(
-  AppState state,
-  domain.UserProfile? userProfile,
-) {
-  if (userProfile?.secondaryEmailAddresses != null) {
-    /// overwrite secondary emails to avoid complex pattern matching
-    return userProfile?.secondaryEmailAddresses;
-  } else {
-    if (state.staffState?.userState!.userProfile!.secondaryEmailAddresses !=
-        null) {
-      return state.staffState?.userState!.userProfile!.secondaryEmailAddresses;
-    }
-  }
-  return null;
-}
-
 /// Triggers Navigation event by sending a log to firebase
 ///
 /// @params
@@ -227,12 +191,12 @@ Future<String> getInitialRoute({required BuildContext context}) async {
   final AppState state = StoreProvider.state<AppState>(context)!;
 
   // This will always be false
-  final bool signedIn = state.staffState?.userState?.isSignedIn ?? false;
+  final bool signedIn = state.credentials?.isSignedIn ?? false;
 
   await StoreProvider.dispatch<AppState>(
     context,
-    BatchUpdateUserStateAction(
-      inActivitySetInTime: DateTime.now().toIso8601String(),
+    AuthStatusAction(
+      expiresIn: DateTime.now().toIso8601String(),
     ),
   );
 
@@ -271,14 +235,14 @@ Future<AuthTokenStatus> getAuthTokenStatus({
   required BuildContext context,
 }) async {
   final AppState? state = StoreProvider.state<AppState>(context);
-  final UserState userStateFromState = state!.staffState!.userState!;
 
   /// Checks if user is signed in
-  final bool isSignedIn = state.staffState!.userState!.isSignedIn!;
+  final bool isSignedIn = state!.credentials!.isSignedIn!;
 
   if (isSignedIn) {
     /// Token Expiry time
-    final String tokenExpiryFromState = userStateFromState.tokenExpiryTime!;
+    final String tokenExpiryFromState =
+        state.credentials!.tokenExpiryTimestamp!;
 
     if (tokenExpiryFromState != UNKNOWN) {
       /// subtract the current time from the time the user signed in
