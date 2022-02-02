@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/application/core/services/onboarding.dart';
+import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
@@ -110,6 +110,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       dispatch(UpdateStaffProfileAction(id: loginResponse.staffState?.id));
 
       final OnboardingPathConfig path = onboardingPath(state: state);
+
       dispatch(
         NavigateAction<AppState>.pushNamedAndRemoveAll(
           path.route,

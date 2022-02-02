@@ -13,7 +13,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
-import 'package:healthcloud/application/core/services/onboarding.dart';
+import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/terms/update_terms_action.dart';

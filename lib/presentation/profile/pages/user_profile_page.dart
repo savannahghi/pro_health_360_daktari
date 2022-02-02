@@ -1,8 +1,8 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart' as afyamoja;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -52,11 +52,11 @@ class UserProfilePage extends StatelessWidget {
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4),
-                  child: InformationListCard(
+                  child: afyamoja.InformationListCard(
                     title: Text(
                       title,
                       maxLines: 2,
-                      style: veryBoldSize14Text(
+                      style: afyamoja.veryBoldSize14Text(
                         Theme.of(context).primaryColor,
                       ),
                       overflow: TextOverflow.ellipsis,

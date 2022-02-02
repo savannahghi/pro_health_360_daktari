@@ -1,6 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
@@ -334,4 +335,33 @@ Gender genderFromJson(String? genderString) {
 
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
+}
+
+/// checks where user has reached in their onboarding and returns the
+/// appropriate route
+OnboardingPathConfig onboardingPath({required AppState state}) {
+  final bool isSignedIn = state.credentials?.isSignedIn ?? false;
+  final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
+  final bool isPhoneVerified = state.onboardingState?.isPhoneVerified ?? false;
+  final bool hasSetSecurityQuestions =
+      state.onboardingState?.hasSetSecurityQuestions ?? false;
+  final bool hasSetPin = state.onboardingState?.isPINSet ?? false;
+
+  if (!isSignedIn) {
+    return OnboardingPathConfig(route: AppRoutes.loginPage);
+  } else if (!isPhoneVerified) {
+    return OnboardingPathConfig(route: AppRoutes.verifyOTPPage);
+  } else if (!termsAccepted) {
+    return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
+  } else if (!hasSetSecurityQuestions) {
+    return OnboardingPathConfig(route: AppRoutes.securityQuestionsPage);
+  } else if (!hasSetPin) {
+    return OnboardingPathConfig(route: AppRoutes.setPinPage);
+  }
+  // TODO(JOHN): create set nickname page
+  // else if (!hasSetNickName) {
+  //   return OnboardingPathConfig(route: AppRoutes.congratulationsPage);
+  // }
+
+  return OnboardingPathConfig(route: AppRoutes.homePage);
 }

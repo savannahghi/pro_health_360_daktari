@@ -4,11 +4,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/terms/accept_terms_action.dart';
+import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
-import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
+import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
@@ -61,6 +63,8 @@ void main() {
     });
 
     test('description', () async {
+      storeTester.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      storeTester.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
       storeTester.dispatch(AcceptTermAction(client: MockTestGraphQlClient()));
 
       final TestInfo<AppState> info =
@@ -73,11 +77,11 @@ void main() {
           actionDispatched?.details
               as NavigatorDetails_PushNamedAndRemoveUntil?;
 
-      expect(navDetails?.newRouteName, AppRoutes.homePage);
+      expect(navDetails?.newRouteName, AppRoutes.securityQuestionsPage);
       expect(
         navDetails?.predicate.call(
-          MaterialPageRoute<HomePage>(
-            builder: (BuildContext context) => const HomePage(),
+          MaterialPageRoute<SecurityQuestionsPage>(
+            builder: (BuildContext context) => const SecurityQuestionsPage(),
           ),
         ),
         false,
