@@ -1,17 +1,21 @@
 import 'dart:convert';
 
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/core/graphql/queries.dart';
+// Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+
+EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -177,6 +181,22 @@ final Map<String, dynamic> mockFacility = <String, dynamic>{
   'description': 'detailed description',
 };
 
+final Map<String, dynamic> mockCreatePin = <String, dynamic>{
+  'newPIN': '1234',
+  'confirmPIN': '1234',
+};
+
+final Map<String, dynamic> mockPhoneLoginState = <String, dynamic>{
+  'phoneNumber': '+254704002748',
+  'pinCode': '1234',
+};
+
+final Map<String, dynamic> mockVerifyPhoneState = <String, dynamic>{
+  'invalidOTP': false,
+  'failedToSendOTP': false,
+  'canResendOTP': false,
+};
+
 Map<String, dynamic> mockIconDetails = <String, dynamic>{
   'url': alertCircleIcon
 };
@@ -206,6 +226,102 @@ final MockTestGraphQlClient mockSILGraphQlClient =
 final Map<String, dynamic> termsMock = <String, dynamic>{
   'termsID': 10001,
   'text': 'Dummy PRO Terms'
+};
+
+final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
+  'profile': <String, dynamic>{
+    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'userName': '@gifted_leavitt53101254',
+    'verifiedIdentifiers': <Map<String, String>>[
+      <String, String>{
+        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+        'timeStamp': '2021-04-30T09:50:01.50004Z',
+        'loginProvider': 'PHONE'
+      }
+    ],
+    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
+    'primaryPhone': '+254717356476',
+    'primaryEmailAddress': 'savannahtestacc@gmail.com',
+    'secondaryPhoneNumbers': null,
+    'secondaryEmailAddresses': null,
+    'terms_accepted': true,
+    'suspended': false,
+    'photoUploadID': UNKNOWN,
+    'userBioData': <String, String>{
+      'firstName': 'BeWell',
+      'lastName': 'Test',
+      'dateOfBirth': '2003-04-30',
+      'gender': 'male'
+    }
+  },
+  'customerProfile': null,
+  'communicationSettings': <String, dynamic>{
+    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
+    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'allowWhatsApp': true,
+    'allowTextSMS': true,
+    'allowPush': true,
+    'allowEmail': true
+  },
+  'auth': <String, dynamic>{
+    'customToken': 'custom-token',
+    'id_token': 'id_token',
+    'expires_in': '3600',
+    'refresh_token': 'refresh_token',
+    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+    'is_admin': false,
+    'is_anonymous': false,
+    'can_experiment': false,
+    'change_pin': false,
+  },
+};
+
+final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
+  'profile': <String, dynamic>{
+    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'userName': '@gifted_leavitt53101254',
+    'verifiedIdentifiers': <Map<String, String>>[
+      <String, String>{
+        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+        'timeStamp': '2021-04-30T09:50:01.50004Z',
+        'loginProvider': 'PHONE'
+      }
+    ],
+    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
+    'primaryPhone': '+254717356476',
+    'primaryEmailAddress': 'savannahtestacc@gmail.com',
+    'secondaryPhoneNumbers': null,
+    'secondaryEmailAddresses': null,
+    'terms_accepted': true,
+    'suspended': false,
+    'photoUploadID': UNKNOWN,
+    'userBioData': <String, String>{
+      'firstName': 'BeWell',
+      'lastName': 'Test',
+      'dateOfBirth': '2003-04-30',
+      'gender': 'male'
+    }
+  },
+  'customerProfile': null,
+  'communicationSettings': <String, dynamic>{
+    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
+    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
+    'allowWhatsApp': true,
+    'allowTextSMS': true,
+    'allowPush': true,
+    'allowEmail': true
+  },
+  'auth': <String, dynamic>{
+    'customToken': 'custom-token',
+    'id_token': 'id_token',
+    'expires_in': '3600',
+    'refresh_token': 'refresh_token',
+    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
+    'is_anonymous': false,
+    'is_admin': false,
+    'can_experiment': false,
+    'change_pin': true,
+  },
 };
 
 /// a short client for providing custom responses
@@ -530,29 +646,50 @@ final Map<String, dynamic> mockStaffState = <String, dynamic>{
 };
 
 final Map<String, dynamic> mockMiscState = <String, dynamic>{
-  'visitCount': 'UNKNOWN',
-  'title': 'UNKNOWN',
   'message': 'UNKNOWN',
-  'phoneNumber': 'UNKNOWN',
   'otpCode': 'UNKNOWN',
-  'pinCode': 'UNKNOWN',
   'acceptedTerms': false,
   'faqList': <dynamic>[],
   'eventState': <String, dynamic>{
     'eventName': 'UNKNOWN',
     'eventPayload': 'UNKNOWN'
   },
-  'defaultLocation': 'UNKNOWN',
   'createPin': 'UNKNOWN',
   'confirmPin': 'UNKNOWN',
-  'invalidCredentials': false,
-  'unKnownPhoneNo': false,
   'accountExists': false,
   'invalidPin': false,
   'patientSearchTerm': null,
   'hasCompletedEnteringOTP': false,
   'isResendingOTP': false,
   'initialRoute': AppRoutes.loginPage,
+};
+
+final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
+  'termsAndConditions': <String, dynamic>{'termsID': 0, 'text': 'UNKNOWN'},
+  'createPINState': <String, dynamic>{
+    'newPIN': 'UNKNOWN',
+    'confirmPIN': 'UNKNOWN'
+  },
+  'securityQuestions': <dynamic>[],
+  'securityQuestionResponses': <dynamic>[],
+  'verifyPhoneState': <String, dynamic>{
+    'invalidOTP': false,
+    'otp': 'UNKNOWN',
+    'failedToSendOTP': false,
+    'canResendOTP': false,
+  },
+  'phoneLogin': <String, dynamic>{
+    'invalidCredentials': false,
+    'phoneNumber': 'UNKNOWN',
+    'pinCode': 'UNKNOWN',
+    'unKnownPhoneNo': false,
+  },
+  'isPhoneVerified': false,
+  'isPINSet': false,
+  'isResetPin': false,
+  'hasSetSecurityQuestions': false,
+  'hasVerifiedSecurityQuestions': false,
+  'hasSetNickName': false
 };
 
 final Map<String, dynamic> appstateMock = <String, dynamic>{
@@ -565,9 +702,7 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
     'signedInTime': 'UNKNOWN',
   },
   'homeState': <String, dynamic>{},
-  'onboardingState': <String, dynamic>{
-    'termsAndConditions': <String, dynamic>{'termsID': 0, 'text': 'UNKNOWN'}
-  },
+  'onboardingState': mockOnboardingState,
   'bottomNavigationState': <String, dynamic>{'currentBottomNavIndex': 0},
   'miscState': mockMiscState,
   'staffState': mockStaffState,
