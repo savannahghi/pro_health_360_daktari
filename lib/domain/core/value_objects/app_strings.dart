@@ -1,44 +1,4 @@
-const String helpCenterTitle = 'AfyaMoja support center';
 const String appName = 'myCareHub';
-
-const String provideAllRequiredInfoString =
-    'Please provide all the required information';
-const String orgTypeName = 'What is your organization type?';
-const String organizationTypeOneValueText = 'LIMITED_COMPANY';
-const String organizationTypeOneText = 'Limited Company';
-const String organizationTypeTwoValueText = 'TRUST';
-const String organizationTypeTwoText = 'Trust';
-const String organizationTypeThreeValueText = 'UNIVERSITY';
-const String organizationTypeThreeText = 'University';
-const String orgCertIncorporation = 'Your Certificate of Incorporation Details';
-const String incorporationCertificateLabel =
-    'Your Certificate of Incorporation (Optional)';
-const String incorporationCertificateHintText =
-    'Enter your Certificate of Incorporation number';
-const String incorporationCertificateUploadText =
-    'certificate of incorporation (Optional)';
-const String cadreText = 'What is your profession?';
-const String doctorValue = 'DOCTOR';
-const String doctorText = 'Doctor';
-const String nurseValue = 'NURSE';
-const String nurseText = 'Nurse';
-const String clinicalOfficerValue = 'CLINICAL_OFFICER';
-const String clinicalOfficerText = 'Clinical Officer';
-const String regNoLabel = 'Add your business registration number';
-const String regHintText = 'Enter your Registration number';
-const String regRequired = 'Registration number is required';
-const String licRequired = 'Practice license is required';
-const String licenceUploadText = 'your licence';
-const String licUploadText = 'your licence (Optional)';
-const String licenseLabel = 'Your practice license';
-const String licenseHintText = 'Enter your Practice license';
-const String practiceServicesText = 'Please tick all services that you offer';
-const String practiceServicesRequired = 'Please select at least one service';
-const String next = 'Next';
-const String nationalIdText = 'NATIONALID';
-const String uploadYourKraString =
-    'Kindly upload your KRA PIN certificate photo';
-const String idDocumentDetailsText = 'Identification document details';
 
 //Create New Pin Page
 const String confirmPinString = 'Confirm PIN';
