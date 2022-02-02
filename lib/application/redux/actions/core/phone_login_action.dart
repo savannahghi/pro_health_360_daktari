@@ -18,7 +18,7 @@ import 'package:healthcloud/application/redux/actions/core/update_staff_profile_
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/misc_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
@@ -50,11 +50,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
 
-    final MiscState? miscState = state.miscState;
+    final OnboardingState? onboardingState = state.onboardingState;
 
-    final Map<String, String> variables = <String, String>{
-      'phoneNumber': miscState!.phoneNumber!,
-      'pin': miscState.pinCode!,
+    final Map<String, String> credentials = <String, String>{
+      'phoneNumber': onboardingState!.phoneLogin!.phoneNumber!,
+      'pin': onboardingState.phoneLogin!.pinCode!,
       'flavour': Flavour.pro.name,
     };
 
@@ -64,7 +64,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     final Response httpResponse = await httpClient.callRESTAPI(
       endpoint: phoneLoginEndpoint,
       method: httpPOST,
-      variables: variables,
+      variables: credentials,
     );
 
     final ProcessedResponse processedResponse =

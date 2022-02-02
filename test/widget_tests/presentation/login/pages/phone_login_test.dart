@@ -1,19 +1,13 @@
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/phone_input.dart';
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
-// Project imports:
-import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -21,6 +15,9 @@ import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:http/http.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -104,7 +101,7 @@ void main() {
       await tester.tap(find.byKey(loginKey));
       await tester.pumpAndSettle();
 
-      expect(store.state.miscState!.invalidCredentials, true);
+      expect(store.state.onboardingState!.phoneLogin!.invalidCredentials, true);
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text('Wrong login details provided'), findsOneWidget);
     });
@@ -119,7 +116,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      store.dispatch(BatchUpdateMiscStateAction(invalidCredentials: true));
+      store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       await tester.pumpAndSettle();
 
       expect(find.byType(ErrorAlertBox), findsOneWidget);
@@ -127,8 +124,11 @@ void main() {
       // Enter PIN
       await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
 
-      expect(store.state.miscState!.invalidCredentials, false);
-      expect(store.state.miscState!.unKnownPhoneNo, false);
+      expect(
+        store.state.onboardingState!.phoneLogin!.invalidCredentials,
+        false,
+      );
+      expect(store.state.onboardingState!.phoneLogin!.unKnownPhoneNo, false);
     });
 
     testWidgets(
@@ -141,15 +141,18 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      store.dispatch(BatchUpdateMiscStateAction(unKnownPhoneNo: true));
+      store.dispatch(UpdateOnboardingStateAction(unKnownPhoneNo: true));
       await tester.pumpAndSettle();
 
       expect(find.byType(ErrorAlertBox), findsOneWidget);
 
       await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
 
-      expect(store.state.miscState!.invalidCredentials, false);
-      expect(store.state.miscState!.unKnownPhoneNo, false);
+      expect(
+        store.state.onboardingState!.phoneLogin!.invalidCredentials,
+        false,
+      );
+      expect(store.state.onboardingState!.phoneLogin!.unKnownPhoneNo, false);
     });
 
     testWidgets('shows a loading indicator when processing',

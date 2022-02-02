@@ -1,8 +1,4 @@
 // Flutter imports:
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
@@ -11,18 +7,17 @@ import 'package:afya_moja_core/phone_input.dart';
 import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/input_invalidators.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/actions/core/phone_login_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
@@ -30,13 +25,16 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
-class PhoneLogin extends StatefulWidget {
+class LoginWidget extends StatefulWidget {
   @override
-  PhoneLoginState createState() => PhoneLoginState();
+  LoginWidgetState createState() => LoginWidgetState();
 }
 
-class PhoneLoginState extends State<PhoneLogin> {
+class LoginWidgetState extends State<LoginWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _phoneNumber;
   final TextEditingController _phoneNumberInputController =
@@ -51,11 +49,11 @@ class PhoneLoginState extends State<PhoneLogin> {
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
       StoreProvider.dispatch<AppState>(
         context,
-        BatchUpdateMiscStateAction(
+        UpdateOnboardingStateAction(
+          unKnownPhoneNo: false,
           phoneNumber: UNKNOWN,
           pinCode: UNKNOWN,
           invalidCredentials: false,
-          unKnownPhoneNo: false,
         ),
       );
     });
@@ -69,7 +67,10 @@ class PhoneLoginState extends State<PhoneLogin> {
     if (_formKey.currentState!.validate()) {
       StoreProvider.dispatch<AppState>(
         context,
-        BatchUpdateMiscStateAction(phoneNumber: phoneNumber, pinCode: pin),
+        UpdateOnboardingStateAction(
+          phoneNumber: phoneNumber,
+          pinCode: pin,
+        ),
       );
 
       await StoreProvider.dispatch<AppState>(
@@ -111,11 +112,12 @@ class PhoneLoginState extends State<PhoneLogin> {
                   labelText: phoneNumberInputLabelText,
                   labelStyle: boldSize16Text(),
                   onChanged: (String? value) {
-                    if (vm.state.miscState!.invalidCredentials! ||
-                        vm.state.miscState!.unKnownPhoneNo!) {
+                    if (vm.state.onboardingState!.phoneLogin!
+                            .invalidCredentials! ||
+                        vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!) {
                       StoreProvider.dispatch<AppState>(
                         context,
-                        BatchUpdateMiscStateAction(
+                        UpdateOnboardingStateAction(
                           invalidCredentials: false,
                           unKnownPhoneNo: false,
                         ),
@@ -160,11 +162,12 @@ class PhoneLoginState extends State<PhoneLogin> {
                   FilteringTextInputFormatter.digitsOnly
                 ],
                 onChanged: (String val) {
-                  if (vm.state.miscState!.invalidCredentials! ||
-                      vm.state.miscState!.unKnownPhoneNo!) {
+                  if (vm.state.onboardingState!.phoneLogin!
+                          .invalidCredentials! ||
+                      vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!) {
                     StoreProvider.dispatch<AppState>(
                       context,
-                      BatchUpdateMiscStateAction(
+                      UpdateOnboardingStateAction(
                         invalidCredentials: false,
                         unKnownPhoneNo: false,
                       ),
@@ -177,7 +180,8 @@ class PhoneLoginState extends State<PhoneLogin> {
               mediumVerticalSizedBox,
 
               /// error alert box for invalid credentials
-              if (vm.state.miscState!.invalidCredentials!) ...<Widget>[
+              if (vm.state.onboardingState!.phoneLogin!
+                  .invalidCredentials!) ...<Widget>[
                 mediumVerticalSizedBox,
                 ErrorAlertBox(
                   message: wrongCredentials,
@@ -198,7 +202,8 @@ class PhoneLoginState extends State<PhoneLogin> {
               ],
 
               /// error alert box for unknown phone number
-              if (vm.state.miscState!.unKnownPhoneNo!) ...<Widget>[
+              if (vm.state.onboardingState!.phoneLogin!
+                  .unKnownPhoneNo!) ...<Widget>[
                 mediumVerticalSizedBox,
                 ErrorAlertBox(
                   message: noAccount,

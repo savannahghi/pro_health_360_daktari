@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/presentation/onboarding/login/widgets/phone_login.dart';
+import 'package:healthcloud/presentation/onboarding/login/widgets/login_widget.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
@@ -39,7 +39,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(PhoneLogin), findsOneWidget);
+      expect(find.byType(LoginWidget), findsOneWidget);
     });
 
     testWidgets(
@@ -61,7 +61,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(PhoneLogin), findsOneWidget);
+      expect(find.byType(LoginWidget), findsOneWidget);
     });
   });
 }
