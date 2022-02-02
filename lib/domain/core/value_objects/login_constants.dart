@@ -9,5 +9,3 @@ const int kModalCountDown = 15;
 // the amount of seconds before token expiry where we should refresh
 // the token
 const int kTokenPreExpiryThreshold = 600;
-
-const String logoutMessage = "Hold on ... you'll be logged out in a moment";
