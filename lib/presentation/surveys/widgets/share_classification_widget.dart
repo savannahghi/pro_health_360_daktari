@@ -1,9 +1,9 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart' as afyamoja;
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
@@ -27,9 +27,9 @@ class ShareClassificationWidget extends StatelessWidget {
           child: Text(
             shareToString,
             textAlign: TextAlign.center,
-            style: normalSize14Text().copyWith(
-              color: AppColors.greyTextColor,
-            ),
+            style: afyamoja.normalSize14Text().copyWith(
+                  color: AppColors.greyTextColor,
+                ),
           ),
         ),
         smallVerticalSizedBox,
@@ -50,18 +50,18 @@ class ShareClassificationWidget extends StatelessWidget {
                   Text(
                     bandString,
                     textAlign: TextAlign.center,
-                    style: normalSize16Text().copyWith(
-                      color: AppColors.dodgerBlueColor,
-                    ),
+                    style: afyamoja.normalSize16Text().copyWith(
+                          color: AppColors.dodgerBlueColor,
+                        ),
                   ),
                   smallHorizontalSizedBox,
                   Text(
                     chooseOneString,
                     textAlign: TextAlign.center,
-                    style: normalSize12Text().copyWith(
-                      color: AppColors.lightGreyColor,
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: afyamoja.normalSize12Text().copyWith(
+                          color: AppColors.lightGreyColor,
+                          fontStyle: FontStyle.italic,
+                        ),
                   ),
                 ],
               ),
@@ -82,9 +82,9 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   ageString,
                   textAlign: TextAlign.center,
-                  style: normalSize16Text().copyWith(
-                    color: AppColors.dodgerBlueColor,
-                  ),
+                  style: afyamoja.normalSize16Text().copyWith(
+                        color: AppColors.dodgerBlueColor,
+                      ),
                 ),
               ),
               smallVerticalSizedBox,
@@ -104,9 +104,9 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   locationString,
                   textAlign: TextAlign.center,
-                  style: normalSize16Text().copyWith(
-                    color: AppColors.dodgerBlueColor,
-                  ),
+                  style: afyamoja.normalSize16Text().copyWith(
+                        color: AppColors.dodgerBlueColor,
+                      ),
                 ),
               ),
               smallVerticalSizedBox,
@@ -126,9 +126,9 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   clinicString,
                   textAlign: TextAlign.center,
-                  style: normalSize16Text().copyWith(
-                    color: AppColors.dodgerBlueColor,
-                  ),
+                  style: afyamoja.normalSize16Text().copyWith(
+                        color: AppColors.dodgerBlueColor,
+                      ),
                 ),
               ),
               smallVerticalSizedBox,

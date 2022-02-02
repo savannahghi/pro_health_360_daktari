@@ -27,7 +27,7 @@ class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
           text: termsString ?? termsAndConditions.text,
         ),
       ),
-      staffState: state.staffState?.copyWith.call(
+      staffState: state.staffState?.copyWith(
         user: state.staffState?.user?.copyWith(
           termsAccepted: isAccepted ?? termsAccepted,
         ),

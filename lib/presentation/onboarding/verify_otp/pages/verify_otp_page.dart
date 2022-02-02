@@ -12,8 +12,9 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 
 class VerifyOTPPage extends StatefulWidget {
-  final int otp;
   const VerifyOTPPage({required this.otp});
+
+  final int otp;
 
   @override
   _VerifyOTPPageState createState() => _VerifyOTPPageState();

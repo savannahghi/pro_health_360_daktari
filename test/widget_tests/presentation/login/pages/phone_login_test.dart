@@ -6,15 +6,16 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -33,6 +34,9 @@ void main() {
     testWidgets(
         'should log in the user, update the user state and navigate to '
         'the home page', (WidgetTester tester) async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
+
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
@@ -62,7 +66,7 @@ void main() {
             PhoneLoginResponse.fromJson(mockLoginResponse);
 
         await tester.pumpAndSettle();
-        expect(find.byType(HomePage), findsOneWidget);
+        expect(find.byType(TermsAndConditionsPage), findsOneWidget);
 
         expect(
           store.state.staffState!.user,

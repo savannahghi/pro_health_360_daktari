@@ -11,6 +11,7 @@ import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
+import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -31,6 +32,16 @@ void main() {
       RouteGenerator.generateRoute;
 
   final BuildContext context = MockBuildContext();
+
+  test('Test router returns HomePage', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.homePage);
+
+    final MaterialPageRoute<HomePage> route =
+        routeGenerator(settings)! as MaterialPageRoute<HomePage>;
+
+    expect(route, isA<MaterialPageRoute<HomePage>>());
+    expect(route.builder(context), isA<HomePage>());
+  });
 
   test('Test router returns CreateNewPinPage', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.setPinPage);
