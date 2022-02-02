@@ -74,7 +74,9 @@ class PhoneLoginState extends State<PhoneLogin> {
 
       await StoreProvider.dispatch<AppState>(
         context,
-        PhoneLoginAction(context: context),
+        PhoneLoginAction(
+          context: context,
+        ),
       );
     }
   }

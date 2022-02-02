@@ -9,6 +9,7 @@ import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
@@ -550,7 +551,8 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
   'invalidPin': false,
   'patientSearchTerm': null,
   'hasCompletedEnteringOTP': false,
-  'isResendingOTP': false
+  'isResendingOTP': false,
+  'initialRoute': AppRoutes.loginPage,
 };
 
 final Map<String, dynamic> appstateMock = <String, dynamic>{
@@ -593,4 +595,10 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
     'default_facility': 'UNKNOWN',
     'user': mockUser,
   }
+};
+
+final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
+  'expiresIn': '3600',
+  'idToken': 'some id token',
+  'refreshToken': 'some refresh token'
 };

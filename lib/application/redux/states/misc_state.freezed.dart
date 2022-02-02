@@ -38,7 +38,8 @@ class _$MiscStateTearOff {
       bool? invalidPin,
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
-      String? error}) {
+      String? error,
+      String? initialRoute}) {
     return _MiscState(
       visitCount: visitCount,
       title: title,
@@ -58,6 +59,7 @@ class _$MiscStateTearOff {
       hasCompletedEnteringOTP: hasCompletedEnteringOTP,
       isResendingOTP: isResendingOTP,
       error: error,
+      initialRoute: initialRoute,
     );
   }
 
@@ -105,6 +107,7 @@ mixin _$MiscState {
   bool? get isResendingOTP =>
       throw _privateConstructorUsedError; // TODO: remove, it is unused
   String? get error => throw _privateConstructorUsedError;
+  String? get initialRoute => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -134,7 +137,8 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? invalidPin,
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
-      String? error});
+      String? error,
+      String? initialRoute});
 }
 
 /// @nodoc
@@ -165,6 +169,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? hasCompletedEnteringOTP = freezed,
     Object? isResendingOTP = freezed,
     Object? error = freezed,
+    Object? initialRoute = freezed,
   }) {
     return _then(_value.copyWith(
       visitCount: visitCount == freezed
@@ -239,6 +244,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      initialRoute: initialRoute == freezed
+          ? _value.initialRoute
+          : initialRoute // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -267,7 +276,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       bool? invalidPin,
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
-      String? error});
+      String? error,
+      String? initialRoute});
 }
 
 /// @nodoc
@@ -299,6 +309,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? hasCompletedEnteringOTP = freezed,
     Object? isResendingOTP = freezed,
     Object? error = freezed,
+    Object? initialRoute = freezed,
   }) {
     return _then(_MiscState(
       visitCount: visitCount == freezed
@@ -373,6 +384,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      initialRoute: initialRoute == freezed
+          ? _value.initialRoute
+          : initialRoute // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -398,7 +413,8 @@ class _$_MiscState implements _MiscState {
       this.invalidPin,
       this.hasCompletedEnteringOTP,
       this.isResendingOTP,
-      this.error});
+      this.error,
+      this.initialRoute});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -453,10 +469,12 @@ class _$_MiscState implements _MiscState {
   final bool? isResendingOTP;
   @override // TODO: remove, it is unused
   final String? error;
+  @override
+  final String? initialRoute;
 
   @override
   String toString() {
-    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP, error: $error)';
+    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP, error: $error, initialRoute: $initialRoute)';
   }
 
   @override
@@ -515,7 +533,10 @@ class _$_MiscState implements _MiscState {
                 const DeepCollectionEquality()
                     .equals(other.isResendingOTP, isResendingOTP)) &&
             (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.initialRoute, initialRoute) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialRoute, initialRoute)));
   }
 
   @override
@@ -538,7 +559,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(invalidPin) ^
       const DeepCollectionEquality().hash(hasCompletedEnteringOTP) ^
       const DeepCollectionEquality().hash(isResendingOTP) ^
-      const DeepCollectionEquality().hash(error);
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(initialRoute);
 
   @JsonKey(ignore: true)
   @override
@@ -570,7 +592,8 @@ abstract class _MiscState implements MiscState {
       bool? invalidPin,
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
-      String? error}) = _$_MiscState;
+      String? error,
+      String? initialRoute}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -625,6 +648,8 @@ abstract class _MiscState implements MiscState {
   bool? get isResendingOTP => throw _privateConstructorUsedError;
   @override // TODO: remove, it is unused
   String? get error => throw _privateConstructorUsedError;
+  @override
+  String? get initialRoute => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

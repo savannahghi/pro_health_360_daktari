@@ -29,8 +29,9 @@ void main() {
       await tester.pumpWidget(afyaMojaApp);
 
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.detached);
-      await tester.pump(const Duration(milliseconds: 50));
+
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
       expect(
         store.state.credentials!.expiresIn!.isNotEmpty,
         true,

@@ -29,6 +29,7 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     hasCompletedEnteringOTP: json['hasCompletedEnteringOTP'] as bool?,
     isResendingOTP: json['isResendingOTP'] as bool?,
     error: json['error'] as String?,
+    initialRoute: json['initialRoute'] as String?,
   );
 }
 
@@ -52,4 +53,5 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'hasCompletedEnteringOTP': instance.hasCompletedEnteringOTP,
       'isResendingOTP': instance.isResendingOTP,
       'error': instance.error,
+      'initialRoute': instance.initialRoute,
     };

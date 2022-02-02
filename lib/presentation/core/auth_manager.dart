@@ -1,6 +1,5 @@
 // Flutter imports:
 // Package imports:
-import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -12,12 +11,10 @@ import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/view_models/initial_route_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/global_keys.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class AuthManager extends StatefulWidget {
   const AuthManager({
@@ -36,7 +33,6 @@ class AuthManager extends StatefulWidget {
 
 class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
   FirebaseAnalytics analytics = FirebaseAnalytics();
-  BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
 
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
@@ -48,19 +44,10 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
-      Future<dynamic>.delayed(Duration.zero, () async {
-        appInitialRoute.add(await getInitialRoute(context: context));
-      });
-    });
-  }
-
-  @override
   void initState() {
+    WidgetsBinding.instance!.addObserver(this);
+
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
@@ -79,22 +66,10 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<String>(
-      stream: appInitialRoute.stream,
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.data == null) {
-          return MaterialApp(
-            theme: AppTheme.getAppTheme(),
-            home: const Scaffold(
-              body: OnboardingScaffold(
-                description: '',
-                title: '',
-                child: Center(child: SILPlatformLoader()),
-              ),
-            ),
-          );
-        }
-
+    return StoreConnector<AppState, InitialRouteViewModel>(
+      converter: (Store<AppState> store) =>
+          InitialRouteViewModel.fromStore(store.state),
+      builder: (BuildContext context, InitialRouteViewModel vm) {
         return MaterialApp(
           theme: AppTheme.getAppTheme(),
           debugShowCheckedModeBanner: showDebugModeBanner(widget.appContexts),
@@ -103,7 +78,7 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
             SentryNavigatorObserver(),
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: appInitialRoute.valueOrNull ?? AppRoutes.landingPage,
+          initialRoute: vm.initialRoute,
           onGenerateRoute: RouteGenerator.generateRoute,
         );
       },

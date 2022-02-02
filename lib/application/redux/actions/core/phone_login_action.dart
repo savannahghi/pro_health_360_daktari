@@ -13,7 +13,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
@@ -118,9 +117,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           path.route,
           arguments: path.arguments,
         ),
-      );
-      dispatch(
-        BottomNavAction(currentBottomNavIndex: 0),
       );
 
       return state;
