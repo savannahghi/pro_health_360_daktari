@@ -1,24 +1,20 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:afya_moja_core/enums.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
@@ -30,6 +26,8 @@ import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:http/http.dart';
+import 'package:misc_utilities/misc.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
@@ -97,7 +95,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       }
 
       dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           idToken: authCredentials?.idToken,
           refreshToken: authCredentials?.refreshToken,
           expiresIn: authCredentials?.expiresIn,

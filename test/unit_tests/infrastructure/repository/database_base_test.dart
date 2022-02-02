@@ -1,6 +1,5 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/migrations.dart';
@@ -8,6 +7,7 @@ import 'package:healthcloud/infrastructure/repository/migrations.dart';
 void main() {
   group('AfyaMojaDatabaseMobile', () {
     test('Tables enum returns correct values', () {
+      expect(Tables.AuthCredentials.name, 'credentials');
       expect(Tables.HomeState.name, 'homeState');
       expect(Tables.OnboardingState.name, 'onboardingState');
       expect(Tables.BottomNavigationState.name, 'bottomNavigationState');
@@ -19,7 +19,7 @@ void main() {
 
     test('migrations', () {
       expect(migrations, isA<List<String>>());
-      expect(migrations.length, 7);
+      expect(migrations.length, 8);
     });
   });
 }

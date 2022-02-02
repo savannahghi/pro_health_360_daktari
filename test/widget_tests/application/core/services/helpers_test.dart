@@ -1,18 +1,17 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/phone_login.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:http/http.dart';
+
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
@@ -112,7 +111,7 @@ void main() {
             DateTime.now().add(const Duration(minutes: 12));
 
         await store.dispatch(
-          AuthStatusAction(
+          UpdateCredentialsAction(
             isSignedIn: true,
             tokenExpiryTimestamp: futureTwelveMinutes.toIso8601String(),
           ),
@@ -151,7 +150,7 @@ void main() {
             DateTime.now().add(const Duration(minutes: 8));
 
         await store.dispatch(
-          AuthStatusAction(
+          UpdateCredentialsAction(
             isSignedIn: true,
             tokenExpiryTimestamp: futureEightMinutes.toIso8601String(),
           ),
@@ -190,7 +189,7 @@ void main() {
             DateTime.now().subtract(const Duration(hours: 8));
 
         await store.dispatch(
-          AuthStatusAction(
+          UpdateCredentialsAction(
             isSignedIn: true,
             tokenExpiryTimestamp: futureEightHours.toIso8601String(),
           ),
@@ -229,7 +228,7 @@ void main() {
             DateTime.now().subtract(const Duration(hours: 22));
 
         await store.dispatch(
-          AuthStatusAction(
+          UpdateCredentialsAction(
             tokenExpiryTimestamp: hours.toIso8601String(),
           ),
         );

@@ -3,6 +3,9 @@ import 'package:healthcloud/infrastructure/repository/database_base.dart';
 
 final List<String> migrations = <String>[
   '''
+  CREATE TABLE IF NOT EXISTS ${Tables.AuthCredentials.name} (id INTEGER PRIMARY KEY, 
+          credentials TEXT)''',
+  '''
   CREATE TABLE IF NOT EXISTS ${Tables.HomeState.name} (id INTEGER PRIMARY KEY, 
           homeState TEXT)''',
   '''

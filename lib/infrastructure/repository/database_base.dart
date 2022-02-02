@@ -27,6 +27,7 @@ abstract class AfyaMojaDatabaseBase<T> {
 
 /// [Tables] definitions
 enum Tables {
+  AuthCredentials,
   HomeState,
   OnboardingState,
   BottomNavigationState,
@@ -41,6 +42,8 @@ enum Tables {
 extension TablesEx on Tables {
   String get name {
     switch (this) {
+      case Tables.AuthCredentials:
+        return 'credentials';
       case Tables.HomeState:
         return 'homeState';
       case Tables.OnboardingState:

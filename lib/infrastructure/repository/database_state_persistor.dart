@@ -1,10 +1,8 @@
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
-
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart';
@@ -13,6 +11,7 @@ import 'package:healthcloud/application/redux/states/misc_state.dart';
 import 'package:healthcloud/application/redux/states/onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/survey_requests_state.dart';
 import 'package:healthcloud/application/redux/states/survey_state.dart';
+import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
@@ -107,6 +106,12 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
     AppState newState,
     AfyaMojaDatabaseBase<dynamic> database,
   ) async {
+    // save credentials
+    await database.saveState(
+      data: newState.credentials!.toJson(),
+      table: Tables.AuthCredentials,
+    );
+
     // save home state
     await database.saveState(
       data: newState.homeState!.toJson(),
@@ -153,6 +158,11 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   @visibleForTesting
   Future<AppState> retrieveState(AfyaMojaDatabaseBase<dynamic> database) async {
     return AppState().copyWith(
+      // retrieve credentials
+      credentials: AuthCredentials.fromJson(
+        await database.retrieveState(Tables.AuthCredentials),
+      ),
+
       // retrieve home state
       homeState: HomeState.fromJson(
         await database.retrieveState(Tables.HomeState),

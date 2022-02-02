@@ -3,12 +3,12 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
 // Project imports:
 import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
+import 'package:mockito/mockito.dart';
+
 import '../../../mocks/mocks.dart';
 
 void main() {
@@ -79,6 +79,7 @@ void main() {
     }
 
     test('isDatabaseEmpty should return false', () async {
+      buildWhenMock('credentials', 10);
       buildWhenMock('homeState', 10);
       buildWhenMock('onboardingState', 10);
       buildWhenMock('bottomNavigationState', 10);
@@ -90,6 +91,7 @@ void main() {
     });
 
     test('isDatabaseEmpty should return true', () async {
+      buildWhenMock('credentials', 0);
       buildWhenMock('homeState', 0);
       buildWhenMock('onboardingState', 0);
       buildWhenMock('bottomNavigationState', 0);
@@ -100,7 +102,7 @@ void main() {
       expect(await db.isDatabaseEmpty(), true);
     });
   });
-test('retrieveWorker should return record from database', () async {
+  test('retrieveWorker should return record from database', () async {
     when(
       mockDb.rawQuery(
         'SELECT * FROM bottomNavigationState ORDER BY id DESC LIMIT 1',
@@ -112,7 +114,8 @@ test('retrieveWorker should return record from database', () async {
     );
   });
 
-  test('retrieveState should return state from bottomNavigationState table', () async {
+  test('retrieveState should return state from bottomNavigationState table',
+      () async {
     when(
       mockDb.rawQuery(
         'SELECT * FROM bottomNavigationState ORDER BY id DESC LIMIT 1',
@@ -133,7 +136,9 @@ test('retrieveWorker should return record from database', () async {
 
   test('saveState should call rawInsert', () async {
     final String tableName = Tables.BottomNavigationState.name;
-    final Map<String, dynamic> data = <String, dynamic>{'currentBottomNavIndex': 1};
+    final Map<String, dynamic> data = <String, dynamic>{
+      'currentBottomNavIndex': 1
+    };
     final String query = 'INSERT INTO $tableName($tableName) VALUES(?)';
     when(mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
         .thenAnswer((_) => Future<int>.value(1));
@@ -141,5 +146,4 @@ test('retrieveWorker should return record from database', () async {
     verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
         .called(1);
   });
-
 }

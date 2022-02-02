@@ -1,24 +1,22 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
 import 'package:healthcloud/application/redux/actions/core/bottom_nav_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/refresh_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// This show only exposed the AppContext and BaseContext to prevent conflicts
 /// between the endpoint constants in the library, and the local ones
@@ -195,7 +193,7 @@ Future<String> getInitialRoute({required BuildContext context}) async {
 
   await StoreProvider.dispatch<AppState>(
     context,
-    AuthStatusAction(
+    UpdateCredentialsAction(
       expiresIn: DateTime.now().toIso8601String(),
     ),
   );
