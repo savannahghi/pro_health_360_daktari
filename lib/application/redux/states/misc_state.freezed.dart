@@ -29,7 +29,6 @@ class _$MiscStateTearOff {
       String? pinCode,
       bool? acceptedTerms,
       List<FAQContent?>? faqList,
-      EventState? eventState,
       String? defaultLocation,
       String? createPin,
       String? confirmPin,
@@ -49,7 +48,6 @@ class _$MiscStateTearOff {
       pinCode: pinCode,
       acceptedTerms: acceptedTerms,
       faqList: faqList,
-      eventState: eventState,
       defaultLocation: defaultLocation,
       createPin: createPin,
       confirmPin: confirmPin,
@@ -81,7 +79,6 @@ mixin _$MiscState {
   String? get pinCode => throw _privateConstructorUsedError;
   bool? get acceptedTerms => throw _privateConstructorUsedError;
   List<FAQContent?>? get faqList => throw _privateConstructorUsedError;
-  EventState? get eventState => throw _privateConstructorUsedError;
 
   /// [defaultLocation] the location(branch) that the user has chosen
   String? get defaultLocation => throw _privateConstructorUsedError;
@@ -128,7 +125,6 @@ abstract class $MiscStateCopyWith<$Res> {
       String? pinCode,
       bool? acceptedTerms,
       List<FAQContent?>? faqList,
-      EventState? eventState,
       String? defaultLocation,
       String? createPin,
       String? confirmPin,
@@ -139,8 +135,6 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
       String? error});
-
-  $EventStateCopyWith<$Res>? get eventState;
 }
 
 /// @nodoc
@@ -161,7 +155,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? pinCode = freezed,
     Object? acceptedTerms = freezed,
     Object? faqList = freezed,
-    Object? eventState = freezed,
     Object? defaultLocation = freezed,
     Object? createPin = freezed,
     Object? confirmPin = freezed,
@@ -206,10 +199,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.faqList
           : faqList // ignore: cast_nullable_to_non_nullable
               as List<FAQContent?>?,
-      eventState: eventState == freezed
-          ? _value.eventState
-          : eventState // ignore: cast_nullable_to_non_nullable
-              as EventState?,
       defaultLocation: defaultLocation == freezed
           ? _value.defaultLocation
           : defaultLocation // ignore: cast_nullable_to_non_nullable
@@ -252,17 +241,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
               as String?,
     ));
   }
-
-  @override
-  $EventStateCopyWith<$Res>? get eventState {
-    if (_value.eventState == null) {
-      return null;
-    }
-
-    return $EventStateCopyWith<$Res>(_value.eventState!, (value) {
-      return _then(_value.copyWith(eventState: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -280,7 +258,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       String? pinCode,
       bool? acceptedTerms,
       List<FAQContent?>? faqList,
-      EventState? eventState,
       String? defaultLocation,
       String? createPin,
       String? confirmPin,
@@ -291,9 +268,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       bool? hasCompletedEnteringOTP,
       bool? isResendingOTP,
       String? error});
-
-  @override
-  $EventStateCopyWith<$Res>? get eventState;
 }
 
 /// @nodoc
@@ -315,7 +289,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? pinCode = freezed,
     Object? acceptedTerms = freezed,
     Object? faqList = freezed,
-    Object? eventState = freezed,
     Object? defaultLocation = freezed,
     Object? createPin = freezed,
     Object? confirmPin = freezed,
@@ -360,10 +333,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.faqList
           : faqList // ignore: cast_nullable_to_non_nullable
               as List<FAQContent?>?,
-      eventState: eventState == freezed
-          ? _value.eventState
-          : eventState // ignore: cast_nullable_to_non_nullable
-              as EventState?,
       defaultLocation: defaultLocation == freezed
           ? _value.defaultLocation
           : defaultLocation // ignore: cast_nullable_to_non_nullable
@@ -420,7 +389,6 @@ class _$_MiscState implements _MiscState {
       this.pinCode,
       this.acceptedTerms,
       this.faqList,
-      this.eventState,
       this.defaultLocation,
       this.createPin,
       this.confirmPin,
@@ -451,8 +419,6 @@ class _$_MiscState implements _MiscState {
   final bool? acceptedTerms;
   @override
   final List<FAQContent?>? faqList;
-  @override
-  final EventState? eventState;
   @override
 
   /// [defaultLocation] the location(branch) that the user has chosen
@@ -490,7 +456,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, eventState: $eventState, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP, error: $error)';
+    return 'MiscState(visitCount: $visitCount, title: $title, message: $message, phoneNumber: $phoneNumber, otpCode: $otpCode, pinCode: $pinCode, acceptedTerms: $acceptedTerms, faqList: $faqList, defaultLocation: $defaultLocation, createPin: $createPin, confirmPin: $confirmPin, invalidCredentials: $invalidCredentials, unKnownPhoneNo: $unKnownPhoneNo, accountExists: $accountExists, invalidPin: $invalidPin, hasCompletedEnteringOTP: $hasCompletedEnteringOTP, isResendingOTP: $isResendingOTP, error: $error)';
   }
 
   @override
@@ -520,9 +486,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.faqList, faqList) ||
                 const DeepCollectionEquality()
                     .equals(other.faqList, faqList)) &&
-            (identical(other.eventState, eventState) ||
-                const DeepCollectionEquality()
-                    .equals(other.eventState, eventState)) &&
             (identical(other.defaultLocation, defaultLocation) ||
                 const DeepCollectionEquality()
                     .equals(other.defaultLocation, defaultLocation)) &&
@@ -566,7 +529,6 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(pinCode) ^
       const DeepCollectionEquality().hash(acceptedTerms) ^
       const DeepCollectionEquality().hash(faqList) ^
-      const DeepCollectionEquality().hash(eventState) ^
       const DeepCollectionEquality().hash(defaultLocation) ^
       const DeepCollectionEquality().hash(createPin) ^
       const DeepCollectionEquality().hash(confirmPin) ^
@@ -599,7 +561,6 @@ abstract class _MiscState implements MiscState {
       String? pinCode,
       bool? acceptedTerms,
       List<FAQContent?>? faqList,
-      EventState? eventState,
       String? defaultLocation,
       String? createPin,
       String? confirmPin,
@@ -630,8 +591,6 @@ abstract class _MiscState implements MiscState {
   bool? get acceptedTerms => throw _privateConstructorUsedError;
   @override
   List<FAQContent?>? get faqList => throw _privateConstructorUsedError;
-  @override
-  EventState? get eventState => throw _privateConstructorUsedError;
   @override
 
   /// [defaultLocation] the location(branch) that the user has chosen

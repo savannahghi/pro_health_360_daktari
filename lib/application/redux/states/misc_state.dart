@@ -3,7 +3,6 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:healthcloud/application/redux/states/event_state/event_state.dart';
 import 'package:healthcloud/application/redux/states/faqs/faq_content.dart';
 
 part 'misc_state.freezed.dart';
@@ -20,7 +19,6 @@ class MiscState with _$MiscState {
     String? pinCode,
     bool? acceptedTerms,
     List<FAQContent?>? faqList,
-    EventState? eventState,
 
     /// [defaultLocation] the location(branch) that the user has chosen
     String? defaultLocation,
@@ -69,6 +67,5 @@ class MiscState with _$MiscState {
         invalidPin: false,
         hasCompletedEnteringOTP: false,
         isResendingOTP: false,
-        eventState: EventState.initial(),
       );
 }

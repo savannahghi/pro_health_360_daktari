@@ -8,15 +8,15 @@ import 'package:healthcloud/application/core/services/app_setup_data.dart';
 void main() {
   test('AppSetupData creates a valid object', () {
     final AppSetupData appSetup = AppSetupData(
-      appContexts: <AppContext>[AppContext.BewellPRO],
+      appContexts: <AppContext>[AppContext.AfyaMoja],
       sentryDNS: 'some sentryDNS',
     );
 
     expect(appSetup.sentryDNS, 'some sentryDNS');
-    expect(appSetup.appContexts.first, AppContext.BewellPRO);
+    expect(appSetup.appContexts.first, AppContext.AfyaMoja);
 
     final AppSetupData sameSetup = AppSetupData(
-      appContexts: <AppContext>[AppContext.BewellPRO],
+      appContexts: <AppContext>[AppContext.AfyaMoja],
       sentryDNS: 'some sentryDNS',
     );
 

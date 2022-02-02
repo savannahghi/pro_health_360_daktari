@@ -173,7 +173,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                             color: AppColors.secondaryColor,
                           )
                         : MyAfyaHubPrimaryButton(
-                            text: continueString,
+                            text: continueText,
                             borderColor: userAccepted
                                 ? AppColors.secondaryColor
                                 : Colors.grey,

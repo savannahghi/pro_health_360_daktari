@@ -10,7 +10,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/app_theme.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -52,25 +51,24 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
 
   @override
   void didChangeDependencies() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    super.didChangeDependencies();
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
       Future<dynamic>.delayed(Duration.zero, () async {
         appInitialRoute.add(await getInitialRoute(context: context));
       });
     });
-
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
   }
 
   Future<void> updateInactivityTime(Store<AppState> store) async {
@@ -88,7 +86,7 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.data == null) {
           return MaterialApp(
-            theme: AppTheme.getAppTheme('flavour'),
+            theme: AppTheme.getAppTheme(),
             home: const Scaffold(
               body: OnboardingScaffold(
                 description: '',
@@ -100,7 +98,7 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
         }
 
         return MaterialApp(
-          theme: afyaMojaProAndroidTheme,
+          theme: AppTheme.getAppTheme(),
           debugShowCheckedModeBanner: showDebugModeBanner(widget.appContexts),
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: <NavigatorObserver>[

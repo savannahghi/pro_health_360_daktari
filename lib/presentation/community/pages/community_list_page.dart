@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -15,7 +16,7 @@ class CommunityListViewPage extends StatelessWidget {
     // Placeholder
     const String dontMissAppointmentMessage =
         "Don't miss your appointment tomorrow";
-    const AssetImage avatarImage = AssetImage('assets/images/doctor-2.jpg');
+    const AssetImage avatarImage = AssetImage(doctorImageJpg);
     const String date = 'July 12 2021';
 
     const List<Widget> items = <Widget>[
