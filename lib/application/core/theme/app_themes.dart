@@ -1,48 +1,45 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:shared_themes/colors.dart';
-
-final ThemeData afyaMojaProAndroidTheme = buildTheme();
-//use accordingly with guidance from the title
-ThemeData buildTheme() {
-  final ThemeData base = ThemeData.light();
-
-  const ButtonThemeData buttonTheme = ButtonThemeData();
-
-  return base.copyWith(
-    colorScheme: base.colorScheme.copyWith(secondary: AppColors.secondaryColor),
-
-    primaryColor: AppColors.primaryColor,
-
-    // grey
-    backgroundColor: AppColors.lightGreyBackgroundColor,
-
-    // red
-    errorColor: dangerColor,
-
-    // text color
-    textSelectionTheme: const TextSelectionThemeData(
-      selectionColor: healthcloudTextColor,
-      selectionHandleColor: healthcloudTextColorPurple,
-    ),
-
-    // Button theme
-    buttonTheme: buttonTheme.copyWith(
-      buttonColor: sILButtonColor,
-      // disabled color
-      disabledColor: disabledButtonColor,
-      // text color
-      textTheme: ButtonTextTheme.normal,
-      // height and width configurations
-      minWidth: 88,
-      height: 42,
-    ),
-  );
+class AppTheme {
+  static ThemeData getAppTheme() {
+    return ThemeData(
+      fontFamily: 'Sora',
+      primaryColor: AppColors.themeColors.primaryColor,
+      primaryColorDark: AppColors.themeColors.primaryDark,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.themeColors.primaryColor,
+        secondary: AppColors.themeColors.accentColor,
+      ),
+      backgroundColor: AppColors.themeColors.backgroundColor,
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: AppColors.themeColors.textSelectionColor,
+      ),
+    ).copyWith(
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: AppColors.primaryColor,
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
 }
 
 class AppColors {
+  static ThemeColors themeColors = ThemeColors(
+    primaryColor,
+    primaryColor,
+    accentColor,
+    lightGreyBackgroundColor,
+    const Color(0xff0e2153),
+  );
   static const Color easternBlueColor = Color(0xFF1CA4A6);
   static const Color dodgerBlueColor = Color(0xFF407BFC);
   static const Color lightSkyBlueColor = Color(0xFFF6F7FB);
@@ -66,4 +63,21 @@ class AppColors {
   static const Color blueBerryColor = Color(0xff407bfc);
   static const Color newGroupLabelColor = Color(0xFF407BFC);
   static const Color diaryListCardColor = Color(0xff17d1d4);
+  static const Color dangerColor = Color(0xffb00020);
+}
+
+class ThemeColors {
+  final Color primaryColor;
+  final Color primaryDark;
+  final Color accentColor;
+  final Color backgroundColor;
+  final Color textSelectionColor;
+
+  ThemeColors(
+    this.primaryColor,
+    this.primaryDark,
+    this.accentColor,
+    this.backgroundColor,
+    this.textSelectionColor,
+  );
 }

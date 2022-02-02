@@ -151,7 +151,7 @@ Future<void> triggerNavigationEvent({
   }
 }
 
-/// Used to capture User Exceptions and logged to BeWell Sentry
+/// Used to capture User Exceptions and logged to AfyaMoja Sentry
 ///
 /// These include exceptions like: `'Error while fetching user feed'`
 /// Check `exception_strings.dart` for more examples of these exceptions.

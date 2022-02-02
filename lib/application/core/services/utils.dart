@@ -56,10 +56,15 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
 ];
 
 String getDisplayName(User? user) {
-  final String firstName = user?.firstName ?? UNKNOWN;
+  final bool firstNameIsNotEmpty =
+      user?.firstName != null && user!.firstName!.isNotEmpty;
+  final bool lastNameIsNotEmpty =
+      user?.lastName != null && user!.lastName!.isNotEmpty;
+
+  final String firstName = firstNameIsNotEmpty ? user.firstName! : UNKNOWN;
   final String formattedFirstName = firstName.replaceAll(' ', '');
 
-  final String lastName = user?.lastName ?? UNKNOWN;
+  final String lastName = lastNameIsNotEmpty ? user.lastName! : UNKNOWN;
   final String formattedLastName = lastName.replaceAll(' ', '');
 
   return '$formattedFirstName $formattedLastName';

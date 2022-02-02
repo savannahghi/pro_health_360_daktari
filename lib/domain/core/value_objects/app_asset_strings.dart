@@ -1,8 +1,6 @@
-const String appLogo = 'assets/icons/logo.png';
-
-const String warningImage = 'assets/icons/warning.png';
-
 const String errorDisplayImgUrl = 'assets/images/error-display.png';
+
+const String doctorImageJpg = 'assets/images/doctor-2.jpg';
 
 //App Bar Icon Paths
 const String backIconSvgPath = 'assets/icons/app_bar_back_icon.svg';
@@ -86,5 +84,3 @@ const String clientProfileIcon = 'assets/icons/client_profile_icon.svg';
 const String phoneCallIcon = 'assets/icons/phone_call_icon.svg';
 const String homeLocationIcon = 'assets/icons/home_location_icon.svg';
 const String editProfileIconSvg = 'assets/icons/edit_profile_icon.svg';
-// config
-const String cameraIconUrl = 'assets/icons/camera.png';

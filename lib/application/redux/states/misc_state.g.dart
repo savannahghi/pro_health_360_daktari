@@ -19,9 +19,6 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : FAQContent.fromJson(e as Map<String, dynamic>))
         .toList(),
-    eventState: json['eventState'] == null
-        ? null
-        : EventState.fromJson(json['eventState'] as Map<String, dynamic>),
     defaultLocation: json['defaultLocation'] as String?,
     createPin: json['createPin'] as String?,
     confirmPin: json['confirmPin'] as String?,
@@ -45,7 +42,6 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'pinCode': instance.pinCode,
       'acceptedTerms': instance.acceptedTerms,
       'faqList': instance.faqList,
-      'eventState': instance.eventState,
       'defaultLocation': instance.defaultLocation,
       'createPin': instance.createPin,
       'confirmPin': instance.confirmPin,

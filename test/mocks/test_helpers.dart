@@ -58,36 +58,3 @@ Future<void> buildTestWidget({
     duration,
   );
 }
-
-StoreTester<AppState> createStoreTester() {
-  final Store<AppState> store =
-      Store<AppState>(initialState: AppState.initial());
-  return StoreTester<AppState>.from(
-    store,
-    testInfoPrinter: (TestInfo<dynamic> testInfo) {},
-  );
-}
-
-Future<void> advanceAndPump({
-  required Widget widget,
-  required WidgetTester tester,
-  required void Function(Duration) updateTime,
-  Store<AppState>? store,
-  IGraphQlClient? graphQlClient,
-  List<NavigatorObserver>? navigatorObservers,
-  Duration duration = Duration.zero,
-}) async {
-  updateTime(duration);
-
-  await buildTestWidget(
-    tester: tester,
-    widget: widget,
-    duration: duration,
-    store: store,
-    graphQlClient: graphQlClient,
-    navigatorObservers: navigatorObservers,
-  );
-  await tester.pumpAndSettle();
-}
-
-Type typeOf<T>() => T;

@@ -1,25 +1,16 @@
-// Dart imports:
 import 'dart:convert';
-import 'dart:io';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-// Project imports:
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-
-EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -37,21 +28,8 @@ class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
       ) as Future<MockStateDB>;
 }
 
-class MockDeviceCapabilities extends IDeviceCapabilities {}
-
-final MockDeviceCapabilities deviceCapabilities = MockDeviceCapabilities();
-
-const Size tabletPortrait = Size(720, 1280);
 const Size tabletLandscape = Size(1280, 720);
 const Size typicalLargePhoneScreenSizePortrait = Size(300, 800);
-
-String testPath(String relativePath) {
-  final Directory current = Directory.current;
-  final String path =
-      current.path.endsWith('/test') ? current.path : '${current.path}/test';
-
-  return '$path/$relativePath';
-}
 
 class MockStateDB extends Mock implements Database {
   @override
@@ -181,46 +159,6 @@ class MockStateDB extends Mock implements Database {
   }
 }
 
-/// a short client for providing custom responses
-///
-/// a good use case is when you want to return error responses
-class MockShortSILGraphQlClient extends IGraphQlClient {
-  MockShortSILGraphQlClient.withResponse(
-    String idToken,
-    String endpoint,
-    this.response,
-  ) {
-    super.idToken = idToken;
-    super.endpoint = endpoint;
-  }
-
-  final http.Response response;
-
-  @override
-  Future<http.Response> callRESTAPI({
-    required String endpoint,
-    required String method,
-    Map<String, dynamic>? variables,
-  }) {
-    return Future<http.Response>.value(response);
-  }
-
-  @override
-  Future<http.Response> query(
-    String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) {
-    return Future<http.Response>.value(response);
-  }
-}
-
-final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
-  'expiresIn': '3600',
-  'idToken': 'some id token',
-  'refreshToken': 'some refresh token'
-};
-
 final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
   'active': true,
   'contact': '+254717356476',
@@ -263,102 +201,6 @@ final MockTestGraphQlClient mockSILGraphQlClient =
   'endpoint',
   http.Response('success response', 200),
 );
-
-final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
-  'profile': <String, dynamic>{
-    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
-    'userName': '@gifted_leavitt53101254',
-    'verifiedIdentifiers': <Map<String, String>>[
-      <String, String>{
-        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
-        'timeStamp': '2021-04-30T09:50:01.50004Z',
-        'loginProvider': 'PHONE'
-      }
-    ],
-    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
-    'primaryPhone': '+254717356476',
-    'primaryEmailAddress': 'savannahtestacc@gmail.com',
-    'secondaryPhoneNumbers': null,
-    'secondaryEmailAddresses': null,
-    'terms_accepted': true,
-    'suspended': false,
-    'photoUploadID': UNKNOWN,
-    'userBioData': <String, String>{
-      'firstName': 'BeWell',
-      'lastName': 'Test',
-      'dateOfBirth': '2003-04-30',
-      'gender': 'male'
-    }
-  },
-  'customerProfile': null,
-  'communicationSettings': <String, dynamic>{
-    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
-    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
-    'allowWhatsApp': true,
-    'allowTextSMS': true,
-    'allowPush': true,
-    'allowEmail': true
-  },
-  'auth': <String, dynamic>{
-    'customToken': 'custom-token',
-    'id_token': 'id_token',
-    'expires_in': '3600',
-    'refresh_token': 'refresh_token',
-    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
-    'is_admin': false,
-    'is_anonymous': false,
-    'can_experiment': false,
-    'change_pin': false,
-  },
-};
-
-final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
-  'profile': <String, dynamic>{
-    'id': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
-    'userName': '@gifted_leavitt53101254',
-    'verifiedIdentifiers': <Map<String, String>>[
-      <String, String>{
-        'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
-        'timeStamp': '2021-04-30T09:50:01.50004Z',
-        'loginProvider': 'PHONE'
-      }
-    ],
-    'verifiedUIDS': <String>['rnq23JxDXNMLJK3sSKNwaGWrfzp2'],
-    'primaryPhone': '+254717356476',
-    'primaryEmailAddress': 'savannahtestacc@gmail.com',
-    'secondaryPhoneNumbers': null,
-    'secondaryEmailAddresses': null,
-    'terms_accepted': true,
-    'suspended': false,
-    'photoUploadID': UNKNOWN,
-    'userBioData': <String, String>{
-      'firstName': 'BeWell',
-      'lastName': 'Test',
-      'dateOfBirth': '2003-04-30',
-      'gender': 'male'
-    }
-  },
-  'customerProfile': null,
-  'communicationSettings': <String, dynamic>{
-    'id': '45423625-d794-47d3-9f87-32b5a5f80c84',
-    'profileID': 'cf77a543-d5cc-427a-94ed-1b1e12dfb8f4',
-    'allowWhatsApp': true,
-    'allowTextSMS': true,
-    'allowPush': true,
-    'allowEmail': true
-  },
-  'auth': <String, dynamic>{
-    'customToken': 'custom-token',
-    'id_token': 'id_token',
-    'expires_in': '3600',
-    'refresh_token': 'refresh_token',
-    'uid': 'rnq23JxDXNMLJK3sSKNwaGWrfzp2',
-    'is_anonymous': false,
-    'is_admin': false,
-    'can_experiment': false,
-    'change_pin': true,
-  },
-};
 
 final Map<String, dynamic> termsMock = <String, dynamic>{
   'termsID': 10001,
@@ -642,7 +484,7 @@ final Map<String, dynamic> mockStaffState = <String, dynamic>{
       'id': 'UNKNOWN',
       'userName': 'UNKNOWN',
       'primaryPhone': null,
-      'primaryEmailAddress': 'unknown@bewell.co.ke',
+      'primaryEmailAddress': 'unknown@email.co.ke',
       'secondaryPhoneNumbers': null,
       'secondaryEmailAddresses': null,
       'terms_accepted': false,

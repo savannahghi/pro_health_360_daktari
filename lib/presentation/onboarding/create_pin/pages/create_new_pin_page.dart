@@ -159,7 +159,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                   },
                   buttonColor: Theme.of(context).primaryColor,
                   borderColor: Colors.transparent,
-                  text: continueButtonText,
+                  text: continueText,
                 ),
               ),
             )

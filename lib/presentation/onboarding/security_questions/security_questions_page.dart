@@ -77,7 +77,7 @@ class SecurityQuestionsPage extends StatelessWidget {
                 width: isLargeScreen ? number300 : double.infinity,
                 height: number52,
                 child: MyAfyaHubPrimaryButton(
-                  text: continueButtonText,
+                  text: continueText,
                   buttonColor: Theme.of(context).primaryColor,
                 ),
               ),
