@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:healthcloud/application/redux/states/faqs/faq_content.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';
@@ -44,6 +45,7 @@ class MiscState with _$MiscState {
     bool? isResendingOTP, // TODO: remove, it is unused
 
     String? error,
+    String? initialRoute,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -67,5 +69,6 @@ class MiscState with _$MiscState {
         invalidPin: false,
         hasCompletedEnteringOTP: false,
         isResendingOTP: false,
+        initialRoute: AppRoutes.loginPage,
       );
 }
