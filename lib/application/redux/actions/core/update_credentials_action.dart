@@ -1,12 +1,11 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 
-class AuthStatusAction extends ReduxAction<AppState> {
-  AuthStatusAction({
+class UpdateCredentialsAction extends ReduxAction<AppState> {
+  UpdateCredentialsAction({
     this.idToken,
     this.refreshToken,
     this.expiresIn,
@@ -24,7 +23,7 @@ class AuthStatusAction extends ReduxAction<AppState> {
 
   @override
   AppState? reduce() {
-    final AuthCredentials? newState = state.credentials?.copyWith(
+    final AuthCredentials? newCredentials = state.credentials?.copyWith(
       idToken: idToken ?? state.credentials?.idToken,
       expiresIn: expiresIn ?? state.credentials?.expiresIn,
       refreshToken: refreshToken ?? state.credentials?.refreshToken,
@@ -34,8 +33,6 @@ class AuthStatusAction extends ReduxAction<AppState> {
           tokenExpiryTimestamp ?? state.credentials?.tokenExpiryTimestamp,
     );
 
-    final AppState newAppState = state.copyWith(credentials: newState);
-
-    return newAppState;
+    return state.copyWith(credentials: newCredentials ?? state.credentials);
   }
 }

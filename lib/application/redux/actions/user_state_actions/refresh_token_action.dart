@@ -11,7 +11,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
@@ -54,7 +54,7 @@ class RefreshTokenAction extends ReduxAction<AppState> {
 
       // update user state
       dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           idToken: newAuth.idToken,
           refreshToken: newAuth.refreshToken,
           expiresIn: newAuth.expiresIn,

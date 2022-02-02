@@ -7,7 +7,7 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/application/redux/actions/core/auth_status_action.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
@@ -46,7 +46,7 @@ void main() {
       final DateTime hours = DateTime.now().subtract(const Duration(hours: 22));
 
       await store.dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           isSignedIn: true,
           tokenExpiryTimestamp: hours.toIso8601String(),
         ),
@@ -84,7 +84,7 @@ void main() {
       final DateTime hours = DateTime.now().subtract(const Duration(hours: 9));
 
       await store.dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           isSignedIn: true,
           tokenExpiryTimestamp: hours.toIso8601String(),
         ),
@@ -123,7 +123,7 @@ void main() {
       final DateTime hours = DateTime.now().add(const Duration(minutes: 12));
 
       await store.dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           isSignedIn: true,
           tokenExpiryTimestamp: hours.toIso8601String(),
         ),
@@ -161,7 +161,7 @@ void main() {
       final DateTime hours = DateTime.now().add(const Duration(minutes: 10));
 
       await store.dispatch(
-        AuthStatusAction(
+        UpdateCredentialsAction(
           isSignedIn: true,
           expiresIn: hours.toIso8601String(),
         ),
