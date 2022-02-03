@@ -74,14 +74,15 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+
+            // Add new user section
             Padding(
               padding: const EdgeInsets.only(
                 top: 16.0,
                 left: 16.0,
                 right: 16.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Wrap(
                 children: <Widget>[
                   ActionCard(
                     title: addNewUserText,
@@ -98,25 +99,6 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context)
                           .pushNamed(AppRoutes.serviceRequestsPage);
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  ActionCard(
-                    key: contentCardKey,
-                    title: contentString,
-                    iconUrl: contentPageImage,
-                    onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.contentPage);
                     },
                   ),
                   ActionCard(
