@@ -3,11 +3,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/application/redux/actions/core/afyamoja_logout_action.dart';
+import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 
 void main() {
-  group('AfyaMojaLogoutAction', () {
+  group('LogoutAction', () {
     late StoreTester<AppState> storeTester;
 
     setUp(() {
@@ -19,16 +19,15 @@ void main() {
     });
 
     test('should reset app state to initial state', () async {
-      await storeTester.dispatch(AfyaMojaLogoutAction());
+      await storeTester.dispatch(LogoutAction());
 
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(AfyaMojaLogoutAction);
+      final TestInfo<AppState> info = await storeTester.waitUntil(LogoutAction);
 
       expect(info.state, AppState.initial());
     });
 
     test('should dispatch navigation action after resetting state', () async {
-      await storeTester.dispatch(AfyaMojaLogoutAction());
+      await storeTester.dispatch(LogoutAction());
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(NavigateAction);

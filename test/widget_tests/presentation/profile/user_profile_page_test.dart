@@ -32,4 +32,22 @@ void main() {
       expect(backButton, findsOneWidget);
     });
   });
+
+  testWidgets('renders correctly', (WidgetTester tester) async {
+    
+    await buildTestWidget(
+      tester: tester,
+      widget: Builder(
+        builder: (BuildContext context) {
+          return UserProfilePage();
+        },
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(local.UserDetailsCard), findsWidgets);
+    final Finder userProfileListItem = find.byType(InformationListCard);
+    final Finder backButton = find.byKey(appBarBackButtonKey);
+    expect(userProfileListItem, findsNWidgets(userProfileItems.length));
+    expect(backButton, findsOneWidget);
+  });
 }

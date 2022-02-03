@@ -1,7 +1,10 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:afya_moja_core/src/domain/core/entities/onboarding_path_config.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -10,7 +13,14 @@ import 'package:healthcloud/application/redux/actions/core/update_credentials_ac
 import 'package:healthcloud/application/redux/actions/terms/update_terms_action.dart';
 import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/infrastructure/endpoints.dart';
+import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:http/http.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+import '../../mocks/mocks.dart';
+import '../../mocks/test_helpers.dart';
 
 void main() {
   group('genderFromJson', () {
@@ -102,6 +112,39 @@ void main() {
 
       final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.homePage);
+    });
+
+    testWidgets('should test logout user works correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockShortGraphQlClient.withResponse(
+          'idToken',
+          kTestGraphqlEndpoint,
+          Response(
+            json.encode(<String, String>{'error': 'error occurred'}),
+            201,
+          ),
+        ),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () {
+                logoutUser(context: context).call();
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(store.state, AppState.initial());
+      expect(find.byType(PhoneLoginPage), findsOneWidget);
     });
   });
 }

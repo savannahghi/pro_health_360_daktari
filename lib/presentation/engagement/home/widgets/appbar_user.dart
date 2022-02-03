@@ -37,7 +37,7 @@ class AppbarUser extends StatelessWidget {
             final String photoUrl = user?.avatar ?? UNKNOWN;
 
             // a sanity check for the photo url
-            final bool isUploadUrlInvalid =
+            final bool userHasProfileImage =
                 photoUrl.isEmpty || photoUrl == UNKNOWN;
 
             return Container(
@@ -54,7 +54,7 @@ class AppbarUser extends StatelessWidget {
                   color: AppColors.malachiteColor,
                 ),
                 child: Center(
-                  child: isUploadUrlInvalid
+                  child: userHasProfileImage
                       ? Text(
                           extractNamesInitials(
                             name: getDisplayName(user),
