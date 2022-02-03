@@ -1,13 +1,10 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/onboarding_scaffold.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:

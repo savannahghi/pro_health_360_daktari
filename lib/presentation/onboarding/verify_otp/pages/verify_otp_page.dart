@@ -1,11 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/inputs.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -75,8 +72,7 @@ class _VerifyOTPPageState extends State<VerifyOTPPage> {
                       alignment: Alignment.topCenter,
                       child: Text(
                         enterOTPString,
-                        style:
-                            boldSize16Text(AppColors.secondaryColor),
+                        style: boldSize16Text(AppColors.secondaryColor),
                       ),
                     ),
                     mediumVerticalSizedBox,

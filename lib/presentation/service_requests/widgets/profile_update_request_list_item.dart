@@ -1,8 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -34,8 +34,7 @@ class ProfileUpdateRequestListItem extends StatelessWidget {
                   children: <TextSpan>[
                     TextSpan(
                       text: clientName,
-                      style:
-                          boldSize13Text(AppColors.blueBerryColor),
+                      style: boldSize13Text(AppColors.blueBerryColor),
                     ),
                     TextSpan(
                       text: wantProfiledUpdatedString,

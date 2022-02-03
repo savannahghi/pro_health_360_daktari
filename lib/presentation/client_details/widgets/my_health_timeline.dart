@@ -1,9 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/information_list_card.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter_svg/flutter_svg.dart';

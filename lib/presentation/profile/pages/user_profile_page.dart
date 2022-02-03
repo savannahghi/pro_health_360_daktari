@@ -1,9 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/information_list_card.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -12,7 +11,8 @@ import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/profile/widgets/user_details_card_widget.dart';
+import 'package:healthcloud/presentation/profile/widgets/user_details_card_widget.dart'
+    as local;
 
 // Project imports:
 
@@ -33,7 +33,7 @@ class UserProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               mediumVerticalSizedBox,
-              const UserDetailsCard(
+              const local.UserDetailsCard(
                 clinicName: clinicName,
                 emailAddress: emailAddress,
                 gender: gender,

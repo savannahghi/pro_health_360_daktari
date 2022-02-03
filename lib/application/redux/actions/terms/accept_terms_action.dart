@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ import 'package:healthcloud/application/redux/actions/core/batch_update_misc_sta
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/terms/update_terms_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:healthcloud/domain/core/entities/terms/accept_terms_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/error_tags.dart';
@@ -88,7 +88,7 @@ class AcceptTermAction extends ReduxAction<AppState> {
       NavigateAction<AppState>.pushNamedAndRemoveUntil(
         onboardingPathConfig.route,
         (Route<dynamic> route) => false,
-        arguments: onboardingPathConfig.arguments,
+        arguments: onboardingPathConfig.argumets,
       ),
     );
 

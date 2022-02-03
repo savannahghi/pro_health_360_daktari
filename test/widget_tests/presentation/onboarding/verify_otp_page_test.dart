@@ -1,6 +1,5 @@
 // Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/inputs.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
