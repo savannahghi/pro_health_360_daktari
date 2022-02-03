@@ -1,0 +1,11 @@
+google_cloud_bucket_name("sghi-myafyahub-signing-keys")
+
+storage_mode("google_cloud")
+
+type("appstore")
+#type("development") 
+
+#for_lane :deploy_to_app_store do
+  #type 'appstore'
+ 
+#end
