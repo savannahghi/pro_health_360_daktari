@@ -10,7 +10,6 @@ import 'package:misc_utilities/misc.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
@@ -74,33 +73,6 @@ void main() {
       await tester.tap(find.text(serviceRequestsText));
       await tester.pumpAndSettle();
       expect(find.byType(ServiceRequestsPage), findsWidgets);
-    });
-
-    testWidgets('navigates to ContentPage', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const HomePage(),
-            );
-          },
-        ),
-      );
-
-      expect(find.byType(AppbarUser), findsOneWidget);
-      expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
-      expect(find.byType(ActionCard), findsWidgets);
-
-      final Finder contentPage =
-          find.byKey(contentCardKey, skipOffstage: false);
-      await tester.ensureVisible(contentPage);
-
-      await tester.tap(find.text(contentString));
-      await tester.pumpAndSettle();
-      expect(find.byType(ContentPage), findsWidgets);
     });
 
     testWidgets('navigates to SurveysPage', (WidgetTester tester) async {

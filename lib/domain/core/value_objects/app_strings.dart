@@ -1,3 +1,5 @@
+import 'package:healthcloud/application/core/services/utils.dart';
+
 const String appName = 'myCareHub';
 
 //Create New Pin Page
@@ -275,3 +277,12 @@ const String setNicknameDescription =
 const String nickNameString = 'Nickname';
 const String nameInputValidateString = 'Kindly input a nickname';
 const String nicknameSuccessString = 'Nickname created successfully';
+const String logoutButtonText = 'Logout';
+
+final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub';
+const String appVersionString = 'Current Version:';
+
+// this is the version of the currently running app.
+// it has to be defined as a const otherwise the compiler will return the default
+const String APPVERSION =
+    String.fromEnvironment('APPVERSION', defaultValue: 'dev-build');

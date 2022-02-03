@@ -1,9 +1,11 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart' as afyamoja;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/presentation/core/widgets/logout_button.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -78,6 +80,31 @@ class UserProfilePage extends StatelessWidget {
                 );
               }),
               mediumVerticalSizedBox,
+              const SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: LogoutButton(),
+              ),
+              mediumVerticalSizedBox,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      copyrightString,
+                      style: normalSize10Text(Colors.grey),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Center(
+                    child: Text(
+                      '$appVersionString $APPVERSION',
+                      style: normalSize9Text(Colors.grey),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

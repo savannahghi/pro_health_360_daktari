@@ -1,6 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
@@ -16,6 +18,7 @@ import 'package:healthcloud/presentation/client_details/widgets/add_profile_entr
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
@@ -363,4 +366,15 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   }
 
   return OnboardingPathConfig(route: AppRoutes.homePage);
+}
+
+Function() logoutUser({required BuildContext context}) {
+  return () async {
+    StoreProvider.dispatch(context, LogoutAction());
+  };
+}
+
+String returnCurrentYear() {
+  final DateTime now = DateTime.now();
+  return DateFormat('y').format(now);
 }
