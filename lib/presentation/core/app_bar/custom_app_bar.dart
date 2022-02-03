@@ -45,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         decoration: BoxDecoration(
           color: showMoreButton
-              ? Theme.of(context).colorScheme.secondary
+              ? Theme.of(context).colorScheme.primary
               : Colors.white,
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -63,7 +63,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 AppBarBackButton(
                   color: showMoreButton
                       ? Colors.white
-                      : Theme.of(context).colorScheme.secondary,
+                      : Theme.of(context).colorScheme.primary,
                 ),
 
             Text(
@@ -71,7 +71,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: veryBoldSize16Text(
                 showMoreButton
                     ? Colors.white
-                    : Theme.of(context).colorScheme.secondary,
+                    : Theme.of(context).colorScheme.primary,
               ),
             ),
 

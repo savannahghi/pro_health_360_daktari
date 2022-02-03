@@ -98,11 +98,11 @@ const String doItLater = 'Do it later';
 // User Profile
 const String correctionRequestString = 'Request for correction';
 const String myProfileString = 'My Profile';
-const String name = 'Dr. Wanyonje Joseph';
+const String name = 'Dr. Afya Njema';
 const String profession = 'Doctor';
-const String clinicName = 'Kawangware Medical Center';
+const String clinicName = 'myCareHub Medical Center';
 const String phoneNumber = '0712345678';
-const String emailAddress = 'emailAddress@kkcenter.com';
+const String emailAddress = 'admin@mycarehub.com';
 const String licenseNumber = 'PF 14509';
 const String gender = 'Male';
 
