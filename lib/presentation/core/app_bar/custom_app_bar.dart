@@ -1,8 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:afya_moja_core/text_themes.dart';
 
 // Project imports:
 import 'package:healthcloud/presentation/core/app_bar/app_bar_back_button.dart';
@@ -61,7 +59,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: <Widget>[
             leadingWidget ??
                 AppBarBackButton(
-                  color: showMoreButton ? Colors.white : Theme.of(context).colorScheme.secondary,
+                  color: showMoreButton
+                      ? Colors.white
+                      : Theme.of(context).colorScheme.secondary,
                 ),
 
             Text(

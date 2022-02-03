@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/enums.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';

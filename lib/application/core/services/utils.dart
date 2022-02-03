@@ -1,9 +1,4 @@
-// Flutter imports:
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/community_chat_widgets.dart';
-import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
@@ -339,11 +334,4 @@ Gender genderFromJson(String? genderString) {
 
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
-}
-
-bool isNumeric(String? s) {
-  if (s == null) {
-    return false;
-  }
-  return int.tryParse(s) != null;
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/phone_input.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -103,7 +103,13 @@ void main() {
 
       expect(store.state.onboardingState!.phoneLogin!.invalidCredentials, true);
       expect(find.byType(SnackBar), findsOneWidget);
-      expect(find.text('Wrong login details provided'), findsOneWidget);
+      expect(
+        find.text(
+          'Sorry, the credentials you entered are incorrect. Please try '
+          'again or contact support',
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets(

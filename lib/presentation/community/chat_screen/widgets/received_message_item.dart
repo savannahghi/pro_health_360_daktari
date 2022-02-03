@@ -1,10 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/colors.dart';
-import 'package:afya_moja_core/community_chat_widgets.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -83,16 +81,15 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     widget.message,
-                    style: normalSize12Text()
-                        .copyWith(color: whiteColor),
+                    style: normalSize12Text().copyWith(color: whiteColor),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
                     widget.time,
-                    style: normalSize10Text()
-                        .copyWith(color: userInitialsColor),
+                    style:
+                        normalSize10Text().copyWith(color: userInitialsColor),
                   ),
                 ),
               ],
@@ -110,8 +107,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                     child: GestureDetector(
                       child: Text(
                         approveText,
-                        style: heavySize12Text()
-                            .copyWith(color: Colors.green),
+                        style: heavySize12Text().copyWith(color: Colors.green),
                       ),
                     ),
                   ),
@@ -141,8 +137,7 @@ class _ReceivedMessageItemState extends State<ReceivedMessageItem> {
                       },
                       child: Text(
                         rejectText,
-                        style: heavySize12Text()
-                            .copyWith(color: Colors.red),
+                        style: heavySize12Text().copyWith(color: Colors.red),
                       ),
                     ),
                   ),

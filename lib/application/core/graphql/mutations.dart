@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/enums.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 
 const String acceptTermsAndConditionsMutation = r'''
 mutation acceptTerms($userID: String!, $termsID: Int!){

@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:afya_moja_core/helpers.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';

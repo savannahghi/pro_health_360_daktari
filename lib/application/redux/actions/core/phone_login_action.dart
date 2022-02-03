@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/enums.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
@@ -12,16 +12,14 @@ import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/onboarding.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/onboarding_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
-import 'package:healthcloud/domain/core/entities/core/onboarding_path_config.dart';
-import 'package:healthcloud/domain/core/entities/core/processed_response.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -68,7 +66,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     );
 
     final ProcessedResponse processedResponse =
-        processResponse(httpResponse, context);
+        processHttpResponse(httpResponse);
 
     if (processedResponse.ok) {
       final Map<String, dynamic> responseMap =
@@ -115,18 +113,22 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       dispatch(
         NavigateAction<AppState>.pushNamedAndRemoveAll(
           path.route,
-          arguments: path.arguments,
+          arguments: path.argumets,
         ),
       );
 
       return state;
     } else {
+      if (processedResponse.message == wrongLoginCredentials) {
+        dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
+      }
+
       await captureException(
         errorPhoneLogin,
         error: processedResponse.message,
         response: processedResponse.response.body,
       );
-      throw UserException(processedResponse.message);
+      throw const UserException(wrongCredentials);
     }
   }
 

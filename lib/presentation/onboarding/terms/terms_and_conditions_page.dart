@@ -1,8 +1,4 @@
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/checkbox_component.dart';
-import 'package:afya_moja_core/colors.dart';
-import 'package:afya_moja_core/information_list_card.dart';
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';

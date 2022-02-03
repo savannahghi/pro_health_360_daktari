@@ -1,12 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/helpers.dart';
-import 'package:afya_moja_core/phone_input.dart';
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_themes/spaces.dart';
 

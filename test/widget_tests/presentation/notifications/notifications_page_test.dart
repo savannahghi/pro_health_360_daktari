@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:afya_moja_core/notification_list_item.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 

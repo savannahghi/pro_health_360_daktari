@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
@@ -12,7 +12,8 @@ import 'package:shared_themes/spaces.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
+import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart'
+    as local;
 
 class ShareClassificationWidget extends StatelessWidget {
   const ShareClassificationWidget({Key? key}) : super(key: key);
@@ -65,7 +66,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 ],
               ),
               smallVerticalSizedBox,
-              SelectOptionField(
+              local.SelectOptionField(
                 dropDownInputKey: bandSelectOptionFieldKey,
                 value: 'Female',
                 options: const <String>['Male', 'Female', UNKNOWN],
@@ -87,7 +88,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 ),
               ),
               smallVerticalSizedBox,
-              SelectOptionField(
+              local.SelectOptionField(
                 dropDownInputKey: ageSelectOptionFieldKey,
                 value: '16-20yrs',
                 options: const <String>['16-20yrs', '20-25yrs', '25-30yrs'],
@@ -109,7 +110,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 ),
               ),
               smallVerticalSizedBox,
-              SelectOptionField(
+              local.SelectOptionField(
                 dropDownInputKey: locationSelectOptionFieldKey,
                 value: 'Ruiru',
                 options: const <String>['Ruiru', 'Thika', 'Nairobi'],
@@ -131,7 +132,7 @@ class ShareClassificationWidget extends StatelessWidget {
                 ),
               ),
               smallVerticalSizedBox,
-              SelectOptionField(
+              local.SelectOptionField(
                 dropDownInputKey: clinicSelectOptionFieldKey,
                 value: 'Ruiru Level iv Hospital',
                 options: const <String>[

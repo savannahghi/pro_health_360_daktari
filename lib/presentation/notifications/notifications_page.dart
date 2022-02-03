@@ -1,11 +1,7 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:afya_moja_core/domain/core/entities/icon_details.dart';
-import 'package:afya_moja_core/domain/core/entities/notification_actions.dart';
-import 'package:afya_moja_core/notification_list_item.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';

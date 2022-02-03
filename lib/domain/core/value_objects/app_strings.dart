@@ -227,17 +227,17 @@ const String usernameExistsText = 'That username is already in use.';
 const String noUserFoundText = 'We could not find a user with those details.';
 const String wrongCredentialsText = 'Wrong login details provided';
 const String noPINFoundText = 'No PIN found for this user.';
-String contactSupport(String phoneNo) {
-  return 'Sorry, an unknown error occurred. Try again or contact us $phoneNo';
-}
 
 const String errorPhoneLogin = 'Error: Unable to login by phone';
 
 // PhoneNumberFormConstants
 const String phoneNumberInputLabelText = 'Phone number';
 
+const String wrongLoginCredentials = 'Your phone number or PIN do not match.';
+
 const String wrongCredentials =
-    'Sorry, the credentials you entered are incorrect. Please try again or ';
+    'Sorry, the credentials you entered are incorrect. Please try again or '
+    'contact support';
 const String resetPin = 'reset your PIN';
 const String phoneLoginCreateAccountText = 'create an account';
 

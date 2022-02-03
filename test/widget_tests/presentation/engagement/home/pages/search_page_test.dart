@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:

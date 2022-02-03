@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -50,8 +50,7 @@ class RejectChatDialogWidget extends StatelessWidget {
               size15HorizontalSizedBox,
               Text(
                 rejectText,
-                style: veryHeavySize14Text()
-                    .copyWith(color: Colors.red),
+                style: veryHeavySize14Text().copyWith(color: Colors.red),
               ),
             ],
           ),

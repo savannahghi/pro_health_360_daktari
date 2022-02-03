@@ -1,8 +1,7 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -39,7 +38,10 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(title: redFlagString, showNotificationIcon: true,),
+        appBar: const CustomAppBar(
+          title: redFlagString,
+          showNotificationIcon: true,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
