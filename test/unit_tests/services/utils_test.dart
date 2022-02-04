@@ -13,6 +13,7 @@ import 'package:healthcloud/application/redux/actions/core/update_credentials_ac
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/actions/terms/update_terms_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -170,6 +171,48 @@ void main() {
           formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
 
       expect(enFormat, equals(r2));
+    });
+  });
+
+  group('dismissSnackBar', () {
+    testWidgets('should dismiss snackbar', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return Center(
+              child: MyAfyaHubPrimaryButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text('test snackbar'),
+                      duration: const Duration(seconds: 5),
+                      action:
+                          dismissSnackBar(closeString, Colors.white, context),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final Finder button = find.byType(MyAfyaHubPrimaryButton);
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Scaffold), findsOneWidget);
+
+      final Finder close = find.text(closeString);
+      await tester.ensureVisible(close);
+      expect(close, findsOneWidget);
+
+      await tester.tap(close);
+      await tester.pumpAndSettle();
+
+      expect(find.text('test snackbar'), findsNothing);
     });
   });
 }

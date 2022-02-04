@@ -17,7 +17,6 @@ import 'package:healthcloud/application/redux/actions/onboarding/update_onboardi
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';

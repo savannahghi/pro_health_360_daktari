@@ -35,6 +35,10 @@ _$_State _$_$_StateFromJson(Map<String, dynamic> json) {
         ? null
         : ServiceRequestState.fromJson(
             json['serviceRequestState'] as Map<String, dynamic>),
+    connectivityState: json['connectivityState'] == null
+        ? null
+        : ConnectivityState.fromJson(
+            json['connectivityState'] as Map<String, dynamic>),
   );
 }
 
@@ -47,4 +51,5 @@ Map<String, dynamic> _$_$_StateToJson(_$_State instance) => <String, dynamic>{
       'staffState': instance.staffState,
       'surveyState': instance.surveyState,
       'serviceRequestState': instance.serviceRequestState,
+      'connectivityState': instance.connectivityState,
     };

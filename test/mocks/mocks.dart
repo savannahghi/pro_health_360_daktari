@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
@@ -162,6 +164,26 @@ class MockStateDB extends Mock implements Database {
     ConflictAlgorithm? conflictAlgorithm,
   }) {
     throw UnimplementedError();
+  }
+}
+
+class MockConnectivityPlatform extends Mock
+    with MockPlatformInterfaceMixin
+    implements ConnectivityPlatform {
+  MockConnectivityPlatform({List<ConnectivityResult>? connectivityValues})
+      : connectivityValues = connectivityValues ??
+            <ConnectivityResult>[ConnectivityResult.mobile];
+
+  final List<ConnectivityResult> connectivityValues;
+
+  @override
+  Future<ConnectivityResult> checkConnectivity() async {
+    return connectivityValues.last;
+  }
+
+  @override
+  Stream<ConnectivityResult> get onConnectivityChanged {
+    return Stream<ConnectivityResult>.fromIterable(connectivityValues);
   }
 }
 
@@ -779,6 +801,7 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
   'staffState': mockStaffState,
   'surveyState': <String, dynamic>{},
   'serviceRequestState': <String, dynamic>{},
+  'connectivityState': <String, dynamic>{'isConnected': false},
 };
 
 final Map<String, dynamic> mockLoginResponse = <String, dynamic>{

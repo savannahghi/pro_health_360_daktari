@@ -29,6 +29,7 @@ class _$AppStateTearOff {
       StaffState? staffState,
       SurveyState? surveyState,
       ServiceRequestState? serviceRequestState,
+      ConnectivityState? connectivityState,
       @JsonKey(ignore: true) Wait? wait}) {
     return _State(
       credentials: credentials,
@@ -39,6 +40,7 @@ class _$AppStateTearOff {
       staffState: staffState,
       surveyState: surveyState,
       serviceRequestState: serviceRequestState,
+      connectivityState: connectivityState,
       wait: wait,
     );
   }
@@ -63,6 +65,8 @@ mixin _$AppState {
   SurveyState? get surveyState => throw _privateConstructorUsedError;
   ServiceRequestState? get serviceRequestState =>
       throw _privateConstructorUsedError;
+  ConnectivityState? get connectivityState =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
 
@@ -85,6 +89,7 @@ abstract class $AppStateCopyWith<$Res> {
       StaffState? staffState,
       SurveyState? surveyState,
       ServiceRequestState? serviceRequestState,
+      ConnectivityState? connectivityState,
       @JsonKey(ignore: true) Wait? wait});
 
   $AuthCredentialsCopyWith<$Res>? get credentials;
@@ -95,6 +100,7 @@ abstract class $AppStateCopyWith<$Res> {
   $StaffStateCopyWith<$Res>? get staffState;
   $SurveyStateCopyWith<$Res>? get surveyState;
   $ServiceRequestStateCopyWith<$Res>? get serviceRequestState;
+  $ConnectivityStateCopyWith<$Res>? get connectivityState;
 }
 
 /// @nodoc
@@ -115,6 +121,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? staffState = freezed,
     Object? surveyState = freezed,
     Object? serviceRequestState = freezed,
+    Object? connectivityState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
@@ -150,6 +157,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.serviceRequestState
           : serviceRequestState // ignore: cast_nullable_to_non_nullable
               as ServiceRequestState?,
+      connectivityState: connectivityState == freezed
+          ? _value.connectivityState
+          : connectivityState // ignore: cast_nullable_to_non_nullable
+              as ConnectivityState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -246,6 +257,17 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       return _then(_value.copyWith(serviceRequestState: value));
     });
   }
+
+  @override
+  $ConnectivityStateCopyWith<$Res>? get connectivityState {
+    if (_value.connectivityState == null) {
+      return null;
+    }
+
+    return $ConnectivityStateCopyWith<$Res>(_value.connectivityState!, (value) {
+      return _then(_value.copyWith(connectivityState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -262,6 +284,7 @@ abstract class _$StateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       StaffState? staffState,
       SurveyState? surveyState,
       ServiceRequestState? serviceRequestState,
+      ConnectivityState? connectivityState,
       @JsonKey(ignore: true) Wait? wait});
 
   @override
@@ -280,6 +303,8 @@ abstract class _$StateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   $SurveyStateCopyWith<$Res>? get surveyState;
   @override
   $ServiceRequestStateCopyWith<$Res>? get serviceRequestState;
+  @override
+  $ConnectivityStateCopyWith<$Res>? get connectivityState;
 }
 
 /// @nodoc
@@ -301,6 +326,7 @@ class __$StateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? staffState = freezed,
     Object? surveyState = freezed,
     Object? serviceRequestState = freezed,
+    Object? connectivityState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_State(
@@ -336,6 +362,10 @@ class __$StateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.serviceRequestState
           : serviceRequestState // ignore: cast_nullable_to_non_nullable
               as ServiceRequestState?,
+      connectivityState: connectivityState == freezed
+          ? _value.connectivityState
+          : connectivityState // ignore: cast_nullable_to_non_nullable
+              as ConnectivityState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -356,6 +386,7 @@ class _$_State implements _State {
       this.staffState,
       this.surveyState,
       this.serviceRequestState,
+      this.connectivityState,
       @JsonKey(ignore: true) this.wait});
 
   factory _$_State.fromJson(Map<String, dynamic> json) =>
@@ -378,12 +409,14 @@ class _$_State implements _State {
   @override
   final ServiceRequestState? serviceRequestState;
   @override
+  final ConnectivityState? connectivityState;
+  @override
   @JsonKey(ignore: true)
   final Wait? wait;
 
   @override
   String toString() {
-    return 'AppState(credentials: $credentials, homeState: $homeState, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, staffState: $staffState, surveyState: $surveyState, serviceRequestState: $serviceRequestState, wait: $wait)';
+    return 'AppState(credentials: $credentials, homeState: $homeState, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, staffState: $staffState, surveyState: $surveyState, serviceRequestState: $serviceRequestState, connectivityState: $connectivityState, wait: $wait)';
   }
 
   @override
@@ -414,6 +447,9 @@ class _$_State implements _State {
             (identical(other.serviceRequestState, serviceRequestState) ||
                 const DeepCollectionEquality()
                     .equals(other.serviceRequestState, serviceRequestState)) &&
+            (identical(other.connectivityState, connectivityState) ||
+                const DeepCollectionEquality()
+                    .equals(other.connectivityState, connectivityState)) &&
             (identical(other.wait, wait) ||
                 const DeepCollectionEquality().equals(other.wait, wait)));
   }
@@ -429,6 +465,7 @@ class _$_State implements _State {
       const DeepCollectionEquality().hash(staffState) ^
       const DeepCollectionEquality().hash(surveyState) ^
       const DeepCollectionEquality().hash(serviceRequestState) ^
+      const DeepCollectionEquality().hash(connectivityState) ^
       const DeepCollectionEquality().hash(wait);
 
   @JsonKey(ignore: true)
@@ -452,6 +489,7 @@ abstract class _State implements AppState {
       StaffState? staffState,
       SurveyState? surveyState,
       ServiceRequestState? serviceRequestState,
+      ConnectivityState? connectivityState,
       @JsonKey(ignore: true) Wait? wait}) = _$_State;
 
   factory _State.fromJson(Map<String, dynamic> json) = _$_State.fromJson;
@@ -473,6 +511,9 @@ abstract class _State implements AppState {
   SurveyState? get surveyState => throw _privateConstructorUsedError;
   @override
   ServiceRequestState? get serviceRequestState =>
+      throw _privateConstructorUsedError;
+  @override
+  ConnectivityState? get connectivityState =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
