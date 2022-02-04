@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/send_otp_action.dart';
@@ -90,7 +89,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
               //Incase there was an error sending the otp
               if (vm.failedToSendOTP!) ...<Widget>[
                 //Handle error incase otp is not sent
-                ErrorCard(
+                ErrorCardWidget(
                   ///Button is disable while sendOTP action is loading
                   buttonColor: vm.wait!.isWaitingFor(sendOTPFlag)
                       ? Colors.grey

@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/contact.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
@@ -25,7 +25,7 @@ void main() {
   group('VerifyPhonePage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(
         initialState: AppState.initial()
             .copyWith
@@ -86,6 +86,11 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(invalidCode), findsWidgets);
+
+      await tester.tap(find.byKey(feedbackBottomSheetCloseIconKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text(invalidCode), findsNothing);
     });
 
     testWidgets('should show a loading indicator when sending an OTP',
@@ -150,7 +155,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(ErrorCard), findsOneWidget);
+      expect(find.byType(ErrorCardWidget), findsOneWidget);
     });
 
     testWidgets('default error card is clickable', (WidgetTester tester) async {
@@ -175,10 +180,9 @@ void main() {
         ),
       );
 
-      expect(find.byType(VerifyOtpWidget), findsOneWidget);
       await tester.pumpAndSettle();
 
-      expect(find.byType(ErrorCard), findsOneWidget);
+      expect(find.byType(ErrorCardWidget), findsOneWidget);
 
       await tester.ensureVisible(find.text(resendOTP));
       await tester.tap(find.text(resendOTP));
@@ -188,10 +192,10 @@ void main() {
     });
 
     testWidgets(
-        'should verify an OTP correctly and navigate to create new pin page' +
-            'if reset pin is true', (WidgetTester tester) async {
-      final MockTestGraphQlClient mockTestGraphQlClient =
-          MockTestGraphQlClient.withResponse(
+        'should verify an OTP correctly and navigate to create new pin page '
+        'if reset pin is true', (WidgetTester tester) async {
+      final MockShortGraphQlClient mockTestGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         http.Response(
@@ -218,8 +222,6 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle();
-      expect(find.byType(VerifyOtpWidget), findsOneWidget);
       await tester.pumpAndSettle();
 
       await tester.showKeyboard(find.byType(PINInputField));

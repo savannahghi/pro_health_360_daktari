@@ -74,5 +74,11 @@ const Key nameInputKey = Key('name_input_key');
 const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');
 const Key continueKey = Key('continue_button_key');
 const Key logoutButtonKey = Key('logout_button');
+
 //Verify phone page
 const Key resendOtpButtonKey = Key('resend_otp_button_key');
+
+const Key feedbackBottomSheetCloseIconKey =
+    Key('feedback_bottom_sheet_close_icon_key');
+
+const Key feedbackBottomSheetKey = Key('feedback_bottom_sheet_key');

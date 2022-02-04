@@ -73,7 +73,7 @@ class SendOTPAction extends ReduxAction<AppState> {
       );
 
       final ProcessedResponse processedResponse =
-          processHTTPResponse(httpResponse, context);
+          processHttpResponse(httpResponse);
 
       final Map<String, dynamic> payLoad = _client.toMap(httpResponse);
 
@@ -106,6 +106,7 @@ class SendOTPAction extends ReduxAction<AppState> {
         feedbackBottomSheet(
           context: context,
           modalContent: processedResponse.message ?? defaultUserFriendlyMessage,
+          imageAssetPath: errorIconUrl,
         );
 
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));

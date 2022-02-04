@@ -51,7 +51,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
         'user_id': userID,
         'otp': otp,
         'phoneNumber': phoneNumber,
-        'flavour': Flavour.consumer.name,
+        'flavour': Flavour.pro.name,
       };
 
       final IGraphQlClient httpClient =
@@ -64,7 +64,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
       );
 
       final ProcessedResponse processedResponse =
-          processHTTPResponse(httpResponse, context);
+          processHttpResponse(httpResponse);
 
       if (processedResponse.ok) {
         final bool isValid =
@@ -107,6 +107,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
       feedbackBottomSheet(
         context: context,
         modalContent: error.message.toString(),
+        imageAssetPath: errorIconUrl,
       );
     }
     return error;

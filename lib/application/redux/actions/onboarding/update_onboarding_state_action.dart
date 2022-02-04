@@ -61,7 +61,12 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
           state.onboardingState?.hasVerifiedSecurityQuestions,
       verifyPhoneState: state.onboardingState?.verifyPhoneState?.copyWith(
         otp: otp ?? state.onboardingState?.verifyPhoneState?.otp,
-        failedToSendOTP: failedToSendOTP ?? state.onboardingState?.verifyPhoneState?.failedToSendOTP ?? false,
+        failedToSendOTP: failedToSendOTP ??
+            state.onboardingState?.verifyPhoneState?.failedToSendOTP ??
+            false,
+        canResendOTP: canResendOTP ??
+            state.onboardingState?.verifyPhoneState?.canResendOTP ??
+            false,
       ),
       phoneLogin: state.onboardingState?.phoneLogin?.copyWith(
         unKnownPhoneNo:
