@@ -119,7 +119,7 @@ platform :ios do
       skip_waiting_for_build_processing: true,
       apple_id: '1501305695',
       distribute_external: true,
-      changelog: "Welcome to My Afya Hub Demo. We update the app as often as possible to make it faster and more reliable for you. This update includes bug fixes and improvements.",
+      changelog: "Welcome to myCareHub Demo. We update the app as often as possible to make it faster and more reliable for you. This update includes bug fixes and improvements.",
     )
   end
 

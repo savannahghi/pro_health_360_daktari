@@ -164,7 +164,7 @@ class _ClientDetailsCardState extends State<ClientDetailsCard> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
-                            inviteToMyAfyaHubString,
+                            inviteToMyCareHubString,
                             style: boldSize13Text(
                               Colors.white,
                             ),

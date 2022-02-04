@@ -1,1 +1,1 @@
-const String testAppName = 'My Afya Hub Test';
+const String testAppName = 'myCareHub Test';
