@@ -7,7 +7,6 @@ import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/services/onboarding_utils.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -34,7 +33,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
-    toggleLoadingIndicator(context: context, flag: verifyOTPFlag);
+    dispatch(WaitAction<AppState>.add(verifyOTPFlag));
   }
 
   @override

@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/services/onboarding_utils.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -32,7 +31,7 @@ class SendOTPAction extends ReduxAction<AppState> {
   @override
   void after() {
     final String flag = isResend ? resendOTPFlag : sendOTPFlag;
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
 
     ///Ensure the callBackFunction is not null
     callBackFunction?.call();
@@ -42,7 +41,7 @@ class SendOTPAction extends ReduxAction<AppState> {
   @override
   void before() {
     final String flag = isResend ? resendOTPFlag : sendOTPFlag;
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
     super.before();
   }
 

@@ -1,7 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -22,6 +24,7 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/inputs.dart';
+import 'package:http/http.dart' as http;
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -484,4 +487,35 @@ Future<dynamic> feedbackBottomSheet({
       );
     },
   );
+}
+
+Future<http.Response> retrieveOTP({
+  required IGraphQlClient httpClient,
+  required BuildContext context,
+  required bool isResetPin,
+  required bool isResend,
+  required Map<String, dynamic> variables,
+}) async {
+  final String verifyPhoneEndpoint =
+      AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
+
+  final String sendOTPEndpoint =
+      AppWrapperBase.of(context)!.customContext!.sendRecoverAccountOtpEndpoint;
+
+  final String reSendOTPEndpoint =
+      AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
+
+  if (isResetPin || (isResetPin && isResend)) {
+    return httpClient.callRESTAPI(
+      endpoint: verifyPhoneEndpoint,
+      method: httpPOST,
+      variables: variables,
+    );
+  } else {
+    return httpClient.callRESTAPI(
+      endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
+      method: httpPOST,
+      variables: variables,
+    );
+  }
 }
