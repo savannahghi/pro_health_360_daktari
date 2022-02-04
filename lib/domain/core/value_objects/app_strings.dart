@@ -265,4 +265,13 @@ const String closeString = 'Close';
 const String httpPOST = 'POST';
 const String httpGET = 'GET';
 
+// Errors
 const String genericErrorOccurred = 'Sorry, an error occurred';
+const String noInternetConnection = 'No Internet Connection';
+
+// set nickname page
+const String setNicknameDescription =
+    'Please create a nickname (Visible to community members)';
+const String nickNameString = 'Nickname';
+const String nameInputValidateString = 'Kindly input a nickname';
+const String nicknameSuccessString = 'Nickname created successfully';

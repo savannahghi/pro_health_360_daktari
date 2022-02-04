@@ -19,25 +19,25 @@ class SecurityQuestionsPage extends StatelessWidget {
         id: 'sec_q_1',
         questionStem: whereWereYouBornString,
         responseType: '',
-        flavour: Flavour.consumer.name,
+        flavour: Flavour.pro.name,
       ),
       SecurityQuestion(
         id: 'sec_q_2',
         questionStem: whatsTheNameOfYourPetString,
         responseType: '',
-        flavour: Flavour.consumer.name,
+        flavour: Flavour.pro.name,
       ),
       SecurityQuestion(
         id: 'sec_q_3',
         questionStem: whatsYourFavoriteFoodString,
         responseType: '',
-        flavour: Flavour.consumer.name,
+        flavour: Flavour.pro.name,
       ),
       SecurityQuestion(
         id: 'sec_q_4',
         questionStem: whereDidYouFirstLiveString,
         responseType: '',
-        flavour: Flavour.consumer.name,
+        flavour: Flavour.pro.name,
       ),
     ];
 

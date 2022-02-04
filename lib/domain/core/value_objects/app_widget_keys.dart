@@ -68,3 +68,8 @@ const Key addButtonKey = Key('add_button_key');
 
 // error alert box keys
 const Key errorAlertBoxKey = Key('error_alert_box_key');
+
+//Congratulations Page
+const Key nameInputKey = Key('name_input_key');
+const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');
+const Key continueKey = Key('continue_button_key');

@@ -39,4 +39,5 @@ class AppRoutes {
   static const String clientHealthPage = '/clientHealthPage';
   static const String phoneSignupRoute = '/phoneSignup';
   static const String recoverPinRoute = '/recoverPin';
+  static const String setNicknamePage = '/setNicknamePage';
 }
