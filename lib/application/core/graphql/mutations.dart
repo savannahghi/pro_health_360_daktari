@@ -25,3 +25,12 @@ mutation completeOnboardingTour($userID: String!, $flavour: Flavour!){
   completeOnboardingTour(userID: $userID, flavour: $flavour)
 }
  ''';
+
+const String recordSecurityQuestionResponsesMutation = r'''
+mutation recordSecurityQuestionResponses($input: [SecurityQuestionResponseInput!]!){
+  recordSecurityQuestionResponses(input: $input){
+    securityQuestionID,
+    isCorrect
+  }
+}
+ ''';

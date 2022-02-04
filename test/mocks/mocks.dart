@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -737,3 +738,46 @@ final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
   'idToken': 'some id token',
   'refreshToken': 'some refresh token'
 };
+
+final List<dynamic> securityQuestionsMock = <dynamic>[
+  <String, dynamic>{
+    'SecurityQuestionID': 'id1',
+    'QuestionStem': 'What are the last 4 digits of your CCC number?',
+    'Description': 'Please provide the last 4 digits of your clinic number',
+    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'Active': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id2',
+    'QuestionStem': 'Which month did you start your treatment?',
+    'Description': 'Enter the month you started your treatment',
+    'ResponseType': SecurityQuestionResponseType.DATE.name,
+    'Active': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id3',
+    'QuestionStem': 'Which county is your clinic located?',
+    'Description': 'nter the name of the county in small letters',
+    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'Active': true,
+  },
+];
+
+Map<String, dynamic> mockRecordSecurityQuestionResponseData = <String, dynamic>{
+  'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock
+};
+
+final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
+  <String, dynamic>{
+    'securityQuestionID': 'id1',
+    'isCorrect': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id2',
+    'isCorrect': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id3',
+    'isCorrect': true,
+  },
+];

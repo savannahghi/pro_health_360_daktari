@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
@@ -17,6 +16,7 @@ import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 import '../../mocks/mocks.dart';
@@ -145,6 +145,30 @@ void main() {
 
       expect(store.state, AppState.initial());
       expect(find.byType(PhoneLoginPage), findsOneWidget);
+    });
+    test('formatSecurityQuestionDate should return birth date in en_GB format',
+        () {
+      initializeDateFormatting();
+      const String enFormat = '1990-02-19';
+      const String looseFormat = '19 Feb 1990';
+
+      final String r1 = formatSecurityQuestionDate(enFormat);
+      final String r2 = formatSecurityQuestionDate(looseFormat);
+
+      expect(r1, equals(r2));
+    });
+
+    test(
+        'formatSecurityQuestionDate should return birth date from britain format',
+        () {
+      initializeDateFormatting();
+      const String enFormat = '1990-02-19';
+      const String looseFormat = '19 Feb, 1990';
+
+      final String r2 =
+          formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
+
+      expect(enFormat, equals(r2));
     });
   });
 }

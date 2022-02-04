@@ -4,13 +4,12 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
@@ -88,7 +87,7 @@ class AcceptTermAction extends ReduxAction<AppState> {
       NavigateAction<AppState>.pushNamedAndRemoveUntil(
         onboardingPathConfig.route,
         (Route<dynamic> route) => false,
-        arguments: onboardingPathConfig.argumets,
+        arguments: onboardingPathConfig.arguments,
       ),
     );
 
