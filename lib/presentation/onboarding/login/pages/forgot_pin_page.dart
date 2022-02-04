@@ -94,9 +94,9 @@ class ForgotPinPage extends StatelessWidget {
                   text: sendOTPString,
                   onPressed: () async => triggerNavigationEvent(
                     context: context,
-                    route: AppRoutes.verifyOTPPage,
+                    route: AppRoutes.verifyPhonePage,
                     shouldReplace: true,
-                    args: 1234,
+                    args: '',
                   ),
                 ),
               ),

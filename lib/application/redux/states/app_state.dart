@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart';
 import 'package:healthcloud/application/redux/states/home_state.dart';
 import 'package:healthcloud/application/redux/states/misc_state.dart';
-import 'package:healthcloud/application/redux/states/onboarding_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
 import 'package:healthcloud/application/redux/states/survey_requests_state.dart';
 import 'package:healthcloud/application/redux/states/survey_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';

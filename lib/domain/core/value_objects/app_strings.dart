@@ -21,16 +21,23 @@ const String resetPasswordDescription = 'Enter your phone number';
 const String sendOTPString = 'Send OTP';
 const String emailOrPhone = 'Email/Phone';
 
-//Verify OTP Page
-const String verifyPhoneNumberTitle =
-    'A one time PIN has been sent to your phone or email';
+
+//Verify phone number page
+const String verifyPhoneNumberTitle = 'Verify phone number';
 const String verifyPhoneNumberDescription =
-    'A one time PIN has been sent to your phone';
-const String enterOTPString = 'Enter OTP to proceed';
+    'A six digit verification code has been sent to your phone';
+const String enterOTPString = 'Enter verification code to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
+String anOtpHasBeenSentText(String phoneNumber) {
+  return 'An OTP has been sent to $phoneNumber';
+}
+const String verifyCode = 'Verifying Code';
 
-const String selectIdLabel = 'Select Identification document type';
+const String resendOTP = 'Resend code';
+
+const String verifyOTPState = 'verifyOTPState';
+const String didNotReceiveOTP = 'Did not receive a verification code?';
 
 //Content Page
 const String contentPageDescription =
@@ -288,3 +295,11 @@ const String APPVERSION =
     String.fromEnvironment('APPVERSION', defaultValue: 'dev-build');
 const String saveAndContinueButtonText = 'Save & Continue';
 const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
+
+// user friendly messages
+const String defaultUserFriendlyMessage =
+    'Sorry, an unknown error occurred, please try again or get help from our help center.';
+const String invalidCode =
+    'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
+const String sendOTPError =
+    'There was an error while sending your verification code. Let’s get you a fresh verification code';

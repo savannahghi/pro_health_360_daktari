@@ -11,7 +11,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
 import 'package:healthcloud/application/redux/actions/complete_onboarding_tour.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/router/routes.dart';

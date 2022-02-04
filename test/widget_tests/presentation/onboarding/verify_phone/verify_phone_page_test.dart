@@ -1,0 +1,232 @@
+import 'dart:convert';
+
+import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/core/contact.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+import '../../../../mocks/mocks.dart';
+import '../../../../mocks/test_helpers.dart';
+
+void main() {
+  group('VerifyPhonePage', () {
+    late Store<AppState> store;
+
+    setUpAll(() {
+      store = Store<AppState>(
+        initialState: AppState.initial()
+            .copyWith
+            .staffState!
+            .user!
+            .call(
+              primaryContact: Contact(value: '+254712345678'),
+              userId: 'user-id',
+            )
+            .copyWith
+            .onboardingState!
+            .verifyPhoneState!
+            .call(otp: '123456', invalidOTP: false),
+      );
+    });
+
+    testWidgets('should verify an OTP correctly and navigate to terms page',
+        (WidgetTester tester) async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(VerifyOTPWidget), findsOneWidget);
+
+      await tester.showKeyboard(find.byType(PINInputField));
+      await tester.enterText(find.byType(PINInputField), '123456');
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      expect(find.byType(TermsAndConditionsPage), findsWidgets);
+    });
+
+    testWidgets('should show error if code is invalid',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(VerifyOTPWidget), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(PINInputField));
+      await tester.showKeyboard(find.byType(PINInputField));
+      await tester.enterText(find.byType(PINInputField), '000000');
+      await tester.pumpAndSettle();
+
+      expect(find.text(invalidCode), findsWidgets);
+    });
+
+    testWidgets('should show a loading indicator when sending an OTP',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      expect(find.byType(VerifyOTPWidget), findsOneWidget);
+
+      store.dispatch(WaitAction<AppState>.add(sendOTPFlag));
+      await tester.pump();
+
+      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      store.dispatch(WaitAction<AppState>.remove(sendOTPFlag));
+    });
+
+    testWidgets('should show a loading indicator when verifying an OTP',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      store.dispatch(WaitAction<AppState>.add(verifyOTPFlag));
+      await tester.pump();
+
+      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.text(verifyCode), findsOneWidget);
+    });
+
+    testWidgets(
+        'should show default error card when there is an error when fetching an OTP',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockTestGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockTestGraphQlClient,
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ErrorCard), findsOneWidget);
+    });
+
+    testWidgets('default error card is clickable', (WidgetTester tester) async {
+      final MockTestGraphQlClient mockTestGraphQlClient =
+          MockTestGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error'}),
+          201,
+        ),
+      );
+
+      store = Store<AppState>(initialState: AppState.initial());
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockTestGraphQlClient,
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      expect(find.byType(VerifyOtpWidget), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ErrorCard), findsOneWidget);
+
+      await tester.ensureVisible(find.text(resendOTP));
+      await tester.tap(find.text(resendOTP));
+      await tester.pumpAndSettle();
+
+      expect(find.text(didNotReceiveOTP), findsNothing);
+    });
+
+    testWidgets(
+        'should verify an OTP correctly and navigate to create new pin page' +
+            'if reset pin is true', (WidgetTester tester) async {
+      final MockTestGraphQlClient mockTestGraphQlClient =
+          MockTestGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'otp': '123456',
+            'data': <String, dynamic>{'sendOTP': '123456', 'verifyOTP': true}
+          }),
+          201,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isResetPin: true,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockTestGraphQlClient,
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(VerifyOtpWidget), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      await tester.showKeyboard(find.byType(PINInputField));
+      await tester.enterText(find.byType(PINInputField), '123456');
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsWidgets);
+    });
+  });
+}

@@ -2,7 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/onboarding_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
 // Project imports:
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
@@ -61,6 +61,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
           state.onboardingState?.hasVerifiedSecurityQuestions,
       verifyPhoneState: state.onboardingState?.verifyPhoneState?.copyWith(
         otp: otp ?? state.onboardingState?.verifyPhoneState?.otp,
+        failedToSendOTP: failedToSendOTP ?? state.onboardingState?.verifyPhoneState?.failedToSendOTP ?? false,
       ),
       phoneLogin: state.onboardingState?.phoneLogin?.copyWith(
         unKnownPhoneNo:
