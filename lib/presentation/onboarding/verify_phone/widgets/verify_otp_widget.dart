@@ -131,6 +131,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
               feedbackBottomSheet(
                 context: context,
                 modalContent: invalidCode,
+                imageAssetPath: errorIconUrl,
               );
             }
           },

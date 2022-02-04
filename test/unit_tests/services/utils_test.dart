@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/core/services/onboarding_utils.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
@@ -49,7 +48,7 @@ void main() {
 
     test('should return verify otp page', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.verifyPhonePage);
     });
 

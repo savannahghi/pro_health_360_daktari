@@ -356,7 +356,10 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.loginPage);
   } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(route: AppRoutes.verifyPhonePage);
+    return OnboardingPathConfig(
+      route: AppRoutes.verifyPhonePage,
+      arguments: state.onboardingState!.phoneLogin!.phoneNumber,
+    );
   } else if (!termsAccepted) {
     return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {
@@ -407,6 +410,7 @@ String formatSecurityQuestionDate(
 Future<dynamic> feedbackBottomSheet({
   required BuildContext context,
   required String modalContent,
+  required String imageAssetPath,
 }) async {
   return showModalBottomSheet(
     context: context,
@@ -415,6 +419,7 @@ Future<dynamic> feedbackBottomSheet({
     isScrollControlled: true,
     builder: (BuildContext context) {
       return Container(
+        key: feedbackBottomSheetKey,
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
           decoration: BoxDecoration(
@@ -443,6 +448,11 @@ Future<dynamic> feedbackBottomSheet({
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      SvgPicture.asset(
+                        imageAssetPath,
+                        height: 34.0,
+                        width: 34.0,
+                      ),
                       mediumHorizontalSizedBox,
                       Flexible(
                         child: Text(
@@ -454,6 +464,19 @@ Future<dynamic> feedbackBottomSheet({
                   ),
                 ),
                 smallHorizontalSizedBox,
+                Container(
+                  margin: const EdgeInsets.only(top: 4),
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Image(
+                      key: feedbackBottomSheetCloseIconKey,
+                      image: AssetImage(closeIconUrl),
+                      color: Colors.black54,
+                      height: 16.0,
+                      width: 16.0,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -461,59 +484,4 @@ Future<dynamic> feedbackBottomSheet({
       );
     },
   );
-}
-
-class ErrorCard extends StatelessWidget {
-  const ErrorCard({
-    this.callBackFunction,
-    this.buttonColor,
-  });
-
-  final VoidCallback? callBackFunction;
-  final Color? buttonColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: SvgPicture.asset(
-                errorImageSvg,
-                height: 200,
-                width: 200,
-              ),
-            ),
-            Text(
-              sendOTPError,
-              style: normalSize15Text(
-                darkGreyTextColor,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            size15VerticalSizedBox,
-            SizedBox(
-              height: 48,
-              width: double.infinity,
-              child: MyAfyaHubPrimaryButton(
-                customRadius: 4,
-                text: resendOTP,
-                textColor: whiteColor,
-                buttonColor: buttonColor ?? Theme.of(context).primaryColor,
-                borderColor: buttonColor ?? Theme.of(context).primaryColor,
-                onPressed: callBackFunction,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

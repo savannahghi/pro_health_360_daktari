@@ -33,7 +33,7 @@ const String kTestUploadFileEndPoint =
 const String kTestSendContactVerificationOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/send_otp';
 const String kTestVerifyContactOTPEndpoint =
-    'https://edi-testing.healthcloud.co.ke/verify_otp';
+    'https://mycarehub-staging.savannahghi.org/verify_otp';
 
 /*DEMO ENDPOINTS  */
 const String kDemoGraphqlEndpoint =
@@ -65,7 +65,7 @@ const String kDemoUploadFileEndPoint =
 const String kDemoSendContactVerificationOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/send_otp';
 const String kDemoVerifyContactOTPEndpoint =
-    'https://edi-testing.healthcloud.co.ke/verify_otp';
+    'https://mycarehub-testing.savannahghi.org/verify_otp';
 
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint =
@@ -97,4 +97,4 @@ const String kProdUploadFileEndPoint =
 const String kProdSendContactVerificationOTPEndpoint =
     'https://edi-prod.healthcloud.co.ke/send_otp';
 const String kProdVerifyContactOTPEndpoint =
-    'https://edi-prod.healthcloud.co.ke/verify_otp';
+    'https://onboarding-prod.savannahghi.org/verify_otp';
