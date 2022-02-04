@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
-import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
@@ -51,7 +51,7 @@ void main() {
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
 
-      expect(find.byType(VerifyOTPPage), findsOneWidget);
+      expect(find.byType(VerifyPhonePage), findsOneWidget);
     });
   });
 }

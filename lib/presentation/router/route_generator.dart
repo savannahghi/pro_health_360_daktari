@@ -16,7 +16,7 @@ import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
-import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
@@ -27,6 +27,7 @@ import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
+    final dynamic args = settings.arguments;
     switch (settings.name) {
       case AppRoutes.homePage:
         return MaterialPageRoute<HomePage>(
@@ -95,13 +96,9 @@ class RouteGenerator {
           builder: (_) => const SurveysPage(),
         );
 
-      case AppRoutes.verifyOTPPage:
-        final int args = settings.arguments! as int;
-
-        return MaterialPageRoute<VerifyOTPPage>(
-          builder: (_) => VerifyOTPPage(
-            otp: args,
-          ),
+      case AppRoutes.verifyPhonePage:
+        return MaterialPageRoute<VerifyPhonePage>(
+          builder: (_) => VerifyPhonePage(phoneNumber: args as String),
         );
 
       case AppRoutes.profilePage:

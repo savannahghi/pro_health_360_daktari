@@ -27,7 +27,7 @@ class AppRoutes {
 
   static const String profileUpdateRequestsPage = '/profileUpdateRequestsPage';
 
-  static const String verifyOTPPage = '/verifyOTPPage';
+  static const String verifyPhonePage = '/verifyPhonePage';
 
   static const String addNewGroupPage = '/addNewGroupPage';
 

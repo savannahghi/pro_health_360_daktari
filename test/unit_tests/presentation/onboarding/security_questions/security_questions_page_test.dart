@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';

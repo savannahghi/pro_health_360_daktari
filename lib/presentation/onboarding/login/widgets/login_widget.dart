@@ -13,7 +13,7 @@ import 'package:healthcloud/application/core/services/input_invalidators.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/core/phone_login_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';

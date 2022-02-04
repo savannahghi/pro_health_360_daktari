@@ -18,7 +18,7 @@ import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
-import 'package:healthcloud/presentation/onboarding/verify_otp/pages/verify_otp_page.dart';
+import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -149,17 +149,17 @@ void main() {
     expect(route?.builder(context), isA<RedFlagsPage>());
   });
 
-  test('Test router returns  verify otp page', () {
+  test('Test router returns  verify Phone page', () {
     const RouteSettings settings = RouteSettings(
-      name: AppRoutes.verifyOTPPage,
-      arguments: 1234,
+      name: AppRoutes.verifyPhonePage,
+      arguments: '0700111222',
     );
 
-    final MaterialPageRoute<VerifyOTPPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<VerifyOTPPage>?;
+    final MaterialPageRoute<VerifyPhonePage>? route =
+        routeGenerator(settings) as MaterialPageRoute<VerifyPhonePage>?;
 
-    expect(route, isA<MaterialPageRoute<VerifyOTPPage>>());
-    expect(route?.builder(context), isA<VerifyOTPPage>());
+    expect(route, isA<MaterialPageRoute<VerifyPhonePage>>());
+    expect(route?.builder(context), isA<VerifyPhonePage>());
   });
 
   test('Test router returns ProfileUpdateRequestsPage', () {

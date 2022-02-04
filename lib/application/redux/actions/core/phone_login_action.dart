@@ -16,9 +16,9 @@ import 'package:healthcloud/application/redux/actions/core/update_credentials_ac
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_onboarding_state.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/onboarding_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';

@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
@@ -355,7 +356,7 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.loginPage);
   } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(route: AppRoutes.verifyOTPPage);
+    return OnboardingPathConfig(route: AppRoutes.verifyPhonePage);
   } else if (!termsAccepted) {
     return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {
@@ -401,4 +402,118 @@ String formatSecurityQuestionDate(
     date = dateValue.toString();
   }
   return DateFormat(format).format(DateTime.parse(date));
+}
+
+Future<dynamic> feedbackBottomSheet({
+  required BuildContext context,
+  required String modalContent,
+}) async {
+  return showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    barrierColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return Container(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          constraints: const BoxConstraints(
+            maxWidth: 420,
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          margin: const EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Flexible(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      mediumHorizontalSizedBox,
+                      Flexible(
+                        child: Text(
+                          modalContent,
+                          style: normalSize14Text(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                smallHorizontalSizedBox,
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+class ErrorCard extends StatelessWidget {
+  const ErrorCard({
+    this.callBackFunction,
+    this.buttonColor,
+  });
+
+  final VoidCallback? callBackFunction;
+  final Color? buttonColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: SvgPicture.asset(
+                errorImageSvg,
+                height: 200,
+                width: 200,
+              ),
+            ),
+            Text(
+              sendOTPError,
+              style: normalSize15Text(
+                darkGreyTextColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            size15VerticalSizedBox,
+            SizedBox(
+              height: 48,
+              width: double.infinity,
+              child: MyAfyaHubPrimaryButton(
+                customRadius: 4,
+                text: resendOTP,
+                textColor: whiteColor,
+                buttonColor: buttonColor ?? Theme.of(context).primaryColor,
+                borderColor: buttonColor ?? Theme.of(context).primaryColor,
+                onPressed: callBackFunction,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

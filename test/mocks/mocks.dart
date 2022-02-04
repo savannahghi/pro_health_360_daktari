@@ -398,6 +398,42 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (endpoint.contains('verify_otp')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getCurrentTerms': termsMock,
+                'sendOTP': '123456',
+                'sendRetryOTP': '123456',
+                'verifyOTP': true
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('send_otp')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getCurrentTerms': termsMock,
+                'sendOTP': '123456',
+                'sendRetryOTP': '123456',
+                'verifyOTP': true
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(
         json.encode(

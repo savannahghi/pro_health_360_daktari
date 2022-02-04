@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/entities/login/verify_phone_state.dart';
+import 'package:healthcloud/application/redux/states/onboarding/verify_phone_state.dart';
 
 import '../../../../mocks/mocks.dart';
 
