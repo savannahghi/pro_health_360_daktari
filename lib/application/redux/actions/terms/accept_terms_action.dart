@@ -82,7 +82,7 @@ class AcceptTermAction extends ReduxAction<AppState> {
     );
 
     final OnboardingPathConfig onboardingPathConfig =
-        onboardingPath(state: state);
+        getOnboardingPath(state: state);
 
     dispatch(
       NavigateAction<AppState>.pushNamedAndRemoveUntil(

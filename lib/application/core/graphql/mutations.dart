@@ -13,3 +13,15 @@ Map<String, dynamic> getTermsVariables({String? userId, int? termsId}) {
     'flavour': Flavour.pro.name,
   };
 }
+
+const String setNickNameMutation = r'''
+mutation setNickName($userID: String!, $nickname: String!) {
+  setNickName(userID: $userID, nickname: $nickname)
+}
+ ''';
+
+const String completeOnboardingTourMutation = r'''
+mutation completeOnboardingTour($userID: String!, $flavour: Flavour!){
+  completeOnboardingTour(userID: $userID, flavour: $flavour)
+}
+ ''';

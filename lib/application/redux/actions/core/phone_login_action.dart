@@ -109,7 +109,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       dispatch(UpdateStaffProfileAction(id: loginResponse.staffState?.id));
 
-      final OnboardingPathConfig path = onboardingPath(state: state);
+      final OnboardingPathConfig path = getOnboardingPath(state: state);
 
       dispatch(
         NavigateAction<AppState>.pushNamedAndRemoveAll(

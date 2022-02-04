@@ -339,13 +339,14 @@ String genderToJson(Gender? gender) {
 
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
-OnboardingPathConfig onboardingPath({required AppState state}) {
+OnboardingPathConfig getOnboardingPath({required AppState state}) {
   final bool isSignedIn = state.credentials?.isSignedIn ?? false;
   final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
   final bool isPhoneVerified = state.onboardingState?.isPhoneVerified ?? false;
   final bool hasSetSecurityQuestions =
       state.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasSetPin = state.onboardingState?.isPINSet ?? false;
+  final bool hasSetNickName = state.onboardingState?.hasSetNickName ?? false;
 
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.loginPage);
@@ -357,11 +358,9 @@ OnboardingPathConfig onboardingPath({required AppState state}) {
     return OnboardingPathConfig(route: AppRoutes.securityQuestionsPage);
   } else if (!hasSetPin) {
     return OnboardingPathConfig(route: AppRoutes.setPinPage);
+  } else if (!hasSetNickName) {
+    return OnboardingPathConfig(route: AppRoutes.setNicknamePage);
   }
-  // TODO(JOHN): create set nickname page
-  // else if (!hasSetNickName) {
-  //   return OnboardingPathConfig(route: AppRoutes.congratulationsPage);
-  // }
 
   return OnboardingPathConfig(route: AppRoutes.homePage);
 }

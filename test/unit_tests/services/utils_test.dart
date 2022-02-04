@@ -32,13 +32,13 @@ void main() {
     });
 
     test('should return login page', () async {
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.loginPage);
     });
 
     test('should return verify otp page', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.verifyOTPPage);
     });
 
@@ -46,7 +46,7 @@ void main() {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
 
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.termsAndConditions);
     });
 
@@ -55,7 +55,7 @@ void main() {
       store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.securityQuestionsPage);
     });
 
@@ -69,11 +69,11 @@ void main() {
       );
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.setPinPage);
     });
 
-    test('should return home page', () async {
+    test('should return set nickname page', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(
         UpdateOnboardingStateAction(
@@ -84,7 +84,23 @@ void main() {
       );
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = onboardingPath(state: store.state);
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
+      expect(path.route, AppRoutes.setNicknamePage);
+    });
+
+    test('should return home page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.homePage);
     });
   });
