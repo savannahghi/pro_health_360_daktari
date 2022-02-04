@@ -1,10 +1,9 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:healthcloud/domain/core/entities/login/create_pin.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_state.dart';
 import 'package:healthcloud/domain/core/entities/login/verify_phone_state.dart';
-import 'package:healthcloud/domain/core/entities/security_questions/security_question.dart';
-import 'package:healthcloud/domain/core/entities/security_questions/security_question_response.dart';
 import 'package:healthcloud/domain/core/entities/terms/terms_and_conditions.dart';
 
 part 'onboarding_state.freezed.dart';

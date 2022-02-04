@@ -6,3 +6,15 @@ query getCurrentTerms($flavour: Flavour!) {
   }
 }
 ''';
+
+const String getSecurityQuestionsQuery = r'''
+query getSecurityQuestions($flavour: Flavour!) {
+  getSecurityQuestions(flavour: $flavour) {
+    SecurityQuestionID
+    QuestionStem
+    Description
+    Active
+    ResponseType
+  }
+}
+''';

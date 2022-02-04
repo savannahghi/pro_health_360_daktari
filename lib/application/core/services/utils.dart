@@ -20,6 +20,7 @@ import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/inputs.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -377,4 +378,27 @@ Function() logoutUser({required BuildContext context}) {
 String returnCurrentYear() {
   final DateTime now = DateTime.now();
   return DateFormat('y').format(now);
+}
+
+String? securityQuestionValidator(String? value) {
+  if (value != null && (value.isEmpty || value == UNKNOWN)) {
+    return 'A Response is required';
+  }
+  return null;
+}
+
+String formatSecurityQuestionDate(
+  dynamic dateValue, {
+  String? format = datePickerFormat,
+}) {
+  late String date;
+  if (dateValue.toString().contains(' ')) {
+    final String _d = dateValue.toString();
+    date = DateFormat.yMMMMd('en_GB')
+        .parseLoose(_d.replaceAll(',', ''))
+        .toString();
+  } else {
+    date = dateValue.toString();
+  }
+  return DateFormat(format).format(DateTime.parse(date));
 }

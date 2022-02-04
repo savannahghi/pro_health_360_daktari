@@ -286,3 +286,5 @@ const String appVersionString = 'Current Version:';
 // it has to be defined as a const otherwise the compiler will return the default
 const String APPVERSION =
     String.fromEnvironment('APPVERSION', defaultValue: 'dev-build');
+const String saveAndContinueButtonText = 'Save & Continue';
+const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';

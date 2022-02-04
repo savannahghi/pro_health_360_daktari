@@ -1,9 +1,8 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/onboarding_state.dart';
-import 'package:healthcloud/domain/core/entities/security_questions/security_question.dart';
-import 'package:healthcloud/domain/core/entities/security_questions/security_question_response.dart';
 // Project imports:
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {

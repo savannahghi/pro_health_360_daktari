@@ -114,7 +114,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       dispatch(
         NavigateAction<AppState>.pushNamedAndRemoveAll(
           path.route,
-          arguments: path.argumets,
+          arguments: path.arguments,
         ),
       );
 
