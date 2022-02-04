@@ -23,7 +23,6 @@ const String resetPasswordDescription = 'Enter your phone number';
 const String sendOTPString = 'Send OTP';
 const String emailOrPhone = 'Email/Phone';
 
-
 //Verify phone number page
 const String verifyPhoneNumberTitle = 'Verify phone number';
 const String verifyPhoneNumberDescription =
@@ -34,6 +33,7 @@ const String invalidOTPString = 'Invalid OTP *';
 String anOtpHasBeenSentText(String phoneNumber) {
   return 'An OTP has been sent to $phoneNumber';
 }
+
 const String verifyCode = 'Verifying Code';
 
 const String resendOTP = 'Resend code';
@@ -220,6 +220,8 @@ const String wrongCredentialsText = 'Wrong login details provided';
 const String noPINFoundText = 'No PIN found for this user.';
 
 const String errorPhoneLogin = 'Error: Unable to login by phone';
+
+const String connectionLostText = 'Internet connection lost';
 
 // PhoneNumberFormConstants
 const String phoneNumberInputLabelText = 'Phone number';

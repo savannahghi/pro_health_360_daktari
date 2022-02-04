@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:healthcloud/application/redux/states/connectivity_state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Project imports:
@@ -29,6 +30,7 @@ class AppState with _$AppState {
     StaffState? staffState,
     SurveyState? surveyState,
     ServiceRequestState? serviceRequestState,
+    ConnectivityState? connectivityState,
     @JsonKey(ignore: true) Wait? wait,
   }) = _State;
 
@@ -44,6 +46,7 @@ class AppState with _$AppState {
         staffState: StaffState.initial(),
         surveyState: SurveyState.initial(),
         serviceRequestState: ServiceRequestState.initial(),
+        connectivityState: ConnectivityState.initial(),
         wait: Wait(),
       );
 }

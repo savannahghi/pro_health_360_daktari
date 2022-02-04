@@ -8,7 +8,7 @@ import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/set_nick_name_action.dart';
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/onboarding/set_nickname_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
@@ -33,111 +33,108 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
   @override
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 4;
-    return StoreConnector<AppState, AppStateViewModel>(
-      converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
-      builder: (BuildContext context, AppStateViewModel vm) {
-        final bool waitingForFlag =
-            vm.state.wait!.isWaitingFor(setNickNameFlag);
-
-        return Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.miniCenterFloat,
-          body: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: sizedBoxHeight,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(
-                        height: sizedBoxHeight,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          smallVerticalSizedBox,
-                          Text(
-                            setNicknameDescription,
-                            style: lightSize16Text(Colors.grey),
-                          ),
-                          smallVerticalSizedBox,
-                        ],
+                      smallVerticalSizedBox,
+                      Text(
+                        setNicknameDescription,
+                        style: lightSize16Text(Colors.grey),
                       ),
                       smallVerticalSizedBox,
-                      SizedBox(
-                        child: Column(
-                          children: <Widget>[
-                            Form(
-                              key: _formKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      nickNameString,
-                                      style: boldSize14Text(
-                                        AppColors.greyTextColor,
-                                      ),
-                                    ),
-                                  ),
-                                  verySmallVerticalSizedBox,
-                                  CustomTextField(
-                                    formFieldKey: nameInputKey,
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    borderColor: Colors.grey[200],
-                                    maxLines: 1,
-                                    keyboardType: TextInputType.name,
-                                    validator: (String? value) {
-                                      if (value!.isEmpty) {
-                                        return nameInputValidateString;
-                                      }
-                                    },
-                                    onChanged: (String val) {
-                                      setState(() {
-                                        nickName = val;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
                     ],
                   ),
-                ),
+                  smallVerticalSizedBox,
+                  SizedBox(
+                    child: Column(
+                      children: <Widget>[
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  nickNameString,
+                                  style: boldSize14Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              ),
+                              verySmallVerticalSizedBox,
+                              CustomTextField(
+                                formFieldKey: nameInputKey,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                borderColor: Colors.grey[200],
+                                maxLines: 1,
+                                keyboardType: TextInputType.name,
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    return nameInputValidateString;
+                                  }
+                                },
+                                onChanged: (String val) {
+                                  setState(() {
+                                    nickName = val;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
           ),
-          floatingActionButton: Container(
+        ),
+      ),
+      floatingActionButton: StoreConnector<AppState, SetNicknameViewModel>(
+        converter: (Store<AppState> store) =>
+            SetNicknameViewModel.fromStore(store),
+        builder: (BuildContext context, SetNicknameViewModel vm) {
+          return Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
             height: 52,
-            child: (vm.state.wait!.isWaitingFor(setNickNameFlag))
+            child: (vm.wait.isWaitingFor(setNickNameFlag))
                 ? const SILPlatformLoader()
                 : MyAfyaHubPrimaryButton(
                     buttonKey: continueKey,
                     onPressed: () async {
-                      // TODO (John): restore connectivity check
-                      // final bool hasConnection =
-                      //     await widget.connectivityStatus.checkConnection();
+                      final bool hasConnection =
+                          vm.hasInternetConnection ?? false;
 
-                      // if (!hasConnection) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text(noInternetConnection),
-                      //     ),
-                      //   );
-                      //   return;
-                      // }
+                      if (!hasConnection) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(noInternetConnection),
+                          ),
+                        );
+                        return;
+                      }
 
                       final bool? isFormValid =
                           _formKey.currentState?.validate();
@@ -168,15 +165,13 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                         );
                       }
                     },
-                    buttonColor:
-                        waitingForFlag ? Colors.grey : AppColors.secondaryColor,
-                    borderColor:
-                        waitingForFlag ? Colors.grey : AppColors.secondaryColor,
+                    buttonColor: AppColors.secondaryColor,
+                    borderColor: AppColors.secondaryColor,
                     text: continueText,
                   ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
