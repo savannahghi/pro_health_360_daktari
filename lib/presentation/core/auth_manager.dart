@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
+import 'package:healthcloud/application/core/services/localization.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -80,6 +81,8 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
           ],
           initialRoute: vm.initialRoute,
           onGenerateRoute: RouteGenerator.generateRoute,
+          localizationsDelegates: localizationDelegates,
+          supportedLocales: locales,
         );
       },
     );

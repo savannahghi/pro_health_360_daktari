@@ -22,9 +22,11 @@ import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
-/// [RecordSecurityQuestionResponsesAction] is a Redux Action whose job is to update security questions responses.
+/// [RecordSecurityQuestionResponsesAction] is a Redux Action whose job is to
+/// update security questions responses.
 ///
-/// Otherwise delightfully notify user of any Error that might occur during the process
+/// Otherwise delightfully notify user of any Error that might occur during
+/// the process
 class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
   RecordSecurityQuestionResponsesAction({
     required this.context,
@@ -33,15 +35,15 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
   final BuildContext context;
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(recordSecurityQuestionsFlag));
-    super.after();
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(recordSecurityQuestionsFlag));
   }
 
   @override
-  void before() {
-    dispatch(WaitAction<AppState>.add(recordSecurityQuestionsFlag));
-    super.before();
+  void after() {
+    dispatch(WaitAction<AppState>.remove(recordSecurityQuestionsFlag));
+    super.after();
   }
 
   @override
@@ -50,24 +52,24 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
         state.onboardingState!.securityQuestionResponses!;
 
     // initializing of the RecordSecurityQuestionResponses mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{
-      'input': securityQuestionsResponses
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'input': securityQuestionsResponses,
+      'flavour': Flavour.pro.name,
     };
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       recordSecurityQuestionResponsesMutation,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
-
-    _client.close();
+    final Map<String, dynamic> body = client.toMap(result);
+    client.close();
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
+    if (client.parseError(body) != null || responseMap['errors'] != null) {
       throw SILException(
         cause: recordSecurityQuestionsFlag,
         message: somethingWentWrongText,
