@@ -12,7 +12,6 @@ import 'package:healthcloud/application/redux/actions/onboarding/update_onboardi
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -174,22 +173,6 @@ void main() {
         widget: PhoneLoginPage(),
       );
       expect(find.byType(SILPlatformLoader), findsOneWidget);
-    });
-
-    testWidgets('navigates to ForgotPinPage when back button is tapped',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: PhoneLoginPage(),
-      );
-
-      await tester.ensureVisible(find.byKey(forgotPinButton));
-      await tester.tap(find.byKey(forgotPinButton));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(ForgotPinPage), findsOneWidget);
-      expect(find.byType(PhoneLoginPage), findsNothing);
     });
   });
 }
