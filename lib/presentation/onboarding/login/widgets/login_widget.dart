@@ -6,7 +6,6 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/input_invalidators.dart';
@@ -16,7 +15,6 @@ import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
@@ -102,7 +100,7 @@ class LoginWidgetState extends State<LoginWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: MyAfyaHubPhoneInput(
-                  backgroundColor: AppColors.inputBackgroundColor,
+                  backgroundColor: AppColors.lightGreyBackgroundColor,
                   phoneNumberFormatter: formatPhoneNumber,
                   inputController: _phoneNumberInputController,
                   labelText: phoneNumberInputLabelText,
@@ -121,15 +119,6 @@ class LoginWidgetState extends State<LoginWidget> {
                     }
                     _phoneNumber = value;
                   },
-                  suffixIcon: Positioned(
-                    right: 12,
-                    height: 20,
-                    width: 20,
-                    child: SvgPicture.asset(
-                      alertCircleIcon,
-                      color: Colors.grey,
-                    ),
-                  ),
                 ),
               ),
 
@@ -144,7 +133,7 @@ class LoginWidgetState extends State<LoginWidget> {
               verySmallVerticalSizedBox,
               CustomTextField(
                 autovalidateMode: AutovalidateMode.disabled,
-                customFillColor: AppColors.inputBackgroundColor,
+                customFillColor: AppColors.lightGreyBackgroundColor,
                 formFieldKey: phoneLoginPinInputKey,
                 borderColor: Colors.grey[200],
                 maxLength: 4,

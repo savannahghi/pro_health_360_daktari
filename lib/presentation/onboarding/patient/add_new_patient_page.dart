@@ -158,7 +158,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                 });
                               },
                             ),
-                            const Text(myAfyaHubInviteText),
+                            const Text(myCareHubInviteText),
                           ],
                         ),
                       ],

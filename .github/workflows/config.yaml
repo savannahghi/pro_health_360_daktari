@@ -4,6 +4,53 @@ on: [push]
 
 jobs:
   # AppStore ready
+  publish-dev-binary-to-app-store:
+    name: Publish AfyaMoja Dev binary to TestFlight
+    timeout-minutes: 60
+    runs-on: macos-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12"
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.8"
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+          flutter-version: "2.5.3"
+
+      - name: Install flutter dependencies
+        run: flutter pub get
+
+      - name: Convert secret to gc file
+        env:
+          GC_KEYS: ${{ secrets.GC_KEYS }}
+        run: |
+          cd ios
+          echo $GC_KEYS > ./gc_keys.json
+
+      - name: Code sign and build prod app
+        env:
+          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY_ID}}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
+          APP_STORE_CONNECT_API_KEY_KEY: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+        run: |
+          cd ios && bundle install
+          bundle exec fastlane ios dev
+
+  # AppStore ready
   publish-prod-binary-to-app-store:
     name: Publish AfyaMoja Prod binary to TestFlight
     timeout-minutes: 60
@@ -26,7 +73,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-          flutter-version: "1.20.4"
+          flutter-version: "2.5.3"
 
       - name: Install flutter dependencies
         run: flutter pub get
@@ -48,4 +95,4 @@ jobs:
           APP_STORE_CONNECT_API_KEY_KEY: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY}}
         run: |
           cd ios && bundle install
-          bundle exec fastlane deploy
+          bundle exec fastlane ios prod

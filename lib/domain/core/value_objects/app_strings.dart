@@ -4,9 +4,9 @@ const String appName = 'myCareHub';
 
 //Create New Pin Page
 const String confirmPinString = 'Confirm PIN';
-const String createNewPINTitleString = 'Welcome to My Afya Hub';
+const String createNewPINTitleString = 'Welcome to myCareHub';
 const String createNewPINSubTitleString =
-    'Please update your pin to make it personal';
+    'Please update your PIN to make it personal';
 const String phoneNumberString = 'Phone Number';
 const String newPinString = 'New PIN';
 const String pinMustMatchString = 'PIN must match';
@@ -60,8 +60,8 @@ const String approveText = 'Approve';
 const String rejectText = 'Reject';
 
 //Phone Login
-const String phoneLoginPageTitle = 'Welcome to Afya Moja';
-const String phoneLoginPageDescription = 'Enter your provided pin to continue';
+const String phoneLoginPageTitle = 'Welcome to myCareHub';
+const String phoneLoginPageDescription = 'Enter your provided PIN to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
 
@@ -74,26 +74,6 @@ const String whatsTheNameOfYourPetString = 'What is the name of your pet?';
 const String whatsYourFavoriteFoodString = 'What is your favorite food?';
 const String whereDidYouFirstLiveString = 'Where did you first live?';
 const String answerHereString = 'Answer here';
-
-const String idRequired = 'ID Number is required';
-const String kraPINText = 'KRA PIN details';
-const String kraLabel = 'Add your KRA PIN';
-const String kraHintText = 'Enter your KRA PIN';
-const String kraRequired = 'KRA PIN is required';
-const String kraTitle = 'KRA PIN';
-const String addSupportingDocs = 'Add supporting documents';
-const String documentTitle = 'Document Title';
-const String documentTitleHint = 'Enter your document title';
-const String documentDescription = 'Document Description';
-const String documentDescriptionHint = 'Enter your document description';
-const String documentUpload = 'document upload';
-const String allFieldsRequired = 'All fields are required';
-const String doneAddingDoc = 'Done';
-const String tapToAddDoc = 'Tap To Add A Document';
-const String saveText = 'Save';
-const String orgTypeRequired = 'Organization type is required';
-const String addDirectorIDs = 'Add your director identifications';
-const String backText = 'Back';
 
 const String informationRequired =
     'Please provide all the required information';
@@ -168,7 +148,7 @@ const String CCCNumberLabel = 'CCC Number *';
 const String preferredClinicLabel = 'Preferred clinic *';
 const String firstNameLabel = 'First Name';
 const String lastNameLabel = 'Last Name';
-const String birthDateLabel = 'Birthdate';
+const String birthDateLabel = 'Birth Date';
 const String genderLabel = 'Gender';
 const String idNoLabel = 'ID No.';
 const String phoneNoLabel = 'Phone No.';
@@ -176,7 +156,7 @@ const String physicalLocationLabel = 'Physical Location';
 const String nextOfKinLabel = 'Next of Kin';
 const String relationLabel = 'Relation';
 const String appAccessText = 'App Access';
-const String myAfyaHubInviteText = 'Invite to MyAfya Hub';
+const String myCareHubInviteText = 'Invite to myCareHub';
 const String groupsLabel = 'Groups/Community';
 const String registerBtnText = 'Register';
 const String addNewPatientTitleText = 'Add new patient';
@@ -212,7 +192,7 @@ const String newEntryString = 'New Entry';
 const String transferOut = 'Transfer out';
 
 //Client Details Card
-const String inviteToMyAfyaHubString = 'Invite to My Afya Hub';
+const String inviteToMyCareHubString = 'Invite to myCareHub';
 const String viewProfileString = 'View profile';
 const String userInitialsStrings = 'WJ';
 const String userCCCNumberString = '12345678';
