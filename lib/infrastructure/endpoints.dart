@@ -5,7 +5,7 @@ We are using staging endpoints here so as to match what the backend does.
 The environment that these endpoints call is STRICTLY for internal DEVs only
 */
 const String kTestGraphqlEndpoint =
-    'https://gateway.test.savannahghi.org/graphql';
+    'https://mycarehub-staging.savannahghi.org/graphql';
 const String kTestLoginByPhoneEndpoint =
     'https://mycarehub-staging.savannahghi.org/login_by_phone';
 const String kTestPinResetEndpoint =
@@ -29,7 +29,7 @@ const String kTestSendRecoverAccountOtpEndpoint =
 const String kTestSetPrimaryPhoneNumberEndpoint =
     'https://mycarehub-staging.savannahghi.org/set_primary_phonenumber';
 const String kTestUploadFileEndPoint =
-    'https://engagement-testing.savannahghi.org/upload';
+    'https://engagement-staging.savannahghi.org/upload';
 const String kTestSendContactVerificationOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/send_otp';
 const String kTestVerifyContactOTPEndpoint =
