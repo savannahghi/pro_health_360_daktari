@@ -245,24 +245,6 @@ class LoginWidgetState extends State<LoginWidget> {
                 ),
 
               smallVerticalSizedBox,
-
-              /// Forgot Pin button
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: TextButton(
-                  key: forgotPinButton,
-                  onPressed: () async => triggerNavigationEvent(
-                    context: context,
-                    route: AppRoutes.forgotPinPage,
-                    shouldReplace: true,
-                  ),
-                  child: Text(
-                    forgotPinString,
-                    style: boldSize16Text(AppColors.textAltColor),
-                  ),
-                ),
-              ),
             ],
           ),
         );
