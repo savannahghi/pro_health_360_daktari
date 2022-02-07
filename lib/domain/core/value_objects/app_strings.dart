@@ -147,7 +147,7 @@ const String customDate = 'July 12 2021';
 
 // Add patient page
 const String CCCNumberLabel = 'CCC Number *';
-const String preferredClinicLabel = 'Preferred clinic *';
+const String preferredFacilityLabel = 'Preferred Facility *';
 const String firstNameLabel = 'First Name';
 const String lastNameLabel = 'Last Name';
 const String birthDateLabel = 'Birth Date';

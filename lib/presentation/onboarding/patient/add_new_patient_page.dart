@@ -1,15 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 
 class AddNewPatientPage extends StatefulWidget {
@@ -50,8 +49,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: PatientDetailsTextFormField(
-                        label: preferredClinicLabel,
+                      child: FacilityDropdown(
+                        label: preferredFacilityLabel,
                       ),
                     ),
                   ],

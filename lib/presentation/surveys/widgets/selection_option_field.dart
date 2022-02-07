@@ -1,11 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:misc_utilities/misc.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+// Package imports:
+import 'package:misc_utilities/misc.dart';
 
 class SelectOptionField extends StatelessWidget {
   /// [SILSelectOptionField] customized for selection options.
@@ -61,7 +59,7 @@ class SelectOptionField extends StatelessWidget {
     return Container(
       height: 45,
       decoration: BoxDecoration(
-        color: disabled ? Colors.grey[200] : AppColors.galleryColor,
+        color: disabled ? Colors.grey[200] : AppColors.inputBackgroundColor,
         borderRadius: const BorderRadius.all(
           Radius.circular(5),
         ),

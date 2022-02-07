@@ -21,7 +21,7 @@ class _$FacilityTearOff {
   const _$FacilityTearOff();
 
   _Facility call(
-      {@JsonKey(name: 'id') String? id,
+      {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'code') int? code,
       @JsonKey(name: 'phone') String? phone,
@@ -49,7 +49,7 @@ const $Facility = _$FacilityTearOff();
 
 /// @nodoc
 mixin _$Facility {
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'ID')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
@@ -75,7 +75,7 @@ abstract class $FacilityCopyWith<$Res> {
   factory $FacilityCopyWith(Facility value, $Res Function(Facility) then) =
       _$FacilityCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') String? id,
+      {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'code') int? code,
       @JsonKey(name: 'phone') String? phone,
@@ -141,7 +141,7 @@ abstract class _$FacilityCopyWith<$Res> implements $FacilityCopyWith<$Res> {
       __$FacilityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') String? id,
+      {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'code') int? code,
       @JsonKey(name: 'phone') String? phone,
@@ -206,7 +206,7 @@ class __$FacilityCopyWithImpl<$Res> extends _$FacilityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Facility implements _Facility {
   _$_Facility(
-      {@JsonKey(name: 'id') this.id,
+      {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'code') this.code,
       @JsonKey(name: 'phone') this.phone,
@@ -218,7 +218,7 @@ class _$_Facility implements _Facility {
       _$_$_FacilityFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'ID')
   final String? id;
   @override
   @JsonKey(name: 'name')
@@ -289,7 +289,7 @@ class _$_Facility implements _Facility {
 
 abstract class _Facility implements Facility {
   factory _Facility(
-      {@JsonKey(name: 'id') String? id,
+      {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'code') int? code,
       @JsonKey(name: 'phone') String? phone,
@@ -300,7 +300,7 @@ abstract class _Facility implements Facility {
   factory _Facility.fromJson(Map<String, dynamic> json) = _$_Facility.fromJson;
 
   @override
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'ID')
   String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')

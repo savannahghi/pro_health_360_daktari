@@ -8,7 +8,7 @@ part 'facility.g.dart';
 @freezed
 class Facility with _$Facility {
   factory Facility({
-    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'ID') String? id,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'code') int? code,
     @JsonKey(name: 'phone') String? phone,
