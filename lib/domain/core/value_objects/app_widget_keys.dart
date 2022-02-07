@@ -50,6 +50,7 @@ const Key selectOptionFieldKey = Key('select_option_field');
 // add new patient page
 const Key myAfyaHubInviteKey = Key('appAccessKey');
 const Key patientRegisterBtnKey = Key('patientRegisterButton');
+const Key facilitySelectOptionFieldKey = Key('facility_select_option_field');
 
 // add new group page
 const Key bandDropdownKey = Key('bandDropdownKey');
