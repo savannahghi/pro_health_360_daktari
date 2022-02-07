@@ -34,3 +34,15 @@ mutation recordSecurityQuestionResponses($input: [SecurityQuestionResponseInput!
   }
 }
  ''';
+
+const String setUserPINMutation = r'''
+mutation setUserPin($input: PINInput!){
+  setUserPIN(input: $input)
+}
+ ''';
+
+Map<String, dynamic> setUserPINMutationVariables(
+  Map<String, dynamic> setUserPINVariables,
+) {
+  return <String, dynamic>{'input': setUserPINVariables};
+}

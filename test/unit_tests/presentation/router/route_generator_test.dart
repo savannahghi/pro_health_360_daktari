@@ -224,4 +224,15 @@ void main() {
     expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
     expect(route?.builder(context), isA<TermsAndConditionsPage>());
   });
+  
+  test('Test router returns SetNickNamePage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.setNicknamePage);
+
+    final MaterialPageRoute<SetNickNamePage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SetNickNamePage>?;
+
+    expect(route, isA<MaterialPageRoute<SetNickNamePage>>());
+    expect(route?.builder(context), isA<SetNickNamePage>());
+  });
 }
