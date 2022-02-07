@@ -4,7 +4,8 @@ const String appName = 'myCareHub';
 
 //Create New Pin Page
 const String confirmPinString = 'Confirm PIN';
-const String createNewPINTitleString = 'Welcome to myCareHub';
+const String createNewPINTitleString = 'Create new PIN';
+const String resetPINTitleString = 'Reset PIN';
 const String createNewPINSubTitleString =
     'Please update your PIN to make it personal';
 const String phoneNumberString = 'Phone Number';
@@ -14,6 +15,7 @@ const String acceptTermsAndConditionsString = 'I accept Terms and Conditions';
 const String acceptTermsString =
     'Kindly accept terms and conditions to continue';
 const String comingSoon = 'Coming Soon';
+const String pinSuccessString = 'PIN created successfully';
 
 //Forgot PIN Page
 const String resetPassword = 'Reset password?';

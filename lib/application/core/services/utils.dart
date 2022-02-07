@@ -5,6 +5,9 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/application/redux/actions/create_pin_action.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/create_pin_state_action.dart';
+import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
@@ -518,4 +521,53 @@ Future<http.Response> retrieveOTP({
       variables: variables,
     );
   }
+}
+
+Future<void> setUserPIN({
+  required BuildContext context,
+  required String newPIN,
+  required String confirmPIN,
+  required String flavour,
+}) async {
+  // this is the Redux Action that store the PINs user enters
+  StoreProvider.dispatch(
+    context,
+    CreatePINStateAction(
+      newPIN: newPIN,
+      confirmPIN: confirmPIN,
+    ),
+  );
+
+  // this is the Redux Action that handles set PIN for an existing user
+  await StoreProvider.dispatch<AppState>(
+    context,
+    CreatePINAction(
+      client: AppWrapperBase.of(context)!.graphQLClient,
+      successCallback: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(pinSuccessString),
+            duration: Duration(seconds: 2),
+          ),
+        );
+
+        StoreProvider.dispatch(
+          context,
+          UpdateOnboardingStateAction(hasSetPin: true),
+        );
+
+        Navigator.pushReplacementNamed(
+          context,
+          AppRoutes.setNicknamePage,
+        );
+      },
+      // scaffold that handles a mismatch in the just entered PINs by the user
+      pinMismatchCallback: () => ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(pinMustMatchString),
+          duration: Duration(seconds: 2),
+        ),
+      ),
+    ),
+  );
 }
