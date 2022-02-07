@@ -13,7 +13,6 @@ import 'package:healthcloud/application/redux/actions/core/update_credentials_ac
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/actions/terms/update_terms_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -171,40 +170,6 @@ void main() {
           formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
 
       expect(enFormat, equals(r2));
-    });
-  });
-  group('setUserPIN', () {
-    late Store<AppState> store;
-
-    setUpAll(() {
-      store = Store<AppState>(initialState: AppState.initial());
-    });
-
-    testWidgets('Shows snackbar when pins do not match',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        graphQlClient: MockTestGraphQlClient(),
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await setUserPIN(
-                  confirmPIN: '0001',
-                  context: context,
-                  newPIN: '0000',
-                  flavour: Flavour.consumer.name,
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pump(const Duration(seconds: 1));
-      expect(find.text(pinMustMatchString), findsOneWidget);
     });
   });
 }
