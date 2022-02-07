@@ -123,12 +123,6 @@ String? userPinValidator(dynamic val) {
   return null;
 }
 
-bool confirmPinValidator(String pin, String confirmPin) {
-  if (pin != confirmPin) {
-    return false;
-  }
-  return true;
-}
 
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(

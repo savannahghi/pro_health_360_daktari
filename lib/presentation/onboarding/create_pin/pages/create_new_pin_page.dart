@@ -27,11 +27,11 @@ class CreateNewPINPage extends StatefulWidget {
 }
 
 class _CreateNewPINPageState extends State<CreateNewPINPage> {
-  late String confirmPin = '';
-  late String pin = '';
   TextEditingController pinController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String confirmPin = '';
+  String pin = '';
 
   @override
   Widget build(BuildContext context) {
@@ -129,15 +129,6 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                       onPressed: vm.state.wait!.isWaitingFor(createPinFlag)
                           ? null
                           : () async {
-                              if (!confirmPinValidator(pin, confirmPin)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(pinMustMatchString),
-                                    duration: Duration(seconds: 2),
-                                  ),
-                                );
-                                return;
-                              }
                               if (_formKey.currentState!.validate()) {
                                 setUserPIN(
                                   context: context,
