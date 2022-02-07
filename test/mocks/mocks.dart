@@ -540,6 +540,28 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(setNickNameMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'setNickName': true}
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(completeOnboardingTourMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'completeOnboardingTour': true}
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );

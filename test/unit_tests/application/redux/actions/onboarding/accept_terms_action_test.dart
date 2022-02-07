@@ -62,7 +62,7 @@ void main() {
       expect(info.state.miscState?.error, somethingWentWrongText);
     });
 
-    test('description', () async {
+    test('navigates to next page successfully', () async {
       storeTester.dispatch(UpdateCredentialsAction(isSignedIn: true));
       storeTester.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
       storeTester.dispatch(AcceptTermAction(client: MockTestGraphQlClient()));

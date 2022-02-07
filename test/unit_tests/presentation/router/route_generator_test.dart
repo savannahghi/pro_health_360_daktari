@@ -17,6 +17,7 @@ import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
@@ -51,6 +52,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<CreateNewPINPage>>());
     expect(route.builder(context), isA<CreateNewPINPage>());
+  });
+
+  test('Test router returns set nickname page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.setNicknamePage);
+
+    final MaterialPageRoute<SetNickNamePage> route =
+        routeGenerator(settings)! as MaterialPageRoute<SetNickNamePage>;
+
+    expect(route, isA<MaterialPageRoute<SetNickNamePage>>());
+    expect(route.builder(context), isA<SetNickNamePage>());
   });
 
   test('Test router returns ContentPage', () {

@@ -38,6 +38,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
       builder: (BuildContext context, AppStateViewModel vm) {
         final bool waitingForFlag =
             vm.state.wait!.isWaitingFor(setNickNameFlag);
+
         return Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
@@ -107,12 +108,6 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                 ],
                               ),
                             ),
-                            if (waitingForFlag) ...<Widget>{
-                              veryLargeVerticalSizedBox,
-                              const SILPlatformLoader(
-                                color: AppColors.secondaryColor,
-                              ),
-                            },
                           ],
                         ),
                       )
