@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -101,13 +102,29 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
         ),
       );
+      final String fullname = loginResponse.staffState?.user?.name ?? UNKNOWN;
 
-      final User? user =
-          loginResponse.staffState?.user?.copyWith(pinChangeRequired: false);
+      User? user = loginResponse.staffState?.user?.copyWith(
+        pinChangeRequired: false,
+      );
+
+      if (fullname != UNKNOWN && fullname.isNotEmpty) {
+        final List<String> names = fullname.split(' ');
+        user = user?.copyWith(
+          firstName: names.first,
+          lastName: names.last,
+        );
+      }
 
       dispatch(UpdateUserAction(user: user));
 
-      dispatch(UpdateStaffProfileAction(id: loginResponse.staffState?.id));
+      dispatch(
+        UpdateStaffProfileAction(
+          id: loginResponse.staffState?.id,
+          staffNumber: loginResponse.staffState?.staffNumber,
+          defaultFacility: loginResponse.staffState?.defaultFacility,
+        ),
+      );
 
       final OnboardingPathConfig path = getOnboardingPath(state: state);
 

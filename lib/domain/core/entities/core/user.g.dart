@@ -10,9 +10,8 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
   return _$_User(
     userId: json['userID'] as String?,
     username: json['userName'] as String?,
-    displayName: json['displayName'] as String?,
+    name: json['name'] as String?,
     firstName: json['firstName'] as String?,
-    middleName: json['middleName'] as String?,
     lastName: json['lastName'] as String?,
     userType: json['userType'] as String?,
     gender: genderFromJson(json['gender'] as String?),
@@ -37,9 +36,8 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'userID': instance.userId,
       'userName': instance.username,
-      'displayName': instance.displayName,
+      'name': instance.name,
       'firstName': instance.firstName,
-      'middleName': instance.middleName,
       'lastName': instance.lastName,
       'userType': instance.userType,
       'gender': genderToJson(instance.gender),

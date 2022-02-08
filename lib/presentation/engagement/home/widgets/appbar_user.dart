@@ -4,8 +4,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
-// Project imports:
-import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
@@ -57,7 +55,7 @@ class AppbarUser extends StatelessWidget {
                   child: userHasProfileImage
                       ? Text(
                           extractNamesInitials(
-                            name: getDisplayName(user),
+                            name: user?.name ?? '$UNKNOWN $UNKNOWN',
                           ),
                           style: boldSize14Text(Colors.white),
                         )

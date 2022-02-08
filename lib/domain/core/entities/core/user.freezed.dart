@@ -25,12 +25,10 @@ class _$UserTearOff {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
-      @JsonKey(name: 'displayName')
-          String? displayName,
+      @JsonKey(name: 'name')
+          String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
-      @JsonKey(name: 'middleName')
-          String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
       @JsonKey(name: 'userType')
@@ -66,9 +64,8 @@ class _$UserTearOff {
     return _User(
       userId: userId,
       username: username,
-      displayName: displayName,
+      name: name,
       firstName: firstName,
-      middleName: middleName,
       lastName: lastName,
       userType: userType,
       gender: gender,
@@ -103,13 +100,10 @@ mixin _$User {
   @JsonKey(name: 'userName')
   String? get username =>
       throw _privateConstructorUsedError; // This is the nickname
-  @JsonKey(name: 'displayName')
-  String? get displayName =>
-      throw _privateConstructorUsedError; // This is the @handle
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'middleName')
-  String? get middleName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: 'userType')
@@ -157,12 +151,10 @@ abstract class $UserCopyWith<$Res> {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
-      @JsonKey(name: 'displayName')
-          String? displayName,
+      @JsonKey(name: 'name')
+          String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
-      @JsonKey(name: 'middleName')
-          String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
       @JsonKey(name: 'userType')
@@ -211,9 +203,8 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   $Res call({
     Object? userId = freezed,
     Object? username = freezed,
-    Object? displayName = freezed,
+    Object? name = freezed,
     Object? firstName = freezed,
-    Object? middleName = freezed,
     Object? lastName = freezed,
     Object? userType = freezed,
     Object? gender = freezed,
@@ -240,17 +231,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      middleName: middleName == freezed
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
               as String?,
       lastName: lastName == freezed
           ? _value.lastName
@@ -341,12 +328,10 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
-      @JsonKey(name: 'displayName')
-          String? displayName,
+      @JsonKey(name: 'name')
+          String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
-      @JsonKey(name: 'middleName')
-          String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
       @JsonKey(name: 'userType')
@@ -397,9 +382,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   $Res call({
     Object? userId = freezed,
     Object? username = freezed,
-    Object? displayName = freezed,
+    Object? name = freezed,
     Object? firstName = freezed,
-    Object? middleName = freezed,
     Object? lastName = freezed,
     Object? userType = freezed,
     Object? gender = freezed,
@@ -426,17 +410,13 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      middleName: middleName == freezed
-          ? _value.middleName
-          : middleName // ignore: cast_nullable_to_non_nullable
               as String?,
       lastName: lastName == freezed
           ? _value.lastName
@@ -514,12 +494,10 @@ class _$_User implements _User {
           this.userId,
       @JsonKey(name: 'userName')
           this.username,
-      @JsonKey(name: 'displayName')
-          this.displayName,
+      @JsonKey(name: 'name')
+          this.name,
       @JsonKey(name: 'firstName')
           this.firstName,
-      @JsonKey(name: 'middleName')
-          this.middleName,
       @JsonKey(name: 'lastName')
           this.lastName,
       @JsonKey(name: 'userType')
@@ -563,14 +541,11 @@ class _$_User implements _User {
   @JsonKey(name: 'userName')
   final String? username;
   @override // This is the nickname
-  @JsonKey(name: 'displayName')
-  final String? displayName;
-  @override // This is the @handle
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
   @JsonKey(name: 'firstName')
   final String? firstName;
-  @override
-  @JsonKey(name: 'middleName')
-  final String? middleName;
   @override
   @JsonKey(name: 'lastName')
   final String? lastName;
@@ -622,7 +597,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar)';
+    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar)';
   }
 
   @override
@@ -634,15 +609,11 @@ class _$_User implements _User {
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
-            (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
-            (identical(other.middleName, middleName) ||
-                const DeepCollectionEquality()
-                    .equals(other.middleName, middleName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
@@ -695,9 +666,8 @@ class _$_User implements _User {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(displayName) ^
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(middleName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(userType) ^
       const DeepCollectionEquality().hash(gender) ^
@@ -732,12 +702,10 @@ abstract class _User implements User {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
-      @JsonKey(name: 'displayName')
-          String? displayName,
+      @JsonKey(name: 'name')
+          String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
-      @JsonKey(name: 'middleName')
-          String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
       @JsonKey(name: 'userType')
@@ -780,14 +748,11 @@ abstract class _User implements User {
   @JsonKey(name: 'userName')
   String? get username => throw _privateConstructorUsedError;
   @override // This is the nickname
-  @JsonKey(name: 'displayName')
-  String? get displayName => throw _privateConstructorUsedError;
-  @override // This is the @handle
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'middleName')
-  String? get middleName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;

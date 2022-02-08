@@ -12,7 +12,6 @@ import 'package:healthcloud/application/redux/actions/onboarding/create_pin_stat
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
 import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
@@ -64,21 +63,6 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-String getDisplayName(User? user) {
-  final bool firstNameIsNotEmpty =
-      user?.firstName != null && user!.firstName!.isNotEmpty;
-  final bool lastNameIsNotEmpty =
-      user?.lastName != null && user!.lastName!.isNotEmpty;
-
-  final String firstName = firstNameIsNotEmpty ? user.firstName! : UNKNOWN;
-  final String formattedFirstName = firstName.replaceAll(' ', '');
-
-  final String lastName = lastNameIsNotEmpty ? user.lastName! : UNKNOWN;
-  final String formattedLastName = lastName.replaceAll(' ', '');
-
-  return '$formattedFirstName $formattedLastName';
-}
-
 Alignment placeMessage(dynamic message) {
   /// [placeMessage] is used to align the messages whether to the left or right
   /// depending on whether is is a sent or received message
@@ -104,6 +88,7 @@ final List<RequestItem> serviceRequestItems = <RequestItem>[
     imageAssetPath: redFlagImageSvgPath,
     totalNumber: 3,
   ),
+
   ///TODO(eugene): Restore when ready
   // RequestItem(
   //   route: AppRoutes.profileUpdateRequestsPage,
@@ -577,4 +562,13 @@ SnackBarAction dismissSnackBar(String text, Color color, BuildContext context) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
     },
   );
+}
+
+String removeTailingComma(String word) {
+  final String str = word.trim();
+  if (str.endsWith(',') && str.isNotEmpty) {
+    return str.replaceAll(',', '');
+  } else {
+    return str;
+  }
 }
