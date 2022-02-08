@@ -255,6 +255,18 @@ Map<String, dynamic> mockRegisterClient = <String, dynamic>{
   'caregiver': 'caregiver'
 };
 
+Map<String, dynamic> mockRegisterPayload = <String, dynamic>{
+  'facility': 'Kanairo',
+  'clientType': 'PMTCT',
+  'clientName': 'Joker',
+  'gender': 'male',
+  'dateOfBirth': '1998-01-01',
+  'phoneNumber': '+254704002748',
+  'enrollmentDate': '2021-02-07',
+  'cccNumber': 'joker1',
+  'counselled': true
+};
+
 Map<String, dynamic> mockListFacilities = <String, dynamic>{
   'Facilities': <dynamic>[
     mockFacility,

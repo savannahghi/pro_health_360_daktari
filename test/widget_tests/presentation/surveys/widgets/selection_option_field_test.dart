@@ -81,15 +81,12 @@ void main() {
       );
 
       final Finder dropDownFinder = find.byKey(key);
-      final DropdownButton<String> dropDownBtn =
-          tester.widget<DropdownButton<String>>(dropDownFinder);
-      expect(dropDownBtn.onChanged, isNull);
       await tester.tap(dropDownFinder);
       await tester.pump();
       expect(counter, 0);
 
       final Finder secondOption =
-          find.byKey(ValueKey<String>(options[1]), skipOffstage: false);
+          find.byKey(ValueKey<String>(options[1]), skipOffstage: false).first;
       expect(secondOption, findsOneWidget);
       await tester.tap(secondOption);
       await tester.pump();

@@ -19,11 +19,13 @@ void main() {
         MaterialApp(
           home: Builder(
             builder: (BuildContext context) {
-              return const Scaffold(
+              return Scaffold(
                 body: Form(
                   key: formKey,
                   child: FacilityDropdown(
+                    dropdownInputKey: facilitySelectOptionFieldKey,
                     label: 'Prefered Facility',
+                    stream: Stream<String>.value('Nairobi'),
                   ),
                 ),
               );
@@ -34,7 +36,7 @@ void main() {
 
       expect(find.byKey(formKey), findsWidgets);
 
-      expect(find.byKey(selectOptionFieldKey), findsWidgets);
+      expect(find.byKey(facilitySelectOptionFieldKey), findsWidgets);
       expect(find.byType(DropdownButtonHideUnderline), findsOneWidget);
       expect(find.byType(typeOf<DropdownButton<String>>()), findsOneWidget);
 

@@ -224,6 +224,8 @@ const String errorPhoneLogin = 'Error: Unable to login by phone';
 
 const String connectionLostText = 'Internet connection lost';
 
+const String fieldCannotBeEmptyText = 'Field cannot be empty';
+
 // PhoneNumberFormConstants
 const String phoneNumberInputLabelText = 'Phone number';
 

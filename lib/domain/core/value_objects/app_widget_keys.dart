@@ -49,6 +49,13 @@ const Key selectOptionFieldKey = Key('select_option_field');
 const Key myAfyaHubInviteKey = Key('appAccessKey');
 const Key patientRegisterBtnKey = Key('patientRegisterButton');
 const Key facilitySelectOptionFieldKey = Key('facility_select_option_field');
+const Key cccFieldKey = Key('ccc_field');
+const Key firstNameKey = Key('first_name_key');
+const Key lastNameKey = Key('last_name_key');
+const Key dobKey = Key('dob_key');
+const Key genderOptionFieldKey = Key('gender_dropdown_key');
+const Key phoneNumberFieldKey = Key('phone_number_key');
+const Key enrollmentFieldKey = Key('enrollment_field_key');
 
 // add new group page
 const Key bandDropdownKey = Key('bandDropdownKey');
