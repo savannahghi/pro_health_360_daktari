@@ -19,6 +19,7 @@ class RedFlagListItem extends StatelessWidget {
     required this.feelingDescription,
     required this.feeling,
   });
+
   final String clientName;
   final String feelingDescription;
   final String feeling;

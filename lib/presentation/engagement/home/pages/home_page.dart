@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 
 // Package imports:
 import 'package:misc_utilities/misc.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: AppColors.galleryColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -77,11 +78,7 @@ class HomePage extends StatelessWidget {
 
             // Add new user section
             Padding(
-              padding: const EdgeInsets.only(
-                top: 16.0,
-                left: 16.0,
-                right: 16.0,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Wrap(
                 children: <Widget>[
                   ActionCard(

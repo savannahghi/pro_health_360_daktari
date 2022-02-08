@@ -18,97 +18,73 @@ class ServiceRequestsPage extends StatelessWidget {
   ///
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: <Color>[
-            AppColors.lightGreyBackgroundColor,
-            Colors.white,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: <double>[0.0, 1.0],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(
-          title: serviceRequestString,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    serviceHeaderImageSvgPath,
-                    width: 180,
-                  ),
+    return Scaffold(
+      appBar: const CustomAppBar(title: serviceRequestString),
+      backgroundColor: AppColors.galleryColor,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              child: Center(
+                child: SvgPicture.asset(
+                  serviceRequestsIconSvg,
+                  width: 200,
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      spreadRadius: 1,
-                      blurRadius: 8,
-                      offset: const Offset(0, -20),
-                    ),
-                  ],
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Wrap(
-                      children: <Widget>[
-                        ...List<Widget>.generate(
-                          serviceRequestItems.length,
-                          (int index) {
-                            final String iconPath = serviceRequestItems
-                                .elementAt(index)
-                                .imageAssetPath;
-                            final String title =
-                                serviceRequestItems.elementAt(index).title;
-                            final int totalNumber = serviceRequestItems
-                                .elementAt(index)
-                                .totalNumber;
-                            final String route =
-                                serviceRequestItems.elementAt(index).route;
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Wrap(
+                    children: <Widget>[
+                      ...List<Widget>.generate(
+                        serviceRequestItems.length,
+                        (int index) {
+                          final String iconPath = serviceRequestItems
+                              .elementAt(index)
+                              .imageAssetPath;
+                          final String title =
+                              serviceRequestItems.elementAt(index).title;
+                          final int totalNumber =
+                              serviceRequestItems.elementAt(index).totalNumber;
+                          final String route =
+                              serviceRequestItems.elementAt(index).route;
 
-                            return GestureDetector(
-                              onTap: () {
-                                if (route.isNotEmpty) {
-                                  triggerNavigationEvent(
-                                    context: context,
-                                    route: route,
-                                  );
-                                }
-                              },
-                              child: CategoryItemCard(
-                                iconPath: iconPath,
-                                title: title,
-                                unresolvedNumber: totalNumber,
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                          return GestureDetector(
+                            onTap: () {
+                              if (route.isNotEmpty) {
+                                triggerNavigationEvent(
+                                  context: context,
+                                  route: route,
+                                );
+                              }
+                            },
+                            child: CategoryItemCard(
+                              iconPath: iconPath,
+                              title: title,
+                              unresolvedNumber: totalNumber,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
