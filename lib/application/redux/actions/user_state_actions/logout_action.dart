@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -9,7 +10,10 @@ class LogoutAction extends ReduxAction<AppState> {
   @override
   void after() {
     dispatch(
-      NavigateAction<AppState>.pushReplacementNamed(AppRoutes.loginPage),
+      NavigateAction<AppState>.pushNamedAndRemoveUntil(
+        AppRoutes.loginPage,
+        (Route<dynamic> route) => false,
+      ),
     );
     super.after();
   }

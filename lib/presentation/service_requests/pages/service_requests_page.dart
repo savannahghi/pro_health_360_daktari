@@ -13,8 +13,6 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/core/category_item_card.dart';
 
-// Project imports:
-
 class ServiceRequestsPage extends StatelessWidget {
   /// [ServiceRequestsPage] is used to display the user information
   ///
