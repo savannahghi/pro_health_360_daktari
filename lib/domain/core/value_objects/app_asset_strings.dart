@@ -42,8 +42,6 @@ const String pinResetImageSvgPath = 'assets/images/pin_reset_image.svg';
 const String redFlagImageSvgPath = 'assets/images/red_flag_image.svg';
 const String profileUpdateImageSvgPath =
     'assets/images/profile_update_image.svg';
-const String googleMeetImageSvgPath = 'assets/images/google_meet_image.svg';
-const String zoomLogoImageSvgPath = 'assets/images/zoom_logo_image.svg';
 
 // Surveys
 const String surveysImageSvgPath = 'assets/images/forms_rafiki.svg';
@@ -87,3 +85,5 @@ const String editProfileIconSvg = 'assets/icons/edit_profile_icon.svg';
 const String closeIconUrl = 'assets/icons/close.png';
 const String errorIconUrl = 'assets/icons/error.svg';
 const String errorImageSvg = 'assets/images/error_image.svg';
+
+const String callAssistantSvgPath = 'assets/images/call_assistant.svg';

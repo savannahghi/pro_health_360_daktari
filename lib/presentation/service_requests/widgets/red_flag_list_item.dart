@@ -7,80 +7,80 @@ import 'package:shared_themes/spaces.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/schedule_meet_dialog.dart';
 
+/// [RedFlagListItem] is a shared widget used in [RedFlagsPage]
+///
+///It takes in two required [clientName] and [feeling] parameters
 class RedFlagListItem extends StatelessWidget {
-  /// [RedFlagListItem] is a shared widget used in [RedFlagsPage]
-  ///
-  ///It takes in two required [clientName] and [phoneNumber] parameters
   const RedFlagListItem({
     required this.clientName,
     required this.feelingDescription,
+    required this.feeling,
   });
   final String clientName;
   final String feelingDescription;
+  final String feeling;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Flexible(
-              child: RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: clientName,
-                      style: boldSize13Text(AppColors.blueBerryColor),
+    return GestureDetector(
+      key: redFlagItemKey,
+      onTap: () => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ScheduleMeetDialog();
+        },
+      ),
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      clientName,
+                      style: veryBoldSize15Text(AppColors.greyTextColor),
                     ),
-                    TextSpan(
-                      text: needsAttentionString,
-                      style: normalSize13Text(
+                    verySmallVerticalSizedBox,
+                    Text(
+                      feelingDescription,
+                      style: normalSize15Text(
                         AppColors.greyTextColor,
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' [$feelingDescription]',
-                      style: boldSize14Text(
-                        Colors.red,
                       ),
                     ),
                   ],
                 ),
-              ),
-            ),
-            GestureDetector(
-              key: reachOutButtonKey,
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return ScheduleMeetDialog();
-                  },
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                decoration: BoxDecoration(
-                  color: AppColors.malachiteColor,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  reachOutString,
-                  style: boldSize13Text(
-                    Colors.white,
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.lightRedColor,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Text(
+                    feeling,
+                    style: normalSize12Text(
+                      AppColors.redColor,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-        smallVerticalSizedBox,
-      ],
+          ),
+          size15VerticalSizedBox,
+        ],
+      ),
     );
   }
 }

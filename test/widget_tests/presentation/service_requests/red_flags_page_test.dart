@@ -15,19 +15,10 @@ void main() {
         tester: tester,
         widget: RedFlagsPage(),
       );
-      final Finder reachOutButton = find.byKey(reachOutButtonKey);
-      final Finder cancelButton = find.byKey(dialogCancelButtonKey);
+      final Finder redFlagItem = find.byKey(redFlagItemKey);
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(reachOutButton, findsNWidgets(reFlagItems.length));
-
-      await tester.tap(reachOutButton.first);
-      await tester.pumpAndSettle();
-      expect(cancelButton, findsOneWidget);
-
-      await tester.tap(cancelButton);
-      await tester.pumpAndSettle();
-      expect(reachOutButton, findsNWidgets(reFlagItems.length));
+      expect(redFlagItem, findsNWidgets(reFlagItems.length));
     });
     testWidgets('ScheduleMeetDialog renders correctly',
         (WidgetTester tester) async {
@@ -35,24 +26,17 @@ void main() {
         tester: tester,
         widget: RedFlagsPage(),
       );
-      final Finder reachOutButton = find.byKey(reachOutButtonKey);
-      final Finder zoomButton = find.byKey(zoomButtonKey);
-      final Finder googleMeetButton = find.byKey(googleMeetButtonKey);
-      final Finder confirmButton = find.byKey(dialogConfirmButtonKey);
+      final Finder redFlagItem = find.byKey(redFlagItemKey);
+      final Finder callButton = find.byKey(dialogCallButtonKey);
 
-      await tester.tap(reachOutButton.first);
+      await tester.tap(redFlagItem.first);
       await tester.pumpAndSettle();
 
-      expect(googleMeetButton, findsOneWidget);
-      expect(zoomButton, findsOneWidget);
-
-      await tester.tap(zoomButton);
+      expect(callButton, findsOneWidget);
+  
+      await tester.tap(callButton);
       await tester.pumpAndSettle();
-      await tester.tap(googleMeetButton);
-      await tester.pumpAndSettle();
-      await tester.tap(confirmButton);
-      await tester.pumpAndSettle();
-      expect(reachOutButton, findsNWidgets(reFlagItems.length));
+      expect(callButton, findsNothing);
     });
   });
 }
