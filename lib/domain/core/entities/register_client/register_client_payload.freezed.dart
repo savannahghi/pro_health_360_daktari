@@ -22,15 +22,26 @@ class _$RegisterClientPayloadTearOff {
   const _$RegisterClientPayloadTearOff();
 
   _RegisterClientPaylod call(
-      {String? facility,
-      ClientType? clientType,
-      String? clientName,
-      Gender? gender,
-      DateTime? dateOfBirth,
-      String? phoneNumber,
-      DateTime? enrollmentDate,
-      String? cccNumber,
-      bool? counselled}) {
+      {@JsonKey(name: 'facility')
+          String? facility,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'clientName')
+          String? clientName,
+      @JsonKey(name: 'gender', fromJson: genderFromJson)
+          Gender? gender,
+      @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
+          DateTime? dateOfBirth,
+      @JsonKey(name: 'phoneNumber')
+          String? phoneNumber,
+      @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
+          DateTime? enrollmentDate,
+      @JsonKey(name: 'cccNumber')
+          String? cccNumber,
+      @JsonKey(name: 'counselled')
+          bool? counselled,
+      @JsonKey(name: 'inviteClient')
+          bool? inviteClient}) {
     return _RegisterClientPaylod(
       facility: facility,
       clientType: clientType,
@@ -41,6 +52,7 @@ class _$RegisterClientPayloadTearOff {
       enrollmentDate: enrollmentDate,
       cccNumber: cccNumber,
       counselled: counselled,
+      inviteClient: inviteClient,
     );
   }
 
@@ -54,15 +66,26 @@ const $RegisterClientPayload = _$RegisterClientPayloadTearOff();
 
 /// @nodoc
 mixin _$RegisterClientPayload {
+  @JsonKey(name: 'facility')
   String? get facility => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientType')
   ClientType? get clientType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientName')
   String? get clientName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender', fromJson: genderFromJson)
   Gender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
   DateTime? get dateOfBirth => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phoneNumber')
   String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
   DateTime? get enrollmentDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cccNumber')
   String? get cccNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'counselled')
   bool? get counselled => throw _privateConstructorUsedError;
+  @JsonKey(name: 'inviteClient')
+  bool? get inviteClient => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -76,15 +99,26 @@ abstract class $RegisterClientPayloadCopyWith<$Res> {
           $Res Function(RegisterClientPayload) then) =
       _$RegisterClientPayloadCopyWithImpl<$Res>;
   $Res call(
-      {String? facility,
-      ClientType? clientType,
-      String? clientName,
-      Gender? gender,
-      DateTime? dateOfBirth,
-      String? phoneNumber,
-      DateTime? enrollmentDate,
-      String? cccNumber,
-      bool? counselled});
+      {@JsonKey(name: 'facility')
+          String? facility,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'clientName')
+          String? clientName,
+      @JsonKey(name: 'gender', fromJson: genderFromJson)
+          Gender? gender,
+      @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
+          DateTime? dateOfBirth,
+      @JsonKey(name: 'phoneNumber')
+          String? phoneNumber,
+      @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
+          DateTime? enrollmentDate,
+      @JsonKey(name: 'cccNumber')
+          String? cccNumber,
+      @JsonKey(name: 'counselled')
+          bool? counselled,
+      @JsonKey(name: 'inviteClient')
+          bool? inviteClient});
 }
 
 /// @nodoc
@@ -107,6 +141,7 @@ class _$RegisterClientPayloadCopyWithImpl<$Res>
     Object? enrollmentDate = freezed,
     Object? cccNumber = freezed,
     Object? counselled = freezed,
+    Object? inviteClient = freezed,
   }) {
     return _then(_value.copyWith(
       facility: facility == freezed
@@ -145,6 +180,10 @@ class _$RegisterClientPayloadCopyWithImpl<$Res>
           ? _value.counselled
           : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      inviteClient: inviteClient == freezed
+          ? _value.inviteClient
+          : inviteClient // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -157,15 +196,26 @@ abstract class _$RegisterClientPaylodCopyWith<$Res>
       __$RegisterClientPaylodCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? facility,
-      ClientType? clientType,
-      String? clientName,
-      Gender? gender,
-      DateTime? dateOfBirth,
-      String? phoneNumber,
-      DateTime? enrollmentDate,
-      String? cccNumber,
-      bool? counselled});
+      {@JsonKey(name: 'facility')
+          String? facility,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'clientName')
+          String? clientName,
+      @JsonKey(name: 'gender', fromJson: genderFromJson)
+          Gender? gender,
+      @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
+          DateTime? dateOfBirth,
+      @JsonKey(name: 'phoneNumber')
+          String? phoneNumber,
+      @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
+          DateTime? enrollmentDate,
+      @JsonKey(name: 'cccNumber')
+          String? cccNumber,
+      @JsonKey(name: 'counselled')
+          bool? counselled,
+      @JsonKey(name: 'inviteClient')
+          bool? inviteClient});
 }
 
 /// @nodoc
@@ -190,6 +240,7 @@ class __$RegisterClientPaylodCopyWithImpl<$Res>
     Object? enrollmentDate = freezed,
     Object? cccNumber = freezed,
     Object? counselled = freezed,
+    Object? inviteClient = freezed,
   }) {
     return _then(_RegisterClientPaylod(
       facility: facility == freezed
@@ -228,6 +279,10 @@ class __$RegisterClientPaylodCopyWithImpl<$Res>
           ? _value.counselled
           : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      inviteClient: inviteClient == freezed
+          ? _value.inviteClient
+          : inviteClient // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -236,41 +291,54 @@ class __$RegisterClientPaylodCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RegisterClientPaylod implements _RegisterClientPaylod {
   _$_RegisterClientPaylod(
-      {this.facility,
-      this.clientType,
-      this.clientName,
-      this.gender,
-      this.dateOfBirth,
-      this.phoneNumber,
-      this.enrollmentDate,
-      this.cccNumber,
-      this.counselled});
+      {@JsonKey(name: 'facility') this.facility,
+      @JsonKey(name: 'clientType') this.clientType,
+      @JsonKey(name: 'clientName') this.clientName,
+      @JsonKey(name: 'gender', fromJson: genderFromJson) this.gender,
+      @JsonKey(name: 'dateOfBirth', toJson: dobToJson) this.dateOfBirth,
+      @JsonKey(name: 'phoneNumber') this.phoneNumber,
+      @JsonKey(name: 'enrollmentDate', toJson: dobToJson) this.enrollmentDate,
+      @JsonKey(name: 'cccNumber') this.cccNumber,
+      @JsonKey(name: 'counselled') this.counselled,
+      @JsonKey(name: 'inviteClient') this.inviteClient});
 
   factory _$_RegisterClientPaylod.fromJson(Map<String, dynamic> json) =>
       _$_$_RegisterClientPaylodFromJson(json);
 
   @override
+  @JsonKey(name: 'facility')
   final String? facility;
   @override
+  @JsonKey(name: 'clientType')
   final ClientType? clientType;
   @override
+  @JsonKey(name: 'clientName')
   final String? clientName;
   @override
+  @JsonKey(name: 'gender', fromJson: genderFromJson)
   final Gender? gender;
   @override
+  @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
   final DateTime? dateOfBirth;
   @override
+  @JsonKey(name: 'phoneNumber')
   final String? phoneNumber;
   @override
+  @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
   final DateTime? enrollmentDate;
   @override
+  @JsonKey(name: 'cccNumber')
   final String? cccNumber;
   @override
+  @JsonKey(name: 'counselled')
   final bool? counselled;
+  @override
+  @JsonKey(name: 'inviteClient')
+  final bool? inviteClient;
 
   @override
   String toString() {
-    return 'RegisterClientPayload(facility: $facility, clientType: $clientType, clientName: $clientName, gender: $gender, dateOfBirth: $dateOfBirth, phoneNumber: $phoneNumber, enrollmentDate: $enrollmentDate, cccNumber: $cccNumber, counselled: $counselled)';
+    return 'RegisterClientPayload(facility: $facility, clientType: $clientType, clientName: $clientName, gender: $gender, dateOfBirth: $dateOfBirth, phoneNumber: $phoneNumber, enrollmentDate: $enrollmentDate, cccNumber: $cccNumber, counselled: $counselled, inviteClient: $inviteClient)';
   }
 
   @override
@@ -302,7 +370,10 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
                     .equals(other.cccNumber, cccNumber)) &&
             (identical(other.counselled, counselled) ||
                 const DeepCollectionEquality()
-                    .equals(other.counselled, counselled)));
+                    .equals(other.counselled, counselled)) &&
+            (identical(other.inviteClient, inviteClient) ||
+                const DeepCollectionEquality()
+                    .equals(other.inviteClient, inviteClient)));
   }
 
   @override
@@ -316,7 +387,8 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
       const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(enrollmentDate) ^
       const DeepCollectionEquality().hash(cccNumber) ^
-      const DeepCollectionEquality().hash(counselled);
+      const DeepCollectionEquality().hash(counselled) ^
+      const DeepCollectionEquality().hash(inviteClient);
 
   @JsonKey(ignore: true)
   @override
@@ -332,37 +404,60 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
 
 abstract class _RegisterClientPaylod implements RegisterClientPayload {
   factory _RegisterClientPaylod(
-      {String? facility,
-      ClientType? clientType,
-      String? clientName,
-      Gender? gender,
-      DateTime? dateOfBirth,
-      String? phoneNumber,
-      DateTime? enrollmentDate,
-      String? cccNumber,
-      bool? counselled}) = _$_RegisterClientPaylod;
+      {@JsonKey(name: 'facility')
+          String? facility,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'clientName')
+          String? clientName,
+      @JsonKey(name: 'gender', fromJson: genderFromJson)
+          Gender? gender,
+      @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
+          DateTime? dateOfBirth,
+      @JsonKey(name: 'phoneNumber')
+          String? phoneNumber,
+      @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
+          DateTime? enrollmentDate,
+      @JsonKey(name: 'cccNumber')
+          String? cccNumber,
+      @JsonKey(name: 'counselled')
+          bool? counselled,
+      @JsonKey(name: 'inviteClient')
+          bool? inviteClient}) = _$_RegisterClientPaylod;
 
   factory _RegisterClientPaylod.fromJson(Map<String, dynamic> json) =
       _$_RegisterClientPaylod.fromJson;
 
   @override
+  @JsonKey(name: 'facility')
   String? get facility => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'clientType')
   ClientType? get clientType => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'clientName')
   String? get clientName => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'gender', fromJson: genderFromJson)
   Gender? get gender => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
   DateTime? get dateOfBirth => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'phoneNumber')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
   DateTime? get enrollmentDate => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'cccNumber')
   String? get cccNumber => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'counselled')
   bool? get counselled => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'inviteClient')
+  bool? get inviteClient => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$RegisterClientPaylodCopyWith<_RegisterClientPaylod> get copyWith =>

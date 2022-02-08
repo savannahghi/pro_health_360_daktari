@@ -57,40 +57,5 @@ void main() {
       await tester.tap(find.text('Female').last);
       await tester.pumpAndSettle();
     });
-
-    testWidgets('should not be tappable if field is disabled',
-        (WidgetTester tester) async {
-      int counter = 0;
-
-      const String value = 'John';
-      final List<String> options = <String>['John', 'Jane', 'Doe'];
-      const Key key = Key('drop-down-input');
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: SelectOptionField(
-              disabled: true,
-              dropDownInputKey: key,
-              value: value,
-              options: options,
-              onChanged: (String? value) => counter++,
-            ),
-          ),
-        ),
-      );
-
-      final Finder dropDownFinder = find.byKey(key);
-      await tester.tap(dropDownFinder);
-      await tester.pump();
-      expect(counter, 0);
-
-      final Finder secondOption =
-          find.byKey(ValueKey<String>(options[1]), skipOffstage: false).first;
-      expect(secondOption, findsOneWidget);
-      await tester.tap(secondOption);
-      await tester.pump();
-      expect(counter, 0);
-    });
   });
 }

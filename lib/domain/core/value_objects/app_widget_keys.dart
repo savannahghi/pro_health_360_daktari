@@ -56,6 +56,7 @@ const Key dobKey = Key('dob_key');
 const Key genderOptionFieldKey = Key('gender_dropdown_key');
 const Key phoneNumberFieldKey = Key('phone_number_key');
 const Key enrollmentFieldKey = Key('enrollment_field_key');
+const Key clientTypeField = Key('client_type_key');
 
 // add new group page
 const Key bandDropdownKey = Key('bandDropdownKey');

@@ -44,7 +44,7 @@ mixin Validator {
       if (isValidGender(value)) {
         sink.add(value);
       } else {
-        sink.addError(const UserException('Gender.unknown not allowed'));
+        sink.addError(const UserException('Unknown not allowed'));
       }
     },
   );
