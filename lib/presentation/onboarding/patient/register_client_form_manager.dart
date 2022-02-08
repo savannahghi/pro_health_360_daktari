@@ -1,5 +1,6 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:healthcloud/domain/core/entities/register_client/register_client_payload.dart';
+import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -7,6 +8,10 @@ class RegisterClientFormManager with Validator {
   final BehaviorSubject<String> _facility = BehaviorSubject<String>();
   Stream<String> get facility => _facility.stream.transform(validateName);
   Sink<String> get inFacility => _facility.sink;
+
+  final BehaviorSubject<ClientType> _clientType = BehaviorSubject<ClientType>();
+  Stream<ClientType> get clientType => _clientType.stream;
+  Sink<ClientType> get inClientType => _clientType.sink;
 
   final BehaviorSubject<String> _firstName = BehaviorSubject<String>();
   Stream<String> get firstName => _firstName.stream.transform(validateName);
@@ -38,7 +43,7 @@ class RegisterClientFormManager with Validator {
   Stream<bool> get isFormValid => CombineLatestStream.list(
         <Stream<dynamic>>[
           _facility,
-          // _clientType,
+          _clientType,
           _firstName,
           _lastName,
           _gender,
@@ -49,14 +54,13 @@ class RegisterClientFormManager with Validator {
         ],
       ).map<bool>((List<dynamic> values) {
         final String facility = values[0] as String;
-        // final String clientType = values[1] as String;
-        final String firstName = values[1] as String;
-        final String lastName = values[2] as String;
-        final Gender gender = values[3] as Gender;
-        final DateTime dob = values[4] as DateTime;
-        final String phoneNumber = values[5] as String;
-        final DateTime enrollmentDate = values[6] as DateTime;
-        final String cccNumber = values[7] as String;
+        final String firstName = values[2] as String;
+        final String lastName = values[3] as String;
+        final Gender gender = values[4] as Gender;
+        final DateTime dob = values[5] as DateTime;
+        final String phoneNumber = values[6] as String;
+        final DateTime enrollmentDate = values[7] as DateTime;
+        final String cccNumber = values[8] as String;
 
         return Validator.isValidName(facility) &&
             Validator.isValidName(firstName) &&
@@ -69,15 +73,21 @@ class RegisterClientFormManager with Validator {
       });
 
   RegisterClientPayload submit() {
+    final String? firstNameValue = _firstName.valueOrNull;
+    final String? lastNameValue = _lastName.valueOrNull;
+
     return RegisterClientPayload(
       facility: _facility.valueOrNull,
-      clientName: '$firstName $lastName',
+      clientType: _clientType.valueOrNull,
+      clientName: '$firstNameValue $lastNameValue',
       gender: _gender.valueOrNull,
       dateOfBirth: _dateOfBirth.valueOrNull,
       phoneNumber: _phoneNumber.valueOrNull,
       enrollmentDate: _enrollmentDate.valueOrNull,
       cccNumber: _cccNumber.valueOrNull,
       counselled: true,
+      // TODO (john): Implement within form
+      inviteClient: false,
     );
   }
 }

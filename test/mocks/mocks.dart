@@ -273,7 +273,7 @@ Map<String, dynamic> mockListFacilities = <String, dynamic>{
   ]
 };
 
-final MockTestGraphQlClient mockSILGraphQlClient =
+final MockTestGraphQlClient mockGraphQlClient =
     MockTestGraphQlClient.withResponse(
   'idToken',
   'endpoint',
@@ -595,6 +595,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+
     if (queryString.contains(setUserPINMutation)) {
       return Future<http.Response>.value(
         http.Response(
@@ -623,6 +624,35 @@ class MockTestGraphQlClient extends IGraphQlClient {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{'completeOnboardingTour': true}
           }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(registerClientMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'registerClient': <String, dynamic>{
+                  'ID': '',
+                  'active': false,
+                  'clientType': '',
+                  'enrollmentDate': null,
+                  'fhirPatientID': '',
+                  'emrHealthRecordID': '',
+                  'treatmentBuddy': '',
+                  'counselled': false,
+                  'organisation': '',
+                  'userID': '',
+                  'currentFacilityID': '',
+                  'chv': '',
+                  'caregiver': ''
+                }
+              }
+            },
+          ),
           201,
         ),
       );

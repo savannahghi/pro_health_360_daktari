@@ -25,7 +25,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        graphQlClient: mockSILGraphQlClient,
+        graphQlClient: mockGraphQlClient,
         widget: const CommunityChatPage(),
       );
 
@@ -40,7 +40,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        graphQlClient: mockSILGraphQlClient,
+        graphQlClient: mockGraphQlClient,
         widget: const CommunityChatPage(),
       );
 
@@ -59,7 +59,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        graphQlClient: mockSILGraphQlClient,
+        graphQlClient: mockGraphQlClient,
         widget: const CommunityChatPage(),
       );
 
@@ -75,7 +75,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        graphQlClient: mockSILGraphQlClient,
+        graphQlClient: mockGraphQlClient,
         widget: const CommunityChatPage(),
       );
 

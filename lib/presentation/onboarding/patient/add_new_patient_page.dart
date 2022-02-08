@@ -9,8 +9,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/client/register_client_action.dart';
+import 'package:healthcloud/application/redux/actions/register_client/register_client_action.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
@@ -319,6 +320,51 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                         ],
                       ),
                     ),
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: Column(
+                        children: <Widget>[
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Client Type',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.greyTextColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          StreamBuilder<ClientType>(
+                            stream: _formManager.clientType,
+                            builder: (
+                              BuildContext context,
+                              AsyncSnapshot<ClientType> snapshot,
+                            ) {
+                              final ClientType? data = snapshot.data;
+                              return SelectOptionField(
+                                dropDownInputKey: clientTypeField,
+                                value: data != null
+                                    ? describeEnum(data)
+                                    : describeEnum(ClientType.YOUTH),
+                                options: ClientType.values
+                                    .map(
+                                      (ClientType clientType) =>
+                                          describeEnum(clientType),
+                                    )
+                                    .toList(),
+                                onChanged: (String? value) {
+                                  if (value != null) {
+                                    _formManager.inClientType
+                                        .add(clientTypeFromJson(value));
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 28),
@@ -410,6 +456,16 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
       RegisterClientAction(
         registerClientPayload: _formManager.submit(),
         client: AppWrapperBase.of(context)!.graphQLClient,
+        onSuccess: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Successfully registered client'),
+              duration: Duration(seconds: 5),
+            ),
+          );
+
+          Navigator.of(context).pop();
+        },
       ),
     );
   }

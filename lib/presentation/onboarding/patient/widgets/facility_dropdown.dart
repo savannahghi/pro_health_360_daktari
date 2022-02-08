@@ -11,12 +11,14 @@ class FacilityDropdown extends StatelessWidget {
     required this.stream,
     required this.dropdownInputKey,
     this.onChanged,
+    this.validator,
   });
 
   final String label;
   final Stream<String> stream;
   final Key dropdownInputKey;
   final ValueChanged<String?>? onChanged;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +42,10 @@ class FacilityDropdown extends StatelessWidget {
             final String? data = snapshot.data;
             return SelectOptionField(
               dropDownInputKey: dropdownInputKey,
-              value: data ?? 'Nairobi',
-              options: const <String>['Nairobi', 'Nakuru', 'Mombasa', 'Kisumu'],
+              value: data ?? 'Kanairo',
+              options: const <String>['Kanairo', 'Nakuru', 'Mombasa', 'Kisumu'],
               onChanged: onChanged,
+              validator: validator,
             );
           },
         ),

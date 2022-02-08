@@ -85,7 +85,7 @@ void main() {
       testClass.inGender?.add(Gender.unknown);
       await expectLater(
         testClass.gender,
-        emitsError(const UserException('Gender.unknown not allowed')),
+        emitsError(const UserException('Unknown not allowed')),
       );
 
       genderSubject.close();

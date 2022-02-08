@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 enum MeetingType { Zoom, GoogleMeet, Unknown }
 
 enum ChatStatus { Unknown, Accept, Reject }
@@ -18,4 +20,10 @@ enum ClientType {
   HIGH_RISK,
   SPOUSES,
   YOUTH
+}
+
+extension ClientTypeEx on ClientType {
+  String get name {
+    return describeEnum(this);
+  }
 }

@@ -46,7 +46,7 @@ Future<void> buildTestWidget({
         appName: testAppName,
         appContexts: testAppContexts,
         baseContext: devAppSetupData.customContext,
-        graphQLClient: graphQlClient ?? mockSILGraphQlClient,
+        graphQLClient: graphQlClient ?? mockGraphQlClient,
         child: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: globalAppNavigatorKey,
