@@ -7,3 +7,15 @@ enum AuthTokenStatus { okay, requiresLogin, requiresPin }
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
+
+enum ClientType {
+  PMTCT,
+  OVC,
+  OTZ,
+  OTZ_PLUS,
+  HVL,
+  DREAMS,
+  HIGH_RISK,
+  SPOUSES,
+  YOUTH
+}

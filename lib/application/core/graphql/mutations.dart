@@ -46,3 +46,29 @@ Map<String, dynamic> setUserPINMutationVariables(
 ) {
   return <String, dynamic>{'input': setUserPINVariables};
 }
+
+const String registerClientMutation = r'''
+mutation registerClient($input: ClientRegistrationInput){
+  registerClient(input:$input){
+    ID
+    active
+    clientType
+    enrollmentDate
+    fhirPatientID
+    emrHealthRecordID
+    treatmentBuddy
+    counselled
+    organisation
+    userID
+    currentFacilityID
+    chv
+    caregiver
+  }
+}
+ ''';
+
+const String inviteUser = r'''
+mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!){
+  inviteUser(userID:$userID, phoneNumber: $phoneNumber, flavour:  $flavour)
+}
+ ''';

@@ -239,6 +239,28 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'status': 'Missed'
 };
 
+Map<String, dynamic> mockRegisterClient = <String, dynamic>{
+  'ID': 'id',
+  'active': true,
+  'clientType': 'clientType',
+  'enrollmentDate': '2021-01-01',
+  'fhirPatientID': 'some-id',
+  'emrHealthRecordID': 'some-id',
+  'treatmentBuddy': 'buddy',
+  'counselled': false,
+  'organisation': 'organisation',
+  'userID': 'user_id',
+  'currentFacilityID': 'some-id',
+  'chv': 'chv',
+  'caregiver': 'caregiver'
+};
+
+Map<String, dynamic> mockListFacilities = <String, dynamic>{
+  'Facilities': <dynamic>[
+    mockFacility,
+  ]
+};
+
 final MockTestGraphQlClient mockSILGraphQlClient =
     MockTestGraphQlClient.withResponse(
   'idToken',
@@ -571,8 +593,6 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
-
-    
 
     if (queryString.contains(setNickNameMutation)) {
       return Future<http.Response>.value(

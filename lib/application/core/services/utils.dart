@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -24,10 +26,10 @@ import 'package:healthcloud/presentation/client_details/widgets/add_profile_entr
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/inputs.dart';
-import 'package:http/http.dart' as http;
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
@@ -124,7 +126,6 @@ String? userPinValidator(dynamic val) {
   }
   return null;
 }
-
 
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
