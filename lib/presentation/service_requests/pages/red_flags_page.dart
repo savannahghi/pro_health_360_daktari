@@ -23,110 +23,83 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
   ///
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: <Color>[
-            AppColors.lightGreyBackgroundColor,
-            Colors.white,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: <double>[0.0, 1.0],
-        ),
+    return Scaffold(
+      backgroundColor: AppColors.lightGreyBackgroundColor,
+      appBar: const CustomAppBar(
+        title: redFlagString,
+        showNotificationIcon: true,
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(
-          title: redFlagString,
-          showNotificationIcon: true,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    redFlagImageSvgPath,
-                    width: 180,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 40,
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  redFlagImageSvgPath,
+                  width: 180,
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      spreadRadius: 1,
-                      blurRadius: 8,
-                      offset: const Offset(0, -6),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    ///TODO(eugene): Restore when ready
-                    // Container(
-                    //   padding: const EdgeInsets.all(10),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.white,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //     boxShadow: <BoxShadow>[
-                    //       BoxShadow(
-                    //         color: Colors.black.withOpacity(0.10),
-                    //         spreadRadius: 1,
-                    //         blurRadius: 9,
-                    //         offset: const Offset(0, 9),
-                    //       ),
-                    //     ],
-                    //   ),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: <Widget>[
-                    //       Padding(
-                    //         padding: const EdgeInsets.only(left: 8.0),
-                    //         child: Text(
-                    //           searchString,
-                    //           style: normalSize12Text(
-                    //             AppColors.greyTextColor,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       Padding(
-                    //         padding: const EdgeInsets.only(right: 8.0),
-                    //         child: SvgPicture.asset(searchIconSvg),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // veryLargeVerticalSizedBox,
-                    ...List<Widget>.generate(reFlagItems.length, (int index) {
-                      final String clientName =
-                          reFlagItems.elementAt(index).clientName;
-                      final String feeling =
-                          reFlagItems.elementAt(index).feelingDescription;
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: <Widget>[
+                  ///TODO(eugene): Restore when ready
+                  // Container(
+                  //   padding: const EdgeInsets.all(10),
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(10),
+                  //     boxShadow: <BoxShadow>[
+                  //       BoxShadow(
+                  //         color: Colors.black.withOpacity(0.10),
+                  //         spreadRadius: 1,
+                  //         blurRadius: 9,
+                  //         offset: const Offset(0, 9),
+                  //       ),
+                  //     ],
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: <Widget>[
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(left: 8.0),
+                  //         child: Text(
+                  //           searchString,
+                  //           style: normalSize12Text(
+                  //             AppColors.greyTextColor,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(right: 8.0),
+                  //         child: SvgPicture.asset(searchIconSvg),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // veryLargeVerticalSizedBox,
+                  ...List<Widget>.generate(reFlagItems.length, (int index) {
+                    final String clientName =
+                        reFlagItems.elementAt(index).clientName;
+                    final String feeling =
+                        reFlagItems.elementAt(index).feelingDescription;
 
-                      return RedFlagListItem(
-                        clientName: clientName,
-                        feelingDescription: feeling,
-                      );
-                    }),
-                    veryLargeVerticalSizedBox,
-                  ],
-                ),
+                    return RedFlagListItem(
+                      clientName: clientName,
+                      feelingDescription: feeling,
+                      feeling: feeling,
+                    );
+                  }),
+                  veryLargeVerticalSizedBox,
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

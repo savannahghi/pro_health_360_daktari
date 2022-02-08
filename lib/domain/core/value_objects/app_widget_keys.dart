@@ -35,10 +35,8 @@ const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
 const Key pinRequestApproveCheckboxKey =
     Key('pin_request_approve_checkbox_key');
 const Key reachOutButtonKey = Key('reach_out_button_key');
-const Key dialogConfirmButtonKey = Key('dialog_confirm_button_key');
-const Key dialogCancelButtonKey = Key('dialog_cancel_button_key');
-const Key googleMeetButtonKey = Key('google_meet_button_key');
-const Key zoomButtonKey = Key('zoom_button_key');
+const Key redFlagItemKey = Key('red_flag_item_key');
+const Key dialogCallButtonKey = Key('dialog_call_button_key');
 
 // Surveys
 const Key bandSelectOptionFieldKey = Key('band_select_option_field');

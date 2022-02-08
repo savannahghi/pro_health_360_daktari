@@ -116,15 +116,17 @@ const String addNewPatientText = 'Add new patient';
 const String serviceRequestString = 'Service requests';
 const String approveString = 'Approve';
 const String searchString = 'Search';
-const String reachOutString = 'Reach out';
 const String needsAttentionString = ' needs attention';
 const String redFlagString = 'Red Flags';
-const String cancelString = 'Cancel';
-const String scheduleString = 'Schedule a';
+const String reachOutString = 'Reach out?';
+const String callString = 'Call';
 const String forString = 'for';
-const String meetingTimeString = 'Friday 24th September 2021 at 3:30pm';
 const String reviewString = 'Review';
 const String wantProfiledUpdatedString = ' wants to update their profile';
+const String reachOutDescriptionPart1String =
+    'Use their phone number ';
+    const String reachOutDescriptionPart2String =
+    ' or tap the button below to call them directly';
 
 // Surveys
 const String createSurveyString = 'Create Survey';

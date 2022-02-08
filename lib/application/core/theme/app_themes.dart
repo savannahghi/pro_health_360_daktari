@@ -64,6 +64,8 @@ class AppColors {
   static const Color newGroupLabelColor = Color(0xFF407BFC);
   static const Color diaryListCardColor = Color(0xff17d1d4);
   static const Color dangerColor = Color(0xffb00020);
+  static const Color redColor = Color(0xfff02532);
+  static const Color lightRedColor = Color(0xfffac8c9);
 }
 
 class ThemeColors {

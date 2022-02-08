@@ -48,6 +48,7 @@ dependencies:
   sms_autofill: ^2.2.0
   sqflite: ^2.0.0+4
   unicons: ^2.0.1
+  url_launcher: ^6.0.18
   user_feed: ^0.1.47-nullsafety
   user_profile: ^0.1.23-nullsafety
 
