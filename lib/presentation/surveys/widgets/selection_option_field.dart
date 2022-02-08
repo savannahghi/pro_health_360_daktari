@@ -1,18 +1,14 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
-// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-// Package imports:
-import 'package:misc_utilities/misc.dart';
 
 class SelectOptionField extends StatelessWidget {
-  /// [SILSelectOptionField] customized for selection options.
+  /// [SelectOptionField] customized for selection options.
   ///
   /// This widget can be used in dropdown buttons and select option fields
   ///
   /// EXAMPLE:
   /// ```dart
-  ///  SILSelectOptionField(
+  ///  SelectOptionField(
   ///    hintText: 'Select gender',
   ///    context: context,
   ///    value: _selectedGender,
@@ -36,7 +32,6 @@ class SelectOptionField extends StatelessWidget {
     this.hintText,
     this.onChanged,
     this.color,
-    this.retainOptionCase = true,
     bool? disabled,
   }) : this.disabled = disabled ?? false;
 
@@ -47,10 +42,6 @@ class SelectOptionField extends StatelessWidget {
   final FormFieldSetter<String>? onChanged;
   final FormFieldSetter<String>? onSaved;
   final List<String> options;
-
-  /// whether to retain the format of the dropdown options. This will prevent
-  /// options like `National ID` from being formatted to `National id`
-  final bool retainOptionCase;
 
   final String? value;
 
@@ -103,10 +94,10 @@ class SelectOptionField extends StatelessWidget {
               return DropdownMenuItem<String>(
                 key: ValueKey<String>(value),
                 value: value,
-                child: Text(retainOptionCase ? value : titleCase(value)),
+                child: Text(value),
               );
             }).toList(),
-            onChanged: disabled ? null : onChanged,
+            onChanged: onChanged,
             isDense: true,
           ),
         ),

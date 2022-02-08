@@ -10,9 +10,18 @@ import 'package:healthcloud/application/core/theme/app_themes.dart';
 class PatientDetailsTextFormField extends StatelessWidget {
   const PatientDetailsTextFormField({
     required this.label,
+    this.textFieldKey,
+    this.onChanged,
+    this.onFieldSubmitted,
+    this.validator,
   });
 
   final String label;
+  final Key? textFieldKey;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
+  final String? Function(String?)? validator;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,16 +38,20 @@ class PatientDetailsTextFormField extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         TextFormField(
+          key: textFieldKey,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
             filled: true,
-            fillColor: const Color(0xFFF9F2FE),
             contentPadding: const EdgeInsets.all(8.0),
           ),
           style: const TextStyle(color: AppColors.greyTextColor),
+          onChanged: onChanged,
+          onFieldSubmitted: onFieldSubmitted,
+          validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
       ],
     );

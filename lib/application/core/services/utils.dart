@@ -572,3 +572,7 @@ String removeTailingComma(String word) {
     return str;
   }
 }
+
+String capitalizeFirst(String input) {
+  return '${input[0].toUpperCase()}${input.substring(1).toLowerCase()}';
+}
