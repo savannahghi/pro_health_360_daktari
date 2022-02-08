@@ -10,8 +10,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     this.active,
     this.nickName,
     this.phoneNumber,
-    this.firstName,
-    this.lastName,
+    this.name,
     this.avatar,
     this.termsAccepted,
     this.pinChangeRequired,
@@ -20,8 +19,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
   final bool? active;
   final String? nickName;
-  final String? firstName;
-  final String? lastName;
+  final String? name;
   final String? avatar;
   final Contact? phoneNumber;
   final bool? termsAccepted;
@@ -34,8 +32,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
     final User? newUserProfile = state.staffState?.user?.copyWith(
       active: this.active ?? userFromState?.active,
-      firstName: firstName ?? userFromState?.firstName,
-      lastName: lastName ?? userFromState?.lastName,
+      name: name ?? userFromState?.name,
       avatar: avatar ?? userFromState?.avatar,
       username: nickName ?? userFromState?.username,
       termsAccepted: termsAccepted ?? userFromState?.termsAccepted,

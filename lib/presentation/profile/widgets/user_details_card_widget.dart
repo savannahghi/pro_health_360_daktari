@@ -1,14 +1,13 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:shared_themes/spaces.dart';
 
 // Project imports:
 
@@ -22,7 +21,6 @@ class UserDetailsCard extends StatelessWidget {
     required this.name,
     required this.profession,
     required this.clinicName,
-    required this.emailAddress,
     required this.phoneNumber,
     required this.gender,
     required this.licenseNumber,
@@ -30,9 +28,8 @@ class UserDetailsCard extends StatelessWidget {
   final String profession;
   final String name;
   final String clinicName;
-  final String emailAddress;
   final String phoneNumber;
-  final String gender;
+  final Gender gender;
   final String licenseNumber;
   @override
   Widget build(BuildContext context) {
@@ -59,26 +56,13 @@ class UserDetailsCard extends StatelessWidget {
                   style: boldSize16Text(Colors.white),
                 ),
                 smallVerticalSizedBox,
-                Text(
-                  clinicName,
-                  style: lightSize16Text(Colors.white),
-                ),
+
+                /// (Paul) restore when backend returns default facility name
+                // Text(
+                //   clinicName,
+                //   style: lightSize16Text(Colors.white),
+                // ),
                 largeVerticalSizedBox,
-                Row(
-                  children: <Widget>[
-                    SvgPicture.asset(
-                      emailIconSvgPath,
-                      color: Colors.white,
-                      width: 18,
-                    ),
-                    size15HorizontalSizedBox,
-                    Text(
-                      emailAddress,
-                      style: boldSize14Text(Colors.white),
-                    ),
-                  ],
-                ),
-                size15VerticalSizedBox,
                 Row(
                   children: <Widget>[
                     SvgPicture.asset(
@@ -103,7 +87,7 @@ class UserDetailsCard extends StatelessWidget {
                     ),
                     size15HorizontalSizedBox,
                     Text(
-                      gender,
+                      gender.name,
                       style: boldSize14Text(Colors.white),
                     ),
                   ],

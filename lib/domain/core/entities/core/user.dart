@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/domain/core/entities/core/contact.dart';
@@ -14,9 +13,8 @@ class User with _$User {
   factory User({
     @JsonKey(name: 'userID') String? userId,
     @JsonKey(name: 'userName') String? username, // This is the nickname
-    @JsonKey(name: 'displayName') String? displayName, // This is the @handle
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'firstName') String? firstName,
-    @JsonKey(name: 'middleName') String? middleName,
     @JsonKey(name: 'lastName') String? lastName,
     @JsonKey(name: 'userType') String? userType,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -41,9 +39,8 @@ class User with _$User {
   factory User.initial() => User(
         userId: UNKNOWN,
         username: UNKNOWN,
-        displayName: UNKNOWN,
+        name: UNKNOWN,
         firstName: UNKNOWN,
-        middleName: UNKNOWN,
         lastName: UNKNOWN,
         userType: UNKNOWN,
         gender: Gender.unknown,

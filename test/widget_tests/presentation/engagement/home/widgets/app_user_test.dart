@@ -78,8 +78,7 @@ void main() {
         UpdateUserAction(
           user: User.initial().copyWith(
             avatar: '$dir/test/test_resources/test_file.png',
-            firstName: 'Test',
-            lastName: 'Name',
+            name: 'Test Name',
           ),
         ),
       );
