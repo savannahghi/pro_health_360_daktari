@@ -9,14 +9,11 @@ import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
-import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
-import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 import '../../../../../mocks/test_helpers.dart';
 
 void main() {
@@ -74,55 +71,55 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ServiceRequestsPage), findsWidgets);
     });
+    //TODO(eugene): Restore when Surveys is ready
+    // testWidgets('navigates to SurveysPage', (WidgetTester tester) async {
+    //   await buildTestWidget(
+    //     tester: tester,
+    //     store: store,
+    //     widget: Builder(
+    //       builder: (BuildContext context) {
+    //         return StoreProvider<AppState>(
+    //           store: store,
+    //           child: const HomePage(),
+    //         );
+    //       },
+    //     ),
+    //   );
 
-    testWidgets('navigates to SurveysPage', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const HomePage(),
-            );
-          },
-        ),
-      );
+    //   expect(find.byType(AppbarUser), findsOneWidget);
+    //   expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
+    //   expect(find.byType(ActionCard), findsWidgets);
 
-      expect(find.byType(AppbarUser), findsOneWidget);
-      expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
-      expect(find.byType(ActionCard), findsWidgets);
+    //   final Finder surveysPage =
+    //       find.byKey(surveysCardKey, skipOffstage: false);
+    //   await tester.ensureVisible(surveysPage);
 
-      final Finder surveysPage =
-          find.byKey(surveysCardKey, skipOffstage: false);
-      await tester.ensureVisible(surveysPage);
+    //   await tester.tap(find.text(surveysString));
+    //   await tester.pumpAndSettle();
+    //   expect(find.byType(SurveysPage), findsWidgets);
+    // });
+    //TODO(eugene): Restore when Search is ready
+    // testWidgets('navigates to SearchPage', (WidgetTester tester) async {
+    //   await buildTestWidget(
+    //     tester: tester,
+    //     store: store,
+    //     widget: Builder(
+    //       builder: (BuildContext context) {
+    //         return StoreProvider<AppState>(
+    //           store: store,
+    //           child: const HomePage(),
+    //         );
+    //       },
+    //     ),
+    //   );
 
-      await tester.tap(find.text(surveysString));
-      await tester.pumpAndSettle();
-      expect(find.byType(SurveysPage), findsWidgets);
-    });
+    //   expect(find.byType(AppbarUser), findsOneWidget);
+    //   expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
+    //   expect(find.byType(ActionCard), findsWidgets);
 
-    testWidgets('navigates to SearchPage', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const HomePage(),
-            );
-          },
-        ),
-      );
-
-      expect(find.byType(AppbarUser), findsOneWidget);
-      expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
-      expect(find.byType(ActionCard), findsWidgets);
-
-      await tester.tap(find.text(searchUser));
-      await tester.pumpAndSettle();
-      expect(find.byType(SearchPage), findsWidgets);
-    });
+    //   await tester.tap(find.text(searchUser));
+    //   await tester.pumpAndSettle();
+    //   expect(find.byType(SearchPage), findsWidgets);
+    // });
   });
 }

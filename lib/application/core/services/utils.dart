@@ -91,24 +91,26 @@ Alignment placeMessage(dynamic message) {
 }
 
 final List<RequestItem> serviceRequestItems = <RequestItem>[
-  RequestItem(
-    route: AppRoutes.pinResetRequestsPage,
-    title: 'Pin Reset',
-    imageAssetPath: pinResetImageSvgPath,
-    totalNumber: 5,
-  ),
+  ///TODO(eugene): Restore when ready
+  // RequestItem(
+  //   route: AppRoutes.pinResetRequestsPage,
+  //   title: 'Pin Reset',
+  //   imageAssetPath: pinResetImageSvgPath,
+  //   totalNumber: 5,
+  // ),
   RequestItem(
     route: AppRoutes.redFlagsPage,
     title: 'Red Flags',
     imageAssetPath: redFlagImageSvgPath,
     totalNumber: 3,
   ),
-  RequestItem(
-    route: AppRoutes.profileUpdateRequestsPage,
-    title: 'Profile Update',
-    imageAssetPath: profileUpdateImageSvgPath,
-    totalNumber: 4,
-  ),
+  ///TODO(eugene): Restore when ready
+  // RequestItem(
+  //   route: AppRoutes.profileUpdateRequestsPage,
+  //   title: 'Profile Update',
+  //   imageAssetPath: profileUpdateImageSvgPath,
+  //   totalNumber: 4,
+  // ),
 ];
 
 String? userPinValidator(dynamic val) {

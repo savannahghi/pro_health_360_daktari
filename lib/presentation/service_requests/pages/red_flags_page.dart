@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -76,40 +75,41 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.10),
-                            spreadRadius: 1,
-                            blurRadius: 9,
-                            offset: const Offset(0, 9),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              searchString,
-                              style: normalSize12Text(
-                                AppColors.greyTextColor,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: SvgPicture.asset(searchIconSvg),
-                          ),
-                        ],
-                      ),
-                    ),
-                    veryLargeVerticalSizedBox,
+                    ///TODO(eugene): Restore when ready
+                    // Container(
+                    //   padding: const EdgeInsets.all(10),
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //     borderRadius: BorderRadius.circular(10),
+                    //     boxShadow: <BoxShadow>[
+                    //       BoxShadow(
+                    //         color: Colors.black.withOpacity(0.10),
+                    //         spreadRadius: 1,
+                    //         blurRadius: 9,
+                    //         offset: const Offset(0, 9),
+                    //       ),
+                    //     ],
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: <Widget>[
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(left: 8.0),
+                    //         child: Text(
+                    //           searchString,
+                    //           style: normalSize12Text(
+                    //             AppColors.greyTextColor,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(right: 8.0),
+                    //         child: SvgPicture.asset(searchIconSvg),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // veryLargeVerticalSizedBox,
                     ...List<Widget>.generate(reFlagItems.length, (int index) {
                       final String clientName =
                           reFlagItems.elementAt(index).clientName;

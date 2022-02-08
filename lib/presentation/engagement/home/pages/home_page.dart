@@ -11,7 +11,6 @@ import 'package:shared_themes/spaces.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -27,6 +26,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   colorFilter: ColorFilter.mode(
@@ -55,20 +55,20 @@ class HomePage extends StatelessWidget {
                     const AppbarUser(),
                     veryLargeVerticalSizedBox,
                     veryLargeVerticalSizedBox,
-                    Text(
-                      time,
-                      style: veryBoldSize28Text(Colors.white),
-                    ),
+
                     Text(
                       getGreetingMessage(firstName),
                       style: boldSize24Text(Colors.white),
                     ),
-                    size15VerticalSizedBox,
-                    SearchWidget(
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.searchPage);
-                      },
-                    ),
+
+                    //TODO(eugene): Restore when ready
+                    // size15VerticalSizedBox,
+
+                    // SearchWidget(
+                    //   onTap: () {
+                    //     Navigator.pushNamed(context, AppRoutes.searchPage);
+                    //   },
+                    // ),
                     smallVerticalSizedBox,
                   ],
                 ),
@@ -101,14 +101,16 @@ class HomePage extends StatelessWidget {
                           .pushNamed(AppRoutes.serviceRequestsPage);
                     },
                   ),
-                  ActionCard(
-                    key: surveysCardKey,
-                    title: surveysString,
-                    iconUrl: surveysImageSvgPath,
-                    onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.surveysPage);
-                    },
-                  ),
+
+                  ///TODO(eugene): Restore when POC is ready
+                  // ActionCard(
+                  //   key: surveysCardKey,
+                  //   title: surveysString,
+                  //   iconUrl: surveysImageSvgPath,
+                  //   onTap: () {
+                  //     Navigator.of(context).pushNamed(AppRoutes.surveysPage);
+                  //   },
+                  // ),
                 ],
               ),
             ),

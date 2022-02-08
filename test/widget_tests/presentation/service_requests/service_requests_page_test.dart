@@ -20,7 +20,7 @@ void main() {
 
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(CategoryItemCard), findsNWidgets(3));
+      expect(find.byType(CategoryItemCard), findsOneWidget);
 
       await tester.tap(find.byType(CategoryItemCard).first);
       await tester.pumpAndSettle();
