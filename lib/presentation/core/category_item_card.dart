@@ -31,27 +31,21 @@ class CategoryItemCard extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              width: 145,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.lightGreyColor),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: <Widget>[
-                  mediumVerticalSizedBox,
-                  SvgPicture.asset(
-                    iconPath,
-                    height: 70,
-                  ),
-                  smallVerticalSizedBox,
-                  Text(title, style: boldSize12Text(AppColors.greyTextColor)),
-                  smallVerticalSizedBox,
-                ],
-              ),
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: 140,
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.lightGreyColor),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: <Widget>[
+                mediumVerticalSizedBox,
+                SvgPicture.asset(iconPath, height: 80),
+                smallVerticalSizedBox,
+                Text(title, style: boldSize12Text(AppColors.greyTextColor)),
+                smallVerticalSizedBox,
+              ],
             ),
           ),
         ),

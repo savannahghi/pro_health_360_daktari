@@ -24,7 +24,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightGreyBackgroundColor,
+      backgroundColor: AppColors.galleryColor,
       appBar: const CustomAppBar(
         title: redFlagString,
         showNotificationIcon: true,
@@ -45,7 +45,15 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
               padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
               child: Column(
                 children: <Widget>[
                   ///TODO(eugene): Restore when ready

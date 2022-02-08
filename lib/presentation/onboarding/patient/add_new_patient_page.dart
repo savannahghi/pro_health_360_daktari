@@ -37,7 +37,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
             child: Column(
               children: <Widget>[
                 SvgPicture.asset(
-                  newEntriesImage,
+                  addNewUserIconSvg,
+                  height: 180,
                 ),
                 const SizedBox(height: 24),
                 Row(
@@ -81,9 +82,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                     ),
                     SizedBox(width: 10),
                     Flexible(
-                      child: PatientDetailsTextFormField(
-                        label: genderLabel,
-                      ),
+                      child: PatientDetailsTextFormField(label: genderLabel),
                     ),
                   ],
                 ),
