@@ -123,9 +123,8 @@ const String callString = 'Call';
 const String forString = 'for';
 const String reviewString = 'Review';
 const String wantProfiledUpdatedString = ' wants to update their profile';
-const String reachOutDescriptionPart1String =
-    'Use their phone number ';
-    const String reachOutDescriptionPart2String =
+const String reachOutDescriptionPart1String = 'Use their phone number ';
+const String reachOutDescriptionPart2String =
     ' or tap the button below to call them directly';
 
 // Surveys
@@ -274,6 +273,7 @@ const String logoutButtonText = 'Logout';
 
 final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub';
 const String appVersionString = 'Current Version:';
+const String setNicknameString = 'Set Your Nickname';
 
 // this is the version of the currently running app.
 // it has to be defined as a const otherwise the compiler will return the default
