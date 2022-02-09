@@ -6,11 +6,13 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/localization.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
+import 'package:healthcloud/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/initial_route_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -53,7 +55,33 @@ class _AuthManagerState extends State<AuthManager> {
           .listen((bool hasConnection) {
             connectivityChanged(hasConnection: hasConnection);
           });
+
+      WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+        StoreProvider.dispatch(
+          context,
+          CheckTokenAction(
+            httpClient:
+                AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+            refreshTokenEndpoint:
+                AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+          ),
+        );
+      });
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    StoreProvider.dispatch(
+      context,
+      CheckTokenAction(
+        httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+        refreshTokenEndpoint:
+            AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+      ),
+    );
   }
 
   @override

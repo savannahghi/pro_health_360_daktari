@@ -1,22 +1,104 @@
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
+import 'package:healthcloud/presentation/core/auth_manager.dart';
+import 'package:misc_utilities/refresh_token_manager.dart';
 
 import '../../mocks/mocks.dart';
 
 void main() {
-  group('AfyaMojaApp', () {
-    testWidgets('should render widget', (WidgetTester tester) async {
-      FlutterConfig.loadValueForTesting(<String, String>{
-        'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
-        'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
-      });
+  FlutterConfig.loadValueForTesting(<String, String>{
+    'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
+    'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+  });
 
+  group('AfyaMojaApp', () {
+    testWidgets(
+      'should render correctly',
+      (WidgetTester tester) async {
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
+
+        final ConnectivityStatus connectivityStatus =
+            ConnectivityStatus.initial();
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Center(
+              child: AfyaMojaApp(
+                appSetupData: devAppSetupData,
+                store: store,
+                connectivityStatus: connectivityStatus,
+              ),
+            ),
+          ),
+        );
+
+        tester.binding
+            .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+        RefreshTokenManger().listen.add(true);
+
+        await tester.pumpAndSettle();
+
+        final Finder silAppWrapperWidget = find.byType(AppWrapper);
+        expect(silAppWrapperWidget, findsOneWidget);
+
+        final Finder preLoadAppWidget = find.byType(AuthManager);
+        expect(preLoadAppWidget, findsOneWidget);
+
+        RefreshTokenManger().listen.add(true);
+
+        await tester.pumpAndSettle();
+        final Finder storeProviderWidget = find.byKey(globalStoreProviderKey);
+        expect(storeProviderWidget, findsWidgets);
+      },
+    );
+
+    testWidgets(
+      'AppEntryPoint should not render when paused',
+      (WidgetTester tester) async {
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
+
+        final ConnectivityStatus connectivityStatus =
+            ConnectivityStatus.initial();
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Center(
+              child: AfyaMojaApp(
+                appSetupData: devAppSetupData,
+                store: store,
+                connectivityStatus: connectivityStatus,
+              ),
+            ),
+          ),
+        );
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+        RefreshTokenManger().listen.add(true);
+
+        await tester.pumpAndSettle();
+
+        final Finder silAppWrapperWidget = find.byType(AppWrapper);
+        expect(silAppWrapperWidget, findsOneWidget);
+
+        final Finder preLoadAppWidget = find.byType(AuthManager);
+        expect(preLoadAppWidget, findsOneWidget);
+        await tester.pumpAndSettle();
+      },
+    );
+
+    testWidgets('should trigger connectivity changes',
+        (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
@@ -29,17 +111,21 @@ void main() {
       ConnectivityPlatform.instance = fakePlatform;
 
       final MobileConnectivityStatus connectivityStatus =
-          MobileConnectivityStatus(checkInternetCallback: () async => true);
+          MobileConnectivityStatus(
+        checkInternetCallback: () async => true,
+      );
 
       await tester.pumpWidget(
-        AfyaMojaApp(
-          store: store,
-          appSetupData: devAppSetupData,
-          connectivityStatus: connectivityStatus,
+        MaterialApp(
+          home: AfyaMojaApp(
+            appSetupData: devAppSetupData,
+            store: store,
+            connectivityStatus: connectivityStatus,
+          ),
         ),
       );
 
-      expect(find.byType(AfyaMojaApp), findsOneWidget);
+      await tester.pump(const Duration(minutes: 5));
     });
   });
 }
