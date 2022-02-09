@@ -51,16 +51,9 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                   SizedBox(
                     height: sizedBoxHeight,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      smallVerticalSizedBox,
-                      Text(
-                        setNicknameDescription,
-                        style: lightSize16Text(Colors.grey),
-                      ),
-                      smallVerticalSizedBox,
-                    ],
+                  const OnboardingScaffoldHeader(
+                    title: setNicknameString,
+                    description: setNicknameDescription,
                   ),
                   smallVerticalSizedBox,
                   SizedBox(
