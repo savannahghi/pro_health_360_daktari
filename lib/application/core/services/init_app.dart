@@ -52,8 +52,8 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
-  final AfyaMojaStateDatabase stateDB =
-      AfyaMojaStateDatabase(dataBaseName: DatabaseName);
+  final MyCareHubProfessionalStateDatabase stateDB =
+      MyCareHubProfessionalStateDatabase(dataBaseName: DatabaseName);
 
   await stateDB.init();
 
@@ -100,7 +100,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
             ..diagnosticLevel = SentryLevel.error;
         },
         appRunner: () => runApp(
-          AfyaMojaApp(
+          MyCareHubProfessionalApp(
             store: store,
             appSetupData: appSetupData,
             connectivityStatus: connectivityStatus,

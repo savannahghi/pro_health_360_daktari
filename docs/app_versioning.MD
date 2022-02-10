@@ -1,8 +1,8 @@
-# AfyaMoja Versioning
+# myCareHub Professional Versioning
 
 ## Custom versioning policy
 
-For AfyaMoja, we needed a unique number for our versioning that would not conflict with the play store submission process. Instead of incrementing the app version manually, we would let out CI jobs do it for us.
+For myCareHub Professional, we needed a unique number for our versioning that would not conflict with the play store submission process. Instead of incrementing the app version manually, we would let out CI jobs do it for us.
 
 We, therefore, decided to settle on incorporating the CI job ID into our versioning scheme for the purposes of automation. So, we use a combination of the `build version root` and the `CI job ID` and finally the suffix of the channel the app is to be deployed to. This helps prevent a lot of mistakes internally especially when doing submissions to play store
 

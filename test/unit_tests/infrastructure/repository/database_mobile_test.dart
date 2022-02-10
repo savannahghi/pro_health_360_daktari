@@ -21,8 +21,8 @@ void main() {
     (Invocation realInvocation) => Future<MockStateDB>.value(mockDb),
   );
 
-  final AfyaMojaDatabaseMobile<MockStateDB> db =
-      AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDb);
+  final MyCareHubProfessionalDatabaseMobile<MockStateDB> db =
+      MyCareHubProfessionalDatabaseMobile<MockStateDB>(initializeDB: initDb);
 
   Future<List<Map<String, Object?>>> returnVal(int count) =>
       Future<List<Map<String, Object?>>>.value(
@@ -42,8 +42,8 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final AfyaMojaDatabaseMobile<MockStateDB> _db =
-        AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDB);
+    final MyCareHubProfessionalDatabaseMobile<MockStateDB> _db =
+        MyCareHubProfessionalDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
     expect(_db.clearDatabase(), throwsException);
   });
@@ -58,8 +58,8 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final AfyaMojaDatabaseMobile<MockStateDB> _db =
-        AfyaMojaDatabaseMobile<MockStateDB>(initializeDB: initDB);
+    final MyCareHubProfessionalDatabaseMobile<MockStateDB> _db =
+        MyCareHubProfessionalDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
     expect(_db.clearDatabase(), throwsException);
   });

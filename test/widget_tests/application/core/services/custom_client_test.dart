@@ -9,7 +9,7 @@ import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/infrastructure/endpoints.dart'
-    as afyamoja_endpoints;
+    as mycarehubprofessional_endpoints;
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -66,7 +66,7 @@ void main() {
       final String jsonContent = json.encode(mockSecurityQuestionResponse);
 
       when(baseRequest.url).thenReturn(
-        Uri.parse(afyamoja_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
       );
 
       when(baseRequest.send()).thenAnswer((_) {
@@ -117,7 +117,7 @@ void main() {
       final String jsonContent = json.encode(mockLoginResponse);
 
       when(baseRequest.url).thenReturn(
-        Uri.parse(afyamoja_endpoints.kTestLoginByPhoneEndpoint),
+        Uri.parse(mycarehubprofessional_endpoints.kTestLoginByPhoneEndpoint),
       );
 
       when(baseRequest.send()).thenAnswer((_) {
@@ -163,7 +163,7 @@ void main() {
             200,
             request: Request(
               'POST',
-              Uri.parse(afyamoja_endpoints.kTestRefreshTokenEndpoint),
+              Uri.parse(mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint),
             ),
             headers: <String, String>{'content-type': 'application/json'},
           ),
@@ -179,7 +179,7 @@ void main() {
                 '',
                 '',
                 refreshTokenEndpoint:
-                    afyamoja_endpoints.kTestRefreshTokenEndpoint,
+                    mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint,
                 userID: userId,
                 client: client,
                 context: context,
@@ -209,7 +209,7 @@ void main() {
       when(mockRequest.headers).thenAnswer((_) => <String, String>{});
       when(mockRequest.method).thenReturn('POST');
       when(mockRequest.url).thenReturn(
-        Uri.parse(afyamoja_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
       );
       when(mockRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
       when(mockRequest.body).thenReturn(jsonContent);
@@ -252,7 +252,7 @@ void main() {
             200,
             request: Request(
               'POST',
-              Uri.parse(afyamoja_endpoints.kTestRefreshTokenEndpoint),
+              Uri.parse(mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint),
             ),
             headers: <String, String>{'content-type': 'application/json'},
           ),
@@ -268,7 +268,7 @@ void main() {
                 '',
                 '',
                 refreshTokenEndpoint:
-                    afyamoja_endpoints.kTestRefreshTokenEndpoint,
+                    mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint,
                 userID: userId,
                 client: client,
                 context: context,
@@ -298,7 +298,7 @@ void main() {
       when(mockRequest.headers).thenAnswer((_) => <String, String>{});
       when(mockRequest.method).thenReturn('POST');
       when(mockRequest.url).thenReturn(
-        Uri.parse(afyamoja_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
       );
       when(mockRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
       when(mockRequest.body).thenReturn(jsonContent);

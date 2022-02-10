@@ -17,13 +17,13 @@ import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
 import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
 
-/// [AfyaMojaStateDatabase] is the middleware that interacts with the database
+/// [MyCareHubProfessionalStateDatabase] is the middleware that interacts with the database
 /// on behalf of the application. From the app's perspective, it doesn't care
 /// which database its saving its state on. HCStateDatabase therefore offers
 /// different implementations
 /// for its method.
-class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
-  AfyaMojaStateDatabase({
+class MyCareHubProfessionalStateDatabase implements PersistorPrinterDecorator<AppState> {
+  MyCareHubProfessionalStateDatabase({
     Duration throttle = const Duration(seconds: 2),
     Duration saveDuration = Duration.zero,
     required this.dataBaseName,
@@ -41,7 +41,7 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   @override
   Future<void> deleteState() async {
-    await AfyaMojaDatabaseMobile<Database>(
+    await MyCareHubProfessionalDatabaseMobile<Database>(
       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
     ).clearDatabase();
   }
@@ -63,7 +63,7 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
             newState.serviceRequestState) {
       await persistState(
         newState,
-        AfyaMojaDatabaseMobile<Database>(
+        MyCareHubProfessionalDatabaseMobile<Database>(
           initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
         ),
       );
@@ -76,13 +76,13 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   /// - else, we retrieve the state from the database
   @override
   Future<AppState> readState() async {
-    if (await AfyaMojaDatabaseMobile<Database>(
+    if (await MyCareHubProfessionalDatabaseMobile<Database>(
       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
     ).isDatabaseEmpty()) {
       return AppState.initial();
     } else {
       return retrieveState(
-        AfyaMojaDatabaseMobile<Database>(
+        MyCareHubProfessionalDatabaseMobile<Database>(
           initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
         ),
       );
@@ -96,7 +96,7 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   /// initialize the database
   Future<void> init() async {
-    await AfyaMojaDatabaseMobile<Database>(
+    await MyCareHubProfessionalDatabaseMobile<Database>(
       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
     ).database;
   }
@@ -104,7 +104,7 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   @visibleForTesting
   Future<void> persistState(
     AppState newState,
-    AfyaMojaDatabaseBase<dynamic> database,
+    MyCareHubProfessionalDatabaseBase<dynamic> database,
   ) async {
     // save credentials
     await database.saveState(
@@ -156,7 +156,7 @@ class AfyaMojaStateDatabase implements PersistorPrinterDecorator<AppState> {
   }
 
   @visibleForTesting
-  Future<AppState> retrieveState(AfyaMojaDatabaseBase<dynamic> database) async {
+  Future<AppState> retrieveState(MyCareHubProfessionalDatabaseBase<dynamic> database) async {
     return AppState().copyWith(
       // retrieve credentials
       credentials: AuthCredentials.fromJson(

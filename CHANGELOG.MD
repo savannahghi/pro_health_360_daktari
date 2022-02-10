@@ -2,4 +2,4 @@
 
 ## 1.0.0-nullsafety
 
-- feat: initial implementation of AfyaMoja
+- feat: initial implementation of myCareHub Professional

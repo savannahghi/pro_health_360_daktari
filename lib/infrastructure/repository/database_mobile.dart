@@ -9,7 +9,7 @@ import 'package:healthcloud/infrastructure/repository/sqlite.dart';
 // Package imports:
 import 'package:sqflite/sqflite.dart';
 
-/// [AfyaMojaDatabaseMobile] is the main entry for interacting with the
+/// [MyCareHubProfessionalDatabaseMobile] is the main entry for interacting with the
 /// database for healthcloud mobile. It uses sqlite which is a common RDMS.
 /// Unlike other key:value storage, sqlite offers high flexibility when
 /// storing structured data. The idea is to store, sessions,
@@ -19,9 +19,9 @@ import 'package:sqflite/sqflite.dart';
 /// [flutter pub run build_runner build --delete-conflicting-outputs]
 /// Ref : https://flutter.dev/docs/development/data-and-backend/json
 ///     : https://pub.dev/packages/built_value
-class AfyaMojaDatabaseMobile<T extends DatabaseExecutor>
-    implements AfyaMojaDatabaseBase<T> {
-  AfyaMojaDatabaseMobile({this.initializeDB});
+class MyCareHubProfessionalDatabaseMobile<T extends DatabaseExecutor>
+    implements MyCareHubProfessionalDatabaseBase<T> {
+  MyCareHubProfessionalDatabaseMobile({this.initializeDB});
 
   final InitializeDB<T>? initializeDB;
 

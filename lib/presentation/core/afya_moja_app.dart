@@ -15,8 +15,8 @@ import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 
-class AfyaMojaApp extends StatelessWidget {
-  const AfyaMojaApp({
+class MyCareHubProfessionalApp extends StatelessWidget {
+  const MyCareHubProfessionalApp({
     Key? key,
     required this.store,
     required this.appSetupData,
