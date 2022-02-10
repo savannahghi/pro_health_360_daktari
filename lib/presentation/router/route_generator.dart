@@ -48,7 +48,7 @@ class RouteGenerator {
 
       case AppRoutes.setNicknamePage:
         return MaterialPageRoute<SetNickNamePage>(
-          builder: (_) => const SetNickNamePage(),
+          builder: (_) => SetNickNamePage(),
         );
 
       case AppRoutes.loginPage:
