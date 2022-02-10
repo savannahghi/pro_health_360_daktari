@@ -4,17 +4,18 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
-
-import 'package:shared_themes/spaces.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
@@ -22,6 +23,11 @@ import 'package:shared_ui_components/platform_loader.dart';
 /// The [CustomTextField] for confirm PIN validates if it matches the
 /// PIN entered in the above [CustomTextField]
 class CreateNewPINPage extends StatefulWidget {
+  CreateNewPINPage({
+    ConnectivityStatus? connectivityStatus,
+  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+
+  final ConnectivityStatus connectivityStatus;
   @override
   _CreateNewPINPageState createState() => _CreateNewPINPageState();
 }
@@ -129,6 +135,26 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                       onPressed: vm.state.wait!.isWaitingFor(createPinFlag)
                           ? null
                           : () async {
+                              final bool hasConnection = await widget
+                                  .connectivityStatus
+                                  .checkConnection();
+
+                              StoreProvider.dispatch(
+                                context,
+                                UpdateConnectivityAction(
+                                  hasConnection: hasConnection,
+                                ),
+                              );
+
+                              if (!hasConnection) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(noInternetConnection),
+                                  ),
+                                );
+                                return;
+                              }
+
                               if (_formKey.currentState!.validate()) {
                                 setUserPIN(
                                   context: context,

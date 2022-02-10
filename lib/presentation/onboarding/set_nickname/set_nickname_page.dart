@@ -6,16 +6,23 @@ import 'package:flutter/services.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/set_nick_name_action.dart';
+import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/onboarding/set_nickname_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class SetNickNamePage extends StatefulWidget {
-  const SetNickNamePage({Key? key}) : super(key: key);
+  SetNickNamePage({
+    ConnectivityStatus? connectivityStatus,
+  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+
+  final ConnectivityStatus connectivityStatus;
 
   @override
   _SetNickNamePageState createState() => _SetNickNamePageState();
@@ -118,7 +125,14 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                     buttonKey: continueKey,
                     onPressed: () async {
                       final bool hasConnection =
-                          vm.hasInternetConnection ?? false;
+                          await widget.connectivityStatus.checkConnection();
+
+                      StoreProvider.dispatch(
+                        context,
+                        UpdateConnectivityAction(
+                          hasConnection: hasConnection,
+                        ),
+                      );
 
                       if (!hasConnection) {
                         ScaffoldMessenger.of(context).showSnackBar(
