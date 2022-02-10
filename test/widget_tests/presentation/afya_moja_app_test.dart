@@ -21,7 +21,7 @@ void main() {
     'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
   });
 
-  group('AfyaMojaApp', () {
+  group('MyCareHubProfessionalApp', () {
     testWidgets(
       'should render correctly',
       (WidgetTester tester) async {
@@ -34,7 +34,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Center(
-              child: AfyaMojaApp(
+              child: MyCareHubProfessionalApp(
                 appSetupData: devAppSetupData,
                 store: store,
                 connectivityStatus: connectivityStatus,
@@ -75,7 +75,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Center(
-              child: AfyaMojaApp(
+              child: MyCareHubProfessionalApp(
                 appSetupData: devAppSetupData,
                 store: store,
                 connectivityStatus: connectivityStatus,
@@ -117,7 +117,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AfyaMojaApp(
+          home: MyCareHubProfessionalApp(
             appSetupData: devAppSetupData,
             store: store,
             connectivityStatus: connectivityStatus,

@@ -5,7 +5,7 @@ import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/migrations.dart';
 
 void main() {
-  group('AfyaMojaDatabaseMobile', () {
+  group('MyCareHubProfessionalDatabaseMobile', () {
     test('Tables enum returns correct values', () {
       expect(Tables.AuthCredentials.name, 'credentials');
       expect(Tables.HomeState.name, 'homeState');

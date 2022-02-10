@@ -1,6 +1,6 @@
 import 'package:healthcloud/application/core/services/utils.dart';
 
-const String appName = 'myCareHub';
+const String appName = 'myCareHub Professional';
 
 //Create New Pin Page
 const String confirmPinString = 'Confirm PIN';
@@ -62,7 +62,7 @@ const String approveText = 'Approve';
 const String rejectText = 'Reject';
 
 //Phone Login
-const String phoneLoginPageTitle = 'Welcome to myCareHub';
+const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';
 const String phoneLoginPageDescription = 'Enter your provided PIN to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
@@ -273,7 +273,7 @@ const String nameInputValidateString = 'Kindly input a nickname';
 const String nicknameSuccessString = 'Nickname created successfully';
 const String logoutButtonText = 'Logout';
 
-final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub';
+final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub Professional';
 const String appVersionString = 'Current Version:';
 const String setNicknameString = 'Set Your Nickname';
 

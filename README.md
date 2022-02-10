@@ -2,11 +2,11 @@
 [![Maintained](https://img.shields.io/badge/Maintained-Actively-informational.svg?style=for-the-badge)](https://shields.io/)
 [![Release](https://img.shields.io/badge/Coverage-100-success.svg?style=for-the-badge)](https://shields.io/)
 
-# AfyaMoja
+# myCareHub Professional
 
 ### Project prerequisites
 
-1. The **AfyaMoja** app runs on Flutter version 2.2.3 **stable channel**. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **myCareHub Professional** app runs on Flutter version 2.5.3 **stable channel**. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 
@@ -14,7 +14,7 @@
 
 Looks like we are done with the prerequisites :-)
 
-### How to setup and run AfyaMoja
+### How to setup and run myCareHub Professional
 
 1. Clone the project by running `git clone https://github.com/savannahghi/AfyaMoja.git` or download the code
 2. `cd AfyaMoja`
