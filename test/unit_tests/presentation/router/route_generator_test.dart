@@ -1,9 +1,8 @@
 // Flutter imports:
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
@@ -27,6 +26,7 @@ import 'package:healthcloud/presentation/service_requests/pages/pin_reset_reques
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
+
 import '../../../mocks/mocks.dart';
 
 void main() {
@@ -46,6 +46,9 @@ void main() {
   });
 
   test('Test router returns CreateNewPinPage', () {
+    final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
+    ConnectivityPlatform.instance = fakePlatform;
+
     const RouteSettings settings = RouteSettings(name: AppRoutes.setPinPage);
 
     final MaterialPageRoute<CreateNewPINPage> route =
@@ -225,7 +228,7 @@ void main() {
     expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
     expect(route?.builder(context), isA<TermsAndConditionsPage>());
   });
-  
+
   test('Test router returns SetNickNamePage', () {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.setNicknamePage);
@@ -237,8 +240,7 @@ void main() {
     expect(route?.builder(context), isA<SetNickNamePage>());
   });
   test('Test router returns SurveysPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.surveysPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.surveysPage);
 
     final MaterialPageRoute<SurveysPage>? route =
         routeGenerator(settings) as MaterialPageRoute<SurveysPage>?;
