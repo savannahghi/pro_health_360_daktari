@@ -123,6 +123,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           id: loginResponse.staffState?.id,
           staffNumber: loginResponse.staffState?.staffNumber,
           defaultFacility: loginResponse.staffState?.defaultFacility,
+          facilities: loginResponse.staffState?.facilities,
         ),
       );
 

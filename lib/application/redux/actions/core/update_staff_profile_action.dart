@@ -2,6 +2,7 @@
 import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/core/facility.dart';
 
 // Project imports:
 
@@ -12,12 +13,14 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
     this.active,
     this.staffNumber,
     this.defaultFacility,
+    this.facilities,
   });
 
   final String? id;
   final bool? active;
   final String? staffNumber;
   final String? defaultFacility;
+  final List<Facility>? facilities;
 
   @override
   AppState reduce() {
@@ -28,6 +31,7 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
         staffNumber: this.staffNumber ?? state.staffState?.staffNumber,
         defaultFacility:
             this.defaultFacility ?? state.staffState?.defaultFacility,
+        facilities: this.facilities ?? state.staffState?.facilities,
       ),
     );
 
