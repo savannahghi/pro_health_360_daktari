@@ -158,9 +158,9 @@ final List<PINResetRequest> pinResetRequests = <PINResetRequest>[
 ];
 
 final List<RedFlagItem> reFlagItems = <RedFlagItem>[
-  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
+  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling very sad'),
   RedFlagItem(clientName: 'Kevin', feelingDescription: 'Feeling depressed'),
-  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling Hopeless'),
+  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling sad'),
 ];
 
 const List<Widget> patientSearchResults = <Widget>[

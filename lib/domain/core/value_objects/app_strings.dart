@@ -110,7 +110,7 @@ const String contactRequestText = 'Contact Request';
 const String contentString = 'Content';
 const String surveysString = 'Surveys';
 const String noResultsFoundText = 'Oops!... no results found';
-const String addNewPatientText = 'Add new patient';
+const String addNewPatientText = 'Add a new patient';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';
@@ -162,7 +162,7 @@ const String appAccessText = 'App Access';
 const String myCareHubInviteText = 'Invite to myCareHub';
 const String groupsLabel = 'Groups/Community';
 const String registerBtnText = 'Register';
-const String addNewPatientTitleText = 'Add new patient';
+const String addNewPatientTitleText = 'Add a new patient';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';

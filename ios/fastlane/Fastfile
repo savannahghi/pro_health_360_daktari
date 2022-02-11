@@ -31,9 +31,9 @@ platform :ios do
 
     # App Store Connect API token to authenticate Apple ID
     api_key = app_store_connect_api_key(
-      key_id: "#{ENV["APP_STORE_CONNECT_API_KEY_ID"]}",
-      issuer_id: "#{ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"]}",
-      key_content: "#{ENV["APP_STORE_CONNECT_API_KEY_FUNGUO"]}",
+      key_id: "JRJ9FXWTQV",
+      issuer_id: "ef26667b-7aa6-463d-b04e-4c882c67a72b",
+      key_filepath: "fastlane/authkey.p8",
     )
 
     increment_build_number(
