@@ -14,6 +14,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.invalidOTP,
     this.failedToSendOTP,
     this.canResendOTP,
+    this.termsAccepted,
     this.hasSetNickName,
     this.hasSetSecurityQuestions,
     this.hasVerifiedSecurityQuestions,
@@ -32,6 +33,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   final bool? canResendOTP;
+  bool? termsAccepted;
   bool? hasSetNickName;
   bool? hasSetSecurityQuestions;
   bool? hasVerifiedSecurityQuestions;
@@ -54,6 +56,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       securityQuestionResponses: securityQuestionsResponses ??
           state.onboardingState?.securityQuestionResponses,
       isPhoneVerified: isPhoneVerified ?? oldPhoneVerified,
+      termsAccepted: termsAccepted ?? state.onboardingState?.termsAccepted,
       hasSetNickName: hasSetNickName ?? state.onboardingState?.hasSetNickName,
       hasSetSecurityQuestions: hasSetSecurityQuestions ??
           state.onboardingState?.hasSetSecurityQuestions,

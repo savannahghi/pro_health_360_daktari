@@ -31,6 +31,7 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
     phoneLogin: json['phoneLogin'] == null
         ? null
         : PhoneLoginState.fromJson(json['phoneLogin'] as Map<String, dynamic>),
+    termsAccepted: json['termsAccepted'] as bool?,
     isPhoneVerified: json['isPhoneVerified'] as bool?,
     isPINSet: json['isPINSet'] as bool?,
     isResetPin: json['isResetPin'] as bool?,
@@ -48,6 +49,7 @@ Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestionResponses': instance.securityQuestionResponses,
       'verifyPhoneState': instance.verifyPhoneState,
       'phoneLogin': instance.phoneLogin,
+      'termsAccepted': instance.termsAccepted,
       'isPhoneVerified': instance.isPhoneVerified,
       'isPINSet': instance.isPINSet,
       'isResetPin': instance.isResetPin,

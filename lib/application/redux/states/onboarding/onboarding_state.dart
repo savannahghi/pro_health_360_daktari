@@ -18,6 +18,8 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestionResponse>? securityQuestionResponses,
     VerifyPhoneState? verifyPhoneState,
     PhoneLoginState? phoneLogin,
+    // If the user has accepted terms
+    bool? termsAccepted,
     // If the user has verified their phone number
     bool? isPhoneVerified,
     //If the user has set their PIN
@@ -39,12 +41,14 @@ class OnboardingState with _$OnboardingState {
         termsAndConditions: TermsAndConditions.initial(),
         verifyPhoneState: VerifyPhoneState.initial(),
         isResetPin: false,
+
         ///   - Login state
         ///   - create pin
         phoneLogin: PhoneLoginState.initial(),
         createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
+        termsAccepted: false,
         isPhoneVerified: false,
         isPINSet: false,
         hasSetSecurityQuestions: false,
