@@ -27,6 +27,7 @@ class _$OnboardingStateTearOff {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifyPhoneState? verifyPhoneState,
       PhoneLoginState? phoneLogin,
+      bool? termsAccepted,
       bool? isPhoneVerified,
       bool? isPINSet,
       bool? isResetPin,
@@ -40,6 +41,7 @@ class _$OnboardingStateTearOff {
       securityQuestionResponses: securityQuestionResponses,
       verifyPhoneState: verifyPhoneState,
       phoneLogin: phoneLogin,
+      termsAccepted: termsAccepted,
       isPhoneVerified: isPhoneVerified,
       isPINSet: isPINSet,
       isResetPin: isResetPin,
@@ -68,6 +70,8 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
   PhoneLoginState? get phoneLogin =>
+      throw _privateConstructorUsedError; // If the user has accepted terms
+  bool? get termsAccepted =>
       throw _privateConstructorUsedError; // If the user has verified their phone number
   bool? get isPhoneVerified =>
       throw _privateConstructorUsedError; //If the user has set their PIN
@@ -99,6 +103,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifyPhoneState? verifyPhoneState,
       PhoneLoginState? phoneLogin,
+      bool? termsAccepted,
       bool? isPhoneVerified,
       bool? isPINSet,
       bool? isResetPin,
@@ -129,6 +134,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? verifyPhoneState = freezed,
     Object? phoneLogin = freezed,
+    Object? termsAccepted = freezed,
     Object? isPhoneVerified = freezed,
     Object? isPINSet = freezed,
     Object? isResetPin = freezed,
@@ -161,6 +167,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLoginState?,
+      termsAccepted: termsAccepted == freezed
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
@@ -248,6 +258,7 @@ abstract class _$OnboardingStateCopyWith<$Res>
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifyPhoneState? verifyPhoneState,
       PhoneLoginState? phoneLogin,
+      bool? termsAccepted,
       bool? isPhoneVerified,
       bool? isPINSet,
       bool? isResetPin,
@@ -284,6 +295,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? verifyPhoneState = freezed,
     Object? phoneLogin = freezed,
+    Object? termsAccepted = freezed,
     Object? isPhoneVerified = freezed,
     Object? isPINSet = freezed,
     Object? isResetPin = freezed,
@@ -316,6 +328,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLoginState?,
+      termsAccepted: termsAccepted == freezed
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
@@ -354,6 +370,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.securityQuestionResponses,
       this.verifyPhoneState,
       this.phoneLogin,
+      this.termsAccepted,
       this.isPhoneVerified,
       this.isPINSet,
       this.isResetPin,
@@ -376,6 +393,8 @@ class _$_OnboardingState implements _OnboardingState {
   final VerifyPhoneState? verifyPhoneState;
   @override
   final PhoneLoginState? phoneLogin;
+  @override // If the user has accepted terms
+  final bool? termsAccepted;
   @override // If the user has verified their phone number
   final bool? isPhoneVerified;
   @override //If the user has set their PIN
@@ -391,7 +410,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(termsAndConditions: $termsAndConditions, createPINState: $createPINState, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifyPhoneState: $verifyPhoneState, phoneLogin: $phoneLogin, isPhoneVerified: $isPhoneVerified, isPINSet: $isPINSet, isResetPin: $isResetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName)';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions, createPINState: $createPINState, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifyPhoneState: $verifyPhoneState, phoneLogin: $phoneLogin, termsAccepted: $termsAccepted, isPhoneVerified: $isPhoneVerified, isPINSet: $isPINSet, isResetPin: $isResetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName)';
   }
 
   @override
@@ -407,8 +426,7 @@ class _$_OnboardingState implements _OnboardingState {
             (identical(other.securityQuestions, securityQuestions) ||
                 const DeepCollectionEquality()
                     .equals(other.securityQuestions, securityQuestions)) &&
-            (identical(other.securityQuestionResponses,
-                    securityQuestionResponses) ||
+            (identical(other.securityQuestionResponses, securityQuestionResponses) ||
                 const DeepCollectionEquality().equals(
                     other.securityQuestionResponses,
                     securityQuestionResponses)) &&
@@ -418,6 +436,9 @@ class _$_OnboardingState implements _OnboardingState {
             (identical(other.phoneLogin, phoneLogin) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneLogin, phoneLogin)) &&
+            (identical(other.termsAccepted, termsAccepted) ||
+                const DeepCollectionEquality()
+                    .equals(other.termsAccepted, termsAccepted)) &&
             (identical(other.isPhoneVerified, isPhoneVerified) ||
                 const DeepCollectionEquality()
                     .equals(other.isPhoneVerified, isPhoneVerified)) &&
@@ -427,7 +448,8 @@ class _$_OnboardingState implements _OnboardingState {
             (identical(other.isResetPin, isResetPin) ||
                 const DeepCollectionEquality()
                     .equals(other.isResetPin, isResetPin)) &&
-            (identical(other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
+            (identical(
+                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
                 const DeepCollectionEquality().equals(
                     other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
             (identical(other.hasVerifiedSecurityQuestions,
@@ -449,6 +471,7 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(securityQuestionResponses) ^
       const DeepCollectionEquality().hash(verifyPhoneState) ^
       const DeepCollectionEquality().hash(phoneLogin) ^
+      const DeepCollectionEquality().hash(termsAccepted) ^
       const DeepCollectionEquality().hash(isPhoneVerified) ^
       const DeepCollectionEquality().hash(isPINSet) ^
       const DeepCollectionEquality().hash(isResetPin) ^
@@ -475,6 +498,7 @@ abstract class _OnboardingState implements OnboardingState {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifyPhoneState? verifyPhoneState,
       PhoneLoginState? phoneLogin,
+      bool? termsAccepted,
       bool? isPhoneVerified,
       bool? isPINSet,
       bool? isResetPin,
@@ -500,6 +524,8 @@ abstract class _OnboardingState implements OnboardingState {
   VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
   @override
   PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
+  @override // If the user has accepted terms
+  bool? get termsAccepted => throw _privateConstructorUsedError;
   @override // If the user has verified their phone number
   bool? get isPhoneVerified => throw _privateConstructorUsedError;
   @override //If the user has set their PIN

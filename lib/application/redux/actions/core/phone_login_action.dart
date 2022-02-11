@@ -116,6 +116,16 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
       }
 
+      dispatch(
+        UpdateOnboardingStateAction(
+          hasSetNickName: user?.username != null,
+          termsAccepted: user?.termsAccepted,
+          hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
+          hasSetPin: user?.hasSetPin,
+          isPhoneVerified: user?.isPhoneVerified,
+        ),
+      );
+
       dispatch(UpdateUserAction(user: user));
 
       dispatch(

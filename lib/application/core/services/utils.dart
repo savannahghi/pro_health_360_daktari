@@ -334,8 +334,8 @@ String genderToJson(Gender? gender) {
 /// appropriate route
 OnboardingPathConfig getOnboardingPath({required AppState state}) {
   final bool isSignedIn = state.credentials?.isSignedIn ?? false;
-  final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
   final bool isPhoneVerified = state.onboardingState?.isPhoneVerified ?? false;
+  final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
   final bool hasSetSecurityQuestions =
       state.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasSetPin = state.onboardingState?.isPINSet ?? false;

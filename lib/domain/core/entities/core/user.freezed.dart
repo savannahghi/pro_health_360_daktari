@@ -53,6 +53,8 @@ class _$UserTearOff {
           bool? hasSetPin,
       @JsonKey(name: 'isPhoneVerified')
           bool? isPhoneVerified,
+      @JsonKey(name: 'hasSetSecurityQuestions')
+          bool? hasSetSecurityQuestions,
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'acceptedTermsID')
@@ -78,6 +80,7 @@ class _$UserTearOff {
       pinChangeRequired: pinChangeRequired,
       hasSetPin: hasSetPin,
       isPhoneVerified: isPhoneVerified,
+      hasSetSecurityQuestions: hasSetSecurityQuestions,
       termsAccepted: termsAccepted,
       acceptedTermsID: acceptedTermsID,
       suspended: suspended,
@@ -128,6 +131,8 @@ mixin _$User {
   bool? get hasSetPin => throw _privateConstructorUsedError;
   @JsonKey(name: 'isPhoneVerified')
   bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hasSetSecurityQuestions')
+  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
   @JsonKey(name: 'termsAccepted')
   bool? get termsAccepted => throw _privateConstructorUsedError;
   @JsonKey(name: 'acceptedTermsID')
@@ -179,6 +184,8 @@ abstract class $UserCopyWith<$Res> {
           bool? hasSetPin,
       @JsonKey(name: 'isPhoneVerified')
           bool? isPhoneVerified,
+      @JsonKey(name: 'hasSetSecurityQuestions')
+          bool? hasSetSecurityQuestions,
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'acceptedTermsID')
@@ -217,6 +224,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? pinChangeRequired = freezed,
     Object? hasSetPin = freezed,
     Object? isPhoneVerified = freezed,
+    Object? hasSetSecurityQuestions = freezed,
     Object? termsAccepted = freezed,
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
@@ -287,6 +295,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
+          ? _value.hasSetSecurityQuestions
+          : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
           : termsAccepted // ignore: cast_nullable_to_non_nullable
@@ -356,6 +368,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           bool? hasSetPin,
       @JsonKey(name: 'isPhoneVerified')
           bool? isPhoneVerified,
+      @JsonKey(name: 'hasSetSecurityQuestions')
+          bool? hasSetSecurityQuestions,
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'acceptedTermsID')
@@ -396,6 +410,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? pinChangeRequired = freezed,
     Object? hasSetPin = freezed,
     Object? isPhoneVerified = freezed,
+    Object? hasSetSecurityQuestions = freezed,
     Object? termsAccepted = freezed,
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
@@ -466,6 +481,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
+          ? _value.hasSetSecurityQuestions
+          : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
           : termsAccepted // ignore: cast_nullable_to_non_nullable
@@ -522,6 +541,8 @@ class _$_User implements _User {
           this.hasSetPin,
       @JsonKey(name: 'isPhoneVerified')
           this.isPhoneVerified,
+      @JsonKey(name: 'hasSetSecurityQuestions')
+          this.hasSetSecurityQuestions,
       @JsonKey(name: 'termsAccepted')
           this.termsAccepted,
       @JsonKey(name: 'acceptedTermsID')
@@ -583,6 +604,9 @@ class _$_User implements _User {
   @JsonKey(name: 'isPhoneVerified')
   final bool? isPhoneVerified;
   @override
+  @JsonKey(name: 'hasSetSecurityQuestions')
+  final bool? hasSetSecurityQuestions;
+  @override
   @JsonKey(name: 'termsAccepted')
   final bool? termsAccepted;
   @override
@@ -597,7 +621,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar)';
+    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar)';
   }
 
   @override
@@ -648,6 +672,10 @@ class _$_User implements _User {
             (identical(other.isPhoneVerified, isPhoneVerified) ||
                 const DeepCollectionEquality()
                     .equals(other.isPhoneVerified, isPhoneVerified)) &&
+            (identical(
+                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
+                const DeepCollectionEquality().equals(
+                    other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
             (identical(other.termsAccepted, termsAccepted) ||
                 const DeepCollectionEquality()
                     .equals(other.termsAccepted, termsAccepted)) &&
@@ -680,6 +708,7 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(pinChangeRequired) ^
       const DeepCollectionEquality().hash(hasSetPin) ^
       const DeepCollectionEquality().hash(isPhoneVerified) ^
+      const DeepCollectionEquality().hash(hasSetSecurityQuestions) ^
       const DeepCollectionEquality().hash(termsAccepted) ^
       const DeepCollectionEquality().hash(acceptedTermsID) ^
       const DeepCollectionEquality().hash(suspended) ^
@@ -730,6 +759,8 @@ abstract class _User implements User {
           bool? hasSetPin,
       @JsonKey(name: 'isPhoneVerified')
           bool? isPhoneVerified,
+      @JsonKey(name: 'hasSetSecurityQuestions')
+          bool? hasSetSecurityQuestions,
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'acceptedTermsID')
@@ -789,6 +820,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'isPhoneVerified')
   bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'hasSetSecurityQuestions')
+  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'termsAccepted')
   bool? get termsAccepted => throw _privateConstructorUsedError;

@@ -706,6 +706,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'pinChangeRequired': false,
   'hasSetPin': false,
   'isPhoneVerified': false,
+  'hasSetSecurityQuestions': false,
   'termsAccepted': false,
   'acceptedTermsID': 0,
   'suspended': false,
@@ -734,6 +735,7 @@ final Map<String, dynamic> mockLoginUser = <String, dynamic>{
   'pinChangeRequired': false,
   'hasSetPin': false,
   'isPhoneVerified': false,
+  'hasSetSecurityQuestions': false,
   'termsAccepted': false,
   'acceptedTermsID': 0,
   'suspended': false,
@@ -839,6 +841,7 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'isPhoneVerified': false,
   'isPINSet': false,
   'isResetPin': false,
+  'termsAccepted': false,
   'hasSetSecurityQuestions': false,
   'hasVerifiedSecurityQuestions': false,
   'hasSetNickName': false
