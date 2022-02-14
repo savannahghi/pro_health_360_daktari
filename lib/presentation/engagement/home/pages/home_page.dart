@@ -14,6 +14,7 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:healthcloud/presentation/service_requests/widgets/service_request_action_card.dart';
 // Package imports:
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
@@ -108,15 +109,7 @@ class HomePage extends StatelessWidget {
                               .pushNamed(AppRoutes.addNewPatientPage);
                         },
                       ),
-                      ActionCard(
-                        counter: '12',
-                        title: serviceRequestsText,
-                        iconUrl: serviceRequestsIconSvg,
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.serviceRequestsPage);
-                        },
-                      ),
+                      ServiceRequestActionCard(),
 
                       ///TODO(eugene): Restore when POC is ready
                       // ActionCard(

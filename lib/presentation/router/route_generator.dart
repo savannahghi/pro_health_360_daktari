@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
@@ -93,7 +94,9 @@ class RouteGenerator {
 
       case AppRoutes.serviceRequestsPage:
         return MaterialPageRoute<ServiceRequestsPage>(
-          builder: (_) => ServiceRequestsPage(),
+          builder: (_) => ServiceRequestsPage(
+            pendingServiceRequest: args as PendingServiceRequest,
+          ),
         );
 
       case AppRoutes.surveysPage:
