@@ -89,3 +89,8 @@ const Key feedbackBottomSheetCloseIconKey =
     Key('feedback_bottom_sheet_close_icon_key');
 
 const Key feedbackBottomSheetKey = Key('feedback_bottom_sheet_key');
+
+//generic widget
+const Key genericListViewKey = Key('generic_list_view_key');
+const Key helpNoDataWidgetKey = Key('help_no_data_widget_key');
+const Key genericNoDataButtonKey = Key('generic_no_data_button_key');

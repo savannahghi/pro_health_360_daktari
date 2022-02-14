@@ -33,11 +33,30 @@ query listFacilities($searchTerm: String, $filterInput:[FiltersInput],$paginatio
 }
 ''';
 
-const String fetchFacilitesQuery = '''
+const String fetchFacilitiesQuery = '''
 query fetchFacilities {
   fetchFacilities {
     ID,
     name,
+  }
+}
+''';
+
+const String getServiceRequestsQuery = r'''
+query getServiceRequests($type: String, $status: String, $facilityID: String!){
+  getServiceRequests(requestType: $type, requestStatus: $status, facilityID: $facilityID){
+    ID
+    RequestType
+    Request
+    ClientID
+    FacilityID
+    ClientName
+    ClientContact
+    Status
+    ResolvedAt
+    ResolvedBy
+    InProgressAt
+    InProgressBy
   }
 }
 ''';

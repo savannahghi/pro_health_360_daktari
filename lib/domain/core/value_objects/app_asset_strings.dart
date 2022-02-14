@@ -39,7 +39,7 @@ const String noResultsFoundImage = 'assets/images/search_rafiki.svg';
 const String serviceHeaderImageSvgPath =
     'assets/images/service_request_header_image.svg';
 const String pinResetImageSvgPath = 'assets/images/pin_reset_image.svg';
-const String redFlagImageSvgPath = 'assets/images/red_flag_image.svg';
+const String redFlagStressSvgPath = 'assets/images/red_flag_stress.svg';
 const String profileUpdateImageSvgPath =
     'assets/images/profile_update_image.svg';
 
@@ -87,3 +87,4 @@ const String errorIconUrl = 'assets/icons/error.svg';
 const String errorImageSvg = 'assets/images/error_image.svg';
 
 const String callAssistantSvgPath = 'assets/images/call_assistant.svg';
+const String errorPageImage = 'assets/images/error_page_image.svg';

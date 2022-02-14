@@ -126,6 +126,7 @@ const String wantProfiledUpdatedString = ' wants to update their profile';
 const String reachOutDescriptionPart1String = 'Use their phone number ';
 const String reachOutDescriptionPart2String =
     ' or tap the button below to call them directly';
+const String verySadString = 'Very Sad';
 
 // Surveys
 const String createSurveyString = 'Create Survey';
@@ -289,3 +290,9 @@ const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
+
+const String actionTextGenericNoData = 'Retry';
+const String fetchingRedFlagsString = 'fetching red flags';
+
+// generic widget
+const String genericVerifyPhoneNumber = 'Verify Phone number';
