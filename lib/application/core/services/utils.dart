@@ -32,16 +32,6 @@ import 'package:shared_ui_components/inputs.dart';
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
-    iconAssetPath: mySavedIconSvgPath,
-    route: AppRoutes.surveysPage,
-    title: 'Surveys',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: appointmentIconSvgPath,
-    route: AppRoutes.surveysPage,
-    title: 'Appointments',
-  ),
-  UserProfileItemObj(
     iconAssetPath: helpCircleIcon,
     route: AppRoutes.surveysPage,
     title: 'Help/Contact Admin',
