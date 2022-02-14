@@ -161,6 +161,7 @@ const String addNewPatientTitleText = 'Add new patient';
 const String enrollmentDateLabel = 'Enrollment Date *';
 const String clientTypeLabel = 'Client Type *';
 const String registerClientSuccess = 'Successfully registered client';
+const String appAccessText = 'Invite to myAfyaHub';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';

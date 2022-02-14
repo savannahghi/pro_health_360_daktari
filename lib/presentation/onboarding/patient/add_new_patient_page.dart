@@ -35,12 +35,20 @@ class AddNewPatientPage extends StatefulWidget {
 }
 
 class _AddNewPatientPageState extends State<AddNewPatientPage> {
-  bool myAfyaHubInvite = false;
-
   final RegisterClientFormManager _formManager = RegisterClientFormManager();
   final TextEditingController dobTextController = TextEditingController();
   final TextEditingController enrollmentDateTextController =
       TextEditingController();
+
+  final InputDecoration dropdownDecoration = InputDecoration(
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    enabledBorder: const UnderlineInputBorder(
+      borderSide: BorderSide(color: Color(0x00eeeeee)),
+    ),
+  );
 
   @override
   void initState() {
@@ -53,7 +61,11 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: addNewPatientTitleText),
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(
+        title: addNewPatientTitleText,
+        showShadow: false,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -91,8 +103,12 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    // Facilities
+                  ],
+                ),
+                const SizedBox(height: 24),
+                // Facilities
+                Row(
+                  children: <Widget>[
                     Flexible(
                       child: FacilityDropdown(
                         dropdownInputKey: facilitySelectOptionFieldKey,
@@ -104,7 +120,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                           }
                         },
                       ),
-                    ),
+                    )
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -232,6 +248,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                               final Gender? data = snapshot.data;
 
                               return SelectOptionField(
+                                decoration: dropdownDecoration,
                                 dropDownInputKey: genderOptionFieldKey,
                                 value: data == null
                                     ? capitalizeFirst(
@@ -355,6 +372,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                             ) {
                               final ClientType? data = snapshot.data;
                               return SelectOptionField(
+                                decoration: dropdownDecoration,
                                 dropDownInputKey: clientTypeField,
                                 value: data != null
                                     ? describeEnum(data)
@@ -380,43 +398,52 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                   ],
                 ),
                 const SizedBox(height: 28),
-                // TODO: Not yet implemented
-                // Row(
-                //   children: <Widget>[
-                //     Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: <Widget>[
-                //         const Text(appAccessText),
-                //         Row(
-                //           children: <Widget>[
-                //             Checkbox(
-                //               key: myAfyaHubInviteKey,
-                //               value: myAfyaHubInvite,
-                //               onChanged: (bool? value) {
-                //                 setState(() {
-                //                   myAfyaHubInvite = !myAfyaHubInvite;
-                //                 });
-                //               },
-                //             ),
-                //             const Text(myCareHubInviteText),
-                //           ],
-                //         ),
-                //       ],
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 24),
                 Row(
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        // TODO: not yet implemented
+                        const Text(
+                          appAccessText,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.greyTextColor,
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            StreamBuilder<bool>(
+                              stream: _formManager.inviteClient,
+                              builder: (
+                                BuildContext context,
+                                AsyncSnapshot<bool> snapshot,
+                              ) {
+                                final bool? data = snapshot.data;
 
-                        // const Text(groupsLabel),
-                        // ...getGroups(),
-                        // const SizedBox(height: 24),
-
+                                return Checkbox(
+                                  key: myAfyaHubInviteKey,
+                                  value: data ?? false,
+                                  onChanged: (bool? value) {
+                                    if (value != null) {
+                                      _formManager.inInviteClient.add(value);
+                                    }
+                                  },
+                                );
+                              },
+                            ),
+                            const Text(myCareHubInviteText),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
                         // Submit button
                         Row(
                           children: <Widget>[

@@ -40,6 +40,10 @@ class RegisterClientFormManager with Validator {
   Stream<String> get cccNumber => _cccNumber.stream.transform(validateCcc);
   Sink<String> get inCccNumber => _cccNumber.sink;
 
+  final BehaviorSubject<bool> _inviteClient = BehaviorSubject<bool>();
+  Stream<bool> get inviteClient => _inviteClient.stream;
+  Sink<bool> get inInviteClient => _inviteClient.sink;
+
   Stream<bool> get isFormValid => CombineLatestStream.list(
         <Stream<dynamic>>[
           _facility,
@@ -86,8 +90,7 @@ class RegisterClientFormManager with Validator {
       enrollmentDate: _enrollmentDate.valueOrNull,
       cccNumber: _cccNumber.valueOrNull,
       counselled: true,
-      // TODO (john): Implement within form
-      inviteClient: false,
+      inviteClient: _inviteClient.valueOrNull,
     );
   }
 }

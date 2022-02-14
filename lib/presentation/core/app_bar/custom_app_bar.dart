@@ -23,6 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.trailingWidget = const AppBarMoreButton(),
     this.showMoreButton = false,
     this.showNotificationIcon = false,
+    this.showShadow = true,
   });
 
   final Widget? leadingWidget;
@@ -36,6 +37,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // only [RedFlagsPage] use it
   final bool showNotificationIcon;
 
+  final bool showShadow;
+
   @override
   Size get preferredSize => const Size.fromHeight(50.0);
 
@@ -47,14 +50,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: showMoreButton
               ? Theme.of(context).colorScheme.primary
               : Colors.white,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              blurRadius: 5,
-              spreadRadius: 1,
-              offset: const Offset(0.35, 0),
-              color: Colors.grey.withOpacity(0.2),
-            )
-          ],
+          boxShadow: showShadow
+              ? <BoxShadow>[
+                  BoxShadow(
+                    blurRadius: 5,
+                    spreadRadius: 1,
+                    offset: const Offset(0.35, 0),
+                    color: Colors.grey.withOpacity(0.2),
+                  )
+                ]
+              : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
