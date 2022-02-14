@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -32,6 +33,14 @@ void main() {
       await tester.tap(cccFieldFinder);
       await tester.enterText(cccFieldFinder, '12345678');
 
+      final Finder facilityFieldFinder =
+          find.byKey(facilitySelectOptionFieldKey);
+      expect(facilityFieldFinder, findsOneWidget);
+      await tester.tap(facilityFieldFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+
       final Finder fNameFieldFinder = find.byKey(firstNameKey);
       expect(fNameFieldFinder, findsOneWidget);
       await tester.tap(fNameFieldFinder);
@@ -42,28 +51,10 @@ void main() {
       await tester.tap(lNameFieldFinder);
       await tester.enterText(lNameFieldFinder, 'Doe');
 
-      final Finder genderFieldFinder = find.byKey(genderOptionFieldKey);
-      expect(genderFieldFinder, findsOneWidget);
-      await tester.tap(genderFieldFinder);
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Male').last);
-      await tester.pumpAndSettle();
-
-      final Finder facilityFieldFinder =
-          find.byKey(facilitySelectOptionFieldKey);
-      expect(facilityFieldFinder, findsOneWidget);
-      await tester.tap(facilityFieldFinder);
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Kanairo').last);
-      await tester.pumpAndSettle();
-
-      final Finder phoneNumberFieldFinder = find.byKey(phoneNumberFieldKey);
-      expect(phoneNumberFieldFinder, findsOneWidget);
-      await tester.tap(phoneNumberFieldFinder);
-      await tester.enterText(phoneNumberFieldFinder, '+254798363893');
-
       // Dob field
-      await tester.tap(find.byKey(dobKey));
+      final Finder dobField = find.byKey(dobKey);
+      await tester.ensureVisible(dobField);
+      await tester.tap(dobField);
       await tester.pumpAndSettle();
       expect(find.text(eligibleYear.year.toString()), findsOneWidget);
       await tester.tap(find.text(eligibleYear.year.toString()));
@@ -72,6 +63,18 @@ void main() {
       await tester.tap(find.text(currentDay.toString()));
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
+
+      final Finder genderFieldFinder = find.byKey(genderOptionFieldKey);
+      expect(genderFieldFinder, findsOneWidget);
+      await tester.tap(genderFieldFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Male').last);
+      await tester.pumpAndSettle();
+
+      final Finder phoneNumberFieldFinder = find.byKey(phoneNumberFieldKey);
+      expect(phoneNumberFieldFinder, findsOneWidget);
+      await tester.tap(phoneNumberFieldFinder);
+      await tester.enterText(phoneNumberFieldFinder, '+254798363893');
 
       // Enrollment field
       final Finder enrollmentField = find.byKey(enrollmentFieldKey);
@@ -91,6 +94,18 @@ void main() {
       await tester.tap(clientTypeFinder);
       await tester.pumpAndSettle();
       await tester.tap(find.text('PMTCT').last);
+      await tester.pumpAndSettle();
+
+      final Finder appInviteCheckBox = find.byKey(myAfyaHubInviteKey);
+      expect(appInviteCheckBox, findsOneWidget);
+      await tester.ensureVisible(appInviteCheckBox);
+
+      final Checkbox checkBox =
+          tester.firstWidget(appInviteCheckBox) as Checkbox;
+
+      expect(checkBox.value, false);
+
+      await tester.tap(appInviteCheckBox);
       await tester.pumpAndSettle();
 
       final Finder registerBtnFinder = find.byKey(patientRegisterBtnKey);

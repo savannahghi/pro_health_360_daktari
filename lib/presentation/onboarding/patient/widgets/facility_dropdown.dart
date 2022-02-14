@@ -76,6 +76,12 @@ class _FacilityDropdownState extends State<FacilityDropdown> {
                 }
 
                 return SelectOptionField(
+                  decoration: const InputDecoration(
+                    filled: true,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0x00eeeeee)),
+                    ),
+                  ),
                   dropDownInputKey: widget.dropdownInputKey,
                   value: data ?? 'Kanairo',
                   options: vm.facilities!
