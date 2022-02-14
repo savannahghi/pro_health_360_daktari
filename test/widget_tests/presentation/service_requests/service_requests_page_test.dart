@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/category_item_card.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -22,9 +22,9 @@ void main() {
 
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(CategoryItemCard), findsOneWidget);
+      expect(find.byType(ActionCard), findsOneWidget);
 
-      await tester.tap(find.byType(CategoryItemCard).first);
+      await tester.tap(find.byType(ActionCard).first);
       await tester.pumpAndSettle();
       expect(find.text(serviceRequestString), findsNothing);
 
