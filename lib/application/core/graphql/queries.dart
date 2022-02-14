@@ -32,3 +32,12 @@ query listFacilities($searchTerm: String, $filterInput:[FiltersInput],$paginatio
   }
 }
 ''';
+
+const String fetchFacilitesQuery = '''
+query fetchFacilities {
+  fetchFacilities {
+    ID,
+    name,
+  }
+}
+''';

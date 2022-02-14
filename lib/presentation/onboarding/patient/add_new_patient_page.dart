@@ -9,7 +9,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/register_client/register_client_action.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/view_models/register_client/register_client_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -22,6 +25,7 @@ import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_deta
 import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class AddNewPatientPage extends StatefulWidget {
   const AddNewPatientPage({Key? key}) : super(key: key);
@@ -37,6 +41,14 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   final TextEditingController dobTextController = TextEditingController();
   final TextEditingController enrollmentDateTextController =
       TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _formManager.inGender.add(Gender.unknown);
+    _formManager.inFacility.add('Kanairo');
+    _formManager.inClientType.add(ClientType.YOUTH);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +215,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                           const Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'Gender',
+                              genderLabel,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors.greyTextColor,
@@ -287,7 +299,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                           const Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'Enrollment Date',
+                              enrollmentDateLabel,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors.greyTextColor,
@@ -327,7 +339,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                           const Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'Client Type',
+                              clientTypeLabel,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors.greyTextColor,
@@ -420,18 +432,35 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                   final bool hasData =
                                       snapshot.hasData && snapshot.data != null;
 
-                                  return ElevatedButton(
-                                    key: patientRegisterBtnKey,
-                                    onPressed: hasData && snapshot.data!
-                                        ? () => _processAndNavigate()
-                                        : null,
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.secondaryColor,
+                                  return StoreConnector<AppState,
+                                      RegisterClientViewModel>(
+                                    converter: (Store<AppState> store) =>
+                                        RegisterClientViewModel.fromStore(
+                                      store,
                                     ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Text(registerBtnText),
-                                    ),
+                                    builder: (
+                                      BuildContext context,
+                                      RegisterClientViewModel vm,
+                                    ) {
+                                      if (vm.wait
+                                          .isWaitingFor(registerClientFlag)) {
+                                        return const SILPlatformLoader();
+                                      }
+
+                                      return ElevatedButton(
+                                        key: patientRegisterBtnKey,
+                                        onPressed: hasData && snapshot.data!
+                                            ? () => _processAndNavigate()
+                                            : null,
+                                        style: ElevatedButton.styleFrom(
+                                          primary: AppColors.secondaryColor,
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(16.0),
+                                          child: Text(registerBtnText),
+                                        ),
+                                      );
+                                    },
                                   );
                                 },
                               ),
@@ -459,7 +488,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
         onSuccess: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Successfully registered client'),
+              content: Text(registerClientSuccess),
               duration: Duration(seconds: 5),
             ),
           );

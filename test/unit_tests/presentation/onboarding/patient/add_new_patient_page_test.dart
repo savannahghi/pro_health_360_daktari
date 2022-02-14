@@ -96,10 +96,9 @@ void main() {
       final Finder registerBtnFinder = find.byKey(patientRegisterBtnKey);
       await tester.ensureVisible(registerBtnFinder);
       await tester.tap(registerBtnFinder);
-      await tester.pumpAndSettle();
 
-      // TODO: change once action is implemented
-      expect(store.state, AppState.initial());
+      await tester.pump(const Duration(seconds: 2));
+      expect(find.text(registerClientSuccess), findsOneWidget);
     });
 
     testWidgets('ccc number field should show error',
