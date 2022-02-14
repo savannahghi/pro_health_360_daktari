@@ -60,3 +60,15 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!){
   }
 }
 ''';
+
+const String getPendingServiceRequestsCountQuery = r'''
+query getPendingServiceRequestsCount($facilityID: String!){
+  getPendingServiceRequestsCount(facilityID: $facilityID){
+    total
+    requestsTypeCount{
+      requestType
+      total
+    }
+}
+}
+''';

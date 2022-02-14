@@ -25,3 +25,5 @@ extension ClientTypeEx on ClientType {
     return describeEnum(this);
   }
 }
+
+enum ServiceRequestType { RED_FLAG, PIN_RESET, PROFILE_UPDATE, UNKNOWN }

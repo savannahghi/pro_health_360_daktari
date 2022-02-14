@@ -21,7 +21,7 @@ void main() {
         tester: tester,
         widget: FacilityDropdown(
           dropdownInputKey: facilitySelectOptionFieldKey,
-          label: 'Prefered Facility',
+          label: 'Preferred Facility',
           stream: Stream<String>.value('Kanairo'),
         ),
       );

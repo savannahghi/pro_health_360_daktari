@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/service_requests.dart/service_request_content.dart';
-import 'package:healthcloud/domain/core/entities/service_requests.dart/service_requests_response.dart';
+import 'package:healthcloud/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:healthcloud/domain/core/entities/service_requests/service_requests_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -141,6 +141,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                         ServiceRequestsResponse.fromJson(
                       snapshot.data as Map<String, dynamic>,
                     );
+                    
                     final List<ServiceRequestContent>? serviceRequestContents =
                         serviceRequest.serviceRequestContent;
                     if (serviceRequestContents != null &&

@@ -17,6 +17,7 @@ import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:misc_utilities/misc.dart';
 
+import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
 
 void main() {
@@ -33,6 +34,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
+        graphQlClient: MockTestGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return StoreProvider<AppState>(

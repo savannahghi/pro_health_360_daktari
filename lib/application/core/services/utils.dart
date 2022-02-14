@@ -15,7 +15,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/pin_reset_request.dart';
 import 'package:healthcloud/domain/core/entities/red_flag_item.dart';
-import 'package:healthcloud/domain/core/entities/request_item.dart';
 import 'package:healthcloud/domain/core/entities/user_profile_item_obj.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
@@ -63,30 +62,6 @@ Alignment placeMessage(dynamic message) {
   }
   return Alignment.topRight;
 }
-
-final List<RequestItem> serviceRequestItems = <RequestItem>[
-  ///TODO(eugene): Restore when ready
-  // RequestItem(
-  //   route: AppRoutes.pinResetRequestsPage,
-  //   title: 'Pin Reset',
-  //   imageAssetPath: pinResetImageSvgPath,
-  //   totalNumber: 5,
-  // ),
-  RequestItem(
-    route: AppRoutes.redFlagsPage,
-    title: 'Red Flags',
-    imageAssetPath: redFlagStressSvgPath,
-    totalNumber: 3,
-  ),
-
-  ///TODO(eugene): Restore when ready
-  // RequestItem(
-  //   route: AppRoutes.profileUpdateRequestsPage,
-  //   title: 'Profile Update',
-  //   imageAssetPath: profileUpdateImageSvgPath,
-  //   totalNumber: 4,
-  // ),
-];
 
 String? userPinValidator(dynamic val) {
   final String value = val as String;
