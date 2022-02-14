@@ -657,8 +657,30 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(getServiceRequestsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getServiceRequests': <dynamic>[
+                <String, dynamic>{
+                  'ID': 'test',
+                  'RequestType': 'test',
+                  'Request': 'test',
+                  'ClientID': 'test',
+                  'FacilityID': 'test',
+                  'ClientName': 'test',
+                  'ClientContact': 'test',
+                },
+              ]
+            }
+          }),
+          201,
+        ),
+      );
+    }
 
-    if (queryString.contains(fetchFacilitesQuery)) {
+    if (queryString.contains(fetchFacilitiesQuery)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{

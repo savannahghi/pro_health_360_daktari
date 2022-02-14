@@ -31,7 +31,7 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Response response =
-        await client.query(fetchFacilitesQuery, <String, dynamic>{});
+        await client.query(fetchFacilitiesQuery, <String, dynamic>{});
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 

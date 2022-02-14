@@ -9,20 +9,20 @@ import 'package:shared_themes/spaces.dart';
 
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ScheduleMeetDialog extends StatefulWidget {
   /// [ScheduleMeetDialog] is a shared widget used in [RedFlagsPage]
+  final String phoneNumber;
+
+  const ScheduleMeetDialog({required this.phoneNumber});
   @override
   State<ScheduleMeetDialog> createState() => _ScheduleMeetDialogState();
 }
 
 class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
-  MeetingType selectedType = MeetingType.Unknown;
-  final String phoneNumber = '0712345678';
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -58,7 +58,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
                 ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: phoneNumber,
+                    text: widget.phoneNumber,
                     style: boldSize15Text(
                       AppColors.greyTextColor,
                     ).copyWith(fontSize: 16),
@@ -87,7 +87,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
                   if (Navigator.canPop(context)) {
                     Navigator.of(context).pop();
                   }
-                  await launch('tel:$phoneNumber');
+                  await launch('tel:$widget.phoneNumber');
                 },
               ),
             ),

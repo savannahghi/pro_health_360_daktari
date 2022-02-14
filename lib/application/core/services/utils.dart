@@ -75,7 +75,7 @@ final List<RequestItem> serviceRequestItems = <RequestItem>[
   RequestItem(
     route: AppRoutes.redFlagsPage,
     title: 'Red Flags',
-    imageAssetPath: redFlagImageSvgPath,
+    imageAssetPath: redFlagStressSvgPath,
     totalNumber: 3,
   ),
 
