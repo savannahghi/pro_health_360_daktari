@@ -6,6 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 
+import '../../../../mocks/mocks.dart';
+import '../../../../mocks/test_helpers.dart';
+
 void main() {
   group('FacilityDropdown', () {
     testWidgets('FacilityDropdown', (WidgetTester tester) async {
@@ -13,28 +16,16 @@ void main() {
         return T;
       }
 
-      const Key formKey = Key('select_option_field');
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Builder(
-            builder: (BuildContext context) {
-              return Scaffold(
-                body: Form(
-                  key: formKey,
-                  child: FacilityDropdown(
-                    dropdownInputKey: facilitySelectOptionFieldKey,
-                    label: 'Prefered Facility',
-                    stream: Stream<String>.value('Kanairo'),
-                  ),
-                ),
-              );
-            },
-          ),
+      await buildTestWidget(
+        graphQlClient: MockTestGraphQlClient(),
+        tester: tester,
+        widget: FacilityDropdown(
+          dropdownInputKey: facilitySelectOptionFieldKey,
+          label: 'Prefered Facility',
+          stream: Stream<String>.value('Kanairo'),
         ),
       );
-
-      expect(find.byKey(formKey), findsWidgets);
+      await tester.pumpAndSettle();
 
       expect(find.byKey(facilitySelectOptionFieldKey), findsWidgets);
       expect(find.byType(DropdownButtonHideUnderline), findsOneWidget);
@@ -42,7 +33,7 @@ void main() {
 
       await tester.tap(find.text('Kanairo'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Kisumu').last);
+      await tester.tap(find.text('Test Facility').last);
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
     });

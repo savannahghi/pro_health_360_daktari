@@ -149,20 +149,17 @@ const String customDate = 'July 12 2021';
 // Add patient page
 const String CCCNumberLabel = 'CCC Number *';
 const String preferredFacilityLabel = 'Preferred Facility *';
-const String firstNameLabel = 'First Name';
-const String lastNameLabel = 'Last Name';
-const String birthDateLabel = 'Birth Date';
-const String genderLabel = 'Gender';
-const String idNoLabel = 'ID No.';
-const String phoneNoLabel = 'Phone No.';
-const String physicalLocationLabel = 'Physical Location';
-const String nextOfKinLabel = 'Next of Kin';
-const String relationLabel = 'Relation';
-const String appAccessText = 'App Access';
+const String firstNameLabel = 'First Name *';
+const String lastNameLabel = 'Last Name *';
+const String birthDateLabel = 'Birth Date *';
+const String genderLabel = 'Gender *';
+const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
-const String groupsLabel = 'Groups/Community';
 const String registerBtnText = 'Register';
 const String addNewPatientTitleText = 'Add new patient';
+const String enrollmentDateLabel = 'Enrollment Date *';
+const String clientTypeLabel = 'Client Type *';
+const String registerClientSuccess = 'Successfully registered client';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';
@@ -273,7 +270,8 @@ const String nameInputValidateString = 'Kindly input a nickname';
 const String nicknameSuccessString = 'Nickname created successfully';
 const String logoutButtonText = 'Logout';
 
-final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub Professional';
+final String copyrightString =
+    'Copyright ©️ ${returnCurrentYear()} myCareHub Professional';
 const String appVersionString = 'Current Version:';
 const String setNicknameString = 'Set Your Nickname';
 

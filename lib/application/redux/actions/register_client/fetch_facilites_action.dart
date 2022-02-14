@@ -2,47 +2,36 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/graphql/mutations.dart';
+import 'package:healthcloud/application/core/graphql/queries.dart';
+import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/register_client/register_client_payload.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/entities/register_client/fetch_facilites_response.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class RegisterClientAction extends ReduxAction<AppState> {
-  final RegisterClientPayload registerClientPayload;
+class FetchFacilitiesAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final VoidCallback onSuccess;
 
-  RegisterClientAction({
-    required this.registerClientPayload,
-    required this.client,
-    required this.onSuccess,
-  });
+  FetchFacilitiesAction({required this.client});
 
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(registerClientFlag));
+    dispatch(WaitAction<AppState>.add(fetchFacilitiesFlag));
   }
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(registerClientFlag));
+    dispatch(WaitAction<AppState>.remove(fetchFacilitiesFlag));
     super.after();
   }
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> payload = registerClientPayload.toJson();
-
-    final Response response = await client.query(
-      registerClientMutation,
-      <String, dynamic>{'input': payload},
-    );
+    final Response response =
+        await client.query(fetchFacilitesQuery, <String, dynamic>{});
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
@@ -57,10 +46,15 @@ class RegisterClientAction extends ReduxAction<AppState> {
           UserException(errors),
         );
 
-        throw const UserException(somethingWentWrongText);
+        throw UserException(getErrorMessage('fetching facilities'));
       }
 
-      this.onSuccess();
+      final FetchFacilitiesResponse facilites =
+          FetchFacilitiesResponse.fromJson(
+        body['data'] as Map<String, dynamic>,
+      );
+
+      dispatch(UpdateStaffProfileAction(facilities: facilites.facilities));
     } else {
       throw UserException(processedResponse.message);
     }

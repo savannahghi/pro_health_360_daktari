@@ -658,11 +658,35 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(fetchFacilitesQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'fetchFacilities': mockFacilities}
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
   }
 }
+
+final List<Map<String, dynamic>> mockFacilities = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'ID': 'bb046fb1-48f3-410f-813c-33a49324e636',
+    'name': 'Test Facility',
+    'description': ''
+  },
+  <String, dynamic>{
+    'ID': 'c2f92466-c82f-4e25-80ec-91dbeb8f722c',
+    'name': 'Kanairo',
+    'description': 'Kanairo Hospital'
+  }
+];
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'id': 'id',
