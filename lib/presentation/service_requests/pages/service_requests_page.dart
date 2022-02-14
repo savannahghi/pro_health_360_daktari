@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/category_item_card.dart';
+import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 
 class ServiceRequestsPage extends StatelessWidget {
   /// [ServiceRequestsPage] is used to display the user information
@@ -20,9 +18,10 @@ class ServiceRequestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: serviceRequestString),
-      backgroundColor: AppColors.galleryColor,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
@@ -33,56 +32,36 @@ class ServiceRequestsPage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Wrap(
-                    children: <Widget>[
-                      ...List<Widget>.generate(
-                        serviceRequestItems.length,
-                        (int index) {
-                          final String iconPath = serviceRequestItems
-                              .elementAt(index)
-                              .imageAssetPath;
-                          final String title =
-                              serviceRequestItems.elementAt(index).title;
-                          final int totalNumber =
-                              serviceRequestItems.elementAt(index).totalNumber;
-                          final String route =
-                              serviceRequestItems.elementAt(index).route;
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Wrap(
+                  children: <Widget>[
+                    ...List<Widget>.generate(
+                      serviceRequestItems.length,
+                      (int index) {
+                        final String iconPath = serviceRequestItems
+                            .elementAt(index)
+                            .imageAssetPath;
+                        final String title =
+                            serviceRequestItems.elementAt(index).title;
+                        final int totalNumber =
+                            serviceRequestItems.elementAt(index).totalNumber;
+                        final String route =
+                            serviceRequestItems.elementAt(index).route;
 
-                          return GestureDetector(
-                            onTap: () {
-                              if (route.isNotEmpty) {
-                                triggerNavigationEvent(
-                                  context: context,
-                                  route: route,
-                                );
-                              }
-                            },
-                            child: CategoryItemCard(
-                              iconPath: iconPath,
-                              title: title,
-                              unresolvedNumber: totalNumber,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        return ActionCard(
+                          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+                          iconUrl: iconPath,
+                          title: title,
+                          counter: totalNumber.toString(),
+                          onTap: () => Navigator.pushNamed(context, route),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

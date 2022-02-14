@@ -14,6 +14,7 @@ class ActionCard extends StatelessWidget {
   final String title;
   final String counter;
   final VoidCallback? onTap;
+  final Color backgroundColor;
 
   const ActionCard({
     Key? key,
@@ -21,6 +22,7 @@ class ActionCard extends StatelessWidget {
     required this.iconUrl,
     required this.title,
     required this.onTap,
+    this.backgroundColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class ActionCard extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: backgroundColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
