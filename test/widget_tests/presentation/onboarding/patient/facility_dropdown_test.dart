@@ -25,7 +25,7 @@ void main() {
                   child: FacilityDropdown(
                     dropdownInputKey: facilitySelectOptionFieldKey,
                     label: 'Prefered Facility',
-                    stream: Stream<String>.value('Nairobi'),
+                    stream: Stream<String>.value('Kanairo'),
                   ),
                 ),
               );
@@ -40,7 +40,7 @@ void main() {
       expect(find.byType(DropdownButtonHideUnderline), findsOneWidget);
       expect(find.byType(typeOf<DropdownButton<String>>()), findsOneWidget);
 
-      await tester.tap(find.text('Nairobi'));
+      await tester.tap(find.text('Kanairo'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Kisumu').last);
       await tester.pumpAndSettle();

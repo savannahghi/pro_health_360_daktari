@@ -12,7 +12,7 @@ _$_RegisterClientPaylod _$_$_RegisterClientPaylodFromJson(
     facility: json['facility'] as String?,
     clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
     clientName: json['clientName'] as String?,
-    gender: _$enumDecodeNullable(_$GenderEnumMap, json['gender']),
+    gender: genderFromJson(json['gender'] as String?),
     dateOfBirth: json['dateOfBirth'] == null
         ? null
         : DateTime.parse(json['dateOfBirth'] as String),
@@ -22,6 +22,7 @@ _$_RegisterClientPaylod _$_$_RegisterClientPaylodFromJson(
         : DateTime.parse(json['enrollmentDate'] as String),
     cccNumber: json['cccNumber'] as String?,
     counselled: json['counselled'] as bool?,
+    inviteClient: json['inviteClient'] as bool?,
   );
 }
 
@@ -32,11 +33,12 @@ Map<String, dynamic> _$_$_RegisterClientPaylodToJson(
       'clientType': _$ClientTypeEnumMap[instance.clientType],
       'clientName': instance.clientName,
       'gender': _$GenderEnumMap[instance.gender],
-      'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
+      'dateOfBirth': dobToJson(instance.dateOfBirth),
       'phoneNumber': instance.phoneNumber,
-      'enrollmentDate': instance.enrollmentDate?.toIso8601String(),
+      'enrollmentDate': dobToJson(instance.enrollmentDate),
       'cccNumber': instance.cccNumber,
       'counselled': instance.counselled,
+      'inviteClient': instance.inviteClient,
     };
 
 K _$enumDecode<K, V>(

@@ -320,6 +320,24 @@ String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
 }
 
+ClientType clientTypeFromJson(String? clientString) {
+  if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {
+    return ClientType.YOUTH;
+  }
+
+  return ClientType.values.where((ClientType clientType) {
+    return clientType.name.toLowerCase() == clientString.toLowerCase();
+  }).first;
+}
+
+String dobToJson(DateTime? dateTime) {
+  if (dateTime != null) {
+    return DateFormat('yyyy-MM-dd').format(DateUtils.dateOnly(dateTime));
+  }
+
+  return DateFormat('yyyy-MM-dd').format(DateUtils.dateOnly(DateTime.now()));
+}
+
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
 OnboardingPathConfig getOnboardingPath({required AppState state}) {
