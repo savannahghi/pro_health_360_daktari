@@ -65,6 +65,9 @@ class _AuthManagerState extends State<AuthManager> {
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
         return MaterialApp(
+          builder: (BuildContext context, Widget? child) {
+            return UserExceptionDialog<AppState>(child: child!);
+          },
           theme: AppTheme.getAppTheme(),
           debugShowCheckedModeBanner: showDebugModeBanner(widget.appContexts),
           navigatorKey: globalAppNavigatorKey,

@@ -2,9 +2,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:shared_themes/constants.dart';
-
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 
@@ -39,7 +36,7 @@ class UnrecoverableErrorWidget extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           margin: const EdgeInsets.all(10),
           child: Text(
-            UserFeedBackTexts.getErrorMessage(),
+            getErrorMessage(),
             style: boldSize15Text(Colors.black87),
             textDirection: TextDirection.ltr,
           ),
