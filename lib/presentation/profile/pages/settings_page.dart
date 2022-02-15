@@ -10,7 +10,7 @@ import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/set_nick_name_action.dart';
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/staff_profile_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/staff_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/profile/widgets/edit_info_button_widget.dart';
@@ -29,10 +29,12 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: const CustomAppBar(title: settingsPageTitle),
       body: SafeArea(
-        child: StoreConnector<AppState, StaffProfileViewModel>(
+        child: StoreConnector<AppState, StaffStateViewModel>(
           converter: (Store<AppState> store) =>
-              StaffProfileViewModel.fromStore(store),
-          builder: (BuildContext context, StaffProfileViewModel vm) {
+              StaffStateViewModel.fromStore(store),
+          builder: (BuildContext context, StaffStateViewModel vm) {
+            final String initialNickName =
+                vm.staffState?.user?.username ?? UNKNOWN;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(
@@ -57,14 +59,11 @@ class SettingsPage extends StatelessWidget {
                             ),
                             EditInformationButtonWidget(
                               editInformationItem: nickNameEditInfo(
-                                vm.clientState?.user?.username ?? UNKNOWN,
+                                initialNickName,
                               ),
                               submitFunction: (
                                 EditInformationItem editInformationItem,
                               ) async {
-                                final String initialNickName =
-                                    vm.clientState?.user?.username ?? UNKNOWN;
-
                                 ///Set username/NickName to the new nickname
                                 StoreProvider.dispatch<AppState>(
                                   context,
@@ -76,35 +75,33 @@ class SettingsPage extends StatelessWidget {
                                   ),
                                 );
 
-                                try {
-                                  await StoreProvider.dispatch<AppState>(
-                                    context,
-                                    SetNicknameAction(
-                                      client: AppWrapperBase.of(context)!
-                                          .graphQLClient,
-                                      onSuccess: () {
-                                        ScaffoldMessenger.of(context)
-                                          ..hideCurrentSnackBar()
-                                          ..showSnackBar(
-                                            const SnackBar(
-                                              content:
-                                                  Text(nicknameSuccessString),
-                                              duration: Duration(seconds: 2),
-                                            ),
-                                          );
-                                      },
-                                      shouldNavigate: false,
-                                    ),
-                                  );
-                                } catch (error) {
-                                  /// Incase an error occurs it resets back the username/nickname
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    UpdateUserProfileAction(
-                                      nickName: initialNickName,
-                                    ),
-                                  );
-                                }
+                                await StoreProvider.dispatch<AppState>(
+                                  context,
+                                  SetNicknameAction(
+                                    client: AppWrapperBase.of(context)!
+                                        .graphQLClient,
+                                    onSuccess: () {
+                                      ScaffoldMessenger.of(context)
+                                        ..hideCurrentSnackBar()
+                                        ..showSnackBar(
+                                          const SnackBar(
+                                            content:
+                                                Text(nicknameSuccessString),
+                                            duration: Duration(seconds: 2),
+                                          ),
+                                        );
+                                    },
+                                    onError: () {
+                                      StoreProvider.dispatch<AppState>(
+                                        context,
+                                        UpdateUserProfileAction(
+                                          nickName: initialNickName,
+                                        ),
+                                      );
+                                    },
+                                    shouldNavigate: false,
+                                  ),
+                                );
 
                                 ///Will return to the previous page after submitting
                                 Navigator.pop(context);
@@ -114,8 +111,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                         smallVerticalSizedBox,
                         PersonalInformationWidget(
-                          description:
-                              vm.clientState?.user?.username ?? UNKNOWN,
+                          description: initialNickName,
                         ),
                       ],
                     ),

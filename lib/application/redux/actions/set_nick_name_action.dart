@@ -4,7 +4,6 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -26,12 +25,14 @@ class SetNicknameAction extends ReduxAction<AppState> {
   SetNicknameAction({
     required this.client,
     this.onSuccess,
+    this.onError,
     this.shouldNavigate = true,
   });
 
   final bool shouldNavigate;
   final IGraphQlClient client;
   final void Function()? onSuccess;
+  final void Function()? onError;
 
   @override
   void before() {
@@ -69,14 +70,12 @@ class SetNicknameAction extends ReduxAction<AppState> {
     final String? errors = client.parseError(body);
 
     if (errors != null) {
+      onError?.call();
       Sentry.captureException(
         UserException(errors),
       );
 
-      throw SILException(
-        cause: setNickNameFlag,
-        message: somethingWentWrongText,
-      );
+      throw const UserException(somethingWentWrongText);
     }
 
     if (responseMap['data']['setNickName'] != null &&
