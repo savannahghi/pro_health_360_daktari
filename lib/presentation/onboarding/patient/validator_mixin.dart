@@ -77,7 +77,6 @@ mixin Validator {
   }
 
   static bool isValidCccNumber(String number) {
-    // TODO: Find out criteria for valid ccc number
     return number.isNotEmpty;
   }
 }

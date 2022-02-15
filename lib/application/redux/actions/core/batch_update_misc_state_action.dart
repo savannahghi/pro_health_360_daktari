@@ -43,16 +43,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final AppState newState = state.copyWith.call(
-      miscState: state.miscState!.copyWith(
-        invalidPin: invalidPin ?? state.miscState!.invalidPin,
-        message: message ?? state.miscState!.message,
-        acceptedTerms: acceptedTerms ?? state.miscState!.acceptedTerms,
-        createPin: createPin ?? state.miscState!.createPin,
-        confirmPin: confirmPin ?? state.miscState!.confirmPin,
-        isResendingOTP: isResendingOTP ?? state.miscState!.isResendingOTP,
-        error: error,
-        accountExists: accountExists ?? state.miscState!.accountExists,
-      ),
+      miscState: state.miscState!.copyWith(error: error),
     );
 
     return newState;
