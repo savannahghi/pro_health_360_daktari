@@ -4,6 +4,7 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/failures.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -72,7 +73,10 @@ class SetNicknameAction extends ReduxAction<AppState> {
         UserException(errors),
       );
 
-      throw const UserException(somethingWentWrongText);
+      throw SILException(
+        cause: setNickNameFlag,
+        message: somethingWentWrongText,
+      );
     }
 
     if (responseMap['data']['setNickName'] != null &&

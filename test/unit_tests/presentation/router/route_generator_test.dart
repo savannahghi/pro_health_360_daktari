@@ -3,6 +3,7 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
@@ -20,6 +21,8 @@ import 'package:healthcloud/presentation/onboarding/security_questions/security_
 import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:healthcloud/presentation/profile/pages/edit_information_page.dart';
+import 'package:healthcloud/presentation/profile/pages/settings_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -259,5 +262,26 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ContactAdminPage>>());
     expect(route?.builder(context), isA<ContactAdminPage>());
+  });
+
+  test('Test router returns SettingsPage', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.settingsPage);
+    final MaterialPageRoute<SettingsPage> route =
+        routeGenerator(settings)! as MaterialPageRoute<SettingsPage>;
+    expect(route, isA<MaterialPageRoute<SettingsPage>>());
+    expect(route.builder(context), isA<SettingsPage>());
+  });
+
+  test('Test router returns EditInformationPage', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.editInformationPage,
+      arguments: <String, dynamic>{
+        'editInformationItem': nickNameEditInfo('Test')
+      },
+    );
+    final MaterialPageRoute<EditInformationPage> route =
+        routeGenerator(settings)! as MaterialPageRoute<EditInformationPage>;
+    expect(route, isA<MaterialPageRoute<EditInformationPage>>());
+    expect(route.builder(context), isA<EditInformationPage>());
   });
 }

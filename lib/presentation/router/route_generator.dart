@@ -22,7 +22,10 @@ import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_p
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:healthcloud/presentation/profile/faqs/pages/faq_detail_view_page.dart';
 import 'package:healthcloud/presentation/profile/faqs/pages/profile_faqs_page.dart';
+import 'package:healthcloud/presentation/profile/pages/edit_information_page.dart';
+import 'package:healthcloud/presentation/profile/pages/settings_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
+import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
@@ -116,6 +119,33 @@ class RouteGenerator {
       case AppRoutes.profilePage:
         return MaterialPageRoute<UserProfilePage>(
           builder: (_) => UserProfilePage(),
+        );
+
+      case AppRoutes.settingsPage:
+        return MaterialPageRoute<SettingsPage>(
+          builder: (_) => SettingsPage(),
+        );
+
+      case AppRoutes.editInformationPage:
+        final EditInformationItem editInformationItem =
+            args['editInformationItem'] as EditInformationItem;
+
+        void Function(EditInformationItem editInformationItem) submitFunction;
+
+        ///Sanity checks
+        if (args['onSubmit'] != null) {
+          submitFunction = args['onSubmit'] as void Function(
+            EditInformationItem editInformationItem,
+          );
+        } else {
+          submitFunction = (EditInformationItem editInformationItem) {};
+        }
+
+        return MaterialPageRoute<EditInformationPage>(
+          builder: (_) => EditInformationPage(
+            editInformationItem: editInformationItem,
+            onSubmit: submitFunction,
+          ),
         );
 
       case AppRoutes.pinResetRequestsPage:

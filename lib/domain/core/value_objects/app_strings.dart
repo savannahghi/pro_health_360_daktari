@@ -328,3 +328,27 @@ const String loremIpsumText =
     'A detailed description for this question will be available soon';
 
 const String tapToLearnMoreText = 'Tap to learn more';
+const String settingsPageTitle = 'Settings';
+const String editString = 'Edit';
+const String nickNameFieldName = 'Enter your nickname';
+
+//Personal Information
+const String myProfileCaregiverText = 'Caregiver information';
+const String myProfileCaregiverDescriptionText =
+    'Could be a parent, guardian or nurse';
+const String janeDoe = 'Jane Doe';
+const String father = 'Father';
+const String lastName = 'Last Name';
+const String relationText = 'How are you related';
+const String preferredLanguage = 'Preferred Language';
+const String english = 'English';
+const String preferredClinic = 'Preferred Clinic';
+const String clinic = 'Equity Afia Ruaka';
+const String preferredCommunication = 'Preferred way of Communication';
+const String inApp = 'in app';
+const String hotlineNumberString = '0712345678';
+String editInfoTitle(String title) => 'Edit $title';
+
+//settings page
+const String saveString = 'Save';
+const String savedString = 'Saved';
