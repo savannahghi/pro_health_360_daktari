@@ -27,3 +27,4 @@ const String fetchServiceRequestFlag = 'fetch_service_request_flag';
 
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';
+const String editInformationFlag = 'edit_information_flag';

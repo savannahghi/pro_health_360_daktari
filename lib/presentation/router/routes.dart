@@ -47,4 +47,9 @@ class AppRoutes {
 
   // Profile Faqs Page
   static const String profileFaqsPage = '/profileFaqsPage';
+  //Edit Information Page
+  static const String editInformationPage = '/editInformationPage';
+
+  //Settings Page
+  static const String settingsPage = '/settingsPage';
 }

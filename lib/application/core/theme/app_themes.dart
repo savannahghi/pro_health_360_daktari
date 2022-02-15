@@ -67,6 +67,7 @@ class AppColors {
   static const Color redColor = Color(0xfff02532);
   static const Color lightRedColor = Color(0xfffac8c9);
   static const Color lightBlackTextColor = Color(0xFF555555);
+  static const Color blueChillColor = Color(0xFF119496);
 }
 
 class ThemeColors {

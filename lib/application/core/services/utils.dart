@@ -23,6 +23,7 @@ import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/client_details/widgets/add_profile_entry_row_item.dart';
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
+import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -536,3 +537,61 @@ String removeTailingComma(String word) {
 String capitalizeFirst(String input) {
   return '${input[0].toUpperCase()}${input.substring(1).toLowerCase()}';
 }
+
+EditInformationInputItem nickNameInputItem(String userNickName) =>
+    EditInformationInputItem(
+      fieldName: nickNameFieldName,
+      hintText: userNickName,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+    );
+
+EditInformationItem nickNameEditInfo(String userNickName) =>
+    EditInformationItem(
+      title: nickNameString,
+      editInformationInputItem: <EditInformationInputItem>[
+        nickNameInputItem(userNickName)
+      ],
+    );
+
+final EditInformationItem careGiverEditInfo = EditInformationItem(
+  title: myProfileCaregiverText,
+  description: myProfileCaregiverDescriptionText,
+  editInformationInputItem: <EditInformationInputItem>[
+    EditInformationInputItem(
+      fieldName: firstName,
+      hintText: janeDoe,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+      apiFieldValue: 'firstName',
+    ),
+    EditInformationInputItem(
+      fieldName: lastName,
+      hintText: janeDoe,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+      apiFieldValue: 'lastName',
+    ),
+    phoneInputItem,
+    relationInputItem,
+  ],
+);
+
+final EditInformationInputItem phoneInputItem = EditInformationInputItem(
+  fieldName: phoneNumber,
+  hintText: hotlineNumberString,
+  inputType: EditInformationInputType.Text,
+  inputController: TextEditingController(),
+  apiFieldValue: 'phoneNumber',
+);
+
+final EditInformationInputItem relationInputItem = EditInformationInputItem(
+  fieldName: relationText,
+  hintText: relationText,
+  inputType: EditInformationInputType.DropDown,
+  inputController: TextEditingController(),
+  dropDownOptionList: CaregiverType.values
+      .map<String>((CaregiverType type) => type.name)
+      .toList(),
+  apiFieldValue: 'caregiverType',
+);

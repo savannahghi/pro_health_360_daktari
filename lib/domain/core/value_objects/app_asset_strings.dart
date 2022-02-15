@@ -83,6 +83,7 @@ const String phoneCallIcon = 'assets/icons/phone_call_icon.svg';
 const String homeLocationIcon = 'assets/icons/home_location_icon.svg';
 const String editProfileIconSvg = 'assets/icons/edit_profile_icon.svg';
 const String closeIconUrl = 'assets/icons/close.png';
+const String closeIconSvg = 'assets/icons/close_icon.svg';
 const String errorIconUrl = 'assets/icons/error.svg';
 const String errorImageSvg = 'assets/images/error_image.svg';
 
