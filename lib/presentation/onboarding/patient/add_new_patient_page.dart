@@ -1,13 +1,10 @@
-// Flutter imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
-// Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/register_client/register_client_action.dart';
