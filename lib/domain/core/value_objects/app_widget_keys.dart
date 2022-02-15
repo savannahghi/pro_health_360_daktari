@@ -99,3 +99,5 @@ const Key genericNoDataButtonKey = Key('generic_no_data_button_key');
 const Key callAdminKey = Key('call_admin_key');
 const Key emailAdminKey = Key('email_admin_key');
 const Key editInfoSaveBtn = Key('edit_information_save_btn');
+const Key closeEditInformationPageBtnKey =
+    Key('close_edit_information_save_btn');

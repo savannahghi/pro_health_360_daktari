@@ -27,11 +27,3 @@ extension ClientTypeEx on ClientType {
 }
 
 enum ServiceRequestType { RED_FLAG, PIN_RESET, PROFILE_UPDATE, UNKNOWN }
-enum EditInformationInputType { Text, DropDown }
-enum CaregiverType { Father, Mother, Sibling }
-
-extension CaregiverTypeEx on CaregiverType {
-  String get name {
-    return describeEnum(this);
-  }
-}

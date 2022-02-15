@@ -8,7 +8,6 @@ import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
@@ -42,9 +41,16 @@ class _EditInformationPageState extends State<EditInformationPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: editInfoTitle(widget.editInformationItem.title),
-        leadingWidget: SvgPicture.asset(
-          closeIconSvg,
-          color: AppColors.blueChillColor,
+        leadingWidget: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: GestureDetector(
+            key: closeEditInformationPageBtnKey,
+            onTap: () => Navigator.pop(context),
+            child: SvgPicture.asset(
+              closeIconSvg,
+              color: AppColors.blueChillColor,
+            ),
+          ),
         ),
       ),
       backgroundColor: Theme.of(context).backgroundColor,
