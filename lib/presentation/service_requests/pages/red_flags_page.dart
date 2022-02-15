@@ -12,7 +12,7 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/widgets/generic_error_widget.dart';
+import 'package:healthcloud/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/red_flag_list_item.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -94,9 +94,8 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                     );
                   }
 
-                  return GenericErrorWidget(
+                  return GenericNoDataWidget(
                     key: helpNoDataWidgetKey,
-                    actionText: actionTextGenericNoData,
                     recoverCallback: () async {
                       await genericFetchFunction(
                         streamController: _streamController,

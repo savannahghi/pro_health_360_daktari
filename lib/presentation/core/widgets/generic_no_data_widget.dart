@@ -9,24 +9,35 @@ import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/buttons.dart';
 
-/// [GenericErrorWidget] is a generic used to purposefully communicate that
+enum GenericNoDataTypes { noData, error }
+
+/// [GenericNoDataWidget] is a generic used to purposefully communicate that
 /// the value of the data received from the API was [null] or it missed
 /// key properties that are of a valid response.
+/// Because of it;s generic natures, this widget handles the following types
+/// of error defined under [GenericNoDataTypes] enum
+///
+/// - AbsentData -> no data completely
+/// - ErrorInData -> there was an error in the received data or the API returned with an error attribute
+///
+/// When the errorType is of type [ErrorInData] a specific illustration will be shown in place of the default
+/// one.
 ///
 /// Always, a [recoverCallback] can be defined to offset the user a way out
-class GenericErrorWidget extends StatelessWidget {
-  const GenericErrorWidget({
+class GenericNoDataWidget extends StatelessWidget {
+  const GenericNoDataWidget({
     Key? key,
     required this.recoverCallback,
     this.messageTitle,
     this.messageBody,
     this.height,
-    this.actionText,
+    this.actionText = retryString,
     this.align,
+    this.type = GenericNoDataTypes.error,
   }) : super(key: key);
 
   /// [actionText]
-  final String? actionText;
+  final String actionText;
 
   /// [align] where the error widget should align
   final MainAxisAlignment? align;
@@ -43,7 +54,8 @@ class GenericErrorWidget extends StatelessWidget {
   /// [recoverCallback] the function to be called to recover from the error. Default to [null]
   final Function recoverCallback;
 
-  /// [type] the type of error. Defaults to [AbsentData]
+  /// [type] the type of error. Defaults to [noData]
+  final GenericNoDataTypes type;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +70,9 @@ class GenericErrorWidget extends StatelessWidget {
               children: <Widget>[
                 largeVerticalSizedBox,
                 SvgPicture.asset(
-                  errorPageImage,
+                  type == GenericNoDataTypes.noData
+                      ? noDataImageSvgPath
+                      : errorPageImageSvgPath,
                   height: MediaQuery.of(context).size.height / 3,
                 ),
                 Center(
@@ -73,7 +87,7 @@ class GenericErrorWidget extends StatelessWidget {
                             ),
                             const TextSpan(text: '\n\n'),
                             TextSpan(
-                              text: defaultUserFriendlyMessage,
+                              text: messageBody ?? defaultUserFriendlyMessage,
                               style: normalSize16Text(
                                 AppColors.greyTextColor,
                               ),
@@ -92,7 +106,7 @@ class GenericErrorWidget extends StatelessWidget {
                           buttonColor: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                           onPressed: this.recoverCallback as void Function()?,
-                          text: actionText ?? genericVerifyPhoneNumber,
+                          text: actionText,
                         ),
                       ),
                       largeVerticalSizedBox,
