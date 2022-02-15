@@ -79,6 +79,7 @@ class RegisterClientFormManager with Validator {
   RegisterClientPayload submit() {
     final String? firstNameValue = _firstName.valueOrNull;
     final String? lastNameValue = _lastName.valueOrNull;
+    final bool? inviteClient = _inviteClient.valueOrNull;
 
     return RegisterClientPayload(
       facility: _facility.valueOrNull,
@@ -90,7 +91,7 @@ class RegisterClientFormManager with Validator {
       enrollmentDate: _enrollmentDate.valueOrNull,
       cccNumber: _cccNumber.valueOrNull,
       counselled: true,
-      inviteClient: _inviteClient.valueOrNull,
+      inviteClient: inviteClient ?? false,
     );
   }
 }
