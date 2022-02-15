@@ -29,29 +29,6 @@ import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/inputs.dart';
 
-final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
-  UserProfileItemObj(
-    iconAssetPath: helpCircleIcon,
-    route: AppRoutes.surveysPage,
-    title: 'Help/Contact Admin',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: feedbackIconSvgPath,
-    route: AppRoutes.surveysPage,
-    title: 'Resolved Requests',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: faqsIconSvgPath,
-    route: AppRoutes.surveysPage,
-    title: 'FAQs',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: settingsIconSvgPath,
-    route: AppRoutes.surveysPage,
-    title: 'Settings',
-  ),
-];
-
 Alignment placeMessage(dynamic message) {
   /// [placeMessage] is used to align the messages whether to the left or right
   /// depending on whether is is a sent or received message
