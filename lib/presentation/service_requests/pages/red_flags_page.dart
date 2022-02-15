@@ -12,7 +12,7 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:healthcloud/presentation/core/widgets/generic_error_widget.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/red_flag_list_item.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -65,88 +65,66 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 30,
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  redFlagStressSvgPath,
-                  width: 200,
-                ),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: StreamBuilder<Object>(
-                stream: _stream,
-                builder:
-                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  //show the loader before the data is displayed
-                  if (snapshot.data is Map<String, dynamic> &&
-                      snapshot.data != null &&
-                      snapshot.data['loading'] != null &&
-                      snapshot.data['loading'] == true) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: const SILPlatformLoader(),
+            StreamBuilder<Object>(
+              stream: _stream,
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                //show the loader before the data is displayed
+                if (snapshot.data is Map<String, dynamic> &&
+                    snapshot.data != null &&
+                    snapshot.data['loading'] != null &&
+                    snapshot.data['loading'] == true) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Center(child: SILPlatformLoader()),
+                  );
+                }
+                //error checking
+                if (snapshot.hasError) {
+                  final dynamic valueHolder = snapshot.error;
+                  final Map<String, dynamic>? error = snapshot.error == null
+                      ? null
+                      : valueHolder as Map<String, dynamic>;
+
+                  if (error?['error'] != null) {
+                    Sentry.captureException(
+                      UserException(
+                        error!['error'] as String,
+                        cause: snapshot.error,
+                      ),
                     );
                   }
-                  //error checking
-                  if (snapshot.hasError) {
-                    final dynamic valueHolder = snapshot.error;
-                    final Map<String, dynamic>? error = snapshot.error == null
-                        ? null
-                        : valueHolder as Map<String, dynamic>;
 
-                    if (error?['error'] != null) {
-                      Sentry.captureException(
-                        UserException(
-                          error!['error'] as String,
-                          cause: snapshot.error,
-                        ),
+                  return GenericErrorWidget(
+                    key: helpNoDataWidgetKey,
+                    actionText: actionTextGenericNoData,
+                    recoverCallback: () async {
+                      await genericFetchFunction(
+                        streamController: _streamController,
+                        context: context,
+                        logTitle: 'Fetch red flags',
+                        queryString: getServiceRequestsQuery,
+                        variables: <String, dynamic>{
+                          'type': 'RED_FLAG',
+                          'status': 'PENDING'
+                        },
                       );
-                    }
+                    },
+                    messageBody: getErrorMessage(fetchingRedFlagsString),
+                  );
+                }
+                if (snapshot.hasData) {
+                  final ServiceRequestsResponse serviceRequest =
+                      ServiceRequestsResponse.fromJson(
+                    snapshot.data as Map<String, dynamic>,
+                  );
 
-                    return GenericNoData(
-                      key: helpNoDataWidgetKey,
-                      type: GenericNoDataTypes.errorInData,
-                      actionText: actionTextGenericNoData,
-                      recoverCallback: () async {
-                        await genericFetchFunction(
-                          streamController: _streamController,
-                          context: context,
-                          logTitle: 'Fetch red flags',
-                          queryString: getServiceRequestsQuery,
-                          variables: <String, dynamic>{
-                            'type': 'RED_FLAG',
-                            'status': 'PENDING'
-                          },
-                        );
-                      },
-                      messageBody: getErrorMessage(fetchingRedFlagsString),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    final ServiceRequestsResponse serviceRequest =
-                        ServiceRequestsResponse.fromJson(
-                      snapshot.data as Map<String, dynamic>,
-                    );
-                    
-                    final List<ServiceRequestContent>? serviceRequestContents =
-                        serviceRequest.serviceRequestContent;
-                    if (serviceRequestContents != null &&
-                        serviceRequestContents.isNotEmpty) {
-                      return Column(
+                  final List<ServiceRequestContent>? serviceRequestContents =
+                      serviceRequest.serviceRequestContent;
+                  if (serviceRequestContents != null &&
+                      serviceRequestContents.isNotEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
                         children: <Widget>[
                           ///TODO(eugene): Restore when ready
                           // Container(
@@ -183,6 +161,18 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                           //   ),
                           // ),
                           // veryLargeVerticalSizedBox,
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 30,
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                redFlagStressSvgPath,
+                                width: 200,
+                              ),
+                            ),
+                          ),
                           ...List<Widget>.generate(
                               serviceRequestContents.length, (int index) {
                             final String clientName = serviceRequestContents
@@ -206,12 +196,12 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                             );
                           })
                         ],
-                      );
-                    }
+                      ),
+                    );
                   }
-                  return const SizedBox();
-                },
-              ),
+                }
+                return const SizedBox();
+              },
             ),
           ],
         ),

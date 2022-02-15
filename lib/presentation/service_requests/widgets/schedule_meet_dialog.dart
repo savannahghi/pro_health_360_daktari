@@ -25,6 +25,7 @@ class ScheduleMeetDialog extends StatefulWidget {
 class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
   @override
   Widget build(BuildContext context) {
+    final String phone = widget.phoneNumber;
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -72,6 +73,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
             smallVerticalSizedBox,
             SizedBox(
               width: MediaQuery.of(context).size.width,
+              height: 48,
               child: MyAfyaHubPrimaryButton(
                 buttonKey: dialogCallButtonKey,
                 borderColor: Colors.transparent,
@@ -87,7 +89,7 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
                   if (Navigator.canPop(context)) {
                     Navigator.of(context).pop();
                   }
-                  await launch('tel:$widget.phoneNumber');
+                  await launch('tel:$phone');
                 },
               ),
             ),
