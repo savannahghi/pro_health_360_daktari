@@ -9,6 +9,7 @@ import 'package:healthcloud/presentation/community/chat_screen/pages/community_c
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
+import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -247,5 +248,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SurveysPage>>());
     expect(route?.builder(context), isA<SurveysPage>());
+  });
+
+  test('Test router returns ContactAdminPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.contactAdminPage);
+
+    final MaterialPageRoute<ContactAdminPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ContactAdminPage>?;
+
+    expect(route, isA<MaterialPageRoute<ContactAdminPage>>());
+    expect(route?.builder(context), isA<ContactAdminPage>());
   });
 }

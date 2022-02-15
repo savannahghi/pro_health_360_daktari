@@ -94,3 +94,7 @@ const Key feedbackBottomSheetKey = Key('feedback_bottom_sheet_key');
 const Key genericListViewKey = Key('generic_list_view_key');
 const Key helpNoDataWidgetKey = Key('help_no_data_widget_key');
 const Key genericNoDataButtonKey = Key('generic_no_data_button_key');
+
+// contact admin
+const Key callAdminKey = Key('call_admin_key');
+const Key emailAdminKey = Key('email_admin_key');
