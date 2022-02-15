@@ -129,6 +129,8 @@ const String reachOutDescriptionPart2String =
 const String verySadString = 'Very Sad';
 const String profileUpdateString = 'Profile Update';
 const String pinResetString = 'PIN Reset';
+const String noDataBodyString =
+    'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
 // Surveys
 const String createSurveyString = 'Create Survey';
 const String toCreateNewSurveyDescriptionString =
@@ -293,8 +295,11 @@ const String invalidCode =
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
-const String actionTextGenericNoData = 'Retry';
 const String fetchingRedFlagsString = 'fetching red flags';
 
 // generic widget
-const String genericVerifyPhoneNumber = 'Verify Phone number';
+const String actionTextGenericNoData = 'Ok, thanks';
+const String retryString = 'Retry';
+String getNoDataTile(String? message) {
+  return message != null ? 'You have no $message' : 'You have no data';
+}

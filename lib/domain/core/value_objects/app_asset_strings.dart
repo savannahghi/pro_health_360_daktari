@@ -87,4 +87,5 @@ const String errorIconUrl = 'assets/icons/error.svg';
 const String errorImageSvg = 'assets/images/error_image.svg';
 
 const String callAssistantSvgPath = 'assets/images/call_assistant.svg';
-const String errorPageImage = 'assets/images/error_page_image.svg';
+const String errorPageImageSvgPath = 'assets/images/error_page_image.svg';
+const String noDataImageSvgPath = 'assets/images/no_data_image.svg';
