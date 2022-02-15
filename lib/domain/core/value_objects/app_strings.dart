@@ -303,3 +303,9 @@ const String retryString = 'Retry';
 String getNoDataTile(String? message) {
   return message != null ? 'You have no $message' : 'You have no data';
 }
+
+// User profile items
+const String helpContactAdminString = 'Help/Contact Admin';
+const String resolvedRequestsString = 'Resolved Requests';
+const String faqsString = 'FAQs';
+const String settingsString = 'Settings';

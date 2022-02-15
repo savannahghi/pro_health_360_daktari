@@ -13,7 +13,6 @@ import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/core/widgets/logout_button.dart';
 import 'package:healthcloud/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
-import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -50,29 +49,61 @@ class UserProfilePage extends StatelessWidget {
                     profession: profession,
                   ),
                   mediumVerticalSizedBox,
-                  const UserProfileItem(
+                  UserProfileItem(
                     iconPath: helpCircleIcon,
-                    title: 'Help/Contact Admin',
-                    routeName: AppRoutes.surveysPage,
+                    title: helpContactAdminString,
                     itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text(comingSoonText),
+                          ),
+                        );
+                    },
                   ),
-                  const UserProfileItem(
+                  UserProfileItem(
                     iconPath: feedbackIconSvgPath,
-                    title: 'Resolved Requests',
-                    routeName: AppRoutes.surveysPage,
+                    title: resolvedRequestsString,
                     itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text(comingSoonText),
+                          ),
+                        );
+                    },
                   ),
-                  const UserProfileItem(
+                  UserProfileItem(
                     iconPath: faqsIconSvgPath,
-                    title: 'FAQs',
-                    routeName: AppRoutes.surveysPage,
+                    title: faqsString,
                     itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text(comingSoonText),
+                          ),
+                        );
+                    },
                   ),
-                  const UserProfileItem(
+                  UserProfileItem(
                     iconPath: settingsIconSvgPath,
-                    title: 'Settings',
-                    routeName: AppRoutes.surveysPage,
+                    title: settingsString,
                     itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text(comingSoonText),
+                          ),
+                        );
+                    },
                   ),
                   mediumVerticalSizedBox,
                   const SizedBox(
