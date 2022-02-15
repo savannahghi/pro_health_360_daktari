@@ -13,6 +13,7 @@ import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/core/widgets/logout_button.dart';
 import 'package:healthcloud/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -53,15 +54,8 @@ class UserProfilePage extends StatelessWidget {
                     iconPath: helpCircleIcon,
                     title: helpContactAdminString,
                     itemBackgroundColor: AppColors.profileListCardColor,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
-                    },
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(AppRoutes.contactAdminPage),
                   ),
                   UserProfileItem(
                     iconPath: feedbackIconSvgPath,

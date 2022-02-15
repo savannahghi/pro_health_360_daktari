@@ -309,3 +309,15 @@ const String helpContactAdminString = 'Help/Contact Admin';
 const String resolvedRequestsString = 'Resolved Requests';
 const String faqsString = 'FAQs';
 const String settingsString = 'Settings';
+const String genericVerifyPhoneNumber = 'Verify Phone number';
+
+// contact admin
+const String contactAdmin = 'Contact Admin';
+const String doYouNeedHelpString = 'Do you need help?';
+const String contactOurAdmins =
+    'Contact one of our admins using the methods below';
+const String callYourAdmin = 'Call your admin';
+const String tapBelowToCallAdmin = 'Tap below to call your admin on the number';
+const String emailYourAdmin = 'Email your admin';
+const String tapBelowToEmailAdmin = 'Tap below to email your admin on';
+const String emailString = 'Email';
