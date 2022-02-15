@@ -62,7 +62,6 @@ class _FacilityDropdownState extends State<FacilityDropdown> {
           ),
         ),
         const SizedBox(height: 10),
-        // TODO (John): Fetch facilites from backend
         StreamBuilder<String>(
           stream: widget.stream,
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
