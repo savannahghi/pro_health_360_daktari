@@ -7,8 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
@@ -28,16 +26,12 @@ void main() {
         final Store<AppState> store =
             Store<AppState>(initialState: AppState.initial());
 
-        final ConnectivityStatus connectivityStatus =
-            ConnectivityStatus.initial();
-
         await tester.pumpWidget(
           MaterialApp(
             home: Center(
               child: MyCareHubProfessionalApp(
                 appSetupData: devAppSetupData,
                 store: store,
-                connectivityStatus: connectivityStatus,
               ),
             ),
           ),
@@ -69,16 +63,12 @@ void main() {
         final Store<AppState> store =
             Store<AppState>(initialState: AppState.initial());
 
-        final ConnectivityStatus connectivityStatus =
-            ConnectivityStatus.initial();
-
         await tester.pumpWidget(
           MaterialApp(
             home: Center(
               child: MyCareHubProfessionalApp(
                 appSetupData: devAppSetupData,
                 store: store,
-                connectivityStatus: connectivityStatus,
               ),
             ),
           ),
@@ -110,17 +100,11 @@ void main() {
       );
       ConnectivityPlatform.instance = fakePlatform;
 
-      final MobileConnectivityStatus connectivityStatus =
-          MobileConnectivityStatus(
-        checkInternetCallback: () async => true,
-      );
-
       await tester.pumpWidget(
         MaterialApp(
           home: MyCareHubProfessionalApp(
             appSetupData: devAppSetupData,
             store: store,
-            connectivityStatus: connectivityStatus,
           ),
         ),
       );

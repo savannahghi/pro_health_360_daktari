@@ -11,7 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
 import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -73,6 +75,17 @@ Future<void> initApp(List<AppContext> appContexts) async {
 
   final ConnectivityStatus connectivityStatus = ConnectivityStatus.initial();
 
+  connectivityStatus
+      .checkConnection()
+      .asStream()
+      .mergeWith(
+        <Stream<bool>>[connectivityStatus.onConnectivityChanged],
+      )
+      .distinct()
+      .listen((bool hasConnection) {
+        store.dispatch(UpdateConnectivityAction(hasConnection: hasConnection));
+      });
+
   /// Configures which error widget to show depending  on whether the app is
   /// in debug or release mode.
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -103,7 +116,6 @@ Future<void> initApp(List<AppContext> appContexts) async {
           MyCareHubProfessionalApp(
             store: store,
             appSetupData: appSetupData,
-            connectivityStatus: connectivityStatus,
           ),
         ),
       );

@@ -1,20 +1,14 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/onboarding/create_pin_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -23,11 +17,8 @@ import 'package:shared_ui_components/platform_loader.dart';
 /// The [CustomTextField] for confirm PIN validates if it matches the
 /// PIN entered in the above [CustomTextField]
 class CreateNewPINPage extends StatefulWidget {
-  CreateNewPINPage({
-    ConnectivityStatus? connectivityStatus,
-  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+  const CreateNewPINPage({Key? key}) : super(key: key);
 
-  final ConnectivityStatus connectivityStatus;
   @override
   _CreateNewPINPageState createState() => _CreateNewPINPageState();
 }
@@ -47,10 +38,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
     return OnboardingScaffold(
       title: isResetPin ? resetPINTitleString : createNewPINTitleString,
       description: createNewPINSubTitleString,
-      child: StoreConnector<AppState, AppStateViewModel>(
+      child: StoreConnector<AppState, CreatePinViewModel>(
         converter: (Store<AppState> store) =>
-            AppStateViewModel.fromStore(store),
-        builder: (BuildContext context, AppStateViewModel vm) {
+            CreatePinViewModel.fromStore(store),
+        builder: (BuildContext context, CreatePinViewModel vm) {
           return SizedBox(
             height: MediaQuery.of(context).size.height / 1.6,
             child: Stack(
@@ -120,7 +111,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                   ),
                 ),
                 veryLargeVerticalSizedBox,
-                if (vm.state.wait!.isWaitingFor(createPinFlag)) ...<Widget>{
+                if (vm.wait.isWaitingFor(createPinFlag)) ...<Widget>{
                   const SILPlatformLoader(
                     color: AppColors.secondaryColor,
                   )
@@ -132,21 +123,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                     height: 52,
                     child: MyAfyaHubPrimaryButton(
                       buttonKey: createPINContinueButtonKey,
-                      onPressed: vm.state.wait!.isWaitingFor(createPinFlag)
+                      onPressed: vm.wait.isWaitingFor(createPinFlag)
                           ? null
                           : () async {
-                              final bool hasConnection = await widget
-                                  .connectivityStatus
-                                  .checkConnection();
-
-                              StoreProvider.dispatch(
-                                context,
-                                UpdateConnectivityAction(
-                                  hasConnection: hasConnection,
-                                ),
-                              );
-
-                              if (!hasConnection) {
+                              if (!vm.hasConnection) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text(noInternetConnection),
@@ -164,10 +144,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                                 );
                               }
                             },
-                      buttonColor: vm.state.wait!.isWaitingFor(createPinFlag)
+                      buttonColor: vm.wait.isWaitingFor(createPinFlag)
                           ? Colors.grey
                           : AppColors.secondaryColor,
-                      borderColor: vm.state.wait!.isWaitingFor(createPinFlag)
+                      borderColor: vm.wait.isWaitingFor(createPinFlag)
                           ? Colors.grey
                           : AppColors.secondaryColor,
                       text: saveAndContinueButtonText,

@@ -11,7 +11,7 @@ class TermsViewModel extends Vm {
     required this.wait,
     this.termsAndConditions,
     this.error,
-  });
+  }) : super(equals: <Object?>[wait, termsAndConditions, error]);
 
   factory TermsViewModel.fromStore(Store<AppState> store) {
     return TermsViewModel(

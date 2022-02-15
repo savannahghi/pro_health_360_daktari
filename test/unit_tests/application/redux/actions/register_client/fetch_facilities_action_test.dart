@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/actions/register_client/fetch_facilites_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/application/redux/states/connectivity_state.dart';
 import 'package:http/http.dart';
 
 import '../../../../../mocks/mocks.dart';
@@ -15,7 +16,8 @@ void main() {
 
     setUp(() {
       storeTester = StoreTester<AppState>(
-        initialState: AppState.initial(),
+        initialState: AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
     });
@@ -48,7 +50,11 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchFacilitiesAction);
 
-      expect(info.state, AppState.initial());
+      expect(
+        info.state,
+        AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
+      );
       expect(
         (info.error! as UserException).msg,
         'Sorry, an unknown error occurred, please try again or get help from our '
@@ -73,7 +79,11 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchFacilitiesAction);
 
-      expect(info.state, AppState.initial());
+      expect(
+        info.state,
+        AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
+      );
       expect(
         (info.error! as UserException).msg,
         getErrorMessage('fetching facilities'),

@@ -13,8 +13,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchFacilitiesAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
+  final void Function(String message)? onFailure;
 
-  FetchFacilitiesAction({required this.client});
+  FetchFacilitiesAction({
+    required this.client,
+    this.onFailure,
+  });
 
   @override
   void before() {
@@ -30,6 +34,12 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final bool hasConnection = state.connectivityState?.isConnected ?? false;
+    if (!hasConnection) {
+      onFailure?.call('connection failure');
+      return null;
+    }
+
     final Response response =
         await client.query(fetchFacilitiesQuery, <String, dynamic>{});
 

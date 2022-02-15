@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/staff_state_view_model.dart';
 import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
@@ -29,11 +29,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.galleryColor,
       body: SingleChildScrollView(
-        child: StoreConnector<AppState, AppStateViewModel>(
+        child: StoreConnector<AppState, StaffStateViewModel>(
           converter: (Store<AppState> store) =>
-              AppStateViewModel.fromStore(store),
-          builder: (BuildContext context, AppStateViewModel vm) {
-            final StaffState? staffState = vm.state.staffState;
+              StaffStateViewModel.fromStore(store),
+          builder: (BuildContext context, StaffStateViewModel vm) {
+            final StaffState? staffState = vm.staffState;
             final String firstName = staffState?.user?.firstName ?? UNKNOWN;
 
             return Column(
