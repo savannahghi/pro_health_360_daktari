@@ -9,28 +9,17 @@ import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/buttons.dart';
 
-enum GenericNoDataTypes { absentData, errorInData }
-
-/// [GenericNoData] is a generic used to purposefully communicate that
+/// [GenericErrorWidget] is a generic used to purposefully communicate that
 /// the value of the data received from the API was [null] or it missed
 /// key properties that are of a valid response.
-/// Because of it;s generic natures, this widget handles the following types
-/// of error defined under [GenericNoDataTypes] enum
-///
-/// - AbsentData -> no data completely
-/// - ErrorInData -> there was an error in the received data or the API returned with an error attribute
-///
-/// When the errorType is of type [ErrorInData] a specific illustration will be shown in place of the default
-/// one.
 ///
 /// Always, a [recoverCallback] can be defined to offset the user a way out
-class GenericNoData extends StatelessWidget {
-  const GenericNoData({
+class GenericErrorWidget extends StatelessWidget {
+  const GenericErrorWidget({
     Key? key,
     required this.recoverCallback,
     this.messageTitle,
     this.messageBody,
-    this.type,
     this.height,
     this.actionText,
     this.align,
@@ -55,7 +44,6 @@ class GenericNoData extends StatelessWidget {
   final Function recoverCallback;
 
   /// [type] the type of error. Defaults to [AbsentData]
-  final GenericNoDataTypes? type;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +87,7 @@ class GenericNoData extends StatelessWidget {
                         width: double.infinity,
                         height: 48,
                         child: SILPrimaryButton(
+                          customRadius: 8.0,
                           buttonKey: genericNoDataButtonKey,
                           buttonColor: Theme.of(context).primaryColor,
                           textColor: Colors.white,

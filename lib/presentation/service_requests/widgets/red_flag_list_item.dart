@@ -45,7 +45,7 @@ class RedFlagListItem extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: AppColors.redColor.withOpacity(0.025),
+              color: Theme.of(context).primaryColor.withOpacity(0.14),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: Theme.of(context).primaryColor.withOpacity(0.3),
