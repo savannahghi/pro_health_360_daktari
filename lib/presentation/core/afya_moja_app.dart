@@ -12,7 +12,6 @@ import 'package:healthcloud/application/redux/view_model_factories/app_entry_poi
 import 'package:healthcloud/application/redux/view_models/app_entry_point_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 
 class MyCareHubProfessionalApp extends StatelessWidget {
@@ -20,14 +19,11 @@ class MyCareHubProfessionalApp extends StatelessWidget {
     Key? key,
     required this.store,
     required this.appSetupData,
-    required this.connectivityStatus,
   }) : super(key: key);
 
   final AppSetupData appSetupData;
 
   final Store<AppState> store;
-
-  final ConnectivityStatus connectivityStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +53,6 @@ class MyCareHubProfessionalApp extends StatelessWidget {
             child: AuthManager(
               appName: appName,
               appContexts: appSetupData.appContexts,
-              connectivityStatus: connectivityStatus,
             ),
           );
         },

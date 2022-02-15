@@ -8,7 +8,6 @@ import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
-import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
 
@@ -30,11 +29,6 @@ void main() {
         ],
       );
       ConnectivityPlatform.instance = fakePlatform;
-
-      final MobileConnectivityStatus connectivityStatus =
-          MobileConnectivityStatus(
-        checkInternetCallback: () async => false,
-      );
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
@@ -58,12 +52,11 @@ void main() {
                 appContexts: testAppContexts,
                 baseContext: devAppSetupData.customContext,
                 graphQLClient: customClient,
-                child: MaterialApp(
+                child: const MaterialApp(
                   onGenerateRoute: RouteGenerator.generateRoute,
                   home: AuthManager(
                     appName: 'test',
                     appContexts: testAppContexts,
-                    connectivityStatus: connectivityStatus,
                   ),
                 ),
               );

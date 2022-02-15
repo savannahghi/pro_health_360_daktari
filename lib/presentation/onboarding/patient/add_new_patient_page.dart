@@ -474,7 +474,9 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                       return ElevatedButton(
                                         key: patientRegisterBtnKey,
                                         onPressed: hasData && snapshot.data!
-                                            ? () => _processAndNavigate()
+                                            ? () => _processAndNavigate(
+                                                  vm.hasConnection,
+                                                )
                                             : null,
                                         style: ElevatedButton.styleFrom(
                                           primary: AppColors.secondaryColor,
@@ -503,7 +505,27 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
     );
   }
 
-  void _processAndNavigate() {
+  void _processAndNavigate(bool hasConnection) {
+    if (!hasConnection) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: const Text(
+              connectionLostText,
+            ),
+            duration: const Duration(seconds: 5),
+            action: dismissSnackBar(
+              closeString,
+              Colors.white,
+              context,
+            ),
+          ),
+        );
+
+      return;
+    }
+
     StoreProvider.dispatch(
       context,
       RegisterClientAction(

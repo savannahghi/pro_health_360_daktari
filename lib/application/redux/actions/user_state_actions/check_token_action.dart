@@ -1,10 +1,8 @@
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/update_initial_route_action.dart';
-// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
 import 'package:healthcloud/presentation/router/routes.dart';

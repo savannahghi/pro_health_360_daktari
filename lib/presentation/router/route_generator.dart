@@ -44,12 +44,12 @@ class RouteGenerator {
 
       case AppRoutes.setPinPage:
         return MaterialPageRoute<CreateNewPINPage>(
-          builder: (_) => CreateNewPINPage(),
+          builder: (_) => const CreateNewPINPage(),
         );
 
       case AppRoutes.setNicknamePage:
         return MaterialPageRoute<SetNickNamePage>(
-          builder: (_) => SetNickNamePage(),
+          builder: (_) => const SetNickNamePage(),
         );
 
       case AppRoutes.loginPage:

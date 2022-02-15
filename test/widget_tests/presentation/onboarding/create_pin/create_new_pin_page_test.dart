@@ -2,7 +2,6 @@
 import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
@@ -11,7 +10,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -22,18 +20,11 @@ import '../../../../mocks/test_helpers.dart';
 void main() {
   group('CreateNewPINPage', () {
     late Store<AppState> store;
-    late MobileConnectivityStatus connectivityStatus;
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
-      final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
-      ConnectivityPlatform.instance = fakePlatform;
-
-      connectivityStatus = MobileConnectivityStatus(
-        checkInternetCallback: () async => true,
-      );
     });
 
     testWidgets('PIN field validates correctly', (WidgetTester tester) async {
@@ -41,9 +32,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: CreateNewPINPage(
-          connectivityStatus: connectivityStatus,
-        ),
+        widget: const CreateNewPINPage(),
       );
 
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -64,9 +53,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: CreateNewPINPage(
-          connectivityStatus: connectivityStatus,
-        ),
+        widget: const CreateNewPINPage(),
       );
       final Finder pinInputField = find.byKey(pinInputKey);
       final Finder confirmPinInputField = find.byKey(confirmPinInputKey);
@@ -92,9 +79,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: CreateNewPINPage(
-          connectivityStatus: connectivityStatus,
-        ),
+        widget: const CreateNewPINPage(),
       );
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -116,15 +101,13 @@ void main() {
 
     testWidgets('should show No Internet text when there is no connectivity ',
         (WidgetTester tester) async {
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
+
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
-            checkInternetCallback: () async => false,
-          ),
-        ),
+        widget: const CreateNewPINPage(),
       );
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -143,12 +126,13 @@ void main() {
       await tester.pump(const Duration(seconds: 2));
       expect(find.text(noInternetConnection), findsOneWidget);
     });
+
     testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: CreateNewPINPage(),
+        widget: const CreateNewPINPage(),
       );
 
       await tester.pumpAndSettle();
