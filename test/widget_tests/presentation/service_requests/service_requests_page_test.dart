@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -11,18 +12,21 @@ import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
-  group('CustomAppBar', () {
+  group('ServiceRequestsPage', () {
     testWidgets('should render correctly with default values',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
-        widget: ServiceRequestsPage(),
+        widget: ServiceRequestsPage(
+          pendingServiceRequest:
+              PendingServiceRequest.fromJson(mockPendingServiceRequests),
+        ),
         graphQlClient: MockTestGraphQlClient(),
       );
 
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(ActionCard), findsOneWidget);
+      expect(find.byType(ActionCard), findsNWidgets(2));
 
       await tester.tap(find.byType(ActionCard).first);
       await tester.pumpAndSettle();
@@ -31,6 +35,29 @@ void main() {
       await tester.tap(find.byKey(appBarBackButtonKey));
       await tester.pumpAndSettle();
       expect(find.text(serviceRequestString), findsOneWidget);
+
+      await tester.tap(find.byType(ActionCard).last);
+      await tester.pumpAndSettle();
+      expect(find.text(serviceRequestString), findsNothing);
+    });
+    testWidgets('profile updates is tappable', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        widget: ServiceRequestsPage(
+          pendingServiceRequest:
+              PendingServiceRequest.fromJson(<String, dynamic>{
+            'total': 2,
+            'requestsTypeCount': <dynamic>[
+              <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2},
+            ],
+          }),
+        ),
+      );
+      expect(find.byType(ActionCard), findsOneWidget);
+
+      await tester.tap(find.byType(ActionCard));
+      await tester.pumpAndSettle();
+      expect(find.text(serviceRequestString), findsNothing);
     });
   });
 }

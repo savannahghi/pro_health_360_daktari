@@ -332,6 +332,13 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
     'change_pin': false,
   },
 };
+final Map<String, dynamic> mockPendingServiceRequests = <String, dynamic>{
+  'total': 6,
+  'requestsTypeCount': <dynamic>[
+    <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
+    <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
+  ],
+};
 
 final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
   'profile': <String, dynamic>{
@@ -673,6 +680,19 @@ class MockTestGraphQlClient extends IGraphQlClient {
                   'ClientContact': 'test',
                 },
               ]
+            }
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(getPendingServiceRequestsCountQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getPendingServiceRequestsCount': mockPendingServiceRequests
             }
           }),
           201,

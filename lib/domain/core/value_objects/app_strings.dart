@@ -127,7 +127,8 @@ const String reachOutDescriptionPart1String = 'Use their phone number ';
 const String reachOutDescriptionPart2String =
     ' or tap the button below to call them directly';
 const String verySadString = 'Very Sad';
-
+const String profileUpdateString = 'Profile Update';
+const String pinResetString = 'PIN Reset';
 // Surveys
 const String createSurveyString = 'Create Survey';
 const String toCreateNewSurveyDescriptionString =
