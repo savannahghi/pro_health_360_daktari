@@ -80,7 +80,12 @@ class UserProfilePage extends StatelessWidget {
                   ),
                   UserProfileItem(
                     iconPath: settingsIconSvgPath,
+<<<<<<< HEAD
                     title: settingsString,
+=======
+                    title: 'Settings',
+                    routeName: AppRoutes.settingsPage,
+>>>>>>> feat: profile settings
                     itemBackgroundColor: AppColors.profileListCardColor,
                     onTap: () {
                       ScaffoldMessenger.of(context)
