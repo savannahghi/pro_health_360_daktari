@@ -109,6 +109,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
         smallVerticalSizedBox,
         PINInputField(
           maxLength: 6,
+          controller: textEditingController,
           onDone: (String enteredCode) async {
             if (enteredCode == widget.verifyPhoneViewModel.otp) {
               if (isResetPin) {
@@ -168,6 +169,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
                   buttonColor: AppColors.secondaryColor,
                   borderColor: AppColors.secondaryColor,
                   onPressed: () async {
+                    textEditingController.clear();
                     StoreProvider.dispatch<AppState>(
                       context,
                       SendOTPAction(
