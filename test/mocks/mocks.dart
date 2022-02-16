@@ -912,6 +912,11 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
   'hasCompletedEnteringOTP': false,
   'isResendingOTP': false,
   'initialRoute': AppRoutes.loginPage,
+  'profileFAQsContentState': <String, dynamic>{
+    'profileFAQs': <dynamic>[],
+    'errorFetchingFAQs': false,
+    'timeoutFetchingFAQs': false
+  }
 };
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
@@ -1032,3 +1037,12 @@ final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
     'isCorrect': true,
   },
 ];
+
+Map<String, dynamic> mockFAQContent = <String, dynamic>{
+  'ID': 'id',
+  'Active': true,
+  'Title': 'title',
+  'Body': 'body',
+  'Description': 'description',
+  'Flavour': Flavour.consumer.name,
+};

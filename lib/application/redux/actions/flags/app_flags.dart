@@ -24,3 +24,6 @@ const String createPinFlag = 'create_pin_flag';
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 //Service requests
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
+
+// profile faqs
+const String getFAQsFlag = 'get_faqs_flag';

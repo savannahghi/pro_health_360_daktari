@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 // Project imports:
@@ -19,6 +20,8 @@ import 'package:healthcloud/presentation/onboarding/security_questions/security_
 import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:healthcloud/presentation/profile/faqs/pages/faq_detail_view_page.dart';
+import 'package:healthcloud/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
@@ -148,6 +151,16 @@ class RouteGenerator {
       case AppRoutes.contactAdminPage:
         return MaterialPageRoute<ContactAdminPage>(
           builder: (_) => const ContactAdminPage(),
+        );
+
+      case AppRoutes.faqDetailViewPage:
+        return MaterialPageRoute<FAQDetailViewPage>(
+          builder: (_) => FAQDetailViewPage(payload: args as FAQContent),
+        );
+
+      case AppRoutes.profileFaqsPage:
+        return MaterialPageRoute<ProfileFaqsPage>(
+          builder: (_) => const ProfileFaqsPage(),
         );
     }
   }

@@ -20,10 +20,14 @@ MiscState _$MiscStateFromJson(Map<String, dynamic> json) {
 class _$MiscStateTearOff {
   const _$MiscStateTearOff();
 
-  _MiscState call({String? initialRoute, String? error}) {
+  _MiscState call(
+      {String? initialRoute,
+      String? error,
+      FAQsContentState? profileFAQsContentState}) {
     return _MiscState(
       initialRoute: initialRoute,
       error: error,
+      profileFAQsContentState: profileFAQsContentState,
     );
   }
 
@@ -39,6 +43,8 @@ const $MiscState = _$MiscStateTearOff();
 mixin _$MiscState {
   String? get initialRoute => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +56,12 @@ mixin _$MiscState {
 abstract class $MiscStateCopyWith<$Res> {
   factory $MiscStateCopyWith(MiscState value, $Res Function(MiscState) then) =
       _$MiscStateCopyWithImpl<$Res>;
-  $Res call({String? initialRoute, String? error});
+  $Res call(
+      {String? initialRoute,
+      String? error,
+      FAQsContentState? profileFAQsContentState});
+
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
 }
 
 /// @nodoc
@@ -65,6 +76,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
   $Res call({
     Object? initialRoute = freezed,
     Object? error = freezed,
+    Object? profileFAQsContentState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -75,7 +87,23 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileFAQsContentState: profileFAQsContentState == freezed
+          ? _value.profileFAQsContentState
+          : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
+              as FAQsContentState?,
     ));
+  }
+
+  @override
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState {
+    if (_value.profileFAQsContentState == null) {
+      return null;
+    }
+
+    return $FAQsContentStateCopyWith<$Res>(_value.profileFAQsContentState!,
+        (value) {
+      return _then(_value.copyWith(profileFAQsContentState: value));
+    });
   }
 }
 
@@ -85,7 +113,13 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
           _MiscState value, $Res Function(_MiscState) then) =
       __$MiscStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? initialRoute, String? error});
+  $Res call(
+      {String? initialRoute,
+      String? error,
+      FAQsContentState? profileFAQsContentState});
+
+  @override
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
 }
 
 /// @nodoc
@@ -101,6 +135,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
   $Res call({
     Object? initialRoute = freezed,
     Object? error = freezed,
+    Object? profileFAQsContentState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -111,6 +146,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileFAQsContentState: profileFAQsContentState == freezed
+          ? _value.profileFAQsContentState
+          : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
+              as FAQsContentState?,
     ));
   }
 }
@@ -118,7 +157,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MiscState implements _MiscState {
-  _$_MiscState({this.initialRoute, this.error});
+  _$_MiscState({this.initialRoute, this.error, this.profileFAQsContentState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -127,10 +166,12 @@ class _$_MiscState implements _MiscState {
   final String? initialRoute;
   @override
   final String? error;
+  @override
+  final FAQsContentState? profileFAQsContentState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, error: $error)';
+    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState)';
   }
 
   @override
@@ -141,14 +182,19 @@ class _$_MiscState implements _MiscState {
                 const DeepCollectionEquality()
                     .equals(other.initialRoute, initialRoute)) &&
             (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(
+                    other.profileFAQsContentState, profileFAQsContentState) ||
+                const DeepCollectionEquality().equals(
+                    other.profileFAQsContentState, profileFAQsContentState)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(initialRoute) ^
-      const DeepCollectionEquality().hash(error);
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(profileFAQsContentState);
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +208,10 @@ class _$_MiscState implements _MiscState {
 }
 
 abstract class _MiscState implements MiscState {
-  factory _MiscState({String? initialRoute, String? error}) = _$_MiscState;
+  factory _MiscState(
+      {String? initialRoute,
+      String? error,
+      FAQsContentState? profileFAQsContentState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -171,6 +220,9 @@ abstract class _MiscState implements MiscState {
   String? get initialRoute => throw _privateConstructorUsedError;
   @override
   String? get error => throw _privateConstructorUsedError;
+  @override
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

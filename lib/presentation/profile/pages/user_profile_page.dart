@@ -75,15 +75,8 @@ class UserProfilePage extends StatelessWidget {
                     iconPath: faqsIconSvgPath,
                     title: faqsString,
                     itemBackgroundColor: AppColors.profileListCardColor,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
-                    },
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRoutes.profileFaqsPage),
                   ),
                   UserProfileItem(
                     iconPath: settingsIconSvgPath,

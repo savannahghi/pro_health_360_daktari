@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
@@ -6,10 +8,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:healthcloud/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:healthcloud/presentation/profile/pages/user_profile_page.dart';
 import 'package:healthcloud/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
+import 'package:http/http.dart';
 
+import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
@@ -75,12 +80,39 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.byType(ScaffoldMessenger), findsOneWidget);
 
-    await tester.tap(find.text(faqsString));
-    await tester.pumpAndSettle(const Duration(seconds: 1));
-    expect(find.byType(ScaffoldMessenger), findsOneWidget);
-
     await tester.tap(find.text(settingsString));
     await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.byType(ScaffoldMessenger), findsOneWidget);
+  });
+
+  testWidgets('navigates to profile faqs correctly',
+      (WidgetTester tester) async {
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(
+        json.encode(<String, dynamic>{
+          'data': <String, dynamic>{
+            'getFAQContent': <dynamic>[],
+          },
+        }),
+        201,
+      ),
+    );
+    await buildTestWidget(
+      tester: tester,
+      graphQlClient: mockShortSILGraphQlClient,
+      widget: Builder(
+        builder: (BuildContext context) {
+          return UserProfilePage();
+        },
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text(faqsString));
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byType(ProfileFaqsPage), findsWidgets);
   });
 }
