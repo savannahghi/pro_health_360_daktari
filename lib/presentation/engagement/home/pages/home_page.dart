@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
             final String firstName = staffState?.user?.firstName ?? UNKNOWN;
 
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -68,7 +69,6 @@ class HomePage extends StatelessWidget {
                         const AppbarUser(),
                         veryLargeVerticalSizedBox,
                         veryLargeVerticalSizedBox,
-
                         Text(
                           removeTailingComma(
                             getGreetingMessage(
@@ -77,15 +77,6 @@ class HomePage extends StatelessWidget {
                           ),
                           style: boldSize24Text(Colors.white),
                         ),
-
-                        //TODO(eugene): Restore when ready
-                        // size15VerticalSizedBox,
-
-                        // SearchWidget(
-                        //   onTap: () {
-                        //     Navigator.pushNamed(context, AppRoutes.searchPage);
-                        //   },
-                        // ),
                         smallVerticalSizedBox,
                       ],
                     ),
@@ -110,16 +101,6 @@ class HomePage extends StatelessWidget {
                         },
                       ),
                       ServiceRequestActionCard(),
-
-                      ///TODO(eugene): Restore when POC is ready
-                      // ActionCard(
-                      //   key: surveysCardKey,
-                      //   title: surveysString,
-                      //   iconUrl: surveysImageSvgPath,
-                      //   onTap: () {
-                      //     Navigator.of(context).pushNamed(AppRoutes.surveysPage);
-                      //   },
-                      // ),
                     ],
                   ),
                 ),

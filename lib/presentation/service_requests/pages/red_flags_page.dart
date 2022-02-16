@@ -73,8 +73,8 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                     snapshot.data != null &&
                     snapshot.data['loading'] != null &&
                     snapshot.data['loading'] == true) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,
                     child: const Center(child: SILPlatformLoader()),
                   );
                 }
@@ -125,42 +125,6 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: <Widget>[
-                          ///TODO(eugene): Restore when ready
-                          // Container(
-                          //   padding: const EdgeInsets.all(10),
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.white,
-                          //     borderRadius: BorderRadius.circular(10),
-                          //     boxShadow: <BoxShadow>[
-                          //       BoxShadow(
-                          //         color: Colors.black.withOpacity(0.10),
-                          //         spreadRadius: 1,
-                          //         blurRadius: 9,
-                          //         offset: const Offset(0, 9),
-                          //       ),
-                          //     ],
-                          //   ),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //     children: <Widget>[
-                          //       Padding(
-                          //         padding: const EdgeInsets.only(left: 8.0),
-                          //         child: Text(
-                          //           searchString,
-                          //           style: normalSize12Text(
-                          //             AppColors.greyTextColor,
-                          //           ),
-                          //         ),
-                          //       ),
-                          //       Padding(
-                          //         padding: const EdgeInsets.only(right: 8.0),
-                          //         child: SvgPicture.asset(searchIconSvg),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // veryLargeVerticalSizedBox,
-
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               vertical: 30,
