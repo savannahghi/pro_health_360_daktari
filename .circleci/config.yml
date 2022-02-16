@@ -227,7 +227,6 @@ workflows:
            branches:
              only:
                - alpha
-               - update-target-sdk
      - deploy_to_play_store_beta:
          requires:
            - run_tests_and_generate_coverage
