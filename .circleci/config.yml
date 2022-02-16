@@ -133,6 +133,13 @@ jobs:
       - run:
           name: "Build and publish to play store alpha track"
           command: |
+            echo "Building and releasing QA build to Firebase App Tester"
+            flutter build apk --release --target=$HOME/project/lib/bin/main_demo.dart --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha 
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "external-testers, internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/demo-release-notes.txt
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha has been deployed successfully to Firebase app tester"
+
+            echo "Building and releasing app bundle to Google Play Store Alpha track"
             flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha \
             --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_demo.dart \
             --dart-define=APPVERSION=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha
@@ -220,6 +227,7 @@ workflows:
            branches:
              only:
                - alpha
+               - update-target-sdk
      - deploy_to_play_store_beta:
          requires:
            - run_tests_and_generate_coverage
