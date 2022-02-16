@@ -41,4 +41,10 @@ class AppRoutes {
   static const String recoverPinRoute = '/recoverPin';
   static const String setNicknamePage = '/setNicknamePage';
   static const String contactAdminPage = '/contactAdminPage';
+
+  // Profile Faqs Page
+  static const String faqDetailViewPage = '/faqDetailViewPage';
+
+  // Profile Faqs Page
+  static const String profileFaqsPage = '/profileFaqsPage';
 }

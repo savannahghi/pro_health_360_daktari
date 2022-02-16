@@ -321,3 +321,10 @@ const String tapBelowToCallAdmin = 'Tap below to call your admin on the number';
 const String emailYourAdmin = 'Email your admin';
 const String tapBelowToEmailAdmin = 'Tap below to email your admin on';
 const String emailString = 'Email';
+
+// Profile FAQs
+const String frequentlyAskedQuestions = 'Frequently asked questions';
+const String loremIpsumText =
+    'A detailed description for this question will be available soon';
+
+const String tapToLearnMoreText = 'Tap to learn more';
