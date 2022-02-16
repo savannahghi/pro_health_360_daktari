@@ -217,20 +217,27 @@ class LoginWidgetState extends State<LoginWidget> {
 
               /// login button
               if (!vm.state.wait!.isWaitingFor(phoneLoginStateFlag))
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: MyAfyaHubPrimaryButton(
-                    buttonKey: loginKey,
-                    onPressed: () => login(
-                      context: context,
-                      phoneNumber: _phoneNumber,
-                      pin: _pinCode,
-                    ),
-                    buttonColor: Theme.of(context).primaryColor,
-                    borderColor: Theme.of(context).primaryColor,
-                    text: phoneLoginText,
-                  ),
+                LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    final double width = constraints.maxWidth > 420
+                        ? constraints.maxWidth * 0.6
+                        : constraints.maxWidth;
+                    return SizedBox(
+                      width: width,
+                      height: 50,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: loginKey,
+                        onPressed: () => login(
+                          context: context,
+                          phoneNumber: _phoneNumber,
+                          pin: _pinCode,
+                        ),
+                        buttonColor: Theme.of(context).primaryColor,
+                        borderColor: Theme.of(context).primaryColor,
+                        text: phoneLoginText,
+                      ),
+                    );
+                  },
                 ),
 
               smallVerticalSizedBox,
