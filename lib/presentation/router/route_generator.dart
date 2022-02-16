@@ -7,6 +7,7 @@ import 'package:healthcloud/presentation/community/chat_screen/pages/community_c
 import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
+import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -142,6 +143,11 @@ class RouteGenerator {
       case AppRoutes.clientHealthPage:
         return MaterialPageRoute<ClientHealthPage>(
           builder: (_) => ClientHealthPage(),
+        );
+
+      case AppRoutes.contactAdminPage:
+        return MaterialPageRoute<ContactAdminPage>(
+          builder: (_) => const ContactAdminPage(),
         );
     }
   }

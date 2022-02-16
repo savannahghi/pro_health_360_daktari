@@ -66,6 +66,7 @@ class AppColors {
   static const Color dangerColor = Color(0xffb00020);
   static const Color redColor = Color(0xfff02532);
   static const Color lightRedColor = Color(0xfffac8c9);
+  static const Color lightBlackTextColor = Color(0xFF555555);
 }
 
 class ThemeColors {

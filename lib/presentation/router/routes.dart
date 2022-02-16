@@ -40,4 +40,5 @@ class AppRoutes {
   static const String phoneSignupRoute = '/phoneSignup';
   static const String recoverPinRoute = '/recoverPin';
   static const String setNicknamePage = '/setNicknamePage';
+  static const String contactAdminPage = '/contactAdminPage';
 }
