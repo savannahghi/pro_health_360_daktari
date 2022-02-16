@@ -73,7 +73,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release-demo"
-      customArchiveName = "myCareHub Demo"
+      customArchiveName = "myCareHub Professional Demo"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
