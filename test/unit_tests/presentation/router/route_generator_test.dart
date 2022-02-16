@@ -29,6 +29,7 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:healthcloud/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 
 import '../../../mocks/mocks.dart';
@@ -283,5 +284,16 @@ void main() {
         routeGenerator(settings)! as MaterialPageRoute<EditInformationPage>;
     expect(route, isA<MaterialPageRoute<EditInformationPage>>());
     expect(route.builder(context), isA<EditInformationPage>());
+  });
+  test('Test router returns ResolvedServiceRequestsPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.resolvedServiceRequestsPage);
+
+    final MaterialPageRoute<ResolvedServiceRequestsPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<ResolvedServiceRequestsPage>?;
+
+    expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsPage>>());
+    expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
   });
 }

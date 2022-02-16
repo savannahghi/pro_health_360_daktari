@@ -30,6 +30,7 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:healthcloud/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:healthcloud/presentation/surveys/pages/surveys_page.dart';
 
@@ -191,6 +192,10 @@ class RouteGenerator {
       case AppRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
+        );
+      case AppRoutes.resolvedServiceRequestsPage:
+        return MaterialPageRoute<ResolvedServiceRequestsPage>(
+          builder: (_) => ResolvedServiceRequestsPage(),
         );
     }
   }

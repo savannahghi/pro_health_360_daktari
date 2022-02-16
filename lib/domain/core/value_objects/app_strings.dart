@@ -129,8 +129,14 @@ const String reachOutDescriptionPart2String =
 const String verySadString = 'Very Sad';
 const String profileUpdateString = 'Profile Update';
 const String pinResetString = 'PIN Reset';
-const String noDataBodyString =
+const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
+    const String resolvedServiceRequestsNoDataBodyString =
+     'No Worries. Resolved service requests will show up here once you have handled them';
+const String resolvedServiceRequestString = 'Resolved service requests';
+const String resolvedString = 'Resolved';
+const String spacedByString = ' by ';
+const String spacedOnString = ' on ';
 // Surveys
 const String createSurveyString = 'Create Survey';
 const String toCreateNewSurveyDescriptionString =
@@ -296,6 +302,8 @@ const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
 const String fetchingRedFlagsString = 'fetching red flags';
+String fetchingResolvedRequestsString =
+    'fetching ${resolvedRequestsString.toLowerCase()}';
 
 // generic widget
 const String actionTextGenericNoData = 'Ok, thanks';

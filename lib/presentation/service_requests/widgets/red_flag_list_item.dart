@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 
 // Package imports:
@@ -18,17 +21,23 @@ class RedFlagListItem extends StatelessWidget {
     required this.clientName,
     required this.feelingDescription,
     required this.phoneNumber,
+    this.isResolved = false,
+    this.resolvedBy,
+    this.resolvedAt,
   });
 
   final String clientName;
   final String feelingDescription;
   final String phoneNumber;
+  final bool isResolved;
+  final String? resolvedBy;
+  final String? resolvedAt;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (phoneNumber.isNotEmpty) {
+        if (phoneNumber.isNotEmpty && !isResolved) {
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -101,6 +110,55 @@ class RedFlagListItem extends StatelessWidget {
                     AppColors.greyTextColor,
                   ),
                 ),
+                if (isResolved)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Row(
+                      children: <Widget>[
+                        SvgPicture.asset(
+                          doneIconSvgPath,
+                          width: 20,
+                        ),
+                        verySmallHorizontalSizedBox,
+                        RichText(
+                          text: TextSpan(
+                            text: resolvedString,
+                            style: normalSize12Text(
+                              AppColors.greyTextColor,
+                            ),
+                            children: <TextSpan>[
+                              if (resolvedBy != null &&
+                                  resolvedBy!.isNotEmpty &&
+                                  resolvedBy != UNKNOWN) ...<TextSpan>[
+                                const TextSpan(
+                                  text: spacedByString,
+                                ),
+                                TextSpan(
+                                  text: resolvedBy,
+                                  style: heavySize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              ],
+                              if (resolvedAt != null &&
+                                  resolvedAt!.isNotEmpty &&
+                                  resolvedAt != UNKNOWN) ...<TextSpan>[
+                                const TextSpan(
+                                  text: spacedOnString,
+                                ),
+                                TextSpan(
+                                  text: resolvedAt,
+                                  style: heavySize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              ]
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
               ],
             ),
           ),

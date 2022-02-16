@@ -53,6 +53,7 @@ class ServiceRequestsPage extends StatelessWidget {
       body: total > 0
           ? SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
@@ -124,6 +125,7 @@ class ServiceRequestsPage extends StatelessWidget {
             )
           : GenericNoDataWidget(
               key: helpNoDataWidgetKey,
+              headerIconSvgUrl: noDataImageSvgPath,
               actionText: actionTextGenericNoData,
               type: GenericNoDataTypes.noData,
               recoverCallback: () {
@@ -132,7 +134,7 @@ class ServiceRequestsPage extends StatelessWidget {
                 }
               },
               messageTitle: getNoDataTile(serviceRequestsText.toLowerCase()),
-              messageBody: noDataBodyString,
+              messageBody: serviceRequestsNoDataBodyString,
             ),
     );
   }

@@ -94,3 +94,7 @@ const String errorPageImage = 'assets/images/error_page_image.svg';
 
 //contact admin
 const String contactAdminSvg = 'assets/images/contact_admin.svg';
+
+const String doneIconSvgPath = 'assets/icons/done_icon.svg';
+const String resolvedServiceRequestsImageSvgPath =
+    'assets/images/solved_service_request_icon.svg';

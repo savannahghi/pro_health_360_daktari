@@ -19,12 +19,14 @@ import 'package:misc_utilities/misc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
-class RedFlagsPage extends StatefulWidget {
+class ResolvedServiceRequestsPage extends StatefulWidget {
   @override
-  State<RedFlagsPage> createState() => _RedFlagsPageState();
+  State<ResolvedServiceRequestsPage> createState() =>
+      _ResolvedServiceRequestsPageState();
 }
 
-class _RedFlagsPageState extends State<RedFlagsPage> {
+class _ResolvedServiceRequestsPageState
+    extends State<ResolvedServiceRequestsPage> {
   // [RedFlagsPage] is used to display a list of red
   /// flags that demand immediate attention
 
@@ -47,8 +49,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
         logTitle: 'Fetch red flags',
         queryString: getServiceRequestsQuery,
         variables: <String, dynamic>{
-          'type': 'RED_FLAG',
-          'status': RequestStatus.PENDING.name,
+          'status': RequestStatus.RESOLVED.name,
           'facilityID': facilityID,
         },
       );
@@ -60,12 +61,23 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
-        title: redFlagString,
+        title: resolvedRequestsString,
         showNotificationIcon: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 30,
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  resolvedServiceRequestsImageSvgPath,
+                  width: 200,
+                ),
+              ),
+            ),
             StreamBuilder<Object>(
               stream: _stream,
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -74,9 +86,9 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                     snapshot.data != null &&
                     snapshot.data['loading'] != null &&
                     snapshot.data['loading'] == true) {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: const Center(child: SILPlatformLoader()),
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 150.0),
+                    child: SILPlatformLoader(),
                   );
                 }
                 //error checking
@@ -96,7 +108,6 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                   }
 
                   return GenericNoDataWidget(
-                    headerIconSvgUrl: noDataImageSvgPath,
                     key: helpNoDataWidgetKey,
                     recoverCallback: () async {
                       await genericFetchFunction(
@@ -106,11 +117,12 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                         queryString: getServiceRequestsQuery,
                         variables: <String, dynamic>{
                           'type': 'RED_FLAG',
-                          'status': RequestStatus.PENDING.name
+                          'status': RequestStatus.RESOLVED.name
                         },
                       );
                     },
-                    messageBody: getErrorMessage(fetchingRedFlagsString),
+                    messageBody:
+                        getErrorMessage(fetchingResolvedRequestsString),
                   );
                 }
                 if (snapshot.hasData) {
@@ -127,17 +139,6 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 30,
-                            ),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                redFlagStressSvgPath,
-                                width: 200,
-                              ),
-                            ),
-                          ),
                           ...List<Widget>.generate(
                               serviceRequestContents.length, (int index) {
                             final String clientName = serviceRequestContents
@@ -153,11 +154,21 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                                     .elementAt(index)
                                     .description ??
                                 '';
-
+                            final String resolvedTime = serviceRequestContents
+                                    .elementAt(index)
+                                    .resolvedTime ??
+                                '';
+                            final String resolvedBy = serviceRequestContents
+                                    .elementAt(index)
+                                    .resolvedBy ??
+                                '';
                             return RedFlagListItem(
+                              isResolved: true,
                               clientName: clientName,
                               feelingDescription: feeling,
                               phoneNumber: clientPhoneNumber,
+                              resolvedAt: resolvedTime,
+                              resolvedBy: resolvedBy,
                             );
                           })
                         ],
@@ -165,7 +176,19 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                     );
                   }
                 }
-                return const SizedBox();
+                return GenericNoDataWidget(
+                  key: helpNoDataWidgetKey,
+                  actionText: actionTextGenericNoData,
+                  type: GenericNoDataTypes.noData,
+                  recoverCallback: () {
+                    if (Navigator.canPop(context)) {
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  messageTitle:
+                      getNoDataTile(serviceRequestsText.toLowerCase()),
+                  messageBody: resolvedServiceRequestsNoDataBodyString,
+                );
               },
             ),
           ],

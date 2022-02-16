@@ -672,12 +672,14 @@ class MockTestGraphQlClient extends IGraphQlClient {
               'getServiceRequests': <dynamic>[
                 <String, dynamic>{
                   'ID': 'test',
-                  'RequestType': 'test',
+                  'RequestType': 'RED_FLAG',
                   'Request': 'test',
                   'ClientID': 'test',
                   'FacilityID': 'test',
                   'ClientName': 'test',
                   'ClientContact': 'test',
+                  'ResolvedAt': 'test',
+                  'ResolvedBy': 'test',
                 },
               ]
             }
