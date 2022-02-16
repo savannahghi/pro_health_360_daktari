@@ -74,6 +74,55 @@ void main() {
       });
     });
 
+    testWidgets('should work correctly on large screen',
+        (WidgetTester tester) async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
+
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 720);
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+      });
+
+      await mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockGraphQlClient,
+          widget: PhoneLoginPage(),
+        );
+
+        final Finder phoneLoginButton = find.byKey(loginKey);
+        final Finder phoneInput = find.byKey(phoneLoginPinInputKey);
+
+        expect(phoneLoginButton, findsOneWidget);
+        expect(phoneInput, findsOneWidget);
+
+        // Enter phone number
+        await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+        // Enter PIN
+        await tester.enterText(phoneInput, '1234');
+
+        // Tap the login button
+        await tester.ensureVisible(find.byKey(loginKey));
+        await tester.tap(phoneLoginButton);
+        await tester.pump();
+
+        final PhoneLoginResponse phoneLoginResponse =
+            PhoneLoginResponse.fromJson(mockLoginResponse);
+
+        await tester.pumpAndSettle();
+        expect(find.byType(VerifyPhonePage), findsOneWidget);
+
+        expect(
+          store.state.staffState!.user,
+          phoneLoginResponse.staffState!.user,
+        );
+      });
+    });
+
     testWidgets(
         'should show an error message if invalid credentials are entered',
         (WidgetTester tester) async {

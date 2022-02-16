@@ -71,27 +71,32 @@ class _ScheduleMeetDialogState extends State<ScheduleMeetDialog> {
               ),
             ),
             smallVerticalSizedBox,
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 48,
-              child: MyAfyaHubPrimaryButton(
-                buttonKey: dialogCallButtonKey,
-                borderColor: Colors.transparent,
-                text: callString,
-                buttonColor: Theme.of(context).primaryColor,
-                textStyle: veryBoldSize14Text(
-                  Colors.white,
-                ),
-                customPadding: const EdgeInsets.all(
-                  5,
-                ),
-                onPressed: () async {
-                  if (Navigator.canPop(context)) {
-                    Navigator.of(context).pop();
-                  }
-                  await launch('tel:$phone');
-                },
-              ),
+            LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                final double maxWidth = constraints.maxWidth;
+                return SizedBox(
+                  width: maxWidth > 420 ? constraints.maxWidth * 0.5 : maxWidth,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: dialogCallButtonKey,
+                    borderColor: Colors.transparent,
+                    text: callString,
+                    buttonColor: Theme.of(context).primaryColor,
+                    textStyle: veryBoldSize14Text(
+                      Colors.white,
+                    ),
+                    customPadding: const EdgeInsets.all(
+                      5,
+                    ),
+                    onPressed: () async {
+                      if (Navigator.canPop(context)) {
+                        Navigator.of(context).pop();
+                      }
+                      await launch('tel:$phone');
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
