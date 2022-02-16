@@ -59,10 +59,7 @@ class _ServiceRequestActionCardState extends State<ServiceRequestActionCard> {
             snapshot.data != null &&
             snapshot.data['loading'] != null &&
             snapshot.data['loading'] == true) {
-          return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const SILPlatformLoader(),
-          );
+          return const Center(child: SILPlatformLoader());
         }
         //error checking
         if (snapshot.hasError) {

@@ -45,6 +45,8 @@ void main() {
         ),
       );
 
+      final Finder addNewUserWidget = find.text(addNewUserText);
+
       expect(find.byType(AppbarUser), findsOneWidget);
       expect(
         find.text(
@@ -58,6 +60,8 @@ void main() {
       );
       expect(find.byType(ActionCard), findsWidgets);
 
+      await tester.ensureVisible(addNewUserWidget);
+      await tester.pumpAndSettle();
       await tester.tap(find.text(addNewUserText));
       await tester.pumpAndSettle();
       expect(find.byType(AddNewPatientPage), findsWidgets);
@@ -81,73 +85,13 @@ void main() {
           },
         ),
       );
+      final Finder serviceRequestsWidget = find.text(serviceRequestsText);
 
-      expect(find.byType(AppbarUser), findsOneWidget);
-      expect(
-        find.text(
-          removeTailingComma(
-            getGreetingMessage(
-              firstName,
-            ),
-          ),
-        ),
-        findsOneWidget,
-      );
-      expect(find.byType(ActionCard), findsWidgets);
-
-      await tester.tap(find.text(serviceRequestsText));
+      await tester.ensureVisible(serviceRequestsWidget);
+      await tester.pumpAndSettle();
+      await tester.tap(serviceRequestsWidget);
       await tester.pumpAndSettle();
       expect(find.byType(ServiceRequestsPage), findsWidgets);
     });
-    //TODO(eugene): Restore when Surveys is ready
-    // testWidgets('navigates to SurveysPage', (WidgetTester tester) async {
-    //   await buildTestWidget(
-    //     tester: tester,
-    //     store: store,
-    //     widget: Builder(
-    //       builder: (BuildContext context) {
-    //         return StoreProvider<AppState>(
-    //           store: store,
-    //           child: const HomePage(),
-    //         );
-    //       },
-    //     ),
-    //   );
-
-    //   expect(find.byType(AppbarUser), findsOneWidget);
-    //   expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
-    //   expect(find.byType(ActionCard), findsWidgets);
-
-    //   final Finder surveysPage =
-    //       find.byKey(surveysCardKey, skipOffstage: false);
-    //   await tester.ensureVisible(surveysPage);
-
-    //   await tester.tap(find.text(surveysString));
-    //   await tester.pumpAndSettle();
-    //   expect(find.byType(SurveysPage), findsWidgets);
-    // });
-    //TODO(eugene): Restore when Search is ready
-    // testWidgets('navigates to SearchPage', (WidgetTester tester) async {
-    //   await buildTestWidget(
-    //     tester: tester,
-    //     store: store,
-    //     widget: Builder(
-    //       builder: (BuildContext context) {
-    //         return StoreProvider<AppState>(
-    //           store: store,
-    //           child: const HomePage(),
-    //         );
-    //       },
-    //     ),
-    //   );
-
-    //   expect(find.byType(AppbarUser), findsOneWidget);
-    //   expect(find.text(getGreetingMessage(firstName)), findsOneWidget);
-    //   expect(find.byType(ActionCard), findsWidgets);
-
-    //   await tester.tap(find.text(searchUser));
-    //   await tester.pumpAndSettle();
-    //   expect(find.byType(SearchPage), findsWidgets);
-    // });
   });
 }

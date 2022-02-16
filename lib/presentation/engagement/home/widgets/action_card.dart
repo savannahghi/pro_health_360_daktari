@@ -27,6 +27,7 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = (MediaQuery.of(context).size.width / 2) - 60;
     return GestureDetector(
       onTap: onTap,
       child: Stack(
@@ -34,25 +35,31 @@ class ActionCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      iconUrl,
-                      height: 140,
-                      width: 140,
+              child: SizedBox(
+                width: width,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: SvgPicture.asset(
+                        iconUrl,
+                        height: width - 8,
+                      ),
                     ),
-                  ),
-                  smallVerticalSizedBox,
-                  Text(title, style: boldSize16Text()),
-                  smallVerticalSizedBox,
-                ],
+                    smallVerticalSizedBox,
+                    Text(
+                      title,
+                      style: boldSize15Text(),
+                      textAlign: TextAlign.center,
+                    ),
+                    smallVerticalSizedBox,
+                  ],
+                ),
               ),
             ),
           ),
