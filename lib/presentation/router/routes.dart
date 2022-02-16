@@ -52,4 +52,6 @@ class AppRoutes {
 
   //Settings Page
   static const String settingsPage = '/settingsPage';
+  static const String resolvedServiceRequestsPage =
+      '/resolvedServiceRequestsPage';
 }

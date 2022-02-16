@@ -34,6 +34,7 @@ class GenericNoDataWidget extends StatelessWidget {
     this.actionText = retryString,
     this.align,
     this.type = GenericNoDataTypes.error,
+    this.headerIconSvgUrl,
   }) : super(key: key);
 
   /// [actionText]
@@ -57,6 +58,8 @@ class GenericNoDataWidget extends StatelessWidget {
   /// [type] the type of error. Defaults to [noData]
   final GenericNoDataTypes type;
 
+  final String? headerIconSvgUrl;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -69,12 +72,12 @@ class GenericNoDataWidget extends StatelessWidget {
               mainAxisAlignment: align ?? MainAxisAlignment.center,
               children: <Widget>[
                 largeVerticalSizedBox,
-                SvgPicture.asset(
-                  type == GenericNoDataTypes.noData
-                      ? noDataImageSvgPath
-                      : errorPageImageSvgPath,
-                  height: MediaQuery.of(context).size.height / 3,
-                ),
+                if (type == GenericNoDataTypes.error ||
+                    headerIconSvgUrl != null)
+                  SvgPicture.asset(
+                    headerIconSvgUrl ?? errorPageImageSvgPath,
+                    height: MediaQuery.of(context).size.height / 3,
+                  ),
                 Center(
                   child: Column(
                     children: <Widget>[

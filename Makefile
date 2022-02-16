@@ -6,7 +6,6 @@ generate:
 test:
 	rm -rf coverage* && \
 	flutter test --coverage test/ && \
-	lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/connectivity_helper.dart' -o coverage/lcov.info
 	lcov --remove coverage/lcov.info 'lib/**/*.g.dart' -o coverage/lcov.info && \
     lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info && \
     lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info && \
@@ -18,7 +17,6 @@ test:
 covTest:
 	rm -rf coverage* && \
 	flutter test test/ && \
-	lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/connectivity_helper.dart' -o coverage/lcov.info
 	lcov --remove coverage/lcov.info 'lib/**/*.g.dart' -o coverage/lcov.info && \
     lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info && \
 	lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info \
@@ -36,7 +34,6 @@ run:
 test-file:
 	rm -rf coverage* && \
 	flutter test --coverage $(this) && lcov --remove coverage/lcov.info 'lib/**/*.g.dart' -o coverage/lcov.info && \
-	lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/connectivity_helper.dart' -o coverage/lcov.info
     lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info && \
 	lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info \
     lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info && \

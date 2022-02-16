@@ -23,7 +23,7 @@ class AppBarNotification extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: SvgPicture.asset(
             notificationSvgIconPath,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).primaryColor,
             width: 25,
           ),
         ),

@@ -27,3 +27,11 @@ extension ClientTypeEx on ClientType {
 }
 
 enum ServiceRequestType { RED_FLAG, PIN_RESET, PROFILE_UPDATE, UNKNOWN }
+
+enum RequestStatus { PENDING, RESOLVED, IN_PROGRESS, UNKNOWN }
+
+extension RequestStatusEx on RequestStatus {
+  String get name {
+    return describeEnum(this);
+  }
+}
