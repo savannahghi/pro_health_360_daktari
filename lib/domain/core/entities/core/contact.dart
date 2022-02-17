@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 
@@ -12,7 +11,6 @@ part 'contact.g.dart';
 class Contact with _$Contact {
   factory Contact({
     @JsonKey(name: 'contactType') ContactType? contactType,
-    // TODO(paul): this will mostly be a number value object.
     @JsonKey(name: 'contactValue') String? value,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn,

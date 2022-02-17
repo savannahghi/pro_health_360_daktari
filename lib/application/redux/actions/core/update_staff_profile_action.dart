@@ -4,12 +4,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/facility.dart';
 
-// Project imports:
-
-// TODO(paul): rewrite this action to cater for the new fields
 class UpdateStaffProfileAction extends ReduxAction<AppState> {
   UpdateStaffProfileAction({
     this.id,
+    this.userId,
     this.active,
     this.staffNumber,
     this.defaultFacility,
@@ -17,16 +15,18 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
   });
 
   final String? id;
+  final String? userId;
   final bool? active;
   final String? staffNumber;
-  final String? defaultFacility;
   final List<Facility>? facilities;
+  final String? defaultFacility;
 
   @override
   AppState reduce() {
     final AppState newState = state.copyWith(
       staffState: state.staffState?.copyWith.call(
         id: this.id ?? state.staffState?.id,
+        userId: this.userId ?? state.staffState?.userId,
         active: this.active ?? state.staffState?.active,
         staffNumber: this.staffNumber ?? state.staffState?.staffNumber,
         defaultFacility:
