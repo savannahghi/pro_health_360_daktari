@@ -82,9 +82,8 @@ class UserProfilePage extends StatelessWidget {
                     iconPath: settingsIconSvgPath,
                     title: settingsString,
                     itemBackgroundColor: AppColors.profileListCardColor,
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.settingsPage);
-                    },
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRoutes.settingsPage),
                   ),
                   mediumVerticalSizedBox,
                   const SizedBox(
