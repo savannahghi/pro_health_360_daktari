@@ -54,32 +54,24 @@ class HomePage extends StatelessWidget {
                   padding: ResponsiveWidget.isLargeScreen(context)
                       ? const EdgeInsets.fromLTRB(number20, 0, number20, 40)
                       : const EdgeInsets.fromLTRB(5, 0, 5, 10),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal:
-                          ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                        context: context,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        mediumVerticalSizedBox,
-                        veryLargeVerticalSizedBox,
-                        const AppbarUser(),
-                        veryLargeVerticalSizedBox,
-                        veryLargeVerticalSizedBox,
-                        Text(
-                          removeTailingComma(
-                            getGreetingMessage(
-                              firstName == UNKNOWN ? '' : firstName,
-                            ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      mediumVerticalSizedBox,
+                      veryLargeVerticalSizedBox,
+                      const AppbarUser(),
+                      veryLargeVerticalSizedBox,
+                      veryLargeVerticalSizedBox,
+                      Text(
+                        removeTailingComma(
+                          getGreetingMessage(
+                            firstName == UNKNOWN ? '' : firstName,
                           ),
-                          style: boldSize24Text(Colors.white),
                         ),
-                        smallVerticalSizedBox,
-                      ],
-                    ),
+                        style: boldSize24Text(Colors.white),
+                      ),
+                      smallVerticalSizedBox,
+                    ],
                   ),
                 ),
 
