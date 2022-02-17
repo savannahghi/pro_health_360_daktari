@@ -44,8 +44,7 @@ const $Contact = _$ContactTearOff();
 /// @nodoc
 mixin _$Contact {
   @JsonKey(name: 'contactType')
-  ContactType? get contactType =>
-      throw _privateConstructorUsedError; // TODO(paul): this will mostly be a number value object.
+  ContactType? get contactType => throw _privateConstructorUsedError;
   @JsonKey(name: 'contactValue')
   String? get value => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
@@ -169,7 +168,7 @@ class _$_Contact implements _Contact {
   @override
   @JsonKey(name: 'contactType')
   final ContactType? contactType;
-  @override // TODO(paul): this will mostly be a number value object.
+  @override
   @JsonKey(name: 'contactValue')
   final String? value;
   @override
@@ -231,7 +230,7 @@ abstract class _Contact implements Contact {
   @override
   @JsonKey(name: 'contactType')
   ContactType? get contactType => throw _privateConstructorUsedError;
-  @override // TODO(paul): this will mostly be a number value object.
+  @override
   @JsonKey(name: 'contactValue')
   String? get value => throw _privateConstructorUsedError;
   @override
