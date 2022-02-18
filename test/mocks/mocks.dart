@@ -664,6 +664,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+
     if (queryString.contains(getServiceRequestsQuery)) {
       return Future<http.Response>.value(
         http.Response(

@@ -51,7 +51,6 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   void initState() {
     super.initState();
     _formManager.inGender.add(Gender.unknown);
-    _formManager.inFacility.add('Kanairo');
     _formManager.inClientType.add(ClientType.YOUTH);
   }
 
