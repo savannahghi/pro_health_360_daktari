@@ -153,6 +153,7 @@ class DatePickerField extends StatelessWidget {
       child: AbsorbPointer(
         child: TextFormField(
           key: textFieldDateKey,
+          readOnly: true,
           decoration: decoration,
           controller: controller,
           keyboardType: keyboardType,
