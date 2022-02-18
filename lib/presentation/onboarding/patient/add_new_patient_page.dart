@@ -196,6 +196,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                             gestureDateKey: dobKey,
                             controller: dobTextController,
                             decoration: InputDecoration(
+                              suffixIcon: const Icon(Icons.date_range),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide.none,
@@ -324,6 +325,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                             gestureDateKey: enrollmentFieldKey,
                             controller: enrollmentDateTextController,
                             decoration: InputDecoration(
+                              suffixIcon: const Icon(Icons.date_range),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide.none,
