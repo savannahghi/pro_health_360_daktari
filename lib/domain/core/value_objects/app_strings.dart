@@ -111,6 +111,7 @@ const String contentString = 'Content';
 const String surveysString = 'Surveys';
 const String noResultsFoundText = 'Oops!... no results found';
 const String addNewPatientText = 'Add new patient';
+const String createGroupText = 'Create Group';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';
@@ -131,8 +132,8 @@ const String profileUpdateString = 'Profile Update';
 const String pinResetString = 'PIN Reset';
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
-    const String resolvedServiceRequestsNoDataBodyString =
-     'No Worries. Resolved service requests will show up here once you have handled them';
+const String resolvedServiceRequestsNoDataBodyString =
+    'No Worries. Resolved service requests will show up here once you have handled them';
 const String resolvedServiceRequestString = 'Resolved service requests';
 const String resolvedString = 'Resolved';
 const String spacedByString = ' by ';
@@ -183,6 +184,9 @@ const String activeModerationLabelText = 'Active Moderation';
 const String chooseOneHintText = 'choose one';
 const String approvalNoteText =
     'All messages have to be approved to be seen by the group members';
+const String maleText = 'Male';
+const String femaleText = 'Female';
+const String inviteOnlyText = 'Invite only';
 
 // new broadcast page
 const String newBroadcastText = 'New Broadcast';

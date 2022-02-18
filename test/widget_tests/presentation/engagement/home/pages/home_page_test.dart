@@ -10,6 +10,7 @@ import 'package:healthcloud/application/redux/actions/core/update_user_action.da
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
@@ -92,6 +93,27 @@ void main() {
       await tester.tap(serviceRequestsWidget);
       await tester.pumpAndSettle();
       expect(find.byType(ServiceRequestsPage), findsWidgets);
+    });
+
+    testWidgets('navigates to create group page', (WidgetTester tester) async {
+      const String firstName = 'Laura';
+      store.dispatch(
+        UpdateUserAction(user: User.initial().copyWith(firstName: firstName)),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: const HomePage(),
+      );
+
+      final Finder createGroupWidget = find.text(createGroupText);
+
+      await tester.ensureVisible(createGroupWidget);
+      await tester.pumpAndSettle();
+      await tester.tap(createGroupWidget);
+      await tester.pumpAndSettle();
+      expect(find.byType(CreateGroupPage), findsWidgets);
     });
   });
 }
