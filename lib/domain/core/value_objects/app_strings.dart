@@ -304,6 +304,8 @@ const String sendOTPError =
 const String fetchingRedFlagsString = 'fetching red flags';
 String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
+    String fetchingResolvedRedFlagsString =
+    'fetching ${redFlagString.toLowerCase()}';
 
 // generic widget
 const String actionTextGenericNoData = 'Ok, thanks';

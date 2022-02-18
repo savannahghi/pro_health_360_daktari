@@ -668,7 +668,9 @@ class MockTestGraphQlClient extends IGraphQlClient {
     if (queryString.contains(getServiceRequestsQuery)) {
       return Future<http.Response>.value(
         http.Response(
-          json.encode(<String, dynamic>{'data': mockServiceRequests}),
+          json.encode(<String, dynamic>{
+            'data': mockServiceRequests,
+          }),
           201,
         ),
       );
