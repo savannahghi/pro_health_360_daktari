@@ -111,6 +111,7 @@ const String contentString = 'Content';
 const String surveysString = 'Surveys';
 const String noResultsFoundText = 'Oops!... no results found';
 const String addNewPatientText = 'Add new patient';
+const String createGroupText = 'Create Group';
 
 //Service Requests
 const String serviceRequestString = 'Service requests';
@@ -183,6 +184,9 @@ const String activeModerationLabelText = 'Active Moderation';
 const String chooseOneHintText = 'choose one';
 const String approvalNoteText =
     'All messages have to be approved to be seen by the group members';
+const String maleText = 'Male';
+const String femaleText = 'Female';
+const String inviteOnlyText = 'Invite only';
 
 // new broadcast page
 const String newBroadcastText = 'New Broadcast';

@@ -64,6 +64,10 @@ const Key locationDropdownKey = Key('locationDropdownKey');
 const Key clinicDropdownKey = Key('clinicDropdownKey');
 const Key ageDropdownKey = Key('ageDropdownKey');
 const Key moderationActiveSwitchKey = Key('moderationActiveSwitch');
+const Key createGroupBtnKey = Key('createGroupBtnKey');
+const Key ageRangeSlider = Key('age_range_slider');
+const Key inviteOnlyKey = Key('invite_only_key');
+
 //Client Details Card
 const Key inviteButtonKey = Key('invite_button_key');
 const Key viewProfileButtonKey = Key('view_profile_button_key');

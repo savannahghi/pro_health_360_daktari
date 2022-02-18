@@ -17,7 +17,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         graphQlClient: MockTestGraphQlClient(),
-        widget: ServiceRequestActionCard(),
+        widget: const ServiceRequestActionCard(),
       );
       await tester.pumpAndSettle();
       final Finder actionCardWidget = find.byType(ActionCard);
@@ -42,7 +42,7 @@ void main() {
         await buildTestWidget(
           tester: tester,
           graphQlClient: mockShortGraphQlClient,
-          widget: ServiceRequestActionCard(),
+          widget: const ServiceRequestActionCard(),
         );
 
         final Finder actionCardWidget = find.byType(ActionCard);
@@ -77,7 +77,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
-        widget: ServiceRequestActionCard(),
+        widget: const ServiceRequestActionCard(),
       );
       await tester.pump();
       expect(find.byType(SILPlatformLoader), findsOneWidget);

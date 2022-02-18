@@ -92,7 +92,15 @@ class HomePage extends StatelessWidget {
                               .pushNamed(AppRoutes.addNewPatientPage);
                         },
                       ),
-                      ServiceRequestActionCard(),
+                      const ServiceRequestActionCard(),
+                      ActionCard(
+                        title: createGroupText,
+                        iconUrl: newGroupImage,
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.addNewGroupPage);
+                        },
+                      )
                     ],
                   ),
                 ),

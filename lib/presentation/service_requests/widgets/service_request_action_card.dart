@@ -18,6 +18,8 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class ServiceRequestActionCard extends StatefulWidget {
+  const ServiceRequestActionCard({Key? key}) : super(key: key);
+
   @override
   State<ServiceRequestActionCard> createState() =>
       _ServiceRequestActionCardState();
@@ -30,6 +32,7 @@ class _ServiceRequestActionCardState extends State<ServiceRequestActionCard> {
 
   late Stream<Object> _stream;
   late StreamController<Object> _streamController;
+
   @override
   void initState() {
     super.initState();

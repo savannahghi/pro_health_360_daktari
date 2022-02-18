@@ -5,10 +5,10 @@ import 'package:healthcloud/domain/core/entities/service_requests/pending_servic
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
-import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -76,8 +76,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.addNewGroupPage:
-        return MaterialPageRoute<AddNewGroupPage>(
-          builder: (_) => const AddNewGroupPage(),
+        return MaterialPageRoute<CreateGroupPage>(
+          builder: (_) => const CreateGroupPage(),
         );
 
       case AppRoutes.newBroadcastPage:

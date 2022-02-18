@@ -7,10 +7,10 @@ import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
-import 'package:healthcloud/presentation/community/pages/add_new_group_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -141,14 +141,14 @@ void main() {
     expect(route?.builder(context), isA<AddNewPatientPage>());
   });
 
-  test('Test router returns AddNewGroupPage', () {
+  test('Test router returns CreateGroupPage', () {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.addNewGroupPage);
 
-    final MaterialPageRoute<AddNewGroupPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<AddNewGroupPage>?;
-    expect(route, isA<MaterialPageRoute<AddNewGroupPage>>());
-    expect(route?.builder(context), isA<AddNewGroupPage>());
+    final MaterialPageRoute<CreateGroupPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<CreateGroupPage>?;
+    expect(route, isA<MaterialPageRoute<CreateGroupPage>>());
+    expect(route?.builder(context), isA<CreateGroupPage>());
   });
 
   test('Test router returns NewBroadcastMessagePage', () {
