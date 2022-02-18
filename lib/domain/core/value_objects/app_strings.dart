@@ -131,8 +131,8 @@ const String profileUpdateString = 'Profile Update';
 const String pinResetString = 'PIN Reset';
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
-    const String resolvedServiceRequestsNoDataBodyString =
-     'No Worries. Resolved service requests will show up here once you have handled them';
+const String resolvedServiceRequestsNoDataBodyString =
+    'No Worries. Resolved service requests will show up here once you have handled them';
 const String resolvedServiceRequestString = 'Resolved service requests';
 const String resolvedString = 'Resolved';
 const String spacedByString = ' by ';
@@ -334,6 +334,7 @@ const String emailString = 'Email';
 const String frequentlyAskedQuestions = 'Frequently asked questions';
 const String loremIpsumText =
     'A detailed description for this question will be available soon';
+const String fetchingFAQsFlagString = 'fetching FAQs';
 
 const String tapToLearnMoreText = 'Tap to learn more';
 const String settingsPageTitle = 'Settings';

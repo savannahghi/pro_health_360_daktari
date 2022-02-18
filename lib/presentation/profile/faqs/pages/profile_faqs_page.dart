@@ -47,51 +47,49 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: faqsString),
+      appBar: const CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: SizedBox(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
+      body: StoreConnector<AppState, FAQsContentViewModel>(
+        converter: (Store<AppState> store) =>
+            FAQsContentViewModel.fromStore(store.state),
+        builder: (BuildContext context, FAQsContentViewModel vm) {
+          if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
+            return Container(
+              height: 300,
               padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    frequentlyAskedQuestions,
-                    style: normalSize32Text(
-                      Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  mediumVerticalSizedBox,
-                  StoreConnector<AppState, FAQsContentViewModel>(
-                    converter: (Store<AppState> store) =>
-                        FAQsContentViewModel.fromStore(store.state),
-                    builder: (BuildContext context, FAQsContentViewModel vm) {
-                      if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
-                        return Container(
-                          height: 300,
-                          padding: const EdgeInsets.all(20),
-                          child: const SILPlatformLoader(),
-                        );
-                      } else if (vm.errorFetchingFAQs ?? false) {
-                        return GenericNoDataWidget(
-                          key: helpNoDataWidgetKey,
-                          actionText: actionTextGenericNoData,
-                          recoverCallback: () async {
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              FetchFAQSContentAction(context: context),
-                            );
-                          },
-                          messageBody: getErrorMessage(getFAQsFlag),
-                        );
-                      } else {
-                        final List<FAQContent?>? faqsContent = vm.faqItems;
+              child: const SILPlatformLoader(),
+            );
+          } else if (vm.errorFetchingFAQs ?? false) {
+            return GenericNoDataWidget(
+              key: helpNoDataWidgetKey,
+              recoverCallback: () async {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  FetchFAQSContentAction(context: context),
+                );
+              },
+              messageBody: getErrorMessage(fetchingFAQsFlagString),
+            );
+          } else {
+            final List<FAQContent?>? faqsContent = vm.faqItems;
 
-                        if ((faqsContent?.isNotEmpty ?? false) &&
-                            (faqsContent != null)) {
-                          return ListView.builder(
+            if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
+              return SizedBox(
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            frequentlyAskedQuestions,
+                            style: normalSize32Text(
+                              Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          mediumVerticalSizedBox,
+                          ListView.builder(
                             shrinkWrap: true,
                             physics: const BouncingScrollPhysics(),
                             itemCount: faqsContent.length,
@@ -112,31 +110,30 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                                 ),
                               );
                             },
-                          );
-                        } else if (faqsContent != null) {
-                          return GenericNoDataWidget(
-                            key: helpNoDataWidgetKey,
-                            actionText: actionTextGenericNoData,
-                            recoverCallback: () async {
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                FetchFAQSContentAction(
-                                  context: context,
-                                ),
-                              );
-                            },
-                            messageBody: getErrorMessage(getFAQsFlag),
-                          );
-                        }
-                      }
-                      return const SizedBox();
-                    },
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
+                ),
+              );
+            } else if (faqsContent != null) {
+              return GenericNoDataWidget(
+                key: helpNoDataWidgetKey,
+                recoverCallback: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    FetchFAQSContentAction(
+                      context: context,
+                    ),
+                  );
+                },
+                messageBody: getErrorMessage(fetchingFAQsFlagString),
+              );
+            }
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

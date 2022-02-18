@@ -66,7 +66,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(frequentlyAskedQuestions), findsOneWidget);
-      expect(find.text(faqsString), findsOneWidget);
       expect(find.byKey(appBarBackButtonKey), findsOneWidget);
       expect(find.byType(FAQItem), findsWidgets);
 
