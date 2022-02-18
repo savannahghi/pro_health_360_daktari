@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/actions/register_client/fetch_facilites_action.dart';
+import 'package:healthcloud/application/redux/actions/register_client/fetch_facilities_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/states/connectivity_state.dart';
 import 'package:http/http.dart';

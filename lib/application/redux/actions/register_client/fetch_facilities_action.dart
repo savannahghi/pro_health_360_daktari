@@ -7,7 +7,7 @@ import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/register_client/fetch_facilites_response.dart';
+import 'package:healthcloud/domain/core/entities/register_client/fetch_facilities_response.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -59,12 +59,12 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('fetching facilities'));
       }
 
-      final FetchFacilitiesResponse facilites =
+      final FetchFacilitiesResponse facilities =
           FetchFacilitiesResponse.fromJson(
         body['data'] as Map<String, dynamic>,
       );
 
-      dispatch(UpdateStaffProfileAction(facilities: facilites.facilities));
+      dispatch(UpdateStaffProfileAction(facilities: facilities.facilities));
     } else {
       throw UserException(processedResponse.message);
     }

@@ -8,7 +8,7 @@ import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/register_client/fetch_facilites_action.dart';
+import 'package:healthcloud/application/redux/actions/register_client/fetch_facilities_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/register_client/fetch_facilities_view_model.dart';
 import 'package:healthcloud/domain/core/entities/core/facility.dart';
@@ -101,7 +101,7 @@ class _FacilityDropdownState extends State<FacilityDropdown> {
                     ),
                   ),
                   dropDownInputKey: widget.dropdownInputKey,
-                  value: data ?? 'Kanairo',
+                  value: data,
                   options: vm.facilities!
                       .map<String>(
                         (Facility facility) => facility.name ?? UNKNOWN,
