@@ -6,9 +6,9 @@ part of 'register_client_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RegisterClientPaylod _$_$_RegisterClientPaylodFromJson(
+_$_RegisterClientPayload _$_$_RegisterClientPayloadFromJson(
     Map<String, dynamic> json) {
-  return _$_RegisterClientPaylod(
+  return _$_RegisterClientPayload(
     facility: json['facility'] as String?,
     clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
     clientName: json['clientName'] as String?,
@@ -26,8 +26,8 @@ _$_RegisterClientPaylod _$_$_RegisterClientPaylodFromJson(
   );
 }
 
-Map<String, dynamic> _$_$_RegisterClientPaylodToJson(
-        _$_RegisterClientPaylod instance) =>
+Map<String, dynamic> _$_$_RegisterClientPayloadToJson(
+        _$_RegisterClientPayload instance) =>
     <String, dynamic>{
       'facility': instance.facility,
       'clientType': _$ClientTypeEnumMap[instance.clientType],

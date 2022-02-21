@@ -14,14 +14,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 RegisterClientPayload _$RegisterClientPayloadFromJson(
     Map<String, dynamic> json) {
-  return _RegisterClientPaylod.fromJson(json);
+  return _RegisterClientPayload.fromJson(json);
 }
 
 /// @nodoc
 class _$RegisterClientPayloadTearOff {
   const _$RegisterClientPayloadTearOff();
 
-  _RegisterClientPaylod call(
+  _RegisterClientPayload call(
       {@JsonKey(name: 'facility')
           String? facility,
       @JsonKey(name: 'clientType')
@@ -42,7 +42,7 @@ class _$RegisterClientPayloadTearOff {
           bool? counselled,
       @JsonKey(name: 'inviteClient')
           bool? inviteClient}) {
-    return _RegisterClientPaylod(
+    return _RegisterClientPayload(
       facility: facility,
       clientType: clientType,
       clientName: clientName,
@@ -189,11 +189,11 @@ class _$RegisterClientPayloadCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RegisterClientPaylodCopyWith<$Res>
+abstract class _$RegisterClientPayloadCopyWith<$Res>
     implements $RegisterClientPayloadCopyWith<$Res> {
-  factory _$RegisterClientPaylodCopyWith(_RegisterClientPaylod value,
-          $Res Function(_RegisterClientPaylod) then) =
-      __$RegisterClientPaylodCopyWithImpl<$Res>;
+  factory _$RegisterClientPayloadCopyWith(_RegisterClientPayload value,
+          $Res Function(_RegisterClientPayload) then) =
+      __$RegisterClientPayloadCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'facility')
@@ -219,15 +219,15 @@ abstract class _$RegisterClientPaylodCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RegisterClientPaylodCopyWithImpl<$Res>
+class __$RegisterClientPayloadCopyWithImpl<$Res>
     extends _$RegisterClientPayloadCopyWithImpl<$Res>
-    implements _$RegisterClientPaylodCopyWith<$Res> {
-  __$RegisterClientPaylodCopyWithImpl(
-      _RegisterClientPaylod _value, $Res Function(_RegisterClientPaylod) _then)
-      : super(_value, (v) => _then(v as _RegisterClientPaylod));
+    implements _$RegisterClientPayloadCopyWith<$Res> {
+  __$RegisterClientPayloadCopyWithImpl(_RegisterClientPayload _value,
+      $Res Function(_RegisterClientPayload) _then)
+      : super(_value, (v) => _then(v as _RegisterClientPayload));
 
   @override
-  _RegisterClientPaylod get _value => super._value as _RegisterClientPaylod;
+  _RegisterClientPayload get _value => super._value as _RegisterClientPayload;
 
   @override
   $Res call({
@@ -242,7 +242,7 @@ class __$RegisterClientPaylodCopyWithImpl<$Res>
     Object? counselled = freezed,
     Object? inviteClient = freezed,
   }) {
-    return _then(_RegisterClientPaylod(
+    return _then(_RegisterClientPayload(
       facility: facility == freezed
           ? _value.facility
           : facility // ignore: cast_nullable_to_non_nullable
@@ -289,8 +289,8 @@ class __$RegisterClientPaylodCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RegisterClientPaylod implements _RegisterClientPaylod {
-  _$_RegisterClientPaylod(
+class _$_RegisterClientPayload implements _RegisterClientPayload {
+  _$_RegisterClientPayload(
       {@JsonKey(name: 'facility') this.facility,
       @JsonKey(name: 'clientType') this.clientType,
       @JsonKey(name: 'clientName') this.clientName,
@@ -302,8 +302,8 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
       @JsonKey(name: 'counselled') this.counselled,
       @JsonKey(name: 'inviteClient') this.inviteClient});
 
-  factory _$_RegisterClientPaylod.fromJson(Map<String, dynamic> json) =>
-      _$_$_RegisterClientPaylodFromJson(json);
+  factory _$_RegisterClientPayload.fromJson(Map<String, dynamic> json) =>
+      _$_$_RegisterClientPayloadFromJson(json);
 
   @override
   @JsonKey(name: 'facility')
@@ -344,7 +344,7 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RegisterClientPaylod &&
+        (other is _RegisterClientPayload &&
             (identical(other.facility, facility) ||
                 const DeepCollectionEquality()
                     .equals(other.facility, facility)) &&
@@ -392,18 +392,18 @@ class _$_RegisterClientPaylod implements _RegisterClientPaylod {
 
   @JsonKey(ignore: true)
   @override
-  _$RegisterClientPaylodCopyWith<_RegisterClientPaylod> get copyWith =>
-      __$RegisterClientPaylodCopyWithImpl<_RegisterClientPaylod>(
+  _$RegisterClientPayloadCopyWith<_RegisterClientPayload> get copyWith =>
+      __$RegisterClientPayloadCopyWithImpl<_RegisterClientPayload>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RegisterClientPaylodToJson(this);
+    return _$_$_RegisterClientPayloadToJson(this);
   }
 }
 
-abstract class _RegisterClientPaylod implements RegisterClientPayload {
-  factory _RegisterClientPaylod(
+abstract class _RegisterClientPayload implements RegisterClientPayload {
+  factory _RegisterClientPayload(
       {@JsonKey(name: 'facility')
           String? facility,
       @JsonKey(name: 'clientType')
@@ -423,10 +423,10 @@ abstract class _RegisterClientPaylod implements RegisterClientPayload {
       @JsonKey(name: 'counselled')
           bool? counselled,
       @JsonKey(name: 'inviteClient')
-          bool? inviteClient}) = _$_RegisterClientPaylod;
+          bool? inviteClient}) = _$_RegisterClientPayload;
 
-  factory _RegisterClientPaylod.fromJson(Map<String, dynamic> json) =
-      _$_RegisterClientPaylod.fromJson;
+  factory _RegisterClientPayload.fromJson(Map<String, dynamic> json) =
+      _$_RegisterClientPayload.fromJson;
 
   @override
   @JsonKey(name: 'facility')
@@ -460,6 +460,6 @@ abstract class _RegisterClientPaylod implements RegisterClientPayload {
   bool? get inviteClient => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RegisterClientPaylodCopyWith<_RegisterClientPaylod> get copyWith =>
+  _$RegisterClientPayloadCopyWith<_RegisterClientPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }
