@@ -20,7 +20,7 @@ class RegisterClientPayload with _$RegisterClientPayload {
     @JsonKey(name: 'cccNumber') String? cccNumber,
     @JsonKey(name: 'counselled') bool? counselled,
     @JsonKey(name: 'inviteClient') bool? inviteClient,
-  }) = _RegisterClientPaylod;
+  }) = _RegisterClientPayload;
 
   factory RegisterClientPayload.fromJson(Map<String, dynamic> json) =>
       _$RegisterClientPayloadFromJson(json);

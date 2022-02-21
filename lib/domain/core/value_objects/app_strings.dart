@@ -187,6 +187,12 @@ const String approvalNoteText =
 const String maleText = 'Male';
 const String femaleText = 'Female';
 const String inviteOnlyText = 'Invite only';
+const String genders = 'Genders';
+const String groupName = 'Group name';
+const String clientTypes = 'Client Types';
+const String createGroup = 'Create group';
+const String ageGroup = 'Age group';
+const String groupDescription = 'Group description';
 
 // new broadcast page
 const String newBroadcastText = 'New Broadcast';
@@ -294,6 +300,7 @@ const String setNicknameString = 'Set Your Nickname';
 // it has to be defined as a const otherwise the compiler will return the default
 const String APPVERSION =
     String.fromEnvironment('APPVERSION', defaultValue: 'dev-build');
+
 const String saveAndContinueButtonText = 'Save & Continue';
 const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
 

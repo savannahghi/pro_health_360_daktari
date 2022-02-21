@@ -68,6 +68,8 @@ const Key createGroupBtnKey = Key('createGroupBtnKey');
 const Key inviteMembersBtnKey = Key('inviteMembersBtnKey');
 const Key ageRangeSlider = Key('age_range_slider');
 const Key inviteOnlyKey = Key('invite_only_key');
+const Key groupNameKey = Key('group_name_key');
+const Key groupDescriptionKey = Key('group_description');
 
 //Client Details Card
 const Key inviteButtonKey = Key('invite_button_key');

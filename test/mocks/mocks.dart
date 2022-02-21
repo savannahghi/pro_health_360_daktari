@@ -22,6 +22,27 @@ EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
 class MockBuildContext extends Mock implements BuildContext {}
 
+typedef DidNavigate = void Function(
+  Route<dynamic>? route,
+  Route<dynamic>? previousRoute,
+);
+
+class TestNavigatorObserver extends NavigatorObserver {
+  TestNavigatorObserver({this.onPop, this.onPush});
+
+  final DidNavigate? onPop;
+  final DidNavigate? onPush;
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) =>
+      onPop?.call(route, previousRoute);
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    onPush?.call(route, previousRoute);
+  }
+}
+
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   @override
   String get dbName =>
