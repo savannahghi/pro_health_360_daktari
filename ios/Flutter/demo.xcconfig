@@ -5,4 +5,4 @@
 
 PRODUCT_BUNDLE_IDENTIFIER=com.savannah.healthcloud
 FLUTTER_TARGET=lib/bin/main_demo.dart
-APP_NAME=myCareHub Demo
+APP_NAME=myCareHub Professional Demo

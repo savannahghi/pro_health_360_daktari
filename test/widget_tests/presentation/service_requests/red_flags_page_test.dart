@@ -1,7 +1,10 @@
 // Package imports:
 import 'dart:convert';
 
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
+import 'package:healthcloud/application/redux/states/app_state.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -15,9 +18,15 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('RedFlagsPage', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+    });
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
+        store: store,
         graphQlClient: MockTestGraphQlClient(),
         widget: RedFlagsPage(),
       );
@@ -31,6 +40,7 @@ void main() {
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
+        store: store,
         graphQlClient: MockTestGraphQlClient(),
         widget: RedFlagsPage(),
       );
@@ -48,7 +58,7 @@ void main() {
       expect(callButton, findsNothing);
     });
     testWidgets(
-      'should show an error widget when fetching a quote',
+      'should show an error widget when fetching red flags',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
@@ -62,6 +72,7 @@ void main() {
 
         await buildTestWidget(
           tester: tester,
+          store: store,
           graphQlClient: mockShortGraphQlClient,
           widget: RedFlagsPage(),
         );
@@ -93,12 +104,14 @@ void main() {
           201,
         ),
       );
+      store.dispatch(WaitAction<AppState>.add(fetchServiceRequestFlag));
       await buildTestWidget(
         tester: tester,
+        store: store,
         graphQlClient: mockShortGraphQlClient,
         widget: RedFlagsPage(),
       );
-      await tester.pump();
+      
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });
   });

@@ -669,21 +669,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getServiceRequests': <dynamic>[
-                <String, dynamic>{
-                  'ID': 'test',
-                  'RequestType': 'RED_FLAG',
-                  'Request': 'test',
-                  'ClientID': 'test',
-                  'FacilityID': 'test',
-                  'ClientName': 'test',
-                  'ClientContact': 'test',
-                  'ResolvedAt': 'test',
-                  'ResolvedBy': 'test',
-                },
-              ]
-            }
+            'data': mockServiceRequests,
           }),
           201,
         ),
@@ -897,7 +883,21 @@ final Map<String, dynamic> mockStaffState = <String, dynamic>{
     'tokenExpiryTime': 'UNKNOWN'
   }
 };
-
+final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
+  'getServiceRequests': <dynamic>[
+    <String, dynamic>{
+      'ID': 'test',
+      'RequestType': 'RED_FLAG',
+      'Request': 'test',
+      'ClientID': 'test',
+      'FacilityID': 'test',
+      'ClientName': 'test',
+      'ClientContact': 'test',
+      'ResolvedAt': 'test',
+      'ResolvedBy': 'test',
+    },
+  ]
+};
 final Map<String, dynamic> mockMiscState = <String, dynamic>{
   'message': 'UNKNOWN',
   'otpCode': 'UNKNOWN',
@@ -966,7 +966,10 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
   'miscState': mockMiscState,
   'staffState': mockStaffState,
   'surveyState': <String, dynamic>{},
-  'serviceRequestState': <String, dynamic>{},
+  'serviceRequestState': <String, dynamic>{
+    'getServiceRequests': <dynamic>[],
+    'errorFetchingServiceRequests': false,
+  },
   'connectivityState': <String, dynamic>{'isConnected': false},
 };
 

@@ -44,7 +44,7 @@ class ContactAdminPage extends StatelessWidget {
             const ContactAdminCard(
               title: callYourAdmin,
               message: tapBelowToCallAdmin,
-              adminPhoneNumber: '+254 712 345 678',
+              adminPhoneNumber: '+254712345678',
               buttonKey: callAdminKey,
             ),
             const SizedBox(height: 20),

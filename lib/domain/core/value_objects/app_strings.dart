@@ -308,6 +308,8 @@ const String sendOTPError =
 const String fetchingRedFlagsString = 'fetching red flags';
 String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
+    String fetchingResolvedRedFlagsString =
+    'fetching ${redFlagString.toLowerCase()}';
 
 // generic widget
 const String actionTextGenericNoData = 'Ok, thanks';
@@ -338,6 +340,7 @@ const String emailString = 'Email';
 const String frequentlyAskedQuestions = 'Frequently asked questions';
 const String loremIpsumText =
     'A detailed description for this question will be available soon';
+const String fetchingFAQsFlagString = 'fetching FAQs';
 
 const String tapToLearnMoreText = 'Tap to learn more';
 const String settingsPageTitle = 'Settings';
