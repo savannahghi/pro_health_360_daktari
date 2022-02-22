@@ -50,7 +50,6 @@ dependencies:
   unicons: ^2.0.1
   url_launcher: ^6.0.18
   user_feed: ^0.1.47-nullsafety
-  user_profile: ^0.1.23-nullsafety
 
 dev_dependencies:
   build_runner: ^2.0.4
