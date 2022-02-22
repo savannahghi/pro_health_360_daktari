@@ -5,6 +5,7 @@ import 'package:healthcloud/domain/core/entities/service_requests/pending_servic
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
+import 'package:healthcloud/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -199,9 +200,15 @@ class RouteGenerator {
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
         );
+
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
           builder: (_) => ResolvedServiceRequestsPage(),
+        );
+
+      case AppRoutes.groupInfoPage:
+        return MaterialPageRoute<GroupInfoPage>(
+          builder: (_) => const GroupInfoPage(),
         );
     }
   }
