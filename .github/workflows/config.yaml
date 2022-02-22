@@ -1,9 +1,9 @@
-name: AfyaMoja CI/CD Workflow
+name: myCareHub Professional CI/CD Workflow
 
 on: [push]
 jobs:
   publish-demo-binary-to-app-store:
-    name: Publish AfyaMoja Demo binary to TestFlight
+    name: Publish myCareHub Professional Demo binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
@@ -32,25 +32,26 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
+          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
         run: |
+          touch .env
+          echo APP_ENV_FILE >> .env
           cd ios
-          echo $GC_KEYS > ./gc_keys.json
+          touch gc_keys.json
+          echo $GC_KEYS >> gc_keys.json
 
       - name: Code sign and build prod app
         env:
-          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
-          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY_ID}}
-          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
-          APP_STORE_CONNECT_API_KEY_KEY: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+          APPLE_API_KEY_ID: ${{secrets.APPLE_API_KEY_ID}}
+          APPLE_ISSUER_ID: ${{secrets.APPLE_ISSUER_ID}}
+          APPLE_API_KEY_CONTENT: ${{secrets.APPLE_API_KEY_CONTENT}}
         run: |
           cd ios && bundle install
           bundle exec fastlane ios demo
 
   # AppStore ready
   publish-prod-binary-to-app-store:
-    name: Publish AfyaMoja Prod binary to TestFlight
+    name: Publish myCareHub Professional Prod binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -59,19 +60,17 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12"
-
       - uses: actions/setup-python@v1
         with:
           python-version: "3.8"
-
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
           flutter-version: "2.5.3"
+
 
       - name: Install flutter dependencies
         run: flutter pub get
@@ -79,18 +78,19 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
+          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
         run: |
+          touch .env
+          echo APP_ENV_FILE >> .env
           cd ios
-          echo $GC_KEYS > ./gc_keys.json
+          touch gc_keys.json
+          echo $GC_KEYS >> gc_keys.json
 
       - name: Code sign and build prod app
         env:
-          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
-          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY_ID}}
-          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
-          APP_STORE_CONNECT_API_KEY_KEY: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+          APPLE_API_KEY_ID: ${{secrets.APPLE_API_KEY_ID}}
+          APPLE_ISSUER_ID: ${{secrets.APPLE_ISSUER_ID}}
+          APPLE_API_KEY_CONTENT: ${{secrets.APPLE_API_KEY_CONTENT}}
         run: |
           cd ios && bundle install
           bundle exec fastlane ios prod
