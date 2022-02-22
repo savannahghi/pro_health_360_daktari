@@ -22,6 +22,7 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/client_details/widgets/add_profile_entry_row_item.dart';
 import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
+import 'package:healthcloud/presentation/create_group/invite_members/widgets/member_list_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
@@ -115,6 +116,20 @@ const List<Widget> patientSearchResults = <Widget>[
   PatientSearchItem(username: 'Dennis Kplangas Koech', cccNumber: '12345678'),
   PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
   PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
+];
+
+const List<Widget> membersList = <Widget>[
+  MemberListItem(
+    username: 'Dennis Kilonzo',
+    isChecked: true,
+  ),
+  MemberListItem(
+    username: 'Kigongo Kairo',
+    isChecked: true,
+  ),
+  MemberListItem(username: 'Lailonte Koros'),
+  MemberListItem(username: 'Musau Dennis'),
+  MemberListItem(username: 'John Koech'),
 ];
 
 List<String> communityChatScreenMenuOptions = <String>[

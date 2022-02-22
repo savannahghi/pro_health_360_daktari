@@ -9,6 +9,7 @@ import 'package:healthcloud/presentation/community/pages/community_list_page.dar
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/create_group/create_group.dart';
+import 'package:healthcloud/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -78,6 +79,11 @@ class RouteGenerator {
       case AppRoutes.addNewGroupPage:
         return MaterialPageRoute<CreateGroupPage>(
           builder: (_) => const CreateGroupPage(),
+        );
+
+      case AppRoutes.inviteMembersPage:
+        return MaterialPageRoute<InviteMembersPage>(
+          builder: (_) => const InviteMembersPage(),
         );
 
       case AppRoutes.newBroadcastPage:
