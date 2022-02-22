@@ -1065,7 +1065,7 @@ packages:
     source: hosted
     version: "0.1.4"
   shared_ui_components:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shared_ui_components
       url: "https://pub.dartlang.org"

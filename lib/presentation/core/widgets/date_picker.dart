@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:intl/intl.dart';
 
 final DateTime current = DateTime.now();
@@ -13,8 +14,6 @@ final DateTime eligibleYear =
     DateTime(currentYear - 18, currentMonth, currentDay);
 
 final int oldestYear = currentYear - 122;
-
-const String datePickerFormat = 'dd MMM, yyyy';
 
 class DatePickerField extends StatelessWidget {
   /// To set the initial value of the field, set the text property of the

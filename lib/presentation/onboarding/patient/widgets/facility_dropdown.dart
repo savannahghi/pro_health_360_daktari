@@ -13,8 +13,8 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/register_client/fetch_facilities_view_model.dart';
 import 'package:healthcloud/domain/core/entities/core/facility.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class FacilityDropdown extends StatefulWidget {
   const FacilityDropdown({
@@ -90,7 +90,7 @@ class _FacilityDropdownState extends State<FacilityDropdown> {
                   ListFacilitiesViewModel.fromStore(store),
               builder: (BuildContext context, ListFacilitiesViewModel vm) {
                 if (vm.wait.isWaitingFor(fetchFacilitiesFlag)) {
-                  return const SILPlatformLoader();
+                  return const PlatformLoader();
                 }
 
                 return SelectOptionField(

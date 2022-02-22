@@ -7,7 +7,7 @@ import 'package:healthcloud/application/redux/states/connectivity_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
-import 'package:healthcloud/presentation/onboarding/patient/date_picker.dart';
+import 'package:healthcloud/presentation/core/widgets/date_picker.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

@@ -17,11 +17,11 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -209,7 +209,7 @@ class LoginWidgetState extends State<LoginWidget> {
               ],
 
               if (vm.state.wait!.isWaitingFor(phoneLoginStateFlag)) ...<Widget>[
-                const Align(child: SILPlatformLoader()),
+                const Align(child: PlatformLoader()),
                 size15VerticalSizedBox,
               ],
 

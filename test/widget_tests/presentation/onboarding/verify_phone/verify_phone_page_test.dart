@@ -10,13 +10,13 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/contact.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -109,7 +109,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(sendOTPFlag));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
       store.dispatch(WaitAction<AppState>.remove(sendOTPFlag));
     });
 
@@ -127,7 +127,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(verifyOTPFlag));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
       expect(find.text(verifyCode), findsOneWidget);
     });
 

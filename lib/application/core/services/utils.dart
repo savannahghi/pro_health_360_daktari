@@ -29,7 +29,6 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/inputs.dart';
 
 Alignment placeMessage(dynamic message) {
   /// [placeMessage] is used to align the messages whether to the left or right

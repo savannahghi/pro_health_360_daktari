@@ -19,7 +19,6 @@ import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../mocks/mocks.dart';
 import '../../mocks/test_helpers.dart';
@@ -131,7 +130,7 @@ void main() {
         ),
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () {
                 logoutUser(context: context).call();
               },
@@ -142,7 +141,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
 
       expect(store.state, AppState.initial());

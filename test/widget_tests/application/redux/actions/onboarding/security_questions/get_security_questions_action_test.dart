@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -9,8 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/actions/security_questions/get_security_questions_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:http/http.dart' as http;
-// Project imports:
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../../../../../mocks/mocks.dart';
 import '../../../../../../mocks/test_helpers.dart';
@@ -47,7 +46,7 @@ void main() {
         graphQlClient: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 try {
                   await store.dispatch(
@@ -65,7 +64,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
     });

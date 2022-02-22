@@ -8,9 +8,9 @@ import 'package:healthcloud/application/redux/actions/onboarding/send_otp_action
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/onboarding/verify_phone_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class VerifyPhonePage extends StatefulWidget {
   const VerifyPhonePage({Key? key, required this.phoneNumber})
@@ -63,9 +63,9 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                   child: Column(
                     children: <Widget>[
                       if (vm.wait!.isWaitingFor(sendOTPFlag))
-                        const SILPlatformLoader(),
+                        const PlatformLoader(),
                       if (vm.wait!.isWaitingFor(verifyOTPFlag)) ...<Widget>[
-                        const SILPlatformLoader(),
+                        const PlatformLoader(),
                         smallVerticalSizedBox,
                         Text(
                           verifyCode,
@@ -78,7 +78,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                           !vm.wait!.isWaitingFor(verifyOTPFlag))
                         VerifyOTPWidget(
                           verifyPhoneViewModel: vm,
-                          loader: const SILPlatformLoader(),
+                          loader: const PlatformLoader(),
                           phoneNumber: phone,
                         ),
                     ],

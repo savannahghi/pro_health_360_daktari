@@ -11,13 +11,13 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/profile/faqs/pages/faq_detail_view_page.dart';
 import 'package:healthcloud/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:healthcloud/presentation/profile/faqs/widgets/faq_item.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -95,7 +95,7 @@ void main() {
         widget: const ProfileFaqsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
 
     testWidgets('should display zero state widget',
