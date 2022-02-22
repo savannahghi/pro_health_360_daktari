@@ -30,7 +30,7 @@ Code Signing Demo Build for TestFlight
 ```
 fastlane ios prod
 ```
-Code Sign and Build SIL for App Store
+Code Sign and Build myCareHub Professional for App Store
 
 ----
 
