@@ -106,3 +106,6 @@ const Key emailAdminKey = Key('email_admin_key');
 const Key editInfoSaveBtn = Key('edit_information_save_btn');
 const Key closeEditInformationPageBtnKey =
     Key('close_edit_information_save_btn');
+
+// group info
+const Key inviteMembersButtonKey = Key('invite_members_button_key');
