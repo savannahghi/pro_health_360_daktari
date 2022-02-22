@@ -11,6 +11,7 @@ import 'package:healthcloud/presentation/community/pages/community_list_page.dar
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/create_group/create_group.dart';
+import 'package:healthcloud/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
@@ -139,6 +140,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<AddNewPatientPage>?;
     expect(route, isA<MaterialPageRoute<AddNewPatientPage>>());
     expect(route?.builder(context), isA<AddNewPatientPage>());
+  });
+
+  test('Test router returns InviteMembersPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.inviteMembersPage);
+
+    final MaterialPageRoute<InviteMembersPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<InviteMembersPage>?;
+    expect(route, isA<MaterialPageRoute<InviteMembersPage>>());
+    expect(route?.builder(context), isA<InviteMembersPage>());
   });
 
   test('Test router returns CreateGroupPage', () {
