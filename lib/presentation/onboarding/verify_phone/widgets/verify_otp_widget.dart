@@ -11,11 +11,11 @@ import 'package:healthcloud/application/redux/view_models/onboarding/verify_phon
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/animated_count.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 // ignore: implementation_imports
-import 'package:shared_ui_components/src/animated_count.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 
 class VerifyOTPWidget extends StatefulWidget {

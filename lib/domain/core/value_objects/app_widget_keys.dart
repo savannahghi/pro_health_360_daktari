@@ -109,3 +109,5 @@ const Key closeEditInformationPageBtnKey =
 
 // group info
 const Key inviteMembersButtonKey = Key('invite_members_button_key');
+
+const Key iosLoaderThemeKey = Key('InboxCupertinoThemeKey');

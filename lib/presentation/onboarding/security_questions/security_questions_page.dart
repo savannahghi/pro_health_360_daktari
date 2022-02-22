@@ -11,11 +11,11 @@ import 'package:healthcloud/application/redux/actions/security_questions/record_
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_question_widget.dart';
 // Project imports:
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
   const SecurityQuestionsPage();
@@ -77,7 +77,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                         ? Container(
                             height: 300,
                             padding: const EdgeInsets.all(20),
-                            child: const SILPlatformLoader(),
+                            child: const PlatformLoader(),
                           )
                         : ListView.builder(
                             itemCount: securityQuestions.length,

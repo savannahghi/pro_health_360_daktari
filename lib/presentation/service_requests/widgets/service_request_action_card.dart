@@ -11,11 +11,11 @@ import 'package:healthcloud/domain/core/entities/service_requests/pending_servic
 import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class ServiceRequestActionCard extends StatefulWidget {
   const ServiceRequestActionCard({Key? key}) : super(key: key);
@@ -62,7 +62,7 @@ class _ServiceRequestActionCardState extends State<ServiceRequestActionCard> {
             snapshot.data != null &&
             snapshot.data['loading'] != null &&
             snapshot.data['loading'] == true) {
-          return const Center(child: SILPlatformLoader());
+          return const Center(child: PlatformLoader());
         }
         //error checking
         if (snapshot.hasError) {

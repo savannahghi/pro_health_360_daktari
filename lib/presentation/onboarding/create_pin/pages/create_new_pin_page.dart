@@ -9,8 +9,8 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/onboarding/create_pin_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///
@@ -112,7 +112,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                 ),
                 veryLargeVerticalSizedBox,
                 if (vm.wait.isWaitingFor(createPinFlag)) ...<Widget>{
-                  const SILPlatformLoader(
+                  const PlatformLoader(
                     color: AppColors.secondaryColor,
                   )
                 },

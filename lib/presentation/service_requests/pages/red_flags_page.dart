@@ -13,8 +13,8 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/red_flag_list_item.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class RedFlagsPage extends StatefulWidget {
   @override
@@ -80,7 +80,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                       padding: EdgeInsets.only(
                         top: 150,
                       ),
-                      child: SILPlatformLoader(),
+                      child: PlatformLoader(),
                     )
                   } else if (vm.serviceRequests?.isEmpty ?? true) ...<Widget>{
                     GenericNoDataWidget(

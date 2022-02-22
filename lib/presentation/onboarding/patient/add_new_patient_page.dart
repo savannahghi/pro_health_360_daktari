@@ -15,14 +15,14 @@ import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/onboarding/patient/date_picker.dart';
+import 'package:healthcloud/presentation/core/widgets/date_picker.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:healthcloud/presentation/onboarding/patient/register_client_form_manager.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class AddNewPatientPage extends StatefulWidget {
   const AddNewPatientPage({Key? key}) : super(key: key);
@@ -469,7 +469,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                     ) {
                                       if (vm.wait
                                           .isWaitingFor(registerClientFlag)) {
-                                        return const SILPlatformLoader();
+                                        return const PlatformLoader();
                                       }
 
                                       return ElevatedButton(

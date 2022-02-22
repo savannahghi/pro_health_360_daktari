@@ -9,10 +9,10 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/red_flag_list_item.dart';
 import 'package:http/http.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -105,7 +105,7 @@ void main() {
         widget: ResolvedServiceRequestsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

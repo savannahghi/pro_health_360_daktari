@@ -12,7 +12,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/contact.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../mocks/mocks.dart';
 import '../../mocks/test_helpers.dart';
@@ -62,7 +61,7 @@ void main() {
         graphQlClient: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('verify_otp'),
               onPressed: () async {
                 try {
@@ -112,7 +111,7 @@ void main() {
         graphQlClient: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('verify_otp'),
               onPressed: () async {
                 try {

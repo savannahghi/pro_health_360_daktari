@@ -15,14 +15,13 @@ import 'package:healthcloud/application/redux/actions/onboarding/update_onboardi
 import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 // Project imports:
-import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -147,7 +146,7 @@ void main() {
       await tester.tap(find.text(secondQuestion));
       await tester.pumpAndSettle();
 
-      final Finder datePickerField = find.byType(SILDatePickerField);
+      final Finder datePickerField = find.byType(TextField);
       expect(datePickerField, findsOneWidget);
       await tester.tap(datePickerField);
       await tester.pumpAndSettle();
@@ -304,7 +303,7 @@ void main() {
         widget: const SecurityQuestionsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }
