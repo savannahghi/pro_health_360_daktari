@@ -21,10 +21,11 @@ class FAQsContentViewModel extends Vm {
     return FAQsContentViewModel(
       wait: state.wait,
       errorFetchingFAQs:
-          state.miscState!.profileFAQsContentState!.errorFetchingFAQs,
+          state.miscState?.profileFAQsContentState?.errorFetchingFAQs ?? false,
       timeoutFetchingFAQs:
-          state.miscState!.profileFAQsContentState!.timeoutFetchingFAQs,
-      faqItems: state.miscState!.profileFAQsContentState!.profileFAQs,
+          state.miscState?.profileFAQsContentState?.timeoutFetchingFAQs ??
+              false,
+      faqItems: state.miscState?.profileFAQsContentState?.profileFAQs,
     );
   }
 
