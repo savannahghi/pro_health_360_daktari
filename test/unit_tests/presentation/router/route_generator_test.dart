@@ -7,6 +7,7 @@ import 'package:healthcloud/application/core/services/utils.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
+import 'package:healthcloud/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/community/pages/new_broadcast_message_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -306,5 +307,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsPage>>());
     expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
+  });
+
+  test('Test router returns successful group info page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.groupInfoPage);
+
+    final MaterialPageRoute<GroupInfoPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;
+
+    expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
+    expect(route?.builder(context), isA<GroupInfoPage>());
   });
 }

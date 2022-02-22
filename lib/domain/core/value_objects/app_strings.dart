@@ -373,3 +373,13 @@ const String inviteMembersTitle = 'Invite Members';
 const String inviteMembersDescription =
     'Invite members to this group by searching for them using their name';
 const String searchMembersString = 'Search members ...';
+
+// group info
+const String groupInfoText = 'Group Info';
+const String groupTitle = 'Ruaraka Group';
+String getGroupMembersNumber(int numberOfMembers) {
+  return '$numberOfMembers members';
+}
+
+const String groupMembersText = 'Group Members';
+const String inviteMembers = 'Invite Members';

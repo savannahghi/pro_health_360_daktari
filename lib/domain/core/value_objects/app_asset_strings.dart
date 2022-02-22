@@ -100,3 +100,4 @@ const String contactAdminSvg = 'assets/images/contact_admin.svg';
 const String doneIconSvgPath = 'assets/icons/done_icon.svg';
 const String resolvedServiceRequestsImageSvgPath =
     'assets/images/solved_service_request_icon.svg';
+const String groupInfoImage = 'assets/images/group_info.svg';
