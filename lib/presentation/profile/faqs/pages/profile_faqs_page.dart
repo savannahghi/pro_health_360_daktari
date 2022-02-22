@@ -11,10 +11,10 @@ import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/profile/faqs/widgets/faq_item.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -57,7 +57,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
             return Container(
               height: 300,
               padding: const EdgeInsets.all(20),
-              child: const SILPlatformLoader(),
+              child: const PlatformLoader(),
             );
           } else if (vm.errorFetchingFAQs ?? false) {
             return GenericNoDataWidget(

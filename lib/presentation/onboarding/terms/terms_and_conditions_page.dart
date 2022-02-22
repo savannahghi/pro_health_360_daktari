@@ -14,8 +14,8 @@ import 'package:healthcloud/application/redux/view_models/terms/terms_view_model
 import 'package:healthcloud/domain/core/entities/terms/terms_and_conditions.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
@@ -123,7 +123,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                   ? Container(
                                       height: 300,
                                       padding: const EdgeInsets.all(20),
-                                      child: const SILPlatformLoader(),
+                                      child: const PlatformLoader(),
                                     )
                                   : SizedBox(
                                       width: double.infinity,
@@ -165,7 +165,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     height: 48,
                     width: double.infinity,
                     child: vm.wait.isWaitingFor(acceptTermsFlag)
-                        ? const SILPlatformLoader(
+                        ? const PlatformLoader(
                             color: AppColors.secondaryColor,
                           )
                         : MyAfyaHubPrimaryButton(

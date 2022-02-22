@@ -11,10 +11,10 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class EditInformationPage extends StatefulWidget {
   ///[EditInformationPage] renders a form with inputs and a submit button
@@ -187,7 +187,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
                     width: double.infinity,
                     height: 52,
                     child: (vm.state.wait!.isWaitingFor(editInformationFlag))
-                        ? const SILPlatformLoader()
+                        ? const PlatformLoader()
                         : MyAfyaHubPrimaryButton(
                             buttonKey: editInfoSaveBtn,
                             onPressed: formIsEdited

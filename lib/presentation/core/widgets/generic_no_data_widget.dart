@@ -7,7 +7,6 @@ import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 enum GenericNoDataTypes { noData, error }
 
@@ -103,7 +102,7 @@ class GenericNoDataWidget extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 48,
-                        child: SILPrimaryButton(
+                        child: MyAfyaHubPrimaryButton(
                           customRadius: 8.0,
                           buttonKey: genericNoDataButtonKey,
                           buttonColor: Theme.of(context).primaryColor,

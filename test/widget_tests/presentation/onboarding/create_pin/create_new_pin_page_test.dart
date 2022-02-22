@@ -10,9 +10,9 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -127,7 +127,7 @@ void main() {
       expect(find.text(noInternetConnection), findsOneWidget);
     });
 
-    testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
+    testWidgets('should render PlatformLoader', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -138,7 +138,7 @@ void main() {
       await tester.pumpAndSettle();
       store.dispatch(WaitAction<AppState>.add(createPinFlag));
       await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

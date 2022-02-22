@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/service_request_action_card.dart';
 import 'package:http/http.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -80,7 +80,7 @@ void main() {
         widget: const ServiceRequestActionCard(),
       );
       await tester.pump();
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

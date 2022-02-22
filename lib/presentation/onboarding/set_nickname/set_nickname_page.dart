@@ -11,8 +11,8 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/onboarding/set_nickname_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class SetNickNamePage extends StatefulWidget {
   const SetNickNamePage({Key? key}) : super(key: key);
@@ -113,7 +113,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
             width: double.infinity,
             height: 52,
             child: (vm.wait.isWaitingFor(setNickNameFlag))
-                ? const SILPlatformLoader()
+                ? const PlatformLoader()
                 : MyAfyaHubPrimaryButton(
                     buttonKey: continueKey,
                     onPressed: () async {

@@ -7,8 +7,8 @@ import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:healthcloud/presentation/core/widgets/no_border_button.dart';
 import 'package:shared_themes/colors.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 
@@ -21,9 +21,9 @@ class LogoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VoidCallback>(
       converter: (Store<AppState> store) => logoutUser(context: context),
-      builder: (BuildContext context, Function callback) {
+      builder: (BuildContext context, void Function() callback) {
         return Center(
-          child: SILNoBorderButton(
+          child: NoBorderButton(
             buttonKey: logoutButtonKey,
             onPressed: callback,
             text: logoutButtonText,
