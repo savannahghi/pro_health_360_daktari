@@ -308,7 +308,7 @@ const String sendOTPError =
 const String fetchingRedFlagsString = 'fetching red flags';
 String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
-    String fetchingResolvedRedFlagsString =
+String fetchingResolvedRedFlagsString =
     'fetching ${redFlagString.toLowerCase()}';
 
 // generic widget
@@ -367,3 +367,9 @@ String editInfoTitle(String title) => 'Edit $title';
 //settings page
 const String saveString = 'Save';
 const String savedString = 'Saved';
+
+// invite members
+const String inviteMembersTitle = 'Invite Members';
+const String inviteMembersDescription =
+    'Invite members to this group by searching for them using their name';
+const String searchMembersString = 'Search members ...';

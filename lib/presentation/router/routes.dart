@@ -31,6 +31,8 @@ class AppRoutes {
 
   static const String addNewGroupPage = '/addNewGroupPage';
 
+  static const String inviteMembersPage = '/inviteMembersPage';
+
   static const String newBroadcastPage = '/newBroadcastPage';
 
   static const String surveysPage = '/surveys';

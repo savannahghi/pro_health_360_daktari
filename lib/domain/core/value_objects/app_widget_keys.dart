@@ -65,6 +65,7 @@ const Key clinicDropdownKey = Key('clinicDropdownKey');
 const Key ageDropdownKey = Key('ageDropdownKey');
 const Key moderationActiveSwitchKey = Key('moderationActiveSwitch');
 const Key createGroupBtnKey = Key('createGroupBtnKey');
+const Key inviteMembersBtnKey = Key('inviteMembersBtnKey');
 const Key ageRangeSlider = Key('age_range_slider');
 const Key inviteOnlyKey = Key('invite_only_key');
 
