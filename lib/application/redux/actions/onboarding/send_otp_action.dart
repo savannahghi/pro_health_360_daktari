@@ -13,7 +13,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({

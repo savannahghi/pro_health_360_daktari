@@ -1,19 +1,13 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart' as afyamoja;
-import 'package:domain_objects/value_objects.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart'
-    as local;
+import 'package:shared_themes/spaces.dart';
 
 class ShareClassificationWidget extends StatelessWidget {
   const ShareClassificationWidget({Key? key}) : super(key: key);
@@ -27,9 +21,9 @@ class ShareClassificationWidget extends StatelessWidget {
           child: Text(
             shareToString,
             textAlign: TextAlign.center,
-            style: afyamoja.normalSize14Text().copyWith(
-                  color: AppColors.greyTextColor,
-                ),
+            style: normalSize14Text().copyWith(
+              color: AppColors.greyTextColor,
+            ),
           ),
         ),
         smallVerticalSizedBox,
@@ -50,23 +44,23 @@ class ShareClassificationWidget extends StatelessWidget {
                   Text(
                     bandString,
                     textAlign: TextAlign.center,
-                    style: afyamoja.normalSize16Text().copyWith(
-                          color: AppColors.dodgerBlueColor,
-                        ),
+                    style: normalSize16Text().copyWith(
+                      color: AppColors.dodgerBlueColor,
+                    ),
                   ),
                   smallHorizontalSizedBox,
                   Text(
                     chooseOneString,
                     textAlign: TextAlign.center,
-                    style: afyamoja.normalSize12Text().copyWith(
-                          color: AppColors.lightGreyColor,
-                          fontStyle: FontStyle.italic,
-                        ),
+                    style: normalSize12Text().copyWith(
+                      color: AppColors.lightGreyColor,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ],
               ),
               smallVerticalSizedBox,
-              local.SelectOptionField(
+              SelectOptionField(
                 dropDownInputKey: bandSelectOptionFieldKey,
                 value: 'Female',
                 options: const <String>['Male', 'Female', UNKNOWN],
@@ -82,13 +76,13 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   ageString,
                   textAlign: TextAlign.center,
-                  style: afyamoja.normalSize16Text().copyWith(
-                        color: AppColors.dodgerBlueColor,
-                      ),
+                  style: normalSize16Text().copyWith(
+                    color: AppColors.dodgerBlueColor,
+                  ),
                 ),
               ),
               smallVerticalSizedBox,
-              local.SelectOptionField(
+              SelectOptionField(
                 dropDownInputKey: ageSelectOptionFieldKey,
                 value: '16-20yrs',
                 options: const <String>['16-20yrs', '20-25yrs', '25-30yrs'],
@@ -104,13 +98,13 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   locationString,
                   textAlign: TextAlign.center,
-                  style: afyamoja.normalSize16Text().copyWith(
-                        color: AppColors.dodgerBlueColor,
-                      ),
+                  style: normalSize16Text().copyWith(
+                    color: AppColors.dodgerBlueColor,
+                  ),
                 ),
               ),
               smallVerticalSizedBox,
-              local.SelectOptionField(
+              SelectOptionField(
                 dropDownInputKey: locationSelectOptionFieldKey,
                 value: 'Ruiru',
                 options: const <String>['Ruiru', 'Thika', 'Nairobi'],
@@ -126,13 +120,13 @@ class ShareClassificationWidget extends StatelessWidget {
                 child: Text(
                   clinicString,
                   textAlign: TextAlign.center,
-                  style: afyamoja.normalSize16Text().copyWith(
-                        color: AppColors.dodgerBlueColor,
-                      ),
+                  style: normalSize16Text().copyWith(
+                    color: AppColors.dodgerBlueColor,
+                  ),
                 ),
               ),
               smallVerticalSizedBox,
-              local.SelectOptionField(
+              SelectOptionField(
                 dropDownInputKey: clinicSelectOptionFieldKey,
                 value: 'Ruiru Level iv Hospital',
                 options: const <String>[

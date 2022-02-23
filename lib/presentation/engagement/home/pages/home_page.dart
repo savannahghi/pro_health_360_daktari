@@ -15,10 +15,8 @@ import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dar
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/service_request_action_card.dart';
+import 'package:misc_utilities/misc.dart' as misc;
 // Package imports:
-import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 class HomePage extends StatelessWidget {
@@ -52,7 +50,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   padding: ResponsiveWidget.isLargeScreen(context)
-                      ? const EdgeInsets.fromLTRB(number20, 0, number20, 40)
+                      ? const EdgeInsets.fromLTRB(20, 0, 20, 40)
                       : const EdgeInsets.fromLTRB(5, 0, 5, 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +62,7 @@ class HomePage extends StatelessWidget {
                       veryLargeVerticalSizedBox,
                       Text(
                         removeTailingComma(
-                          getGreetingMessage(
+                          misc.getGreetingMessage(
                             firstName == UNKNOWN ? '' : firstName,
                           ),
                         ),

@@ -529,16 +529,6 @@ Future<void> setUserPIN({
   );
 }
 
-SnackBarAction dismissSnackBar(String text, Color color, BuildContext context) {
-  return SnackBarAction(
-    label: text,
-    textColor: color,
-    onPressed: () {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    },
-  );
-}
-
 String removeTailingComma(String word) {
   final String str = word.trim();
   if (str.endsWith(',') && str.isNotEmpty) {

@@ -53,109 +53,117 @@ class _ResolvedServiceRequestsPageState
         title: resolvedRequestsString,
         showNotificationIcon: true,
       ),
-      body: StoreConnector<AppState, ListServiceRequestsViewModel>(
-        converter: (Store<AppState> store) =>
-            ListServiceRequestsViewModel.fromStore(store),
-        builder: (BuildContext context, ListServiceRequestsViewModel vm) {
-          final bool error = vm.errorFetchingServiceRequests ?? false;
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                if (!error) ...<Widget>{
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 30,
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        resolvedServiceRequestsImageSvgPath,
-                        width: 200,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+            context: context,
+          ),
+        ),
+        child: StoreConnector<AppState, ListServiceRequestsViewModel>(
+          converter: (Store<AppState> store) =>
+              ListServiceRequestsViewModel.fromStore(store),
+          builder: (BuildContext context, ListServiceRequestsViewModel vm) {
+            final bool error = vm.errorFetchingServiceRequests ?? false;
+            return SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  if (!error) ...<Widget>{
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 30,
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          resolvedServiceRequestsImageSvgPath,
+                          width: 200,
+                        ),
                       ),
                     ),
-                  ),
-                  if (vm.wait
-                      .isWaitingFor(fetchServiceRequestFlag)) ...<Widget>{
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        top: 150,
-                      ),
-                      child: PlatformLoader(),
-                    )
-                  } else if (vm.serviceRequests?.isEmpty ?? true) ...<Widget>{
+                    if (vm.wait
+                        .isWaitingFor(fetchServiceRequestFlag)) ...<Widget>{
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: 150,
+                        ),
+                        child: PlatformLoader(),
+                      )
+                    } else if (vm.serviceRequests?.isEmpty ?? true) ...<Widget>{
+                      GenericNoDataWidget(
+                        key: helpNoDataWidgetKey,
+                        actionText: actionTextGenericNoData,
+                        type: GenericNoDataTypes.noData,
+                        recoverCallback: () {
+                          if (Navigator.canPop(context)) {
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        messageTitle:
+                            getNoDataTile(serviceRequestsText.toLowerCase()),
+                        messageBody: resolvedServiceRequestsNoDataBodyString,
+                      )
+                    } else
+                      ...List<Widget>.generate(vm.serviceRequests?.length ?? 0,
+                          (int index) {
+                        final String clientName =
+                            vm.serviceRequests?.elementAt(index)?.clientName ??
+                                '';
+                        final String clientPhoneNumber = vm.serviceRequests
+                                ?.elementAt(index)
+                                ?.clientPhoneNumber ??
+                            '';
+                        final String description =
+                            vm.serviceRequests?.elementAt(index)?.description ??
+                                '';
+                        final String resolvedTime = vm.serviceRequests
+                                ?.elementAt(index)
+                                ?.resolvedTime ??
+                            '';
+
+                        final String resolvedBy =
+                            vm.serviceRequests?.elementAt(index)?.resolvedBy ??
+                                '';
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: RedFlagListItem(
+                            isResolved: true,
+                            clientName: clientName,
+                            feelingDescription: description,
+                            phoneNumber: clientPhoneNumber,
+                            resolvedAt: resolvedTime,
+                            resolvedBy: resolvedBy,
+                          ),
+                        );
+                      }),
+                  } else ...<Widget>{
                     GenericNoDataWidget(
                       key: helpNoDataWidgetKey,
-                      actionText: actionTextGenericNoData,
-                      type: GenericNoDataTypes.noData,
-                      recoverCallback: () {
-                        if (Navigator.canPop(context)) {
-                          Navigator.of(context).pop();
-                        }
+                      recoverCallback: () async {
+                        final String facilityID =
+                            StoreProvider.state<AppState>(context)
+                                    ?.staffState
+                                    ?.defaultFacility ??
+                                '';
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          FetchServiceRequestsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            variables: <String, dynamic>{
+                              'status': RequestStatus.RESOLVED.name,
+                              'facilityID': facilityID,
+                            },
+                          ),
+                        );
                       },
-                      messageTitle:
-                          getNoDataTile(serviceRequestsText.toLowerCase()),
-                      messageBody: resolvedServiceRequestsNoDataBodyString,
+                      messageBody:
+                          getErrorMessage(fetchingResolvedRequestsString),
                     )
-                  } else
-                    ...List<Widget>.generate(vm.serviceRequests?.length ?? 0,
-                        (int index) {
-                      final String clientName =
-                          vm.serviceRequests?.elementAt(index)?.clientName ??
-                              '';
-                      final String clientPhoneNumber = vm.serviceRequests
-                              ?.elementAt(index)
-                              ?.clientPhoneNumber ??
-                          '';
-                      final String description =
-                          vm.serviceRequests?.elementAt(index)?.description ??
-                              '';
-                      final String resolvedTime =
-                          vm.serviceRequests?.elementAt(index)?.resolvedTime ??
-                              '';
-
-                      final String resolvedBy =
-                          vm.serviceRequests?.elementAt(index)?.resolvedBy ??
-                              '';
-
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: RedFlagListItem(
-                          isResolved: true,
-                          clientName: clientName,
-                          feelingDescription: description,
-                          phoneNumber: clientPhoneNumber,
-                          resolvedAt: resolvedTime,
-                          resolvedBy: resolvedBy,
-                        ),
-                      );
-                    }),
-                } else ...<Widget>{
-                  GenericNoDataWidget(
-                    key: helpNoDataWidgetKey,
-                    recoverCallback: () async {
-                      final String facilityID =
-                          StoreProvider.state<AppState>(context)
-                                  ?.staffState
-                                  ?.defaultFacility ??
-                              '';
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        FetchServiceRequestsAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          variables: <String, dynamic>{
-                            'status': RequestStatus.RESOLVED.name,
-                            'facilityID': facilityID,
-                          },
-                        ),
-                      );
-                    },
-                    messageBody:
-                        getErrorMessage(fetchingResolvedRequestsString),
-                  )
-                },
-              ],
-            ),
-          );
-        },
+                  },
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

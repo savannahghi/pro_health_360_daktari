@@ -11,7 +11,7 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/application/core/services/utils.dart' as utils;
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -81,7 +81,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
       ),
     );
 
-    final String route = getOnboardingPath(state: state).route;
+    final String route = utils.getOnboardingPath(state: state).route;
 
     Navigator.pushReplacementNamed(
       context,

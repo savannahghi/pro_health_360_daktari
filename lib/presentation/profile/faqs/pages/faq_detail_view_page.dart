@@ -19,7 +19,11 @@ class FAQDetailViewPage extends StatelessWidget {
       appBar: const CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+            context: context,
+          ),
+        ),
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[

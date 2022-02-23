@@ -49,91 +49,99 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
     return Scaffold(
       appBar: const CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: StoreConnector<AppState, FAQsContentViewModel>(
-        converter: (Store<AppState> store) =>
-            FAQsContentViewModel.fromStore(store.state),
-        builder: (BuildContext context, FAQsContentViewModel vm) {
-          if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
-            return Container(
-              height: 300,
-              padding: const EdgeInsets.all(20),
-              child: const PlatformLoader(),
-            );
-          } else if (vm.errorFetchingFAQs ?? false) {
-            return GenericNoDataWidget(
-              key: helpNoDataWidgetKey,
-              recoverCallback: () async {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  FetchFAQSContentAction(context: context),
-                );
-              },
-              messageBody: getErrorMessage(fetchingFAQsFlagString),
-            );
-          } else {
-            final List<FAQContent?>? faqsContent = vm.faqItems;
-
-            if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
-              return SizedBox(
-                child: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            frequentlyAskedQuestions,
-                            style: normalSize32Text(
-                              Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          mediumVerticalSizedBox,
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: faqsContent.length,
-                            itemBuilder: (_, int index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.faqDetailViewPage,
-                                    arguments: faqsContent[index],
-                                  );
-                                },
-                                child: FAQItem(
-                                  faqContent: FAQContent(
-                                    title: faqsContent[index]?.title ?? UNKNOWN,
-                                    body: loremIpsumText,
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+            context: context,
+          ),
+        ),
+        child: StoreConnector<AppState, FAQsContentViewModel>(
+          converter: (Store<AppState> store) =>
+              FAQsContentViewModel.fromStore(store.state),
+          builder: (BuildContext context, FAQsContentViewModel vm) {
+            if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
+              return Container(
+                height: 300,
+                padding: const EdgeInsets.all(20),
+                child: const PlatformLoader(),
               );
-            } else if (faqsContent != null) {
+            } else if (vm.errorFetchingFAQs ?? false) {
               return GenericNoDataWidget(
                 key: helpNoDataWidgetKey,
                 recoverCallback: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    FetchFAQSContentAction(
-                      context: context,
-                    ),
+                    FetchFAQSContentAction(context: context),
                   );
                 },
                 messageBody: getErrorMessage(fetchingFAQsFlagString),
               );
+            } else {
+              final List<FAQContent?>? faqsContent = vm.faqItems;
+
+              if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
+                return SizedBox(
+                  child: SafeArea(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              frequentlyAskedQuestions,
+                              style: normalSize32Text(
+                                Theme.of(context).primaryColor,
+                              ),
+                            ),
+                            mediumVerticalSizedBox,
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: faqsContent.length,
+                              itemBuilder: (_, int index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      AppRoutes.faqDetailViewPage,
+                                      arguments: faqsContent[index],
+                                    );
+                                  },
+                                  child: FAQItem(
+                                    faqContent: FAQContent(
+                                      title:
+                                          faqsContent[index]?.title ?? UNKNOWN,
+                                      body: loremIpsumText,
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              } else if (faqsContent != null) {
+                return GenericNoDataWidget(
+                  key: helpNoDataWidgetKey,
+                  recoverCallback: () async {
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      FetchFAQSContentAction(
+                        context: context,
+                      ),
+                    );
+                  },
+                  messageBody: getErrorMessage(fetchingFAQsFlagString),
+                );
+              }
             }
-          }
-          return const SizedBox();
-        },
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }
