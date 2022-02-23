@@ -32,10 +32,12 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
-          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
+          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
         run: |
           touch .env
-          echo APP_ENV_FILE >> .env
+          echo $DEV_SENTRY_DNS > .env
+          echo $PROD_SENTRY_DNS >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
@@ -78,10 +80,12 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
-          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
+          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
         run: |
           touch .env
-          echo APP_ENV_FILE >> .env
+          echo $DEV_SENTRY_DNS > .env
+          echo $PROD_SENTRY_DNS >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
