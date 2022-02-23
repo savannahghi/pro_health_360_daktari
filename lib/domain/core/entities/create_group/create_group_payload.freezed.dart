@@ -12,6 +12,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+CreateGroupPayload _$CreateGroupPayloadFromJson(Map<String, dynamic> json) {
+  return _CreateGroupPayload.fromJson(json);
+}
+
 /// @nodoc
 class _$CreateGroupPayloadTearOff {
   const _$CreateGroupPayloadTearOff();
@@ -32,6 +36,10 @@ class _$CreateGroupPayloadTearOff {
       inviteOnly: inviteOnly,
     );
   }
+
+  CreateGroupPayload fromJson(Map<String, Object> json) {
+    return CreateGroupPayload.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -46,6 +54,7 @@ mixin _$CreateGroupPayload {
   List<ClientType>? get clientType => throw _privateConstructorUsedError;
   bool? get inviteOnly => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateGroupPayloadCopyWith<CreateGroupPayload> get copyWith =>
       throw _privateConstructorUsedError;
@@ -195,6 +204,7 @@ class __$CreateGroupPayloadCopyWithImpl<$Res>
 
 /// @nodoc
 
+@JsonSerializable(explicitToJson: true)
 class _$_CreateGroupPayload implements _CreateGroupPayload {
   _$_CreateGroupPayload(
       {this.name,
@@ -203,6 +213,9 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
       this.gender,
       this.clientType,
       this.inviteOnly});
+
+  factory _$_CreateGroupPayload.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateGroupPayloadFromJson(json);
 
   @override
   final String? name;
@@ -258,6 +271,11 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
   @override
   _$CreateGroupPayloadCopyWith<_CreateGroupPayload> get copyWith =>
       __$CreateGroupPayloadCopyWithImpl<_CreateGroupPayload>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_CreateGroupPayloadToJson(this);
+  }
 }
 
 abstract class _CreateGroupPayload implements CreateGroupPayload {
@@ -268,6 +286,9 @@ abstract class _CreateGroupPayload implements CreateGroupPayload {
       List<Gender>? gender,
       List<ClientType>? clientType,
       bool? inviteOnly}) = _$_CreateGroupPayload;
+
+  factory _CreateGroupPayload.fromJson(Map<String, dynamic> json) =
+      _$_CreateGroupPayload.fromJson;
 
   @override
   String? get name => throw _privateConstructorUsedError;
@@ -284,151 +305,5 @@ abstract class _CreateGroupPayload implements CreateGroupPayload {
   @override
   @JsonKey(ignore: true)
   _$CreateGroupPayloadCopyWith<_CreateGroupPayload> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-class _$AgeRangeTearOff {
-  const _$AgeRangeTearOff();
-
-  _AgeRange call({required double lowerBound, required double upperBound}) {
-    return _AgeRange(
-      lowerBound: lowerBound,
-      upperBound: upperBound,
-    );
-  }
-}
-
-/// @nodoc
-const $AgeRange = _$AgeRangeTearOff();
-
-/// @nodoc
-mixin _$AgeRange {
-  double get lowerBound => throw _privateConstructorUsedError;
-  double get upperBound => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AgeRangeCopyWith<AgeRange> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AgeRangeCopyWith<$Res> {
-  factory $AgeRangeCopyWith(AgeRange value, $Res Function(AgeRange) then) =
-      _$AgeRangeCopyWithImpl<$Res>;
-  $Res call({double lowerBound, double upperBound});
-}
-
-/// @nodoc
-class _$AgeRangeCopyWithImpl<$Res> implements $AgeRangeCopyWith<$Res> {
-  _$AgeRangeCopyWithImpl(this._value, this._then);
-
-  final AgeRange _value;
-  // ignore: unused_field
-  final $Res Function(AgeRange) _then;
-
-  @override
-  $Res call({
-    Object? lowerBound = freezed,
-    Object? upperBound = freezed,
-  }) {
-    return _then(_value.copyWith(
-      lowerBound: lowerBound == freezed
-          ? _value.lowerBound
-          : lowerBound // ignore: cast_nullable_to_non_nullable
-              as double,
-      upperBound: upperBound == freezed
-          ? _value.upperBound
-          : upperBound // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
-  factory _$AgeRangeCopyWith(_AgeRange value, $Res Function(_AgeRange) then) =
-      __$AgeRangeCopyWithImpl<$Res>;
-  @override
-  $Res call({double lowerBound, double upperBound});
-}
-
-/// @nodoc
-class __$AgeRangeCopyWithImpl<$Res> extends _$AgeRangeCopyWithImpl<$Res>
-    implements _$AgeRangeCopyWith<$Res> {
-  __$AgeRangeCopyWithImpl(_AgeRange _value, $Res Function(_AgeRange) _then)
-      : super(_value, (v) => _then(v as _AgeRange));
-
-  @override
-  _AgeRange get _value => super._value as _AgeRange;
-
-  @override
-  $Res call({
-    Object? lowerBound = freezed,
-    Object? upperBound = freezed,
-  }) {
-    return _then(_AgeRange(
-      lowerBound: lowerBound == freezed
-          ? _value.lowerBound
-          : lowerBound // ignore: cast_nullable_to_non_nullable
-              as double,
-      upperBound: upperBound == freezed
-          ? _value.upperBound
-          : upperBound // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_AgeRange implements _AgeRange {
-  _$_AgeRange({required this.lowerBound, required this.upperBound});
-
-  @override
-  final double lowerBound;
-  @override
-  final double upperBound;
-
-  @override
-  String toString() {
-    return 'AgeRange(lowerBound: $lowerBound, upperBound: $upperBound)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _AgeRange &&
-            (identical(other.lowerBound, lowerBound) ||
-                const DeepCollectionEquality()
-                    .equals(other.lowerBound, lowerBound)) &&
-            (identical(other.upperBound, upperBound) ||
-                const DeepCollectionEquality()
-                    .equals(other.upperBound, upperBound)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(lowerBound) ^
-      const DeepCollectionEquality().hash(upperBound);
-
-  @JsonKey(ignore: true)
-  @override
-  _$AgeRangeCopyWith<_AgeRange> get copyWith =>
-      __$AgeRangeCopyWithImpl<_AgeRange>(this, _$identity);
-}
-
-abstract class _AgeRange implements AgeRange {
-  factory _AgeRange({required double lowerBound, required double upperBound}) =
-      _$_AgeRange;
-
-  @override
-  double get lowerBound => throw _privateConstructorUsedError;
-  @override
-  double get upperBound => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$AgeRangeCopyWith<_AgeRange> get copyWith =>
       throw _privateConstructorUsedError;
 }

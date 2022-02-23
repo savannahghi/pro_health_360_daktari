@@ -1,11 +1,14 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:healthcloud/domain/core/entities/create_group/age_range.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 
 part 'create_group_payload.freezed.dart';
+part 'create_group_payload.g.dart';
 
 @freezed
 class CreateGroupPayload with _$CreateGroupPayload {
+  @JsonSerializable(explicitToJson: true)
   factory CreateGroupPayload({
     String? name,
     String? description,
@@ -14,12 +17,7 @@ class CreateGroupPayload with _$CreateGroupPayload {
     List<ClientType>? clientType,
     bool? inviteOnly,
   }) = _CreateGroupPayload;
-}
 
-@freezed
-class AgeRange with _$AgeRange {
-  factory AgeRange({
-    required double lowerBound,
-    required double upperBound,
-  }) = _AgeRange;
+  factory CreateGroupPayload.fromJson(Map<String, dynamic> json) =>
+      _$CreateGroupPayloadFromJson(json);
 }
