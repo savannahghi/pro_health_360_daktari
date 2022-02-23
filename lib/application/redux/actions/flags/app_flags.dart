@@ -7,8 +7,11 @@ const String acceptTermsFlag = 'accept_terms_flag';
 // set nickname page
 const String setNickNameFlag = 'set_nickname_flag';
 
-// set nickname page
+// Register client page
 const String registerClientFlag = 'register_client_flag';
+
+// Create group page
+const String createGroupFlag = 'create_group_flag';
 
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';

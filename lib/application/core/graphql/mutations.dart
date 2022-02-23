@@ -72,3 +72,19 @@ mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!)
   inviteUser(userID:$userID, phoneNumber: $phoneNumber, flavour:  $flavour)
 }
  ''';
+
+const String createCommunity = r'''
+mutation createCommunity($input: CommunityInput!) {
+  createCommunity(input: $input){
+    name
+    description
+    ageRange{
+      lowerBound
+      upperBound
+    }
+    gender
+    clientType
+    inviteOnly
+  }
+}
+''';

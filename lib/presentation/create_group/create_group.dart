@@ -1,3 +1,4 @@
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/foundation.dart';
@@ -5,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/create_group/create_group_action.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:healthcloud/presentation/create_group/create_group_form_manager.dart';
+import 'package:healthcloud/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -317,8 +320,24 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
   }
 
   void _submitForm() {
-    _formManager.submit();
+    final CreateGroupPayload payload = _formManager.submit();
 
-    Navigator.of(context).pop();
+    StoreProvider.dispatch(
+      context,
+      CreateGroupAction(
+        createGroupPayload: payload,
+        client: AppWrapperBase.of(context)!.graphQLClient,
+        onSuccess: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(registerClientSuccess),
+              duration: Duration(seconds: 5),
+            ),
+          );
+
+          Navigator.of(context).pop();
+        },
+      ),
+    );
   }
 }

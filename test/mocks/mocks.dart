@@ -721,6 +721,29 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(createCommunity)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'createCommunity': <String, dynamic>{
+                'name': 'Test',
+                'description': 'test group',
+                'ageRange': <String, dynamic>{
+                  'lowerBound': 17,
+                  'upperBound': 25
+                },
+                'gender': <String>['male', 'female'],
+                'clientType': <String>['PMTCT', 'OVC'],
+                'inviteOnly': false
+              }
+            }
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );

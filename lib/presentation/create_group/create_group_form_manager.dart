@@ -1,11 +1,11 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/domain/core/entities/create_group/age_range.dart';
+import 'package:healthcloud/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'create_group_payload.dart';
 
 const double minimumAge = 15;
 const double maximumAge = 25;
