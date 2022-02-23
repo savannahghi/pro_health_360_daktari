@@ -1,15 +1,12 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:shared_themes/spaces.dart';
 
 class MessageInput extends StatelessWidget {
   /// [MessageInput] used within the community chat screen to take input of messages

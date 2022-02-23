@@ -1,8 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
@@ -19,7 +18,11 @@ class ContactAdminPage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: contactAdmin),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+            context: context,
+          ),
+        ),
         child: ListView(
           children: <Widget>[
             SizedBox(

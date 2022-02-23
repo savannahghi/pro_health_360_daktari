@@ -17,7 +17,6 @@ import 'package:healthcloud/application/redux/actions/faqs/update_faqs_content_a
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:user_feed/user_feed.dart' as user_feed;

@@ -1,10 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:misc_utilities/misc.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -62,6 +58,7 @@ class CommunityChatPage extends StatelessWidget {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(snackbar(content: value));
                 },
+                onTap: () {},
               ),
             )
           ],

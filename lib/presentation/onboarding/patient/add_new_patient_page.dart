@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
@@ -15,12 +16,10 @@ import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/widgets/date_picker.dart';
 import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
-import 'package:healthcloud/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:healthcloud/presentation/onboarding/patient/register_client_form_manager.dart';
+import 'package:healthcloud/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:healthcloud/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
-import 'package:healthcloud/presentation/surveys/widgets/selection_option_field.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 

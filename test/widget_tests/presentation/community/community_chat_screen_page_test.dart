@@ -1,15 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
+
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -31,6 +31,13 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(CommunityChatPage), findsOneWidget);
+      expect(find.byType(SvgPicture), findsNWidgets(3));
+
+      for (final Element element in find.byType(SvgPicture).evaluate()) {
+        await tester
+            .tapAt(tester.getBottomRight(find.byWidget(element.widget)));
+      }
+      expect(find.byType(ScaffoldMessenger), findsWidgets);
     });
 
     testWidgets('reject shows dialogue on click', (WidgetTester tester) async {

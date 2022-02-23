@@ -55,7 +55,11 @@ class _EditInformationPageState extends State<EditInformationPage> {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+            context: context,
+          ),
+        ),
         child: Stack(
           children: <Widget>[
             SingleChildScrollView(

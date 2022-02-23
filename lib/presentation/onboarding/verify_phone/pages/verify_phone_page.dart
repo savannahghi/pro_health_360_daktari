@@ -9,6 +9,7 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/onboarding/verify_phone_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
+import 'package:healthcloud/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:healthcloud/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:shared_themes/spaces.dart';
 

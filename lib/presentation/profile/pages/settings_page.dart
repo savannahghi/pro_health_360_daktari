@@ -36,7 +36,11 @@ class SettingsPage extends StatelessWidget {
             final String initialNickName =
                 vm.staffState?.user?.username ?? UNKNOWN;
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+                  context: context,
+                ),
+              ),
               child: SizedBox(
                 height: double.infinity,
                 child: Column(

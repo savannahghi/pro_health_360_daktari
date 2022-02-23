@@ -11,7 +11,6 @@ import 'package:healthcloud/domain/core/entities/core/user.dart';
 // Project imports
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:misc_utilities/misc.dart';
 
 class AppbarUser extends StatelessWidget {
   const AppbarUser({Key? key}) : super(key: key);
