@@ -10,18 +10,33 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
 import 'package:healthcloud/presentation/router/route_generator.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../mocks/mocks.dart';
 import '../application/redux/actions/user_state_actions/check_token_action_test.dart';
+import 'auth_manager_test.mocks.dart';
 
+@GenerateMocks(<Type>[StreamChatClient])
 void main() {
   group('Authmanager', () {
-    testWidgets('renders correctly', (WidgetTester tester) async {
-      FlutterConfig.loadValueForTesting(<String, String>{
-        'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
-        'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
-      });
+    FlutterConfig.loadValueForTesting(<String, String>{
+      'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
+      'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+      'STREAM_API_KEY': '',
+    });
+    late MockStreamChatClient client;
 
+    setUpAll(() async {
+      client = MockStreamChatClient();
+      when(client.connectUser(any, any))
+          .thenAnswer((_) => Future<OwnUser>.value(OwnUser(id: '')));
+      final MockClientState clientState = MockClientState();
+
+      when(client.state).thenReturn(clientState);
+    });
+    testWidgets('renders correctly', (WidgetTester tester) async {
       final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform(
         connectivityValues: <ConnectivityResult>[
           ConnectivityResult.none,
@@ -52,11 +67,12 @@ void main() {
                 appContexts: testAppContexts,
                 baseContext: devAppSetupData.customContext,
                 graphQLClient: customClient,
-                child: const MaterialApp(
+                child: MaterialApp(
                   onGenerateRoute: RouteGenerator.generateRoute,
                   home: AuthManager(
                     appName: 'test',
                     appContexts: testAppContexts,
+                    streamClient: client,
                   ),
                 ),
               );

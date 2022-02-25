@@ -4,6 +4,7 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 // Project imports:
 import 'package:healthcloud/application/core/services/app_setup_data.dart';
 import 'package:healthcloud/application/core/services/custom_client.dart';
@@ -13,6 +14,7 @@ import 'package:healthcloud/application/redux/view_models/app_entry_point_view_m
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class MyCareHubProfessionalApp extends StatelessWidget {
   const MyCareHubProfessionalApp({
@@ -27,6 +29,12 @@ class MyCareHubProfessionalApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
+
+    final StreamChatClient streamClient = StreamChatClient(
+      apiKey,
+      logLevel: Level.ALL,
+    );
     return StoreProvider<AppState>(
       key: globalStoreProviderKey,
       store: store,
@@ -53,6 +61,7 @@ class MyCareHubProfessionalApp extends StatelessWidget {
             child: AuthManager(
               appName: appName,
               appContexts: appSetupData.appContexts,
+              streamClient: streamClient,
             ),
           );
         },

@@ -13,7 +13,6 @@ import 'package:healthcloud/application/redux/view_models/app_state_view_model.d
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/onboarding/security_questions/security_question_widget.dart';
-import 'package:misc_utilities/number_constants.dart';
 // Project imports:
 
 class SecurityQuestionsPage extends StatefulWidget {
@@ -140,8 +139,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
-                        width: isLargeScreen ? number300 : double.infinity,
-                        height: number52,
+                        width: isLargeScreen ? 300 : double.infinity,
+                        height: 52,
                         child: MyAfyaHubPrimaryButton(
                           text: saveAndContinueButtonText,
                           buttonColor: AppColors.secondaryColor,

@@ -105,6 +105,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       User? user = loginResponse.staffState?.user?.copyWith(
         pinChangeRequired: false,
+        chatRoomToken: loginResponse.streamToken ?? '',
       );
 
       if (fullname != UNKNOWN && fullname.isNotEmpty) {

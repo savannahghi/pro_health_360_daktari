@@ -17,6 +17,7 @@ _$_PhoneLoginResponse _$_$_PhoneLoginResponseFromJson(
     staffState: json['staffProfile'] == null
         ? null
         : StaffState.fromJson(json['staffProfile'] as Map<String, dynamic>),
+    streamToken: json['getStreamToken'] as String?,
   );
 }
 
@@ -27,4 +28,5 @@ Map<String, dynamic> _$_$_PhoneLoginResponseToJson(
       'message': instance.message,
       'credentials': instance.credentials,
       'staffProfile': instance.staffState,
+      'getStreamToken': instance.streamToken,
     };

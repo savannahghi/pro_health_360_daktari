@@ -1,5 +1,6 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dar
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
-import 'package:misc_utilities/misc.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
