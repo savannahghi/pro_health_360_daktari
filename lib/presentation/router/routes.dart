@@ -11,6 +11,8 @@ class AppRoutes {
 
   static const String communityPage = '/communityPage';
 
+  static const String notificationsPage = '/notificationsPage';
+
   static const String contentPage = '/contentPage';
 
   static const String securityQuestionsPage = '/securityQuestionsPage';

@@ -60,6 +60,7 @@ const String communityChatScreenPageTitle = 'Ruaka Questions Group';
 const String typeYourMessageHereString = 'Type your message here';
 const String approveText = 'Approve';
 const String rejectText = 'Reject';
+const String communitiesTitle = 'Communities';
 
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';

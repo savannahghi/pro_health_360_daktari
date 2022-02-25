@@ -101,3 +101,8 @@ const String doneIconSvgPath = 'assets/icons/done_icon.svg';
 const String resolvedServiceRequestsImageSvgPath =
     'assets/images/solved_service_request_icon.svg';
 const String groupInfoImage = 'assets/images/group_info.svg';
+
+// Bottom nav icon paths
+const String homeIconSvgPath = 'assets/icons/home_icon.svg';
+const String communityIconSvgPath = 'assets/icons/community_icon.svg';
+const String notificationIconSvgPath = 'assets/icons/notification_icon.svg';
