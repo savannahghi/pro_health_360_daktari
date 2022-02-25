@@ -52,6 +52,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
             ),
           ),
         ),
+        showBackButton: false,
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(

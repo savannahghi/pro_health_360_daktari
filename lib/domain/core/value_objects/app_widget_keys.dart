@@ -113,3 +113,6 @@ const Key closeEditInformationPageBtnKey =
 const Key inviteMembersButtonKey = Key('invite_members_button_key');
 
 const Key iosLoaderThemeKey = Key('InboxCupertinoThemeKey');
+
+// bottom nav
+const Key bottomNavKey = Key('bottom_nav_key');

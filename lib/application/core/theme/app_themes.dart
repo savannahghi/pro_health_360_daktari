@@ -69,6 +69,7 @@ class AppColors {
   static const Color lightRedColor = Color(0xfffac8c9);
   static const Color lightBlackTextColor = Color(0xFF555555);
   static const Color blueChillColor = Color(0xFF119496);
+  static const Color selectedBottomNavColor = Color(0xFFF79E25);
 }
 
 class ThemeColors {

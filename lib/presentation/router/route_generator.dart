@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
@@ -13,6 +14,7 @@ import 'package:healthcloud/presentation/create_group/invite_members/invite_memb
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
+import 'package:healthcloud/presentation/notifications/notifications_page.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -69,6 +71,13 @@ class RouteGenerator {
       case AppRoutes.communityPage:
         return MaterialPageRoute<CommunityListViewPage>(
           builder: (_) => const CommunityListViewPage(),
+        );
+
+      case AppRoutes.notificationsPage:
+        return MaterialPageRoute<NotificationsPage>(
+          builder: (_) => const NotificationsPage(
+            notifications: <NotificationDetails>[],
+          ),
         );
 
       case AppRoutes.contentPage:

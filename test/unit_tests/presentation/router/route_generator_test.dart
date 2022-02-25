@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
+import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
 import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
@@ -15,6 +16,7 @@ import 'package:healthcloud/presentation/create_group/invite_members/invite_memb
 import 'package:healthcloud/presentation/engagement/home/pages/content_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
+import 'package:healthcloud/presentation/notifications/notifications_page.dart';
 import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
@@ -92,6 +94,18 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
     expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
     expect(route?.builder(context), isA<CommunityListViewPage>());
+  });
+
+  test('Test router returns NotificationsPage', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.notificationsPage,
+      arguments: <NotificationDetails>[],
+    );
+
+    final MaterialPageRoute<NotificationsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<NotificationsPage>?;
+    expect(route, isA<MaterialPageRoute<NotificationsPage>>());
+    expect(route?.builder(context), isA<NotificationsPage>());
   });
 
   test('Test router returns SecurityQuestionsPage', () {
@@ -299,8 +313,7 @@ void main() {
   });
 
   test('Test router returns successful group info page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.groupInfoPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.groupInfoPage);
 
     final MaterialPageRoute<GroupInfoPage>? route =
         routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;
