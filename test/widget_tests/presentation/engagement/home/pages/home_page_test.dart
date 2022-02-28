@@ -1,5 +1,7 @@
 // Flutter imports:
 // Package imports:
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +12,14 @@ import 'package:healthcloud/application/redux/actions/core/update_user_action.da
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/engagement/home/pages/home_page.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
+import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
 
 import '../../../../../mocks/mocks.dart';
@@ -70,6 +74,17 @@ void main() {
 
     testWidgets('navigates to ServiceRequestsPage',
         (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getServiceRequests': <dynamic>[]}
+          }),
+          201,
+        ),
+      );
       const String firstName = 'Laura';
       store.dispatch(
         UpdateUserAction(user: User.initial().copyWith(firstName: firstName)),
@@ -77,6 +92,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
+        graphQlClient: mockShortGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             return StoreProvider<AppState>(
@@ -86,13 +102,20 @@ void main() {
           },
         ),
       );
+
+      await tester.pumpAndSettle();
       final Finder serviceRequestsWidget = find.text(serviceRequestsText);
+      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
 
       await tester.ensureVisible(serviceRequestsWidget);
       await tester.pumpAndSettle();
       await tester.tap(serviceRequestsWidget);
       await tester.pumpAndSettle();
       expect(find.byType(ServiceRequestsPage), findsWidgets);
+      expect(genericNoDataButton, findsOneWidget);
+      await tester.tap(genericNoDataButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(ServiceRequestsPage), findsNothing);
     });
 
     testWidgets('navigates to create group page', (WidgetTester tester) async {

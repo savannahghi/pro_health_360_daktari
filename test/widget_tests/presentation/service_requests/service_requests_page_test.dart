@@ -3,13 +3,14 @@ import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
 
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dart';
 import 'package:healthcloud/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
@@ -26,15 +27,33 @@ void main() {
     });
     testWidgets('should render correctly with default values',
         (WidgetTester tester) async {
+            final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getPendingServiceRequestsCount': <String, dynamic>{
+                'total': 4,
+                'requestsTypeCount': <dynamic>[
+                  <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
+                  <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
+                ],
+              }
+            }
+          }),
+          201,
+        ),
+      );
+          
       await buildTestWidget(
         tester: tester,
-        widget: ServiceRequestsPage(
-          pendingServiceRequest:
-              PendingServiceRequest.fromJson(mockPendingServiceRequests),
-        ),
-        graphQlClient: MockTestGraphQlClient(),
+        widget: ServiceRequestsPage(),
+        graphQlClient: mockShortGraphQlClient,
       );
-
+      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      await tester.pumpAndSettle();
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
       expect(find.byType(ActionCard), findsNWidgets(2));
@@ -49,27 +68,15 @@ void main() {
       await tester.tap(find.byType(ActionCard).last);
       await tester.pumpAndSettle();
       expect(find.text(serviceRequestString), findsNothing);
-    });
-    testWidgets('profile updates is tappable', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        widget: ServiceRequestsPage(
-          pendingServiceRequest:
-              PendingServiceRequest.fromJson(<String, dynamic>{
-            'total': 2,
-            'requestsTypeCount': <dynamic>[
-              <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2},
-            ],
-          }),
-        ),
-      );
-      expect(find.byType(ActionCard), findsOneWidget);
-
-      await tester.tap(find.byType(ActionCard));
+      await tester.ensureVisible(genericNoDataButton);
       await tester.pumpAndSettle();
-      expect(find.text(serviceRequestString), findsNothing);
+      await tester.tap(genericNoDataButton);
+      await tester.pumpAndSettle();
+      expect(find.text(serviceRequestString), findsOneWidget);
     });
-    testWidgets('red flags is tappable', (WidgetTester tester) async {
+
+    testWidgets('genericNoData widget is tappable',
+        (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
@@ -85,24 +92,109 @@ void main() {
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
         store: store,
-        widget: ServiceRequestsPage(
-          pendingServiceRequest:
-              PendingServiceRequest.fromJson(<String, dynamic>{
-            'total': 2,
-            'requestsTypeCount': <dynamic>[
-              <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
-            ],
-          }),
-        ),
+        widget: ServiceRequestsPage(),
       );
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
-
-      await tester.tap(find.byType(ActionCard));
       await tester.pumpAndSettle();
+      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
 
       await tester.tap(genericNoDataButton);
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagsPage), findsNothing);
+    });
+    testWidgets('profile updates ActionCard is tappable',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getPendingServiceRequestsCount': <String, dynamic>{
+                'total': 2,
+                'requestsTypeCount': <dynamic>[
+                  <String, dynamic>{
+                    'requestType': 'PROFILE_UPDATE',
+                    'total': 2
+                  },
+                ],
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortGraphQlClient,
+        store: store,
+        widget: ServiceRequestsPage(),
+      );
+      final Finder profileUpdateActionCard = find.byType(ActionCard);
+      await tester.pumpAndSettle();
+      expect(profileUpdateActionCard, findsOneWidget);
+
+      await tester.tap(profileUpdateActionCard);
+      await tester.pumpAndSettle();
+      expect(profileUpdateActionCard, findsNothing);
+    });
+    testWidgets(
+      'should show an error widget when fetching service request count',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'some error occurred'}),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortGraphQlClient,
+          widget: ServiceRequestsPage(),
+        );
+
+        await tester.pumpAndSettle();
+        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+
+        expect(genericNoDataButton, findsOneWidget);
+
+        /// Refresh and expect the same thing
+        await tester.ensureVisible(genericNoDataButton);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(genericNoDataButtonKey));
+
+        await tester.pumpAndSettle();
+        expect(genericNoDataButton, findsOneWidget);
+      },
+    );
+    testWidgets(
+        'should show a loading indicator when fetching service request count',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        ),
+      );
+      store.dispatch(WaitAction<AppState>.add(fetchServiceRequestsCountFlag));
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: ServiceRequestsPage(),
+      );
+
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }
