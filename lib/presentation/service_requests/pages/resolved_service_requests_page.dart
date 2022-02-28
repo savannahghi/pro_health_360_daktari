@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/service_requests/fetch_service_requests_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -59,10 +59,10 @@ class _ResolvedServiceRequestsPageState
             context: context,
           ),
         ),
-        child: StoreConnector<AppState, ListServiceRequestsViewModel>(
+        child: StoreConnector<AppState, ServiceRequestsViewModel>(
           converter: (Store<AppState> store) =>
-              ListServiceRequestsViewModel.fromStore(store),
-          builder: (BuildContext context, ListServiceRequestsViewModel vm) {
+              ServiceRequestsViewModel.fromStore(store),
+          builder: (BuildContext context, ServiceRequestsViewModel vm) {
             final bool error = vm.errorFetchingServiceRequests ?? false;
             return SingleChildScrollView(
               child: Column(

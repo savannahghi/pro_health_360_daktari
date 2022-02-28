@@ -14,6 +14,10 @@ _$_ServiceRequestState _$_$_ServiceRequestStateFromJson(
             ? null
             : ServiceRequestContent.fromJson(e as Map<String, dynamic>))
         .toList(),
+    pendingServiceRequests: json['getPendingServiceRequestsCount'] == null
+        ? null
+        : PendingServiceRequest.fromJson(
+            json['getPendingServiceRequestsCount'] as Map<String, dynamic>),
     errorFetchingServiceRequests: json['errorFetchingServiceRequests'] as bool?,
   );
 }
@@ -22,5 +26,6 @@ Map<String, dynamic> _$_$_ServiceRequestStateToJson(
         _$_ServiceRequestState instance) =>
     <String, dynamic>{
       'getServiceRequests': instance.serviceRequestContent,
+      'getPendingServiceRequestsCount': instance.pendingServiceRequests,
       'errorFetchingServiceRequests': instance.errorFetchingServiceRequests,
     };

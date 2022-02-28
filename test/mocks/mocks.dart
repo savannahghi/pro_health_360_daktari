@@ -354,7 +354,7 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
   },
 };
 final Map<String, dynamic> mockPendingServiceRequests = <String, dynamic>{
-  'total': 6,
+  'total': 4,
   'requestsTypeCount': <dynamic>[
     <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
     <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
@@ -1012,6 +1012,10 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
   'surveyState': <String, dynamic>{},
   'serviceRequestState': <String, dynamic>{
     'getServiceRequests': <dynamic>[],
+    'getPendingServiceRequestsCount': <String, dynamic>{
+'total': 0,
+'requestsTypeCount': <dynamic>[],
+    },
     'errorFetchingServiceRequests': false,
   },
   'connectivityState': <String, dynamic>{'isConnected': false},

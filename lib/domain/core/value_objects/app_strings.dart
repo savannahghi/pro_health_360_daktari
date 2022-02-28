@@ -319,6 +319,9 @@ String fetchingResolvedRequestsString =
 String fetchingResolvedRedFlagsString =
     'fetching ${redFlagString.toLowerCase()}';
 
+    String fetchingPendingServiceString =
+    'fetching pending service requests';
+
 // generic widget
 const String actionTextGenericNoData = 'Ok, thanks';
 const String retryString = 'Retry';
