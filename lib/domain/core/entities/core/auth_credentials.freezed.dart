@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_credentials.dart';
 
@@ -37,7 +39,7 @@ class _$AuthCredentialsTearOff {
     );
   }
 
-  AuthCredentials fromJson(Map<String, Object> json) {
+  AuthCredentials fromJson(Map<String, Object?> json) {
     return AuthCredentials.fromJson(json);
   }
 }
@@ -203,7 +205,7 @@ class _$_AuthCredentials implements _AuthCredentials {
       this.signedInTime});
 
   factory _$_AuthCredentials.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthCredentialsFromJson(json);
+      _$$_AuthCredentialsFromJson(json);
 
   @override
   @JsonKey(name: 'idToken')
@@ -230,36 +232,29 @@ class _$_AuthCredentials implements _AuthCredentials {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthCredentials &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.idToken, idToken)) &&
-            (identical(other.expiresIn, expiresIn) ||
-                const DeepCollectionEquality()
-                    .equals(other.expiresIn, expiresIn)) &&
-            (identical(other.refreshToken, refreshToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.refreshToken, refreshToken)) &&
-            (identical(other.tokenExpiryTimestamp, tokenExpiryTimestamp) ||
-                const DeepCollectionEquality().equals(
-                    other.tokenExpiryTimestamp, tokenExpiryTimestamp)) &&
-            (identical(other.isSignedIn, isSignedIn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSignedIn, isSignedIn)) &&
-            (identical(other.signedInTime, signedInTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.signedInTime, signedInTime)));
+        (other.runtimeType == runtimeType &&
+            other is _AuthCredentials &&
+            const DeepCollectionEquality().equals(other.idToken, idToken) &&
+            const DeepCollectionEquality().equals(other.expiresIn, expiresIn) &&
+            const DeepCollectionEquality()
+                .equals(other.refreshToken, refreshToken) &&
+            const DeepCollectionEquality()
+                .equals(other.tokenExpiryTimestamp, tokenExpiryTimestamp) &&
+            const DeepCollectionEquality()
+                .equals(other.isSignedIn, isSignedIn) &&
+            const DeepCollectionEquality()
+                .equals(other.signedInTime, signedInTime));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(idToken) ^
-      const DeepCollectionEquality().hash(expiresIn) ^
-      const DeepCollectionEquality().hash(refreshToken) ^
-      const DeepCollectionEquality().hash(tokenExpiryTimestamp) ^
-      const DeepCollectionEquality().hash(isSignedIn) ^
-      const DeepCollectionEquality().hash(signedInTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(idToken),
+      const DeepCollectionEquality().hash(expiresIn),
+      const DeepCollectionEquality().hash(refreshToken),
+      const DeepCollectionEquality().hash(tokenExpiryTimestamp),
+      const DeepCollectionEquality().hash(isSignedIn),
+      const DeepCollectionEquality().hash(signedInTime));
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +263,7 @@ class _$_AuthCredentials implements _AuthCredentials {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthCredentialsToJson(this);
+    return _$$_AuthCredentialsToJson(this);
   }
 }
 
@@ -286,20 +281,20 @@ abstract class _AuthCredentials implements AuthCredentials {
 
   @override
   @JsonKey(name: 'idToken')
-  String? get idToken => throw _privateConstructorUsedError;
+  String? get idToken;
   @override
   @JsonKey(name: 'expiresIn')
-  String? get expiresIn => throw _privateConstructorUsedError;
+  String? get expiresIn;
   @override
   @JsonKey(name: 'refreshToken')
-  String? get refreshToken => throw _privateConstructorUsedError;
+  String? get refreshToken;
   @override
   @JsonKey(name: 'tokenExpiryTimestamp')
-  String? get tokenExpiryTimestamp => throw _privateConstructorUsedError;
+  String? get tokenExpiryTimestamp;
   @override // Other supporting fields that are not returned by the backend
-  bool? get isSignedIn => throw _privateConstructorUsedError;
+  bool? get isSignedIn;
   @override
-  String? get signedInTime => throw _privateConstructorUsedError;
+  String? get signedInTime;
   @override
   @JsonKey(ignore: true)
   _$AuthCredentialsCopyWith<_AuthCredentials> get copyWith =>

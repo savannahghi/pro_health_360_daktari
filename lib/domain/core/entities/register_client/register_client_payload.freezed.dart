@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'register_client_payload.dart';
 
@@ -56,7 +58,7 @@ class _$RegisterClientPayloadTearOff {
     );
   }
 
-  RegisterClientPayload fromJson(Map<String, Object> json) {
+  RegisterClientPayload fromJson(Map<String, Object?> json) {
     return RegisterClientPayload.fromJson(json);
   }
 }
@@ -303,7 +305,7 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
       @JsonKey(name: 'inviteClient') this.inviteClient});
 
   factory _$_RegisterClientPayload.fromJson(Map<String, dynamic> json) =>
-      _$_$_RegisterClientPayloadFromJson(json);
+      _$$_RegisterClientPayloadFromJson(json);
 
   @override
   @JsonKey(name: 'facility')
@@ -344,51 +346,40 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RegisterClientPayload &&
-            (identical(other.facility, facility) ||
-                const DeepCollectionEquality()
-                    .equals(other.facility, facility)) &&
-            (identical(other.clientType, clientType) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientType, clientType)) &&
-            (identical(other.clientName, clientName) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientName, clientName)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.dateOfBirth, dateOfBirth) ||
-                const DeepCollectionEquality()
-                    .equals(other.dateOfBirth, dateOfBirth)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.enrollmentDate, enrollmentDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.enrollmentDate, enrollmentDate)) &&
-            (identical(other.cccNumber, cccNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.cccNumber, cccNumber)) &&
-            (identical(other.counselled, counselled) ||
-                const DeepCollectionEquality()
-                    .equals(other.counselled, counselled)) &&
-            (identical(other.inviteClient, inviteClient) ||
-                const DeepCollectionEquality()
-                    .equals(other.inviteClient, inviteClient)));
+        (other.runtimeType == runtimeType &&
+            other is _RegisterClientPayload &&
+            const DeepCollectionEquality().equals(other.facility, facility) &&
+            const DeepCollectionEquality()
+                .equals(other.clientType, clientType) &&
+            const DeepCollectionEquality()
+                .equals(other.clientName, clientName) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality()
+                .equals(other.dateOfBirth, dateOfBirth) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.enrollmentDate, enrollmentDate) &&
+            const DeepCollectionEquality().equals(other.cccNumber, cccNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.counselled, counselled) &&
+            const DeepCollectionEquality()
+                .equals(other.inviteClient, inviteClient));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(facility) ^
-      const DeepCollectionEquality().hash(clientType) ^
-      const DeepCollectionEquality().hash(clientName) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(dateOfBirth) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(enrollmentDate) ^
-      const DeepCollectionEquality().hash(cccNumber) ^
-      const DeepCollectionEquality().hash(counselled) ^
-      const DeepCollectionEquality().hash(inviteClient);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(facility),
+      const DeepCollectionEquality().hash(clientType),
+      const DeepCollectionEquality().hash(clientName),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(dateOfBirth),
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(enrollmentDate),
+      const DeepCollectionEquality().hash(cccNumber),
+      const DeepCollectionEquality().hash(counselled),
+      const DeepCollectionEquality().hash(inviteClient));
 
   @JsonKey(ignore: true)
   @override
@@ -398,7 +389,7 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RegisterClientPayloadToJson(this);
+    return _$$_RegisterClientPayloadToJson(this);
   }
 }
 
@@ -430,34 +421,34 @@ abstract class _RegisterClientPayload implements RegisterClientPayload {
 
   @override
   @JsonKey(name: 'facility')
-  String? get facility => throw _privateConstructorUsedError;
+  String? get facility;
   @override
   @JsonKey(name: 'clientType')
-  ClientType? get clientType => throw _privateConstructorUsedError;
+  ClientType? get clientType;
   @override
   @JsonKey(name: 'clientName')
-  String? get clientName => throw _privateConstructorUsedError;
+  String? get clientName;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
+  DateTime? get dateOfBirth;
   @override
   @JsonKey(name: 'phoneNumber')
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
   @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
-  DateTime? get enrollmentDate => throw _privateConstructorUsedError;
+  DateTime? get enrollmentDate;
   @override
   @JsonKey(name: 'cccNumber')
-  String? get cccNumber => throw _privateConstructorUsedError;
+  String? get cccNumber;
   @override
   @JsonKey(name: 'counselled')
-  bool? get counselled => throw _privateConstructorUsedError;
+  bool? get counselled;
   @override
   @JsonKey(name: 'inviteClient')
-  bool? get inviteClient => throw _privateConstructorUsedError;
+  bool? get inviteClient;
   @override
   @JsonKey(ignore: true)
   _$RegisterClientPayloadCopyWith<_RegisterClientPayload> get copyWith =>

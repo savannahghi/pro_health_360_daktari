@@ -23,6 +23,7 @@ import 'package:healthcloud/infrastructure/repository/database_base.dart';
 import 'package:healthcloud/infrastructure/repository/database_state_persistor.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:healthcloud/presentation/core/widgets/unrecoverable_error_widget.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 /// Responsible for putting together everything that the app needs in order
 /// to run safely.
@@ -80,6 +81,13 @@ Future<void> initApp(List<AppContext> appContexts) async {
         store.dispatch(UpdateConnectivityAction(hasConnection: hasConnection));
       });
 
+  final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
+
+  final StreamChatClient streamClient = StreamChatClient(
+    apiKey,
+    logLevel: Level.ALL,
+  );
+
   /// Configures which error widget to show depending  on whether the app is
   /// in debug or release mode.
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -110,6 +118,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
           MyCareHubProfessionalApp(
             store: store,
             appSetupData: appSetupData,
+            streamClient: streamClient,
           ),
         ),
       );

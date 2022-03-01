@@ -52,8 +52,6 @@ const String rejectChatDialogDescription =
 const String banUserText = 'Ban user';
 const String reportSpamText = 'Report spam';
 const String cancelText = '';
-String deleteAllMessagesText(String userName) =>
-    'Reject all $userName messages';
 
 //Community Page
 const String communityChatScreenPageTitle = 'Ruaka Questions Group';
@@ -319,8 +317,7 @@ String fetchingResolvedRequestsString =
 String fetchingResolvedRedFlagsString =
     'fetching ${redFlagString.toLowerCase()}';
 
-    String fetchingPendingServiceString =
-    'fetching pending service requests';
+String fetchingPendingServiceString = 'fetching pending service requests';
 
 // generic widget
 const String actionTextGenericNoData = 'Ok, thanks';
@@ -388,9 +385,6 @@ const String searchMembersString = 'Search members ...';
 // group info
 const String groupInfoText = 'Group Info';
 const String groupTitle = 'Ruaraka Group';
-String getGroupMembersNumber(int numberOfMembers) {
-  return '$numberOfMembers members';
-}
 
 const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';

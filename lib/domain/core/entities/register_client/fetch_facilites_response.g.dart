@@ -6,16 +6,15 @@ part of 'fetch_facilites_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FetchFacilitiesResponse _$_$_FetchFacilitiesResponseFromJson(
-    Map<String, dynamic> json) {
-  return _$_FetchFacilitiesResponse(
-    facilities: (json['fetchFacilities'] as List<dynamic>?)
-        ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+_$_FetchFacilitiesResponse _$$_FetchFacilitiesResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_FetchFacilitiesResponse(
+      facilities: (json['fetchFacilities'] as List<dynamic>?)
+          ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$_$_FetchFacilitiesResponseToJson(
+Map<String, dynamic> _$$_FetchFacilitiesResponseToJson(
         _$_FetchFacilitiesResponse instance) =>
     <String, dynamic>{
       'fetchFacilities': instance.facilities,

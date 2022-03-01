@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'service_requests_state.dart';
 
@@ -33,7 +35,7 @@ class _$ServiceRequestStateTearOff {
     );
   }
 
-  ServiceRequestState fromJson(Map<String, Object> json) {
+  ServiceRequestState fromJson(Map<String, Object?> json) {
     return ServiceRequestState.fromJson(json);
   }
 }
@@ -179,7 +181,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
       this.errorFetchingServiceRequests});
 
   factory _$_ServiceRequestState.fromJson(Map<String, dynamic> json) =>
-      _$_$_ServiceRequestStateFromJson(json);
+      _$$_ServiceRequestStateFromJson(json);
 
   @override
   @JsonKey(name: 'getServiceRequests')
@@ -198,26 +200,23 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ServiceRequestState &&
-            (identical(other.serviceRequestContent, serviceRequestContent) ||
-                const DeepCollectionEquality().equals(
-                    other.serviceRequestContent, serviceRequestContent)) &&
-            (identical(other.pendingServiceRequests, pendingServiceRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.pendingServiceRequests, pendingServiceRequests)) &&
-            (identical(other.errorFetchingServiceRequests,
-                    errorFetchingServiceRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.errorFetchingServiceRequests,
-                    errorFetchingServiceRequests)));
+        (other.runtimeType == runtimeType &&
+            other is _ServiceRequestState &&
+            const DeepCollectionEquality()
+                .equals(other.serviceRequestContent, serviceRequestContent) &&
+            const DeepCollectionEquality()
+                .equals(other.pendingServiceRequests, pendingServiceRequests) &&
+            const DeepCollectionEquality().equals(
+                other.errorFetchingServiceRequests,
+                errorFetchingServiceRequests));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(serviceRequestContent) ^
-      const DeepCollectionEquality().hash(pendingServiceRequests) ^
-      const DeepCollectionEquality().hash(errorFetchingServiceRequests);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(serviceRequestContent),
+      const DeepCollectionEquality().hash(pendingServiceRequests),
+      const DeepCollectionEquality().hash(errorFetchingServiceRequests));
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +226,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ServiceRequestStateToJson(this);
+    return _$$_ServiceRequestStateToJson(this);
   }
 }
 
@@ -244,14 +243,12 @@ abstract class _ServiceRequestState implements ServiceRequestState {
 
   @override
   @JsonKey(name: 'getServiceRequests')
-  List<ServiceRequestContent?>? get serviceRequestContent =>
-      throw _privateConstructorUsedError;
+  List<ServiceRequestContent?>? get serviceRequestContent;
   @override
   @JsonKey(name: 'getPendingServiceRequestsCount')
-  PendingServiceRequest? get pendingServiceRequests =>
-      throw _privateConstructorUsedError;
+  PendingServiceRequest? get pendingServiceRequests;
   @override
-  bool? get errorFetchingServiceRequests => throw _privateConstructorUsedError;
+  bool? get errorFetchingServiceRequests;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestStateCopyWith<_ServiceRequestState> get copyWith =>

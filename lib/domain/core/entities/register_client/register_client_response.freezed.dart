@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'register_client_response.dart';
 
@@ -52,7 +54,7 @@ class _$RegisterClientResponseTearOff {
     );
   }
 
-  RegisterClientResponse fromJson(Map<String, Object> json) {
+  RegisterClientResponse fromJson(Map<String, Object?> json) {
     return RegisterClientResponse.fromJson(json);
   }
 }
@@ -324,7 +326,7 @@ class _$_RegisterClientResponse implements _RegisterClientResponse {
       @JsonKey(name: 'caregiver') this.caregiver});
 
   factory _$_RegisterClientResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_RegisterClientResponseFromJson(json);
+      _$$_RegisterClientResponseFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -374,60 +376,47 @@ class _$_RegisterClientResponse implements _RegisterClientResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RegisterClientResponse &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.clientType, clientType) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientType, clientType)) &&
-            (identical(other.enrollmentDate, enrollmentDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.enrollmentDate, enrollmentDate)) &&
-            (identical(other.fhirPatientID, fhirPatientID) ||
-                const DeepCollectionEquality()
-                    .equals(other.fhirPatientID, fhirPatientID)) &&
-            (identical(other.emrHealthRecordID, emrHealthRecordID) ||
-                const DeepCollectionEquality()
-                    .equals(other.emrHealthRecordID, emrHealthRecordID)) &&
-            (identical(other.treatmentBuddy, treatmentBuddy) ||
-                const DeepCollectionEquality()
-                    .equals(other.treatmentBuddy, treatmentBuddy)) &&
-            (identical(other.counselled, counselled) ||
-                const DeepCollectionEquality()
-                    .equals(other.counselled, counselled)) &&
-            (identical(other.organisation, organisation) ||
-                const DeepCollectionEquality()
-                    .equals(other.organisation, organisation)) &&
-            (identical(other.userID, userID) ||
-                const DeepCollectionEquality().equals(other.userID, userID)) &&
-            (identical(other.currentFacilityID, currentFacilityID) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentFacilityID, currentFacilityID)) &&
-            (identical(other.chv, chv) ||
-                const DeepCollectionEquality().equals(other.chv, chv)) &&
-            (identical(other.caregiver, caregiver) ||
-                const DeepCollectionEquality()
-                    .equals(other.caregiver, caregiver)));
+        (other.runtimeType == runtimeType &&
+            other is _RegisterClientResponse &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality()
+                .equals(other.clientType, clientType) &&
+            const DeepCollectionEquality()
+                .equals(other.enrollmentDate, enrollmentDate) &&
+            const DeepCollectionEquality()
+                .equals(other.fhirPatientID, fhirPatientID) &&
+            const DeepCollectionEquality()
+                .equals(other.emrHealthRecordID, emrHealthRecordID) &&
+            const DeepCollectionEquality()
+                .equals(other.treatmentBuddy, treatmentBuddy) &&
+            const DeepCollectionEquality()
+                .equals(other.counselled, counselled) &&
+            const DeepCollectionEquality()
+                .equals(other.organisation, organisation) &&
+            const DeepCollectionEquality().equals(other.userID, userID) &&
+            const DeepCollectionEquality()
+                .equals(other.currentFacilityID, currentFacilityID) &&
+            const DeepCollectionEquality().equals(other.chv, chv) &&
+            const DeepCollectionEquality().equals(other.caregiver, caregiver));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(clientType) ^
-      const DeepCollectionEquality().hash(enrollmentDate) ^
-      const DeepCollectionEquality().hash(fhirPatientID) ^
-      const DeepCollectionEquality().hash(emrHealthRecordID) ^
-      const DeepCollectionEquality().hash(treatmentBuddy) ^
-      const DeepCollectionEquality().hash(counselled) ^
-      const DeepCollectionEquality().hash(organisation) ^
-      const DeepCollectionEquality().hash(userID) ^
-      const DeepCollectionEquality().hash(currentFacilityID) ^
-      const DeepCollectionEquality().hash(chv) ^
-      const DeepCollectionEquality().hash(caregiver);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(clientType),
+      const DeepCollectionEquality().hash(enrollmentDate),
+      const DeepCollectionEquality().hash(fhirPatientID),
+      const DeepCollectionEquality().hash(emrHealthRecordID),
+      const DeepCollectionEquality().hash(treatmentBuddy),
+      const DeepCollectionEquality().hash(counselled),
+      const DeepCollectionEquality().hash(organisation),
+      const DeepCollectionEquality().hash(userID),
+      const DeepCollectionEquality().hash(currentFacilityID),
+      const DeepCollectionEquality().hash(chv),
+      const DeepCollectionEquality().hash(caregiver));
 
   @JsonKey(ignore: true)
   @override
@@ -437,7 +426,7 @@ class _$_RegisterClientResponse implements _RegisterClientResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RegisterClientResponseToJson(this);
+    return _$$_RegisterClientResponseToJson(this);
   }
 }
 
@@ -463,43 +452,43 @@ abstract class _RegisterClientResponse implements RegisterClientResponse {
 
   @override
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'active')
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'clientType')
-  String? get clientType => throw _privateConstructorUsedError;
+  String? get clientType;
   @override
   @JsonKey(name: 'enrollmentDate')
-  String? get enrollmentDate => throw _privateConstructorUsedError;
+  String? get enrollmentDate;
   @override
   @JsonKey(name: 'fhirPatientID')
-  String? get fhirPatientID => throw _privateConstructorUsedError;
+  String? get fhirPatientID;
   @override
   @JsonKey(name: 'emrHealthRecordID')
-  String? get emrHealthRecordID => throw _privateConstructorUsedError;
+  String? get emrHealthRecordID;
   @override
   @JsonKey(name: 'treatmentBuddy')
-  String? get treatmentBuddy => throw _privateConstructorUsedError;
+  String? get treatmentBuddy;
   @override
   @JsonKey(name: 'counselled')
-  bool? get counselled => throw _privateConstructorUsedError;
+  bool? get counselled;
   @override
   @JsonKey(name: 'organisation')
-  String? get organisation => throw _privateConstructorUsedError;
+  String? get organisation;
   @override
   @JsonKey(name: 'userID')
-  String? get userID => throw _privateConstructorUsedError;
+  String? get userID;
   @override
   @JsonKey(name: 'currentFacilityID')
-  String? get currentFacilityID => throw _privateConstructorUsedError;
+  String? get currentFacilityID;
   @override
   @JsonKey(name: 'chv')
-  String? get chv => throw _privateConstructorUsedError;
+  String? get chv;
   @override
   @JsonKey(name: 'caregiver')
-  String? get caregiver => throw _privateConstructorUsedError;
+  String? get caregiver;
   @override
   @JsonKey(ignore: true)
   _$RegisterClientResponseCopyWith<_RegisterClientResponse> get copyWith =>

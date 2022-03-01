@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'request_count_content.dart';
 
@@ -29,7 +31,7 @@ class _$RequestCountContentTearOff {
     );
   }
 
-  RequestCountContent fromJson(Map<String, Object> json) {
+  RequestCountContent fromJson(Map<String, Object?> json) {
     return RequestCountContent.fromJson(json);
   }
 }
@@ -136,7 +138,7 @@ class _$_RequestCountContent implements _RequestCountContent {
       @JsonKey(name: 'total') this.count});
 
   factory _$_RequestCountContent.fromJson(Map<String, dynamic> json) =>
-      _$_$_RequestCountContentFromJson(json);
+      _$$_RequestCountContentFromJson(json);
 
   @override
   @JsonKey(name: 'requestType')
@@ -153,19 +155,18 @@ class _$_RequestCountContent implements _RequestCountContent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RequestCountContent &&
-            (identical(other.requestType, requestType) ||
-                const DeepCollectionEquality()
-                    .equals(other.requestType, requestType)) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
+        (other.runtimeType == runtimeType &&
+            other is _RequestCountContent &&
+            const DeepCollectionEquality()
+                .equals(other.requestType, requestType) &&
+            const DeepCollectionEquality().equals(other.count, count));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(requestType) ^
-      const DeepCollectionEquality().hash(count);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(requestType),
+      const DeepCollectionEquality().hash(count));
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +176,7 @@ class _$_RequestCountContent implements _RequestCountContent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RequestCountContentToJson(this);
+    return _$$_RequestCountContentToJson(this);
   }
 }
 
@@ -189,10 +190,10 @@ abstract class _RequestCountContent implements RequestCountContent {
 
   @override
   @JsonKey(name: 'requestType')
-  ServiceRequestType? get requestType => throw _privateConstructorUsedError;
+  ServiceRequestType? get requestType;
   @override
   @JsonKey(name: 'total')
-  int? get count => throw _privateConstructorUsedError;
+  int? get count;
   @override
   @JsonKey(ignore: true)
   _$RequestCountContentCopyWith<_RequestCountContent> get copyWith =>

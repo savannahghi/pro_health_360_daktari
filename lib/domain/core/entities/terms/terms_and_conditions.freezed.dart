@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'terms_and_conditions.dart';
 
@@ -29,7 +31,7 @@ class _$TermsAndConditionsTearOff {
     );
   }
 
-  TermsAndConditions fromJson(Map<String, Object> json) {
+  TermsAndConditions fromJson(Map<String, Object?> json) {
     return TermsAndConditions.fromJson(json);
   }
 }
@@ -136,7 +138,7 @@ class _$_TermsAndConditions implements _TermsAndConditions {
       @JsonKey(name: 'text') required this.text});
 
   factory _$_TermsAndConditions.fromJson(Map<String, dynamic> json) =>
-      _$_$_TermsAndConditionsFromJson(json);
+      _$$_TermsAndConditionsFromJson(json);
 
   @override
   @JsonKey(name: 'termsID')
@@ -153,19 +155,17 @@ class _$_TermsAndConditions implements _TermsAndConditions {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TermsAndConditions &&
-            (identical(other.termsId, termsId) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsId, termsId)) &&
-            (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)));
+        (other.runtimeType == runtimeType &&
+            other is _TermsAndConditions &&
+            const DeepCollectionEquality().equals(other.termsId, termsId) &&
+            const DeepCollectionEquality().equals(other.text, text));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(termsId) ^
-      const DeepCollectionEquality().hash(text);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(termsId),
+      const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +174,7 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TermsAndConditionsToJson(this);
+    return _$$_TermsAndConditionsToJson(this);
   }
 }
 
@@ -188,10 +188,10 @@ abstract class _TermsAndConditions implements TermsAndConditions {
 
   @override
   @JsonKey(name: 'termsID')
-  int get termsId => throw _privateConstructorUsedError;
+  int get termsId;
   @override
   @JsonKey(name: 'text')
-  String get text => throw _privateConstructorUsedError;
+  String get text;
   @override
   @JsonKey(ignore: true)
   _$TermsAndConditionsCopyWith<_TermsAndConditions> get copyWith =>

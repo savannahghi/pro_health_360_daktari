@@ -6,13 +6,12 @@ part of 'user_profile_item_obj.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserProfileItemObj _$UserProfileItemObjFromJson(Map<String, dynamic> json) {
-  return UserProfileItemObj(
-    iconAssetPath: json['iconAssetPath'] as String,
-    title: json['title'] as String,
-    route: json['route'] as String,
-  );
-}
+UserProfileItemObj _$UserProfileItemObjFromJson(Map<String, dynamic> json) =>
+    UserProfileItemObj(
+      iconAssetPath: json['iconAssetPath'] as String,
+      title: json['title'] as String,
+      route: json['route'] as String,
+    );
 
 Map<String, dynamic> _$UserProfileItemObjToJson(UserProfileItemObj instance) =>
     <String, dynamic>{

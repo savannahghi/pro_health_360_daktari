@@ -6,23 +6,22 @@ part of 'staff_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StaffState _$_$_StaffStateFromJson(Map<String, dynamic> json) {
-  return _$_StaffState(
-    id: json['id'] as String?,
-    userId: json['user_id'] as String?,
-    active: json['active'] as bool? ?? false,
-    staffNumber: json['staff_number'] as String?,
-    facilities: (json['facilities'] as List<dynamic>?)
-        ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    defaultFacility: json['default_facility'] as String?,
-    user: json['user'] == null
-        ? null
-        : User.fromJson(json['user'] as Map<String, dynamic>),
-  );
-}
+_$_StaffState _$$_StaffStateFromJson(Map<String, dynamic> json) =>
+    _$_StaffState(
+      id: json['id'] as String?,
+      userId: json['user_id'] as String?,
+      active: json['active'] as bool? ?? false,
+      staffNumber: json['staff_number'] as String?,
+      facilities: (json['facilities'] as List<dynamic>?)
+          ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      defaultFacility: json['default_facility'] as String?,
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$_StaffStateToJson(_$_StaffState instance) =>
+Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,

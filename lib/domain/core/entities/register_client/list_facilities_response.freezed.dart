@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'list_facilities_response.dart';
 
@@ -28,7 +30,7 @@ class _$ListFacilitiesResponseTearOff {
     );
   }
 
-  ListFacilitiesResponse fromJson(Map<String, Object> json) {
+  ListFacilitiesResponse fromJson(Map<String, Object?> json) {
     return ListFacilitiesResponse.fromJson(json);
   }
 }
@@ -117,7 +119,7 @@ class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
   _$_ListFacilitiesResponse({@JsonKey(name: 'Facilities') this.facilities});
 
   factory _$_ListFacilitiesResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_ListFacilitiesResponseFromJson(json);
+      _$$_ListFacilitiesResponseFromJson(json);
 
   @override
   @JsonKey(name: 'Facilities')
@@ -131,15 +133,15 @@ class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ListFacilitiesResponse &&
-            (identical(other.facilities, facilities) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilities, facilities)));
+        (other.runtimeType == runtimeType &&
+            other is _ListFacilitiesResponse &&
+            const DeepCollectionEquality()
+                .equals(other.facilities, facilities));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(facilities);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(facilities));
 
   @JsonKey(ignore: true)
   @override
@@ -149,7 +151,7 @@ class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ListFacilitiesResponseToJson(this);
+    return _$$_ListFacilitiesResponseToJson(this);
   }
 }
 
@@ -163,7 +165,7 @@ abstract class _ListFacilitiesResponse implements ListFacilitiesResponse {
 
   @override
   @JsonKey(name: 'Facilities')
-  List<Facility>? get facilities => throw _privateConstructorUsedError;
+  List<Facility>? get facilities;
   @override
   @JsonKey(ignore: true)
   _$ListFacilitiesResponseCopyWith<_ListFacilitiesResponse> get copyWith =>

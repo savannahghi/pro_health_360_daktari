@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'verify_phone_state.dart';
 
@@ -33,7 +35,7 @@ class _$VerifyPhoneStateTearOff {
     );
   }
 
-  VerifyPhoneState fromJson(Map<String, Object> json) {
+  VerifyPhoneState fromJson(Map<String, Object?> json) {
     return VerifyPhoneState.fromJson(json);
   }
 }
@@ -160,17 +162,17 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
       this.canResendOTP = false});
 
   factory _$_VerifyPhoneState.fromJson(Map<String, dynamic> json) =>
-      _$_$_VerifyPhoneStateFromJson(json);
+      _$$_VerifyPhoneStateFromJson(json);
 
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool invalidOTP;
   @override
   final String? otp;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool failedToSendOTP;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool canResendOTP;
 
@@ -182,27 +184,24 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _VerifyPhoneState &&
-            (identical(other.invalidOTP, invalidOTP) ||
-                const DeepCollectionEquality()
-                    .equals(other.invalidOTP, invalidOTP)) &&
-            (identical(other.otp, otp) ||
-                const DeepCollectionEquality().equals(other.otp, otp)) &&
-            (identical(other.failedToSendOTP, failedToSendOTP) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedToSendOTP, failedToSendOTP)) &&
-            (identical(other.canResendOTP, canResendOTP) ||
-                const DeepCollectionEquality()
-                    .equals(other.canResendOTP, canResendOTP)));
+        (other.runtimeType == runtimeType &&
+            other is _VerifyPhoneState &&
+            const DeepCollectionEquality()
+                .equals(other.invalidOTP, invalidOTP) &&
+            const DeepCollectionEquality().equals(other.otp, otp) &&
+            const DeepCollectionEquality()
+                .equals(other.failedToSendOTP, failedToSendOTP) &&
+            const DeepCollectionEquality()
+                .equals(other.canResendOTP, canResendOTP));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(invalidOTP) ^
-      const DeepCollectionEquality().hash(otp) ^
-      const DeepCollectionEquality().hash(failedToSendOTP) ^
-      const DeepCollectionEquality().hash(canResendOTP);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(invalidOTP),
+      const DeepCollectionEquality().hash(otp),
+      const DeepCollectionEquality().hash(failedToSendOTP),
+      const DeepCollectionEquality().hash(canResendOTP));
 
   @JsonKey(ignore: true)
   @override
@@ -211,7 +210,7 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_VerifyPhoneStateToJson(this);
+    return _$$_VerifyPhoneStateToJson(this);
   }
 }
 
@@ -226,13 +225,13 @@ abstract class _VerifyPhoneState implements VerifyPhoneState {
       _$_VerifyPhoneState.fromJson;
 
   @override
-  bool get invalidOTP => throw _privateConstructorUsedError;
+  bool get invalidOTP;
   @override
-  String? get otp => throw _privateConstructorUsedError;
+  String? get otp;
   @override
-  bool get failedToSendOTP => throw _privateConstructorUsedError;
+  bool get failedToSendOTP;
   @override
-  bool get canResendOTP => throw _privateConstructorUsedError;
+  bool get canResendOTP;
   @override
   @JsonKey(ignore: true)
   _$VerifyPhoneStateCopyWith<_VerifyPhoneState> get copyWith =>

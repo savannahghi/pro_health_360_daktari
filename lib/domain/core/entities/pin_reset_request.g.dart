@@ -6,13 +6,12 @@ part of 'pin_reset_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PINResetRequest _$PINResetRequestFromJson(Map<String, dynamic> json) {
-  return PINResetRequest(
-    clientName: json['clientName'] as String,
-    phoneNumber: json['phoneNumber'] as String,
-    approvalStatus: json['approvalStatus'] as bool?,
-  );
-}
+PINResetRequest _$PINResetRequestFromJson(Map<String, dynamic> json) =>
+    PINResetRequest(
+      clientName: json['clientName'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      approvalStatus: json['approvalStatus'] as bool? ?? false,
+    );
 
 Map<String, dynamic> _$PINResetRequestToJson(PINResetRequest instance) =>
     <String, dynamic>{

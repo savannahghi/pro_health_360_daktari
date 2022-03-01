@@ -13,6 +13,7 @@ dependencies:
   afya_moja_core: ^0.0.58
   app_wrapper: ^0.1.33
   async_redux: ^12.0.0
+  collection: ^1.15.0
   connectivity_plus: ^2.0.3
   cupertino_icons: ^1.0.3
   debug_logger: ^0.0.23

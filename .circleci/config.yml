@@ -92,7 +92,8 @@ jobs:
             lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info
-            lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/connectivity_helper.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/presentation/communities/*.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/*.dart' -o coverage/lcov.info
             genhtml -q -o coverage coverage/lcov.info
             python3 check_coverage.py
       - store_artifacts:

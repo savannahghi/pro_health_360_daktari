@@ -7,9 +7,7 @@ import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
-import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
-import 'package:healthcloud/presentation/community/group_info/pages/group_info_page.dart';
-import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
+import 'package:healthcloud/presentation/communities/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/create_group/invite_members/invite_members_page.dart';
@@ -90,10 +88,10 @@ void main() {
   test('Test router returns CommunityListView', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.communityPage);
 
-    final MaterialPageRoute<CommunityListViewPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>?;
-    expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
-    expect(route?.builder(context), isA<CommunityListViewPage>());
+    final MaterialPageRoute<CommunityListPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<CommunityListPage>?;
+    expect(route, isA<MaterialPageRoute<CommunityListPage>>());
+    expect(route?.builder(context), isA<CommunityListPage>());
   });
 
   test('Test router returns NotificationsPage', () {
@@ -209,16 +207,6 @@ void main() {
     expect(route?.builder(context), isA<ProfileUpdateRequestsPage>());
   });
 
-  test('Test router returns CommunityChatScreen', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.communityChatScreen);
-
-    final MaterialPageRoute<CommunityChatPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<CommunityChatPage>?;
-    expect(route, isA<MaterialPageRoute<CommunityChatPage>>());
-    expect(route?.builder(context), isA<CommunityChatPage>());
-  });
-
   test('Test router returns SearchPage', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.searchPage);
 
@@ -310,15 +298,5 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsPage>>());
     expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
-  });
-
-  test('Test router returns successful group info page', () {
-    const RouteSettings settings = RouteSettings(name: AppRoutes.groupInfoPage);
-
-    final MaterialPageRoute<GroupInfoPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;
-
-    expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
-    expect(route?.builder(context), isA<GroupInfoPage>());
   });
 }

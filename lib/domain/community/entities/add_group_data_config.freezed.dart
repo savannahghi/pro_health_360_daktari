@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'add_group_data_config.dart';
 
@@ -173,25 +175,21 @@ class _$_AddGroupDataConfig implements _AddGroupDataConfig {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AddGroupDataConfig &&
-            (identical(other.band, band) ||
-                const DeepCollectionEquality().equals(other.band, band)) &&
-            (identical(other.age, age) ||
-                const DeepCollectionEquality().equals(other.age, age)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
-            (identical(other.clinic, clinic) ||
-                const DeepCollectionEquality().equals(other.clinic, clinic)));
+        (other.runtimeType == runtimeType &&
+            other is _AddGroupDataConfig &&
+            const DeepCollectionEquality().equals(other.band, band) &&
+            const DeepCollectionEquality().equals(other.age, age) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.clinic, clinic));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(band) ^
-      const DeepCollectionEquality().hash(age) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(clinic);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(band),
+      const DeepCollectionEquality().hash(age),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(clinic));
 
   @JsonKey(ignore: true)
   @override
@@ -207,13 +205,13 @@ abstract class _AddGroupDataConfig implements AddGroupDataConfig {
       required List<DropdownItem> clinic}) = _$_AddGroupDataConfig;
 
   @override
-  List<DropdownItem> get band => throw _privateConstructorUsedError;
+  List<DropdownItem> get band;
   @override
-  List<DropdownItem> get age => throw _privateConstructorUsedError;
+  List<DropdownItem> get age;
   @override
-  List<DropdownItem> get location => throw _privateConstructorUsedError;
+  List<DropdownItem> get location;
   @override
-  List<DropdownItem> get clinic => throw _privateConstructorUsedError;
+  List<DropdownItem> get clinic;
   @override
   @JsonKey(ignore: true)
   _$AddGroupDataConfigCopyWith<_AddGroupDataConfig> get copyWith =>
