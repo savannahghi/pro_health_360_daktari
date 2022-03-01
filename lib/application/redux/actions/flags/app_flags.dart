@@ -32,3 +32,7 @@ const String fetchServiceRequestsCountFlag = 'fetch_service_requests_count_flag'
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';
 const String editInformationFlag = 'edit_information_flag';
+
+// invite members page
+const String inviteMembersFlag = 'invite_members_flag';
+const String fetchMembersFlag = 'fetch_members_flag';

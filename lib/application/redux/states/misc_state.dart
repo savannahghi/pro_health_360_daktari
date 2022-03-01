@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:healthcloud/domain/core/entities/community_members/member.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 
 part 'misc_state.freezed.dart';
@@ -11,6 +12,7 @@ class MiscState with _$MiscState {
     String? initialRoute,
     String? error,
     FAQsContentState? profileFAQsContentState,
+    List<Member>? communityMembers,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -19,5 +21,6 @@ class MiscState with _$MiscState {
   factory MiscState.initial() => MiscState(
         initialRoute: AppRoutes.loginPage,
         profileFAQsContentState: FAQsContentState.initial(),
+        communityMembers: <Member>[],
       );
 }

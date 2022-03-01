@@ -718,6 +718,19 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(listMembersQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listMembers': listMembersMock,
+            }
+          }),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(createCommunity)) {
       return Future<http.Response>.value(
         http.Response(
@@ -960,7 +973,8 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
     'profileFAQs': <dynamic>[],
     'errorFetchingFAQs': false,
     'timeoutFetchingFAQs': false
-  }
+  },
+  'communityMembers': <dynamic>[],
 };
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
@@ -1010,8 +1024,8 @@ final Map<String, dynamic> appstateMock = <String, dynamic>{
   'serviceRequestState': <String, dynamic>{
     'getServiceRequests': <dynamic>[],
     'getPendingServiceRequestsCount': <String, dynamic>{
-'total': 0,
-'requestsTypeCount': <dynamic>[],
+      'total': 0,
+      'requestsTypeCount': <dynamic>[],
     },
     'errorFetchingServiceRequests': false,
   },
@@ -1097,3 +1111,30 @@ Map<String, dynamic> mockFAQContent = <String, dynamic>{
   'Description': 'description',
   'Flavour': Flavour.consumer.name,
 };
+
+final List<dynamic> listMembersMock = <dynamic>[
+  <String, dynamic>{
+    'ID': 'id1',
+    'userID': 'some-user-id',
+    'name': 'Julian Doe',
+    'role': 'user',
+    'username': 'doe',
+    'gender': Gender.male.name,
+  },
+  <String, dynamic>{
+    'ID': 'id1',
+    'userID': 'some-user-id',
+    'name': 'Julian Doe',
+    'role': 'user',
+    'username': 'doe',
+    'gender': Gender.male.name,
+  },
+  <String, dynamic>{
+    'ID': 'id1',
+    'userID': 'some-user-id',
+    'name': 'Julian Doe',
+    'role': 'user',
+    'username': 'doe',
+    'gender': Gender.male.name,
+  },
+];
