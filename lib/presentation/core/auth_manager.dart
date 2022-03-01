@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -42,16 +43,18 @@ class _AuthManagerState extends State<AuthManager> {
               ?.chatRoomToken ??
           '';
 
-      try {
-        await widget.streamClient.connectUser(
-          User(id: staffId),
-          chatRoomToken,
-        );
-      } on StreamWebSocketError catch (e) {
-        Sentry.captureException(
-          e,
-          hint: e.message,
-        );
+      if (chatRoomToken.isNotEmpty && chatRoomToken != UNKNOWN) {
+        try {
+          await widget.streamClient.connectUser(
+            User(id: staffId),
+            chatRoomToken,
+          );
+        } on StreamWebSocketError catch (e) {
+          Sentry.captureException(
+            e,
+            hint: e.message,
+          );
+        }
       }
 
       StoreProvider.dispatch(
