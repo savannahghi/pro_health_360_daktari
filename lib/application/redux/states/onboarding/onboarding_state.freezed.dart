@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'onboarding_state.dart';
 
@@ -51,7 +53,7 @@ class _$OnboardingStateTearOff {
     );
   }
 
-  OnboardingState fromJson(Map<String, Object> json) {
+  OnboardingState fromJson(Map<String, Object?> json) {
     return OnboardingState.fromJson(json);
   }
 }
@@ -379,7 +381,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.hasSetNickName});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
-      _$_$_OnboardingStateFromJson(json);
+      _$$_OnboardingStateFromJson(json);
 
   @override
   final TermsAndConditions? termsAndConditions;
@@ -416,68 +418,52 @@ class _$_OnboardingState implements _OnboardingState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OnboardingState &&
-            (identical(other.termsAndConditions, termsAndConditions) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsAndConditions, termsAndConditions)) &&
-            (identical(other.createPINState, createPINState) ||
-                const DeepCollectionEquality()
-                    .equals(other.createPINState, createPINState)) &&
-            (identical(other.securityQuestions, securityQuestions) ||
-                const DeepCollectionEquality()
-                    .equals(other.securityQuestions, securityQuestions)) &&
-            (identical(other.securityQuestionResponses, securityQuestionResponses) ||
-                const DeepCollectionEquality().equals(
-                    other.securityQuestionResponses,
-                    securityQuestionResponses)) &&
-            (identical(other.verifyPhoneState, verifyPhoneState) ||
-                const DeepCollectionEquality()
-                    .equals(other.verifyPhoneState, verifyPhoneState)) &&
-            (identical(other.phoneLogin, phoneLogin) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneLogin, phoneLogin)) &&
-            (identical(other.termsAccepted, termsAccepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsAccepted, termsAccepted)) &&
-            (identical(other.isPhoneVerified, isPhoneVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPhoneVerified, isPhoneVerified)) &&
-            (identical(other.isPINSet, isPINSet) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPINSet, isPINSet)) &&
-            (identical(other.isResetPin, isResetPin) ||
-                const DeepCollectionEquality()
-                    .equals(other.isResetPin, isResetPin)) &&
-            (identical(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
-                const DeepCollectionEquality().equals(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
-            (identical(other.hasVerifiedSecurityQuestions,
-                    hasVerifiedSecurityQuestions) ||
-                const DeepCollectionEquality().equals(
-                    other.hasVerifiedSecurityQuestions,
-                    hasVerifiedSecurityQuestions)) &&
-            (identical(other.hasSetNickName, hasSetNickName) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasSetNickName, hasSetNickName)));
+        (other.runtimeType == runtimeType &&
+            other is _OnboardingState &&
+            const DeepCollectionEquality()
+                .equals(other.termsAndConditions, termsAndConditions) &&
+            const DeepCollectionEquality()
+                .equals(other.createPINState, createPINState) &&
+            const DeepCollectionEquality()
+                .equals(other.securityQuestions, securityQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.securityQuestionResponses, securityQuestionResponses) &&
+            const DeepCollectionEquality()
+                .equals(other.verifyPhoneState, verifyPhoneState) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneLogin, phoneLogin) &&
+            const DeepCollectionEquality()
+                .equals(other.termsAccepted, termsAccepted) &&
+            const DeepCollectionEquality()
+                .equals(other.isPhoneVerified, isPhoneVerified) &&
+            const DeepCollectionEquality().equals(other.isPINSet, isPINSet) &&
+            const DeepCollectionEquality()
+                .equals(other.isResetPin, isResetPin) &&
+            const DeepCollectionEquality().equals(
+                other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.hasVerifiedSecurityQuestions,
+                hasVerifiedSecurityQuestions) &&
+            const DeepCollectionEquality()
+                .equals(other.hasSetNickName, hasSetNickName));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(termsAndConditions) ^
-      const DeepCollectionEquality().hash(createPINState) ^
-      const DeepCollectionEquality().hash(securityQuestions) ^
-      const DeepCollectionEquality().hash(securityQuestionResponses) ^
-      const DeepCollectionEquality().hash(verifyPhoneState) ^
-      const DeepCollectionEquality().hash(phoneLogin) ^
-      const DeepCollectionEquality().hash(termsAccepted) ^
-      const DeepCollectionEquality().hash(isPhoneVerified) ^
-      const DeepCollectionEquality().hash(isPINSet) ^
-      const DeepCollectionEquality().hash(isResetPin) ^
-      const DeepCollectionEquality().hash(hasSetSecurityQuestions) ^
-      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions) ^
-      const DeepCollectionEquality().hash(hasSetNickName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(termsAndConditions),
+      const DeepCollectionEquality().hash(createPINState),
+      const DeepCollectionEquality().hash(securityQuestions),
+      const DeepCollectionEquality().hash(securityQuestionResponses),
+      const DeepCollectionEquality().hash(verifyPhoneState),
+      const DeepCollectionEquality().hash(phoneLogin),
+      const DeepCollectionEquality().hash(termsAccepted),
+      const DeepCollectionEquality().hash(isPhoneVerified),
+      const DeepCollectionEquality().hash(isPINSet),
+      const DeepCollectionEquality().hash(isResetPin),
+      const DeepCollectionEquality().hash(hasSetSecurityQuestions),
+      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
+      const DeepCollectionEquality().hash(hasSetNickName));
 
   @JsonKey(ignore: true)
   @override
@@ -486,7 +472,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_OnboardingStateToJson(this);
+    return _$$_OnboardingStateToJson(this);
   }
 }
 
@@ -510,34 +496,31 @@ abstract class _OnboardingState implements OnboardingState {
       _$_OnboardingState.fromJson;
 
   @override
-  TermsAndConditions? get termsAndConditions =>
-      throw _privateConstructorUsedError;
+  TermsAndConditions? get termsAndConditions;
   @override
-  CreatePINState? get createPINState => throw _privateConstructorUsedError;
+  CreatePINState? get createPINState;
   @override
-  List<SecurityQuestion>? get securityQuestions =>
-      throw _privateConstructorUsedError;
+  List<SecurityQuestion>? get securityQuestions;
   @override
-  List<SecurityQuestionResponse>? get securityQuestionResponses =>
-      throw _privateConstructorUsedError;
+  List<SecurityQuestionResponse>? get securityQuestionResponses;
   @override
-  VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
+  VerifyPhoneState? get verifyPhoneState;
   @override
-  PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
+  PhoneLoginState? get phoneLogin;
   @override // If the user has accepted terms
-  bool? get termsAccepted => throw _privateConstructorUsedError;
+  bool? get termsAccepted;
   @override // If the user has verified their phone number
-  bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified;
   @override //If the user has set their PIN
-  bool? get isPINSet => throw _privateConstructorUsedError;
+  bool? get isPINSet;
   @override //If the user wants to reset their PIN
-  bool? get isResetPin => throw _privateConstructorUsedError;
+  bool? get isResetPin;
   @override // If the user has set their security questions
-  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasSetSecurityQuestions;
   @override // If the user has successfuly verified their security questions if pin is expired
-  bool? get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasVerifiedSecurityQuestions;
   @override // If the user has set their nickname
-  bool? get hasSetNickName => throw _privateConstructorUsedError;
+  bool? get hasSetNickName;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

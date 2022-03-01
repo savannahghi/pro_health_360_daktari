@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'pending_service_requests.dart';
 
@@ -32,7 +34,7 @@ class _$PendingServiceRequestTearOff {
     );
   }
 
-  PendingServiceRequest fromJson(Map<String, Object> json) {
+  PendingServiceRequest fromJson(Map<String, Object?> json) {
     return PendingServiceRequest.fromJson(json);
   }
 }
@@ -144,7 +146,7 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
       @JsonKey(name: 'requestsTypeCount') this.serviceRequestsCount});
 
   factory _$_PendingServiceRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_PendingServiceRequestFromJson(json);
+      _$$_PendingServiceRequestFromJson(json);
 
   @override
   @JsonKey(name: 'total')
@@ -161,19 +163,18 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PendingServiceRequest &&
-            (identical(other.total, total) ||
-                const DeepCollectionEquality().equals(other.total, total)) &&
-            (identical(other.serviceRequestsCount, serviceRequestsCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceRequestsCount, serviceRequestsCount)));
+        (other.runtimeType == runtimeType &&
+            other is _PendingServiceRequest &&
+            const DeepCollectionEquality().equals(other.total, total) &&
+            const DeepCollectionEquality()
+                .equals(other.serviceRequestsCount, serviceRequestsCount));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(total) ^
-      const DeepCollectionEquality().hash(serviceRequestsCount);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(total),
+      const DeepCollectionEquality().hash(serviceRequestsCount));
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +184,7 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PendingServiceRequestToJson(this);
+    return _$$_PendingServiceRequestToJson(this);
   }
 }
 
@@ -200,11 +201,10 @@ abstract class _PendingServiceRequest implements PendingServiceRequest {
 
   @override
   @JsonKey(name: 'total')
-  int? get total => throw _privateConstructorUsedError;
+  int? get total;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  List<RequestCountContent>? get serviceRequestsCount =>
-      throw _privateConstructorUsedError;
+  List<RequestCountContent>? get serviceRequestsCount;
   @override
   @JsonKey(ignore: true)
   _$PendingServiceRequestCopyWith<_PendingServiceRequest> get copyWith =>

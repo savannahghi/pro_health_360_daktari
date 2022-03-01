@@ -20,7 +20,6 @@ import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:healthcloud/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:healthcloud/presentation/create_group/invite_members/widgets/member_list_item.dart';
 import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
@@ -28,17 +27,6 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
-
-Alignment placeMessage(dynamic message) {
-  /// [placeMessage] is used to align the messages whether to the left or right
-  /// depending on whether is is a sent or received message
-  if (message is TimeClassificationWidget) {
-    return Alignment.topCenter;
-  } else if (message is ReceivedMessageItem) {
-    return Alignment.topLeft;
-  }
-  return Alignment.topRight;
-}
 
 String? userPinValidator(dynamic val) {
   final String value = val as String;
@@ -128,68 +116,6 @@ const List<Widget> membersList = <Widget>[
   MemberListItem(username: 'Lailonte Koros'),
   MemberListItem(username: 'Musau Dennis'),
   MemberListItem(username: 'John Koech'),
-];
-
-List<String> communityChatScreenMenuOptions = <String>[
-  'Group Info',
-  'Group Media',
-  'Search',
-  'Exit Group'
-];
-
-const List<Widget> messages = <Widget>[
-  TimeClassificationWidget(time: 'Today'),
-  Align(
-    alignment: Alignment.topLeft,
-    child: ReceivedMessageItem(
-      senderName: 'Wanjiku',
-      message: 'Am I at risk if my VL is 600/ml',
-      time: '12:00pm',
-      status: ChatStatus.Accept,
-    ),
-  ),
-  ReceivedMessageItem(
-    senderName: 'Wanjiku',
-    message: 'Even after adhering to my regimen ?',
-    status: ChatStatus.Accept,
-    time: '12:00pm',
-  ),
-  SentMessageItem(
-    message: 'That is a very good question Wanjiku',
-    time: '12:00pm',
-  ),
-  SentMessageItem(
-    message: 'There is no cause for alarm',
-    time: '12:00pm',
-  ),
-  SentMessageItem(
-    message: 'It may take some time for suppression ...',
-    time: '12:00pm',
-    highlightedMessage: QuotedMessageWidget(
-      senderName: 'Wanjiku',
-      message: 'Even after adhering to my regimen ?',
-    ),
-  ),
-  ReceivedMessageItem(
-    senderName: 'Wanjiku',
-    message: 'Phewks!.... Good to know. Ahsante',
-    time: '12:00pm',
-    status: ChatStatus.Unknown,
-    quotedMessageWidget: QuotedMessageWidget(
-      senderName: 'Doctor',
-      message: 'It may take some time for suppression ...',
-    ),
-  ),
-  ReceivedMessageItem(
-    senderName: 'Wanjiku',
-    message: 'Phewks!.... Good to know. Ahsante',
-    time: '12:00pm',
-    status: ChatStatus.Accept,
-    quotedMessageWidget: QuotedMessageWidget(
-      senderName: 'Doctor',
-      message: 'It may take some time for suppression ...',
-    ),
-  ),
 ];
 
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[

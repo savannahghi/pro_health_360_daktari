@@ -15,6 +15,7 @@ class PhoneLoginResponse with _$PhoneLoginResponse {
     @JsonKey(name: 'message') String? message,
     @JsonKey(name: 'credentials') AuthCredentials? credentials,
     @JsonKey(name: 'staffProfile') StaffState? staffState,
+    @JsonKey(name: 'getStreamToken') String? streamToken,
   }) = _PhoneLoginResponse;
 
   factory PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>

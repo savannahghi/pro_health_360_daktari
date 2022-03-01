@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'create_pin.dart';
 
@@ -27,7 +29,7 @@ class _$CreatePINStateTearOff {
     );
   }
 
-  CreatePINState fromJson(Map<String, Object> json) {
+  CreatePINState fromJson(Map<String, Object?> json) {
     return CreatePINState.fromJson(json);
   }
 }
@@ -126,7 +128,7 @@ class _$_CreatePINState implements _CreatePINState {
   _$_CreatePINState({this.newPIN, this.confirmPIN});
 
   factory _$_CreatePINState.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreatePINStateFromJson(json);
+      _$$_CreatePINStateFromJson(json);
 
   @override
   final String? newPIN;
@@ -141,19 +143,18 @@ class _$_CreatePINState implements _CreatePINState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CreatePINState &&
-            (identical(other.newPIN, newPIN) ||
-                const DeepCollectionEquality().equals(other.newPIN, newPIN)) &&
-            (identical(other.confirmPIN, confirmPIN) ||
-                const DeepCollectionEquality()
-                    .equals(other.confirmPIN, confirmPIN)));
+        (other.runtimeType == runtimeType &&
+            other is _CreatePINState &&
+            const DeepCollectionEquality().equals(other.newPIN, newPIN) &&
+            const DeepCollectionEquality()
+                .equals(other.confirmPIN, confirmPIN));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newPIN) ^
-      const DeepCollectionEquality().hash(confirmPIN);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(newPIN),
+      const DeepCollectionEquality().hash(confirmPIN));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +163,7 @@ class _$_CreatePINState implements _CreatePINState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreatePINStateToJson(this);
+    return _$$_CreatePINStateToJson(this);
   }
 }
 
@@ -174,9 +175,9 @@ abstract class _CreatePINState implements CreatePINState {
       _$_CreatePINState.fromJson;
 
   @override
-  String? get newPIN => throw _privateConstructorUsedError;
+  String? get newPIN;
   @override
-  String? get confirmPIN => throw _privateConstructorUsedError;
+  String? get confirmPIN;
   @override
   @JsonKey(ignore: true)
   _$CreatePINStateCopyWith<_CreatePINState> get copyWith =>

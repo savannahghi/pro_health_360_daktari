@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'staff_state.dart';
 
@@ -39,7 +41,7 @@ class _$StaffStateTearOff {
     );
   }
 
-  StaffState fromJson(Map<String, Object> json) {
+  StaffState fromJson(Map<String, Object?> json) {
     return StaffState.fromJson(json);
   }
 }
@@ -234,7 +236,7 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'user') this.user});
 
   factory _$_StaffState.fromJson(Map<String, dynamic> json) =>
-      _$_$_StaffStateFromJson(json);
+      _$$_StaffStateFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -266,36 +268,30 @@ class _$_StaffState implements _StaffState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StaffState &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.staffNumber, staffNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.staffNumber, staffNumber)) &&
-            (identical(other.facilities, facilities) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilities, facilities)) &&
-            (identical(other.defaultFacility, defaultFacility) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultFacility, defaultFacility)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is _StaffState &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality()
+                .equals(other.staffNumber, staffNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.facilities, facilities) &&
+            const DeepCollectionEquality()
+                .equals(other.defaultFacility, defaultFacility) &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(staffNumber) ^
-      const DeepCollectionEquality().hash(facilities) ^
-      const DeepCollectionEquality().hash(defaultFacility) ^
-      const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(staffNumber),
+      const DeepCollectionEquality().hash(facilities),
+      const DeepCollectionEquality().hash(defaultFacility),
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -304,7 +300,7 @@ class _$_StaffState implements _StaffState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_StaffStateToJson(this);
+    return _$$_StaffStateToJson(this);
   }
 }
 
@@ -323,25 +319,25 @@ abstract class _StaffState implements StaffState {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'user_id')
-  String? get userId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'staff_number')
-  String? get staffNumber => throw _privateConstructorUsedError;
+  String? get staffNumber;
   @override
   @JsonKey(name: 'facilities')
-  List<Facility>? get facilities => throw _privateConstructorUsedError;
+  List<Facility>? get facilities;
   @override
   @JsonKey(name: 'default_facility')
-  String? get defaultFacility => throw _privateConstructorUsedError;
+  String? get defaultFacility;
   @override
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
   @override
   @JsonKey(ignore: true)
   _$StaffStateCopyWith<_StaffState> get copyWith =>

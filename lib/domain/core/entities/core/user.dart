@@ -33,6 +33,7 @@ class User with _$User {
     @JsonKey(name: 'acceptedTermsID') int? acceptedTermsID,
     @JsonKey(name: 'suspended') bool? suspended,
     @JsonKey(name: 'avatar') String? avatar,
+    String? chatRoomToken,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

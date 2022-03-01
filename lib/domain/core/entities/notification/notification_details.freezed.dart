@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'notification_details.dart';
 
@@ -35,7 +37,7 @@ class _$NotificationDetailsTearOff {
     );
   }
 
-  NotificationDetails fromJson(Map<String, Object> json) {
+  NotificationDetails fromJson(Map<String, Object?> json) {
     return NotificationDetails.fromJson(json);
   }
 }
@@ -199,7 +201,7 @@ class _$_NotificationDetails implements _NotificationDetails {
       @JsonKey(name: 'status') this.status});
 
   factory _$_NotificationDetails.fromJson(Map<String, dynamic> json) =>
-      _$_$_NotificationDetailsFromJson(json);
+      _$$_NotificationDetailsFromJson(json);
 
   @override
   @JsonKey(name: 'icon')
@@ -225,29 +227,24 @@ class _$_NotificationDetails implements _NotificationDetails {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _NotificationDetails &&
-            (identical(other.icon, icon) ||
-                const DeepCollectionEquality().equals(other.icon, icon)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.date, date) ||
-                const DeepCollectionEquality().equals(other.date, date)) &&
-            (identical(other.actions, actions) ||
-                const DeepCollectionEquality()
-                    .equals(other.actions, actions)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is _NotificationDetails &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.date, date) &&
+            const DeepCollectionEquality().equals(other.actions, actions) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(icon) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(date) ^
-      const DeepCollectionEquality().hash(actions) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(icon),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(actions),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +254,7 @@ class _$_NotificationDetails implements _NotificationDetails {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_NotificationDetailsToJson(this);
+    return _$$_NotificationDetailsToJson(this);
   }
 }
 
@@ -274,19 +271,19 @@ abstract class _NotificationDetails implements NotificationDetails {
 
   @override
   @JsonKey(name: 'icon')
-  IconDetails get icon => throw _privateConstructorUsedError;
+  IconDetails get icon;
   @override
   @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
   @JsonKey(name: 'date')
-  String get date => throw _privateConstructorUsedError;
+  String get date;
   @override
   @JsonKey(name: 'actions')
-  List<NotificationActions>? get actions => throw _privateConstructorUsedError;
+  List<NotificationActions>? get actions;
   @override
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
   @JsonKey(ignore: true)
   _$NotificationDetailsCopyWith<_NotificationDetails> get copyWith =>

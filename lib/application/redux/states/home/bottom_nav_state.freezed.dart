@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'bottom_nav_state.dart';
 
@@ -27,7 +29,7 @@ class _$BottomNavigationStateTearOff {
     );
   }
 
-  BottomNavigationState fromJson(Map<String, Object> json) {
+  BottomNavigationState fromJson(Map<String, Object?> json) {
     return BottomNavigationState.fromJson(json);
   }
 }
@@ -115,7 +117,7 @@ class _$_BottomNavigationState implements _BottomNavigationState {
   _$_BottomNavigationState({this.currentBottomNavIndex});
 
   factory _$_BottomNavigationState.fromJson(Map<String, dynamic> json) =>
-      _$_$_BottomNavigationStateFromJson(json);
+      _$$_BottomNavigationStateFromJson(json);
 
   @override
   final int? currentBottomNavIndex;
@@ -128,16 +130,15 @@ class _$_BottomNavigationState implements _BottomNavigationState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BottomNavigationState &&
-            (identical(other.currentBottomNavIndex, currentBottomNavIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.currentBottomNavIndex, currentBottomNavIndex)));
+        (other.runtimeType == runtimeType &&
+            other is _BottomNavigationState &&
+            const DeepCollectionEquality()
+                .equals(other.currentBottomNavIndex, currentBottomNavIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(currentBottomNavIndex);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentBottomNavIndex));
 
   @JsonKey(ignore: true)
   @override
@@ -147,7 +148,7 @@ class _$_BottomNavigationState implements _BottomNavigationState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_BottomNavigationStateToJson(this);
+    return _$$_BottomNavigationStateToJson(this);
   }
 }
 
@@ -159,7 +160,7 @@ abstract class _BottomNavigationState implements BottomNavigationState {
       _$_BottomNavigationState.fromJson;
 
   @override
-  int? get currentBottomNavIndex => throw _privateConstructorUsedError;
+  int? get currentBottomNavIndex;
   @override
   @JsonKey(ignore: true)
   _$BottomNavigationStateCopyWith<_BottomNavigationState> get copyWith =>

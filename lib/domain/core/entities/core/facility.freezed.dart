@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'facility.dart';
 
@@ -39,7 +41,7 @@ class _$FacilityTearOff {
     );
   }
 
-  Facility fromJson(Map<String, Object> json) {
+  Facility fromJson(Map<String, Object?> json) {
     return Facility.fromJson(json);
   }
 }
@@ -215,7 +217,7 @@ class _$_Facility implements _Facility {
       @JsonKey(name: 'description') this.description});
 
   factory _$_Facility.fromJson(Map<String, dynamic> json) =>
-      _$_$_FacilityFromJson(json);
+      _$$_FacilityFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -247,34 +249,28 @@ class _$_Facility implements _Facility {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Facility &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.county, county) ||
-                const DeepCollectionEquality().equals(other.county, county)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
+        (other.runtimeType == runtimeType &&
+            other is _Facility &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality().equals(other.county, county) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(county) ^
-      const DeepCollectionEquality().hash(description);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(county),
+      const DeepCollectionEquality().hash(description));
 
   @JsonKey(ignore: true)
   @override
@@ -283,7 +279,7 @@ class _$_Facility implements _Facility {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FacilityToJson(this);
+    return _$$_FacilityToJson(this);
   }
 }
 
@@ -301,25 +297,25 @@ abstract class _Facility implements Facility {
 
   @override
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(name: 'code')
-  int? get code => throw _privateConstructorUsedError;
+  int? get code;
   @override
   @JsonKey(name: 'phone')
-  String? get phone => throw _privateConstructorUsedError;
+  String? get phone;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'county')
-  String? get county => throw _privateConstructorUsedError;
+  String? get county;
   @override
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$FacilityCopyWith<_Facility> get copyWith =>

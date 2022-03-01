@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'create_group_payload.dart';
 
@@ -37,7 +39,7 @@ class _$CreateGroupPayloadTearOff {
     );
   }
 
-  CreateGroupPayload fromJson(Map<String, Object> json) {
+  CreateGroupPayload fromJson(Map<String, Object?> json) {
     return CreateGroupPayload.fromJson(json);
   }
 }
@@ -215,7 +217,7 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
       this.inviteOnly});
 
   factory _$_CreateGroupPayload.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateGroupPayloadFromJson(json);
+      _$$_CreateGroupPayloadFromJson(json);
 
   @override
   final String? name;
@@ -238,34 +240,28 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CreateGroupPayload &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.ageRange, ageRange) ||
-                const DeepCollectionEquality()
-                    .equals(other.ageRange, ageRange)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.clientType, clientType) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientType, clientType)) &&
-            (identical(other.inviteOnly, inviteOnly) ||
-                const DeepCollectionEquality()
-                    .equals(other.inviteOnly, inviteOnly)));
+        (other.runtimeType == runtimeType &&
+            other is _CreateGroupPayload &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality()
+                .equals(other.clientType, clientType) &&
+            const DeepCollectionEquality()
+                .equals(other.inviteOnly, inviteOnly));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(ageRange) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(clientType) ^
-      const DeepCollectionEquality().hash(inviteOnly);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(ageRange),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(clientType),
+      const DeepCollectionEquality().hash(inviteOnly));
 
   @JsonKey(ignore: true)
   @override
@@ -274,7 +270,7 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateGroupPayloadToJson(this);
+    return _$$_CreateGroupPayloadToJson(this);
   }
 }
 
@@ -291,17 +287,17 @@ abstract class _CreateGroupPayload implements CreateGroupPayload {
       _$_CreateGroupPayload.fromJson;
 
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  AgeRange? get ageRange => throw _privateConstructorUsedError;
+  AgeRange? get ageRange;
   @override
-  List<Gender>? get gender => throw _privateConstructorUsedError;
+  List<Gender>? get gender;
   @override
-  List<ClientType>? get clientType => throw _privateConstructorUsedError;
+  List<ClientType>? get clientType;
   @override
-  bool? get inviteOnly => throw _privateConstructorUsedError;
+  bool? get inviteOnly;
   @override
   @JsonKey(ignore: true)
   _$CreateGroupPayloadCopyWith<_CreateGroupPayload> get copyWith =>

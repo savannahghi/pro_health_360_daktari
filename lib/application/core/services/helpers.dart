@@ -175,10 +175,3 @@ Future<void> captureException(
   );
   await Sentry.captureException(UserException(message));
 }
-
-/// Decides whether to show the debug mode banner based on the environment
-/// that the app is running.
-///
-/// The banner is only shown when the app is running in test mode
-bool showDebugModeBanner(List<AppContext> appContexts) =>
-    appContexts.contains(AppContext.AppTest);

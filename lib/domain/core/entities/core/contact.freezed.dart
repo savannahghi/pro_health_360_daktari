@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'contact.dart';
 
@@ -33,7 +35,7 @@ class _$ContactTearOff {
     );
   }
 
-  Contact fromJson(Map<String, Object> json) {
+  Contact fromJson(Map<String, Object?> json) {
     return Contact.fromJson(json);
   }
 }
@@ -163,7 +165,7 @@ class _$_Contact implements _Contact {
       @JsonKey(name: 'optedIn', defaultValue: false) this.optedIn});
 
   factory _$_Contact.fromJson(Map<String, dynamic> json) =>
-      _$_$_ContactFromJson(json);
+      _$$_ContactFromJson(json);
 
   @override
   @JsonKey(name: 'contactType')
@@ -186,25 +188,22 @@ class _$_Contact implements _Contact {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Contact &&
-            (identical(other.contactType, contactType) ||
-                const DeepCollectionEquality()
-                    .equals(other.contactType, contactType)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.optedIn, optedIn) ||
-                const DeepCollectionEquality().equals(other.optedIn, optedIn)));
+        (other.runtimeType == runtimeType &&
+            other is _Contact &&
+            const DeepCollectionEquality()
+                .equals(other.contactType, contactType) &&
+            const DeepCollectionEquality().equals(other.value, value) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality().equals(other.optedIn, optedIn));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(contactType) ^
-      const DeepCollectionEquality().hash(value) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(optedIn);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(contactType),
+      const DeepCollectionEquality().hash(value),
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(optedIn));
 
   @JsonKey(ignore: true)
   @override
@@ -213,7 +212,7 @@ class _$_Contact implements _Contact {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ContactToJson(this);
+    return _$$_ContactToJson(this);
   }
 }
 
@@ -229,16 +228,16 @@ abstract class _Contact implements Contact {
 
   @override
   @JsonKey(name: 'contactType')
-  ContactType? get contactType => throw _privateConstructorUsedError;
+  ContactType? get contactType;
   @override
   @JsonKey(name: 'contactValue')
-  String? get value => throw _privateConstructorUsedError;
+  String? get value;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'optedIn', defaultValue: false)
-  bool? get optedIn => throw _privateConstructorUsedError;
+  bool? get optedIn;
   @override
   @JsonKey(ignore: true)
   _$ContactCopyWith<_Contact> get copyWith =>

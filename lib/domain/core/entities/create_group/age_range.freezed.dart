@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'age_range.dart';
 
@@ -29,7 +31,7 @@ class _$AgeRangeTearOff {
     );
   }
 
-  AgeRange fromJson(Map<String, Object> json) {
+  AgeRange fromJson(Map<String, Object?> json) {
     return AgeRange.fromJson(json);
   }
 }
@@ -130,7 +132,7 @@ class _$_AgeRange implements _AgeRange {
       @JsonKey(toJson: doubleToInt) required this.upperBound});
 
   factory _$_AgeRange.fromJson(Map<String, dynamic> json) =>
-      _$_$_AgeRangeFromJson(json);
+      _$$_AgeRangeFromJson(json);
 
   @override
   @JsonKey(toJson: doubleToInt)
@@ -147,20 +149,19 @@ class _$_AgeRange implements _AgeRange {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AgeRange &&
-            (identical(other.lowerBound, lowerBound) ||
-                const DeepCollectionEquality()
-                    .equals(other.lowerBound, lowerBound)) &&
-            (identical(other.upperBound, upperBound) ||
-                const DeepCollectionEquality()
-                    .equals(other.upperBound, upperBound)));
+        (other.runtimeType == runtimeType &&
+            other is _AgeRange &&
+            const DeepCollectionEquality()
+                .equals(other.lowerBound, lowerBound) &&
+            const DeepCollectionEquality()
+                .equals(other.upperBound, upperBound));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(lowerBound) ^
-      const DeepCollectionEquality().hash(upperBound);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(lowerBound),
+      const DeepCollectionEquality().hash(upperBound));
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +170,7 @@ class _$_AgeRange implements _AgeRange {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AgeRangeToJson(this);
+    return _$$_AgeRangeToJson(this);
   }
 }
 
@@ -182,10 +183,10 @@ abstract class _AgeRange implements AgeRange {
 
   @override
   @JsonKey(toJson: doubleToInt)
-  double get lowerBound => throw _privateConstructorUsedError;
+  double get lowerBound;
   @override
   @JsonKey(toJson: doubleToInt)
-  double get upperBound => throw _privateConstructorUsedError;
+  double get upperBound;
   @override
   @JsonKey(ignore: true)
   _$AgeRangeCopyWith<_AgeRange> get copyWith =>

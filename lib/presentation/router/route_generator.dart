@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
 // Project imports:
 import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
-import 'package:healthcloud/presentation/community/chat_screen/pages/community_chat_page.dart';
-import 'package:healthcloud/presentation/community/group_info/pages/group_info_page.dart';
-import 'package:healthcloud/presentation/community/pages/community_list_page.dart';
+import 'package:healthcloud/presentation/communities/pages/community_list_page.dart';
 import 'package:healthcloud/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:healthcloud/presentation/create_group/create_group.dart';
 import 'package:healthcloud/presentation/create_group/invite_members/invite_members_page.dart';
@@ -68,8 +66,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.communityPage:
-        return MaterialPageRoute<CommunityListViewPage>(
-          builder: (_) => const CommunityListViewPage(),
+        return MaterialPageRoute<CommunityListPage>(
+          builder: (_) => const CommunityListPage(),
         );
 
       case AppRoutes.notificationsPage:
@@ -171,11 +169,6 @@ class RouteGenerator {
           builder: (_) => ProfileUpdateRequestsPage(),
         );
 
-      case AppRoutes.communityChatScreen:
-        return MaterialPageRoute<CommunityChatPage>(
-          builder: (_) => const CommunityChatPage(),
-        );
-
       case AppRoutes.searchPage:
         return MaterialPageRoute<SearchPage>(
           builder: (_) => const SearchPage(),
@@ -204,11 +197,6 @@ class RouteGenerator {
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
           builder: (_) => ResolvedServiceRequestsPage(),
-        );
-
-      case AppRoutes.groupInfoPage:
-        return MaterialPageRoute<GroupInfoPage>(
-          builder: (_) => const GroupInfoPage(),
         );
     }
   }

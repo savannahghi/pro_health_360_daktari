@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user.dart';
 
@@ -62,7 +64,8 @@ class _$UserTearOff {
       @JsonKey(name: 'suspended')
           bool? suspended,
       @JsonKey(name: 'avatar')
-          String? avatar}) {
+          String? avatar,
+      String? chatRoomToken}) {
     return _User(
       userId: userId,
       username: username,
@@ -85,10 +88,11 @@ class _$UserTearOff {
       acceptedTermsID: acceptedTermsID,
       suspended: suspended,
       avatar: avatar,
+      chatRoomToken: chatRoomToken,
     );
   }
 
-  User fromJson(Map<String, Object> json) {
+  User fromJson(Map<String, Object?> json) {
     return User.fromJson(json);
   }
 }
@@ -141,6 +145,7 @@ mixin _$User {
   bool? get suspended => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
+  String? get chatRoomToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -193,7 +198,8 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'suspended')
           bool? suspended,
       @JsonKey(name: 'avatar')
-          String? avatar});
+          String? avatar,
+      String? chatRoomToken});
 
   $ContactCopyWith<$Res>? get primaryContact;
 }
@@ -229,6 +235,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
     Object? avatar = freezed,
+    Object? chatRoomToken = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -315,6 +322,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      chatRoomToken: chatRoomToken == freezed
+          ? _value.chatRoomToken
+          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -377,7 +388,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'suspended')
           bool? suspended,
       @JsonKey(name: 'avatar')
-          String? avatar});
+          String? avatar,
+      String? chatRoomToken});
 
   @override
   $ContactCopyWith<$Res>? get primaryContact;
@@ -415,6 +427,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
     Object? avatar = freezed,
+    Object? chatRoomToken = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
@@ -501,6 +514,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      chatRoomToken: chatRoomToken == freezed
+          ? _value.chatRoomToken
+          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -550,10 +567,10 @@ class _$_User implements _User {
       @JsonKey(name: 'suspended')
           this.suspended,
       @JsonKey(name: 'avatar')
-          this.avatar});
+          this.avatar,
+      this.chatRoomToken});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
   @JsonKey(name: 'userID')
@@ -618,101 +635,80 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'avatar')
   final String? avatar;
+  @override
+  final String? chatRoomToken;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar)';
+    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar, chatRoomToken: $chatRoomToken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.userType, userType) ||
-                const DeepCollectionEquality()
-                    .equals(other.userType, userType)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.primaryContact, primaryContact) ||
-                const DeepCollectionEquality()
-                    .equals(other.primaryContact, primaryContact)) &&
-            (identical(other.lastSuccessfulLogin, lastSuccessfulLogin) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastSuccessfulLogin, lastSuccessfulLogin)) &&
-            (identical(other.lastFailedLogin, lastFailedLogin) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastFailedLogin, lastFailedLogin)) &&
-            (identical(other.failedLoginCount, failedLoginCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedLoginCount, failedLoginCount)) &&
-            (identical(other.nextAllowedLogin, nextAllowedLogin) ||
-                const DeepCollectionEquality()
-                    .equals(other.nextAllowedLogin, nextAllowedLogin)) &&
-            (identical(other.pinChangeRequired, pinChangeRequired) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinChangeRequired, pinChangeRequired)) &&
-            (identical(other.hasSetPin, hasSetPin) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasSetPin, hasSetPin)) &&
-            (identical(other.isPhoneVerified, isPhoneVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPhoneVerified, isPhoneVerified)) &&
-            (identical(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
-                const DeepCollectionEquality().equals(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
-            (identical(other.termsAccepted, termsAccepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsAccepted, termsAccepted)) &&
-            (identical(other.acceptedTermsID, acceptedTermsID) ||
-                const DeepCollectionEquality()
-                    .equals(other.acceptedTermsID, acceptedTermsID)) &&
-            (identical(other.suspended, suspended) ||
-                const DeepCollectionEquality()
-                    .equals(other.suspended, suspended)) &&
-            (identical(other.avatar, avatar) ||
-                const DeepCollectionEquality().equals(other.avatar, avatar)));
+        (other.runtimeType == runtimeType &&
+            other is _User &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality().equals(other.userType, userType) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality()
+                .equals(other.primaryContact, primaryContact) &&
+            const DeepCollectionEquality()
+                .equals(other.lastSuccessfulLogin, lastSuccessfulLogin) &&
+            const DeepCollectionEquality()
+                .equals(other.lastFailedLogin, lastFailedLogin) &&
+            const DeepCollectionEquality()
+                .equals(other.failedLoginCount, failedLoginCount) &&
+            const DeepCollectionEquality()
+                .equals(other.nextAllowedLogin, nextAllowedLogin) &&
+            const DeepCollectionEquality()
+                .equals(other.pinChangeRequired, pinChangeRequired) &&
+            const DeepCollectionEquality().equals(other.hasSetPin, hasSetPin) &&
+            const DeepCollectionEquality()
+                .equals(other.isPhoneVerified, isPhoneVerified) &&
+            const DeepCollectionEquality().equals(
+                other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
+            const DeepCollectionEquality()
+                .equals(other.termsAccepted, termsAccepted) &&
+            const DeepCollectionEquality()
+                .equals(other.acceptedTermsID, acceptedTermsID) &&
+            const DeepCollectionEquality().equals(other.suspended, suspended) &&
+            const DeepCollectionEquality().equals(other.avatar, avatar) &&
+            const DeepCollectionEquality()
+                .equals(other.chatRoomToken, chatRoomToken));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(userType) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(primaryContact) ^
-      const DeepCollectionEquality().hash(lastSuccessfulLogin) ^
-      const DeepCollectionEquality().hash(lastFailedLogin) ^
-      const DeepCollectionEquality().hash(failedLoginCount) ^
-      const DeepCollectionEquality().hash(nextAllowedLogin) ^
-      const DeepCollectionEquality().hash(pinChangeRequired) ^
-      const DeepCollectionEquality().hash(hasSetPin) ^
-      const DeepCollectionEquality().hash(isPhoneVerified) ^
-      const DeepCollectionEquality().hash(hasSetSecurityQuestions) ^
-      const DeepCollectionEquality().hash(termsAccepted) ^
-      const DeepCollectionEquality().hash(acceptedTermsID) ^
-      const DeepCollectionEquality().hash(suspended) ^
-      const DeepCollectionEquality().hash(avatar);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(username),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(userType),
+        const DeepCollectionEquality().hash(gender),
+        const DeepCollectionEquality().hash(active),
+        const DeepCollectionEquality().hash(primaryContact),
+        const DeepCollectionEquality().hash(lastSuccessfulLogin),
+        const DeepCollectionEquality().hash(lastFailedLogin),
+        const DeepCollectionEquality().hash(failedLoginCount),
+        const DeepCollectionEquality().hash(nextAllowedLogin),
+        const DeepCollectionEquality().hash(pinChangeRequired),
+        const DeepCollectionEquality().hash(hasSetPin),
+        const DeepCollectionEquality().hash(isPhoneVerified),
+        const DeepCollectionEquality().hash(hasSetSecurityQuestions),
+        const DeepCollectionEquality().hash(termsAccepted),
+        const DeepCollectionEquality().hash(acceptedTermsID),
+        const DeepCollectionEquality().hash(suspended),
+        const DeepCollectionEquality().hash(avatar),
+        const DeepCollectionEquality().hash(chatRoomToken)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -721,7 +717,7 @@ class _$_User implements _User {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
+    return _$$_UserToJson(this);
   }
 }
 
@@ -768,73 +764,76 @@ abstract class _User implements User {
       @JsonKey(name: 'suspended')
           bool? suspended,
       @JsonKey(name: 'avatar')
-          String? avatar}) = _$_User;
+          String? avatar,
+      String? chatRoomToken}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
   @JsonKey(name: 'userID')
-  String? get userId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
   @JsonKey(name: 'userName')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
   @override // This is the nickname
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(name: 'firstName')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
   @JsonKey(name: 'userType')
-  String? get userType => throw _privateConstructorUsedError;
+  String? get userType;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'primaryContact')
-  Contact? get primaryContact => throw _privateConstructorUsedError;
+  Contact? get primaryContact;
   @override
   @JsonKey(name: 'lastSuccessfulLogin')
-  String? get lastSuccessfulLogin => throw _privateConstructorUsedError;
+  String? get lastSuccessfulLogin;
   @override
   @JsonKey(name: 'lastFailedLogin')
-  String? get lastFailedLogin => throw _privateConstructorUsedError;
+  String? get lastFailedLogin;
   @override
   @JsonKey(name: 'failedLoginCount')
-  int? get failedLoginCount => throw _privateConstructorUsedError;
+  int? get failedLoginCount;
   @override
   @JsonKey(name: 'nextAllowedLogin')
-  String? get nextAllowedLogin => throw _privateConstructorUsedError;
+  String? get nextAllowedLogin;
   @override
   @JsonKey(name: 'pinChangeRequired')
-  bool? get pinChangeRequired => throw _privateConstructorUsedError;
+  bool? get pinChangeRequired;
   @override
   @JsonKey(name: 'hasSetPin')
-  bool? get hasSetPin => throw _privateConstructorUsedError;
+  bool? get hasSetPin;
   @override
   @JsonKey(name: 'isPhoneVerified')
-  bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified;
   @override
   @JsonKey(name: 'hasSetSecurityQuestions')
-  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasSetSecurityQuestions;
   @override
   @JsonKey(name: 'termsAccepted')
-  bool? get termsAccepted => throw _privateConstructorUsedError;
+  bool? get termsAccepted;
   @override
   @JsonKey(name: 'acceptedTermsID')
-  int? get acceptedTermsID => throw _privateConstructorUsedError;
+  int? get acceptedTermsID;
   @override
   @JsonKey(name: 'suspended')
-  bool? get suspended => throw _privateConstructorUsedError;
+  bool? get suspended;
   @override
   @JsonKey(name: 'avatar')
-  String? get avatar => throw _privateConstructorUsedError;
+  String? get avatar;
+  @override
+  String? get chatRoomToken;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'misc_state.dart';
 
@@ -31,7 +33,7 @@ class _$MiscStateTearOff {
     );
   }
 
-  MiscState fromJson(Map<String, Object> json) {
+  MiscState fromJson(Map<String, Object?> json) {
     return MiscState.fromJson(json);
   }
 }
@@ -160,7 +162,7 @@ class _$_MiscState implements _MiscState {
   _$_MiscState({this.initialRoute, this.error, this.profileFAQsContentState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
-      _$_$_MiscStateFromJson(json);
+      _$$_MiscStateFromJson(json);
 
   @override
   final String? initialRoute;
@@ -177,24 +179,21 @@ class _$_MiscState implements _MiscState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MiscState &&
-            (identical(other.initialRoute, initialRoute) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialRoute, initialRoute)) &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)) &&
-            (identical(
-                    other.profileFAQsContentState, profileFAQsContentState) ||
-                const DeepCollectionEquality().equals(
-                    other.profileFAQsContentState, profileFAQsContentState)));
+        (other.runtimeType == runtimeType &&
+            other is _MiscState &&
+            const DeepCollectionEquality()
+                .equals(other.initialRoute, initialRoute) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality().equals(
+                other.profileFAQsContentState, profileFAQsContentState));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(initialRoute) ^
-      const DeepCollectionEquality().hash(error) ^
-      const DeepCollectionEquality().hash(profileFAQsContentState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(initialRoute),
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(profileFAQsContentState));
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +202,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MiscStateToJson(this);
+    return _$$_MiscStateToJson(this);
   }
 }
 
@@ -217,12 +216,11 @@ abstract class _MiscState implements MiscState {
       _$_MiscState.fromJson;
 
   @override
-  String? get initialRoute => throw _privateConstructorUsedError;
+  String? get initialRoute;
   @override
-  String? get error => throw _privateConstructorUsedError;
+  String? get error;
   @override
-  FAQsContentState? get profileFAQsContentState =>
-      throw _privateConstructorUsedError;
+  FAQsContentState? get profileFAQsContentState;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'service_request_content.dart';
 
@@ -38,7 +40,7 @@ class _$ServiceRequestContentTearOff {
     );
   }
 
-  ServiceRequestContent fromJson(Map<String, Object> json) {
+  ServiceRequestContent fromJson(Map<String, Object?> json) {
     return ServiceRequestContent.fromJson(json);
   }
 }
@@ -206,7 +208,7 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       @JsonKey(name: 'ResolvedBy') this.resolvedBy});
 
   factory _$_ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
-      _$_$_ServiceRequestContentFromJson(json);
+      _$$_ServiceRequestContentFromJson(json);
 
   @override
   @JsonKey(name: 'Request')
@@ -235,36 +237,31 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ServiceRequestContent &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.clientName, clientName) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientName, clientName)) &&
-            (identical(other.clientPhoneNumber, clientPhoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientPhoneNumber, clientPhoneNumber)) &&
-            (identical(other.serviceRequestType, serviceRequestType) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceRequestType, serviceRequestType)) &&
-            (identical(other.resolvedTime, resolvedTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.resolvedTime, resolvedTime)) &&
-            (identical(other.resolvedBy, resolvedBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.resolvedBy, resolvedBy)));
+        (other.runtimeType == runtimeType &&
+            other is _ServiceRequestContent &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.clientName, clientName) &&
+            const DeepCollectionEquality()
+                .equals(other.clientPhoneNumber, clientPhoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.serviceRequestType, serviceRequestType) &&
+            const DeepCollectionEquality()
+                .equals(other.resolvedTime, resolvedTime) &&
+            const DeepCollectionEquality()
+                .equals(other.resolvedBy, resolvedBy));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(clientName) ^
-      const DeepCollectionEquality().hash(clientPhoneNumber) ^
-      const DeepCollectionEquality().hash(serviceRequestType) ^
-      const DeepCollectionEquality().hash(resolvedTime) ^
-      const DeepCollectionEquality().hash(resolvedBy);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(clientName),
+      const DeepCollectionEquality().hash(clientPhoneNumber),
+      const DeepCollectionEquality().hash(serviceRequestType),
+      const DeepCollectionEquality().hash(resolvedTime),
+      const DeepCollectionEquality().hash(resolvedBy));
 
   @JsonKey(ignore: true)
   @override
@@ -274,7 +271,7 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ServiceRequestContentToJson(this);
+    return _$$_ServiceRequestContentToJson(this);
   }
 }
 
@@ -293,23 +290,22 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
 
   @override
   @JsonKey(name: 'Request')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(name: 'ClientName')
-  String? get clientName => throw _privateConstructorUsedError;
+  String? get clientName;
   @override
   @JsonKey(name: 'ClientContact')
-  String? get clientPhoneNumber => throw _privateConstructorUsedError;
+  String? get clientPhoneNumber;
   @override
   @JsonKey(name: 'RequestType')
-  ServiceRequestType? get serviceRequestType =>
-      throw _privateConstructorUsedError;
+  ServiceRequestType? get serviceRequestType;
   @override
   @JsonKey(name: 'ResolvedAt')
-  String? get resolvedTime => throw _privateConstructorUsedError;
+  String? get resolvedTime;
   @override
   @JsonKey(name: 'ResolvedBy')
-  String? get resolvedBy => throw _privateConstructorUsedError;
+  String? get resolvedBy;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestContentCopyWith<_ServiceRequestContent> get copyWith =>

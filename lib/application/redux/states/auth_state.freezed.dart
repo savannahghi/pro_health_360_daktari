@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_state.dart';
 
@@ -26,7 +28,7 @@ class _$AuthStateTearOff {
     );
   }
 
-  AuthState fromJson(Map<String, Object> json) {
+  AuthState fromJson(Map<String, Object?> json) {
     return AuthState.fromJson(json);
   }
 }
@@ -125,7 +127,7 @@ class _$_AuthState implements _AuthState {
   _$_AuthState({this.credentials});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthStateFromJson(json);
+      _$$_AuthStateFromJson(json);
 
   @override
   final AuthCredentials? credentials;
@@ -138,15 +140,15 @@ class _$_AuthState implements _AuthState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthState &&
-            (identical(other.credentials, credentials) ||
-                const DeepCollectionEquality()
-                    .equals(other.credentials, credentials)));
+        (other.runtimeType == runtimeType &&
+            other is _AuthState &&
+            const DeepCollectionEquality()
+                .equals(other.credentials, credentials));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credentials);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(credentials));
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +157,7 @@ class _$_AuthState implements _AuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthStateToJson(this);
+    return _$$_AuthStateToJson(this);
   }
 }
 
@@ -166,7 +168,7 @@ abstract class _AuthState implements AuthState {
       _$_AuthState.fromJson;
 
   @override
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>
