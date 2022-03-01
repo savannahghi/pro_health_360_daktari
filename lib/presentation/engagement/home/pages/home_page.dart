@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
@@ -16,7 +15,6 @@ import 'package:healthcloud/presentation/engagement/home/widgets/action_card.dar
 import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:healthcloud/presentation/service_requests/widgets/service_request_action_card.dart';
-import 'package:misc_utilities/misc.dart' as misc;
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
@@ -63,7 +61,7 @@ class HomePage extends StatelessWidget {
                       veryLargeVerticalSizedBox,
                       Text(
                         removeTailingComma(
-                          misc.getGreetingMessage(
+                          getGreetingMessage(
                             firstName == UNKNOWN ? '' : firstName,
                           ),
                         ),

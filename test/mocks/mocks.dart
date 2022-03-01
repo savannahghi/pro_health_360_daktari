@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
-import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -17,8 +16,6 @@ import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-EmailAddress testEmailAddress = EmailAddress.withValue('demo@gmail.com');
 
 class MockBuildContext extends Mock implements BuildContext {}
 

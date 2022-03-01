@@ -1,4 +1,4 @@
-import 'package:domain_objects/value_objects.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/domain/core/entities/service_requests/service_request_content.dart';
 

@@ -1,7 +1,5 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/core/services/helpers.dart';
@@ -73,7 +71,6 @@ class _AuthManagerState extends State<AuthManager> {
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: <NavigatorObserver>[
             SentryNavigatorObserver(),
-            FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
           ],
           initialRoute: vm.initialRoute,
           onGenerateRoute: RouteGenerator.generateRoute,

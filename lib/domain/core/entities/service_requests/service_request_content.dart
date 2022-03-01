@@ -1,4 +1,4 @@
-import 'package:domain_objects/value_objects.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
 

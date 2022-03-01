@@ -1,8 +1,6 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:healthcloud/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/service_requests/service_requests_view_model.dart';
