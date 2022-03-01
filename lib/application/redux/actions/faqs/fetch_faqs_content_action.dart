@@ -19,7 +19,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
-import 'package:user_feed/user_feed.dart' as user_feed;
 
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
@@ -48,7 +47,7 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
     final http.Response result =
         await _client.query(getFAQContentQuery, <String, dynamic>{
-      'flavour': user_feed.Flavour.CONSUMER.name,
+      'flavour': Flavour.consumer.name,
       'limit': limit,
     });
 

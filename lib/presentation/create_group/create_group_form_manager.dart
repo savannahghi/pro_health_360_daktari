@@ -1,4 +1,4 @@
-import 'package:domain_objects/value_objects.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/domain/core/entities/create_group/age_range.dart';

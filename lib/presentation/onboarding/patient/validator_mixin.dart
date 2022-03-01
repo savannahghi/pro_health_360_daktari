@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 
 mixin Validator {

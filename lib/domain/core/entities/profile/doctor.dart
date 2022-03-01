@@ -1,5 +1,4 @@
-// Package imports:
-import 'package:domain_objects/value_objects.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 
 class Doctor {
   Doctor({

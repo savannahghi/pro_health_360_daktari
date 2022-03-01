@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/mutations.dart';
@@ -76,7 +75,7 @@ class CreatePINAction extends ReduxAction<AppState> {
       if (error != null || responseMap.isEmpty) {
         dispatch(BatchUpdateMiscStateAction(error: somethingWentWrongText));
         Sentry.captureException(
-          SILException(cause: createPinFlag, message: error),
+          UserException(error),
         );
         return null;
       }

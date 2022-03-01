@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:afya_moja_core/src/domain/core/entities/onboarding_path_config.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
@@ -31,7 +30,7 @@ void main() {
     });
 
     test('should return correct values', () async {
-      expect(genderToJson(Gender.male), 'MALE');
+      expect(genderToJson(Gender.male), 'male');
     });
   });
 

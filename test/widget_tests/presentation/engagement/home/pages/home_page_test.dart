@@ -1,14 +1,11 @@
-// Flutter imports:
-// Package imports:
 import 'dart:convert';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/core/services/utils.dart';
 import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
-// Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/core/user.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
@@ -20,7 +17,6 @@ import 'package:healthcloud/presentation/engagement/home/widgets/appbar_user.dar
 import 'package:healthcloud/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:healthcloud/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';

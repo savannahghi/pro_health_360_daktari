@@ -3,7 +3,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:healthcloud/application/core/theme/app_themes.dart';

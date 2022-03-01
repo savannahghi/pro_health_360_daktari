@@ -5,8 +5,6 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
@@ -15,7 +13,6 @@ import 'package:healthcloud/application/redux/actions/terms/update_terms_action.
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/entities/terms/terms_and_conditions_response.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/error_tags.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -52,7 +49,7 @@ class GetTermsAction extends ReduxAction<AppState> {
     final String? error = client.parseError(body);
     if (error != null || responseMap.isEmpty) {
       dispatch(BatchUpdateMiscStateAction(error: somethingWentWrongText));
-      Sentry.captureException(SILException(cause: getTermsTag, message: error));
+      Sentry.captureException(UserException(error));
       return null;
     }
 

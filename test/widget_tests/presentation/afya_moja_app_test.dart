@@ -9,7 +9,6 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
 import 'package:healthcloud/presentation/core/afya_moja_app.dart';
 import 'package:healthcloud/presentation/core/auth_manager.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 
 import '../../mocks/mocks.dart';
 
@@ -39,7 +38,6 @@ void main() {
 
         tester.binding
             .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-        RefreshTokenManger().listen.add(true);
 
         await tester.pumpAndSettle();
 
@@ -48,8 +46,6 @@ void main() {
 
         final Finder preLoadAppWidget = find.byType(AuthManager);
         expect(preLoadAppWidget, findsOneWidget);
-
-        RefreshTokenManger().listen.add(true);
 
         await tester.pumpAndSettle();
         final Finder storeProviderWidget = find.byKey(globalStoreProviderKey);
@@ -74,7 +70,6 @@ void main() {
           ),
         );
         tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
-        RefreshTokenManger().listen.add(true);
 
         await tester.pumpAndSettle();
 

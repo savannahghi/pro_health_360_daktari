@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
@@ -41,10 +39,6 @@ Future<void> initApp(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await FlutterConfig.loadEnvVariables();
-
-  await Firebase.initializeApp();
-
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
   await SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
