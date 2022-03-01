@@ -85,3 +85,16 @@ query getFAQContent($flavour: Flavour!, $limit: Int!){
   }
 }
 ''';
+
+const String listMembersQuery = r'''
+query listMembers($input: QueryOption){
+  listMembers(input: $input){
+    ID
+    userID
+    name
+    role
+    username
+    gender
+  }
+}
+''';

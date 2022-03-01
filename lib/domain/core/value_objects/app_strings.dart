@@ -381,6 +381,10 @@ const String inviteMembersTitle = 'Invite Members';
 const String inviteMembersDescription =
     'Invite members to this group by searching for them using their name';
 const String searchMembersString = 'Search members ...';
+const String fetchingMemberFlagText = 'fetching members';
+const String availableMembersText = 'available members';
+const String noAvailableMemberDescription =
+    'Please try again or contact support';
 
 // group info
 const String groupInfoText = 'Group Info';

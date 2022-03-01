@@ -13,6 +13,11 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
           ? null
           : FAQsContentState.fromJson(
               json['profileFAQsContentState'] as Map<String, dynamic>),
+      communityMembers: (json['communityMembers'] as List<dynamic>?)
+          ?.map((e) => Member.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errorFetchingCommunityMembers:
+          json['errorFetchingCommunityMembers'] as bool?,
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -20,4 +25,6 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'initialRoute': instance.initialRoute,
       'error': instance.error,
       'profileFAQsContentState': instance.profileFAQsContentState,
+      'communityMembers': instance.communityMembers,
+      'errorFetchingCommunityMembers': instance.errorFetchingCommunityMembers,
     };

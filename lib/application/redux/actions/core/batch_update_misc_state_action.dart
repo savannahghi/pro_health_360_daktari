@@ -2,6 +2,7 @@
 import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:healthcloud/domain/core/entities/community_members/member.dart';
 
 /// [BatchUpdateMiscStateAction] is the ONLY action that should be called to update [miscState]
 /// with the exception of [IncrementUserVisitCountAction]
@@ -10,40 +11,24 @@ import 'package:healthcloud/application/redux/states/app_state.dart';
 /// - logging in a user
 /// - resetting PIN
 class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
-  final String? visitCount;
-  final String? title;
-  final String? message;
-  final String? otpCode;
-  final bool? accountExists;
-  final bool? acceptedTerms;
-
-  final String? createPin;
-  final String? confirmPin;
-
-  final bool? invalidPin;
-  final bool? hasCompletedEnteringOTP;
-  final bool? isResendingOTP;
+  final String? initialRoute;
   final String? error;
+  final List<Member>? communityMembers;
 
   BatchUpdateMiscStateAction({
-    this.invalidPin,
-    this.visitCount,
-    this.title,
-    this.message,
-    this.otpCode,
-    this.acceptedTerms,
-    this.accountExists,
-    this.createPin,
-    this.confirmPin,
-    this.hasCompletedEnteringOTP,
-    this.isResendingOTP,
+    this.initialRoute,
     this.error,
+    this.communityMembers,
   });
 
   @override
   AppState reduce() {
     final AppState newState = state.copyWith.call(
-      miscState: state.miscState!.copyWith(error: error),
+      miscState: state.miscState!.copyWith(
+        error: error ?? state.miscState?.error,
+        initialRoute: initialRoute ?? state.miscState?.initialRoute,
+        communityMembers: communityMembers ?? state.miscState?.communityMembers,
+      ),
     );
 
     return newState;
