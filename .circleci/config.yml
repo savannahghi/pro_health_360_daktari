@@ -54,9 +54,7 @@ commands:
           name: "Load Sentry DNS and google services file"
           command: |
             mkdir -p dump/
-            echo $DEV_SENTRY_DNS > .env
-            echo $PROD_SENTRY_DNS >> .env
-            echo $STREAM_API_KEY >> .env
+            echo $ENCODED_APP_ENV | base64 --decode > .env
             echo $GOOGLE_SERVICES_FILE > android/app/google-services.json
       - run:
           name: "Setup flutter environment variable"

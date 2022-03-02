@@ -19,9 +19,13 @@ class AppSetupData {
   // Custom context for setting up different endpoints
   final BaseContext? customContext;
 
+  // The Stream API key
+  final String streamAPIKey;
+
   AppSetupData({
     required this.appContexts,
     required this.sentryDNS,
+    required this.streamAPIKey,
     this.customContext,
   });
 

@@ -81,10 +81,8 @@ Future<void> initApp(List<AppContext> appContexts) async {
         store.dispatch(UpdateConnectivityAction(hasConnection: hasConnection));
       });
 
-  final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
-
   final StreamChatClient streamClient = StreamChatClient(
-    apiKey,
+    appSetupData.streamAPIKey,
     logLevel: Level.ALL,
   );
 
