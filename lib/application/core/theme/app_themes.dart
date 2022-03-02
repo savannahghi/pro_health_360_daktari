@@ -15,6 +15,7 @@ class AppTheme {
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: AppColors.themeColors.textSelectionColor,
       ),
+      iconTheme: const IconThemeData(color: Colors.black),
     ).copyWith(
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{

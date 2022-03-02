@@ -93,13 +93,15 @@ class _AuthManagerState extends State<AuthManager> {
             return UserExceptionDialog<AppState>(
               child: StreamChat(
                 client: widget.streamClient,
+                streamChatThemeData: StreamChatThemeData(
+                  channelHeaderTheme: const ChannelHeaderThemeData(),
+                ),
                 child: childWidget,
               ),
             );
           },
           theme: AppTheme.getAppTheme(),
-          debugShowCheckedModeBanner:
-              widget.appContexts.contains(AppContext.AppTest),
+          debugShowCheckedModeBanner: false,
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: <NavigatorObserver>[
             SentryNavigatorObserver(),

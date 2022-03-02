@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:healthcloud/presentation/communities/thread_page.dart';
+import 'package:healthcloud/presentation/router/routes.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {
@@ -9,8 +11,33 @@ class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ChannelHeader(
-        title: ChannelName(),
+      appBar: ChannelHeader(
+        title: const ChannelName(),
+        showConnectionStateTile: true,
+        actions: <Widget>[
+          PopupMenuButton<ChannelOptions>(
+            onSelected: (ChannelOptions value) {
+              switch (value) {
+                case ChannelOptions.invite_client:
+                  Navigator.of(context).pushNamed(AppRoutes.inviteMembersPage);
+                  break;
+                default:
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuItem<ChannelOptions>>[
+                const PopupMenuItem<ChannelOptions>(
+                  value: ChannelOptions.invite_client,
+                  child: Text('Invite members'),
+                )
+              ];
+            },
+            child: const Icon(
+              Icons.more_vert,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -29,32 +56,4 @@ class ChannelPage extends StatelessWidget {
   }
 }
 
-class ThreadPage extends StatelessWidget {
-  const ThreadPage({
-    Key? key,
-    this.parent,
-  }) : super(key: key);
-
-  final Message? parent;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ThreadHeader(
-        parent: parent!,
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: MessageListView(
-              parentMessage: parent,
-            ),
-          ),
-          MessageInput(
-            parentMessage: parent,
-          ),
-        ],
-      ),
-    );
-  }
-}
+enum ChannelOptions { invite_client }

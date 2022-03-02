@@ -51,7 +51,7 @@ dev_dependencies:
     sdk: flutter
   import_sorter: ^4.6.0
   lint: ^1.6.0
-  mockito: ^5.0.1
+  mockito: ^5.0.7
   mocktail_image_network: ^0.0.1-dev.1
   plugin_platform_interface: ^2.1.2
 
