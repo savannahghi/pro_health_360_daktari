@@ -56,6 +56,7 @@ commands:
             mkdir -p dump/
             echo $DEV_SENTRY_DNS > .env
             echo $PROD_SENTRY_DNS >> .env
+            echo $STREAM_API_KEY >> .env
             echo $GOOGLE_SERVICES_FILE > android/app/google-services.json
       - run:
           name: "Setup flutter environment variable"
