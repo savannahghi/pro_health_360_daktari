@@ -56,3 +56,22 @@ As a contributor, you need to sign your commits. For more details check [here](h
 ## License
 
 This library is distributed under the MIT license found in the [LICENSE](https://github.com/savannahghi/AfyaMoja/blob/main/LICENSE) file.
+
+### Environment variables
+
+In order for you to run the application locally on your machine, you will need the following environment variables
+
+1. PROD_SENTRY_DNS and DEV_SENTRY_DNS that will be used to send error messages to your Sentry error reporting server
+2. DEV_STREAM_API_KEY, DEMO_STREAM_API_KEY and PROD_STREAM_API_KEY that will be used to enable you to connect to the GetStream API
+
+If you want to add an environment variable to CI, you will need to run the following command to encode the ENV file into a string format. The `--b 0` will prevent the new lines from being encoded
+
+```bash
+base64 --b 0 --i .env
+```
+
+In the CI configuration, you can decode the string into the ENV variable using this command which will decode the string into the ENV file
+
+```bash
+echo $ENCODED_APP_ENV | base64 --decode > .env
+```
