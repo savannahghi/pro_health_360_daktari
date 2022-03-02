@@ -1,20 +1,14 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/graphql/mutations.dart';
-import 'package:healthcloud/application/redux/actions/complete_onboarding_tour.dart';
+import 'package:healthcloud/application/core/graphql/queries.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [InviteMembersAction] is a Redux Action whose job is to invite members to a
@@ -23,15 +17,15 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class InviteMembersAction extends ReduxAction<AppState> {
   InviteMembersAction({
     required this.client,
+    required this.variables,
+    this.onFailure,
     this.onSuccess,
-    this.onError,
-    this.shouldNavigate = true,
   });
 
-  final bool shouldNavigate;
   final IGraphQlClient client;
+  final Map<String, dynamic> variables;
+  final void Function(String message)? onFailure;
   final void Function()? onSuccess;
-  final void Function()? onError;
 
   @override
   void before() {
@@ -46,59 +40,39 @@ class InviteMembersAction extends ReduxAction<AppState> {
   }
 
   @override
-  Future<AppState> reduce() async {
-    final String? userID = state.staffState?.user?.userId;
-    final String? userName = state.staffState?.user?.username;
-
-    final Map<String, String?> variables = <String, String?>{
-      'userID': userID,
-      'nickname': userName,
-    };
-
-    final http.Response result = await client.query(
-      setNickNameMutation,
-      variables,
-    );
-
-    final Map<String, dynamic> body = client.toMap(result);
-    client.close();
-
-    final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
-
-    final String? errors = client.parseError(body);
-
-    if (errors != null) {
-      onError?.call();
-      Sentry.captureException(
-        UserException(errors),
-      );
-
-      throw const UserException(somethingWentWrongText);
+  Future<AppState?> reduce() async {
+    final bool hasConnection = state.connectivityState?.isConnected ?? false;
+    if (!hasConnection) {
+      onFailure?.call('connection failure');
+      return null;
     }
 
-    if (responseMap['data']['setNickName'] != null &&
-        responseMap['data']['setNickName'] == true) {
-      dispatch(
-        UpdateOnboardingStateAction(hasSetNickName: true),
-      );
+    final Response response =
+        await client.query(inviteMembersToCommunityQuery, variables);
 
-      onSuccess?.call();
+    final ProcessedResponse processedResponse = processHttpResponse(response);
 
-      await dispatch(
-        CompleteOnboardingTourAction(userID: userID, client: client),
-      );
+    if (processedResponse.ok) {
+      final Map<String, dynamic> body = client.toMap(response);
+      client.close();
 
-      if (shouldNavigate) {
-        dispatch(
-          NavigateAction<AppState>.pushNamedAndRemoveUntil(
-            AppRoutes.homePage,
-            (Route<dynamic> route) => false,
-          ),
+      final String? errors = client.parseError(body);
+
+      if (errors != null) {
+        Sentry.captureException(
+          UserException(errors),
         );
+
+        throw UserException(getErrorMessage('inviting members'));
       }
+
+      if (body['data']['inviteMembersToCommunity'] == true) {
+        onSuccess?.call();
+      }
+    } else {
+      throw UserException(processedResponse.message);
     }
 
-    return state;
+    return null;
   }
 }

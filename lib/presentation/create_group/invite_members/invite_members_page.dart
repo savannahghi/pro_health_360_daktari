@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/invite_members/fetch_members_action.dart';
+import 'package:healthcloud/application/redux/actions/invite_members/invite_members_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/misc_state_view_model.dart';
 import 'package:healthcloud/domain/core/entities/community_members/member.dart';
@@ -17,16 +18,22 @@ import 'package:healthcloud/presentation/create_group/invite_members/widgets/mem
 import 'package:shared_themes/spaces.dart';
 
 class InviteMembersPage extends StatefulWidget {
-  const InviteMembersPage({Key? key}) : super(key: key);
+  const InviteMembersPage({
+    Key? key,
+    required this.channelId,
+  }) : super(key: key);
+  final String channelId;
 
   @override
   State<InviteMembersPage> createState() => _InviteMembersPageState();
 }
 
 class _InviteMembersPageState extends State<InviteMembersPage> {
+  List<String> inviteMemberIds = <String>[];
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       StoreProvider.dispatch(
         context,
@@ -110,12 +117,29 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                                   itemBuilder: (_, int index) {
                                     final String memberName =
                                         communityMembers[index].name ?? UNKNOWN;
+                                    final String memberUserId =
+                                        communityMembers[index]
+                                                .userID
+                                                ?.trim() ??
+                                            '';
                                     return GestureDetector(
                                       child: MemberListItem(
                                         username: memberName.trim().isEmpty
                                             ? UNKNOWN
                                             : memberName,
-                                        isChecked: true,
+                                        onClicked: (bool value) {
+                                          if (value) {
+                                            if (memberUserId.isNotEmpty) {
+                                              inviteMemberIds.add(memberUserId);
+                                            }
+                                          } else if (value == false) {
+                                            inviteMemberIds.removeWhere(
+                                              (String element) =>
+                                                  memberUserId == element,
+                                            );
+                                          }
+                                        },
+                                        // isChecked: true,
                                       ),
                                     );
                                   },
@@ -140,7 +164,55 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                         height: 48,
                         child: ElevatedButton(
                           key: inviteMembersBtnKey,
-                          onPressed: () {},
+                          onPressed: () {
+                            if (inviteMemberIds.isNotEmpty) {
+                              StoreProvider.dispatch(
+                                context,
+                                InviteMembersAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                  variables: <String, dynamic>{
+                                    'communityID': widget.channelId,
+                                    'memberIDs': inviteMemberIds
+                                  },
+                                  onFailure: (String message) {
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                            connectionLostText,
+                                          ),
+                                          duration: const Duration(seconds: 5),
+                                          action: dismissSnackBar(
+                                            closeString,
+                                            Colors.white,
+                                            context,
+                                          ),
+                                        ),
+                                      );
+                                  },
+                                  onSuccess: () {
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                            inviteMembersSuccessfulText,
+                                          ),
+                                          duration: const Duration(seconds: 5),
+                                          action: dismissSnackBar(
+                                            closeString,
+                                            Colors.white,
+                                            context,
+                                          ),
+                                        ),
+                                      );
+                                  },
+                                ),
+                              );
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: AppColors.secondaryColor,
                           ),

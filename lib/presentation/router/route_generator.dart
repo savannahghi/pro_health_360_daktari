@@ -89,7 +89,7 @@ class RouteGenerator {
 
       case AppRoutes.inviteMembersPage:
         return MaterialPageRoute<InviteMembersPage>(
-          builder: (_) => const InviteMembersPage(),
+          builder: (_) => InviteMembersPage(channelId: args as String),
         );
 
       case AppRoutes.securityQuestionsPage:

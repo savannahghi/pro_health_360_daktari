@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
@@ -27,11 +29,12 @@ void main() {
       store.dispatch(
         UpdateConnectivityAction(hasConnection: true),
       );
+      const String testName = 'Sam Doe';
 
       store.dispatch(
         BatchUpdateMiscStateAction(
           communityMembers: <Member>[
-            Member.initial(),
+            Member.initial().copyWith(name: testName),
             Member.initial(),
             Member.initial(),
           ],
@@ -41,13 +44,19 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(),
+        widget: const InviteMembersPage(
+          channelId: 'some-channel-id',
+        ),
       );
 
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomTextField), findsOneWidget);
       expect(find.byType(MemberListItem), findsWidgets);
+      await tester.tap(find.text(testName));
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SvgPicture), findsWidgets);
 
       final Finder searchNameFinder = find.byType(CustomTextField);
       expect(searchNameFinder, findsOneWidget);
@@ -58,19 +67,82 @@ void main() {
       await tester.ensureVisible(submitBtn);
       await tester.tap(submitBtn);
       await tester.pumpAndSettle();
-      // TODO (paul) to implement submit button expectation
+
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
     });
 
-    testWidgets('displays error if there is no internet connection',
+    testWidgets(
+        'displays error if there is no internet connection when invite is tapped',
         (WidgetTester tester) async {
       store.dispatch(
-        UpdateConnectivityAction(hasConnection: false),
+        UpdateConnectivityAction(hasConnection: true),
+      );
+      const String testName = 'Sam Doe';
+      const String testFemaleName = 'Jane Doe';
+
+      store.dispatch(
+        BatchUpdateMiscStateAction(
+          communityMembers: <Member>[
+            Member.initial().copyWith(name: testName),
+            Member.initial().copyWith(name: testFemaleName),
+            Member.initial(),
+          ],
+        ),
       );
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(),
+        widget: const InviteMembersPage(
+          channelId: 'some-channel-id',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomTextField), findsOneWidget);
+      expect(find.byType(MemberListItem), findsWidgets);
+      await tester.tap(find.text(testName));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(testFemaleName));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(testFemaleName));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(testFemaleName));
+      await tester.pumpAndSettle();
+      expect(find.byType(SvgPicture), findsWidgets);
+
+      final Finder searchNameFinder = find.byType(CustomTextField);
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, 'David');
+
+      store.dispatch(
+        UpdateConnectivityAction(hasConnection: false),
+      );
+
+      final Finder submitBtn = find.byKey(inviteMembersBtnKey);
+      await tester.ensureVisible(submitBtn);
+      await tester.tap(submitBtn);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
+    });
+
+    testWidgets(
+        'displays error if there is no internet connection when fetching members',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateConnectivityAction(hasConnection: false),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const InviteMembersPage(
+          channelId: 'some-channel-id',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -96,7 +168,9 @@ void main() {
         await buildTestWidget(
           tester: tester,
           graphQlClient: mockShortGraphQlClient,
-          widget: const InviteMembersPage(),
+          widget: const InviteMembersPage(
+            channelId: 'some-channel-id',
+          ),
         );
 
         await tester.pumpAndSettle();
@@ -124,7 +198,9 @@ void main() {
         await buildTestWidget(
           tester: tester,
           graphQlClient: mockShortGraphQlClient,
-          widget: const InviteMembersPage(),
+          widget: const InviteMembersPage(
+            channelId: 'some-channel-id',
+          ),
         );
 
         await tester.pumpAndSettle();
@@ -144,7 +220,9 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(),
+        widget: const InviteMembersPage(
+          channelId: 'some-channel-id',
+        ),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
