@@ -54,11 +54,11 @@ const String reportSpamText = 'Report spam';
 const String cancelText = '';
 
 //Community Page
-const String communityChatScreenPageTitle = 'Ruaka Questions Group';
+const String conversationsChatScreenPageTitle = 'Ruaka Questions Group';
 const String typeYourMessageHereString = 'Type your message here';
 const String approveText = 'Approve';
 const String rejectText = 'Reject';
-const String communitiesTitle = 'Communities';
+const String conversationsTitle = 'Conversations';
 
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';
@@ -284,7 +284,7 @@ const String noInternetConnection = 'No Internet Connection';
 
 // set nickname page
 const String setNicknameDescription =
-    'Please create a nickname (Visible to community members)';
+    'Please create a nickname (Visible to conversation members)';
 const String nickNameString = 'Nickname';
 const String nameInputValidateString = 'Kindly input a nickname';
 const String nicknameSuccessString = 'Nickname created successfully';
