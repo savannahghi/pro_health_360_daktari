@@ -12,7 +12,7 @@ import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
 
 void main() {
   group('CustomAppBar', () {
-    const String title = 'Community';
+    const String title = 'Conversation';
 
     testWidgets('should render correctly with default values',
         (WidgetTester tester) async {

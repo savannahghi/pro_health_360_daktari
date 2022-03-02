@@ -14,7 +14,7 @@ class CommunityListPage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
         showBackButton: false,
-        title: communitiesTitle,
+        title: conversationsTitle,
       ),
       body: stream.StreamChat(
         client: stream.StreamChat.of(context).client,
