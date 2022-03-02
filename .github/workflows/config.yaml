@@ -34,10 +34,12 @@ jobs:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
+          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
         run: |
           touch .env
           echo $DEV_SENTRY_DNS > .env
           echo $PROD_SENTRY_DNS >> .env
+          echo $STREAM_API_KEY >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
@@ -82,10 +84,12 @@ jobs:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
+          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
         run: |
           touch .env
           echo $DEV_SENTRY_DNS > .env
           echo $PROD_SENTRY_DNS >> .env
+          echo $STREAM_API_KEY >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
