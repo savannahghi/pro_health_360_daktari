@@ -19,7 +19,10 @@ class ChannelPage extends StatelessWidget {
             onSelected: (ChannelOptions value) {
               switch (value) {
                 case ChannelOptions.invite_client:
-                  Navigator.of(context).pushNamed(AppRoutes.inviteMembersPage);
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.inviteMembersPage,
+                    arguments: StreamChannel.of(context).channel.id,
+                  );
                   break;
                 default:
               }

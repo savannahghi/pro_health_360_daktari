@@ -155,8 +155,10 @@ void main() {
   });
 
   test('Test router returns InviteMembersPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.inviteMembersPage);
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.inviteMembersPage,
+      arguments: 'some-channel-id',
+    );
 
     final MaterialPageRoute<InviteMembersPage>? route =
         routeGenerator(settings) as MaterialPageRoute<InviteMembersPage>?;

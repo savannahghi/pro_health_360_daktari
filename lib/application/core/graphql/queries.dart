@@ -98,3 +98,9 @@ query listMembers($input: QueryOption){
   }
 }
 ''';
+
+const String inviteMembersToCommunityQuery = r'''
+query inviteMembersToCommunity($communityID: String!,$memberIDs: [String!]! ){
+  inviteMembersToCommunity(communityID: $communityID, memberIDs: $memberIDs)
+}
+''';

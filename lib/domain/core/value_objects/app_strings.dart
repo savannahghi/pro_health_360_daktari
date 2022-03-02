@@ -385,6 +385,7 @@ const String fetchingMemberFlagText = 'fetching members';
 const String availableMembersText = 'available members';
 const String noAvailableMemberDescription =
     'Please try again or contact support';
+const String inviteMembersSuccessfulText = 'Members invited successfully';
 
 // group info
 const String groupInfoText = 'Group Info';
