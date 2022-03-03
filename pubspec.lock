@@ -28,7 +28,7 @@ packages:
       name: app_wrapper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.33"
+    version: "0.1.34"
   archive:
     dependency: transitive
     description:

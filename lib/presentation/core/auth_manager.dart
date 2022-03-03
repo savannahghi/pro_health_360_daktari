@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcloud/application/core/services/custom_client.dart';
 import 'package:healthcloud/application/core/services/localization.dart';
 import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:healthcloud/application/redux/actions/core/connect_get_stream_user_action.dart';
 import 'package:healthcloud/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/initial_route_view_model.dart';
@@ -34,28 +35,16 @@ class _AuthManagerState extends State<AuthManager> {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
-      final String staffId =
-          StoreProvider.state<AppState>(context)?.staffState?.id ?? '';
-
-      final String chatRoomToken = StoreProvider.state<AppState>(context)
-              ?.staffState
-              ?.user
-              ?.chatRoomToken ??
-          '';
-
-      if (chatRoomToken.isNotEmpty && chatRoomToken != UNKNOWN) {
-        try {
-          await widget.streamClient.connectUser(
-            User(id: staffId),
-            chatRoomToken,
-          );
-        } on StreamWebSocketError catch (e) {
-          Sentry.captureException(
-            e,
-            hint: e.message,
-          );
-        }
-      }
+      StoreProvider.dispatch(
+        context,
+        ConnectGetStreamUserAction(
+          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+          streamClient: widget.streamClient,
+          endpoint: AppWrapperBase.of(context)!
+              .customContext!
+              .refreshStreamTokenEndpoint,
+        ),
+      );
 
       StoreProvider.dispatch(
         context,
@@ -71,6 +60,26 @@ class _AuthManagerState extends State<AuthManager> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    final String staffID =
+        StoreProvider.state<AppState>(context)?.staffState?.id ?? '';
+    final String? streamUserID = widget.streamClient.state.currentUser?.id;
+
+    if (staffID.isNotEmpty &&
+        staffID != UNKNOWN &&
+        streamUserID != null &&
+        streamUserID != staffID) {
+      StoreProvider.dispatch(
+        context,
+        ConnectGetStreamUserAction(
+          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+          streamClient: widget.streamClient,
+          endpoint: AppWrapperBase.of(context)!
+              .customContext!
+              .refreshStreamTokenEndpoint,
+        ),
+      );
+    }
 
     StoreProvider.dispatch(
       context,
