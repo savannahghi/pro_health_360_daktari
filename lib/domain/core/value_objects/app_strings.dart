@@ -390,3 +390,5 @@ const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';
 
 const String datePickerFormat = 'dd MMM, yyyy';
+
+const String defaultStreamUserID = 'myCareHub';
