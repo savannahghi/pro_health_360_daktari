@@ -6,7 +6,7 @@ jobs:
     name: Publish myCareHub Professional Demo binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/rename-package-name'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
