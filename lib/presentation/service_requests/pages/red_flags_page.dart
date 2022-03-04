@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -93,7 +94,14 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                         }
                       },
                       messageTitle: getNoDataTile(redFlagString.toLowerCase()),
-                      messageBody: serviceRequestsNoDataBodyString,
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: serviceRequestsNoDataBodyString,
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ],
                     )
                   } else
                     ...List<Widget>.generate(vm.serviceRequests?.length ?? 0,
@@ -138,8 +146,14 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                         ),
                       );
                     },
-                    messageBody:
-                        getErrorMessage(fetchingResolvedRedFlagsString),
+                    messageBody: <TextSpan>[
+                      TextSpan(
+                        text: getErrorMessage(fetchingResolvedRedFlagsString),
+                        style: normalSize16Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ],
                   )
                 },
               ],

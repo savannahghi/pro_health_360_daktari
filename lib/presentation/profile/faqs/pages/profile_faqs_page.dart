@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/faqs/fetch_faqs_content_action.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -73,7 +74,14 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                     FetchFAQSContentAction(context: context),
                   );
                 },
-                messageBody: getErrorMessage(fetchingFAQsFlagString),
+                messageBody: <TextSpan>[
+                  TextSpan(
+                    text: getErrorMessage(fetchingFAQsFlagString),
+                    style: normalSize16Text(
+                      AppColors.greyTextColor,
+                    ),
+                  ),
+                ],
               );
             } else {
               final List<FAQContent?>? faqsContent = vm.faqItems;
@@ -134,7 +142,14 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                       ),
                     );
                   },
-                  messageBody: getErrorMessage(fetchingFAQsFlagString),
+                  messageBody: <TextSpan>[
+                    TextSpan(
+                      text: getErrorMessage(fetchingFAQsFlagString),
+                      style: normalSize16Text(
+                        AppColors.greyTextColor,
+                      ),
+                    ),
+                  ],
                 );
               }
             }

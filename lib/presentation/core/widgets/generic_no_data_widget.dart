@@ -34,6 +34,7 @@ class GenericNoDataWidget extends StatelessWidget {
     this.align,
     this.type = GenericNoDataTypes.error,
     this.headerIconSvgUrl,
+    this.padding,
   }) : super(key: key);
 
   /// [actionText]
@@ -46,7 +47,7 @@ class GenericNoDataWidget extends StatelessWidget {
   final double? height;
 
   /// [messageTitle] to show in the body, in place of the default one
-  final String? messageBody;
+  final List<TextSpan>? messageBody;
 
   /// [messageTitle] to show on the title, in place of the default one
   final String? messageTitle;
@@ -59,11 +60,13 @@ class GenericNoDataWidget extends StatelessWidget {
 
   final String? headerIconSvgUrl;
 
+  final EdgeInsets? padding;
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: padding ?? const EdgeInsets.all(18.0),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
@@ -88,12 +91,15 @@ class GenericNoDataWidget extends StatelessWidget {
                               style: veryBoldSize20Text(),
                             ),
                             const TextSpan(text: '\n\n'),
-                            TextSpan(
-                              text: messageBody ?? defaultUserFriendlyMessage,
-                              style: normalSize16Text(
-                                AppColors.greyTextColor,
-                              ),
-                            )
+                            ...messageBody ??
+                                <TextSpan>[
+                                  TextSpan(
+                                    text: defaultUserFriendlyMessage,
+                                    style: normalSize16Text(
+                                      AppColors.greyTextColor,
+                                    ),
+                                  )
+                                ]
                           ],
                         ),
                         textAlign: TextAlign.center,

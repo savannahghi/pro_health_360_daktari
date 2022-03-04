@@ -387,6 +387,11 @@ const String availableMembersText = 'available members';
 const String noAvailableMemberDescription =
     'Please try again or contact support';
 const String inviteMembersSuccessfulText = 'Members invited successfully';
+const String noMemberFoundText = 'No member found with that name';
+const String couldNotFindAMemberText =
+    'It seems like we could not find a member by the name ';
+const String confirmTheNamesAreCorrectText =
+    '. Confirm that the names are correct before searching again, or use different names';
 
 // group info
 const String groupInfoText = 'Group Info';

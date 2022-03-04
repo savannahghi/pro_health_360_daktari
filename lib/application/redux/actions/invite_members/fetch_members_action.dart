@@ -14,9 +14,13 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class FetchMembersAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final void Function(String message)? onFailure;
+  bool isSearching;
+  String memberSearchName;
 
   FetchMembersAction({
     required this.client,
+    this.isSearching = false,
+    this.memberSearchName = '',
     this.onFailure,
   });
 
@@ -39,16 +43,28 @@ class FetchMembersAction extends ReduxAction<AppState> {
       onFailure?.call('connection failure');
       return null;
     }
-
-    final Response response =
-        await client.query(listMembersQuery, <String, dynamic>{
+    Map<String, dynamic> variables = <String, dynamic>{
       'input': <String, dynamic>{
         'filter': <String, dynamic>{
           'role': 'user',
         },
         'limit': 20
       },
-    });
+    };
+
+    if (isSearching) {
+      variables = <String, dynamic>{
+        'input': <String, dynamic>{
+          'filter': <String, dynamic>{
+            'role': 'user',
+            'name': memberSearchName,
+          },
+          'limit': 20
+        },
+      };
+    }
+
+    final Response response = await client.query(listMembersQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
