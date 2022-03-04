@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
 
 class PatientDetailsTextFormField extends StatelessWidget {
   const PatientDetailsTextFormField({

@@ -2,4 +2,4 @@ apple_id("abiud.orina@savannahinformatics.com") # Your Apple email address
 itc_team_id("120973169") # App Store Connect Team ID
 
 team_id("533DA44846") # Developer Portal Team ID
-app_identifier 'com.savannah.healthcloud'
+app_identifier 'com.savannah.mycarehubpro'

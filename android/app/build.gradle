@@ -55,7 +55,7 @@ android {
     }
 
     defaultConfig {        
-        applicationId "com.savannah.healthcloud"
+        applicationId "com.savannah.mycarehubpro"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()

@@ -7,15 +7,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/client_details/widgets/client_details_card_widget.dart';
-import 'package:healthcloud/presentation/client_details/widgets/my_health_timeline.dart';
-import 'package:healthcloud/presentation/client_details/widgets/profile_health_details_widget.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/client_details/widgets/client_details_card_widget.dart';
+import 'package:myharehubpro/presentation/client_details/widgets/my_health_timeline.dart';
+import 'package:myharehubpro/presentation/client_details/widgets/profile_health_details_widget.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 
 class ClientHealthPage extends StatefulWidget {
   /// [ClientHealthPage] is used to approve client profile updates and to

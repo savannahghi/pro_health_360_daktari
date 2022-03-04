@@ -6,16 +6,16 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
-import 'package:healthcloud/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:healthcloud/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:healthcloud/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:myharehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/login/phone_login_response.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
+import 'package:myharehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:myharehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:myharehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 

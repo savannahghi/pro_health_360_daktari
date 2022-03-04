@@ -4,15 +4,15 @@ import 'dart:io';
 import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/update_connectivity_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/actions/update_connectivity_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
 // Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
-import 'package:healthcloud/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
-import 'package:healthcloud/presentation/onboarding/set_nickname/set_nickname_page.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
+import 'package:myharehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:myharehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

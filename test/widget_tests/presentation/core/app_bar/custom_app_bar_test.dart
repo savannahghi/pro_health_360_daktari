@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/core/app_bar/app_bar_back_button.dart';
-import 'package:healthcloud/presentation/core/app_bar/app_bar_more_button.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/core/app_bar/app_bar_back_button.dart';
+import 'package:myharehubpro/presentation/core/app_bar/app_bar_more_button.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 
 void main() {
   group('CustomAppBar', () {

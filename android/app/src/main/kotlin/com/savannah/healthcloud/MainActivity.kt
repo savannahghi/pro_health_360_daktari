@@ -1,4 +1,4 @@
-package com.savannah.healthcloud
+package com.savannah.mycarehubpro
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterFragmentActivity

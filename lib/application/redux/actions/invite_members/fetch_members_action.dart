@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/graphql/queries.dart';
-import 'package:healthcloud/application/redux/actions/core/batch_update_misc_state_action.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/community_members/list_members_response.dart';
+import 'package:myharehubpro/application/core/graphql/queries.dart';
+import 'package:myharehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/community_members/list_members_response.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

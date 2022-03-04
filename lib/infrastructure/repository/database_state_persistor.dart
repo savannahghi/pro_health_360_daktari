@@ -4,25 +4,26 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 // Project imports:
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/home/bottom_nav_state.dart';
-import 'package:healthcloud/application/redux/states/home_state.dart';
-import 'package:healthcloud/application/redux/states/misc_state.dart';
-import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:healthcloud/application/redux/states/service_requests_state.dart';
-import 'package:healthcloud/application/redux/states/survey_state.dart';
-import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
-import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
-import 'package:healthcloud/infrastructure/repository/database_base.dart';
-import 'package:healthcloud/infrastructure/repository/database_mobile.dart';
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/states/home/bottom_nav_state.dart';
+import 'package:myharehubpro/application/redux/states/home_state.dart';
+import 'package:myharehubpro/application/redux/states/misc_state.dart';
+import 'package:myharehubpro/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:myharehubpro/application/redux/states/service_requests_state.dart';
+import 'package:myharehubpro/application/redux/states/survey_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:myharehubpro/infrastructure/repository/database_base.dart';
+import 'package:myharehubpro/infrastructure/repository/database_mobile.dart';
+import 'package:myharehubpro/infrastructure/repository/initialize_db.dart';
 
 /// [MyCareHubProfessionalStateDatabase] is the middleware that interacts with the database
 /// on behalf of the application. From the app's perspective, it doesn't care
 /// which database its saving its state on. HCStateDatabase therefore offers
 /// different implementations
 /// for its method.
-class MyCareHubProfessionalStateDatabase implements PersistorPrinterDecorator<AppState> {
+class MyCareHubProfessionalStateDatabase
+    implements PersistorPrinterDecorator<AppState> {
   MyCareHubProfessionalStateDatabase({
     Duration throttle = const Duration(seconds: 2),
     Duration saveDuration = Duration.zero,
@@ -156,7 +157,9 @@ class MyCareHubProfessionalStateDatabase implements PersistorPrinterDecorator<Ap
   }
 
   @visibleForTesting
-  Future<AppState> retrieveState(MyCareHubProfessionalDatabaseBase<dynamic> database) async {
+  Future<AppState> retrieveState(
+    MyCareHubProfessionalDatabaseBase<dynamic> database,
+  ) async {
     return AppState().copyWith(
       // retrieve credentials
       credentials: AuthCredentials.fromJson(

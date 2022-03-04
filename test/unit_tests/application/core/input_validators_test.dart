@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/services/input_invalidators.dart';
+import 'package:myharehubpro/application/core/services/input_invalidators.dart';
 
 void main() {
   group('InputValidators', () {

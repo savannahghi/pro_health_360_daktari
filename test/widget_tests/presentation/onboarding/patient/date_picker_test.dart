@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:intl/intl.dart';
 
 void main() {

@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
+import 'package:myharehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
 class ServiceRequestsViewModel extends Vm {
   final Wait wait;
@@ -12,7 +12,7 @@ class ServiceRequestsViewModel extends Vm {
   ServiceRequestsViewModel({
     required this.wait,
     this.serviceRequests,
-    this.pendingServiceRequests, 
+    this.pendingServiceRequests,
     this.errorFetchingServiceRequests,
   }) : super(
           equals: <Object?>[
@@ -27,7 +27,8 @@ class ServiceRequestsViewModel extends Vm {
     return ServiceRequestsViewModel(
       wait: store.state.wait!,
       serviceRequests: store.state.serviceRequestState?.serviceRequestContent,
-      pendingServiceRequests: store.state.serviceRequestState?.pendingServiceRequests,
+      pendingServiceRequests:
+          store.state.serviceRequestState?.pendingServiceRequests,
       errorFetchingServiceRequests:
           store.state.serviceRequestState?.errorFetchingServiceRequests,
     );

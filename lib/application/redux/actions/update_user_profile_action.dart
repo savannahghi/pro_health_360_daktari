@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/contact.dart';
-import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
-import 'package:healthcloud/domain/core/entities/core/user.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/contact.dart';
+import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/user.dart';
 
 class UpdateUserProfileAction extends ReduxAction<AppState> {
   UpdateUserProfileAction({

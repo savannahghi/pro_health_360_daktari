@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
+import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
 
 part 'auth_state.freezed.dart';
 part 'auth_state.g.dart';

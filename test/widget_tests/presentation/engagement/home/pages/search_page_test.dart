@@ -3,9 +3,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/presentation/engagement/home/pages/search_page.dart';
-import 'package:healthcloud/presentation/engagement/home/widgets/no_results_found.dart';
-import 'package:healthcloud/presentation/engagement/home/widgets/patient_search_results.dart';
+import 'package:myharehubpro/presentation/engagement/home/pages/search_page.dart';
+import 'package:myharehubpro/presentation/engagement/home/widgets/no_results_found.dart';
+import 'package:myharehubpro/presentation/engagement/home/widgets/patient_search_results.dart';
 import '../../../../../mocks/test_helpers.dart';
 
 void main() {

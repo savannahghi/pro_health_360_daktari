@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/request_count_content.dart';
+import 'package:myharehubpro/domain/core/entities/service_requests/request_count_content.dart';
 
 part 'pending_service_requests.freezed.dart';
 part 'pending_service_requests.g.dart';
@@ -8,7 +8,8 @@ part 'pending_service_requests.g.dart';
 class PendingServiceRequest with _$PendingServiceRequest {
   factory PendingServiceRequest({
     @JsonKey(name: 'total') int? total,
-    @JsonKey(name: 'requestsTypeCount') List<RequestCountContent>? serviceRequestsCount,
+    @JsonKey(name: 'requestsTypeCount')
+        List<RequestCountContent>? serviceRequestsCount,
   }) = _PendingServiceRequest;
 
   factory PendingServiceRequest.fromJson(Map<String, dynamic> json) =>

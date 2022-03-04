@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/entities/community_members/member.dart';
+import 'package:myharehubpro/domain/core/entities/community_members/member.dart';
 
 part 'list_members_response.freezed.dart';
 part 'list_members_response.g.dart';

@@ -5,11 +5,10 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/core/services/custom_client.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
-import 'package:healthcloud/infrastructure/endpoints.dart'
-    as mycarehubprofessional_endpoints;
+import 'package:myharehubpro/application/core/services/custom_client.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:myharehubpro/infrastructure/endpoints.dart' as app_endpoints;
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -66,7 +65,7 @@ void main() {
       final String jsonContent = json.encode(mockSecurityQuestionResponse);
 
       when(baseRequest.url).thenReturn(
-        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(app_endpoints.kTestGraphqlEndpoint),
       );
 
       when(baseRequest.send()).thenAnswer((_) {
@@ -117,7 +116,7 @@ void main() {
       final String jsonContent = json.encode(mockLoginResponse);
 
       when(baseRequest.url).thenReturn(
-        Uri.parse(mycarehubprofessional_endpoints.kTestLoginByPhoneEndpoint),
+        Uri.parse(app_endpoints.kTestLoginByPhoneEndpoint),
       );
 
       when(baseRequest.send()).thenAnswer((_) {
@@ -134,7 +133,6 @@ void main() {
       final String respBody = await resp.stream.bytesToString();
       expect(jsonDecode(respBody), mockLoginResponse);
     });
-
 
     testWidgets('should refresh token if abnormal expiry date',
         (WidgetTester tester) async {
@@ -163,7 +161,9 @@ void main() {
             200,
             request: Request(
               'POST',
-              Uri.parse(mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint),
+              Uri.parse(
+                app_endpoints.kTestRefreshTokenEndpoint,
+              ),
             ),
             headers: <String, String>{'content-type': 'application/json'},
           ),
@@ -178,8 +178,7 @@ void main() {
               customClient = CustomClient(
                 '',
                 '',
-                refreshTokenEndpoint:
-                    mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint,
+                refreshTokenEndpoint: app_endpoints.kTestRefreshTokenEndpoint,
                 userID: userId,
                 client: client,
                 context: context,
@@ -209,7 +208,7 @@ void main() {
       when(mockRequest.headers).thenAnswer((_) => <String, String>{});
       when(mockRequest.method).thenReturn('POST');
       when(mockRequest.url).thenReturn(
-        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(app_endpoints.kTestGraphqlEndpoint),
       );
       when(mockRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
       when(mockRequest.body).thenReturn(jsonContent);
@@ -252,7 +251,9 @@ void main() {
             200,
             request: Request(
               'POST',
-              Uri.parse(mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint),
+              Uri.parse(
+                app_endpoints.kTestRefreshTokenEndpoint,
+              ),
             ),
             headers: <String, String>{'content-type': 'application/json'},
           ),
@@ -267,8 +268,7 @@ void main() {
               customClient = CustomClient(
                 '',
                 '',
-                refreshTokenEndpoint:
-                    mycarehubprofessional_endpoints.kTestRefreshTokenEndpoint,
+                refreshTokenEndpoint: app_endpoints.kTestRefreshTokenEndpoint,
                 userID: userId,
                 client: client,
                 context: context,
@@ -298,7 +298,7 @@ void main() {
       when(mockRequest.headers).thenAnswer((_) => <String, String>{});
       when(mockRequest.method).thenReturn('POST');
       when(mockRequest.url).thenReturn(
-        Uri.parse(mycarehubprofessional_endpoints.kTestGraphqlEndpoint),
+        Uri.parse(app_endpoints.kTestGraphqlEndpoint),
       );
       when(mockRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
       when(mockRequest.body).thenReturn(jsonContent);

@@ -4,9 +4,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/presentation/notifications/notifications_page.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {

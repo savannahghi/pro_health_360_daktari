@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
 
 class AddProfileEntryRowItem extends StatelessWidget {
   /// [AddProfileEntryRowItem] is a shared widget used in [addNewProfileEntryBottomSheet]

@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
 
 class ProfileHealthDetailsWidget extends StatelessWidget {
   ///[ProfileHealthDetailsWidget] displays profile health details widget

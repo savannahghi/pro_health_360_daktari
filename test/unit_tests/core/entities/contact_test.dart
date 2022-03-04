@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/entities/core/contact.dart';
+import 'package:myharehubpro/domain/core/entities/core/contact.dart';
 import '../../../mocks/mocks.dart';
 
 void main() {

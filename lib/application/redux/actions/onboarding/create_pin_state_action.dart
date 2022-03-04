@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/login/create_pin.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/login/create_pin.dart';
 
 class CreatePINStateAction extends ReduxAction<AppState> {
   CreatePINStateAction({

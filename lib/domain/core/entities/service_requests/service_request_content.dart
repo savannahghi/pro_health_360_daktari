@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 
 part 'service_request_content.freezed.dart';
 part 'service_request_content.g.dart';

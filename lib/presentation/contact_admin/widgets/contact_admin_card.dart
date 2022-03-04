@@ -6,8 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 
 class ContactAdminCard extends StatelessWidget {
   const ContactAdminCard({
@@ -62,7 +62,7 @@ class ContactAdminCard extends StatelessWidget {
                   );
                   await launch(launchUri.toString());
                 } else {
-                   final Uri launchUri = Uri(
+                  final Uri launchUri = Uri(
                     scheme: 'mailto',
                     path: adminEmail,
                   );
