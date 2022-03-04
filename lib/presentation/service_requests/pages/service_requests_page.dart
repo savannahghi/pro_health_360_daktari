@@ -3,15 +3,14 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
 import 'package:healthcloud/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:healthcloud/domain/core/entities/service_requests/request_count_content.dart';
-
 // Project imports:
 import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
@@ -80,14 +79,14 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                     orElse: () => RequestCountContent.initial(),
                   )
                   .count;
-          final int? profileUpdateCount =
-              vm.pendingServiceRequests?.serviceRequestsCount
-                  ?.singleWhere(
-                    (RequestCountContent? element) =>
-                        element?.requestType == ServiceRequestType.PROFILE_UPDATE,
-                    orElse: () => RequestCountContent.initial(),
-                  )
-                  .count;
+          final int? profileUpdateCount = vm
+              .pendingServiceRequests?.serviceRequestsCount
+              ?.singleWhere(
+                (RequestCountContent? element) =>
+                    element?.requestType == ServiceRequestType.PROFILE_UPDATE,
+                orElse: () => RequestCountContent.initial(),
+              )
+              .count;
 
           return SingleChildScrollView(
             child: Column(
@@ -181,14 +180,21 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                         }
                       },
                       messageTitle: getNoDataTile(redFlagString.toLowerCase()),
-                      messageBody: serviceRequestsNoDataBodyString,
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: serviceRequestsNoDataBodyString,
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ],
                     )
                   }
                 } else ...<Widget>{
                   GenericNoDataWidget(
                     key: helpNoDataWidgetKey,
-                    recoverCallback: ()  async {
-                  final String facilityID =
+                    recoverCallback: () async {
+                      final String facilityID =
                           StoreProvider.state<AppState>(context)
                                   ?.staffState
                                   ?.defaultFacility ??
@@ -203,8 +209,14 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                         ),
                       );
                     },
-                    
-                    messageBody: getErrorMessage(fetchingPendingServiceString),
+                    messageBody: <TextSpan>[
+                      TextSpan(
+                        text: getErrorMessage(fetchingPendingServiceString),
+                        style: normalSize16Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ],
                   )
                 },
               ],

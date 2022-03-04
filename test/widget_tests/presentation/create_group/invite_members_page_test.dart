@@ -31,15 +31,6 @@ void main() {
       );
       const String testName = 'Sam Doe';
 
-      store.dispatch(
-        BatchUpdateMiscStateAction(
-          communityMembers: <Member>[
-            Member.initial().copyWith(name: testName),
-            Member.initial(),
-            Member.initial(),
-          ],
-        ),
-      );
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -69,6 +60,71 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
+    });
+
+    testWidgets('search renders correctly', (WidgetTester tester) async {
+      store.dispatch(
+        UpdateConnectivityAction(hasConnection: true),
+      );
+      const String testName = 'Sam Doe';
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const InviteMembersPage(
+          channelId: 'some-channel-id',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomTextField), findsOneWidget);
+
+      final Finder searchNameFinder = find.byType(CustomTextField);
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, testName);
+
+      await tester.tap(find.byType(IconButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MemberListItem), findsWidgets);
+
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, 'Martin Luther');
+
+      await tester.tap(find.byType(IconButton));
+      await tester.pumpAndSettle();
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
+
+      store.dispatch(
+        BatchUpdateMiscStateAction(
+          communityMembers: <Member>[],
+        ),
+      );
+
+      store.dispatch(
+        UpdateConnectivityAction(hasConnection: false),
+      );
+
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, 'Martin Luther');
+
+      await tester.tap(find.byType(IconButton));
+      await tester.pumpAndSettle();
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
+
+      await tester.pumpAndSettle();
+      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+
+      expect(genericNoDataButton, findsOneWidget);
+      await tester.ensureVisible(genericNoDataButton);
+      await tester.tap(genericNoDataButton);
+      await tester.pumpAndSettle();
+      expect(genericNoDataButton, findsOneWidget);
     });
 
     testWidgets(

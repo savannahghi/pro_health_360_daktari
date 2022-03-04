@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthcloud/application/core/theme/app_themes.dart';
 import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
@@ -99,7 +100,14 @@ class _ResolvedServiceRequestsPageState
                         },
                         messageTitle:
                             getNoDataTile(serviceRequestsText.toLowerCase()),
-                        messageBody: resolvedServiceRequestsNoDataBodyString,
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: resolvedServiceRequestsNoDataBodyString,
+                            style: normalSize16Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                        ],
                       )
                     } else
                       ...List<Widget>.generate(vm.serviceRequests?.length ?? 0,
@@ -155,8 +163,14 @@ class _ResolvedServiceRequestsPageState
                           ),
                         );
                       },
-                      messageBody:
-                          getErrorMessage(fetchingResolvedRequestsString),
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: getErrorMessage(fetchingResolvedRequestsString),
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ],
                     )
                   },
                 ],
