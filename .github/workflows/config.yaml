@@ -6,7 +6,7 @@ jobs:
     name: Publish myCareHub Professional Demo binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/rename-package-name'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -33,12 +33,15 @@ jobs:
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
+          GOOGLE_SERVICE_INFO_PLIST_FILE: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_FILE }}
         run: |
           touch .env
           echo $ENCODED_APP_ENV | base64 --decode > .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
+          touch Runner/GoogleService-Info.plist
+          echo $GOOGLE_SERVICE_INFO_PLIST_FILE > Runner/GoogleService-Info.plist
 
       - name: Code sign and build prod app
         env:
@@ -79,12 +82,15 @@ jobs:
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
+          GOOGLE_SERVICE_INFO_PLIST_FILE: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_FILE }}
         run: |
           touch .env
           echo $ENCODED_APP_ENV | base64 --decode > .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
+          touch Runner/GoogleService-Info.plist
+          echo $GOOGLE_SERVICE_INFO_PLIST_FILE > Runner/GoogleService-Info.plist
 
       - name: Code sign and build prod app
         env:

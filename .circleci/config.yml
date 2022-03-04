@@ -220,7 +220,6 @@ workflows:
            branches:
              only:
                - develop
-               - rename-package-name
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage
