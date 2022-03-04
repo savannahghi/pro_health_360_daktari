@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:myharehubpro/application/redux/states/onboarding/onboarding_state.dart';
 
 void main() {
   group('OnboardingState', () {

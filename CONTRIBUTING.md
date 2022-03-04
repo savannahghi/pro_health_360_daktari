@@ -199,7 +199,7 @@ This is a very short description of the change.
 #### Example of a good commit header
 
 ```dart
-docs: healthcloud commit message convention
+docs: myCareHub professional commit message convention
 ```
 
 ### Message body
@@ -228,7 +228,7 @@ Closes #392
 #### Example of a good commit message
 
 ```dart
-docs: add healthcloud convention to readme
+docs: add myCareHub professional convention to readme
 
 Couple of typos fixed:
 - indentation

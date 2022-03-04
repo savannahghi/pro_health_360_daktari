@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/client_details/pages/client_health_page.dart';
-import 'package:healthcloud/presentation/client_details/widgets/client_details_card_widget.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/client_details/pages/client_health_page.dart';
+import 'package:myharehubpro/presentation/client_details/widgets/client_details_card_widget.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {

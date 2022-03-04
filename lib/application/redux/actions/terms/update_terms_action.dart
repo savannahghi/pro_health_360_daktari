@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/terms/terms_and_conditions.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 
 class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
   UpdateTermsAndConditionsAction({

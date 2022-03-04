@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 // Project imports:
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/community_members/member.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/community_members/member.dart';
 
 /// [BatchUpdateMiscStateAction] is the ONLY action that should be called to update [miscState]
 /// with the exception of [IncrementUserVisitCountAction]

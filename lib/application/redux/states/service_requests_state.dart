@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/pending_service_requests.dart';
-import 'package:healthcloud/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:myharehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
+import 'package:myharehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
 part 'service_requests_state.freezed.dart';
 part 'service_requests_state.g.dart';
@@ -11,7 +11,7 @@ class ServiceRequestState with _$ServiceRequestState {
   factory ServiceRequestState({
     @JsonKey(name: 'getServiceRequests')
         List<ServiceRequestContent?>? serviceRequestContent,
-        @JsonKey(name: 'getPendingServiceRequestsCount')
+    @JsonKey(name: 'getPendingServiceRequestsCount')
         PendingServiceRequest? pendingServiceRequests,
     bool? errorFetchingServiceRequests,
   }) = _ServiceRequestState;

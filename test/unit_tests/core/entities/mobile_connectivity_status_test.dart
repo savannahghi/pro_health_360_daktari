@@ -2,8 +2,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:healthcloud/infrastructure/connectivity/mobile_connectivity_status.dart';
+import 'package:myharehubpro/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:myharehubpro/infrastructure/connectivity/mobile_connectivity_status.dart';
 
 import '../../../mocks/mocks.dart';
 

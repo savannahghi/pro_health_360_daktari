@@ -3,14 +3,14 @@ import 'dart:async';
 import 'dart:convert';
 
 // Project imports:
-import 'package:healthcloud/infrastructure/repository/database_base.dart';
-import 'package:healthcloud/infrastructure/repository/initialize_db.dart';
-import 'package:healthcloud/infrastructure/repository/sqlite.dart';
+import 'package:myharehubpro/infrastructure/repository/database_base.dart';
+import 'package:myharehubpro/infrastructure/repository/initialize_db.dart';
+import 'package:myharehubpro/infrastructure/repository/sqlite.dart';
 // Package imports:
 import 'package:sqflite/sqflite.dart';
 
 /// [MyCareHubProfessionalDatabaseMobile] is the main entry for interacting with the
-/// database for healthcloud mobile. It uses sqlite which is a common RDMS.
+/// database for mycarehubpro mobile. It uses sqlite which is a common RDMS.
 /// Unlike other key:value storage, sqlite offers high flexibility when
 /// storing structured data. The idea is to store, sessions,
 /// permissions(highly structured) and anything else that required persistence.

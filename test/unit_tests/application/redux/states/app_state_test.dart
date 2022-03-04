@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/staff_state.dart';
-import 'package:healthcloud/domain/core/entities/core/user.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/user.dart';
 
 import '../../../../mocks/mocks.dart';
 

@@ -1,10 +1,10 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/application/redux/states/onboarding/verify_phone_state.dart';
-import 'package:healthcloud/domain/core/entities/login/create_pin.dart';
-import 'package:healthcloud/domain/core/entities/login/phone_login_state.dart';
-import 'package:healthcloud/domain/core/entities/terms/terms_and_conditions.dart';
+import 'package:myharehubpro/application/redux/states/onboarding/verify_phone_state.dart';
+import 'package:myharehubpro/domain/core/entities/login/create_pin.dart';
+import 'package:myharehubpro/domain/core/entities/login/phone_login_state.dart';
+import 'package:myharehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';

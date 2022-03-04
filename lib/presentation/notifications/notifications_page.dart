@@ -3,10 +3,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:healthcloud/domain/core/entities/notification/notification_details.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:myharehubpro/domain/core/entities/notification/notification_details.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 
 class NotificationsPage extends StatelessWidget {
   final List<NotificationDetails> notifications;

@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/domain/core/value_objects/app_contexts.dart';
+import 'package:myharehubpro/application/core/services/helpers.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_contexts.dart';
 
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{

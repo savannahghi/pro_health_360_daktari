@@ -4,17 +4,17 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/set_nick_name_action.dart';
-import 'package:healthcloud/application/redux/actions/update_user_profile_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/staff_state_view_model.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/profile/widgets/edit_info_button_widget.dart';
-import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
-import 'package:healthcloud/presentation/profile/widgets/personal_information_widget.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/application/redux/actions/set_nick_name_action.dart';
+import 'package:myharehubpro/application/redux/actions/update_user_profile_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/view_models/staff_state_view_model.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/presentation/profile/widgets/edit_info_button_widget.dart';
+import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
+import 'package:myharehubpro/presentation/profile/widgets/personal_information_widget.dart';
 // Project imports:
 import 'package:shared_themes/spaces.dart';
 

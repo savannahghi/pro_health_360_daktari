@@ -1,5 +1,5 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
 
 class CreateGroupViewModel extends Vm {
   CreateGroupViewModel({required this.wait, this.hasConnection = false})

@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/misc_state.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/states/misc_state.dart';
 
 class MiscStateViewModel extends Vm {
   MiscStateViewModel({

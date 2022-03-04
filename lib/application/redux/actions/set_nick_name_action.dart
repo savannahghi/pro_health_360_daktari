@@ -7,13 +7,13 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:healthcloud/application/core/graphql/mutations.dart';
-import 'package:healthcloud/application/redux/actions/complete_onboarding_tour.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:myharehubpro/application/core/graphql/mutations.dart';
+import 'package:myharehubpro/application/redux/actions/complete_onboarding_tour.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/router/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 

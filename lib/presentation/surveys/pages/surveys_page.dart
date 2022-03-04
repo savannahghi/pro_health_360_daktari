@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 
 class SurveysPage extends StatelessWidget {
   const SurveysPage();

@@ -2,10 +2,10 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
-import 'package:healthcloud/presentation/client_details/widgets/client_details_card_widget.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/service_requests/pages/profile_update_requests_page.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/client_details/widgets/client_details_card_widget.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {

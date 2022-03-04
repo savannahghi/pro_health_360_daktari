@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:healthcloud/application/redux/states/misc_state.dart';
+import 'package:myharehubpro/application/redux/states/misc_state.dart';
 import '../../../../mocks/mocks.dart';
 
 void main() {

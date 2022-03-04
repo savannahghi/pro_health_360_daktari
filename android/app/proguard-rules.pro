@@ -1,1 +1,1 @@
--keep class com.savannah.healthcloud.BuildConfig { *; }
+-keep class com.savannah.mycarehubpro.BuildConfig { *; }

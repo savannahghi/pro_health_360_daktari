@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/entities/community_members/member.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:myharehubpro/domain/core/entities/community_members/member.dart';
+import 'package:myharehubpro/presentation/router/routes.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';

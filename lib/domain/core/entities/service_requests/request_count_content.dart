@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:healthcloud/domain/core/value_objects/app_enums.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 
 part 'request_count_content.freezed.dart';
 part 'request_count_content.g.dart';

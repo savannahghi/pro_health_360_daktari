@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:healthcloud/presentation/communities/thread_page.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:myharehubpro/presentation/communities/thread_page.dart';
+import 'package:myharehubpro/presentation/router/routes.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/profile/widgets/edit_information_item.dart';
-import 'package:healthcloud/presentation/router/routes.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
+import 'package:myharehubpro/presentation/router/routes.dart';
 
 class EditInformationButtonWidget extends StatelessWidget {
   ///[EditInformationButtonWidget] used to edit information in user profile

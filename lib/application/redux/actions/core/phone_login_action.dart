@@ -10,19 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
-import 'package:healthcloud/application/core/services/helpers.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/redux/actions/core/update_credentials_action.dart';
-import 'package:healthcloud/application/redux/actions/core/update_staff_profile_action.dart';
-import 'package:healthcloud/application/redux/actions/core/update_user_action.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:healthcloud/domain/core/entities/core/auth_credentials.dart';
-import 'package:healthcloud/domain/core/entities/core/user.dart';
-import 'package:healthcloud/domain/core/entities/login/phone_login_response.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/application/core/services/helpers.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:myharehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:myharehubpro/application/redux/actions/core/update_staff_profile_action.dart';
+import 'package:myharehubpro/application/redux/actions/core/update_user_action.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:myharehubpro/domain/core/entities/core/user.dart';
+import 'package:myharehubpro/domain/core/entities/login/phone_login_response.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone

@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/domain/core/entities/login/phone_login_state.dart';
+import 'package:myharehubpro/domain/core/entities/login/phone_login_state.dart';
 
 import '../../../../mocks/mocks.dart';
 

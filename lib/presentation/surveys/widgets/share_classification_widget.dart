@@ -3,9 +3,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 
 class ShareClassificationWidget extends StatelessWidget {

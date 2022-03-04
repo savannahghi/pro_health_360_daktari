@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:healthcloud/domain/core/value_objects/app_asset_strings.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 
 class SurveyLinkInputWidget extends StatelessWidget {
   const SurveyLinkInputWidget({

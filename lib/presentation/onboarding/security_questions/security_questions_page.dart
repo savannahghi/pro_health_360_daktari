@@ -1,17 +1,17 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/services/utils.dart';
-import 'package:healthcloud/application/core/theme/app_themes.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:healthcloud/application/redux/actions/security_questions/get_security_questions_action.dart';
-import 'package:healthcloud/application/redux/actions/security_questions/record_security_question_responses_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/app_state_view_model.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
-import 'package:healthcloud/presentation/onboarding/security_questions/security_question_widget.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:myharehubpro/application/redux/actions/security_questions/get_security_questions_action.dart';
+import 'package:myharehubpro/application/redux/actions/security_questions/record_security_question_responses_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
+import 'package:myharehubpro/presentation/onboarding/security_questions/security_question_widget.dart';
 // Project imports:
 
 class SecurityQuestionsPage extends StatefulWidget {

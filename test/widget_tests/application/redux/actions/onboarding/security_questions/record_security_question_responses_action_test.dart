@@ -7,9 +7,9 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:healthcloud/application/redux/actions/security_questions/record_security_question_responses_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:myharehubpro/application/redux/actions/security_questions/record_security_question_responses_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../../mocks/mocks.dart';

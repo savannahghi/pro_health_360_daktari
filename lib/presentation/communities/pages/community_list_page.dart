@@ -1,17 +1,17 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcloud/application/core/services/custom_client.dart';
-import 'package:healthcloud/application/redux/actions/core/connect_get_stream_user_action.dart';
-import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
-import 'package:healthcloud/presentation/communities/channel_page.dart';
-import 'package:healthcloud/presentation/communities/community_list_view_model.dart';
-import 'package:healthcloud/presentation/communities/community_utils.dart';
-import 'package:healthcloud/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:healthcloud/presentation/core/bottom_nav/bottom_nav_bar.dart';
-import 'package:healthcloud/presentation/core/widgets/platform_loader.dart';
+import 'package:myharehubpro/application/core/services/custom_client.dart';
+import 'package:myharehubpro/application/redux/actions/core/connect_get_stream_user_action.dart';
+import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:myharehubpro/presentation/communities/channel_page.dart';
+import 'package:myharehubpro/presentation/communities/community_list_view_model.dart';
+import 'package:myharehubpro/presentation/communities/community_utils.dart';
+import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {

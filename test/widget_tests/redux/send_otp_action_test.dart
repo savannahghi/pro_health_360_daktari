@@ -4,9 +4,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthcloud/application/redux/actions/onboarding/send_otp_action.dart';
-import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/domain/core/entities/core/contact.dart';
+import 'package:myharehubpro/application/redux/actions/onboarding/send_otp_action.dart';
+import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/entities/core/contact.dart';
 import 'package:http/http.dart';
 
 import '../../mocks/mocks.dart';
