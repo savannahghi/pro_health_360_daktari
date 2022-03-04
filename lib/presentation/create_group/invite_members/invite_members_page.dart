@@ -7,7 +7,7 @@ import 'package:healthcloud/application/redux/actions/flags/app_flags.dart';
 import 'package:healthcloud/application/redux/actions/invite_members/fetch_members_action.dart';
 import 'package:healthcloud/application/redux/actions/invite_members/invite_members_action.dart';
 import 'package:healthcloud/application/redux/states/app_state.dart';
-import 'package:healthcloud/application/redux/view_models/misc_state_view_model.dart';
+import 'package:healthcloud/application/redux/view_models/invite_members/invite_members_view_model.dart';
 import 'package:healthcloud/domain/core/entities/community_members/member.dart';
 import 'package:healthcloud/domain/core/value_objects/app_strings.dart';
 import 'package:healthcloud/domain/core/value_objects/app_widget_keys.dart';
@@ -29,16 +29,35 @@ class InviteMembersPage extends StatefulWidget {
 }
 
 class _InviteMembersPageState extends State<InviteMembersPage> {
+  final TextEditingController searchController = TextEditingController();
   List<String> inviteMemberIds = <String>[];
+  bool isSearching = false;
+  String memberSearchName = '';
+
   @override
   void initState() {
     super.initState();
+    searchController.addListener(() async {
+      if (searchController.text.isEmpty) {
+        setState(() {
+          isSearching = false;
+          memberSearchName = '';
+        });
+      } else {
+        setState(() {
+          isSearching = true;
+          memberSearchName = searchController.text;
+        });
+      }
+    });
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       StoreProvider.dispatch(
         context,
         FetchMembersAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
+          isSearching: isSearching,
+          memberSearchName: memberSearchName,
           onFailure: (String message) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
@@ -69,10 +88,10 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
         title: inviteMembersTitle,
         showShadow: false,
       ),
-      body: StoreConnector<AppState, MiscStateViewModel>(
+      body: StoreConnector<AppState, InviteMembersViewModel>(
         converter: (Store<AppState> store) =>
-            MiscStateViewModel.fromStore(store),
-        builder: (BuildContext context, MiscStateViewModel vm) {
+            InviteMembersViewModel.fromStore(store),
+        builder: (BuildContext context, InviteMembersViewModel vm) {
           if (vm.wait.isWaitingFor(fetchMembersFlag)) {
             return Container(
               height: 300,
@@ -80,8 +99,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
               child: const PlatformLoader(),
             );
           } else {
-            final List<Member> communityMembers =
-                vm.state?.communityMembers ?? <Member>[];
+            final List<Member> communityMembers = vm.membersList;
 
             if (communityMembers.isNotEmpty) {
               return Column(
@@ -103,8 +121,46 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                                 ),
                                 mediumVerticalSizedBox,
                                 CustomTextField(
+                                  controller: searchController,
                                   hintText: searchMembersString,
-                                  prefixIcon: const Icon(Icons.search),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.only(
+                                      right: 4.0,
+                                    ),
+                                    child: IconButton(
+                                      onPressed: () {
+                                        StoreProvider.dispatch(
+                                          context,
+                                          FetchMembersAction(
+                                            client: AppWrapperBase.of(context)!
+                                                .graphQLClient,
+                                            isSearching: isSearching,
+                                            memberSearchName: memberSearchName,
+                                            onFailure: (String message) {
+                                              ScaffoldMessenger.of(context)
+                                                ..hideCurrentSnackBar()
+                                                ..showSnackBar(
+                                                  SnackBar(
+                                                    content: const Text(
+                                                      connectionLostText,
+                                                    ),
+                                                    duration: const Duration(
+                                                      seconds: 5,
+                                                    ),
+                                                    action: dismissSnackBar(
+                                                      closeString,
+                                                      Colors.white,
+                                                      context,
+                                                    ),
+                                                  ),
+                                                );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                      icon: const Icon(Icons.search),
+                                    ),
+                                  ),
                                   borderColor: Colors.white,
                                   customFillColor: AppColors.galleryColor,
                                   onChanged: (String val) {},
@@ -229,11 +285,14 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
             } else {
               return GenericNoDataWidget(
                 key: helpNoDataWidgetKey,
+                actionText: isSearching ? actionTextGenericNoData : retryString,
                 recoverCallback: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
                     FetchMembersAction(
                       client: AppWrapperBase.of(context)!.graphQLClient,
+                      isSearching: false,
+                      memberSearchName: memberSearchName,
                       onFailure: (String message) {
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
@@ -254,8 +313,10 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                     ),
                   );
                 },
-                messageTitle: getNoDataTile(availableMembersText),
-                messageBody: noAvailableMemberDescription,
+                messageTitle: isSearching
+                    ? noRecordFoundText
+                    : getNoDataTile(availableMembersText),
+                messageBody: isSearching ? '' : noAvailableMemberDescription,
               );
             }
           }

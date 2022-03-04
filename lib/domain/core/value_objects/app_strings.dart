@@ -386,6 +386,7 @@ const String availableMembersText = 'available members';
 const String noAvailableMemberDescription =
     'Please try again or contact support';
 const String inviteMembersSuccessfulText = 'Members invited successfully';
+const String noRecordFoundText = 'No record found';
 
 // group info
 const String groupInfoText = 'Group Info';
