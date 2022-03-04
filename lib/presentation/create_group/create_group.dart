@@ -330,7 +330,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         onSuccess: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text(registerClientSuccess),
+              content: Text(registerGroupSuccess),
               duration: Duration(seconds: 5),
             ),
           );
