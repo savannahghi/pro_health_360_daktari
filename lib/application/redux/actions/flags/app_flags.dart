@@ -27,7 +27,8 @@ const String createPinFlag = 'create_pin_flag';
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 //Service requests
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
-const String fetchServiceRequestsCountFlag = 'fetch_service_requests_count_flag';
+const String fetchServiceRequestsCountFlag =
+    'fetch_service_requests_count_flag';
 
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';
@@ -36,3 +37,6 @@ const String editInformationFlag = 'edit_information_flag';
 // invite members page
 const String inviteMembersFlag = 'invite_members_flag';
 const String fetchMembersFlag = 'fetch_members_flag';
+
+// community list page
+const String connectionFlag = 'connection_flag';

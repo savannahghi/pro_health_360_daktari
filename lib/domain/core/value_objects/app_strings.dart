@@ -397,3 +397,5 @@ const String inviteMembers = 'Invite Members';
 const String datePickerFormat = 'dd MMM, yyyy';
 
 const String defaultStreamUserID = 'myCareHub';
+
+const String kindlyLogOutText = 'Kindly log out and back in to continue';
