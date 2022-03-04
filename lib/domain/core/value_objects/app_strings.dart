@@ -192,6 +192,7 @@ const String clientTypes = 'Client Types';
 const String createGroup = 'Create group';
 const String ageGroup = 'Age group';
 const String groupDescription = 'Group description';
+const String registerGroupSuccess = 'Successfully registered client';
 
 // new broadcast page
 const String newBroadcastText = 'New Broadcast';
