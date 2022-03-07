@@ -19,8 +19,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 
 class ForgotPinPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _phoneNumberInputController =
-      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,21 +64,21 @@ class ForgotPinPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: MyAfyaHubPhoneInput(
-                  backgroundColor: Colors.white,
                   phoneNumberFormatter: formatPhoneNumber,
-                  inputController: _phoneNumberInputController,
-                  labelText: phoneNumberInputLabelText,
-                  labelStyle: boldSize16Text(),
-                  onChanged: (String? value) {},
-                  suffixIcon: Positioned(
-                    right: 12,
-                    height: 20,
-                    width: 20,
-                    child: SvgPicture.asset(
-                      alertCircleIcon,
-                      color: Colors.grey,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    labelText: phoneNumberInputLabelText,
+                    labelStyle: boldSize16Text(),
+                    border: InputBorder.none,
+                    fillColor: Colors.transparent,
+                    contentPadding: const EdgeInsets.fromLTRB(
+                      15,
+                      0,
+                      15,
+                      15,
                     ),
                   ),
+                  onChanged: (String? value) {},
                 ),
               ),
               mediumVerticalSizedBox,

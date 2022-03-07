@@ -9,7 +9,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/onboarding/create_pin_view_model.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN

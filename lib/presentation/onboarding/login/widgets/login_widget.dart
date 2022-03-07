@@ -16,7 +16,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/app_state_view_model.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
@@ -30,8 +29,6 @@ class LoginWidget extends StatefulWidget {
 class LoginWidgetState extends State<LoginWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _phoneNumber;
-  final TextEditingController _phoneNumberInputController =
-      TextEditingController();
 
   String? _pinCode;
 
@@ -93,32 +90,34 @@ class LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
               verySmallVerticalSizedBox,
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(8),
+              MyAfyaHubPhoneInput(
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: AppColors.lightGreyBackgroundColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  ),
                 ),
-                child: MyAfyaHubPhoneInput(
-                  backgroundColor: AppColors.lightGreyBackgroundColor,
-                  phoneNumberFormatter: formatPhoneNumber,
-                  inputController: _phoneNumberInputController,
-                  labelText: phoneNumberInputLabelText,
-                  labelStyle: boldSize16Text(),
-                  onChanged: (String? value) {
-                    if (vm.state.onboardingState!.phoneLogin!
-                            .invalidCredentials! ||
-                        vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!) {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        UpdateOnboardingStateAction(
-                          invalidCredentials: false,
-                          unKnownPhoneNo: false,
-                        ),
-                      );
-                    }
-                    _phoneNumber = value;
-                  },
-                ),
+                phoneNumberFormatter: formatPhoneNumber,
+                onChanged: (String? value) {
+                  if (vm.state.onboardingState!.phoneLogin!
+                          .invalidCredentials! ||
+                      vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!) {
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      UpdateOnboardingStateAction(
+                        invalidCredentials: false,
+                        unKnownPhoneNo: false,
+                      ),
+                    );
+                  }
+                  _phoneNumber = value;
+                },
               ),
 
               largeVerticalSizedBox,

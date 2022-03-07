@@ -15,7 +15,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/patient/register_client_form_manager.dart';
 import 'package:myharehubpro/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:myharehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
@@ -282,18 +281,26 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                           BuildContext context,
                           AsyncSnapshot<String> snapshot,
                         ) {
-                          return PatientDetailsTextFormField(
-                            textFieldKey: phoneNumberFieldKey,
-                            label: phoneNoLabel,
-                            onChanged: (String value) {
-                              _formManager.inPhoneNumber.add(value);
-                            },
-                            validator: (String? value) {
-                              if (snapshot.hasError) {
-                                return (snapshot.error! as UserException).msg;
+                          return MyAfyaHubPhoneInput(
+                            textFormFieldKey: patientNumberField,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              contentPadding: const EdgeInsets.all(8.0),
+                            ),
+                            style:
+                                const TextStyle(color: AppColors.greyTextColor),
+                            onChanged: (String? value) {
+                              if (value != null) {
+                                _formManager.inPhoneNumber.add(value);
                               }
-                              return null;
                             },
+                            phoneNumberFormatter: formatPhoneNumber,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           );
                         },
                       ),

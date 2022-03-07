@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'package:myharehubpro/presentation/communities/community_list_view_model.
 import 'package:myharehubpro/presentation/communities/community_utils.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {

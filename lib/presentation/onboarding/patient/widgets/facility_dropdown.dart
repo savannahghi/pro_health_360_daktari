@@ -12,7 +12,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/register_client/fetch_facilities_view_model.dart';
 import 'package:myharehubpro/domain/core/entities/core/facility.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 
 class FacilityDropdown extends StatefulWidget {
   const FacilityDropdown({

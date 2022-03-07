@@ -12,7 +12,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/community_members/member.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:myharehubpro/presentation/create_group/invite_members/widgets/member_list_item.dart';
 import 'package:http/http.dart';

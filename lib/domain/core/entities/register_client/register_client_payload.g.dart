@@ -55,5 +55,6 @@ const _$ClientTypeEnumMap = {
 const _$GenderEnumMap = {
   Gender.male: 'male',
   Gender.female: 'female',
+  Gender.other: 'other',
   Gender.unknown: 'unknown',
 };

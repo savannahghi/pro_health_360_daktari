@@ -7,7 +7,6 @@ import 'package:myharehubpro/application/redux/actions/onboarding/send_otp_actio
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/onboarding/verify_phone_view_model.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myharehubpro/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:shared_themes/spaces.dart';

@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'dart:io';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
@@ -10,7 +11,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:myharehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 
