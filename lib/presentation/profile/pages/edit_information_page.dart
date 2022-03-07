@@ -11,7 +11,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';

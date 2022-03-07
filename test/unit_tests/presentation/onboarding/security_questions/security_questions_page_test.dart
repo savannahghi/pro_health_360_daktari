@@ -15,7 +15,6 @@ import 'package:myharehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:myharehubpro/application/redux/actions/update_user_profile_action.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:myharehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:http/http.dart' as http;

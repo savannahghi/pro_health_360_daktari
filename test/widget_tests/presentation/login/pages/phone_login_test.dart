@@ -12,7 +12,6 @@ import 'package:myharehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:myharehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myharehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';

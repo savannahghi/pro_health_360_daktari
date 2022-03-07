@@ -7,7 +7,6 @@ import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/actions/terms/update_terms_action.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 
 import '../../../../mocks/mocks.dart';

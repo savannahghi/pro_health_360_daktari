@@ -11,7 +11,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/faq_detail_view_page.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:myharehubpro/presentation/profile/faqs/widgets/faq_item.dart';
