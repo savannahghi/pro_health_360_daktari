@@ -76,7 +76,7 @@ void main() {
       await tester.tap(find.text('Male').last);
       await tester.pumpAndSettle();
 
-      final Finder phoneNumberFieldFinder = find.byKey(phoneNumberFieldKey);
+      final Finder phoneNumberFieldFinder = find.byKey(patientNumberField);
       expect(phoneNumberFieldFinder, findsOneWidget);
       await tester.tap(phoneNumberFieldFinder);
       await tester.enterText(phoneNumberFieldFinder, '+254798363893');
@@ -174,7 +174,7 @@ void main() {
       await tester.tap(find.text('Male').last);
       await tester.pumpAndSettle();
 
-      final Finder phoneNumberFieldFinder = find.byKey(phoneNumberFieldKey);
+      final Finder phoneNumberFieldFinder = find.byKey(patientNumberField);
       expect(phoneNumberFieldFinder, findsOneWidget);
       await tester.tap(phoneNumberFieldFinder);
       await tester.enterText(phoneNumberFieldFinder, '+254798363893');
@@ -280,7 +280,7 @@ void main() {
       expect(find.text(fieldCannotBeEmptyText), findsOneWidget);
     });
 
-    testWidgets('phonenumber field should show error',
+    testWidgets('phone number field should show error',
         (WidgetTester tester) async {
       await buildTestWidget(
         store: store,
@@ -289,14 +289,14 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      final Finder phoneNumberFieldFinder = find.byKey(phoneNumberFieldKey);
+      final Finder phoneNumberFieldFinder = find.byKey(patientNumberField);
       expect(phoneNumberFieldFinder, findsOneWidget);
       await tester.enterText(phoneNumberFieldFinder, '+254798363893');
 
       await tester.enterText(phoneNumberFieldFinder, '');
       await tester.pump();
 
-      expect(find.text('Invalid phone number'), findsOneWidget);
+      expect(find.text('Phone number is required'), findsOneWidget);
     });
   });
 }

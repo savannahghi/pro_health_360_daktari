@@ -10,7 +10,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/core/contact.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:myharehubpro/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myharehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';

@@ -10,7 +10,6 @@ import 'package:myharehubpro/application/redux/actions/security_questions/record
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/app_state_view_model.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:myharehubpro/presentation/onboarding/security_questions/security_question_widget.dart';
 // Project imports:
 

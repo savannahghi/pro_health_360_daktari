@@ -11,7 +11,6 @@ import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_models/onboarding/set_nickname_view_model.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SetNickNamePage extends StatefulWidget {

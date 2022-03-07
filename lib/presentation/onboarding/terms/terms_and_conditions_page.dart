@@ -13,7 +13,6 @@ import 'package:myharehubpro/application/redux/view_models/terms/terms_view_mode
 import 'package:myharehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/widgets/platform_loader.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:unicons/unicons.dart';
 
