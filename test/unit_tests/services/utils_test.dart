@@ -6,6 +6,8 @@ import 'package:afya_moja_core/src/domain/core/entities/onboarding_path_config.d
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
 import 'package:myharehubpro/application/core/services/utils.dart';
 import 'package:myharehubpro/application/redux/actions/core/update_credentials_action.dart';
@@ -16,8 +18,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/infrastructure/endpoints.dart';
 import 'package:myharehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
-import 'package:http/http.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import '../../mocks/mocks.dart';
 import '../../mocks/test_helpers.dart';
@@ -81,6 +81,18 @@ void main() {
 
       final OnboardingPathConfig path = getOnboardingPath(state: store.state);
       expect(path.route, AppRoutes.setPinPage);
+    });
+
+    test('should return initial route', () async {
+      expect(getInitialRoute(0, AppRoutes.loginPage), AppRoutes.loginPage);
+      expect(
+        getInitialRoute(1, AppRoutes.communityPage),
+        AppRoutes.communityPage,
+      );
+      expect(
+        getInitialRoute(2, AppRoutes.notificationsPage),
+        AppRoutes.notificationsPage,
+      );
     });
 
     test('should return set nickname page', () async {
