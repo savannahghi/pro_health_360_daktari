@@ -94,6 +94,8 @@ const String errorPageImageSvgPath = 'assets/images/error_page_image.svg';
 const String noDataImageSvgPath = 'assets/images/no_data_image.svg';
 const String errorPageImage = 'assets/images/error_page_image.svg';
 const String searchNotFoundImage = 'assets/images/search_not_found.svg';
+const String noNotificationsImageSvgPath =
+    'assets/images/notifications_zero_state_image.svg';
 
 //contact admin
 const String contactAdminSvg = 'assets/images/contact_admin.svg';

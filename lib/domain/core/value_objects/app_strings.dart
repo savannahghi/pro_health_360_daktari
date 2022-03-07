@@ -155,6 +155,9 @@ const String confirmString = 'Confirm';
 // Notifications
 const String notificationsText = 'Notifications';
 const String customDate = 'July 12 2021';
+const String noNotificationsTitle = 'You have no notifications';
+const String noNotificationsDescription =
+    'You have no notifications at this time. We will notify you when we have more';
 
 // Add patient page
 const String CCCNumberLabel = 'CCC Number *';
