@@ -92,7 +92,8 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
         converter: (Store<AppState> store) =>
             InviteMembersViewModel.fromStore(store),
         builder: (BuildContext context, InviteMembersViewModel vm) {
-          if (vm.wait.isWaitingFor(fetchMembersFlag)) {
+          if (vm.wait.isWaitingFor(fetchMembersFlag) ||
+              vm.wait.isWaitingFor(inviteMembersFlag)) {
             return Container(
               height: 300,
               padding: const EdgeInsets.all(20),
@@ -215,9 +216,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                                           communityMembers[index].name ??
                                               UNKNOWN;
                                       final String memberUserId =
-                                          communityMembers[index]
-                                                  .userID
-                                                  ?.trim() ??
+                                          communityMembers[index].id?.trim() ??
                                               '';
                                       return GestureDetector(
                                         child: MemberListItem(
@@ -306,7 +305,8 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                       ),
                     ),
                   ),
-                  if (communityMembers.isNotEmpty)
+                  if (communityMembers.isNotEmpty &&
+                      !vm.wait.isWaitingFor(inviteMembersFlag))
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
