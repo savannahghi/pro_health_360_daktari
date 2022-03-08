@@ -44,6 +44,9 @@ void main() {
       when(mockStreamChatClient.connectUserWithProvider(any, any))
           .thenAnswer((_) => Future<OwnUser>.value(OwnUser(id: 'id')));
 
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       storeTester.dispatch(
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
@@ -113,6 +116,9 @@ void main() {
         ),
       );
 
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       storeTester.dispatch(
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
@@ -150,6 +156,9 @@ void main() {
         ),
       );
 
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       storeTester.dispatch(
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
@@ -183,6 +192,9 @@ void main() {
       when(mockStreamChatClient.connectUserWithProvider(any, any)).thenThrow(
         MyAfyaException(cause: 'random error', message: 'message'),
       );
+
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
 
       storeTester.dispatch(
         ConnectGetStreamUserAction(

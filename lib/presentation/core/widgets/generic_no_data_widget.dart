@@ -53,7 +53,7 @@ class GenericNoDataWidget extends StatelessWidget {
   final String? messageTitle;
 
   /// [recoverCallback] the function to be called to recover from the error. Default to [null]
-  final Function recoverCallback;
+  final VoidCallback? recoverCallback;
 
   /// [type] the type of error. Defaults to [noData]
   final GenericNoDataTypes type;
@@ -113,7 +113,7 @@ class GenericNoDataWidget extends StatelessWidget {
                           buttonKey: genericNoDataButtonKey,
                           buttonColor: Theme.of(context).primaryColor,
                           textColor: Colors.white,
-                          onPressed: this.recoverCallback as void Function()?,
+                          onPressed: recoverCallback,
                           text: actionText,
                         ),
                       ),

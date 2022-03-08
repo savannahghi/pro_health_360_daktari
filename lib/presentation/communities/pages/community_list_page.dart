@@ -6,12 +6,14 @@ import 'package:myharehubpro/application/core/services/custom_client.dart';
 import 'package:myharehubpro/application/redux/actions/core/connect_get_stream_user_action.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/presentation/communities/channel_page.dart';
 import 'package:myharehubpro/presentation/communities/community_list_view_model.dart';
 import 'package:myharehubpro/presentation/communities/community_utils.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {
@@ -24,6 +26,9 @@ class CommunityListPage extends StatefulWidget {
 class _CommunityListPageState extends State<CommunityListPage> {
   late String clientId;
   late stream.StreamChatClient streamChatClient;
+
+  final stream.ChannelListController channelListController =
+      stream.ChannelListController();
 
   @override
   void initState() {
@@ -80,6 +85,21 @@ class _CommunityListPageState extends State<CommunityListPage> {
             client: stream.StreamChat.of(context).client,
             child: stream.ChannelsBloc(
               child: stream.ChannelListView(
+                channelListController: channelListController,
+                errorBuilder: (BuildContext context, Object error) {
+                  return GenericNoDataWidget(
+                    messageTitle: emptyConversationTitle,
+                    messageBody: const <TextSpan>[
+                      TextSpan(
+                        text: emptyConversationBody,
+                      )
+                    ],
+                    headerIconSvgUrl: emptyChatsSvg,
+                    recoverCallback: () {
+                      channelListController.loadData!();
+                    },
+                  );
+                },
                 filter: stream.Filter.in_(
                   'members',
                   <String>[stream.StreamChat.of(context).currentUser?.id ?? ''],
