@@ -408,3 +408,10 @@ const String datePickerFormat = 'dd MMM, yyyy';
 const String defaultStreamUserID = 'myCareHub';
 
 const String kindlyLogOutText = 'Kindly log out and back in to continue';
+String getGroupMembersNumber(int numberOfMembers) {
+  return '$numberOfMembers members';
+}
+
+const String actionsText = 'Actions';
+const String promoteToAdminText = 'Promote to admin';
+const String removeFromGroupText = 'Remove from group';

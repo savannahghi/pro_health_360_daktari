@@ -5,6 +5,7 @@ import 'package:myharehubpro/domain/core/entities/notification/notification_deta
 // Project imports:
 import 'package:myharehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:myharehubpro/presentation/communities/pages/community_list_page.dart';
+import 'package:myharehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:myharehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:myharehubpro/presentation/create_group/create_group.dart';
 import 'package:myharehubpro/presentation/create_group/invite_members/invite_members_page.dart';
@@ -197,6 +198,11 @@ class RouteGenerator {
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
           builder: (_) => const ResolvedServiceRequestsPage(),
+        );
+
+      case AppRoutes.groupInfoPage:
+        return MaterialPageRoute<GroupInfoPage>(
+          builder: (_) => GroupInfoPage(channelId: args as String),
         );
     }
   }
