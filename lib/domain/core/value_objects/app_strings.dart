@@ -54,11 +54,11 @@ const String reportSpamText = 'Report spam';
 const String cancelText = '';
 
 //Community Page
-const String conversationsChatScreenPageTitle = 'Ruaka Questions Group';
-const String typeYourMessageHereString = 'Type your message here';
-const String approveText = 'Approve';
-const String rejectText = 'Reject';
 const String conversationsTitle = 'Conversations';
+const String emptyConversationTitle =
+    'Oops! We are unable to load your conversations';
+const String emptyConversationBody =
+    'Relax and enjoy a cup of coffee as we get your conversations up and running.';
 
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';

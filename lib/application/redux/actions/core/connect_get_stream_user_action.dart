@@ -41,6 +41,11 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
       throw const UserException(kindlyLogOutText);
     }
 
+    if (streamClient.wsConnectionStatus == stream.ConnectionStatus.connected ||
+        streamClient.wsConnectionStatus == stream.ConnectionStatus.connecting) {
+      return null;
+    }
+
     try {
       final StreamTokenProvider streamTokenProvider =
           StreamTokenProvider(client: client, endpoint: endpoint);
@@ -56,16 +61,10 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
         case stream.ChatErrorCode.tokenBeforeIssuedAt:
         case stream.ChatErrorCode.tokenNotValid:
         case stream.ChatErrorCode.tokenSignatureInvalid:
-          Sentry.captureException(
-            e,
-            hint: e.message,
-          );
+          Sentry.captureException(e, hint: e.message);
           throw UserException(getErrorMessage());
         default:
-          Sentry.captureException(
-            e,
-            hint: e.message,
-          );
+          Sentry.captureException(e, hint: e.message);
       }
     } catch (e) {
       Sentry.captureException(e);

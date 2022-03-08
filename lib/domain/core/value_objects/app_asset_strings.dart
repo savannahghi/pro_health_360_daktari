@@ -105,6 +105,9 @@ const String resolvedServiceRequestsImageSvgPath =
     'assets/images/solved_service_request_icon.svg';
 const String groupInfoImage = 'assets/images/group_info.svg';
 
+// Communities
+const String emptyChatsSvg = 'assets/images/empty_chats.svg';
+
 // Bottom nav icon paths
 const String homeIconSvgPath = 'assets/icons/home_icon.svg';
 const String communityIconSvgPath = 'assets/icons/community_icon.svg';
