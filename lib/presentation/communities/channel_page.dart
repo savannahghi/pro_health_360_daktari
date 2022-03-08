@@ -33,7 +33,7 @@ class ChannelPage extends StatelessWidget {
         actions: <Widget>[
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed(
-              AppRoutes.inviteMembersPage,
+              AppRoutes.groupInfoPage,
               arguments: StreamChannel.of(context).channel.id,
             ),
             child: Padding(

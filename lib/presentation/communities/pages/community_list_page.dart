@@ -70,7 +70,6 @@ class _CommunityListPageState extends State<CommunityListPage> {
       appBar: const CustomAppBar(
         showBackButton: false,
         title: conversationsTitle,
-        showNotificationIcon: true,
       ),
       body: StoreConnector<AppState, CommunityListViewModel>(
         converter: (Store<AppState> store) {

@@ -111,6 +111,10 @@ const Key closeEditInformationPageBtnKey =
 // group info
 const Key inviteMembersButtonKey = Key('invite_members_button_key');
 
+// member actions
+const Key promoteButtonKey = Key('promote_button_key');
+const Key removeButtonKey = Key('remove_button_key');
+
 const Key iosLoaderThemeKey = Key('InboxCupertinoThemeKey');
 
 // bottom nav

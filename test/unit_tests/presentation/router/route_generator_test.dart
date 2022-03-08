@@ -8,6 +8,7 @@ import 'package:myharehubpro/domain/core/entities/notification/notification_deta
 // Project imports:
 import 'package:myharehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:myharehubpro/presentation/communities/pages/community_list_page.dart';
+import 'package:myharehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:myharehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:myharehubpro/presentation/create_group/create_group.dart';
 import 'package:myharehubpro/presentation/create_group/invite_members/invite_members_page.dart';
@@ -300,5 +301,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsPage>>());
     expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
+  });
+
+  test('Test router returns successful group info page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.groupInfoPage, arguments: '');
+
+    final MaterialPageRoute<GroupInfoPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;
+
+    expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
+    expect(route?.builder(context), isA<GroupInfoPage>());
   });
 }
