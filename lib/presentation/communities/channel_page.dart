@@ -4,15 +4,23 @@ import 'package:myharehubpro/presentation/router/routes.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {
-  const ChannelPage({
-    Key? key,
-  }) : super(key: key);
+  const ChannelPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Channel channel = StreamChannel.of(context).channel;
+    String channelName = 'No title';
+
+    if (channel.extraData.containsKey('Name')) {
+      channelName = channel.extraData['Name']! as String;
+    }
+
     return Scaffold(
       appBar: ChannelHeader(
-        title: const ChannelName(),
+        title: Text(
+          channelName,
+          overflow: TextOverflow.ellipsis,
+        ),
         showConnectionStateTile: true,
         actions: <Widget>[
           PopupMenuButton<ChannelOptions>(

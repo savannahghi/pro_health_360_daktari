@@ -11,6 +11,13 @@ Widget channelPreviewBuilder(BuildContext context, Channel channel) {
 
   final String subtitle =
       lastMessage == null ? 'nothing yet' : lastMessage.text!;
+
+  String channelName = 'No title';
+
+  if (channel.extraData.containsKey('Name')) {
+    channelName = channel.extraData['Name']! as String;
+  }
+
   final double opacity = (channel.state?.unreadCount ?? 0) > 0 ? 1.0 : 0.5;
 
   final StreamChatThemeData theme = StreamChatTheme.of(context);
@@ -28,8 +35,9 @@ Widget channelPreviewBuilder(BuildContext context, Channel channel) {
       );
     },
     leading: ChannelAvatar(channel: channel),
-    title: ChannelName(
-      textStyle: theme.channelPreviewTheme.titleStyle?.copyWith(
+    title: Text(
+      channelName,
+      style: theme.channelPreviewTheme.titleStyle?.copyWith(
         color: theme.colorTheme.textHighEmphasis.withOpacity(opacity),
       ),
     ),
