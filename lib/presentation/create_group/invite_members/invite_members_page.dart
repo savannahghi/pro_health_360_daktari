@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myharehubpro/application/core/services/helpers.dart';
 import 'package:myharehubpro/application/core/theme/app_themes.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/actions/invite_members/fetch_members_action.dart';
@@ -56,21 +57,10 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
           isSearching: isSearching,
           memberSearchName: memberSearchName,
           onFailure: (String message) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: const Text(
-                    connectionLostText,
-                  ),
-                  duration: const Duration(seconds: 5),
-                  action: dismissSnackBar(
-                    closeString,
-                    Colors.white,
-                    context,
-                  ),
-                ),
-              );
+            showTextSnackbar(
+              ScaffoldMessenger.of(context),
+              content: message,
+            );
           },
         ),
       );
@@ -97,151 +87,66 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
               padding: const EdgeInsets.all(20),
               child: const PlatformLoader(),
             );
-          } else {
-            final List<Member> communityMembers = vm.membersList;
+          }
 
-            if (communityMembers.isEmpty && !isSearching) {
-              return GenericErrorWidget(
-                actionKey: helpNoDataWidgetKey,
-                recoverCallback: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    FetchMembersAction(
-                      client: AppWrapperBase.of(context)!.graphQLClient,
-                      memberSearchName: memberSearchName,
-                      onFailure: (String message) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                connectionLostText,
-                              ),
-                              duration: const Duration(seconds: 5),
-                              action: dismissSnackBar(
-                                closeString,
-                                Colors.white,
-                                context,
-                              ),
-                            ),
-                          );
-                      },
-                    ),
-                  );
-                },
-                messageTitle: getNoDataTile(availableMembersText),
-                messageBody: <TextSpan>[
-                  TextSpan(
-                    text: noAvailableMemberDescription,
-                    style: normalSize16Text(
-                      AppColors.greyTextColor,
-                    ),
+          final List<Member> communityMembers = vm.membersList;
+
+          if (communityMembers.isEmpty && !isSearching) {
+            return GenericErrorWidget(
+              actionKey: helpNoDataWidgetKey,
+              recoverCallback: () {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  FetchMembersAction(
+                    client: AppWrapperBase.of(context)!.graphQLClient,
+                    memberSearchName: memberSearchName,
+                    onFailure: (String message) {
+                      showTextSnackbar(
+                        ScaffoldMessenger.of(context),
+                        content: message,
+                      );
+                    },
                   ),
-                ],
-              );
-            }
+                );
+              },
+              messageTitle: getNoDataTile(availableMembersText),
+              messageBody: <TextSpan>[
+                TextSpan(
+                  text: noAvailableMemberDescription,
+                  style: normalSize16Text(
+                    AppColors.greyTextColor,
+                  ),
+                ),
+              ],
+            );
+          }
 
-            return Column(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          const Text(
-                            inviteMembersDescription,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.greyTextColor,
-                            ),
+          return Column(
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        const Text(
+                          inviteMembersDescription,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.greyTextColor,
                           ),
-                          mediumVerticalSizedBox,
-                          CustomTextField(
-                            controller: searchController,
-                            hintText: searchMembersString,
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.only(
-                                right: 4.0,
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  StoreProvider.dispatch(
-                                    context,
-                                    FetchMembersAction(
-                                      client: AppWrapperBase.of(context)!
-                                          .graphQLClient,
-                                      isSearching: isSearching,
-                                      memberSearchName: memberSearchName,
-                                      onFailure: (String message) {
-                                        ScaffoldMessenger.of(context)
-                                          ..hideCurrentSnackBar()
-                                          ..showSnackBar(
-                                            SnackBar(
-                                              content: const Text(
-                                                connectionLostText,
-                                              ),
-                                              duration: const Duration(
-                                                seconds: 5,
-                                              ),
-                                              action: dismissSnackBar(
-                                                closeString,
-                                                Colors.white,
-                                                context,
-                                              ),
-                                            ),
-                                          );
-                                      },
-                                    ),
-                                  );
-                                },
-                                icon: const Icon(Icons.search),
-                              ),
+                        ),
+                        mediumVerticalSizedBox,
+                        CustomTextField(
+                          controller: searchController,
+                          hintText: searchMembersString,
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
                             ),
-                            borderColor: Colors.white,
-                            customFillColor: AppColors.galleryColor,
-                            onChanged: (String val) {},
-                          ),
-                          const SizedBox(height: 24),
-                          if (communityMembers.isNotEmpty)
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: communityMembers.length,
-                              itemBuilder: (_, int index) {
-                                final String memberName =
-                                    communityMembers[index].name ?? UNKNOWN;
-                                final String memberUserId =
-                                    communityMembers[index].id?.trim() ?? '';
-                                return GestureDetector(
-                                  child: MemberListItem(
-                                    username: memberName.trim().isEmpty
-                                        ? UNKNOWN
-                                        : memberName,
-                                    onClicked: (bool value) {
-                                      if (value) {
-                                        if (memberUserId.isNotEmpty) {
-                                          inviteMemberIds.add(memberUserId);
-                                        }
-                                      } else if (value == false) {
-                                        inviteMemberIds.removeWhere(
-                                          (String element) =>
-                                              memberUserId == element,
-                                        );
-                                      }
-                                    },
-                                    // isChecked: true,
-                                  ),
-                                );
-                              },
-                            ),
-                          if (communityMembers.isEmpty && isSearching)
-                            GenericErrorWidget(
-                              actionKey: const Key('search_not_found_key'),
-                              headerIconSvgUrl: searchNotFoundImage,
-                              padding: EdgeInsets.zero,
-                              recoverCallback: () {
-                                StoreProvider.dispatch<AppState>(
+                            child: IconButton(
+                              onPressed: () {
+                                StoreProvider.dispatch(
                                   context,
                                   FetchMembersAction(
                                     client: AppWrapperBase.of(context)!
@@ -249,132 +154,157 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                                     isSearching: isSearching,
                                     memberSearchName: memberSearchName,
                                     onFailure: (String message) {
-                                      ScaffoldMessenger.of(context)
-                                        ..hideCurrentSnackBar()
-                                        ..showSnackBar(
-                                          SnackBar(
-                                            content: const Text(
-                                              connectionLostText,
-                                            ),
-                                            duration: const Duration(
-                                              seconds: 5,
-                                            ),
-                                            action: dismissSnackBar(
-                                              closeString,
-                                              Colors.white,
-                                              context,
-                                            ),
-                                          ),
-                                        );
+                                      showTextSnackbar(
+                                        ScaffoldMessenger.of(context),
+                                        content: message,
+                                      );
                                     },
                                   ),
                                 );
                               },
-                              messageTitle: noMemberFoundText,
-                              messageBody: <TextSpan>[
-                                TextSpan(
-                                  text: couldNotFindAMemberText,
-                                  style: normalSize16Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: memberSearchName,
-                                  style: boldSize18Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: confirmTheNamesAreCorrectText,
-                                  style: normalSize16Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                )
-                              ],
+                              icon: const Icon(Icons.search),
                             ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                if (communityMembers.isNotEmpty &&
-                    !vm.wait.isWaitingFor(inviteMembersFlag))
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 20,
-                        right: 10,
-                        left: 10,
-                      ),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 48,
-                        child: ElevatedButton(
-                          key: inviteMembersBtnKey,
-                          onPressed: () {
-                            if (inviteMemberIds.isNotEmpty) {
-                              StoreProvider.dispatch(
-                                context,
-                                InviteMembersAction(
-                                  client:
-                                      AppWrapperBase.of(context)!.graphQLClient,
-                                  variables: <String, dynamic>{
-                                    'communityID': widget.channelId,
-                                    'memberIDs': inviteMemberIds
-                                  },
-                                  onFailure: (String message) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        SnackBar(
-                                          content: const Text(
-                                            connectionLostText,
-                                          ),
-                                          duration: const Duration(seconds: 5),
-                                          action: dismissSnackBar(
-                                            closeString,
-                                            Colors.white,
-                                            context,
-                                          ),
-                                        ),
+                          ),
+                          borderColor: Colors.white,
+                          customFillColor: AppColors.galleryColor,
+                          onChanged: (String val) {},
+                        ),
+                        const SizedBox(height: 24),
+                        if (communityMembers.isNotEmpty)
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: communityMembers.length,
+                            itemBuilder: (_, int index) {
+                              final String memberName =
+                                  communityMembers[index].name ?? UNKNOWN;
+                              final String memberUserId =
+                                  communityMembers[index].id?.trim() ?? '';
+                              return GestureDetector(
+                                child: MemberListItem(
+                                  username: memberName.trim().isEmpty
+                                      ? UNKNOWN
+                                      : memberName,
+                                  onClicked: (bool value) {
+                                    if (value) {
+                                      if (memberUserId.isNotEmpty) {
+                                        inviteMemberIds.add(memberUserId);
+                                      }
+                                    } else {
+                                      inviteMemberIds.removeWhere(
+                                        (String element) =>
+                                            memberUserId == element,
                                       );
-                                  },
-                                  onSuccess: () {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        SnackBar(
-                                          content: const Text(
-                                            inviteMembersSuccessfulText,
-                                          ),
-                                          duration: const Duration(seconds: 5),
-                                          action: dismissSnackBar(
-                                            closeString,
-                                            Colors.white,
-                                            context,
-                                          ),
-                                        ),
-                                      );
+                                    }
                                   },
                                 ),
                               );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.secondaryColor,
+                            },
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text(inviteMembersTitle),
+                        if (communityMembers.isEmpty && isSearching)
+                          GenericErrorWidget(
+                            actionKey: const Key('search_not_found_key'),
+                            headerIconSvgUrl: searchNotFoundImage,
+                            padding: EdgeInsets.zero,
+                            recoverCallback: () {
+                              StoreProvider.dispatch<AppState>(
+                                context,
+                                FetchMembersAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                  isSearching: isSearching,
+                                  memberSearchName: memberSearchName,
+                                  onFailure: (String message) {
+                                    showTextSnackbar(
+                                      ScaffoldMessenger.of(context),
+                                      content: message,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            messageTitle: noMemberFoundText,
+                            messageBody: <TextSpan>[
+                              TextSpan(
+                                text: couldNotFindAMemberText,
+                                style: normalSize16Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              TextSpan(
+                                text: memberSearchName,
+                                style: boldSize18Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              TextSpan(
+                                text: confirmTheNamesAreCorrectText,
+                                style: normalSize16Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              )
+                            ],
                           ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              if (communityMembers.isNotEmpty &&
+                  !vm.wait.isWaitingFor(inviteMembersFlag))
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
+                      right: 10,
+                      left: 10,
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        key: inviteMembersBtnKey,
+                        onPressed: () {
+                          if (inviteMemberIds.isNotEmpty) {
+                            StoreProvider.dispatch(
+                              context,
+                              InviteMembersAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                variables: <String, dynamic>{
+                                  'communityID': widget.channelId,
+                                  'memberIDs': inviteMemberIds
+                                },
+                                onFailure: (String message) => showTextSnackbar(
+                                  ScaffoldMessenger.of(context),
+                                  content: message,
+                                ),
+                                onSuccess: () {
+                                  showTextSnackbar(
+                                    ScaffoldMessenger.of(context),
+                                    content: inviteMembersSuccessfulText,
+                                  );
+
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.secondaryColor,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(inviteMembersTitle),
                         ),
                       ),
                     ),
                   ),
-              ],
-            );
-          }
+                ),
+            ],
+          );
         },
       ),
     );

@@ -11,7 +11,7 @@ import 'package:myharehubpro/presentation/onboarding/login/widgets/login_widget.
 class PhoneLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OnboardingScaffold(
+    return const OnboardingScaffold(
       backgroundColor: Colors.white,
       title: phoneLoginPageTitle,
       description: phoneLoginPageDescription,
