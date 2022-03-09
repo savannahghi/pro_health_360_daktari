@@ -7,7 +7,6 @@ import 'package:myharehubpro/application/core/services/utils.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myharehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
 
@@ -49,10 +48,10 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(GenericNoDataWidget), findsOneWidget);
+      expect(find.byType(GenericErrorWidget), findsOneWidget);
 
-      await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-      await tester.tap(find.byKey(genericNoDataButtonKey));
+      await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+      await tester.tap(find.byKey(helpNoDataWidgetKey));
       await tester.pumpAndSettle();
 
       expect(find.byType(HomePage), findsOneWidget);

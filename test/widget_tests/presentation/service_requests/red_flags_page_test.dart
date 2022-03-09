@@ -23,12 +23,13 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: RedFlagsPage(),
+        widget: const RedFlagsPage(),
       );
       await tester.pumpAndSettle();
       final Finder redFlagItem = find.byType(RedFlagListItem);
@@ -36,13 +37,14 @@ void main() {
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(redFlagItem, findsOneWidget);
     });
+
     testWidgets('ScheduleMeetDialog renders correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: RedFlagsPage(),
+        widget: const RedFlagsPage(),
       );
       await tester.pumpAndSettle();
       final Finder redFlagListItem = find.byType(RedFlagListItem);
@@ -57,6 +59,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(callButton, findsNothing);
     });
+
     testWidgets(
       'should show an error widget when fetching red flags',
       (WidgetTester tester) async {
@@ -74,18 +77,18 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: RedFlagsPage(),
+          widget: const RedFlagsPage(),
         );
 
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
 
         /// Refresh and expect the same thing
         await tester.ensureVisible(genericNoDataButton);
         await tester.pumpAndSettle();
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
 
         await tester.pumpAndSettle();
         expect(genericNoDataButton, findsOneWidget);
@@ -109,7 +112,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockShortGraphQlClient,
-        widget: RedFlagsPage(),
+        widget: const RedFlagsPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);

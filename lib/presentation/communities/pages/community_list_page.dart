@@ -13,7 +13,6 @@ import 'package:myharehubpro/presentation/communities/community_list_view_model.
 import 'package:myharehubpro/presentation/communities/community_utils.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {
@@ -88,7 +87,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
               child: stream.ChannelListView(
                 channelListController: channelListController,
                 errorBuilder: (BuildContext context, Object error) {
-                  return GenericNoDataWidget(
+                  return GenericErrorWidget(
                     messageTitle: emptyConversationTitle,
                     messageBody: const <TextSpan>[
                       TextSpan(

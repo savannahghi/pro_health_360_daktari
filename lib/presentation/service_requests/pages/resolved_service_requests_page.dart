@@ -13,10 +13,11 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myharehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
 
 class ResolvedServiceRequestsPage extends StatefulWidget {
+  const ResolvedServiceRequestsPage({Key? key}) : super(key: key);
+
   @override
   State<ResolvedServiceRequestsPage> createState() =>
       _ResolvedServiceRequestsPageState();
@@ -88,8 +89,8 @@ class _ResolvedServiceRequestsPageState
                         child: PlatformLoader(),
                       )
                     } else if (vm.serviceRequests?.isEmpty ?? true) ...<Widget>{
-                      GenericNoDataWidget(
-                        key: helpNoDataWidgetKey,
+                      GenericErrorWidget(
+                        actionKey: helpNoDataWidgetKey,
                         actionText: actionTextGenericNoData,
                         type: GenericNoDataTypes.noData,
                         recoverCallback: () {
@@ -143,8 +144,8 @@ class _ResolvedServiceRequestsPageState
                         );
                       }),
                   } else ...<Widget>{
-                    GenericNoDataWidget(
-                      key: helpNoDataWidgetKey,
+                    GenericErrorWidget(
+                      actionKey: helpNoDataWidgetKey,
                       recoverCallback: () async {
                         final String facilityID =
                             StoreProvider.state<AppState>(context)

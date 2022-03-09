@@ -81,27 +81,26 @@ void main() {
           201,
         ),
       );
+
       const String firstName = 'Laura';
+
       store.dispatch(
         UpdateUserAction(user: User.initial().copyWith(firstName: firstName)),
       );
+
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: mockShortGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const HomePage(),
-            );
-          },
+        widget: StoreProvider<AppState>(
+          store: store,
+          child: const HomePage(),
         ),
       );
-
       await tester.pumpAndSettle();
+
       final Finder serviceRequestsWidget = find.text(serviceRequestsText);
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
       await tester.ensureVisible(serviceRequestsWidget);
       await tester.pumpAndSettle();
