@@ -26,12 +26,14 @@ class _$MiscStateTearOff {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
-      List<Member>? communityMembers}) {
+      List<Member>? communityMembers,
+      GroupState? groupState}) {
     return _MiscState(
       initialRoute: initialRoute,
       error: error,
       profileFAQsContentState: profileFAQsContentState,
       communityMembers: communityMembers,
+      groupState: groupState,
     );
   }
 
@@ -50,6 +52,7 @@ mixin _$MiscState {
   FAQsContentState? get profileFAQsContentState =>
       throw _privateConstructorUsedError;
   List<Member>? get communityMembers => throw _privateConstructorUsedError;
+  GroupState? get groupState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,9 +68,11 @@ abstract class $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
-      List<Member>? communityMembers});
+      List<Member>? communityMembers,
+      GroupState? groupState});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  $GroupStateCopyWith<$Res>? get groupState;
 }
 
 /// @nodoc
@@ -84,6 +89,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? error = freezed,
     Object? profileFAQsContentState = freezed,
     Object? communityMembers = freezed,
+    Object? groupState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -102,6 +108,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.communityMembers
           : communityMembers // ignore: cast_nullable_to_non_nullable
               as List<Member>?,
+      groupState: groupState == freezed
+          ? _value.groupState
+          : groupState // ignore: cast_nullable_to_non_nullable
+              as GroupState?,
     ));
   }
 
@@ -116,6 +126,17 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       return _then(_value.copyWith(profileFAQsContentState: value));
     });
   }
+
+  @override
+  $GroupStateCopyWith<$Res>? get groupState {
+    if (_value.groupState == null) {
+      return null;
+    }
+
+    return $GroupStateCopyWith<$Res>(_value.groupState!, (value) {
+      return _then(_value.copyWith(groupState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -128,10 +149,13 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
-      List<Member>? communityMembers});
+      List<Member>? communityMembers,
+      GroupState? groupState});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  @override
+  $GroupStateCopyWith<$Res>? get groupState;
 }
 
 /// @nodoc
@@ -149,6 +173,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? error = freezed,
     Object? profileFAQsContentState = freezed,
     Object? communityMembers = freezed,
+    Object? groupState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -167,6 +192,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.communityMembers
           : communityMembers // ignore: cast_nullable_to_non_nullable
               as List<Member>?,
+      groupState: groupState == freezed
+          ? _value.groupState
+          : groupState // ignore: cast_nullable_to_non_nullable
+              as GroupState?,
     ));
   }
 }
@@ -178,7 +207,8 @@ class _$_MiscState implements _MiscState {
       {this.initialRoute,
       this.error,
       this.profileFAQsContentState,
-      this.communityMembers});
+      this.communityMembers,
+      this.groupState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -191,10 +221,12 @@ class _$_MiscState implements _MiscState {
   final FAQsContentState? profileFAQsContentState;
   @override
   final List<Member>? communityMembers;
+  @override
+  final GroupState? groupState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers)';
+    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState)';
   }
 
   @override
@@ -208,7 +240,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality().equals(
                 other.profileFAQsContentState, profileFAQsContentState) &&
             const DeepCollectionEquality()
-                .equals(other.communityMembers, communityMembers));
+                .equals(other.communityMembers, communityMembers) &&
+            const DeepCollectionEquality()
+                .equals(other.groupState, groupState));
   }
 
   @override
@@ -217,7 +251,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(initialRoute),
       const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(profileFAQsContentState),
-      const DeepCollectionEquality().hash(communityMembers));
+      const DeepCollectionEquality().hash(communityMembers),
+      const DeepCollectionEquality().hash(groupState));
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +270,8 @@ abstract class _MiscState implements MiscState {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
-      List<Member>? communityMembers}) = _$_MiscState;
+      List<Member>? communityMembers,
+      GroupState? groupState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -248,6 +284,8 @@ abstract class _MiscState implements MiscState {
   FAQsContentState? get profileFAQsContentState;
   @override
   List<Member>? get communityMembers;
+  @override
+  GroupState? get groupState;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

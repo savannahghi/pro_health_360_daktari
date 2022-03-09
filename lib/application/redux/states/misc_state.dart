@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myharehubpro/application/redux/states/groups_state.dart';
 import 'package:myharehubpro/domain/core/entities/community_members/member.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 
@@ -13,6 +14,7 @@ class MiscState with _$MiscState {
     String? error,
     FAQsContentState? profileFAQsContentState,
     List<Member>? communityMembers,
+    GroupState? groupState,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -22,5 +24,6 @@ class MiscState with _$MiscState {
         initialRoute: AppRoutes.loginPage,
         profileFAQsContentState: FAQsContentState.initial(),
         communityMembers: <Member>[],
+        groupState: GroupState.initial(),
       );
 }

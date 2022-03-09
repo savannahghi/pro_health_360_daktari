@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:myharehubpro/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/community/group_info/pages/group_info_page.dart';
+import 'package:myharehubpro/presentation/community/group_info/widgets/group_member_item.dart';
 import 'package:myharehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 
+import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
@@ -16,23 +22,13 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
-
-    testWidgets('renders correctly', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: const GroupInfoPage(channelId: ''),
-      );
-
-      expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
-      expect(find.text(groupTitle), findsOneWidget);
-    });
     testWidgets('invite members button navigates correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
-        widget: const GroupInfoPage(channelId: ''),
+        graphQlClient: MockTestGraphQlClient(),
+        widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
       );
 
       expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
@@ -48,7 +44,8 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        widget: const GroupInfoPage(channelId: ''),
+        graphQlClient: MockTestGraphQlClient(),
+        widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
       );
 
       expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
@@ -60,6 +57,56 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(Dialog, skipOffstage: false), findsOneWidget);
+    });
+    testWidgets('display nothing when the list of group members is empty',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'listCommunityMembers': <dynamic>[]}
+          }),
+          401,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(GroupMemberItem), findsNothing);
+    });
+    testWidgets(
+        'should show a snackbar with error message in case of error while fetching members',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'errors': <Object>[
+              <String, dynamic>{
+                'message': '4: error',
+              }
+            ]
+          }),
+          401,
+        ),
+      );
+      store.dispatch(UpdateGroupStateAction());
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
+      );
+      await tester.pump(const Duration(seconds: 4));
+      expect(find.byType(SnackBar), findsOneWidget);
     });
   });
 }

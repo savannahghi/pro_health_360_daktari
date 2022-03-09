@@ -104,3 +104,15 @@ query inviteMembersToCommunity($communityID: String!,$memberIDs: [String!]! ){
   inviteMembersToCommunity(communityID: $communityID, memberIDs: $memberIDs)
 }
 ''';
+
+const String listCommunityMembersQuery = r'''
+query listCommunityMembers($communityID: ID!){
+	listCommunityMembers(communityID: $communityID) {
+      user{
+        ID
+        name
+        role
+      }
+  }
+}
+''';

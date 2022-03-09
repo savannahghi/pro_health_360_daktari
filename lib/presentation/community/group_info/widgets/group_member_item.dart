@@ -40,14 +40,14 @@ class GroupMemberItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      userName.trim()[0].toUpperCase(),
+                      userName.isNotEmpty ?  userName.trim()[0].toUpperCase() : 'U',
                       style: boldSize14Text(AppColors.primaryColor),
                     ),
                   ),
                 ),
                 size15HorizontalSizedBox,
                 Text(
-                  userName,
+                  userName.isNotEmpty ? userName : UNKNOWN,
                   style: boldSize12Text(),
                 ),
               ],

@@ -20,7 +20,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:myharehubpro/presentation/community/group_info/widgets/group_member_item.dart';
 import 'package:myharehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
@@ -104,13 +103,6 @@ const List<Widget> patientSearchResults = <Widget>[
   PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
 ];
 
-const List<Widget> membersList = <Widget>[
-  GroupMemberItem(userName: 'Dennis Kilonzo', memberID: 'dennis'),
-  GroupMemberItem(userName: 'Kigongo Kairo', memberID: 'king'),
-  GroupMemberItem(userName: 'Lailonte Koros', memberID: 'lai'),
-  GroupMemberItem(userName: 'Musau Dennis', memberID: 'musa'),
-  GroupMemberItem(userName: 'John Koech', memberID: 'john'),
-];
 
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(

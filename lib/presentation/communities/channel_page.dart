@@ -25,16 +25,28 @@ class ChannelPage extends StatelessWidget {
 
     return Scaffold(
       appBar: ChannelHeader(
-        title: Text(
-          channelName,
-          overflow: TextOverflow.ellipsis,
+        title: GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed(
+            AppRoutes.groupInfoPage,
+            arguments: <String, dynamic>{
+              'channelId': StreamChannel.of(context).channel.id,
+              'memberCount': StreamChannel.of(context).channel.memberCount,
+            },
+          ),
+          child: Text(
+            channelName,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         showConnectionStateTile: true,
         actions: <Widget>[
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed(
               AppRoutes.groupInfoPage,
-              arguments: StreamChannel.of(context).channel.id,
+              arguments: <String, dynamic>{
+                'channelId': StreamChannel.of(context).channel.id,
+                'memberCount': StreamChannel.of(context).channel.memberCount,
+              },
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
