@@ -18,7 +18,10 @@ class SurveysPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: surveysString),
+      appBar: const CustomAppBar(
+        title: surveysString,
+        showNotificationIcon: true,
+      ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

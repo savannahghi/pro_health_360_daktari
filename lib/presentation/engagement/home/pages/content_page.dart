@@ -17,6 +17,7 @@ class ContentPage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
         title: contentPageTitle,
+        showNotificationIcon: true,
       ),
       backgroundColor: AppColors.lightGreyBackgroundColor,
       body: Padding(

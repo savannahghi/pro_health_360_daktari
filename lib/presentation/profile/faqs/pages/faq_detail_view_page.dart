@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:myharehubpro/application/core/theme/app_themes.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 
 class FAQDetailViewPage extends StatelessWidget {
@@ -15,7 +16,10 @@ class FAQDetailViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: faqsString,
+        showNotificationIcon: true,
+      ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: EdgeInsets.symmetric(

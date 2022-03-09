@@ -26,6 +26,7 @@ class UserProfilePage extends StatelessWidget {
       backgroundColor: AppColors.lightGreyBackgroundColor,
       appBar: const CustomAppBar(
         title: myProfileString,
+        showNotificationIcon: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -16,7 +16,10 @@ class ContactAdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: contactAdmin),
+      appBar: const CustomAppBar(
+        title: contactAdmin,
+        showNotificationIcon: true,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(

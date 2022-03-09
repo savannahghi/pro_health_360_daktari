@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myharehubpro/presentation/router/routes.dart';
 
 class AppBarNotification extends StatelessWidget {
   const AppBarNotification({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class AppBarNotification extends StatelessWidget {
     return Material(
       color: Colors.white,
       child: InkWell(
+        onTap: () =>
+            Navigator.of(context).pushNamed(AppRoutes.notificationsPage),
         key: appBarNotificationKey,
         borderRadius: BorderRadius.circular(50),
         splashColor: Theme.of(context).colorScheme.secondary,

@@ -45,6 +45,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       appBar: const CustomAppBar(
         title: createGroup,
         showShadow: false,
+        showNotificationIcon: true,
       ),
       body: SafeArea(
         child: Padding(

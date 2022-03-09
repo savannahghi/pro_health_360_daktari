@@ -21,7 +21,10 @@ class ShareSurveyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: shareSurveyString),
+      appBar: const CustomAppBar(
+        title: shareSurveyString,
+        showNotificationIcon: true,
+      ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
