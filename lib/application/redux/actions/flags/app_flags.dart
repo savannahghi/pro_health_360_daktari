@@ -38,5 +38,6 @@ const String editInformationFlag = 'edit_information_flag';
 const String inviteMembersFlag = 'invite_members_flag';
 const String fetchMembersFlag = 'fetch_members_flag';
 
-// community list page
+// communities
 const String connectionFlag = 'connection_flag';
+const String fetchGroupMembersFlag = 'fetch_group_members_flag';

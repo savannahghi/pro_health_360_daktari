@@ -305,7 +305,7 @@ void main() {
 
   test('Test router returns successful group info page', () {
     const RouteSettings settings =
-        RouteSettings(name: AppRoutes.groupInfoPage, arguments: '');
+        RouteSettings(name: AppRoutes.groupInfoPage, arguments: <String, dynamic>{});
 
     final MaterialPageRoute<GroupInfoPage>? route =
         routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;

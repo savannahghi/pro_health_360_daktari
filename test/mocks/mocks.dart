@@ -23,6 +23,7 @@ typedef DidNavigate = void Function(
   Route<dynamic>? route,
   Route<dynamic>? previousRoute,
 );
+const String testString = 'test';
 
 class TestNavigatorObserver extends NavigatorObserver {
   TestNavigatorObserver({this.onPop, this.onPush});
@@ -766,6 +767,14 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(listCommunityMembersQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': groupStateMock}),
+          201,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
@@ -965,6 +974,22 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
     },
   ]
 };
+
+final Map<String, dynamic> groupStateMock = <String, dynamic>{
+  'listCommunityMembers': <dynamic>[
+    <String, dynamic>{
+      'user': <String, dynamic>{
+        'ID': UNKNOWN,
+        'userID': UNKNOWN,
+        'name': UNKNOWN,
+        'role': UNKNOWN,
+        'username': UNKNOWN,
+        'gender': 'unknown',
+      },
+    },
+  ],
+};
+
 final Map<String, dynamic> mockMiscState = <String, dynamic>{
   'message': 'UNKNOWN',
   'otpCode': 'UNKNOWN',
@@ -988,6 +1013,7 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
     'timeoutFetchingFAQs': false
   },
   'communityMembers': <dynamic>[],
+  'groupState': groupStateMock,
 };
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
@@ -1151,3 +1177,8 @@ final List<dynamic> listMembersMock = <dynamic>[
     'gender': Gender.male.name,
   },
 ];
+
+final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{
+  'channelId': testString,
+  'memberCount': 1,
+};

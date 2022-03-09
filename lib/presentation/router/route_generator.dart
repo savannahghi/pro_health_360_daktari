@@ -202,7 +202,7 @@ class RouteGenerator {
 
       case AppRoutes.groupInfoPage:
         return MaterialPageRoute<GroupInfoPage>(
-          builder: (_) => GroupInfoPage(channelId: args as String),
+          builder: (_) => GroupInfoPage(payload: args as Map<String, dynamic>),
         );
     }
   }

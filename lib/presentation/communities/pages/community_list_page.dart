@@ -3,7 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:myharehubpro/application/core/services/custom_client.dart';
-import 'package:myharehubpro/application/redux/actions/core/connect_get_stream_user_action.dart';
+import 'package:myharehubpro/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
