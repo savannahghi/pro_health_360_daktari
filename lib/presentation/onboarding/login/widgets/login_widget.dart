@@ -22,6 +22,8 @@ import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 
 class LoginWidget extends StatefulWidget {
+  const LoginWidget();
+
   @override
   LoginWidgetState createState() => LoginWidgetState();
 }

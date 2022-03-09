@@ -9,6 +9,7 @@ import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/community_members/list_members_response.dart';
 import 'package:http/http.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchMembersAction extends ReduxAction<AppState> {
@@ -40,29 +41,21 @@ class FetchMembersAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final bool hasConnection = state.connectivityState?.isConnected ?? false;
     if (!hasConnection) {
-      onFailure?.call('connection failure');
+      onFailure?.call(connectionLostText);
       return null;
     }
-    Map<String, dynamic> variables = <String, dynamic>{
-      'input': <String, dynamic>{
-        'filter': <String, dynamic>{
-          'role': 'user',
-        },
-        'limit': 20
-      },
+
+    final Map<String, dynamic> filter = <String, dynamic>{
+      'role': 'user',
     };
 
     if (isSearching) {
-      variables = <String, dynamic>{
-        'input': <String, dynamic>{
-          'filter': <String, dynamic>{
-            'role': 'user',
-            'name': memberSearchName,
-          },
-          'limit': 20
-        },
-      };
+      filter.addAll(<String, dynamic>{'name': memberSearchName});
     }
+
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'input': <String, dynamic>{'filter': filter, 'limit': 20},
+    };
 
     final Response response = await client.query(listMembersQuery, variables);
 

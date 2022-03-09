@@ -4,6 +4,7 @@ import 'dart:async';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:myharehubpro/application/core/graphql/queries.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
@@ -25,7 +26,7 @@ class InviteMembersAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final Map<String, dynamic> variables;
   final void Function(String message)? onFailure;
-  final void Function()? onSuccess;
+  final VoidCallback? onSuccess;
 
   @override
   void before() {
@@ -59,9 +60,7 @@ class InviteMembersAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
 
         throw UserException(getErrorMessage('inviting members'));
       }

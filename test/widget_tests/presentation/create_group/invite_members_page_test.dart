@@ -190,19 +190,14 @@ void main() {
     testWidgets(
         'displays error if there is no internet connection when fetching members',
         (WidgetTester tester) async {
-      store.dispatch(
-        UpdateConnectivityAction(hasConnection: false),
-      );
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
 
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(
-          channelId: 'some-channel-id',
-        ),
+        widget: const InviteMembersPage(channelId: 'some-channel-id'),
       );
-
       await tester.pumpAndSettle();
 
       expect(find.text(connectionLostText), findsOneWidget);

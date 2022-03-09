@@ -1,5 +1,3 @@
-// Flutter imports:
-// Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,7 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:myharehubpro/application/core/services/app_setup_data.dart';
 // Project imports:
 import 'package:myharehubpro/domain/core/value_objects/app_contexts.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/infrastructure/endpoints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -180,4 +179,24 @@ Future<void> captureException(
     ),
   );
   await Sentry.captureException(UserException(message));
+}
+
+void showTextSnackbar(
+  ScaffoldMessengerState scaffoldMessengerState, {
+  required String content,
+  SnackBarAction? action,
+}) {
+  scaffoldMessengerState
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(content),
+        duration: const Duration(seconds: 5),
+        action: SnackBarAction(
+          label: closeString,
+          textColor: Colors.white,
+          onPressed: () => scaffoldMessengerState.hideCurrentSnackBar(),
+        ),
+      ),
+    );
 }
