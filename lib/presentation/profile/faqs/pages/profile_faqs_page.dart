@@ -46,7 +46,10 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        title: faqsString,
+        showNotificationIcon: true,
+      ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: EdgeInsets.symmetric(

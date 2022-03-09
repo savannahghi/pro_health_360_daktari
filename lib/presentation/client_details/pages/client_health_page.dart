@@ -35,6 +35,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: const CustomAppBar(
         title: myHealthPageTitle,
+        showNotificationIcon: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

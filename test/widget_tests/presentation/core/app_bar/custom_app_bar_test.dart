@@ -9,6 +9,9 @@ import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/app_bar_back_button.dart';
 import 'package:myharehubpro/presentation/core/app_bar/app_bar_more_button.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
+
+import '../../../../mocks/test_helpers.dart';
 
 void main() {
   group('CustomAppBar', () {
@@ -54,6 +57,24 @@ void main() {
       await tester.ensureVisible(backButton);
       await tester.tap(backButton);
       await tester.pumpAndSettle();
+    });
+
+    testWidgets('notifications icon navigates to notifications page',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        widget: const CustomAppBar(
+          title: title,
+          showNotificationIcon: true,
+        ),
+      );
+      final Finder notificationButtonFinder = find.byKey(appBarNotificationKey);
+      expect(notificationButtonFinder, findsOneWidget);
+
+      await tester.tap(notificationButtonFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(NotificationsPage), findsOneWidget);
     });
   });
 }

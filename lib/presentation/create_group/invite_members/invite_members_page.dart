@@ -87,6 +87,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
       appBar: const CustomAppBar(
         title: inviteMembersTitle,
         showShadow: false,
+        showNotificationIcon: true,
       ),
       body: StoreConnector<AppState, InviteMembersViewModel>(
         converter: (Store<AppState> store) =>

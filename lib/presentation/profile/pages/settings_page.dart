@@ -26,7 +26,10 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: const CustomAppBar(title: settingsPageTitle),
+      appBar: const CustomAppBar(
+        title: settingsPageTitle,
+        showNotificationIcon: true,
+      ),
       body: SafeArea(
         child: StoreConnector<AppState, StaffStateViewModel>(
           converter: (Store<AppState> store) =>
