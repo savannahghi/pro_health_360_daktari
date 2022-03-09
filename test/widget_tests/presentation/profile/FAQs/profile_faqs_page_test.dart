@@ -10,7 +10,6 @@ import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/faq_detail_view_page.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:myharehubpro/presentation/profile/faqs/widgets/faq_item.dart';
@@ -126,12 +125,12 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoDataWidget), findsOneWidget);
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoDataWidget), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
 
@@ -164,13 +163,13 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(GenericNoDataWidget), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
 
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoDataWidget), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
   });

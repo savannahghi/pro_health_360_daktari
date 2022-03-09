@@ -17,11 +17,12 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myharehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 
 class ServiceRequestsPage extends StatefulWidget {
+  const ServiceRequestsPage({Key? key}) : super(key: key);
+
   @override
   State<ServiceRequestsPage> createState() => _ServiceRequestsPageState();
 }
@@ -169,8 +170,8 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                       ),
                     )
                   } else ...<Widget>{
-                    GenericNoDataWidget(
-                      key: helpNoDataWidgetKey,
+                    GenericErrorWidget(
+                      actionKey: helpNoDataWidgetKey,
                       actionText: actionTextGenericNoData,
                       type: GenericNoDataTypes.noData,
                       recoverCallback: () {
@@ -190,8 +191,8 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                     )
                   }
                 } else ...<Widget>{
-                  GenericNoDataWidget(
-                    key: helpNoDataWidgetKey,
+                  GenericErrorWidget(
+                    actionKey: helpNoDataWidgetKey,
                     recoverCallback: () async {
                       final String facilityID =
                           StoreProvider.state<AppState>(context)

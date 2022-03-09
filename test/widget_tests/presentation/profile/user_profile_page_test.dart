@@ -110,6 +110,7 @@ void main() {
       await tester.pumpAndSettle(const Duration(seconds: 1));
       expect(find.byType(ProfileFaqsPage), findsWidgets);
     });
+
     testWidgets('navigates to resolved service requests page correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
@@ -121,7 +122,7 @@ void main() {
           },
         ),
       );
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(resolvedRequestsString));

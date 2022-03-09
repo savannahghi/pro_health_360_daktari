@@ -71,9 +71,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(
-          channelId: 'some-channel-id',
-        ),
+        widget: const InviteMembersPage(channelId: 'some-channel-id'),
       );
 
       await tester.pumpAndSettle();
@@ -115,9 +113,14 @@ void main() {
       await tester.tap(find.byType(IconButton));
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
-
       await tester.pumpAndSettle();
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+
+      // close snackbar
+      await tester.tap(find.text(closeString));
+      await tester.pumpAndSettle();
+
+      final Finder genericNoDataButton =
+          find.byKey(const Key('search_not_found_key'));
 
       expect(genericNoDataButton, findsOneWidget);
       await tester.ensureVisible(genericNoDataButton);
@@ -206,7 +209,7 @@ void main() {
     });
 
     testWidgets(
-      'should show GenericNoDataWidget when there is no content',
+      'should show GenericErrorWidget when there is no content',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
@@ -229,14 +232,14 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
       },
     );
 
     testWidgets(
-      'should show GenericNoDataWidget when there is no data',
+      'should show GenericErrorWidget when there is no data',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
@@ -257,12 +260,12 @@ void main() {
             channelId: 'some-channel-id',
           ),
         );
-
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
-        await tester.tap(find.text(retryString));
+        await tester.tap(genericNoDataButton);
         expect(genericNoDataButton, findsOneWidget);
       },
     );

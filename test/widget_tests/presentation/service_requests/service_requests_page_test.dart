@@ -49,10 +49,10 @@ void main() {
 
       await buildTestWidget(
         tester: tester,
-        widget: ServiceRequestsPage(),
+        widget: const ServiceRequestsPage(),
         graphQlClient: mockShortGraphQlClient,
       );
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
       await tester.pumpAndSettle();
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
@@ -92,10 +92,10 @@ void main() {
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
         store: store,
-        widget: ServiceRequestsPage(),
+        widget: const ServiceRequestsPage(),
       );
       await tester.pumpAndSettle();
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
       await tester.tap(genericNoDataButton);
       await tester.pumpAndSettle();
@@ -128,7 +128,7 @@ void main() {
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
         store: store,
-        widget: ServiceRequestsPage(),
+        widget: const ServiceRequestsPage(),
       );
       final Finder profileUpdateActionCard = find.byType(ActionCard);
       await tester.pumpAndSettle();
@@ -138,6 +138,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(profileUpdateActionCard, findsNothing);
     });
+
     testWidgets(
       'should show an error widget when fetching service request count',
       (WidgetTester tester) async {
@@ -155,18 +156,18 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: ServiceRequestsPage(),
+          widget: const ServiceRequestsPage(),
         );
 
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
 
         /// Refresh and expect the same thing
         await tester.ensureVisible(genericNoDataButton);
         await tester.pumpAndSettle();
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
 
         await tester.pumpAndSettle();
         expect(genericNoDataButton, findsOneWidget);
@@ -191,7 +192,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockShortGraphQlClient,
-        widget: ServiceRequestsPage(),
+        widget: const ServiceRequestsPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);

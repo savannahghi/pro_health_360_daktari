@@ -14,7 +14,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 
 class NotificationsPage extends StatelessWidget {
   final List<NotificationDetails> notifications;
@@ -32,8 +31,8 @@ class NotificationsPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: notifications.isEmpty
-            ? GenericNoDataWidget(
-                key: helpNoDataWidgetKey,
+            ? GenericErrorWidget(
+                actionKey: helpNoDataWidgetKey,
                 actionText: actionTextGenericNoData,
                 recoverCallback: () async {
                   StoreProvider.dispatch<AppState>(

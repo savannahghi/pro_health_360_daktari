@@ -28,7 +28,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: ResolvedServiceRequestsPage(),
+        widget: const ResolvedServiceRequestsPage(),
       );
       await tester.pumpAndSettle();
       final Finder redFlagItem = find.byType(RedFlagListItem);
@@ -52,11 +52,11 @@ void main() {
         await buildTestWidget(
           tester: tester,
           graphQlClient: mockShortGraphQlClient,
-          widget: ResolvedServiceRequestsPage(),
+          widget: const ResolvedServiceRequestsPage(),
         );
 
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
 
@@ -69,7 +69,7 @@ void main() {
       },
     );
     testWidgets(
-      'should show GenericNoDataWidget when there is no content',
+      'should show GenericErrorWidget when there is no content',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
@@ -86,11 +86,11 @@ void main() {
         await buildTestWidget(
           tester: tester,
           graphQlClient: mockShortGraphQlClient,
-          widget: ResolvedServiceRequestsPage(),
+          widget: const ResolvedServiceRequestsPage(),
         );
 
         await tester.pumpAndSettle();
-        final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
         expect(genericNoDataButton, findsOneWidget);
       },
@@ -102,7 +102,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: ResolvedServiceRequestsPage(),
+        widget: const ResolvedServiceRequestsPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);

@@ -10,7 +10,6 @@ import 'package:myharehubpro/application/redux/view_model_factories/FAQs/faqs_co
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myharehubpro/presentation/profile/faqs/widgets/faq_item.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -68,8 +67,8 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                 child: const PlatformLoader(),
               );
             } else if (vm.errorFetchingFAQs ?? false) {
-              return GenericNoDataWidget(
-                key: helpNoDataWidgetKey,
+              return GenericErrorWidget(
+                actionKey: helpNoDataWidgetKey,
                 recoverCallback: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
@@ -134,8 +133,8 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                   ),
                 );
               } else if (faqsContent != null) {
-                return GenericNoDataWidget(
-                  key: helpNoDataWidgetKey,
+                return GenericErrorWidget(
+                  actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,

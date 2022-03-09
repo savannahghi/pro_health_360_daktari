@@ -109,7 +109,7 @@ class RouteGenerator {
 
       case AppRoutes.serviceRequestsPage:
         return MaterialPageRoute<ServiceRequestsPage>(
-          builder: (_) => ServiceRequestsPage(),
+          builder: (_) => const ServiceRequestsPage(),
         );
 
       case AppRoutes.surveysPage:
@@ -161,7 +161,7 @@ class RouteGenerator {
 
       case AppRoutes.redFlagsPage:
         return MaterialPageRoute<RedFlagsPage>(
-          builder: (_) => RedFlagsPage(),
+          builder: (_) => const RedFlagsPage(),
         );
 
       case AppRoutes.profileUpdateRequestsPage:
@@ -196,7 +196,7 @@ class RouteGenerator {
 
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
-          builder: (_) => ResolvedServiceRequestsPage(),
+          builder: (_) => const ResolvedServiceRequestsPage(),
         );
     }
   }
