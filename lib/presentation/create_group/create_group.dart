@@ -259,45 +259,29 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   ],
                 ),
                 const SizedBox(height: 24),
-                Row(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // Submit button
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.only(left: 24),
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: StreamBuilder<bool>(
-                                stream: _formManager.isFormValid,
-                                builder: (
-                                  BuildContext context,
-                                  AsyncSnapshot<bool> snapshot,
-                                ) {
-                                  final bool isValid = snapshot.data ?? false;
+                SizedBox(
+                  width: double.infinity,
+                  child: StreamBuilder<bool>(
+                    stream: _formManager.isFormValid,
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot<bool> snapshot,
+                    ) {
+                      final bool isValid = snapshot.data ?? false;
 
-                                  return ElevatedButton(
-                                    key: createGroupBtnKey,
-                                    onPressed:
-                                        isValid ? () => _submitForm() : null,
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.secondaryColor,
-                                    ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Text(createGroupText),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
+                      return ElevatedButton(
+                        key: createGroupBtnKey,
+                        onPressed: isValid ? () => _submitForm() : null,
+                        style: ElevatedButton.styleFrom(
+                          primary: AppColors.primaryColor,
                         ),
-                      ],
-                    ),
-                  ],
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(createGroupText),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
