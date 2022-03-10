@@ -47,8 +47,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
   @override
   void initState() {
     super.initState();
-    _formManager.inGender.add(Gender.unknown);
-    _formManager.inClientType.add(ClientType.YOUTH);
+    _formManager.inGender.add(Gender.other);
+    _formManager.inClientType.add(ClientType.PMTCT);
   }
 
   @override
@@ -246,15 +246,10 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                 dropDownInputKey: genderOptionFieldKey,
                                 value: data == null
                                     ? capitalizeFirst(
-                                        describeEnum(Gender.unknown),
+                                        describeEnum(Gender.other),
                                       )
                                     : capitalizeFirst(data.name),
-                                options: Gender.values
-                                    .map<String>(
-                                      (Gender gender) =>
-                                          capitalizeFirst(describeEnum(gender)),
-                                    )
-                                    .toList(),
+                                options: getGenderList(),
                                 onChanged: (String? value) {
                                   if (value != null) {
                                     _formManager.inGender
@@ -379,13 +374,8 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                 dropDownInputKey: clientTypeField,
                                 value: data != null
                                     ? describeEnum(data)
-                                    : describeEnum(ClientType.YOUTH),
-                                options: ClientType.values
-                                    .map(
-                                      (ClientType clientType) =>
-                                          describeEnum(clientType),
-                                    )
-                                    .toList(),
+                                    : describeEnum(ClientType.PMTCT),
+                                options: getClientTypeList(),
                                 onChanged: (String? value) {
                                   if (value != null) {
                                     _formManager.inClientType
@@ -509,6 +499,30 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
         ),
       ),
     );
+  }
+
+  List<String> getClientTypeList() {
+    final List<String> result = <String>[];
+
+    for (final ClientType clientType in ClientType.values) {
+      if (clientType != ClientType.YOUTH) {
+        result.add(describeEnum(clientType));
+      }
+    }
+
+    return result;
+  }
+
+  List<String> getGenderList() {
+    final List<String> result = <String>[];
+
+    for (final Gender gender in Gender.values) {
+      if (gender != Gender.unknown) {
+        result.add(capitalizeFirst(describeEnum(gender)));
+      }
+    }
+
+    return result;
   }
 
   void _processAndNavigate(bool hasConnection) {
