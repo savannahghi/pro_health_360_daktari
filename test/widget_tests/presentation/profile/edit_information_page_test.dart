@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myharehubpro/application/core/services/utils.dart';
 import 'package:myharehubpro/application/core/theme/app_themes.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/profile/pages/edit_information_page.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 
@@ -76,10 +75,6 @@ void main() {
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(find.byType(EditInformationPage), findsOneWidget);
-
-      await tester.tap(find.byKey(closeEditInformationPageBtnKey));
-      await tester.pumpAndSettle();
-      expect(find.byType(EditInformationPage), findsNothing);
     });
   });
 }

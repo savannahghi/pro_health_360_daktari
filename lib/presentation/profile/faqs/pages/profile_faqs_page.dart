@@ -51,10 +51,8 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
-            context: context,
-          ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
         ),
         child: StoreConnector<AppState, FAQsContentViewModel>(
           converter: (Store<AppState> store) =>

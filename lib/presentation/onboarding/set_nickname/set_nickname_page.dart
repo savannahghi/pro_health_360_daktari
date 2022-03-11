@@ -42,10 +42,8 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
           physics: const BouncingScrollPhysics(),
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                  context: context,
-                ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -112,10 +110,8 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
             SetNicknameViewModel.fromStore(store),
         builder: (BuildContext context, SetNicknameViewModel vm) {
           return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                context: context,
-              ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
             ),
             width: double.infinity,
             height: 52,
