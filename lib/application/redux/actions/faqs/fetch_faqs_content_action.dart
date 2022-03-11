@@ -12,11 +12,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:myharehubpro/application/core/graphql/queries.dart';
 import 'package:myharehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:http/http.dart' as http;
+import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 
@@ -47,21 +48,20 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
     final http.Response result =
         await _client.query(getFAQContentQuery, <String, dynamic>{
-      'flavour': Flavour.consumer.name,
+      'flavour': Flavour.pro.name,
       'limit': limit,
     });
 
     final Map<String, dynamic> body = _client.toMap(result);
 
-    final String? error = parseError(body);
+    final String? errors = _client.parseError(body);
 
-    if (error != null) {
+    if (errors != null) {
       Sentry.captureException(
-        UserException(error),
+        UserException(errors),
       );
 
-      dispatch(UpdateFAQsContentAction(errorFetchingFAQs: true));
-      return null;
+      throw const UserException(somethingWentWrongText);
     }
 
     final Map<String, dynamic> responseMap =

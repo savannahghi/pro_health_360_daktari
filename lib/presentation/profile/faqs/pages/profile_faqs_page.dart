@@ -7,6 +7,7 @@ import 'package:myharehubpro/application/redux/actions/faqs/fetch_faqs_content_a
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/application/redux/view_model_factories/FAQs/faqs_content_view_model.dart';
+import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
@@ -64,24 +65,6 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                 padding: const EdgeInsets.all(20),
                 child: const PlatformLoader(),
               );
-            } else if (vm.errorFetchingFAQs ?? false) {
-              return GenericErrorWidget(
-                actionKey: helpNoDataWidgetKey,
-                recoverCallback: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    FetchFAQSContentAction(context: context),
-                  );
-                },
-                messageBody: <TextSpan>[
-                  TextSpan(
-                    text: getErrorMessage(fetchingFAQsFlagString),
-                    style: normalSize16Text(
-                      AppColors.greyTextColor,
-                    ),
-                  ),
-                ],
-              );
             } else {
               final List<FAQContent?>? faqsContent = vm.faqItems;
 
@@ -133,17 +116,17 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
               } else if (faqsContent != null) {
                 return GenericErrorWidget(
                   actionKey: helpNoDataWidgetKey,
+                  headerIconSvgUrl: noDataImageSvgPath,
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
-                      FetchFAQSContentAction(
-                        context: context,
-                      ),
+                      FetchFAQSContentAction(context: context),
                     );
                   },
+                  messageTitle: noFAQsTitle,
                   messageBody: <TextSpan>[
                     TextSpan(
-                      text: getErrorMessage(fetchingFAQsFlagString),
+                      text: noFAQsDescription,
                       style: normalSize16Text(
                         AppColors.greyTextColor,
                       ),
