@@ -174,6 +174,9 @@ const String enrollmentDateLabel = 'Enrollment Date *';
 const String clientTypeLabel = 'Client Type *';
 const String registerClientSuccess = 'Successfully registered client';
 const String appAccessText = 'Invite to myAfyaHub';
+const String clientExists =
+    'a client with this identifier type and value already exists';
+const String cccExists = 'A client with that ccc number already exists';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';

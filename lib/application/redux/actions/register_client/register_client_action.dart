@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:myharehubpro/application/core/graphql/mutations.dart';
+import 'package:myharehubpro/application/core/services/utils.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/register_client/register_client_payload.dart';
@@ -53,9 +54,11 @@ class RegisterClientAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        if (errors == clientExists) {
+          throw UserException(capitalizeFirst(cccExists));
+        }
+
+        Sentry.captureException(UserException(errors));
 
         throw const UserException(somethingWentWrongText);
       }

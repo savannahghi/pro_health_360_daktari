@@ -100,15 +100,15 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
         ),
       );
-      final String fullname = loginResponse.staffState?.user?.name ?? UNKNOWN;
+      final String fullName = loginResponse.staffState?.user?.name ?? UNKNOWN;
 
       User? user = loginResponse.staffState?.user?.copyWith(
         pinChangeRequired: false,
         chatRoomToken: loginResponse.streamToken,
       );
 
-      if (fullname != UNKNOWN && fullname.isNotEmpty) {
-        final List<String> names = fullname.split(' ');
+      if (fullName != UNKNOWN && fullName.isNotEmpty) {
+        final List<String> names = fullName.split(' ');
         user = user?.copyWith(
           firstName: names.first,
           lastName: names.last,
