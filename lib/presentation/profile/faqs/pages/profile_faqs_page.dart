@@ -13,7 +13,6 @@ import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:myharehubpro/presentation/profile/faqs/widgets/faq_item.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -51,93 +50,80 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
         showNotificationIcon: true,
       ),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
-        child: StoreConnector<AppState, FAQsContentViewModel>(
-          converter: (Store<AppState> store) =>
-              FAQsContentViewModel.fromStore(store.state),
-          builder: (BuildContext context, FAQsContentViewModel vm) {
-            if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
-              return Container(
-                height: 300,
-                padding: const EdgeInsets.all(20),
-                child: const PlatformLoader(),
-              );
-            } else {
-              final List<FAQContent?>? faqsContent = vm.faqItems;
+      body: StoreConnector<AppState, FAQsContentViewModel>(
+        converter: (Store<AppState> store) =>
+            FAQsContentViewModel.fromStore(store.state),
+        builder: (BuildContext context, FAQsContentViewModel vm) {
+          if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
+            return Container(
+              height: 300,
+              padding: const EdgeInsets.all(20),
+              child: const PlatformLoader(),
+            );
+          } else {
+            final List<FAQContent?>? faqsContent = vm.faqItems;
 
-              if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
-                return SizedBox(
-                  child: SafeArea(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              frequentlyAskedQuestions,
-                              style: normalSize32Text(
-                                Theme.of(context).primaryColor,
-                              ),
-                            ),
-                            mediumVerticalSizedBox,
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: faqsContent.length,
-                              itemBuilder: (_, int index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      AppRoutes.faqDetailViewPage,
-                                      arguments: faqsContent[index],
-                                    );
-                                  },
-                                  child: FAQItem(
-                                    faqContent: FAQContent(
-                                      title:
-                                          faqsContent[index]?.title ?? UNKNOWN,
-                                      body: loremIpsumText,
-                                    ),
+            if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
+              return SizedBox(
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: faqsContent.length,
+                            itemBuilder: (_, int index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.faqDetailViewPage,
+                                    arguments: faqsContent[index],
+                                  );
+                                },
+                                child: FAQItem(
+                                  faqContent: FAQContent(
+                                    title: faqsContent[index]?.title ?? UNKNOWN,
+                                    body: loremIpsumText,
                                   ),
-                                );
-                              },
-                            )
-                          ],
-                        ),
+                                ),
+                              );
+                            },
+                          )
+                        ],
                       ),
                     ),
                   ),
-                );
-              } else if (faqsContent != null) {
-                return GenericErrorWidget(
-                  actionKey: helpNoDataWidgetKey,
-                  headerIconSvgUrl: noDataImageSvgPath,
-                  recoverCallback: () async {
-                    StoreProvider.dispatch<AppState>(
-                      context,
-                      FetchFAQSContentAction(context: context),
-                    );
-                  },
-                  messageTitle: noFAQsTitle,
-                  messageBody: <TextSpan>[
-                    TextSpan(
-                      text: noFAQsDescription,
-                      style: normalSize16Text(
-                        AppColors.greyTextColor,
-                      ),
+                ),
+              );
+            } else if (faqsContent != null) {
+              return GenericErrorWidget(
+                actionKey: helpNoDataWidgetKey,
+                headerIconSvgUrl: noDataImageSvgPath,
+                recoverCallback: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    FetchFAQSContentAction(context: context),
+                  );
+                },
+                messageTitle: noFAQsTitle,
+                messageBody: <TextSpan>[
+                  TextSpan(
+                    text: noFAQsDescription,
+                    style: normalSize16Text(
+                      AppColors.greyTextColor,
                     ),
-                  ],
-                );
-              }
+                  ),
+                ],
+              );
             }
-            return const SizedBox();
-          },
-        ),
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

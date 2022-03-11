@@ -8,7 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myharehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/faq_detail_view_page.dart';
 import 'package:myharehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
@@ -63,7 +62,6 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text(frequentlyAskedQuestions), findsOneWidget);
       expect(find.byKey(appBarBackButtonKey), findsOneWidget);
       expect(find.byType(FAQItem), findsWidgets);
 
