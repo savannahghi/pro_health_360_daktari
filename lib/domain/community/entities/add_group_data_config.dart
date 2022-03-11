@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myharehubpro/domain/community/entities/dropdown_item.dart';
+import 'package:mycarehubpro/domain/community/entities/dropdown_item.dart';
 
 part 'add_group_data_config.freezed.dart';
 

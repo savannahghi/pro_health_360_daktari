@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/redux/states/home/bottom_nav_state.dart';
+import 'package:mycarehubpro/application/redux/states/home/bottom_nav_state.dart';
 
 void main() {
   group('BottomNavigationState', () {

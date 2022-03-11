@@ -1,5 +1,5 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
 
 class BottomNavViewModel extends Vm {
   final int currentIndex;

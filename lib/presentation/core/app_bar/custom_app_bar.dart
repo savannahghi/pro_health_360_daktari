@@ -2,10 +2,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:myharehubpro/presentation/core/app_bar/app_bar_back_button.dart';
-import 'package:myharehubpro/presentation/core/app_bar/app_bar_more_button.dart';
-import 'package:myharehubpro/presentation/core/app_bar/app_bar_notification.dart';
-import 'package:myharehubpro/presentation/engagement/home/widgets/appbar_user.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/app_bar_back_button.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/app_bar_more_button.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/app_bar_notification.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// [CustomAppBar] is a custom [AppBar] used for navigation and showing basic

@@ -4,17 +4,17 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/application/redux/actions/create_group/create_group_action.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/create_group/create_group_form_manager.dart';
-import 'package:myharehubpro/domain/core/entities/create_group/create_group_payload.dart';
-import 'package:myharehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/create_group/create_group_action.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/create_group/create_group_form_manager.dart';
+import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:shared_themes/spaces.dart';
 
 class CreateGroupPage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:myharehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 
 const String appName = 'myCareHub Professional';
 

@@ -1,5 +1,5 @@
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class BottomNavItem {
   const BottomNavItem({

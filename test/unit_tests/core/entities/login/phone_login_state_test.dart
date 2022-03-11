@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/domain/core/entities/login/phone_login_state.dart';
+import 'package:mycarehubpro/domain/core/entities/login/phone_login_state.dart';
 
 import '../../../../mocks/mocks.dart';
 

@@ -5,12 +5,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
-import 'package:myharehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
-import 'package:myharehubpro/presentation/profile/pages/user_profile_page.dart';
-import 'package:myharehubpro/presentation/profile/widgets/user_details_card_widget.dart'
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
+import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
+import 'package:mycarehubpro/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
 import 'package:http/http.dart';
 

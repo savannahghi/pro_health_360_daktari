@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/communities/stream_token_provider.dart';
-import 'package:myharehubpro/infrastructure/endpoints.dart';
+import 'package:mycarehubpro/application/communities/stream_token_provider.dart';
+import 'package:mycarehubpro/infrastructure/endpoints.dart';
 import 'package:http/http.dart';
 
 import '../../../mocks/mocks.dart';

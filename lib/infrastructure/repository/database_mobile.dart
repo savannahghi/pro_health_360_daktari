@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:convert';
 
 // Project imports:
-import 'package:myharehubpro/infrastructure/repository/database_base.dart';
-import 'package:myharehubpro/infrastructure/repository/initialize_db.dart';
-import 'package:myharehubpro/infrastructure/repository/sqlite.dart';
+import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
+import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
+import 'package:mycarehubpro/infrastructure/repository/sqlite.dart';
 // Package imports:
 import 'package:sqflite/sqflite.dart';
 

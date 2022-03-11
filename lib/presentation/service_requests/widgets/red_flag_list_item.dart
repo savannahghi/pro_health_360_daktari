@@ -2,15 +2,15 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/presentation/service_requests/widgets/schedule_meet_dialog.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/schedule_meet_dialog.dart';
 
 /// [RedFlagListItem] is a shared widget used in [RedFlagsPage]
 ///

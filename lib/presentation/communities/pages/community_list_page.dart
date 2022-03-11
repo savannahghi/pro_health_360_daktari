@@ -2,17 +2,17 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myharehubpro/application/core/services/custom_client.dart';
-import 'package:myharehubpro/application/redux/actions/communities/connect_get_stream_user_action.dart';
-import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/communities/channel_page.dart';
-import 'package:myharehubpro/presentation/communities/community_list_view_model.dart';
-import 'package:myharehubpro/presentation/communities/community_utils.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:mycarehubpro/application/core/services/custom_client.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/connect_get_stream_user_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/communities/channel_page.dart';
+import 'package:mycarehubpro/presentation/communities/community_list_view_model.dart';
+import 'package:mycarehubpro/presentation/communities/community_utils.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {

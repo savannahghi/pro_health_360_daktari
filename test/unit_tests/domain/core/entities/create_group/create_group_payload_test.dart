@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/domain/core/entities/create_group/create_group_payload.dart';
+import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
 
 void main() {
   group('CreateGroupPayload', () {

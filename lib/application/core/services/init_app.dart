@@ -9,20 +9,20 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:myharehubpro/application/redux/actions/update_connectivity_action.dart';
-import 'package:myharehubpro/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
+import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/core/services/app_setup_data.dart';
-import 'package:myharehubpro/application/core/services/helpers.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/global_keys.dart';
-import 'package:myharehubpro/infrastructure/repository/database_base.dart';
-import 'package:myharehubpro/infrastructure/repository/database_state_persistor.dart';
-import 'package:myharehubpro/presentation/core/afya_moja_app.dart';
-import 'package:myharehubpro/presentation/core/widgets/unrecoverable_error_widget.dart';
+import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
+import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
+import 'package:mycarehubpro/infrastructure/repository/database_state_persistor.dart';
+import 'package:mycarehubpro/presentation/core/afya_moja_app.dart';
+import 'package:mycarehubpro/presentation/core/widgets/unrecoverable_error_widget.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 /// Responsible for putting together everything that the app needs in order

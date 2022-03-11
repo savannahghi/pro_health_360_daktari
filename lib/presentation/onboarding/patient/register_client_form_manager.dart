@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:myharehubpro/domain/core/entities/register_client/register_client_payload.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:myharehubpro/presentation/onboarding/patient/validator_mixin.dart';
+import 'package:mycarehubpro/domain/core/entities/register_client/register_client_payload.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterClientFormManager with Validator {

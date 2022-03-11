@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myharehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
-import 'package:myharehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
 part 'service_requests_state.freezed.dart';
 part 'service_requests_state.g.dart';

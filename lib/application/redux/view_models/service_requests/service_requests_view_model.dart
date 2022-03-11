@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
-import 'package:myharehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
 class ServiceRequestsViewModel extends Vm {
   final Wait wait;

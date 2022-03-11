@@ -5,12 +5,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:myharehubpro/application/core/graphql/queries.dart';
-import 'package:myharehubpro/application/redux/actions/communities/update_group_state_action.dart';
-import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/states/groups_state.dart';
-import 'package:myharehubpro/domain/core/entities/community_members/group_member.dart';
+import 'package:mycarehubpro/application/core/graphql/queries.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/update_group_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/groups_state.dart';
+import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
@@ -51,7 +51,7 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onError?.call(error);
-       dispatch(
+      dispatch(
         UpdateGroupStateAction(
           groupMembers: <GroupMember>[],
         ),
