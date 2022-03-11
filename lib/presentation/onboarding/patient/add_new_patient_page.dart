@@ -432,65 +432,55 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                   ],
                 ),
                 const SizedBox(height: 24),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // Submit button
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.only(left: 24),
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: StreamBuilder<bool>(
-                                stream: _formManager.isFormValid,
-                                builder: (
-                                  BuildContext context,
-                                  AsyncSnapshot<bool> snapshot,
-                                ) {
-                                  final bool hasData =
-                                      snapshot.hasData && snapshot.data != null;
+                    // Submit button
+                    SizedBox(
+                      width: double.infinity,
+                      child: StreamBuilder<bool>(
+                        stream: _formManager.isFormValid,
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<bool> snapshot,
+                        ) {
+                          final bool hasData =
+                              snapshot.hasData && snapshot.data != null;
 
-                                  return StoreConnector<AppState,
-                                      RegisterClientViewModel>(
-                                    converter: (Store<AppState> store) =>
-                                        RegisterClientViewModel.fromStore(
-                                      store,
-                                    ),
-                                    builder: (
-                                      BuildContext context,
-                                      RegisterClientViewModel vm,
-                                    ) {
-                                      if (vm.wait
-                                          .isWaitingFor(registerClientFlag)) {
-                                        return const PlatformLoader();
-                                      }
-
-                                      return ElevatedButton(
-                                        key: patientRegisterBtnKey,
-                                        onPressed: hasData && snapshot.data!
-                                            ? () => _processAndNavigate(
-                                                  vm.hasConnection,
-                                                )
-                                            : null,
-                                        style: ElevatedButton.styleFrom(
-                                          primary: AppColors.secondaryColor,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(16.0),
-                                          child: Text(registerBtnText),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                          return StoreConnector<AppState,
+                              RegisterClientViewModel>(
+                            converter: (Store<AppState> store) =>
+                                RegisterClientViewModel.fromStore(
+                              store,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                            builder: (
+                              BuildContext context,
+                              RegisterClientViewModel vm,
+                            ) {
+                              if (vm.wait.isWaitingFor(registerClientFlag)) {
+                                return const PlatformLoader();
+                              }
+
+                              return ElevatedButton(
+                                key: patientRegisterBtnKey,
+                                onPressed: hasData && snapshot.data!
+                                    ? () => _processAndNavigate(
+                                          vm.hasConnection,
+                                        )
+                                    : null,
+                                style: ElevatedButton.styleFrom(
+                                  primary: AppColors.secondaryColor,
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Text(registerBtnText),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    )
                   ],
                 ),
               ],
