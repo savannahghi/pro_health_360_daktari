@@ -6,8 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:myharehubpro/application/redux/actions/create_pin_action.dart';
 import 'package:myharehubpro/application/redux/actions/onboarding/create_pin_state_action.dart';
 import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -22,10 +20,11 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myharehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:myharehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 
 String? userPinValidator(dynamic val) {
@@ -511,11 +510,3 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
       .toList(),
   apiFieldValue: 'caregiverType',
 );
-
-String getInitialRoute(int currentIndex, String? initialRoute) {
-  if (initialRoute != null && initialRoute == AppRoutes.loginPage) {
-    return initialRoute;
-  }
-
-  return bottomNavItems[currentIndex].onTapRoute;
-}

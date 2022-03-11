@@ -3,7 +3,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:myharehubpro/application/core/services/custom_client.dart';
 import 'package:myharehubpro/application/core/services/localization.dart';
-import 'package:myharehubpro/application/core/services/utils.dart';
 import 'package:myharehubpro/application/core/theme/app_themes.dart';
 import 'package:myharehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
@@ -65,8 +64,6 @@ class _AuthManagerState extends State<AuthManager> {
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
-        final String initialRoute =
-            getInitialRoute(vm.currentIndex ?? 0, vm.initialRoute);
         return MaterialApp(
           builder: (BuildContext context, Widget? childWidget) {
             return UserExceptionDialog<AppState>(
@@ -85,7 +82,7 @@ class _AuthManagerState extends State<AuthManager> {
           navigatorObservers: <NavigatorObserver>[
             SentryNavigatorObserver(),
           ],
-          initialRoute: initialRoute,
+          initialRoute: vm.initialRoute,
           onGenerateRoute: RouteGenerator.generateRoute,
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,

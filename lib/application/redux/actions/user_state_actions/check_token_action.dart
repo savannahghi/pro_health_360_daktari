@@ -5,7 +5,6 @@ import 'package:myharehubpro/application/redux/actions/core/update_credentials_a
 import 'package:myharehubpro/application/redux/actions/user_state_actions/update_initial_route_action.dart';
 import 'package:myharehubpro/application/redux/states/app_state.dart';
 import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:myharehubpro/presentation/router/routes.dart';
 
 class CheckTokenAction extends ReduxAction<AppState> {
@@ -22,8 +21,6 @@ class CheckTokenAction extends ReduxAction<AppState> {
     final bool isSignedIn = state.credentials?.isSignedIn ?? false;
 
     String initialRoute = AppRoutes.loginPage;
-    final int currentIndex =
-        state.bottomNavigationState?.currentBottomNavIndex ?? 0;
 
     if (isSignedIn) {
       final DateTime now = DateTime.now();
@@ -54,12 +51,12 @@ class CheckTokenAction extends ReduxAction<AppState> {
             ),
           );
 
-          initialRoute = bottomNavItems[currentIndex].onTapRoute;
+          initialRoute = AppRoutes.homePage;
         } else {
           initialRoute = AppRoutes.loginPage;
         }
       } else {
-        initialRoute = bottomNavItems[currentIndex].onTapRoute;
+        initialRoute = AppRoutes.homePage;
       }
     }
 
