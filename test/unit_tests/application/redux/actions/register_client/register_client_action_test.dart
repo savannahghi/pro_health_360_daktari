@@ -48,7 +48,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               500,
             ),
           ),
@@ -78,7 +78,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               200,
             ),
           ),
@@ -95,6 +95,35 @@ void main() {
         (info.error! as UserException).msg,
         'Sorry, an unknown error occurred, please try again or get help from our '
         'help center.',
+      );
+    });
+
+    test('should throw error if client exists', () async {
+      storeTester.dispatch(
+        RegisterClientAction(
+          registerClientPayload: RegisterClientPayload(),
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{
+                'error':
+                    'a client with this identifier type and value already exists'
+              }),
+              200,
+            ),
+          ),
+          onSuccess: () {},
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(RegisterClientAction);
+
+      expect(info.state, AppState.initial());
+      expect(
+        (info.error! as UserException).msg,
+        'A client with that ccc number already exists',
       );
     });
   });
