@@ -22,10 +22,8 @@ class FAQDetailViewPage extends StatelessWidget {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
-            context: context,
-          ),
+        padding: const EdgeInsets.all(
+          20,
         ),
         child: ListView(
           shrinkWrap: true,

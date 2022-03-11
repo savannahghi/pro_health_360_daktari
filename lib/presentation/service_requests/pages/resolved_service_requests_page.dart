@@ -55,10 +55,8 @@ class _ResolvedServiceRequestsPageState
         showNotificationIcon: true,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
-            context: context,
-          ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
         ),
         child: StoreConnector<AppState, ServiceRequestsViewModel>(
           converter: (Store<AppState> store) =>

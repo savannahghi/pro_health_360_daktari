@@ -357,7 +357,7 @@ const String fetchingFAQsFlagString = 'fetching FAQs';
 const String tapToLearnMoreText = 'Tap to learn more';
 const String settingsPageTitle = 'Settings';
 const String editString = 'Edit';
-const String nickNameFieldName = 'Enter your nickname';
+const String nickNameFieldName = 'Enter your new nickname';
 
 //Personal Information
 const String myProfileCaregiverText = 'Caregiver information';
