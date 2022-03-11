@@ -174,20 +174,34 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             ) {
                               final RangeValues? data = snapshot.data;
 
-                              return RangeSlider(
-                                key: ageRangeSlider,
-                                values: data ?? const RangeValues(15, 25),
-                                min: 15,
-                                max: 25,
-                                divisions: 10,
-                                labels: RangeLabels(
-                                  data?.start.toString() ??
-                                      minimumAge.toString(),
-                                  data?.end.toString() ?? maximumAge.toString(),
-                                ),
-                                onChanged: (RangeValues values) {
-                                  _formManager.inAgeRange.add(values);
-                                },
+                              final String lowerAge = data?.start.toString() ??
+                                  minimumAge.toString();
+
+                              final String higherAge =
+                                  data?.end.toString() ?? maximumAge.toString();
+
+                              return Row(
+                                children: <Widget>[
+                                  Text(lowerAge),
+                                  Expanded(
+                                    child: RangeSlider(
+                                      key: ageRangeSlider,
+                                      values: data ??
+                                          const RangeValues(
+                                            minimumAge,
+                                            maximumAge,
+                                          ),
+                                      min: minimumAge,
+                                      max: maximumAge,
+                                      divisions: 10,
+                                      labels: RangeLabels(lowerAge, higherAge),
+                                      onChanged: (RangeValues values) {
+                                        _formManager.inAgeRange.add(values);
+                                      },
+                                    ),
+                                  ),
+                                  Text(higherAge)
+                                ],
                               );
                             },
                           ),
@@ -293,14 +307,18 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   void createClientTypeFields() {
     for (final ClientType clientType in ClientType.values) {
-      clientTypeFields[clientType.name] = false;
+      if (clientType != ClientType.YOUTH) {
+        clientTypeFields[clientType.name] = false;
+      }
     }
   }
 
   void createGenderFields() {
     for (final Gender gender in Gender.values) {
-      final String key = capitalizeFirst(gender.name);
-      genderFields[key] = false;
+      if (gender != Gender.unknown) {
+        final String key = capitalizeFirst(gender.name);
+        genderFields[key] = false;
+      }
     }
   }
 

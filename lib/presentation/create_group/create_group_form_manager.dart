@@ -7,7 +7,7 @@ import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:myharehubpro/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
-const double minimumAge = 15;
+const double minimumAge = 14;
 const double maximumAge = 25;
 
 class CreateGroupFormManager with Validator {
