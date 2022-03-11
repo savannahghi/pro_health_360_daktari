@@ -41,6 +41,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
           variables: <String, dynamic>{
             'status': RequestStatus.PENDING.name,
             'facilityID': facilityID,
+            'type': ServiceRequestType.RED_FLAG.name
           },
         ),
       );

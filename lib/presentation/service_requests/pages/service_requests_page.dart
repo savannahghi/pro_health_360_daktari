@@ -71,14 +71,15 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                     orElse: () => RequestCountContent.initial(),
                   )
                   .count;
-          final int? pinResetCount =
-              vm.pendingServiceRequests?.serviceRequestsCount
-                  ?.singleWhere(
-                    (RequestCountContent? element) =>
-                        element?.requestType == ServiceRequestType.PIN_RESET,
-                    orElse: () => RequestCountContent.initial(),
-                  )
-                  .count;
+          //todo(byron) return this when backend workflow is done
+          // final int? pinResetCount =
+          //     vm.pendingServiceRequests?.serviceRequestsCount
+          //         ?.singleWhere(
+          //           (RequestCountContent? element) =>
+          //               element?.requestType == ServiceRequestType.PIN_RESET,
+          //           orElse: () => RequestCountContent.initial(),
+          //         )
+          //         .count;
           final int? profileUpdateCount = vm
               .pendingServiceRequests?.serviceRequestsCount
               ?.singleWhere(
@@ -124,19 +125,20 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                         children: <Widget>[
                           Wrap(
                             children: <Widget>[
-                              if (pinResetCount != null && pinResetCount > 0)
-                                ActionCard(
-                                  counter: pinResetCount.toString(),
-                                  iconUrl: pinResetImageSvgPath,
-                                  title: pinResetString,
-                                  backgroundColor: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.2),
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.pinResetRequestsPage,
-                                  ),
-                                ),
+                              // todo(byron) return this when the workflow is done and implemented on backend
+                              // if (pinResetCount != null && pinResetCount > 0)
+                              //   ActionCard(
+                              //     counter: pinResetCount.toString(),
+                              //     iconUrl: pinResetImageSvgPath,
+                              //     title: pinResetString,
+                              //     backgroundColor: Theme.of(context)
+                              //         .primaryColor
+                              //         .withOpacity(0.2),
+                              //     onTap: () => Navigator.pushNamed(
+                              //       context,
+                              //       AppRoutes.pinResetRequestsPage,
+                              //     ),
+                              //   ),
                               if (redFlagCount != null && redFlagCount > 0)
                                 ActionCard(
                                   counter: redFlagCount.toString(),

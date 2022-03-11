@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,7 +32,7 @@ class PINResetRequestsPage extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(title: pinResetString),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -68,39 +67,6 @@ class PINResetRequestsPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.10),
-                            spreadRadius: 1,
-                            blurRadius: 9,
-                            offset: const Offset(0, 9),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              searchString,
-                              style: normalSize12Text(
-                                AppColors.greyTextColor,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: SvgPicture.asset(searchIconSvg),
-                          ),
-                        ],
-                      ),
-                    ),
                     veryLargeVerticalSizedBox,
                     ...List<Widget>.generate(pinResetRequests.length,
                         (int index) {
