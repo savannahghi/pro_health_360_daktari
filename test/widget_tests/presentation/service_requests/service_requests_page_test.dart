@@ -56,7 +56,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(ActionCard), findsNWidgets(2));
+      expect(find.byType(ActionCard), findsOneWidget);
 
       await tester.tap(find.byType(ActionCard).first);
       await tester.pumpAndSettle();
