@@ -2,12 +2,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
-import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:myharehubpro/application/redux/actions/terms/update_terms_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

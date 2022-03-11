@@ -1,12 +1,12 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:myharehubpro/application/core/services/custom_client.dart';
-import 'package:myharehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:myharehubpro/application/redux/actions/user_state_actions/update_initial_route_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/core/services/custom_client.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:mycarehubpro/application/redux/actions/user_state_actions/update_initial_route_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class CheckTokenAction extends ReduxAction<AppState> {
   CheckTokenAction({

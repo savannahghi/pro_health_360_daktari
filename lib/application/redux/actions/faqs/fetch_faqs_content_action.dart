@@ -13,11 +13,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:myharehubpro/application/core/graphql/queries.dart';
-import 'package:myharehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
-import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/application/core/graphql/queries.dart';
+import 'package:mycarehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 

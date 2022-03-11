@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 // Project imports:
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
 
 class UpdateCredentialsAction extends ReduxAction<AppState> {
   UpdateCredentialsAction({

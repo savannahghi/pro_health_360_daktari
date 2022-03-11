@@ -2,12 +2,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/actions/update_connectivity_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/states/connectivity_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

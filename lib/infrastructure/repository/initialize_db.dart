@@ -2,7 +2,7 @@
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:myharehubpro/infrastructure/repository/sqlite.dart';
+import 'package:mycarehubpro/infrastructure/repository/sqlite.dart';
 
 class InitializeDB<T extends DatabaseExecutor> extends InitializeDBHelper<T> {
   InitializeDB({required String dbName}) : super(dbName: dbName);

@@ -3,7 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/core/services/app_setup_data.dart';
+import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
 
 void main() {
   test('AppSetupData creates a valid object', () {

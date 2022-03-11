@@ -7,10 +7,10 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/actions/onboarding/verify_otp_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/core/contact.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/verify_otp_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/contact.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
 
 import '../../mocks/mocks.dart';

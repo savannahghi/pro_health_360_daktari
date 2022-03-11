@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/domain/core/entities/core/get_stream_token.dart';
+import 'package:mycarehubpro/domain/core/entities/core/get_stream_token.dart';
 
 void main() {
   test('should convert from/to json', () {

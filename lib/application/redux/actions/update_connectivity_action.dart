@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/states/connectivity_state.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 
 class UpdateConnectivityAction extends ReduxAction<AppState> {
   UpdateConnectivityAction({required this.hasConnection});

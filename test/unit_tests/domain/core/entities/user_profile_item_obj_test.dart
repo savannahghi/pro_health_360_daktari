@@ -2,9 +2,9 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/domain/core/entities/user_profile_item_obj.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 void main() {
   final Map<String, dynamic> data = <String, dynamic>{

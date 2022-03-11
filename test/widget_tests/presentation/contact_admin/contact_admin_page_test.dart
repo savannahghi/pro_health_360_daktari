@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
-import 'package:myharehubpro/presentation/contact_admin/widgets/contact_admin_card.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:mycarehubpro/presentation/contact_admin/widgets/contact_admin_card.dart';
 
 import '../../../mocks/test_helpers.dart';
 

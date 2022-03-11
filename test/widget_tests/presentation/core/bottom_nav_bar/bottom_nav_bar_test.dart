@@ -5,10 +5,10 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
-import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 
 import '../../../../mocks/test_helpers.dart';
 

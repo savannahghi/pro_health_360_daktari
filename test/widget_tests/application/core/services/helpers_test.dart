@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/services/helpers.dart';
-import 'package:myharehubpro/presentation/onboarding/login/widgets/login_widget.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/widgets/login_widget.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
 import '../../../../mocks/mocks.dart';

@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
 RegExp validNumberRegexp = RegExp(r'^-?[0-9]+$');
 

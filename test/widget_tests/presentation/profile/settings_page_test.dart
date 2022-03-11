@@ -5,12 +5,12 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/profile/pages/edit_information_page.dart';
-import 'package:myharehubpro/presentation/profile/pages/settings_page.dart';
-import 'package:myharehubpro/presentation/profile/widgets/edit_info_button_widget.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
+import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
+import 'package:mycarehubpro/presentation/profile/widgets/edit_info_button_widget.dart';
 import 'package:http/http.dart';
 
 import '../../../mocks/mocks.dart';

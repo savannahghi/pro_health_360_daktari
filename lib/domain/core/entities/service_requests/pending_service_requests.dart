@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myharehubpro/domain/core/entities/service_requests/request_count_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/request_count_content.dart';
 
 part 'pending_service_requests.freezed.dart';
 part 'pending_service_requests.g.dart';

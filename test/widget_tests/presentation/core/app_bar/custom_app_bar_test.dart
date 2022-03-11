@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/app_bar/app_bar_back_button.dart';
-import 'package:myharehubpro/presentation/core/app_bar/app_bar_more_button.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/app_bar_back_button.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/app_bar_more_button.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 
 import '../../../../mocks/test_helpers.dart';
 

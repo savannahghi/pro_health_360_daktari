@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/actions/set_nick_name_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/redux/actions/set_nick_name_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
 import '../../../../../mocks/mocks.dart';

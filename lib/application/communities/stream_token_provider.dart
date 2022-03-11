@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:myharehubpro/domain/core/entities/core/get_stream_token.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/entities/core/get_stream_token.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
 
 class StreamTokenProvider {

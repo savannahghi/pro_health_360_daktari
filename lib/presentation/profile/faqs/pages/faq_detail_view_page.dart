@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 
 class FAQDetailViewPage extends StatelessWidget {
   final FAQContent payload;

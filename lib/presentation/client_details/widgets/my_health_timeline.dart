@@ -8,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/domain/core/entities/profile/doctor.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/entities/profile/doctor.dart';
 
 class MyHealthTimeline extends StatelessWidget {
   const MyHealthTimeline({Key? key}) : super(key: key);
