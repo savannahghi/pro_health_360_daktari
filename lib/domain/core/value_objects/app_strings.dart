@@ -336,6 +336,9 @@ const String resolvedRequestsString = 'Resolved Requests';
 const String faqsString = 'FAQs';
 const String settingsString = 'Settings';
 const String genericVerifyPhoneNumber = 'Verify Phone number';
+const String noFAQsTitle = 'No FAQs are available';
+const String noFAQsDescription =
+    'No worries though, check back in later and we will have them ready for you';
 
 // contact admin
 const String contactAdmin = 'Contact Admin';
