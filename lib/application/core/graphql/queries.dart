@@ -94,7 +94,6 @@ query listMembers($input: QueryOption){
     name
     role
     username
-    gender
   }
 }
 ''';
