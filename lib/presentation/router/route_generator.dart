@@ -7,6 +7,7 @@ import 'package:mycarehubpro/presentation/client_details/pages/client_health_pag
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:mycarehubpro/presentation/core/widgets/handle_deep_link.dart';
 import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
@@ -39,6 +40,11 @@ class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final dynamic args = settings.arguments;
     switch (settings.name) {
+      case AppRoutes.deepLink:
+        return MaterialPageRoute<HandleDeepLink>(
+          builder: (BuildContext context) => const HandleDeepLink(),
+        );
+
       case AppRoutes.homePage:
         return MaterialPageRoute<HomePage>(
           builder: (BuildContext context) {

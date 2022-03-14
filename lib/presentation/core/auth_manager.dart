@@ -3,13 +3,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/custom_client.dart';
 import 'package:mycarehubpro/application/core/services/localization.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -65,8 +66,15 @@ class _AuthManagerState extends State<AuthManager> {
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
-        final String initialRoute =
-            getInitialRoute(vm.currentIndex ?? 0, vm.initialRoute);
+        String initialRoute = vm.initialRoute ?? AppRoutes.loginPage;
+
+        final bool isPhoneLogin =
+            initialRoute.compareTo(AppRoutes.loginPage) == 0;
+
+        if (!isPhoneLogin) {
+          initialRoute = bottomNavItems[vm.currentIndex ?? 0].onTapRoute;
+        }
+
         return MaterialApp(
           builder: (BuildContext context, Widget? childWidget) {
             return UserExceptionDialog<AppState>(
