@@ -3,12 +3,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/notification/notification_details.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:myharehubpro/presentation/notifications/notifications_page.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 
 import '../../../mocks/test_helpers.dart';
 

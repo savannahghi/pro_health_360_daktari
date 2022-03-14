@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
 class GroupMemberItem extends StatelessWidget {
@@ -40,7 +40,9 @@ class GroupMemberItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      userName.isNotEmpty ?  userName.trim()[0].toUpperCase() : 'U',
+                      userName.isNotEmpty
+                          ? userName.trim()[0].toUpperCase()
+                          : 'U',
                       style: boldSize14Text(AppColors.primaryColor),
                     ),
                   ),

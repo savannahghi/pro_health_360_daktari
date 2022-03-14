@@ -2,17 +2,17 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/application/redux/actions/faqs/fetch_faqs_content_action.dart';
-import 'package:myharehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/view_model_factories/FAQs/faqs_content_view_model.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:myharehubpro/presentation/profile/faqs/widgets/faq_item.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/faqs/fetch_faqs_content_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_model_factories/FAQs/faqs_content_view_model.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/widgets/faq_item.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();

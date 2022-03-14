@@ -4,18 +4,18 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 // Project imports:
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/states/home/bottom_nav_state.dart';
-import 'package:myharehubpro/application/redux/states/home_state.dart';
-import 'package:myharehubpro/application/redux/states/misc_state.dart';
-import 'package:myharehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:myharehubpro/application/redux/states/service_requests_state.dart';
-import 'package:myharehubpro/application/redux/states/survey_state.dart';
-import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
-import 'package:myharehubpro/infrastructure/repository/database_base.dart';
-import 'package:myharehubpro/infrastructure/repository/database_mobile.dart';
-import 'package:myharehubpro/infrastructure/repository/initialize_db.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/home/bottom_nav_state.dart';
+import 'package:mycarehubpro/application/redux/states/home_state.dart';
+import 'package:mycarehubpro/application/redux/states/misc_state.dart';
+import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
+import 'package:mycarehubpro/application/redux/states/survey_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
+import 'package:mycarehubpro/infrastructure/repository/database_mobile.dart';
+import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
 
 /// [MyCareHubProfessionalStateDatabase] is the middleware that interacts with the database
 /// on behalf of the application. From the app's perspective, it doesn't care

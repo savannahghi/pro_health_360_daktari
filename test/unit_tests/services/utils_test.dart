@@ -9,15 +9,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:myharehubpro/application/redux/actions/terms/update_terms_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/infrastructure/endpoints.dart';
-import 'package:myharehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/infrastructure/endpoints.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 import '../../mocks/mocks.dart';
 import '../../mocks/test_helpers.dart';

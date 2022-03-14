@@ -8,24 +8,24 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:myharehubpro/application/redux/actions/create_pin_action.dart';
-import 'package:myharehubpro/application/redux/actions/onboarding/create_pin_state_action.dart';
-import 'package:myharehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:myharehubpro/application/redux/actions/user_state_actions/logout_action.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/entities/notification/notification_details.dart';
-import 'package:myharehubpro/domain/core/entities/pin_reset_request.dart';
-import 'package:myharehubpro/domain/core/entities/red_flag_item.dart';
-import 'package:myharehubpro/domain/core/entities/user_profile_item_obj.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
-import 'package:myharehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
-import 'package:myharehubpro/presentation/profile/widgets/edit_information_item.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/application/redux/actions/create_pin_action.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/create_pin_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
+import 'package:mycarehubpro/domain/core/entities/pin_reset_request.dart';
+import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
+import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
+import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 String? userPinValidator(dynamic val) {
@@ -103,7 +103,6 @@ const List<Widget> patientSearchResults = <Widget>[
   PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
   PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
 ];
-
 
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(

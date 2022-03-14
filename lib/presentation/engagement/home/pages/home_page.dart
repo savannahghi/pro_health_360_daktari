@@ -2,19 +2,19 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/view_models/staff_state_view_model.dart';
-import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_models/staff_state_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
 // Project imports:
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
-import 'package:myharehubpro/presentation/engagement/home/widgets/action_card.dart';
-import 'package:myharehubpro/presentation/engagement/home/widgets/appbar_user.dart';
-import 'package:myharehubpro/presentation/router/routes.dart';
-import 'package:myharehubpro/presentation/service_requests/widgets/service_request_action_card.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/service_request_action_card.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 

@@ -3,9 +3,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 // Package imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
 class SecurityQuestionWidget extends StatefulWidget {
   const SecurityQuestionWidget({

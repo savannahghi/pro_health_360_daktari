@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/domain/core/entities/core/facility.dart';
+import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import '../../../mocks/mocks.dart';
 
 void main() {

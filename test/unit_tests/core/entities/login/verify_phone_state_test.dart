@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myharehubpro/application/redux/states/onboarding/verify_phone_state.dart';
+import 'package:mycarehubpro/application/redux/states/onboarding/verify_phone_state.dart';
 
 import '../../../../mocks/mocks.dart';
 

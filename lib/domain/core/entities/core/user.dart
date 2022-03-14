@@ -2,8 +2,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/services/utils.dart';
-import 'package:myharehubpro/domain/core/entities/core/contact.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/domain/core/entities/core/contact.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';

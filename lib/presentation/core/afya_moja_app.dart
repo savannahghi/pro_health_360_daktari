@@ -5,14 +5,14 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/services/app_setup_data.dart';
-import 'package:myharehubpro/application/core/services/custom_client.dart';
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/application/redux/view_model_factories/app_entry_point_view_model_factory.dart';
-import 'package:myharehubpro/application/redux/view_models/app_entry_point_view_model.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myharehubpro/presentation/core/auth_manager.dart';
+import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
+import 'package:mycarehubpro/application/core/services/custom_client.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_model_factories/app_entry_point_view_model_factory.dart';
+import 'package:mycarehubpro/application/redux/view_models/app_entry_point_view_model.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/core/auth_manager.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class MyCareHubProfessionalApp extends StatelessWidget {

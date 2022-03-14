@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
-import 'package:myharehubpro/application/core/theme/app_themes.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:

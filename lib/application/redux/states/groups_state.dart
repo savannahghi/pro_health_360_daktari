@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myharehubpro/domain/core/entities/community_members/group_member.dart';
+import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
 
 part 'groups_state.freezed.dart';
 part 'groups_state.g.dart';
@@ -15,6 +15,6 @@ class GroupState with _$GroupState {
       _$GroupStateFromJson(json);
 
   factory GroupState.initial() => GroupState(
-    groupMembers: <GroupMember?>[GroupMember.initial()],
+        groupMembers: <GroupMember?>[GroupMember.initial()],
       );
 }

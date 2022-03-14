@@ -6,10 +6,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myharehubpro/application/redux/states/app_state.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:myharehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:myharehubpro/presentation/engagement/home/widgets/action_card.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import '../../../../../mocks/test_helpers.dart';
 
 void main() {

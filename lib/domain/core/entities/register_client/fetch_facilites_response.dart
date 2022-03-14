@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myharehubpro/domain/core/entities/core/facility.dart';
+import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 
 part 'fetch_facilites_response.freezed.dart';
 part 'fetch_facilites_response.g.dart';

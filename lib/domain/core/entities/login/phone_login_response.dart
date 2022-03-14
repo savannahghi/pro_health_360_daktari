@@ -2,8 +2,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myharehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:myharehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
 
 part 'phone_login_response.freezed.dart';
 part 'phone_login_response.g.dart';
