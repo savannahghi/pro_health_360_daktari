@@ -83,18 +83,6 @@ void main() {
       expect(path.route, AppRoutes.setPinPage);
     });
 
-    test('should return initial route', () async {
-      expect(getInitialRoute(0, AppRoutes.loginPage), AppRoutes.loginPage);
-      expect(
-        getInitialRoute(1, AppRoutes.communityPage),
-        AppRoutes.communityPage,
-      );
-      expect(
-        getInitialRoute(2, AppRoutes.notificationsPage),
-        AppRoutes.notificationsPage,
-      );
-    });
-
     test('should return set nickname page', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(

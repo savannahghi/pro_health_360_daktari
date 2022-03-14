@@ -22,7 +22,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
@@ -510,11 +509,3 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
       .toList(),
   apiFieldValue: 'caregiverType',
 );
-
-String getInitialRoute(int currentIndex, String? initialRoute) {
-  if (initialRoute != null && initialRoute == AppRoutes.loginPage) {
-    return initialRoute;
-  }
-
-  return bottomNavItems[currentIndex].onTapRoute;
-}
