@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/core/app_bar/app_bar_back_button.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/app_bar_more_button.dart';
@@ -68,22 +69,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            if (showBackButton)
-              AppBarBackButton(
-                color: showMoreButton
-                    ? Colors.white
-                    : Theme.of(context).colorScheme.primary,
-              )
-            else
-              leadingWidget!,
+            if (showBackButton) const AppBarBackButton() else leadingWidget!,
 
             Text(
               title ?? '',
-              style: veryBoldSize16Text(
-                showMoreButton
-                    ? Colors.white
-                    : Theme.of(context).colorScheme.primary,
-              ),
+              style: boldSize16Text().copyWith(color: AppColors.secondaryColor),
             ),
 
             // This can never be null because the default widget is already

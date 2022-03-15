@@ -14,7 +14,6 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
-import 'package:mycarehubpro/domain/core/entities/pin_reset_request.dart';
 import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
 import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
@@ -56,33 +55,6 @@ List<NotificationDetails> notifications = <NotificationDetails>[
     icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
     description: 'New tele-consult request',
     date: customDate,
-  ),
-];
-
-final List<PINResetRequest> pinResetRequests = <PINResetRequest>[
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
-  ),
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
-  ),
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
-  ),
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
-  ),
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
-  ),
-  PINResetRequest(
-    clientName: 'James Doe Kinyanjui',
-    phoneNumber: '0712345678',
   ),
 ];
 
