@@ -1,9 +1,7 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,7 +9,6 @@ import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_se
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/request_count_content.dart';
-// Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -34,16 +31,10 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final String facilityID =
-          StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
-              '';
       StoreProvider.dispatch<AppState>(
         context,
         FetchServiceRequestsCountAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          variables: <String, dynamic>{
-            'facilityID': facilityID,
-          },
         ),
       );
     });
@@ -63,31 +54,23 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
         builder: (BuildContext context, ServiceRequestsViewModel vm) {
           final bool error = vm.errorFetchingServiceRequests ?? false;
           final int total = vm.pendingServiceRequests?.total ?? 0;
-          final int? redFlagCount =
-              vm.pendingServiceRequests?.serviceRequestsCount
-                  ?.singleWhere(
-                    (RequestCountContent? element) =>
-                        element?.requestType == ServiceRequestType.RED_FLAG,
-                    orElse: () => RequestCountContent.initial(),
-                  )
-                  .count;
-          //todo(byron) return this when backend workflow is done
-          // final int? pinResetCount =
-          //     vm.pendingServiceRequests?.serviceRequestsCount
-          //         ?.singleWhere(
-          //           (RequestCountContent? element) =>
-          //               element?.requestType == ServiceRequestType.PIN_RESET,
-          //           orElse: () => RequestCountContent.initial(),
-          //         )
-          //         .count;
-          final int? profileUpdateCount = vm
-              .pendingServiceRequests?.serviceRequestsCount
-              ?.singleWhere(
-                (RequestCountContent? element) =>
-                    element?.requestType == ServiceRequestType.PROFILE_UPDATE,
-                orElse: () => RequestCountContent.initial(),
-              )
-              .count;
+          final List<RequestCountContent>? serviceRequestsCount =
+              vm.pendingServiceRequests?.serviceRequestsCount;
+
+          final int redFlagCount = _getServiceRequestTypeCount(
+            serviceRequestsCount,
+            ServiceRequestType.RED_FLAG,
+          );
+
+          final int pinResetCount = _getServiceRequestTypeCount(
+            serviceRequestsCount,
+            ServiceRequestType.PIN_RESET,
+          );
+
+          final int profileUpdateCount = _getServiceRequestTypeCount(
+            serviceRequestsCount,
+            ServiceRequestType.PROFILE_UPDATE,
+          );
 
           return SingleChildScrollView(
             child: Column(
@@ -125,23 +108,9 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                         children: <Widget>[
                           Wrap(
                             children: <Widget>[
-                              // todo(byron) return this when the workflow is done and implemented on backend
-                              // if (pinResetCount != null && pinResetCount > 0)
-                              //   ActionCard(
-                              //     counter: pinResetCount.toString(),
-                              //     iconUrl: pinResetImageSvgPath,
-                              //     title: pinResetString,
-                              //     backgroundColor: Theme.of(context)
-                              //         .primaryColor
-                              //         .withOpacity(0.2),
-                              //     onTap: () => Navigator.pushNamed(
-                              //       context,
-                              //       AppRoutes.pinResetRequestsPage,
-                              //     ),
-                              //   ),
-                              if (redFlagCount != null && redFlagCount > 0)
+                              if (redFlagCount > 0)
                                 ActionCard(
-                                  counter: redFlagCount.toString(),
+                                  count: redFlagCount,
                                   iconUrl: redFlagStressSvgPath,
                                   title: redFlagString,
                                   backgroundColor: Theme.of(context)
@@ -152,10 +121,22 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                     AppRoutes.redFlagsPage,
                                   ),
                                 ),
-                              if (profileUpdateCount != null &&
-                                  profileUpdateCount > 0)
+                              if (pinResetCount > 0)
                                 ActionCard(
-                                  counter: profileUpdateCount.toString(),
+                                  count: pinResetCount,
+                                  iconUrl: pinResetImageSvgPath,
+                                  title: pinResetString,
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.pinResetRequestsPage,
+                                  ),
+                                ),
+                              if (profileUpdateCount > 0)
+                                ActionCard(
+                                  count: profileUpdateCount,
                                   iconUrl: profileUpdateImageSvgPath,
                                   title: profileUpdateString,
                                   backgroundColor: Theme.of(context)
@@ -177,11 +158,9 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                       actionText: actionTextGenericNoData,
                       type: GenericNoDataTypes.noData,
                       recoverCallback: () {
-                        if (Navigator.canPop(context)) {
-                          Navigator.of(context).pop();
-                        }
+                        Navigator.of(context).pop();
                       },
-                      messageTitle: getNoDataTile(redFlagString.toLowerCase()),
+                      messageTitle: getNoDataTile('Service requests'),
                       messageBody: <TextSpan>[
                         TextSpan(
                           text: serviceRequestsNoDataBodyString,
@@ -195,19 +174,11 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                 } else ...<Widget>{
                   GenericErrorWidget(
                     actionKey: helpNoDataWidgetKey,
-                    recoverCallback: () async {
-                      final String facilityID =
-                          StoreProvider.state<AppState>(context)
-                                  ?.staffState
-                                  ?.defaultFacility ??
-                              '';
+                    recoverCallback: () {
                       StoreProvider.dispatch<AppState>(
                         context,
                         FetchServiceRequestsCountAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
-                          variables: <String, dynamic>{
-                            'facilityID': facilityID,
-                          },
                         ),
                       );
                     },
@@ -227,5 +198,18 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
         },
       ),
     );
+  }
+
+  int _getServiceRequestTypeCount(
+    List<RequestCountContent>? requests,
+    ServiceRequestType type,
+  ) {
+    return requests
+            ?.singleWhere(
+              (RequestCountContent? element) => element?.requestType == type,
+              orElse: () => RequestCountContent.initial(),
+            )
+            .count ??
+        0;
   }
 }

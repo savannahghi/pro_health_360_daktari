@@ -69,7 +69,7 @@ query getPendingServiceRequestsCount($facilityID: String!){
       requestType
       total
     }
-}
+  }
 }
 ''';
 

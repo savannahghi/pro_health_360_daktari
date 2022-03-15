@@ -30,17 +30,11 @@ class _ResolvedServiceRequestsPageState
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final String facilityID =
-          StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
-              '';
       StoreProvider.dispatch<AppState>(
         context,
         FetchServiceRequestsAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          variables: <String, dynamic>{
-            'status': RequestStatus.RESOLVED.name,
-            'facilityID': facilityID,
-          },
+          serviceRequestStatus: RequestStatus.RESOLVED,
         ),
       );
     });
@@ -145,19 +139,11 @@ class _ResolvedServiceRequestsPageState
                     GenericErrorWidget(
                       actionKey: helpNoDataWidgetKey,
                       recoverCallback: () async {
-                        final String facilityID =
-                            StoreProvider.state<AppState>(context)
-                                    ?.staffState
-                                    ?.defaultFacility ??
-                                '';
                         StoreProvider.dispatch<AppState>(
                           context,
                           FetchServiceRequestsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
-                            variables: <String, dynamic>{
-                              'status': RequestStatus.RESOLVED.name,
-                              'facilityID': facilityID,
-                            },
+                            serviceRequestStatus: RequestStatus.RESOLVED,
                           ),
                         );
                       },

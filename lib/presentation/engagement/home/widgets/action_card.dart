@@ -8,17 +8,17 @@ import 'package:shared_themes/spaces.dart';
 
 class ActionCard extends StatelessWidget {
   ///
-  /// [ActionCard] provides a clickable card to perform the action diplayed.
+  /// [ActionCard] provides a clickable card to perform the action displayed.
   ///
   final String iconUrl;
   final String title;
-  final String counter;
+  final int count;
   final VoidCallback? onTap;
   final Color backgroundColor;
 
   const ActionCard({
     Key? key,
-    this.counter = '0',
+    this.count = 0,
     required this.iconUrl,
     required this.title,
     required this.onTap,
@@ -63,8 +63,7 @@ class ActionCard extends StatelessWidget {
               ),
             ),
           ),
-          if (counter != '0')
-            // The counter
+          if (count > 0)
             Positioned(
               right: 20,
               child: Container(
@@ -79,7 +78,7 @@ class ActionCard extends StatelessWidget {
                 ),
                 child: Align(
                   child: Text(
-                    counter,
+                    '$count',
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                     textAlign: TextAlign.center,
                   ),

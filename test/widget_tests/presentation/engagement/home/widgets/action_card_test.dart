@@ -27,7 +27,7 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return ActionCard(
-              counter: '4',
+              count: 4,
               iconUrl: profileUpdateIconSvg,
               title: 'Profile Update',
               onTap: () {

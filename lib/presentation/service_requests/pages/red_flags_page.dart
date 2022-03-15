@@ -25,24 +25,17 @@ class RedFlagsPage extends StatefulWidget {
 class _RedFlagsPageState extends State<RedFlagsPage> {
   // [RedFlagsPage] is used to display a list of red
   /// flags that demand immediate attention
-
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final String facilityID =
-          StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
-              '';
       StoreProvider.dispatch<AppState>(
         context,
         FetchServiceRequestsAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          variables: <String, dynamic>{
-            'status': RequestStatus.PENDING.name,
-            'facilityID': facilityID,
-            'type': ServiceRequestType.RED_FLAG.name
-          },
+          serviceRequestStatus: RequestStatus.PENDING,
+          serviceRequestType: ServiceRequestType.RED_FLAG,
         ),
       );
     });
@@ -90,9 +83,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                       actionText: actionTextGenericNoData,
                       type: GenericNoDataTypes.noData,
                       recoverCallback: () {
-                        if (Navigator.canPop(context)) {
-                          Navigator.of(context).pop();
-                        }
+                        Navigator.of(context).pop();
                       },
                       messageTitle: getNoDataTile(redFlagString.toLowerCase()),
                       messageBody: <TextSpan>[
@@ -130,20 +121,13 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                 } else ...<Widget>{
                   GenericErrorWidget(
                     actionKey: helpNoDataWidgetKey,
-                    recoverCallback: () async {
-                      final String facilityID =
-                          StoreProvider.state<AppState>(context)
-                                  ?.staffState
-                                  ?.defaultFacility ??
-                              '';
+                    recoverCallback: () {
                       StoreProvider.dispatch<AppState>(
                         context,
                         FetchServiceRequestsAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
-                          variables: <String, dynamic>{
-                            'status': RequestStatus.PENDING.name,
-                            'facilityID': facilityID,
-                          },
+                          serviceRequestStatus: RequestStatus.PENDING,
+                          serviceRequestType: ServiceRequestType.RED_FLAG,
                         ),
                       );
                     },

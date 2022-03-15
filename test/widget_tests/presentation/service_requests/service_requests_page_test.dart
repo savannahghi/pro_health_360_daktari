@@ -12,6 +12,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
@@ -25,8 +26,8 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
-    testWidgets('should render correctly with default values',
-        (WidgetTester tester) async {
+
+    testWidgets('should show red flags requests', (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
@@ -52,27 +53,52 @@ void main() {
         widget: const ServiceRequestsPage(),
         graphQlClient: mockShortGraphQlClient,
       );
-      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
       await tester.pumpAndSettle();
+
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(ActionCard), findsOneWidget);
+      expect(find.byType(ActionCard), findsNWidgets(2));
 
-      await tester.tap(find.byType(ActionCard).first);
+      await tester.tap(find.text(redFlagString));
       await tester.pumpAndSettle();
+
       expect(find.text(serviceRequestString), findsNothing);
       await tester.tap(find.byKey(appBarBackButtonKey));
       await tester.pumpAndSettle();
       expect(find.text(serviceRequestString), findsOneWidget);
+    });
 
-      await tester.tap(find.byType(ActionCard).last);
+    testWidgets('should show pin reset requests', (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getPendingServiceRequestsCount': <String, dynamic>{
+                'total': 4,
+                'requestsTypeCount': <dynamic>[
+                  <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
+                  <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
+                ],
+              }
+            }
+          }),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        widget: const ServiceRequestsPage(),
+        graphQlClient: mockShortGraphQlClient,
+      );
       await tester.pumpAndSettle();
-      expect(find.text(serviceRequestString), findsNothing);
-      await tester.ensureVisible(genericNoDataButton);
+
+      await tester.tap(find.text(pinResetString));
       await tester.pumpAndSettle();
-      await tester.tap(genericNoDataButton);
-      await tester.pumpAndSettle();
-      expect(find.text(serviceRequestString), findsOneWidget);
+      expect(find.byType(PinResetRequestsPage), findsOneWidget);
     });
 
     testWidgets('genericNoData widget is tappable',
@@ -88,6 +114,7 @@ void main() {
           201,
         ),
       );
+
       await buildTestWidget(
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
@@ -95,12 +122,13 @@ void main() {
         widget: const ServiceRequestsPage(),
       );
       await tester.pumpAndSettle();
-      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
 
-      await tester.tap(genericNoDataButton);
+      expect(find.text(actionTextGenericNoData), findsOneWidget);
+      await tester.tap(find.text(actionTextGenericNoData));
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagsPage), findsNothing);
     });
+
     testWidgets('profile updates ActionCard is tappable',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
