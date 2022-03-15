@@ -137,6 +137,7 @@ const String resolvedServiceRequestString = 'Resolved service requests';
 const String resolvedString = 'Resolved';
 const String spacedByString = ' by ';
 const String spacedOnString = ' on ';
+
 // Surveys
 const String createSurveyString = 'Create Survey';
 const String toCreateNewSurveyDescriptionString =
@@ -420,3 +421,11 @@ String getGroupMembersNumber(int numberOfMembers) {
 const String actionsText = 'Actions';
 const String promoteToAdminText = 'Promote to admin';
 const String removeFromGroupText = 'Remove from group';
+
+// pin reset requests
+const String pinResetRequestsLeading =
+    'These are clients who are having trouble signing in and have'
+    ' requested your assistance';
+const String acceptText = 'Accept';
+const String rejectText = 'Reject';
+const String pinResetRequestsTitle = 'PIN reset requests';

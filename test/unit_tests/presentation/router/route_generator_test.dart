@@ -141,10 +141,10 @@ void main() {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.pinResetRequestsPage);
 
-    final MaterialPageRoute<PINResetRequestsPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<PINResetRequestsPage>?;
-    expect(route, isA<MaterialPageRoute<PINResetRequestsPage>>());
-    expect(route?.builder(context), isA<PINResetRequestsPage>());
+    final MaterialPageRoute<PinResetRequestsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PinResetRequestsPage>?;
+    expect(route, isA<MaterialPageRoute<PinResetRequestsPage>>());
+    expect(route?.builder(context), isA<PinResetRequestsPage>());
   });
 
   test('Test router returns ForgotPinPage', () {

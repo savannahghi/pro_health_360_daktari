@@ -9,8 +9,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 
 class AppBarBackButton extends StatelessWidget {
-  const AppBarBackButton({Key? key, this.color = Colors.black})
-      : super(key: key);
+  const AppBarBackButton({this.color = Colors.black});
 
   final Color color;
   @override

@@ -162,8 +162,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.pinResetRequestsPage:
-        return MaterialPageRoute<PINResetRequestsPage>(
-          builder: (_) => PINResetRequestsPage(),
+        return MaterialPageRoute<PinResetRequestsPage>(
+          builder: (_) => const PinResetRequestsPage(),
         );
 
       case AppRoutes.redFlagsPage:
