@@ -26,16 +26,10 @@ class _ServiceRequestActionCardState extends State<ServiceRequestActionCard> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final String facilityID =
-          StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
-              '';
       StoreProvider.dispatch<AppState>(
         context,
         FetchServiceRequestsCountAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          variables: <String, dynamic>{
-            'facilityID': facilityID,
-          },
         ),
       );
     });
@@ -49,7 +43,7 @@ class _ServiceRequestActionCardState extends State<ServiceRequestActionCard> {
       builder: (BuildContext context, ServiceRequestsViewModel vm) {
         final int count = vm.pendingServiceRequests?.total ?? 0;
         return ActionCard(
-          counter: count.toString(),
+          count: count,
           iconUrl: serviceRequestsIconSvg,
           title: serviceRequestsText,
           onTap: () => Navigator.of(context).pushNamed(

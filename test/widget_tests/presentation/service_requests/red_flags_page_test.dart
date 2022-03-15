@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -94,6 +95,7 @@ void main() {
         expect(genericNoDataButton, findsOneWidget);
       },
     );
+
     testWidgets('should show a loading indicator when fetching red flags',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
@@ -116,6 +118,34 @@ void main() {
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
+    });
+
+    testWidgets('genericNoData widget if no data present',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getServiceRequests': <dynamic>[]}
+          }),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortGraphQlClient,
+        store: store,
+        widget: const RedFlagsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text(actionTextGenericNoData), findsOneWidget);
+      await tester.tap(find.text(actionTextGenericNoData));
+      await tester.pumpAndSettle();
+      expect(find.byType(RedFlagsPage), findsNothing);
     });
   });
 }

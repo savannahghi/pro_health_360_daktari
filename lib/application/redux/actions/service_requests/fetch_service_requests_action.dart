@@ -8,15 +8,20 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchServiceRequestsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final Map<String, dynamic> variables;
+  final RequestStatus serviceRequestStatus;
+  final ServiceRequestType? serviceRequestType;
 
-  FetchServiceRequestsAction({required this.client, required this.variables});
+  FetchServiceRequestsAction({
+    required this.client,
+    required this.serviceRequestStatus,
+    this.serviceRequestType,
+  });
 
   @override
   void before() {
@@ -35,6 +40,14 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final String facilityID = state.staffState?.defaultFacility ?? '';
+
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'status': serviceRequestStatus.name,
+      'facilityID': facilityID,
+      'type': serviceRequestType?.name
+    };
+
     final Response response = await client.query(
       getServiceRequestsQuery,
       variables,
@@ -46,9 +59,7 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      Sentry.captureException(
-        UserException(error),
-      );
+      Sentry.captureException(UserException(error));
 
       dispatch(
         UpdateServiceRequestsStateAction(errorFetchingServiceRequests: true),
@@ -61,30 +72,11 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
       payLoad['data'] as Map<String, dynamic>,
     );
 
-    if (serviceRequests.serviceRequestContent != null) {
-      final List<ServiceRequestContent?>? serviceRequestContent =
-          serviceRequests.serviceRequestContent;
-
-      if (serviceRequestContent != null && serviceRequestContent.isNotEmpty) {
-        dispatch(
-          UpdateServiceRequestsStateAction(
-            serviceRequestContent: serviceRequestContent,
-          ),
-        );
-      } else {
-        dispatch(
-          UpdateServiceRequestsStateAction(
-            serviceRequestContent: <ServiceRequestContent?>[],
-          ),
-        );
-      }
-    } else {
-      dispatch(
-        UpdateServiceRequestsStateAction(
-          serviceRequestContent: <ServiceRequestContent?>[],
-        ),
-      );
-    }
+    dispatch(
+      UpdateServiceRequestsStateAction(
+        serviceRequestContent: serviceRequests.serviceRequestContent,
+      ),
+    );
 
     return state;
   }
