@@ -289,6 +289,14 @@ Map<String, dynamic> mockRegisterClient = <String, dynamic>{
   'caregiver': 'caregiver'
 };
 
+final Map<String, dynamic> mockRegisterStaff = <String, dynamic>{
+  'ID': '',
+  'active': false,
+  'staffNumber': '12345678',
+  'userID': 'some-id',
+  'defaultFacility': '',
+};
+
 Map<String, dynamic> mockRegisterPayload = <String, dynamic>{
   'facility': 'Kanairo',
   'clientType': 'PMTCT',
@@ -782,6 +790,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+
     if (queryString.contains(listCommunityMembersQuery)) {
       return Future<http.Response>.value(
         http.Response(
@@ -795,6 +804,27 @@ class MockTestGraphQlClient extends IGraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{'data': clientResponseMock}),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(registerStaffMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'registerStaff': <String, dynamic>{
+                  'ID': '',
+                  'active': false,
+                  'staffNumber': '12345678',
+                  'userID': 'some-id',
+                  'defaultFacility': '',
+                }
+              }
+            },
+          ),
           201,
         ),
       );

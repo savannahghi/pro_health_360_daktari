@@ -15,6 +15,7 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
@@ -133,6 +134,21 @@ void main() {
       await tester.tap(createGroupWidget);
       await tester.pumpAndSettle();
       expect(find.byType(CreateGroupPage), findsWidgets);
+    });
+
+    testWidgets('navigates to add new staff page', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: const HomePage(),
+      );
+
+      final Finder addStaffWidget = find.text(addNewStaffText);
+      await tester.ensureVisible(addStaffWidget);
+      await tester.pumpAndSettle();
+      await tester.tap(addStaffWidget);
+      await tester.pumpAndSettle();
+      expect(find.byType(AddNewStaffPage), findsWidgets);
     });
 
     testWidgets('navigates to search page', (WidgetTester tester) async {

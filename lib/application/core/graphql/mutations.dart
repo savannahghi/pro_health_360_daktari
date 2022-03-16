@@ -67,6 +67,18 @@ mutation registerClient($input: ClientRegistrationInput){
 }
  ''';
 
+const String registerStaffMutation = r'''
+mutation registerStaff($input: StaffRegistrationInput!){
+  registerStaff(input:$input){
+    ID
+    active
+    staffNumber
+    userID
+    defaultFacility
+  }
+}
+ ''';
+
 const String inviteUser = r'''
 mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!){
   inviteUser(userID:$userID, phoneNumber: $phoneNumber, flavour:  $flavour)
