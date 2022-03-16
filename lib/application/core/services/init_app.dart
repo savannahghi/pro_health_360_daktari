@@ -68,13 +68,13 @@ Future<void> initApp(List<AppContext> appContexts) async {
     defaultDistinct: true,
   );
 
-  final ConnectivityStatus connectivityStatus = ConnectivityStatus.initial();
+  final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
 
-  connectivityStatus
+  connectivityChecker
       .checkConnection()
       .asStream()
       .mergeWith(
-        <Stream<bool>>[connectivityStatus.onConnectivityChanged],
+        <Stream<bool>>[connectivityChecker.onConnectivityChanged],
       )
       .distinct()
       .listen((bool hasConnection) {

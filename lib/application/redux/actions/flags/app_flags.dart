@@ -10,6 +10,9 @@ const String setNickNameFlag = 'set_nickname_flag';
 // Register client page
 const String registerClientFlag = 'register_client_flag';
 
+// Register staff page
+const String registerStaffFlag = 'register_staff_flag';
+
 // Create group page
 const String createGroupFlag = 'create_group_flag';
 

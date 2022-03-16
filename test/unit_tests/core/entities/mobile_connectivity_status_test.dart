@@ -19,8 +19,8 @@ void main() {
     });
 
     test('should check for connection ', () async {
-      final ConnectivityStatus connectivityStatus =
-          ConnectivityStatus.initial();
+      final ConnectivityChecker connectivityStatus =
+          ConnectivityChecker.initial();
 
       final bool hasConnection = await connectivityStatus.checkConnection();
       expect(hasConnection, true);

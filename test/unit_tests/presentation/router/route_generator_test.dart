@@ -16,6 +16,8 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
+import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -29,7 +31,6 @@ import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
@@ -146,6 +147,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<PinResetRequestsPage>?;
     expect(route, isA<MaterialPageRoute<PinResetRequestsPage>>());
     expect(route?.builder(context), isA<PinResetRequestsPage>());
+  });
+
+  test('Test router returns AddNewStaffPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.addNewStaffPage);
+
+    final MaterialPageRoute<AddNewStaffPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<AddNewStaffPage>?;
+    expect(route, isA<MaterialPageRoute<AddNewStaffPage>>());
+    expect(route?.builder(context), isA<AddNewStaffPage>());
   });
 
   test('Test router returns ForgotPinPage', () {

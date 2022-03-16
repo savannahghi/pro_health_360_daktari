@@ -175,6 +175,16 @@ String dobToJson(DateTime? dateTime) {
   return DateFormat('yyyy-MM-dd').format(DateUtils.dateOnly(DateTime.now()));
 }
 
+Role roleFromJson(String? roleString) {
+  if (roleString == null || roleString.isEmpty || roleString == UNKNOWN) {
+    return Role.CONTENT_MANAGEMENT;
+  }
+
+  return Role.values.where((Role role) {
+    return role.name.toLowerCase() == roleString.toLowerCase();
+  }).first;
+}
+
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
 OnboardingPathConfig getOnboardingPath({required AppState state}) {

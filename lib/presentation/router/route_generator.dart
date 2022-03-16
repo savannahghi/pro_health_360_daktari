@@ -21,6 +21,7 @@ import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_pag
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/faq_detail_view_page.dart';
@@ -113,6 +114,11 @@ class RouteGenerator {
       case AppRoutes.addNewPatientPage:
         return MaterialPageRoute<AddNewPatientPage>(
           builder: (_) => const AddNewPatientPage(),
+        );
+
+      case AppRoutes.addNewStaffPage:
+        return MaterialPageRoute<AddNewStaffPage>(
+          builder: (_) => const AddNewStaffPage(),
         );
 
       case AppRoutes.serviceRequestsPage:

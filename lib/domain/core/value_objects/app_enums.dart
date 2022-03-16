@@ -41,3 +41,16 @@ extension RequestStatusEx on RequestStatus {
     return describeEnum(this);
   }
 }
+
+enum Role {
+  SYSTEM_ADMINISTRATOR,
+  COMMUNITY_MANAGEMENT,
+  CONTENT_MANAGEMENT,
+  CLIENT_MANAGEMENT,
+}
+
+extension RoleName on Role {
+  String get name {
+    return describeEnum(this).split('_').join(' ');
+  }
+}
