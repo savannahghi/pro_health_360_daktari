@@ -115,3 +115,23 @@ query listCommunityMembers($communityID: ID!){
   }
 }
 ''';
+
+const String searchClientQuery = r'''
+query getClientByCCCNumber($CCCNumber: String!){
+  getClientByCCCNumber(CCCNumber: $CCCNumber){
+    User{
+      ID
+      Username
+      Active
+      Contacts{
+        ID
+        ContactType
+        ContactValue
+        Active
+        OptedIn
+      }
+      TermsAccepted
+    }
+  }
+}
+''';

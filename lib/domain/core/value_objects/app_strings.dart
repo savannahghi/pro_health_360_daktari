@@ -435,3 +435,15 @@ const String pinResetRequestsTitle = 'PIN reset requests';
 const String searchPageTitle = 'Please select who you want to search below';
 const String clients = 'Clients';
 const String staffMembers = 'Staff Members';
+
+// search client
+const String searchClientsTitle = 'Search clients';
+const String searchClientsDescription =
+    'Search clients using their CCC number or Medical Health record number';
+const String searchClientsHintString = 'Search using CCC number...';
+const String noClientFoundString = 'No client found';
+const String couldNotFindClientString =
+    'We could not find a client with the number ';
+const String confirmCCCNumberIsCorrectString =
+    '. Confirm that the CCC number is correct, or tap the button below to register them';
+const String registerClientString = 'Register Client';

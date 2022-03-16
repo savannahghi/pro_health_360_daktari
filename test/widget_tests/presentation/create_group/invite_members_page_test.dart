@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
@@ -14,7 +15,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/widgets/member_list_item.dart';
-import 'package:http/http.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -265,7 +265,7 @@ void main() {
       },
     );
 
-    testWidgets('Shows loading indicator when fetching terms',
+    testWidgets('Shows loading indicator when fetching members',
         (WidgetTester tester) async {
       store.dispatch(WaitAction<AppState>.add(fetchMembersFlag));
 

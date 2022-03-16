@@ -7,6 +7,7 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
+import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -15,7 +16,6 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -29,6 +29,7 @@ import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
@@ -325,5 +326,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
     expect(route?.builder(context), isA<GroupInfoPage>());
+  });
+
+  test('Test router returns SearchClientPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.searchClientPage);
+
+    final MaterialPageRoute<SearchClientPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SearchClientPage>?;
+
+    expect(route, isA<MaterialPageRoute<SearchClientPage>>());
+    expect(route?.builder(context), isA<SearchClientPage>());
   });
 }

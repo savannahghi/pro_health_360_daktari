@@ -259,6 +259,20 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'status': 'Missed'
 };
 
+Map<String, dynamic> mockClientResponse = <String, dynamic>{
+  'ID': 'some-id',
+  'Username': 'new-user',
+  'Name': 'new name',
+  'Active': false,
+  'TermsAccepted': false,
+  'Contacts': <String, dynamic>{
+    'ContactType': 'PHONE',
+    'ContactValue': '07000000',
+    'Active': false,
+    'OptedIn': false,
+  }
+};
+
 Map<String, dynamic> mockRegisterClient = <String, dynamic>{
   'ID': 'id',
   'active': true,
@@ -777,6 +791,15 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(searchClientQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': clientResponseMock}),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
@@ -989,6 +1012,23 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
       },
     },
   ],
+};
+
+final Map<String, dynamic> clientResponseMock = <String, dynamic>{
+  'getClientByCCCNumber': <String, dynamic>{
+    'User': <String, dynamic>{
+      'ID': 'some-id',
+      'Username': 'Username',
+      'Active': false,
+      'TermsAccepted': false,
+      'Contacts': <String, dynamic>{
+        'ContactType': 'PHONE',
+        'ContactValue': '07000000',
+        'Active': false,
+        'OptedIn': false,
+      }
+    }
+  }
 };
 
 final Map<String, dynamic> mockMiscState = <String, dynamic>{
