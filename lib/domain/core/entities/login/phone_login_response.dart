@@ -1,9 +1,8 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mycarehubpro/domain/core/entities/login/user_response.dart';
 
 // Project imports:
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
 
 part 'phone_login_response.freezed.dart';
 part 'phone_login_response.g.dart';
@@ -13,9 +12,7 @@ class PhoneLoginResponse with _$PhoneLoginResponse {
   factory PhoneLoginResponse({
     @JsonKey(name: 'code') int? code,
     @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'credentials') AuthCredentials? credentials,
-    @JsonKey(name: 'staffProfile') StaffState? staffState,
-    @JsonKey(name: 'getStreamToken') String? streamToken,
+    @JsonKey(name: 'response') UserResponse? userResponse,
   }) = _PhoneLoginResponse;
 
   factory PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>
