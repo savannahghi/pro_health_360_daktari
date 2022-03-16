@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/search/search_page.dart';
 
 import '../../../mocks/test_helpers.dart';
@@ -28,7 +29,7 @@ void main() {
       await tester.tap(clientSearchCardFinder);
       await tester.pumpAndSettle();
 
-      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.byType(SearchClientPage), findsOneWidget);
     });
 
     testWidgets('staff search card works correctly',

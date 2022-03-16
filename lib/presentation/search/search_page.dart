@@ -1,12 +1,13 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SearchPage extends StatefulWidget {
@@ -46,8 +47,8 @@ class _SearchPageState extends State<SearchPage> {
                       iconUrl: clientSearchSvgPath,
                       title: clients,
                       onTap: () {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(snackbar(content: comingSoonText));
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.searchClientPage);
                       },
                       backgroundColor: AppColors.primaryColor.withOpacity(0.14),
                     ),

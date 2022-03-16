@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
+import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -209,6 +210,11 @@ class RouteGenerator {
       case AppRoutes.groupInfoPage:
         return MaterialPageRoute<GroupInfoPage>(
           builder: (_) => GroupInfoPage(payload: args as Map<String, dynamic>),
+        );
+
+      case AppRoutes.searchClientPage:
+        return MaterialPageRoute<SearchClientPage>(
+          builder: (_) => const SearchClientPage(),
         );
     }
   }

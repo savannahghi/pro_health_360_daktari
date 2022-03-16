@@ -63,4 +63,7 @@ class AppRoutes {
 
   // group info
   static const String groupInfoPage = '/groupInfoPage';
+
+  // search client
+  static const String searchClientPage = '/searchClientPage';
 }

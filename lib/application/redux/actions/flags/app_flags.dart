@@ -41,3 +41,6 @@ const String fetchMembersFlag = 'fetch_members_flag';
 // communities
 const String connectionFlag = 'connection_flag';
 const String fetchGroupMembersFlag = 'fetch_group_members_flag';
+
+// search client
+const String searchClientFlag = 'search_client_flag';
