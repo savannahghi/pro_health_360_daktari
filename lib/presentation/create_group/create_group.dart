@@ -168,10 +168,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           smallVerticalSizedBox,
                           StreamBuilder<RangeValues>(
                             stream: _formManager.ageRange,
-                            builder: (
-                              BuildContext context,
-                              AsyncSnapshot<RangeValues> snapshot,
-                            ) {
+                            builder: (_, AsyncSnapshot<RangeValues> snapshot) {
                               final RangeValues? data = snapshot.data;
 
                               final String lowerAge = data?.start.toString() ??
@@ -193,7 +190,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                           ),
                                       min: minimumAge,
                                       max: maximumAge,
-                                      divisions: 10,
+                                      divisions: 11,
                                       labels: RangeLabels(lowerAge, higherAge),
                                       onChanged: (RangeValues values) {
                                         _formManager.inAgeRange.add(values);
