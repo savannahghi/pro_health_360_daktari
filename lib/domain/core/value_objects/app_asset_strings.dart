@@ -33,7 +33,6 @@ const String serviceRequestsIconSvg = 'assets/icons/service_requests.svg';
 const String profileUpdateIconSvg = 'assets/icons/profile_update.svg';
 const String contactRequestIconSvg = 'assets/icons/contact_request.svg';
 const String magnifierToolIconSvg = 'assets/icons/magnifier_tool.svg';
-const String noResultsFoundImage = 'assets/images/search_rafiki.svg';
 
 //Service requests section assets
 const String serviceHeaderImageSvgPath =
@@ -112,3 +111,8 @@ const String emptyChatsSvg = 'assets/images/empty_chats.svg';
 const String homeIconSvgPath = 'assets/icons/home_icon.svg';
 const String communityIconSvgPath = 'assets/icons/community_icon.svg';
 const String notificationIconSvgPath = 'assets/icons/notification_icon.svg';
+
+// search
+const String searchSvgPath = 'assets/images/search.svg';
+const String clientSearchSvgPath = 'assets/images/client_search.svg';
+const String staffSearchSvgPath = 'assets/images/staff_search.svg';

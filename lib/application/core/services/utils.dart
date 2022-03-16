@@ -21,7 +21,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
-import 'package:mycarehubpro/presentation/engagement/home/widgets/patient_search_item.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -62,17 +61,6 @@ final List<RedFlagItem> reFlagItems = <RedFlagItem>[
   RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
   RedFlagItem(clientName: 'Kevin', feelingDescription: 'Feeling depressed'),
   RedFlagItem(clientName: 'John', feelingDescription: 'Feeling Hopeless'),
-];
-
-const List<Widget> patientSearchResults = <Widget>[
-  PatientSearchItem(username: 'Dennis Kilonzo Musau', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Kplangas Koech', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Kilonzo Musau', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Kplangas Koech', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Kigongo Kairo', cccNumber: '12345678'),
-  PatientSearchItem(username: 'Dennis Lailonte Koros', cccNumber: '12345678'),
 ];
 
 final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[

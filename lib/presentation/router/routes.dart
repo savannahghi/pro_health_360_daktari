@@ -5,7 +5,7 @@ class AppRoutes {
 
   static const String termsAndConditions = '/termsAndConditions';
 
-  static const String setPinPage = '/setpinPage';
+  static const String setPinPage = '/setPinPage';
 
   static const String loginPage = '/loginPage';
 
@@ -43,7 +43,7 @@ class AppRoutes {
   static const String searchPage = '/searchPage';
   static const String communityChatScreen = '/communityChatScreen';
   static const String clientHealthPage = '/clientHealthPage';
-  static const String phoneSignupRoute = '/phoneSignup';
+  static const String phoneSignUpRoute = '/phoneSignUp';
   static const String recoverPinRoute = '/recoverPin';
   static const String setNicknamePage = '/setNicknamePage';
   static const String contactAdminPage = '/contactAdminPage';

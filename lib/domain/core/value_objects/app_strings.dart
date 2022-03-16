@@ -429,3 +429,8 @@ const String pinResetRequestsLeading =
 const String acceptText = 'Accept';
 const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
+
+// search page
+const String searchPageTitle = 'Please select who you want to search below';
+const String clients = 'Clients';
+const String staffMembers = 'Staff Members';

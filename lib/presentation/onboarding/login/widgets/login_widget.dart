@@ -197,7 +197,7 @@ class LoginWidgetState extends State<LoginWidget> {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async => triggerNavigationEvent(
                             context: context,
-                            route: AppRoutes.phoneSignupRoute,
+                            route: AppRoutes.phoneSignUpRoute,
                           ),
                     style: heavySize14Text().copyWith(
                       color: healthcloudPrimaryColor,
