@@ -419,8 +419,9 @@ String getGroupMembersNumber(int numberOfMembers) {
 }
 
 const String actionsText = 'Actions';
-const String promoteToAdminText = 'Promote to admin';
-const String removeFromGroupText = 'Remove from group';
+const String promoteToModeratorText = 'Promote to moderator';
+
+const String removeFromGroupText = 'Remove user from group';
 
 // pin reset requests
 const String pinResetRequestsLeading =

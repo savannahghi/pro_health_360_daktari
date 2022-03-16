@@ -28,16 +28,18 @@ class MemberListActionsDialog extends StatelessWidget {
               actionsText,
               style: boldSize20Text(AppColors.blackColor),
             ),
-            mediumVerticalSizedBox,
+            smallVerticalSizedBox,
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: MyAfyaHubPrimaryButton(
                 onPressed: () {
+                  Navigator.of(context).pop();
                   ScaffoldMessenger.of(context)
                       .showSnackBar(snackbar(content: comingSoonText));
                 },
                 buttonKey: promoteButtonKey,
-                text: promoteToAdminText,
+                text: promoteToModeratorText,
                 buttonColor: Theme.of(context).primaryColor.withOpacity(0.2),
                 textColor: AppColors.blackColor,
                 borderColor: AppColors.primaryColor.withOpacity(0.3),
@@ -47,17 +49,37 @@ class MemberListActionsDialog extends StatelessWidget {
             smallVerticalSizedBox,
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: MyAfyaHubPrimaryButton(
                 onPressed: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(snackbar(content: comingSoonText));
+                },
+                buttonKey: banButtonKey,
+                text: banUserText,
+                buttonColor: AppColors.lightRedColor.withOpacity(0.6),
+                textColor: AppColors.blackColor,
+                borderColor: AppColors.lightRedColor.withOpacity(0.9),
+                textStyle: boldSize14Text(AppColors.redColor),
+              ),
+            ),
+            smallVerticalSizedBox,
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: MyAfyaHubPrimaryButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(snackbar(content: comingSoonText));
                 },
                 text: removeFromGroupText,
                 buttonColor: AppColors.lightRedColor.withOpacity(0.6),
-                textColor: AppColors.blackColor,
+                textColor: AppColors.redColor,
                 borderColor: AppColors.lightRedColor.withOpacity(0.9),
-                textStyle: normalSize14Text(),
+                textStyle: boldSize14Text(AppColors.redColor),
                 buttonKey: removeButtonKey,
               ),
             ),
