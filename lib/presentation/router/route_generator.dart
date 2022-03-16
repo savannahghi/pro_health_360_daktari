@@ -12,7 +12,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/engagement/home/pages/search_page.dart';
+import 'package:mycarehubpro/presentation/search/search_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';

@@ -119,3 +119,7 @@ const Key iosLoaderThemeKey = Key('InboxCupertinoThemeKey');
 
 // bottom nav
 const Key bottomNavKey = Key('bottom_nav_key');
+// search
+const Key searchActionCardKey = Key('search_action_card_key');
+const Key clientSearchActionCardKey = Key('clients_search_action_card_key');
+const Key staffSearchActionCardKey = Key('staff_search_action_card_key');

@@ -10,6 +10,7 @@ import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
@@ -97,7 +98,15 @@ class HomePage extends StatelessWidget {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.addNewGroupPage);
                         },
-                      )
+                      ),
+                      ActionCard(
+                        key: searchActionCardKey,
+                        title: searchString,
+                        iconUrl: searchSvgPath,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(AppRoutes.searchPage);
+                        },
+                      ),
                     ],
                   ),
                 ),
