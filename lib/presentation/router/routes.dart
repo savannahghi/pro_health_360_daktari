@@ -25,6 +25,8 @@ class AppRoutes {
 
   static const String addNewPatientPage = '/addNewPatientPage';
 
+  static const String addNewStaffPage = '/addNewStaffPage';
+
   static const String serviceRequestsPage = '/ServiceRequestsPage';
 
   static const String redFlagsPage = '/redFlagsPage';

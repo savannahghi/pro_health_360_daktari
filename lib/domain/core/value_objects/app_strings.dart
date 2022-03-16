@@ -179,6 +179,9 @@ const String clientExists =
     'a client with this identifier type and value already exists';
 const String cccExists = 'A client with that CCC number already exists';
 
+// add new staff page
+const String registerStaffSuccess = 'Successfully registered staff';
+
 // add new group page
 const String enterGroupNameText = 'Enter Group name';
 const String aboutGroupText = 'About Group';

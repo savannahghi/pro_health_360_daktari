@@ -6,7 +6,6 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/staff_state_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -31,8 +30,7 @@ class HomePage extends StatelessWidget {
           converter: (Store<AppState> store) =>
               StaffStateViewModel.fromStore(store),
           builder: (BuildContext context, StaffStateViewModel vm) {
-            final StaffState? staffState = vm.staffState;
-            final String firstName = staffState?.user?.firstName ?? UNKNOWN;
+            final String firstName = vm.staffState?.user?.firstName ?? UNKNOWN;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,6 +86,14 @@ class HomePage extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.addNewPatientPage);
+                        },
+                      ),
+                      ActionCard(
+                        title: 'Add New Staff',
+                        iconUrl: addNewStaffImageSvg,
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.addNewStaffPage);
                         },
                       ),
                       const ServiceRequestActionCard(),

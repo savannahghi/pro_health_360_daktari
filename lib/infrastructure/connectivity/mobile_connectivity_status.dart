@@ -7,7 +7,7 @@ import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.
 
 import 'connectivity_helper.dart';
 
-class MobileConnectivityStatus extends ConnectivityStatus {
+class MobileConnectivityStatus extends ConnectivityChecker {
   MobileConnectivityStatus({Future<bool> Function()? checkInternetCallback})
       : _hasConnection = false,
         checkInternetCallback = checkInternetCallback ?? checkInternet {

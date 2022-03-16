@@ -58,6 +58,9 @@ const Key enrollmentFieldKey = Key('enrollment_field_key');
 const Key clientTypeField = Key('client_type_key');
 const Key patientNumberField = Key('form_field_key');
 
+// add new staff page
+const Key staffNumberField = Key('form_field_key');
+
 // add new group page
 const Key bandDropdownKey = Key('bandDropdownKey');
 const Key locationDropdownKey = Key('locationDropdownKey');

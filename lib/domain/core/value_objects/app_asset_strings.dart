@@ -29,6 +29,7 @@ const String contentManagementButtonIcon =
 
 // home
 const String addNewUserIconSvg = 'assets/icons/add_new_user.svg';
+const String addNewStaffImageSvg = 'assets/images/new_staff.svg';
 const String serviceRequestsIconSvg = 'assets/icons/service_requests.svg';
 const String profileUpdateIconSvg = 'assets/icons/profile_update.svg';
 const String contactRequestIconSvg = 'assets/icons/contact_request.svg';

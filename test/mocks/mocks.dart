@@ -768,10 +768,32 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+
     if (queryString.contains(listCommunityMembersQuery)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{'data': groupStateMock}),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(registerStaffMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'registerStaff': <String, dynamic>{
+                  'ID': '',
+                  'active': false,
+                  'staffNumber': '12345678',
+                  'userID': 'some-id',
+                  'defaultFacility': '',
+                }
+              }
+            },
+          ),
           201,
         ),
       );
