@@ -6,6 +6,8 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -15,8 +17,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
-import 'package:http/http.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -68,7 +68,7 @@ void main() {
 
         expect(
           store.state.staffState!.user,
-          phoneLoginResponse.staffState!.user,
+          phoneLoginResponse.userResponse?.staffState!.user,
         );
       });
     });
@@ -117,7 +117,7 @@ void main() {
 
         expect(
           store.state.staffState!.user,
-          phoneLoginResponse.staffState!.user,
+          phoneLoginResponse.userResponse?.staffState!.user,
         );
       });
     });

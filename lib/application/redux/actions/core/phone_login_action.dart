@@ -9,6 +9,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
@@ -23,7 +24,6 @@ import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:http/http.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
@@ -75,12 +75,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           PhoneLoginResponse.fromJson(responseMap);
 
       final DateTime now = DateTime.now();
-      AuthCredentials? authCredentials = loginResponse.credentials?.copyWith(
+      AuthCredentials? authCredentials =
+          loginResponse.userResponse?.credentials?.copyWith(
         signedInTime: now.toIso8601String(),
         isSignedIn: true,
       );
 
-      final String? expiresIn = loginResponse.credentials?.expiresIn;
+      final String? expiresIn =
+          loginResponse.userResponse?.credentials?.expiresIn;
       if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
         final DateTime tokenExpiryTimestamp =
             now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
@@ -100,11 +102,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
         ),
       );
-      final String fullName = loginResponse.staffState?.user?.name ?? UNKNOWN;
+      final String fullName =
+          loginResponse.userResponse?.staffState?.user?.name ?? UNKNOWN;
 
-      User? user = loginResponse.staffState?.user?.copyWith(
+      User? user = loginResponse.userResponse?.staffState?.user?.copyWith(
         pinChangeRequired: false,
-        chatRoomToken: loginResponse.streamToken,
+        chatRoomToken: loginResponse.userResponse?.streamToken,
       );
 
       if (fullName != UNKNOWN && fullName.isNotEmpty) {
@@ -129,10 +132,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       dispatch(
         UpdateStaffProfileAction(
-          id: loginResponse.staffState?.id,
-          staffNumber: loginResponse.staffState?.staffNumber,
-          defaultFacility: loginResponse.staffState?.defaultFacility,
-          facilities: loginResponse.staffState?.facilities,
+          id: loginResponse.userResponse?.staffState?.id,
+          staffNumber: loginResponse.userResponse?.staffState?.staffNumber,
+          defaultFacility:
+              loginResponse.userResponse?.staffState?.defaultFacility,
+          facilities: loginResponse.userResponse?.staffState?.facilities,
         ),
       );
 

@@ -82,7 +82,7 @@ mixin _$OnboardingState {
   bool? get isResetPin =>
       throw _privateConstructorUsedError; // If the user has set their security questions
   bool? get hasSetSecurityQuestions =>
-      throw _privateConstructorUsedError; // If the user has successfuly verified their security questions if pin is expired
+      throw _privateConstructorUsedError; // If the user has successfully verified their security questions if pin is expired
   bool? get hasVerifiedSecurityQuestions =>
       throw _privateConstructorUsedError; // If the user has set their nickname
   bool? get hasSetNickName => throw _privateConstructorUsedError;
@@ -405,7 +405,7 @@ class _$_OnboardingState implements _OnboardingState {
   final bool? isResetPin;
   @override // If the user has set their security questions
   final bool? hasSetSecurityQuestions;
-  @override // If the user has successfuly verified their security questions if pin is expired
+  @override // If the user has successfully verified their security questions if pin is expired
   final bool? hasVerifiedSecurityQuestions;
   @override // If the user has set their nickname
   final bool? hasSetNickName;
@@ -517,7 +517,7 @@ abstract class _OnboardingState implements OnboardingState {
   bool? get isResetPin;
   @override // If the user has set their security questions
   bool? get hasSetSecurityQuestions;
-  @override // If the user has successfuly verified their security questions if pin is expired
+  @override // If the user has successfully verified their security questions if pin is expired
   bool? get hasVerifiedSecurityQuestions;
   @override // If the user has set their nickname
   bool? get hasSetNickName;
