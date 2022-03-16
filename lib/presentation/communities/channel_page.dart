@@ -26,13 +26,18 @@ class ChannelPage extends StatelessWidget {
     return Scaffold(
       appBar: ChannelHeader(
         title: GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(
-            AppRoutes.groupInfoPage,
-            arguments: <String, dynamic>{
-              'channelId': StreamChannel.of(context).channel.id,
-              'memberCount': StreamChannel.of(context).channel.memberCount,
-            },
-          ),
+          onTap: () {
+            final Channel channelDetails = StreamChannel.of(context).channel;
+
+            Navigator.of(context).pushNamed(
+              AppRoutes.groupInfoPage,
+              arguments: <String, dynamic>{
+                'channelId': channelDetails.id,
+                'memberCount': channelDetails.memberCount,
+                'channelName': channelDetails.extraData['Name'],
+              },
+            );
+          },
           child: Text(
             channelName,
             overflow: TextOverflow.ellipsis,

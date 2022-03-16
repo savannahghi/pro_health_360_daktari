@@ -255,11 +255,8 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
-                      right: 10,
-                      left: 10,
-                    ),
+                    padding:
+                        const EdgeInsets.only(bottom: 20, right: 10, left: 10),
                     child: SizedBox(
                       width: double.infinity,
                       height: 48,
@@ -293,7 +290,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: AppColors.secondaryColor,
+                          primary: AppColors.primaryColor,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(16.0),

@@ -66,9 +66,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: groupInfoText,
-      ),
+      appBar: const CustomAppBar(title: groupInfoText),
       body: Stack(
         children: <Widget>[
           Container(
@@ -83,7 +81,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                     width: 200.0,
                   ),
                   Text(
-                    groupTitle,
+                    widget.payload['channelName']?.toString() ?? groupTitle,
                     style: boldSize20Text(AppColors.lightBlackTextColor),
                   ),
                   verySmallVerticalSizedBox,
