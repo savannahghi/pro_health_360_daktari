@@ -7,9 +7,8 @@ import 'dart:convert' as _i2;
 import 'dart:typed_data' as _i6;
 
 import 'package:http/http.dart' as _i5;
-import 'package:http/src/base_request.dart' as _i9;
+import 'package:http/src/base_request.dart' as _i8;
 import 'package:http/src/byte_stream.dart' as _i3;
-import 'package:http/src/client.dart' as _i8;
 import 'package:http/src/streamed_response.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -134,7 +133,7 @@ class MockRequest extends _i1.Mock implements _i5.Request {
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClient extends _i1.Mock implements _i8.Client {
+class MockClient extends _i1.Mock implements _i5.Client {
   MockClient() {
     _i1.throwOnMissingStub(this);
   }
@@ -201,7 +200,7 @@ class MockClient extends _i1.Mock implements _i8.Client {
               returnValue: Future<_i6.Uint8List>.value(_i6.Uint8List(0)))
           as _i7.Future<_i6.Uint8List>);
   @override
-  _i7.Future<_i4.StreamedResponse> send(_i9.BaseRequest? request) =>
+  _i7.Future<_i4.StreamedResponse> send(_i8.BaseRequest? request) =>
       (super.noSuchMethod(Invocation.method(#send, [request]),
               returnValue:
                   Future<_i4.StreamedResponse>.value(_FakeStreamedResponse_3()))

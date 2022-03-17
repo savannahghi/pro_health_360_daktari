@@ -909,10 +909,11 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'gender': Gender.unknown.name,
   'active': false,
   'primaryContact': <String, dynamic>{
-    'contactType': 'PHONE',
-    'contactValue': 'UNKNOWN',
-    'active': false,
-    'optedIn': false,
+    'ID': 'UNKNOWN',
+    'ContactType': 'PHONE',
+    'ContactValue': 'UNKNOWN',
+    'Active': false,
+    'OptedIn': false,
   },
   'lastSuccessfulLogin': 'UNKNOWN',
   'lastFailedLogin': 'UNKNOWN',
@@ -1116,7 +1117,7 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'hasSetNickName': false
 };
 
-final Map<String, dynamic> appstateMock = <String, dynamic>{
+final Map<String, dynamic> appStateMock = <String, dynamic>{
   'credentials': <String, dynamic>{
     'expiresIn': 'UNKNOWN',
     'idToken': 'UNKNOWN',

@@ -68,4 +68,6 @@ class AppRoutes {
 
   // search client
   static const String searchClientPage = '/searchClientPage';
+  // search detail view
+  static const String searchDetailViewPage = '/searchDetailViewPage';
 }

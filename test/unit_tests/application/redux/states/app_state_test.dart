@@ -22,7 +22,7 @@ void main() {
 
     test('fromJson', () {
       expect(
-        AppState.fromJson(appstateMock),
+        AppState.fromJson(appStateMock),
         AppState.initial().copyWith(wait: null),
       );
     });

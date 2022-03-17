@@ -23,11 +23,13 @@ class _$ContactTearOff {
   const _$ContactTearOff();
 
   _Contact call(
-      {@JsonKey(name: 'contactType') ContactType? contactType,
-      @JsonKey(name: 'contactValue') String? value,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn}) {
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'ContactType') ContactType? contactType,
+      @JsonKey(name: 'ContactValue') String? value,
+      @JsonKey(name: 'Active', defaultValue: false) bool? active,
+      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn}) {
     return _Contact(
+      id: id,
       contactType: contactType,
       value: value,
       active: active,
@@ -45,13 +47,15 @@ const $Contact = _$ContactTearOff();
 
 /// @nodoc
 mixin _$Contact {
-  @JsonKey(name: 'contactType')
+  @JsonKey(name: 'ID')
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContactType')
   ContactType? get contactType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contactValue')
+  @JsonKey(name: 'ContactValue')
   String? get value => throw _privateConstructorUsedError;
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'optedIn', defaultValue: false)
+  @JsonKey(name: 'OptedIn', defaultValue: false)
   bool? get optedIn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,10 +68,11 @@ abstract class $ContactCopyWith<$Res> {
   factory $ContactCopyWith(Contact value, $Res Function(Contact) then) =
       _$ContactCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'contactType') ContactType? contactType,
-      @JsonKey(name: 'contactValue') String? value,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn});
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'ContactType') ContactType? contactType,
+      @JsonKey(name: 'ContactValue') String? value,
+      @JsonKey(name: 'Active', defaultValue: false) bool? active,
+      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn});
 }
 
 /// @nodoc
@@ -80,12 +85,17 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? contactType = freezed,
     Object? value = freezed,
     Object? active = freezed,
     Object? optedIn = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       contactType: contactType == freezed
           ? _value.contactType
           : contactType // ignore: cast_nullable_to_non_nullable
@@ -112,10 +122,11 @@ abstract class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       __$ContactCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'contactType') ContactType? contactType,
-      @JsonKey(name: 'contactValue') String? value,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn});
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'ContactType') ContactType? contactType,
+      @JsonKey(name: 'ContactValue') String? value,
+      @JsonKey(name: 'Active', defaultValue: false) bool? active,
+      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn});
 }
 
 /// @nodoc
@@ -129,12 +140,17 @@ class __$ContactCopyWithImpl<$Res> extends _$ContactCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? contactType = freezed,
     Object? value = freezed,
     Object? active = freezed,
     Object? optedIn = freezed,
   }) {
     return _then(_Contact(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       contactType: contactType == freezed
           ? _value.contactType
           : contactType // ignore: cast_nullable_to_non_nullable
@@ -159,30 +175,34 @@ class __$ContactCopyWithImpl<$Res> extends _$ContactCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Contact implements _Contact {
   _$_Contact(
-      {@JsonKey(name: 'contactType') this.contactType,
-      @JsonKey(name: 'contactValue') this.value,
-      @JsonKey(name: 'active', defaultValue: false) this.active,
-      @JsonKey(name: 'optedIn', defaultValue: false) this.optedIn});
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ContactType') this.contactType,
+      @JsonKey(name: 'ContactValue') this.value,
+      @JsonKey(name: 'Active', defaultValue: false) this.active,
+      @JsonKey(name: 'OptedIn', defaultValue: false) this.optedIn});
 
   factory _$_Contact.fromJson(Map<String, dynamic> json) =>
       _$$_ContactFromJson(json);
 
   @override
-  @JsonKey(name: 'contactType')
+  @JsonKey(name: 'ID')
+  final String? id;
+  @override
+  @JsonKey(name: 'ContactType')
   final ContactType? contactType;
   @override
-  @JsonKey(name: 'contactValue')
+  @JsonKey(name: 'ContactValue')
   final String? value;
   @override
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   final bool? active;
   @override
-  @JsonKey(name: 'optedIn', defaultValue: false)
+  @JsonKey(name: 'OptedIn', defaultValue: false)
   final bool? optedIn;
 
   @override
   String toString() {
-    return 'Contact(contactType: $contactType, value: $value, active: $active, optedIn: $optedIn)';
+    return 'Contact(id: $id, contactType: $contactType, value: $value, active: $active, optedIn: $optedIn)';
   }
 
   @override
@@ -190,6 +210,7 @@ class _$_Contact implements _Contact {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Contact &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.contactType, contactType) &&
             const DeepCollectionEquality().equals(other.value, value) &&
@@ -200,6 +221,7 @@ class _$_Contact implements _Contact {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(contactType),
       const DeepCollectionEquality().hash(value),
       const DeepCollectionEquality().hash(active),
@@ -218,25 +240,29 @@ class _$_Contact implements _Contact {
 
 abstract class _Contact implements Contact {
   factory _Contact(
-          {@JsonKey(name: 'contactType') ContactType? contactType,
-          @JsonKey(name: 'contactValue') String? value,
-          @JsonKey(name: 'active', defaultValue: false) bool? active,
-          @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn}) =
+          {@JsonKey(name: 'ID') String? id,
+          @JsonKey(name: 'ContactType') ContactType? contactType,
+          @JsonKey(name: 'ContactValue') String? value,
+          @JsonKey(name: 'Active', defaultValue: false) bool? active,
+          @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn}) =
       _$_Contact;
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
   @override
-  @JsonKey(name: 'contactType')
+  @JsonKey(name: 'ID')
+  String? get id;
+  @override
+  @JsonKey(name: 'ContactType')
   ContactType? get contactType;
   @override
-  @JsonKey(name: 'contactValue')
+  @JsonKey(name: 'ContactValue')
   String? get value;
   @override
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   bool? get active;
   @override
-  @JsonKey(name: 'optedIn', defaultValue: false)
+  @JsonKey(name: 'OptedIn', defaultValue: false)
   bool? get optedIn;
   @override
   @JsonKey(ignore: true)

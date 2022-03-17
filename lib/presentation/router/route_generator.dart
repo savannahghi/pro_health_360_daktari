@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
+import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -13,7 +14,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/search/search_page.dart';
+import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -31,6 +32,7 @@ import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
@@ -221,6 +223,14 @@ class RouteGenerator {
       case AppRoutes.searchClientPage:
         return MaterialPageRoute<SearchClientPage>(
           builder: (_) => const SearchClientPage(),
+        );
+
+      case AppRoutes.searchDetailViewPage:
+        return MaterialPageRoute<SearchPageDetailView>(
+          builder: (_) => SearchPageDetailView(
+            cccNumber: args['cccNumber'] as String,
+            clientResponse: args['clientResponse'] as ClientResponse,
+          ),
         );
     }
   }
