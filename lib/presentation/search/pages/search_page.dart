@@ -59,8 +59,8 @@ class _SearchPageState extends State<SearchPage> {
                     title: staffMembers,
                     backgroundColor: AppColors.primaryColor.withOpacity(0.14),
                     onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
+                      Navigator.of(context)
+                          .pushNamed(AppRoutes.searchStaffMemberPage);
                     },
                   ),
                 ],

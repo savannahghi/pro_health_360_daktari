@@ -457,3 +457,16 @@ const String tapBelowToInvite =
 const String consent = 'Consent';
 const String consentRecorded = 'Consent recorded';
 const String hasAgreedToUse = 'has already agreed to the use of myCareHub';
+
+// search client
+const String searchStaffMembersTitle = 'Search staff members';
+const String searchStaffMembersDescription =
+    'Search staff members using their phone number or staff number';
+const String searchStaffMembersHintString =
+    'Search using their name or phone number...';
+const String noStaffMemberFoundString = 'No staff member found';
+const String couldNotFindStaffMemberString =
+    'We could not find a staff member ';
+const String confirmStaffMemberIsCorrectString =
+    '. Confirm that the staff number is correct, or tap the button below to register them';
+const String registerStaffMemberString = 'Register Staff Member';

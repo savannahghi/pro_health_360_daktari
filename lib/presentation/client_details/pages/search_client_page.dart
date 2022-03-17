@@ -133,9 +133,10 @@ class _SearchClientPageState extends State<SearchClientPage> {
                           ),
                         const SizedBox(height: 24),
                         if (clientFound && clientDetails != null)
-                          SearchClientItem(
+                          SearchUserItem(
                             clientDetails: clientDetails!,
-                            cccNumber: cccNumber,
+                            number: cccNumber,
+                            isCCCNumber: true,
                           ),
                         if (showZeroState)
                           GenericErrorWidget(

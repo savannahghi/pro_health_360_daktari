@@ -47,3 +47,6 @@ const String fetchGroupMembersFlag = 'fetch_group_members_flag';
 
 // search client
 const String searchClientFlag = 'search_client_flag';
+
+// search staff member
+const String searchStaffMemberFlag = 'search_staff_member_flag';
