@@ -830,6 +830,19 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(pinResetRequestMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'approvePinResetServiceRequest': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
@@ -1133,10 +1146,10 @@ final Map<String, dynamic> appStateMock = <String, dynamic>{
   'staffState': mockStaffState,
   'surveyState': <String, dynamic>{},
   'serviceRequestState': <String, dynamic>{
-    'getServiceRequests': <dynamic>[],
-    'getPendingServiceRequestsCount': <String, dynamic>{
+    'serviceRequestContent': <String, dynamic>{},
+    'pendingServiceRequests': <String, dynamic>{
       'total': 0,
-      'requestsTypeCount': <dynamic>[],
+      'requestsTypeCount': <dynamic>[]
     },
     'errorFetchingServiceRequests': false,
   },

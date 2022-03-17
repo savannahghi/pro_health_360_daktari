@@ -53,10 +53,9 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!){
     ClientName
     ClientContact
     Status
+    CCCNumber
     ResolvedAt
     ResolvedBy
-    InProgressAt
-    InProgressBy
   }
 }
 ''';

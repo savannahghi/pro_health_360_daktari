@@ -100,3 +100,21 @@ mutation createCommunity($input: CommunityInput!) {
   }
 }
 ''';
+
+const String pinResetRequestMutation = r'''
+mutation approvePinResetServiceRequest(
+  $clientID: String!
+  $serviceRequestID: String!
+  $cccNumber: String!
+  $phoneNumber: String!
+  $physicalIdentityVerified: Boolean!
+) {
+  approvePinResetServiceRequest(
+    clientID: $clientID
+    serviceRequestID: $serviceRequestID
+    cccNumber: $cccNumber
+    phoneNumber: $phoneNumber
+    physicalIdentityVerified: $physicalIdentityVerified
+  )
+}
+''';

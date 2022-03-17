@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -8,12 +9,24 @@ class PinResetRequestWidget extends StatelessWidget {
     required this.phoneNumber,
     this.acceptKey,
     this.rejectKey,
+    this.clientId,
+    this.serviceRequestId,
+    this.cccNumber,
+    this.isLoading = false,
+    this.onAccept,
+    this.onReject,
   });
 
   final String name;
   final String phoneNumber;
   final Key? acceptKey;
   final Key? rejectKey;
+  final String? clientId;
+  final String? serviceRequestId;
+  final String? cccNumber;
+  final bool isLoading;
+  final VoidCallback? onAccept;
+  final VoidCallback? onReject;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +86,7 @@ class PinResetRequestWidget extends StatelessWidget {
                       AppColors.primaryColor.withOpacity(0.1),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: onReject,
                   child: const Text(
                     rejectText,
                     style: TextStyle(
@@ -88,14 +101,16 @@ class PinResetRequestWidget extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   key: acceptKey,
-                  onPressed: () {},
-                  child: const Text(
-                    acceptText,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  onPressed: onAccept,
+                  child: isLoading
+                      ? const PlatformLoader()
+                      : const Text(
+                          acceptText,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
             ],

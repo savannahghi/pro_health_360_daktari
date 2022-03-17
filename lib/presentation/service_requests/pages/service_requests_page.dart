@@ -25,19 +25,15 @@ class ServiceRequestsPage extends StatefulWidget {
 }
 
 class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
-  /// [ServiceRequestsPage] is used to display the user information
-  ///
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchServiceRequestsCountAction(
-          client: AppWrapperBase.of(context)!.graphQLClient,
-        ),
-      );
-    });
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    StoreProvider.dispatch<AppState>(
+      context,
+      FetchServiceRequestsCountAction(
+        client: AppWrapperBase.of(context)!.graphQLClient,
+      ),
+    );
   }
 
   @override

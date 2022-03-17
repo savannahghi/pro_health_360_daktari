@@ -5,7 +5,7 @@ import 'package:mycarehubpro/domain/core/entities/service_requests/service_reque
 
 class ServiceRequestsViewModel extends Vm {
   final Wait wait;
-  final List<ServiceRequestContent?>? serviceRequests;
+  final Map<String, ServiceRequestContent?>? serviceRequests;
   final PendingServiceRequest? pendingServiceRequests;
   final bool? errorFetchingServiceRequests;
 
