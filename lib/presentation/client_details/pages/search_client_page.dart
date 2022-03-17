@@ -61,13 +61,6 @@ class _SearchClientPageState extends State<SearchClientPage> {
         converter: (Store<AppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
-          if (vm.state.wait!.isWaitingFor(searchClientFlag)) {
-            return Container(
-              height: 300,
-              padding: const EdgeInsets.all(20),
-              child: const PlatformLoader(),
-            );
-          }
           return Column(
             children: <Widget>[
               Expanded(
@@ -93,35 +86,37 @@ class _SearchClientPageState extends State<SearchClientPage> {
                             ),
                             child: IconButton(
                               onPressed: () {
-                                setState(() {
-                                  clientFound = false;
-                                  showZeroState = false;
-                                });
-                                StoreProvider.dispatch(
-                                  context,
-                                  SearchClientAction(
-                                    client: AppWrapperBase.of(context)!
-                                        .graphQLClient,
-                                    cccNumber: cccNumber,
-                                    clientNotFound: () {
-                                      setState(() {
-                                        showZeroState = true;
-                                      });
-                                    },
-                                    onFailure: (String message) {
-                                      showTextSnackbar(
-                                        ScaffoldMessenger.of(context),
-                                        content: message,
-                                      );
-                                    },
-                                    onSuccess: (ClientResponse response) {
-                                      setState(() {
-                                        clientDetails = response;
-                                        clientFound = true;
-                                      });
-                                    },
-                                  ),
-                                );
+                                if (cccNumber.isNotEmpty) {
+                                  setState(() {
+                                    clientFound = false;
+                                    showZeroState = false;
+                                  });
+                                  StoreProvider.dispatch(
+                                    context,
+                                    SearchClientAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      cccNumber: cccNumber,
+                                      clientNotFound: () {
+                                        setState(() {
+                                          showZeroState = true;
+                                        });
+                                      },
+                                      onFailure: (String message) {
+                                        showTextSnackbar(
+                                          ScaffoldMessenger.of(context),
+                                          content: message,
+                                        );
+                                      },
+                                      onSuccess: (ClientResponse response) {
+                                        setState(() {
+                                          clientDetails = response;
+                                          clientFound = true;
+                                        });
+                                      },
+                                    ),
+                                  );
+                                }
                               },
                               icon: const Icon(Icons.search),
                             ),
@@ -130,6 +125,12 @@ class _SearchClientPageState extends State<SearchClientPage> {
                           customFillColor: AppColors.galleryColor,
                           onChanged: (String val) {},
                         ),
+                        if (vm.state.wait!.isWaitingFor(searchClientFlag))
+                          Container(
+                            height: 300,
+                            padding: const EdgeInsets.all(20),
+                            child: const PlatformLoader(),
+                          ),
                         const SizedBox(height: 24),
                         if (clientFound && clientDetails != null)
                           SearchClientItem(
