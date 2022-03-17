@@ -114,6 +114,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
         },
         appRunner: () => runApp(
           MyCareHubProfessionalApp(
+            connectivityChecker: connectivityChecker,
             store: store,
             appSetupData: appSetupData,
             streamClient: streamClient,

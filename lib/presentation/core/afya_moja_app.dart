@@ -12,6 +12,8 @@ import 'package:mycarehubpro/application/redux/view_model_factories/app_entry_po
 import 'package:mycarehubpro/application/redux/view_models/app_entry_point_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:mycarehubpro/presentation/core/auth_manager.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -21,44 +23,49 @@ class MyCareHubProfessionalApp extends StatelessWidget {
     required this.store,
     required this.appSetupData,
     required this.streamClient,
+    required this.connectivityChecker,
   }) : super(key: key);
 
   final AppSetupData appSetupData;
   final Store<AppState> store;
   final StreamChatClient streamClient;
+  final ConnectivityChecker connectivityChecker;
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      key: globalStoreProviderKey,
-      store: store,
-      child: StoreConnector<AppState, AppEntryPointViewModel>(
-        vm: () => AppEntryPointViewModelFactory(),
-        builder: (BuildContext context, AppEntryPointViewModel vm) {
-          final String idToken = vm.idToken ?? '';
-          final String graphqlEndpoint =
-              appSetupData.customContext!.graphqlEndpoint;
-          final String refreshTokenEndpoint =
-              appSetupData.customContext?.refreshTokenEndpoint ?? '';
-          final String userID = vm.userId ?? '';
-          return AppWrapper(
-            appContexts: appSetupData.appContexts,
-            appName: appName,
-            baseContext: appSetupData.customContext,
-            graphQLClient: CustomClient(
-              idToken,
-              graphqlEndpoint,
-              context: context,
-              refreshTokenEndpoint: refreshTokenEndpoint,
-              userID: userID,
-            ),
-            child: AuthManager(
-              appName: appName,
+    return ConnectivityCheckerProvider(
+      connectivityChecker: connectivityChecker,
+      child: StoreProvider<AppState>(
+        key: globalStoreProviderKey,
+        store: store,
+        child: StoreConnector<AppState, AppEntryPointViewModel>(
+          vm: () => AppEntryPointViewModelFactory(),
+          builder: (BuildContext context, AppEntryPointViewModel vm) {
+            final String idToken = vm.idToken ?? '';
+            final String graphqlEndpoint =
+                appSetupData.customContext!.graphqlEndpoint;
+            final String refreshTokenEndpoint =
+                appSetupData.customContext?.refreshTokenEndpoint ?? '';
+            final String userID = vm.userId ?? '';
+            return AppWrapper(
               appContexts: appSetupData.appContexts,
-              streamClient: streamClient,
-            ),
-          );
-        },
+              appName: appName,
+              baseContext: appSetupData.customContext,
+              graphQLClient: CustomClient(
+                idToken,
+                graphqlEndpoint,
+                context: context,
+                refreshTokenEndpoint: refreshTokenEndpoint,
+                userID: userID,
+              ),
+              child: AuthManager(
+                appName: appName,
+                appContexts: appSetupData.appContexts,
+                streamClient: streamClient,
+              ),
+            );
+          },
+        ),
       ),
     );
   }
