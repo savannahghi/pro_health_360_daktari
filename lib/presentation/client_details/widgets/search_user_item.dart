@@ -35,10 +35,17 @@ class _SearchUserItemState extends State<SearchUserItem> {
       onTap: () {
         Navigator.of(context).pushNamed(
           AppRoutes.searchDetailViewPage,
-          arguments: <String, dynamic>{
-            'cccNumber': widget.number,
-            'clientResponse': widget.clientDetails,
-          },
+          arguments: widget.isCCCNumber
+              ? <String, dynamic>{
+                  'idNumber': widget.number,
+                  'clientResponse': widget.clientDetails,
+                  'isClient': true,
+                }
+              : <String, dynamic>{
+                  'idNumber': widget.number,
+                  'clientResponse': widget.clientDetails,
+                  'isClient': false,
+                },
         );
       },
       child: Padding(

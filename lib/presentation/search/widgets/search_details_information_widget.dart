@@ -4,14 +4,16 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
 import 'package:shared_themes/spaces.dart';
 
-class ClientDetailsInformationWidget extends StatelessWidget {
-  const ClientDetailsInformationWidget({
+class SearchDetailsInformationWidget extends StatelessWidget {
+  const SearchDetailsInformationWidget({
     required this.clientResponse,
-    required this.cccNumber,
+    required this.idNumber,
+    required this.isClient,
   });
 
   final ClientResponse? clientResponse;
-  final String? cccNumber;
+  final String? idNumber;
+  final bool isClient;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class ClientDetailsInformationWidget extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         Text(
-          'CCC# $cccNumber!',
+          isClient ? 'CCC# $idNumber' : 'Staff Number $idNumber',
           style: normalSize15Text(AppColors.greyTextColor),
         ),
         size15VerticalSizedBox,

@@ -74,9 +74,7 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
                           controller: searchController,
                           hintText: searchStaffMembersHintString,
                           suffixIcon: Padding(
-                            padding: const EdgeInsets.only(
-                              right: 4.0,
-                            ),
+                            padding: const EdgeInsets.only(right: 4.0),
                             child: IconButton(
                               onPressed: () {
                                 if (searchQuery.isNotEmpty) {

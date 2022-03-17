@@ -10,7 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/update_connectivity_actio
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
-import 'package:mycarehubpro/presentation/client_details/widgets/search_client_item.dart';
+import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 

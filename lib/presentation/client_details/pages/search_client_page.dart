@@ -11,7 +11,7 @@ import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.
 import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/client_details/widgets/search_client_item.dart';
+import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';

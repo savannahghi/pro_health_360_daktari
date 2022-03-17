@@ -5,7 +5,7 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/search/widgets/client_details_information_widget.dart';
+import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 class ClientSearchWidget extends StatelessWidget {
@@ -21,9 +21,10 @@ class ClientSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ClientDetailsInformationWidget(
+        SearchDetailsInformationWidget(
           clientResponse: clientResponse,
-          cccNumber: cccNumber,
+          idNumber: cccNumber,
+          isClient: true,
         ),
         const Divider(),
         mediumVerticalSizedBox,
@@ -45,7 +46,7 @@ class ClientSearchWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: Text(
-                  tapBelowToInvite,
+                  tapBelowToInvite(clientResponse.userName!),
                   style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ),
