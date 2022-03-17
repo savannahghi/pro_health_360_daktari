@@ -229,8 +229,9 @@ class RouteGenerator {
       case AppRoutes.searchDetailViewPage:
         return MaterialPageRoute<SearchPageDetailView>(
           builder: (_) => SearchPageDetailView(
-            cccNumber: args['cccNumber'] as String,
+            idNumber: args['idNumber'] as String,
             clientResponse: args['clientResponse'] as ClientResponse,
+            isClient: args['isClient'] as bool,
           ),
         );
 

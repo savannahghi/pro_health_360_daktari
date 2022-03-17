@@ -452,8 +452,8 @@ const String confirmCCCNumberIsCorrectString =
     '. Confirm that the CCC number is correct, or tap the button below to register them';
 const String registerClientString = 'Register Client';
 const String actions = 'Actions';
-const String tapBelowToInvite =
-    'Tap the button below to invite Abiud to myCareHub. They will receive and SMS with instructions on how to sign up';
+String tapBelowToInvite(String userName) =>
+    'Tap the button below to invite $userName to myCareHub. They will receive and SMS with instructions on how to sign up';
 const String consent = 'Consent';
 const String consentRecorded = 'Consent recorded';
 const String hasAgreedToUse = 'has already agreed to the use of myCareHub';
@@ -470,3 +470,9 @@ const String couldNotFindStaffMemberString =
 const String confirmStaffMemberIsCorrectString =
     '. Confirm that the staff number is correct, or tap the button below to register them';
 const String registerStaffMemberString = 'Register Staff Member';
+const String userRoles = 'User roles';
+const String clientManagement = 'Client management';
+const String contentManagement = 'Content management';
+const String systemAdminstration = 'System administration';
+const String communityManagement = 'Community management';
+const String updateRoles = 'Update roles';

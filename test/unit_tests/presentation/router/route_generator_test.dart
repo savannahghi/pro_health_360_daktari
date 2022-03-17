@@ -355,8 +355,9 @@ void main() {
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.searchDetailViewPage,
       arguments: <String, dynamic>{
-        'cccNumber': '12345',
-        'clientResponse': ClientResponse.initial()
+        'idNumber': '12345',
+        'clientResponse': ClientResponse.initial(),
+        'isClient': true
       },
     );
 
