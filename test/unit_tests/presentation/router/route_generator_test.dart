@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -17,14 +17,13 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
-import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
@@ -32,6 +31,7 @@ import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
@@ -356,7 +356,7 @@ void main() {
       name: AppRoutes.searchDetailViewPage,
       arguments: <String, dynamic>{
         'idNumber': '12345',
-        'clientResponse': ClientResponse.initial(),
+        'clientResponse': SearchUserResponse.initial(),
         'isClient': true
       },
     );

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/search_client_action.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/search_client_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
@@ -28,7 +28,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
   List<String> inviteMemberIds = <String>[];
 
   String cccNumber = '';
-  ClientResponse? clientDetails;
+  SearchUserResponse? clientDetails;
   bool clientFound = false;
   bool showZeroState = false;
 
@@ -108,7 +108,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
                                           content: message,
                                         );
                                       },
-                                      onSuccess: (ClientResponse response) {
+                                      onSuccess: (SearchUserResponse response) {
                                         setState(() {
                                           clientDetails = response;
                                           clientFound = true;

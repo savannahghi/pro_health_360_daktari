@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SearchDetailsInformationWidget extends StatelessWidget {
@@ -11,12 +11,13 @@ class SearchDetailsInformationWidget extends StatelessWidget {
     required this.isClient,
   });
 
-  final ClientResponse? clientResponse;
+  final SearchUserResponse? clientResponse;
   final String? idNumber;
   final bool isClient;
 
   @override
   Widget build(BuildContext context) {
+    final String username = clientResponse?.user?.userName ?? UNKNOWN;
     return Column(
       children: <Widget>[
         Container(
@@ -28,14 +29,14 @@ class SearchDetailsInformationWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              clientResponse!.userName!.trim()[0].toUpperCase(),
+              username.trim()[0].toUpperCase(),
               style: boldSize30Text(AppColors.primaryColor),
             ),
           ),
         ),
         mediumVerticalSizedBox,
         Text(
-          clientResponse!.userName!,
+          username,
           style: veryBoldSize20Text(AppColors.blackColor),
         ),
         smallVerticalSizedBox,
@@ -45,7 +46,7 @@ class SearchDetailsInformationWidget extends StatelessWidget {
         ),
         size15VerticalSizedBox,
         Text(
-          clientResponse!.primaryContact!.value!,
+          clientResponse!.user!.primaryContact!.value!,
           style: normalSize15Text(AppColors.greyTextColor),
         ),
       ],
