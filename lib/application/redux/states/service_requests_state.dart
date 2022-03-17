@@ -9,10 +9,8 @@ part 'service_requests_state.g.dart';
 @freezed
 class ServiceRequestState with _$ServiceRequestState {
   factory ServiceRequestState({
-    @JsonKey(name: 'getServiceRequests')
-        List<ServiceRequestContent?>? serviceRequestContent,
-    @JsonKey(name: 'getPendingServiceRequestsCount')
-        PendingServiceRequest? pendingServiceRequests,
+    Map<String, ServiceRequestContent>? serviceRequestContent,
+    PendingServiceRequest? pendingServiceRequests,
     bool? errorFetchingServiceRequests,
   }) = _ServiceRequestState;
 
@@ -20,7 +18,7 @@ class ServiceRequestState with _$ServiceRequestState {
       _$ServiceRequestStateFromJson(json);
 
   factory ServiceRequestState.initial() => ServiceRequestState(
-        serviceRequestContent: <ServiceRequestContent?>[],
+        serviceRequestContent: <String, ServiceRequestContent>{},
         errorFetchingServiceRequests: false,
         pendingServiceRequests: PendingServiceRequest.initial(),
       );

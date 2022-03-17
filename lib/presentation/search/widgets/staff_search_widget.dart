@@ -172,7 +172,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                     text: updateRoles,
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text(comingSoon)),
+                        const SnackBar(content: Text(comingSoonText)),
                       );
                     },
                   ),

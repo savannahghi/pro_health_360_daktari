@@ -14,7 +14,6 @@ const String pinMustMatchString = 'PIN must match';
 const String acceptTermsAndConditionsString = 'I accept Terms and Conditions';
 const String acceptTermsString =
     'Kindly accept terms and conditions to continue';
-const String comingSoon = 'Coming Soon';
 const String pinSuccessString = 'PIN created successfully';
 
 //Forgot PIN Page
@@ -434,6 +433,7 @@ const String pinResetRequestsLeading =
 const String acceptText = 'Accept';
 const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
+const String pinApprovedSuccessText = 'Pin Approved Successfully';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';

@@ -5,7 +5,10 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/accept_pin_request_action.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
@@ -54,25 +57,62 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
               }
 
               final List<Widget> requestWidgetList = <Widget>[];
-              final List<ServiceRequestContent?>? serviceRequests =
+              final Map<String, ServiceRequestContent?>? serviceRequests =
                   vm.serviceRequests;
 
               if (vm.serviceRequests != null &&
                   vm.serviceRequests!.isNotEmpty) {
-                for (int i = 0; i < serviceRequests!.length; i++) {
-                  final ServiceRequestContent? request = serviceRequests[i];
+                final List<MapEntry<String, ServiceRequestContent?>> entries =
+                    serviceRequests!.entries.toList();
+                for (int i = 0; i < entries.length; i++) {
+                  final ServiceRequestContent? request = entries[i].value;
                   if (request?.serviceRequestType ==
                       ServiceRequestType.PIN_RESET) {
                     final String name = request?.clientName ?? UNKNOWN;
                     final String phoneNumber =
                         request?.clientPhoneNumber ?? UNKNOWN;
+                    final String clientId = request?.clientId ?? '';
+                    final String serviceRequestId = request?.id ?? '';
+                    final String cccNumber = request?.cccNumber ?? '';
 
                     requestWidgetList.add(
                       PinResetRequestWidget(
+                        clientId: clientId,
+                        serviceRequestId: serviceRequestId,
+                        cccNumber: cccNumber,
                         acceptKey: ValueKey<String>('accept_key_$i'),
                         rejectKey: ValueKey<String>('reject_key_$i'),
                         phoneNumber: phoneNumber,
                         name: name,
+                        isLoading: vm.wait.isWaitingFor(
+                          '${pinResetAcceptFlag}_$serviceRequestId',
+                        ),
+                        onAccept: () {
+                          StoreProvider.dispatch(
+                            context,
+                            AcceptPinRequestAction(
+                              clientId: clientId,
+                              serviceRequestId: serviceRequestId,
+                              cccNumber: cccNumber,
+                              phoneNumber: phoneNumber,
+                              physicalIdentityVerified: true,
+                              httpClient:
+                                  AppWrapperBase.of(context)!.graphQLClient,
+                              onPinVerified: () {
+                                showTextSnackbar(
+                                  ScaffoldMessenger.of(context),
+                                  content: pinApprovedSuccessText,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        onReject: () {
+                          showTextSnackbar(
+                            ScaffoldMessenger.of(context),
+                            content: comingSoonText,
+                          );
+                        },
                       ),
                     );
 
@@ -81,6 +121,20 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                     }
                   }
                 }
+              } else {
+                return GenericErrorWidget(
+                  headerIconSvgUrl: noDataImageSvgPath,
+                  actionText: actionTextGenericNoData,
+                  type: GenericNoDataTypes.noData,
+                  recoverCallback: () => Navigator.of(context).pop(),
+                  messageTitle: getNoDataTile('service requests'),
+                  messageBody: <TextSpan>[
+                    TextSpan(
+                      text: serviceRequestsNoDataBodyString,
+                      style: normalSize16Text(AppColors.greyTextColor),
+                    ),
+                  ],
+                );
               }
 
               return SingleChildScrollView(

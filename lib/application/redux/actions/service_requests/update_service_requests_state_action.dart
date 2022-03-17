@@ -5,7 +5,7 @@ import 'package:mycarehubpro/domain/core/entities/service_requests/pending_servi
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
 class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
-  final List<ServiceRequestContent?>? serviceRequestContent;
+  final List<ServiceRequestContent>? serviceRequestContent;
   final bool? errorFetchingServiceRequests;
   final PendingServiceRequest? pendingServiceRequests;
 
@@ -17,10 +17,20 @@ class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
+    Map<String, ServiceRequestContent>? requests =
+        <String, ServiceRequestContent>{};
+
+    if (serviceRequestContent != null) {
+      requests = <String, ServiceRequestContent>{
+        for (ServiceRequestContent v in serviceRequestContent!) v.id!: v
+      };
+    } else {
+      requests = state.serviceRequestState?.serviceRequestContent;
+    }
+
     final ServiceRequestState? serviceRequestsState =
         state.serviceRequestState?.copyWith(
-      serviceRequestContent: serviceRequestContent ??
-          state.serviceRequestState?.serviceRequestContent,
+      serviceRequestContent: requests,
       pendingServiceRequests: pendingServiceRequests ??
           state.serviceRequestState?.pendingServiceRequests,
       errorFetchingServiceRequests: errorFetchingServiceRequests ??

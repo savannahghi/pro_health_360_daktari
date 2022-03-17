@@ -7,8 +7,8 @@ import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_response.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
@@ -55,7 +55,8 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
       return null;
     }
 
-    final ServiceRequestState serviceRequests = ServiceRequestState.fromJson(
+    final ServiceRequestResponse serviceRequests =
+        ServiceRequestResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
 
