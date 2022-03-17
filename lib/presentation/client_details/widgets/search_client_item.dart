@@ -5,20 +5,22 @@ import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
-class SearchClientItem extends StatefulWidget {
-  const SearchClientItem({
+class SearchUserItem extends StatefulWidget {
+  const SearchUserItem({
     required this.clientDetails,
-    required this.cccNumber,
+    required this.number,
+    this.isCCCNumber = false,
   });
 
   final ClientResponse clientDetails;
-  final String cccNumber;
+  final String number;
+  final bool isCCCNumber;
 
   @override
-  State<SearchClientItem> createState() => _SearchClientItemState();
+  State<SearchUserItem> createState() => _SearchUserItemState();
 }
 
-class _SearchClientItemState extends State<SearchClientItem> {
+class _SearchUserItemState extends State<SearchUserItem> {
   bool isSelected = false;
 
   @override
@@ -34,7 +36,7 @@ class _SearchClientItemState extends State<SearchClientItem> {
         Navigator.of(context).pushNamed(
           AppRoutes.searchDetailViewPage,
           arguments: <String, dynamic>{
-            'cccNumber': widget.cccNumber,
+            'cccNumber': widget.number,
             'clientResponse': widget.clientDetails,
           },
         );
@@ -69,7 +71,9 @@ class _SearchClientItemState extends State<SearchClientItem> {
                       style: boldSize12Text(),
                     ),
                     Text(
-                      'CCC#: ${widget.cccNumber}',
+                      widget.isCCCNumber
+                          ? 'CCC#: ${widget.number}'
+                          : widget.number,
                       style: normalSize12Text(AppColors.greyTextColor),
                     ),
                   ],
