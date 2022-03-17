@@ -134,3 +134,23 @@ query getClientByCCCNumber($CCCNumber: String!){
   }
 }
 ''';
+
+const String searchStaffMemberQuery = r'''
+query getStaffByStaffNumber($CCCNumber: String!){
+  getStaffByStaffNumber(CCCNumber: $CCCNumber){
+    ID
+    User{
+      Username
+      Active
+      Contacts{
+        ID
+        ContactType
+        ContactValue
+        Active
+        OptedIn
+      }
+      TermsAccepted
+    }
+  }
+}
+''';

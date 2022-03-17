@@ -7,14 +7,14 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SearchClientAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final void Function(String message)? onFailure;
-  final void Function(ClientResponse clientResponse)? onSuccess;
+  final void Function(SearchUserResponse clientResponse)? onSuccess;
   final void Function()? clientNotFound;
   String cccNumber;
 
@@ -69,8 +69,8 @@ class SearchClientAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('fetching client'));
       }
 
-      final ClientResponse clientResponse = ClientResponse.fromJson(
-        body['data']['getClientByCCCNumber']['User'] as Map<String, dynamic>,
+      final SearchUserResponse clientResponse = SearchUserResponse.fromJson(
+        body['data']['getClientByCCCNumber'] as Map<String, dynamic>,
       );
 
       onSuccess?.call(clientResponse);

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'client_response.dart';
+part of 'user_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,22 +14,20 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ClientResponse _$ClientResponseFromJson(Map<String, dynamic> json) {
-  return _ClientResponse.fromJson(json);
+UserData _$UserDataFromJson(Map<String, dynamic> json) {
+  return _UserData.fromJson(json);
 }
 
 /// @nodoc
-class _$ClientResponseTearOff {
-  const _$ClientResponseTearOff();
+class _$UserDataTearOff {
+  const _$UserDataTearOff();
 
-  _ClientResponse call(
-      {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? userName,
+  _UserData call(
+      {@JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact}) {
-    return _ClientResponse(
-      userId: userId,
+    return _UserData(
       userName: userName,
       termsAccepted: termsAccepted,
       active: active,
@@ -37,19 +35,17 @@ class _$ClientResponseTearOff {
     );
   }
 
-  ClientResponse fromJson(Map<String, Object?> json) {
-    return ClientResponse.fromJson(json);
+  UserData fromJson(Map<String, Object?> json) {
+    return UserData.fromJson(json);
   }
 }
 
 /// @nodoc
-const $ClientResponse = _$ClientResponseTearOff();
+const $UserData = _$UserDataTearOff();
 
 /// @nodoc
-mixin _$ClientResponse {
-  @JsonKey(name: 'ID')
-  String? get userId =>
-      throw _privateConstructorUsedError; // This is the nickname
+mixin _$UserData {
+// This is the nickname
   @JsonKey(name: 'Username')
   String? get userName => throw _privateConstructorUsedError;
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
@@ -61,18 +57,16 @@ mixin _$ClientResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ClientResponseCopyWith<ClientResponse> get copyWith =>
+  $UserDataCopyWith<UserData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClientResponseCopyWith<$Res> {
-  factory $ClientResponseCopyWith(
-          ClientResponse value, $Res Function(ClientResponse) then) =
-      _$ClientResponseCopyWithImpl<$Res>;
+abstract class $UserDataCopyWith<$Res> {
+  factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
+      _$UserDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -81,27 +75,21 @@ abstract class $ClientResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ClientResponseCopyWithImpl<$Res>
-    implements $ClientResponseCopyWith<$Res> {
-  _$ClientResponseCopyWithImpl(this._value, this._then);
+class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
+  _$UserDataCopyWithImpl(this._value, this._then);
 
-  final ClientResponse _value;
+  final UserData _value;
   // ignore: unused_field
-  final $Res Function(ClientResponse) _then;
+  final $Res Function(UserData) _then;
 
   @override
   $Res call({
-    Object? userId = freezed,
     Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -134,15 +122,12 @@ class _$ClientResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ClientResponseCopyWith<$Res>
-    implements $ClientResponseCopyWith<$Res> {
-  factory _$ClientResponseCopyWith(
-          _ClientResponse value, $Res Function(_ClientResponse) then) =
-      __$ClientResponseCopyWithImpl<$Res>;
+abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
+  factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) then) =
+      __$UserDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -152,29 +137,22 @@ abstract class _$ClientResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ClientResponseCopyWithImpl<$Res>
-    extends _$ClientResponseCopyWithImpl<$Res>
-    implements _$ClientResponseCopyWith<$Res> {
-  __$ClientResponseCopyWithImpl(
-      _ClientResponse _value, $Res Function(_ClientResponse) _then)
-      : super(_value, (v) => _then(v as _ClientResponse));
+class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
+    implements _$UserDataCopyWith<$Res> {
+  __$UserDataCopyWithImpl(_UserData _value, $Res Function(_UserData) _then)
+      : super(_value, (v) => _then(v as _UserData));
 
   @override
-  _ClientResponse get _value => super._value as _ClientResponse;
+  _UserData get _value => super._value as _UserData;
 
   @override
   $Res call({
-    Object? userId = freezed,
     Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
   }) {
-    return _then(_ClientResponse(
-      userId: userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_UserData(
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -197,20 +175,16 @@ class __$ClientResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ClientResponse implements _ClientResponse {
-  _$_ClientResponse(
-      {@JsonKey(name: 'ID') this.userId,
-      @JsonKey(name: 'Username') this.userName,
+class _$_UserData implements _UserData {
+  _$_UserData(
+      {@JsonKey(name: 'Username') this.userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) this.termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) this.active,
       @JsonKey(name: 'Contacts') this.primaryContact});
 
-  factory _$_ClientResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ClientResponseFromJson(json);
+  factory _$_UserData.fromJson(Map<String, dynamic> json) =>
+      _$$_UserDataFromJson(json);
 
-  @override
-  @JsonKey(name: 'ID')
-  final String? userId;
   @override // This is the nickname
   @JsonKey(name: 'Username')
   final String? userName;
@@ -226,15 +200,14 @@ class _$_ClientResponse implements _ClientResponse {
 
   @override
   String toString() {
-    return 'ClientResponse(userId: $userId, userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
+    return 'UserData(userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ClientResponse &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
+            other is _UserData &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality()
                 .equals(other.termsAccepted, termsAccepted) &&
@@ -246,7 +219,6 @@ class _$_ClientResponse implements _ClientResponse {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(termsAccepted),
       const DeepCollectionEquality().hash(active),
@@ -254,29 +226,24 @@ class _$_ClientResponse implements _ClientResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$ClientResponseCopyWith<_ClientResponse> get copyWith =>
-      __$ClientResponseCopyWithImpl<_ClientResponse>(this, _$identity);
+  _$UserDataCopyWith<_UserData> get copyWith =>
+      __$UserDataCopyWithImpl<_UserData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ClientResponseToJson(this);
+    return _$$_UserDataToJson(this);
   }
 }
 
-abstract class _ClientResponse implements ClientResponse {
-  factory _ClientResponse(
-      {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? userName,
+abstract class _UserData implements UserData {
+  factory _UserData(
+      {@JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact}) = _$_ClientResponse;
+      @JsonKey(name: 'Contacts') Contact? primaryContact}) = _$_UserData;
 
-  factory _ClientResponse.fromJson(Map<String, dynamic> json) =
-      _$_ClientResponse.fromJson;
+  factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
-  @override
-  @JsonKey(name: 'ID')
-  String? get userId;
   @override // This is the nickname
   @JsonKey(name: 'Username')
   String? get userName;
@@ -291,6 +258,6 @@ abstract class _ClientResponse implements ClientResponse {
   Contact? get primaryContact;
   @override
   @JsonKey(ignore: true)
-  _$ClientResponseCopyWith<_ClientResponse> get copyWith =>
+  _$UserDataCopyWith<_UserData> get copyWith =>
       throw _privateConstructorUsedError;
 }

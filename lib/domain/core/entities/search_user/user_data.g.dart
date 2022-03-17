@@ -1,14 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'client_response.dart';
+part of 'user_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ClientResponse _$$_ClientResponseFromJson(Map<String, dynamic> json) =>
-    _$_ClientResponse(
-      userId: json['ID'] as String?,
+_$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
       userName: json['Username'] as String?,
       termsAccepted: json['TermsAccepted'] as bool? ?? false,
       active: json['Active'] as bool? ?? false,
@@ -17,9 +15,8 @@ _$_ClientResponse _$$_ClientResponseFromJson(Map<String, dynamic> json) =>
           : Contact.fromJson(json['Contacts'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ClientResponseToJson(_$_ClientResponse instance) =>
+Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
     <String, dynamic>{
-      'ID': instance.userId,
       'Username': instance.userName,
       'TermsAccepted': instance.termsAccepted,
       'Active': instance.active,

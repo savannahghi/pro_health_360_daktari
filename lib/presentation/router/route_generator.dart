@@ -2,7 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -230,7 +230,7 @@ class RouteGenerator {
         return MaterialPageRoute<SearchPageDetailView>(
           builder: (_) => SearchPageDetailView(
             idNumber: args['idNumber'] as String,
-            clientResponse: args['clientResponse'] as ClientResponse,
+            clientResponse: args['clientResponse'] as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
         );

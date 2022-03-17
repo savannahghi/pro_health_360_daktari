@@ -1,14 +1,13 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
-
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
+import 'package:shared_themes/spaces.dart';
 
 class StaffSearchWidget extends StatefulWidget {
   const StaffSearchWidget({
@@ -17,7 +16,7 @@ class StaffSearchWidget extends StatefulWidget {
   });
 
   final String staffNumber;
-  final ClientResponse clientResponse;
+  final SearchUserResponse clientResponse;
 
   @override
   State<StaffSearchWidget> createState() => _StaffSearchWidgetState();
@@ -58,7 +57,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
-                    tapBelowToInvite(widget.clientResponse.userName!),
+                    tapBelowToInvite(widget.clientResponse.user!.userName!),
                     style: normalSize14Text(AppColors.greyTextColor),
                   ),
                 ),
@@ -85,7 +84,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
-                    '${widget.clientResponse.userName!.split(' ').first} $hasAgreedToUse',
+                    '${widget.clientResponse.user!.userName!.split(' ').first} $hasAgreedToUse',
                     style: normalSize14Text(AppColors.greyTextColor),
                   ),
                 ),
