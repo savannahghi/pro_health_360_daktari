@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/custom_client.dart';
 import 'package:mycarehubpro/application/core/services/localization.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
+import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
@@ -56,6 +59,16 @@ class _AuthManagerState extends State<AuthManager> {
         httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
         refreshTokenEndpoint:
             AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+      ),
+    );
+
+    final ConnectivityChecker connectivityChecker =
+        ConnectivityCheckerProvider.of(context).connectivityChecker;
+
+    StoreProvider.dispatch(
+      context,
+      CheckAndUpdateConnectivityAction(
+        connectivityChecker: connectivityChecker,
       ),
     );
   }
