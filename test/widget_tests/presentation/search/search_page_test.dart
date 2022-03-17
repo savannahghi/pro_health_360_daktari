@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
-import 'package:mycarehubpro/presentation/search/search_page.dart';
+import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 
 import '../../../mocks/test_helpers.dart';
 

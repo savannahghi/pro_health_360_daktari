@@ -1,9 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SearchClientItem extends StatefulWidget {
@@ -29,12 +28,15 @@ class _SearchClientItemState extends State<SearchClientItem> {
 
   @override
   Widget build(BuildContext context) {
-    final String username = widget.clientDetails.username ?? UNKNOWN;
+    final String username = widget.clientDetails.userName ?? UNKNOWN;
     return InkWell(
       onTap: () {
-        showTextSnackbar(
-          ScaffoldMessenger.of(context),
-          content: comingSoonText,
+        Navigator.of(context).pushNamed(
+          AppRoutes.searchDetailViewPage,
+          arguments: <String, dynamic>{
+            'cccNumber': widget.cccNumber,
+            'clientResponse': widget.clientDetails,
+          },
         );
       },
       child: Padding(

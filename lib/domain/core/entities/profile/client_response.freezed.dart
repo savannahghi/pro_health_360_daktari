@@ -24,13 +24,13 @@ class _$ClientResponseTearOff {
 
   _ClientResponse call(
       {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? username,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact}) {
     return _ClientResponse(
       userId: userId,
-      username: username,
+      userName: userName,
       termsAccepted: termsAccepted,
       active: active,
       primaryContact: primaryContact,
@@ -51,7 +51,7 @@ mixin _$ClientResponse {
   String? get userId =>
       throw _privateConstructorUsedError; // This is the nickname
   @JsonKey(name: 'Username')
-  String? get username => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
   bool? get termsAccepted => throw _privateConstructorUsedError;
   @JsonKey(name: 'Active', defaultValue: false)
@@ -72,7 +72,7 @@ abstract class $ClientResponseCopyWith<$Res> {
       _$ClientResponseCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? username,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -92,7 +92,7 @@ class _$ClientResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
-    Object? username = freezed,
+    Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
@@ -102,9 +102,9 @@ class _$ClientResponseCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
@@ -142,7 +142,7 @@ abstract class _$ClientResponseCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? username,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -165,7 +165,7 @@ class __$ClientResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
-    Object? username = freezed,
+    Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
@@ -175,9 +175,9 @@ class __$ClientResponseCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
@@ -200,7 +200,7 @@ class __$ClientResponseCopyWithImpl<$Res>
 class _$_ClientResponse implements _ClientResponse {
   _$_ClientResponse(
       {@JsonKey(name: 'ID') this.userId,
-      @JsonKey(name: 'Username') this.username,
+      @JsonKey(name: 'Username') this.userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) this.termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) this.active,
       @JsonKey(name: 'Contacts') this.primaryContact});
@@ -213,7 +213,7 @@ class _$_ClientResponse implements _ClientResponse {
   final String? userId;
   @override // This is the nickname
   @JsonKey(name: 'Username')
-  final String? username;
+  final String? userName;
   @override
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
   final bool? termsAccepted;
@@ -226,7 +226,7 @@ class _$_ClientResponse implements _ClientResponse {
 
   @override
   String toString() {
-    return 'ClientResponse(userId: $userId, username: $username, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
+    return 'ClientResponse(userId: $userId, userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
   }
 
   @override
@@ -235,7 +235,7 @@ class _$_ClientResponse implements _ClientResponse {
         (other.runtimeType == runtimeType &&
             other is _ClientResponse &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality()
                 .equals(other.termsAccepted, termsAccepted) &&
             const DeepCollectionEquality().equals(other.active, active) &&
@@ -247,7 +247,7 @@ class _$_ClientResponse implements _ClientResponse {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(termsAccepted),
       const DeepCollectionEquality().hash(active),
       const DeepCollectionEquality().hash(primaryContact));
@@ -266,7 +266,7 @@ class _$_ClientResponse implements _ClientResponse {
 abstract class _ClientResponse implements ClientResponse {
   factory _ClientResponse(
       {@JsonKey(name: 'ID') String? userId,
-      @JsonKey(name: 'Username') String? username,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact}) = _$_ClientResponse;
@@ -279,7 +279,7 @@ abstract class _ClientResponse implements ClientResponse {
   String? get userId;
   @override // This is the nickname
   @JsonKey(name: 'Username')
-  String? get username;
+  String? get userName;
   @override
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
   bool? get termsAccepted;

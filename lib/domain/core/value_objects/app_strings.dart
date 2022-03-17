@@ -451,3 +451,9 @@ const String couldNotFindClientString =
 const String confirmCCCNumberIsCorrectString =
     '. Confirm that the CCC number is correct, or tap the button below to register them';
 const String registerClientString = 'Register Client';
+const String actions = 'Actions';
+const String tapBelowToInvite =
+    'Tap the button below to invite Abiud to myCareHub. They will receive and SMS with instructions on how to sign up';
+const String consent = 'Consent';
+const String consentRecorded = 'Consent recorded';
+const String hasAgreedToUse = 'has already agreed to the use of myCareHub';

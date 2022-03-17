@@ -12,6 +12,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/search_client_item.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -45,7 +46,7 @@ void main() {
       await tester.tap(find.text('Username'));
 
       await tester.pumpAndSettle();
-      expect(find.byType(SnackBar), findsWidgets);
+      expect(find.byType(SearchPageDetailView), findsWidgets);
     });
 
     testWidgets(
