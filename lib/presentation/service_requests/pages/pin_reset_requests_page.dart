@@ -107,12 +107,13 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                             ),
                           );
                         },
-                        onReject: () {
-                          showTextSnackbar(
-                            ScaffoldMessenger.of(context),
-                            content: comingSoonText,
-                          );
-                        },
+                        // TODO: wait for backend implementation
+                        // onReject: () {
+                        //   showTextSnackbar(
+                        //     ScaffoldMessenger.of(context),
+                        //     content: comingSoonText,
+                        //   );
+                        // },
                       ),
                     );
 
