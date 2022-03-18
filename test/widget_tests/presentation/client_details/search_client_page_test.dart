@@ -81,7 +81,11 @@ void main() {
           'idToken',
           'endpoint',
           Response(
-            json.encode(<String, dynamic>{'error': 'error occured'}),
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'searchClientsByCCCNumber': null,
+              },
+            }),
             201,
           ),
         );
