@@ -77,27 +77,29 @@ class PinResetRequestWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Expanded(
-                child: TextButton(
-                  key: rejectKey,
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      AppColors.primaryColor.withOpacity(0.1),
-                    ),
-                  ),
-                  onPressed: onReject,
-                  child: const Text(
-                    rejectText,
-                    style: TextStyle(
-                      color: Color(0xFFFF888B),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
+              // TODO: wait for implementation
+              // Expanded(
+              //   child: TextButton(
+              //     key: rejectKey,
+              //     style: ButtonStyle(
+              //       backgroundColor: MaterialStateProperty.all<Color>(
+              //         AppColors.primaryColor.withOpacity(0.1),
+              //       ),
+              //     ),
+              //     onPressed: onReject,
+              //     child: const Text(
+              //       rejectText,
+              //       style: TextStyle(
+              //         color: Color(0xFFFF888B),
+              //         fontSize: 18,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(width: 16),
               Expanded(
                 child: ElevatedButton(
                   key: acceptKey,

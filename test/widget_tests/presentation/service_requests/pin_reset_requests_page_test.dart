@@ -53,66 +53,64 @@ void main() {
 
       final Finder acceptFinder =
           find.byKey(const ValueKey<String>('accept_key_0'));
-      final Finder rejectFinder =
-          find.byKey(const ValueKey<String>('reject_key_0'));
 
       expect(acceptFinder, findsOneWidget);
-      expect(rejectFinder, findsOneWidget);
 
       await tester.tap(acceptFinder);
       await tester.pumpAndSettle();
       expect(find.text(pinApprovedSuccessText), findsOneWidget);
     });
 
-    testWidgets('rejecting shows coming soon message',
-        (WidgetTester tester) async {
-      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'approvePinResetServiceRequest': true,
-              'getServiceRequests': <Map<String, dynamic>>[
-                <String, dynamic>{
-                  'ID': 'some-id',
-                  'RequestType': 'PIN_RESET',
-                  'ClientName': 'John Doe',
-                  'ClientContact': '+254798000000',
-                  'Status': 'PENDING',
-                },
-                <String, dynamic>{
-                  'ID': 'some-id-2',
-                  'RequestType': 'PIN_RESET',
-                  'ClientName': 'Jane Doe',
-                  'ClientContact': '+254798123456',
-                  'Status': 'PENDING',
-                }
-              ],
-            }
-          }),
-          201,
-        ),
-      );
+    // TODO: wait for implementation
+    // testWidgets('rejecting shows coming soon message',
+    //     (WidgetTester tester) async {
+    //   final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+    //     'idToken',
+    //     'endpoint',
+    //     Response(
+    //       json.encode(<String, dynamic>{
+    //         'data': <String, dynamic>{
+    //           'approvePinResetServiceRequest': true,
+    //           'getServiceRequests': <Map<String, dynamic>>[
+    //             <String, dynamic>{
+    //               'ID': 'some-id',
+    //               'RequestType': 'PIN_RESET',
+    //               'ClientName': 'John Doe',
+    //               'ClientContact': '+254798000000',
+    //               'Status': 'PENDING',
+    //             },
+    //             <String, dynamic>{
+    //               'ID': 'some-id-2',
+    //               'RequestType': 'PIN_RESET',
+    //               'ClientName': 'Jane Doe',
+    //               'ClientContact': '+254798123456',
+    //               'Status': 'PENDING',
+    //             }
+    //           ],
+    //         }
+    //       }),
+    //       201,
+    //     ),
+    //   );
 
-      await buildTestWidget(
-        tester: tester,
-        graphQlClient: client,
-        widget: const PinResetRequestsPage(),
-      );
-      await tester.pumpAndSettle();
+    //   await buildTestWidget(
+    //     tester: tester,
+    //     graphQlClient: client,
+    //     widget: const PinResetRequestsPage(),
+    //   );
+    //   await tester.pumpAndSettle();
 
-      expect(find.byType(PinResetRequestsPage), findsOneWidget);
+    //   expect(find.byType(PinResetRequestsPage), findsOneWidget);
 
-      final Finder rejectFinder =
-          find.byKey(const ValueKey<String>('reject_key_0'));
+    //   final Finder rejectFinder =
+    //       find.byKey(const ValueKey<String>('reject_key_0'));
 
-      expect(rejectFinder, findsOneWidget);
+    //   expect(rejectFinder, findsOneWidget);
 
-      await tester.tap(rejectFinder);
-      await tester.pumpAndSettle();
-      expect(find.text(comingSoonText), findsOneWidget);
-    });
+    //   await tester.tap(rejectFinder);
+    //   await tester.pumpAndSettle();
+    //   expect(find.text(comingSoonText), findsOneWidget);
+    // });
 
     testWidgets('should show zero state if no more requests',
         (WidgetTester tester) async {
