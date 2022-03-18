@@ -1,8 +1,8 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
@@ -14,11 +14,12 @@ class ClientSearchWidget extends StatelessWidget {
     required this.cccNumber,
   });
 
-  final ClientResponse clientResponse;
+  final SearchUserResponse clientResponse;
   final String cccNumber;
 
   @override
   Widget build(BuildContext context) {
+    final String username = clientResponse.user?.userName ?? UNKNOWN;
     return Column(
       children: <Widget>[
         SearchDetailsInformationWidget(
@@ -46,7 +47,7 @@ class ClientSearchWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: Text(
-                  tapBelowToInvite(clientResponse.userName!),
+                  tapBelowToInvite(clientResponse.user!.userName!),
                   style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ),
@@ -72,7 +73,7 @@ class ClientSearchWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: Text(
-                  '${clientResponse.userName!.split(' ').first} $hasAgreedToUse',
+                  '${username.split(' ').first} $hasAgreedToUse',
                   style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ),

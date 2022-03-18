@@ -261,15 +261,17 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
 
 Map<String, dynamic> mockClientResponse = <String, dynamic>{
   'ID': 'some-id',
-  'Username': 'new-user',
-  'Name': 'new name',
-  'Active': false,
-  'TermsAccepted': false,
-  'Contacts': <String, dynamic>{
-    'ContactType': 'PHONE',
-    'ContactValue': '07000000',
+  'User': <String, dynamic>{
+    'Username': 'new-user',
+    'Name': 'new name',
     'Active': false,
-    'OptedIn': false,
+    'TermsAccepted': false,
+    'Contacts': <String, dynamic>{
+      'ContactType': 'PHONE',
+      'ContactValue': '07000000',
+      'Active': false,
+      'OptedIn': false,
+    }
   }
 };
 
@@ -809,6 +811,15 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(searchStaffMemberQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': staffMembersResponseMock}),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(registerStaffMutation)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1073,6 +1084,25 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
       }
     }
   }
+};
+
+final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
+  'getClientByCCCNumber': <dynamic>[
+    <String, dynamic>{
+      'ID': 'some-id',
+      'User': <String, dynamic>{
+        'Username': 'Username',
+        'Active': false,
+        'TermsAccepted': false,
+        'Contacts': <String, dynamic>{
+          'ContactType': 'PHONE',
+          'ContactValue': '07000000',
+          'Active': false,
+          'OptedIn': false,
+        }
+      }
+    },
+  ]
 };
 
 final Map<String, dynamic> mockMiscState = <String, dynamic>{

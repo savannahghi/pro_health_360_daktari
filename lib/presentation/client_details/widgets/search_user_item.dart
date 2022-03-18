@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -12,7 +12,7 @@ class SearchUserItem extends StatefulWidget {
     this.isCCCNumber = false,
   });
 
-  final ClientResponse clientDetails;
+  final SearchUserResponse clientDetails;
   final String number;
   final bool isCCCNumber;
 
@@ -30,7 +30,7 @@ class _SearchUserItemState extends State<SearchUserItem> {
 
   @override
   Widget build(BuildContext context) {
-    final String username = widget.clientDetails.userName ?? UNKNOWN;
+    final String username = widget.clientDetails.user?.userName ?? UNKNOWN;
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(

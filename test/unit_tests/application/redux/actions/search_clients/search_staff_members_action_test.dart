@@ -5,14 +5,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/search_client_action.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/search_staff_member_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 
 import '../../../../../mocks/mocks.dart';
 
 void main() {
-  group('SearchClientAction', () {
+  group('SearchStaffMembersAction', () {
     late StoreTester<AppState> storeTester;
 
     setUp(() {
@@ -25,21 +25,21 @@ void main() {
 
     test('should run successfully', () async {
       storeTester.dispatch(
-        SearchClientAction(
+        SearchStaffMemberAction(
           client: MockTestGraphQlClient(),
-          cccNumber: '',
+          queryString: '',
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(SearchClientAction);
+          await storeTester.waitUntil(SearchStaffMemberAction);
 
-      expect(info.state.wait!.isWaitingFor(searchClientFlag), false);
+      expect(info.state.wait!.isWaitingFor(searchStaffMemberFlag), false);
     });
 
     test('should throw error if api call is not 200', () async {
       storeTester.dispatch(
-        SearchClientAction(
+        SearchStaffMemberAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -48,12 +48,12 @@ void main() {
               500,
             ),
           ),
-          cccNumber: '',
+          queryString: '',
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(SearchClientAction);
+          await storeTester.waitUntil(SearchStaffMemberAction);
 
       expect(
         info.state,
@@ -69,7 +69,7 @@ void main() {
 
     test('should throw error if response has error', () async {
       storeTester.dispatch(
-        SearchClientAction(
+        SearchStaffMemberAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -78,12 +78,12 @@ void main() {
               200,
             ),
           ),
-          cccNumber: '',
+          queryString: '',
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(SearchClientAction);
+          await storeTester.waitUntil(SearchStaffMemberAction);
 
       expect(
         info.state,
@@ -92,7 +92,7 @@ void main() {
       );
       expect(
         (info.error! as UserException).msg,
-        getErrorMessage('fetching client'),
+        getErrorMessage('fetching staff members'),
       );
     });
   });

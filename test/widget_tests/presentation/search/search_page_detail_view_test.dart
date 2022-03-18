@@ -1,11 +1,11 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
-import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:mycarehubpro/presentation/search/widgets/client_search_widget.dart';
+import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dart';
 
 import '../../../mocks/test_helpers.dart';
@@ -17,7 +17,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: true,
         ),
       );
@@ -32,7 +32,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: false,
         ),
       );
@@ -47,7 +47,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: true,
         ),
       );
@@ -68,7 +68,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: false,
         ),
       );
@@ -89,7 +89,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: false,
         ),
       );
@@ -111,7 +111,7 @@ void main() {
         tester: tester,
         widget: SearchPageDetailView(
           idNumber: '123',
-          clientResponse: ClientResponse.initial(),
+          clientResponse: SearchUserResponse.initial(),
           isClient: false,
         ),
       );

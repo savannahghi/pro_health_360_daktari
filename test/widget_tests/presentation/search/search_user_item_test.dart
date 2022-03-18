@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/entities/profile/client_response.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
 import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dart';
 
@@ -11,7 +11,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         widget: SearchUserItem(
-          clientDetails: ClientResponse.initial(),
+          clientDetails: SearchUserResponse.initial(),
           number: '123',
         ),
       );
