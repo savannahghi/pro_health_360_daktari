@@ -1,22 +1,24 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff_action.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 class StaffSearchWidget extends StatefulWidget {
   const StaffSearchWidget({
-    required this.staffNumber,
-    required this.clientResponse,
+    required this.searchUserResponse,
   });
 
-  final String staffNumber;
-  final SearchUserResponse clientResponse;
+  final SearchUserResponse searchUserResponse;
 
   @override
   State<StaffSearchWidget> createState() => _StaffSearchWidgetState();
@@ -33,8 +35,8 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
       child: Column(
         children: <Widget>[
           SearchDetailsInformationWidget(
-            clientResponse: widget.clientResponse,
-            idNumber: widget.staffNumber,
+            searchUserResponse: widget.searchUserResponse,
+            // staffNumber: widget.searchUserResponse.id,
             isClient: false,
           ),
           const Divider(),
@@ -57,7 +59,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
-                    tapBelowToInvite(widget.clientResponse.user!.userName!),
+                    tapBelowToInvite(widget.searchUserResponse.user!.userName!),
                     style: normalSize14Text(AppColors.greyTextColor),
                   ),
                 ),
@@ -69,8 +71,30 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                     buttonKey: inviteStaffToMyCareHubButtonKey,
                     text: inviteToMyCareHubString,
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text(comingSoonText)),
+                      StoreProvider.dispatch(
+                        context,
+                        InviteStaffAction(
+                          clientResponse: widget.searchUserResponse,
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          onSuccess: (String name) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('$inviteSent $name')),
+                            );
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRoutes.homePage,
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          onFailure: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text(unableToSendInvite)),
+                            );
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRoutes.homePage,
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
@@ -84,7 +108,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
-                    '${widget.clientResponse.user!.userName!.split(' ').first} $hasAgreedToUse',
+                    '${widget.searchUserResponse.user!.userName!.split(' ').first} $hasAgreedToUse',
                     style: normalSize14Text(AppColors.greyTextColor),
                   ),
                 ),

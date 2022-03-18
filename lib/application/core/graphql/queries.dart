@@ -121,6 +121,7 @@ query searchClientsByCCCNumber($CCCNumber: String!){
     ID
     CCCNumber 
     User{
+      ID
       Username
       Active
       Contacts{
@@ -140,6 +141,7 @@ query searchStaffByStaffNumber($staffNumber: String!){
     ID
     StaffNumber
     User{
+      ID
       Username
       Active
       Contacts{

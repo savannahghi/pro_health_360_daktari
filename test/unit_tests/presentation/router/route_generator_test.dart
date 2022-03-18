@@ -360,8 +360,7 @@ void main() {
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.searchDetailViewPage,
       arguments: <String, dynamic>{
-        'idNumber': '12345',
-        'clientResponse': SearchUserResponse.initial(),
+        'searchUserResponse': SearchUserResponse.initial(),
         'isClient': true
       },
     );

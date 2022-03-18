@@ -46,13 +46,13 @@ const $SearchUserResponse = _$SearchUserResponseTearOff();
 /// @nodoc
 mixin _$SearchUserResponse {
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError; // This is the nickname
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'CCCNumber')
   String? get clientCCCNumber =>
-      throw _privateConstructorUsedError; // This is the CCC number
+      throw _privateConstructorUsedError; // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber =>
-      throw _privateConstructorUsedError; // This is the Staff number
+      throw _privateConstructorUsedError; // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user => throw _privateConstructorUsedError;
 
@@ -195,13 +195,13 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @override
   @JsonKey(name: 'ID')
   final String? id;
-  @override // This is the nickname
+  @override
   @JsonKey(name: 'CCCNumber')
   final String? clientCCCNumber;
-  @override // This is the CCC number
+  @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   final String? staffNumber;
-  @override // This is the Staff number
+  @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   final UserData? user;
 
@@ -255,13 +255,13 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @override
   @JsonKey(name: 'ID')
   String? get id;
-  @override // This is the nickname
+  @override
   @JsonKey(name: 'CCCNumber')
   String? get clientCCCNumber;
-  @override // This is the CCC number
+  @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber;
-  @override // This is the Staff number
+  @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user;
   @override

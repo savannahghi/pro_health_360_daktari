@@ -23,11 +23,13 @@ class _$UserDataTearOff {
   const _$UserDataTearOff();
 
   _UserData call(
-      {@JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact}) {
     return _UserData(
+      id: id,
       userName: userName,
       termsAccepted: termsAccepted,
       active: active,
@@ -45,7 +47,8 @@ const $UserData = _$UserDataTearOff();
 
 /// @nodoc
 mixin _$UserData {
-// This is the nickname
+  @JsonKey(name: 'ID')
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'Username')
   String? get userName => throw _privateConstructorUsedError;
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
@@ -66,7 +69,8 @@ abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -84,12 +88,17 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -127,7 +136,8 @@ abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       __$UserDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact});
@@ -147,12 +157,17 @@ class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? userName = freezed,
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
   }) {
     return _then(_UserData(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -177,7 +192,8 @@ class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserData implements _UserData {
   _$_UserData(
-      {@JsonKey(name: 'Username') this.userName,
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Username') this.userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) this.termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) this.active,
       @JsonKey(name: 'Contacts') this.primaryContact});
@@ -185,7 +201,10 @@ class _$_UserData implements _UserData {
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
 
-  @override // This is the nickname
+  @override
+  @JsonKey(name: 'ID')
+  final String? id;
+  @override
   @JsonKey(name: 'Username')
   final String? userName;
   @override
@@ -200,7 +219,7 @@ class _$_UserData implements _UserData {
 
   @override
   String toString() {
-    return 'UserData(userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
+    return 'UserData(id: $id, userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
   }
 
   @override
@@ -208,6 +227,7 @@ class _$_UserData implements _UserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserData &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality()
                 .equals(other.termsAccepted, termsAccepted) &&
@@ -219,6 +239,7 @@ class _$_UserData implements _UserData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(termsAccepted),
       const DeepCollectionEquality().hash(active),
@@ -237,14 +258,18 @@ class _$_UserData implements _UserData {
 
 abstract class _UserData implements UserData {
   factory _UserData(
-      {@JsonKey(name: 'Username') String? userName,
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
       @JsonKey(name: 'Contacts') Contact? primaryContact}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
-  @override // This is the nickname
+  @override
+  @JsonKey(name: 'ID')
+  String? get id;
+  @override
   @JsonKey(name: 'Username')
   String? get userName;
   @override

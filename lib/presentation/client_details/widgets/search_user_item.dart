@@ -7,13 +7,11 @@ import 'package:shared_themes/spaces.dart';
 
 class SearchUserItem extends StatefulWidget {
   const SearchUserItem({
-    required this.clientDetails,
-    required this.number,
+    required this.searchUserResponse,
     this.isCCCNumber = false,
   });
 
-  final SearchUserResponse clientDetails;
-  final String number;
+  final SearchUserResponse searchUserResponse;
   final bool isCCCNumber;
 
   @override
@@ -30,20 +28,18 @@ class _SearchUserItemState extends State<SearchUserItem> {
 
   @override
   Widget build(BuildContext context) {
-    final String username = widget.clientDetails.user?.userName ?? UNKNOWN;
+    final String username = widget.searchUserResponse.user?.userName ?? UNKNOWN;
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(
           AppRoutes.searchDetailViewPage,
           arguments: widget.isCCCNumber
               ? <String, dynamic>{
-                  'idNumber': widget.number,
-                  'clientResponse': widget.clientDetails,
+                  'searchUserResponse': widget.searchUserResponse,
                   'isClient': true,
                 }
               : <String, dynamic>{
-                  'idNumber': widget.number,
-                  'clientResponse': widget.clientDetails,
+                  'searchUserResponse': widget.searchUserResponse,
                   'isClient': false,
                 },
         );
@@ -79,8 +75,8 @@ class _SearchUserItemState extends State<SearchUserItem> {
                     ),
                     Text(
                       widget.isCCCNumber
-                          ? 'CCC#: ${widget.number}'
-                          : widget.number,
+                          ? 'CCC#: ${widget.searchUserResponse.clientCCCNumber}'
+                          : widget.searchUserResponse.staffNumber!,
                       style: normalSize12Text(AppColors.greyTextColor),
                     ),
                   ],
