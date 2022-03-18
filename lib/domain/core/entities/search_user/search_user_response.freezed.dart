@@ -24,9 +24,11 @@ class _$SearchUserResponseTearOff {
 
   _SearchUserResponse call(
       {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
       @JsonKey(name: 'User') UserData? user}) {
     return _SearchUserResponse(
       id: id,
+      clientCCCNumber: clientCCCNumber,
       user: user,
     );
   }
@@ -43,6 +45,9 @@ const $SearchUserResponse = _$SearchUserResponseTearOff();
 mixin _$SearchUserResponse {
   @JsonKey(name: 'ID')
   String? get id => throw _privateConstructorUsedError; // This is the nickname
+  @JsonKey(name: 'CCCNumber')
+  String? get clientCCCNumber =>
+      throw _privateConstructorUsedError; // This is the CCCNumber
   @JsonKey(name: 'User')
   UserData? get user => throw _privateConstructorUsedError;
 
@@ -58,7 +63,9 @@ abstract class $SearchUserResponseCopyWith<$Res> {
           SearchUserResponse value, $Res Function(SearchUserResponse) then) =
       _$SearchUserResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? id, @JsonKey(name: 'User') UserData? user});
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+      @JsonKey(name: 'User') UserData? user});
 
   $UserDataCopyWith<$Res>? get user;
 }
@@ -75,12 +82,17 @@ class _$SearchUserResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? clientCCCNumber = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clientCCCNumber: clientCCCNumber == freezed
+          ? _value.clientCCCNumber
+          : clientCCCNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       user: user == freezed
           ? _value.user
@@ -109,7 +121,9 @@ abstract class _$SearchUserResponseCopyWith<$Res>
       __$SearchUserResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? id, @JsonKey(name: 'User') UserData? user});
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+      @JsonKey(name: 'User') UserData? user});
 
   @override
   $UserDataCopyWith<$Res>? get user;
@@ -129,12 +143,17 @@ class __$SearchUserResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? clientCCCNumber = freezed,
     Object? user = freezed,
   }) {
     return _then(_SearchUserResponse(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      clientCCCNumber: clientCCCNumber == freezed
+          ? _value.clientCCCNumber
+          : clientCCCNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       user: user == freezed
           ? _value.user
@@ -148,7 +167,9 @@ class __$SearchUserResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SearchUserResponse implements _SearchUserResponse {
   _$_SearchUserResponse(
-      {@JsonKey(name: 'ID') this.id, @JsonKey(name: 'User') this.user});
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'CCCNumber') this.clientCCCNumber,
+      @JsonKey(name: 'User') this.user});
 
   factory _$_SearchUserResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SearchUserResponseFromJson(json);
@@ -157,12 +178,15 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @JsonKey(name: 'ID')
   final String? id;
   @override // This is the nickname
+  @JsonKey(name: 'CCCNumber')
+  final String? clientCCCNumber;
+  @override // This is the CCCNumber
   @JsonKey(name: 'User')
   final UserData? user;
 
   @override
   String toString() {
-    return 'SearchUserResponse(id: $id, user: $user)';
+    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, user: $user)';
   }
 
   @override
@@ -171,6 +195,8 @@ class _$_SearchUserResponse implements _SearchUserResponse {
         (other.runtimeType == runtimeType &&
             other is _SearchUserResponse &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.clientCCCNumber, clientCCCNumber) &&
             const DeepCollectionEquality().equals(other.user, user));
   }
 
@@ -178,6 +204,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(clientCCCNumber),
       const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
@@ -194,6 +221,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
 abstract class _SearchUserResponse implements SearchUserResponse {
   factory _SearchUserResponse(
       {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
       @JsonKey(name: 'User') UserData? user}) = _$_SearchUserResponse;
 
   factory _SearchUserResponse.fromJson(Map<String, dynamic> json) =
@@ -203,6 +231,9 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @JsonKey(name: 'ID')
   String? get id;
   @override // This is the nickname
+  @JsonKey(name: 'CCCNumber')
+  String? get clientCCCNumber;
+  @override // This is the CCCNumber
   @JsonKey(name: 'User')
   UserData? get user;
   @override

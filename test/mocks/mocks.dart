@@ -1070,20 +1070,23 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
 };
 
 final Map<String, dynamic> clientResponseMock = <String, dynamic>{
-  'getClientByCCCNumber': <String, dynamic>{
-    'User': <String, dynamic>{
+  'searchClientsByCCCNumber': <dynamic>[
+    <String, dynamic>{
       'ID': 'some-id',
-      'Username': 'Username',
-      'Active': false,
-      'TermsAccepted': false,
-      'Contacts': <String, dynamic>{
-        'ContactType': 'PHONE',
-        'ContactValue': '07000000',
+      'CCCNumber': '1234',
+      'User': <String, dynamic>{
+        'Username': 'Username',
         'Active': false,
-        'OptedIn': false,
+        'TermsAccepted': false,
+        'Contacts': <String, dynamic>{
+          'ContactType': 'PHONE',
+          'ContactValue': '07000000',
+          'Active': false,
+          'OptedIn': false,
+        }
       }
     }
-  }
+  ]
 };
 
 final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{

@@ -92,7 +92,7 @@ void main() {
       );
       expect(
         (info.error! as UserException).msg,
-        getErrorMessage('fetching client'),
+        getErrorMessage('fetching clients'),
       );
     });
   });

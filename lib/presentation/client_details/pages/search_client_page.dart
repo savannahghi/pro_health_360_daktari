@@ -28,7 +28,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
   List<String> inviteMemberIds = <String>[];
 
   String cccNumber = '';
-  SearchUserResponse? clientDetails;
+  List<SearchUserResponse>? clients;
   bool clientFound = false;
   bool showZeroState = false;
 
@@ -108,9 +108,10 @@ class _SearchClientPageState extends State<SearchClientPage> {
                                           content: message,
                                         );
                                       },
-                                      onSuccess: (SearchUserResponse response) {
+                                      onSuccess:
+                                          (List<SearchUserResponse> response) {
                                         setState(() {
-                                          clientDetails = response;
+                                          clients = response;
                                           clientFound = true;
                                         });
                                       },
@@ -132,11 +133,21 @@ class _SearchClientPageState extends State<SearchClientPage> {
                             child: const PlatformLoader(),
                           ),
                         const SizedBox(height: 24),
-                        if (clientFound && clientDetails != null)
-                          SearchUserItem(
-                            clientDetails: clientDetails!,
-                            number: cccNumber,
-                            isCCCNumber: true,
+                        if (clientFound && clients != null)
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: clients?.length,
+                            itemBuilder: (_, int index) {
+                              final SearchUserResponse clientDetails =
+                                  clients![index];
+                              return SearchUserItem(
+                                clientDetails: clientDetails,
+                                number:
+                                    clientDetails.clientCCCNumber ?? UNKNOWN,
+                                isCCCNumber: true,
+                              );
+                            },
                           ),
                         if (showZeroState)
                           GenericErrorWidget(

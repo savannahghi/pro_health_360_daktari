@@ -116,10 +116,11 @@ query listCommunityMembers($communityID: ID!){
 ''';
 
 const String searchClientQuery = r'''
-query getClientByCCCNumber($CCCNumber: String!){
-  getClientByCCCNumber(CCCNumber: $CCCNumber){
+query searchClientsByCCCNumber($CCCNumber: String!){
+  searchClientsByCCCNumber(CCCNumber: $CCCNumber){
+    ID
+    CCCNumber 
     User{
-      ID
       Username
       Active
       Contacts{
@@ -129,7 +130,7 @@ query getClientByCCCNumber($CCCNumber: String!){
         Active
         OptedIn
       }
-      TermsAccepted
+      TermsAccepted     
     }
   }
 }

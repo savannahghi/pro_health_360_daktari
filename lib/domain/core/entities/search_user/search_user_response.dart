@@ -11,6 +11,8 @@ part 'search_user_response.g.dart';
 class SearchUserResponse with _$SearchUserResponse {
   factory SearchUserResponse({
     @JsonKey(name: 'ID') String? id, // This is the nickname
+    @JsonKey(name: 'CCCNumber')
+        String? clientCCCNumber, // This is the CCCNumber
     @JsonKey(name: 'User') UserData? user,
   }) = _SearchUserResponse;
 
@@ -19,6 +21,7 @@ class SearchUserResponse with _$SearchUserResponse {
 
   factory SearchUserResponse.initial() => SearchUserResponse(
         id: UNKNOWN,
+        clientCCCNumber: UNKNOWN,
         user: UserData.initial(),
       );
 }
