@@ -234,8 +234,7 @@ class RouteGenerator {
       case AppRoutes.searchDetailViewPage:
         return MaterialPageRoute<SearchPageDetailView>(
           builder: (_) => SearchPageDetailView(
-            idNumber: args['idNumber'] as String,
-            clientResponse: args['clientResponse'] as SearchUserResponse,
+            searchUserResponse: args['searchUserResponse'] as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
         );

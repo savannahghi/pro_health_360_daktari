@@ -7,6 +7,7 @@ part of 'user_data.dart';
 // **************************************************************************
 
 _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
+      id: json['ID'] as String?,
       userName: json['Username'] as String?,
       termsAccepted: json['TermsAccepted'] as bool? ?? false,
       active: json['Active'] as bool? ?? false,
@@ -17,6 +18,7 @@ _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
 
 Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
     <String, dynamic>{
+      'ID': instance.id,
       'Username': instance.userName,
       'TermsAccepted': instance.termsAccepted,
       'Active': instance.active,

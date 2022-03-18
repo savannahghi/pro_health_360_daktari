@@ -10,11 +10,13 @@ part 'search_user_response.g.dart';
 @freezed
 class SearchUserResponse with _$SearchUserResponse {
   factory SearchUserResponse({
-    @JsonKey(name: 'ID') String? id, // This is the nickname
+    @JsonKey(name: 'ID') String? id,
     @JsonKey(name: 'CCCNumber')
-        String? clientCCCNumber, // This is the CCC number
+        String?
+            clientCCCNumber, // This is the CCCNumber if the person being searched is a client
     @JsonKey(name: 'StaffNumber')
-        String? staffNumber, // This is the Staff number
+        String?
+            staffNumber, // this is the staff number if the person being searched is a staff member
     @JsonKey(name: 'User') UserData? user,
   }) = _SearchUserResponse;
 

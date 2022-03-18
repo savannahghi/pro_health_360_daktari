@@ -141,8 +141,7 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
                               final SearchUserResponse staffDetails =
                                   staffMembers![index];
                               return SearchUserItem(
-                                clientDetails: staffDetails,
-                                number: staffDetails.staffNumber ?? UNKNOWN,
+                                searchUserResponse: staffDetails,
                               );
                             },
                           ),

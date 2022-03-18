@@ -120,3 +120,9 @@ mutation verifyPinResetServiceRequest(
   )
 }
 ''';
+
+const String inviteUserMutation = r'''
+mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
+  inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour )
+}
+''';

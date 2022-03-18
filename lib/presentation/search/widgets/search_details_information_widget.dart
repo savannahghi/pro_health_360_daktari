@@ -6,18 +6,17 @@ import 'package:shared_themes/spaces.dart';
 
 class SearchDetailsInformationWidget extends StatelessWidget {
   const SearchDetailsInformationWidget({
-    required this.clientResponse,
-    required this.idNumber,
+    required this.searchUserResponse,
     required this.isClient,
   });
 
-  final SearchUserResponse? clientResponse;
-  final String? idNumber;
+  final SearchUserResponse? searchUserResponse;
+
   final bool isClient;
 
   @override
   Widget build(BuildContext context) {
-    final String username = clientResponse?.user?.userName ?? UNKNOWN;
+    final String username = searchUserResponse?.user?.userName ?? UNKNOWN;
     return Column(
       children: <Widget>[
         Container(
@@ -41,12 +40,14 @@ class SearchDetailsInformationWidget extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         Text(
-          isClient ? 'CCC# $idNumber' : 'Staff Number $idNumber',
+          isClient
+              ? 'CCC# ${searchUserResponse!.clientCCCNumber}'
+              : 'Staff Number ${searchUserResponse!.staffNumber}',
           style: normalSize15Text(AppColors.greyTextColor),
         ),
         size15VerticalSizedBox,
         Text(
-          clientResponse!.user!.primaryContact!.value!,
+          searchUserResponse!.user!.primaryContact!.value!,
           style: normalSize15Text(AppColors.greyTextColor),
         ),
       ],

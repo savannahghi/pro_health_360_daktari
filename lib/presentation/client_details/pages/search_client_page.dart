@@ -139,12 +139,10 @@ class _SearchClientPageState extends State<SearchClientPage> {
                             physics: const BouncingScrollPhysics(),
                             itemCount: clients?.length,
                             itemBuilder: (_, int index) {
-                              final SearchUserResponse clientDetails =
+                              final SearchUserResponse searchUserResponse =
                                   clients![index];
                               return SearchUserItem(
-                                clientDetails: clientDetails,
-                                number:
-                                    clientDetails.clientCCCNumber ?? UNKNOWN,
+                                searchUserResponse: searchUserResponse,
                                 isCCCNumber: true,
                               );
                             },

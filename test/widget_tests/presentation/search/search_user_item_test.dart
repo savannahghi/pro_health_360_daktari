@@ -10,10 +10,8 @@ void main() {
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
-        widget: SearchUserItem(
-          clientDetails: SearchUserResponse.initial(),
-          number: '123',
-        ),
+        widget:
+            SearchUserItem(searchUserResponse: SearchUserResponse.initial()),
       );
       await tester.pumpAndSettle();
       await tester.tap(find.byType(SearchUserItem));

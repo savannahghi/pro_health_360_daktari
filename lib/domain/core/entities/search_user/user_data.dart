@@ -10,7 +10,7 @@ part 'user_data.g.dart';
 @freezed
 class UserData with _$UserData {
   factory UserData({
-    // This is the nickname
+    @JsonKey(name: 'ID') String? id,
     @JsonKey(name: 'Username') String? userName,
     @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
     @JsonKey(name: 'Active', defaultValue: false) bool? active,
@@ -21,6 +21,7 @@ class UserData with _$UserData {
       _$UserDataFromJson(json);
 
   factory UserData.initial() => UserData(
+        id: UNKNOWN,
         userName: UNKNOWN,
         termsAccepted: false,
         active: false,

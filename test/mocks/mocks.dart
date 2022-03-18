@@ -854,6 +854,19 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(inviteUserMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'inviteUser': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
@@ -1076,6 +1089,7 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
       'ID': 'some-id',
       'CCCNumber': '1234',
       'User': <String, dynamic>{
+        'ID': 'some-id',
         'Username': 'Username',
         'Active': false,
         'TermsAccepted': false,
@@ -1095,6 +1109,7 @@ final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
     <String, dynamic>{
       'ID': 'some-id',
       'User': <String, dynamic>{
+        'ID': 'some-id',
         'Username': 'Username',
         'Active': false,
         'TermsAccepted': false,
@@ -1104,7 +1119,8 @@ final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
           'Active': false,
           'OptedIn': false,
         }
-      }
+      },
+      'StaffNumber': 'some-id'
     },
   ]
 };

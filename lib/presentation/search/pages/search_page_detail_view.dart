@@ -6,13 +6,11 @@ import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dar
 
 class SearchPageDetailView extends StatefulWidget {
   const SearchPageDetailView({
-    required this.clientResponse,
-    required this.idNumber,
+    required this.searchUserResponse,
     required this.isClient,
   });
 
-  final SearchUserResponse clientResponse;
-  final String idNumber;
+  final SearchUserResponse searchUserResponse;
   final bool isClient;
 
   @override
@@ -23,19 +21,13 @@ class _SearchPageDetailViewState extends State<SearchPageDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: widget.clientResponse.user?.userName),
+      appBar: CustomAppBar(title: widget.searchUserResponse.user?.userName),
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         child: widget.isClient
-            ? ClientSearchWidget(
-                clientResponse: widget.clientResponse,
-                cccNumber: widget.idNumber,
-              )
-            : StaffSearchWidget(
-                clientResponse: widget.clientResponse,
-                staffNumber: widget.idNumber,
-              ),
+            ? ClientSearchWidget(searchUserResponse: widget.searchUserResponse)
+            : StaffSearchWidget(searchUserResponse: widget.searchUserResponse),
       ),
     );
   }
