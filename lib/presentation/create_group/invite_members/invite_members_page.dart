@@ -177,7 +177,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                             itemCount: communityMembers.length,
                             itemBuilder: (_, int index) {
                               final String memberName =
-                                  communityMembers[index].name ?? UNKNOWN;
+                                  communityMembers[index].username ?? UNKNOWN;
                               final String memberUserId =
                                   communityMembers[index].id?.trim() ?? '';
                               return GestureDetector(

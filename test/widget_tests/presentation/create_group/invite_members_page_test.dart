@@ -28,7 +28,7 @@ void main() {
       store.dispatch(
         UpdateConnectivityAction(hasConnection: true),
       );
-      const String testName = 'Sam Doe';
+      const String testName = 'Sam';
 
       await buildTestWidget(
         tester: tester,
@@ -65,7 +65,7 @@ void main() {
       store.dispatch(
         UpdateConnectivityAction(hasConnection: true),
       );
-      const String testName = 'Sam Doe';
+      const String testName = 'Sam';
 
       await buildTestWidget(
         tester: tester,
@@ -135,14 +135,14 @@ void main() {
       store.dispatch(
         UpdateConnectivityAction(hasConnection: true),
       );
-      const String testName = 'Sam Doe';
-      const String testFemaleName = 'Jane Doe';
+      const String testName = 'Sam';
+      const String testFemaleName = 'Jane';
 
       store.dispatch(
         BatchUpdateMiscStateAction(
           communityMembers: <Member>[
-            Member.initial().copyWith(name: testName),
-            Member.initial().copyWith(name: testFemaleName),
+            Member.initial().copyWith(username: testName),
+            Member.initial().copyWith(username: testFemaleName),
             Member.initial(),
           ],
         ),
