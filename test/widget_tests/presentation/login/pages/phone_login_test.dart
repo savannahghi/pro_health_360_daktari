@@ -77,12 +77,10 @@ void main() {
         (WidgetTester tester) async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
-
-      tester.binding.window.physicalSizeTestValue = const Size(1280, 720);
-
-      addTearDown(() {
-        tester.binding.window.clearPhysicalSizeTestValue();
-      });
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
+      tester.binding.window.physicalSizeTestValue =
+          typicalLargePhoneScreenSizePortrait;
+      TestWidgetsFlutterBinding.ensureInitialized();
 
       await mockNetworkImages(() async {
         await buildTestWidget(
@@ -119,6 +117,10 @@ void main() {
           store.state.staffState!.user,
           phoneLoginResponse.userResponse?.staffState!.user,
         );
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
       });
     });
 
@@ -186,30 +188,14 @@ void main() {
         false,
       );
       expect(store.state.onboardingState!.phoneLogin!.unKnownPhoneNo, false);
-    });
 
-    testWidgets(
-        'shows the error alert widget when an unknown phone number is added',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        store: store,
-        tester: tester,
-        widget: PhoneLoginPage(),
-      );
+      store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       await tester.pumpAndSettle();
-
-      store.dispatch(UpdateOnboardingStateAction(unKnownPhoneNo: true));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(ErrorAlertBox), findsOneWidget);
-
       await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
-
       expect(
         store.state.onboardingState!.phoneLogin!.invalidCredentials,
         false,
       );
-      expect(store.state.onboardingState!.phoneLogin!.unKnownPhoneNo, false);
     });
 
     testWidgets('shows a loading indicator when processing',

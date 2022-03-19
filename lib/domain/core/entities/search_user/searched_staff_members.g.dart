@@ -9,7 +9,7 @@ part of 'searched_staff_members.dart';
 _$_SearchedStaffMembers _$$_SearchedStaffMembersFromJson(
         Map<String, dynamic> json) =>
     _$_SearchedStaffMembers(
-      staffMembers: (json['getStaffByStaffNumber'] as List<dynamic>?)
+      staffMembers: (json['searchStaffByStaffNumber'] as List<dynamic>?)
           ?.map((e) => SearchUserResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,5 +17,5 @@ _$_SearchedStaffMembers _$$_SearchedStaffMembersFromJson(
 Map<String, dynamic> _$$_SearchedStaffMembersToJson(
         _$_SearchedStaffMembers instance) =>
     <String, dynamic>{
-      'getStaffByStaffNumber': instance.staffMembers,
+      'searchStaffByStaffNumber': instance.staffMembers,
     };

@@ -1050,6 +1050,7 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
       'ClientContact': 'test',
       'ResolvedAt': 'test',
       'ResolvedBy': 'test',
+      'CreatedAt': '2022-02-09T08:40:46Z'
     },
   ]
 };
@@ -1090,7 +1091,7 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
 };
 
 final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
-  'getClientByCCCNumber': <dynamic>[
+  'searchStaffByStaffNumber': <dynamic>[
     <String, dynamic>{
       'ID': 'some-id',
       'User': <String, dynamic>{

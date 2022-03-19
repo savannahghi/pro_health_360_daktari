@@ -23,7 +23,7 @@ class _$SearchedStaffMembersTearOff {
   const _$SearchedStaffMembersTearOff();
 
   _SearchedStaffMembers call(
-      {@JsonKey(name: 'getStaffByStaffNumber')
+      {@JsonKey(name: 'searchStaffByStaffNumber')
           List<SearchUserResponse>? staffMembers}) {
     return _SearchedStaffMembers(
       staffMembers: staffMembers,
@@ -40,7 +40,7 @@ const $SearchedStaffMembers = _$SearchedStaffMembersTearOff();
 
 /// @nodoc
 mixin _$SearchedStaffMembers {
-  @JsonKey(name: 'getStaffByStaffNumber')
+  @JsonKey(name: 'searchStaffByStaffNumber')
   List<SearchUserResponse>? get staffMembers =>
       throw _privateConstructorUsedError;
 
@@ -56,7 +56,7 @@ abstract class $SearchedStaffMembersCopyWith<$Res> {
           $Res Function(SearchedStaffMembers) then) =
       _$SearchedStaffMembersCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'getStaffByStaffNumber')
+      {@JsonKey(name: 'searchStaffByStaffNumber')
           List<SearchUserResponse>? staffMembers});
 }
 
@@ -90,7 +90,7 @@ abstract class _$SearchedStaffMembersCopyWith<$Res>
       __$SearchedStaffMembersCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'getStaffByStaffNumber')
+      {@JsonKey(name: 'searchStaffByStaffNumber')
           List<SearchUserResponse>? staffMembers});
 }
 
@@ -122,13 +122,13 @@ class __$SearchedStaffMembersCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SearchedStaffMembers implements _SearchedStaffMembers {
   _$_SearchedStaffMembers(
-      {@JsonKey(name: 'getStaffByStaffNumber') this.staffMembers});
+      {@JsonKey(name: 'searchStaffByStaffNumber') this.staffMembers});
 
   factory _$_SearchedStaffMembers.fromJson(Map<String, dynamic> json) =>
       _$$_SearchedStaffMembersFromJson(json);
 
   @override
-  @JsonKey(name: 'getStaffByStaffNumber')
+  @JsonKey(name: 'searchStaffByStaffNumber')
   final List<SearchUserResponse>? staffMembers;
 
   @override
@@ -163,14 +163,14 @@ class _$_SearchedStaffMembers implements _SearchedStaffMembers {
 
 abstract class _SearchedStaffMembers implements SearchedStaffMembers {
   factory _SearchedStaffMembers(
-      {@JsonKey(name: 'getStaffByStaffNumber')
+      {@JsonKey(name: 'searchStaffByStaffNumber')
           List<SearchUserResponse>? staffMembers}) = _$_SearchedStaffMembers;
 
   factory _SearchedStaffMembers.fromJson(Map<String, dynamic> json) =
       _$_SearchedStaffMembers.fromJson;
 
   @override
-  @JsonKey(name: 'getStaffByStaffNumber')
+  @JsonKey(name: 'searchStaffByStaffNumber')
   List<SearchUserResponse>? get staffMembers;
   @override
   @JsonKey(ignore: true)

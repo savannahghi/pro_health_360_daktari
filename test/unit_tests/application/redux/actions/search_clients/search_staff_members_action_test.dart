@@ -27,7 +27,7 @@ void main() {
       storeTester.dispatch(
         SearchStaffMemberAction(
           client: MockTestGraphQlClient(),
-          queryString: '',
+          staffNumberQuery: '',
         ),
       );
 
@@ -48,7 +48,7 @@ void main() {
               500,
             ),
           ),
-          queryString: '',
+          staffNumberQuery: '',
         ),
       );
 
@@ -78,7 +78,7 @@ void main() {
               200,
             ),
           ),
-          queryString: '',
+          staffNumberQuery: '',
         ),
       );
 

@@ -20,6 +20,7 @@ _$_ServiceRequestContent _$$_ServiceRequestContentFromJson(
       cccNumber: json['CCCNumber'] as String?,
       resolvedTime: json['ResolvedAt'] as String?,
       resolvedBy: json['ResolvedBy'] as String?,
+      createdAt: json['CreatedAt'] as String?,
     );
 
 Map<String, dynamic> _$$_ServiceRequestContentToJson(
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$_ServiceRequestContentToJson(
       'CCCNumber': instance.cccNumber,
       'ResolvedAt': instance.resolvedTime,
       'ResolvedBy': instance.resolvedBy,
+      'CreatedAt': instance.createdAt,
     };
 
 const _$ServiceRequestTypeEnumMap = {

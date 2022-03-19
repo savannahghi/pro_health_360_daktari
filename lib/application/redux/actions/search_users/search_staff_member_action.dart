@@ -9,19 +9,22 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/searched_staff_members.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SearchStaffMemberAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
+  final void Function(String message)? onFailure;
   final void Function(List<SearchUserResponse>? staffMembers)? onSuccess;
-  final void Function()? clientNotFound;
-  String queryString;
+  final void Function()? staffNotFound;
+  String staffNumberQuery;
 
   SearchStaffMemberAction({
     required this.client,
-    required this.queryString,
+    required this.staffNumberQuery,
     this.onSuccess,
-    this.clientNotFound,
+    this.onFailure,
+    this.staffNotFound,
   });
 
   @override
@@ -38,8 +41,14 @@ class SearchStaffMemberAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final bool hasConnection = state.connectivityState?.isConnected ?? false;
+    if (!hasConnection) {
+      onFailure?.call(connectionLostText);
+      return null;
+    }
+
     final Map<String, dynamic> variables = <String, dynamic>{
-      'staffNumber': queryString,
+      'staffNumber': staffNumberQuery,
     };
 
     final Response response =
@@ -67,7 +76,7 @@ class SearchStaffMemberAction extends ReduxAction<AppState> {
       );
 
       if (staffMembersResponse.staffMembers == null) {
-        clientNotFound?.call();
+        staffNotFound?.call();
       }
       onSuccess?.call(staffMembersResponse.staffMembers);
     } else {

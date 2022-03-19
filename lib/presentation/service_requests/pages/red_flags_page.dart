@@ -111,6 +111,8 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
 
                       final String description =
                           entries?.elementAt(index).value?.description ?? '';
+                      final String createdAt =
+                          entries?.elementAt(index).value?.createdAt ?? '';
 
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -118,6 +120,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                           clientName: clientName,
                           feelingDescription: description,
                           phoneNumber: clientPhoneNumber,
+                          createdAt: createdAt,
                         ),
                       );
                     }),

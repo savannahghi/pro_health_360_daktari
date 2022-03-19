@@ -33,7 +33,8 @@ class _$ServiceRequestContentTearOff {
       @JsonKey(name: 'Status') RequestStatus? status,
       @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-      @JsonKey(name: 'ResolvedBy') String? resolvedBy}) {
+      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+      @JsonKey(name: 'CreatedAt') String? createdAt}) {
     return _ServiceRequestContent(
       id: id,
       description: description,
@@ -45,6 +46,7 @@ class _$ServiceRequestContentTearOff {
       cccNumber: cccNumber,
       resolvedTime: resolvedTime,
       resolvedBy: resolvedBy,
+      createdAt: createdAt,
     );
   }
 
@@ -79,6 +81,8 @@ mixin _$ServiceRequestContent {
   String? get resolvedTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'ResolvedBy')
   String? get resolvedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedAt')
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -101,7 +105,8 @@ abstract class $ServiceRequestContentCopyWith<$Res> {
       @JsonKey(name: 'Status') RequestStatus? status,
       @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-      @JsonKey(name: 'ResolvedBy') String? resolvedBy});
+      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+      @JsonKey(name: 'CreatedAt') String? createdAt});
 }
 
 /// @nodoc
@@ -125,6 +130,7 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
     Object? cccNumber = freezed,
     Object? resolvedTime = freezed,
     Object? resolvedBy = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -167,6 +173,10 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.resolvedBy
           : resolvedBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -188,7 +198,8 @@ abstract class _$ServiceRequestContentCopyWith<$Res>
       @JsonKey(name: 'Status') RequestStatus? status,
       @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-      @JsonKey(name: 'ResolvedBy') String? resolvedBy});
+      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+      @JsonKey(name: 'CreatedAt') String? createdAt});
 }
 
 /// @nodoc
@@ -214,6 +225,7 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
     Object? cccNumber = freezed,
     Object? resolvedTime = freezed,
     Object? resolvedBy = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_ServiceRequestContent(
       id: id == freezed
@@ -256,6 +268,10 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.resolvedBy
           : resolvedBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -273,7 +289,8 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       @JsonKey(name: 'Status') this.status,
       @JsonKey(name: 'CCCNumber') this.cccNumber,
       @JsonKey(name: 'ResolvedAt') this.resolvedTime,
-      @JsonKey(name: 'ResolvedBy') this.resolvedBy});
+      @JsonKey(name: 'ResolvedBy') this.resolvedBy,
+      @JsonKey(name: 'CreatedAt') this.createdAt});
 
   factory _$_ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestContentFromJson(json);
@@ -308,10 +325,13 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
   @override
   @JsonKey(name: 'ResolvedBy')
   final String? resolvedBy;
+  @override
+  @JsonKey(name: 'CreatedAt')
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'ServiceRequestContent(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, cccNumber: $cccNumber, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy)';
+    return 'ServiceRequestContent(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, cccNumber: $cccNumber, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, createdAt: $createdAt)';
   }
 
   @override
@@ -334,7 +354,8 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
             const DeepCollectionEquality()
                 .equals(other.resolvedTime, resolvedTime) &&
             const DeepCollectionEquality()
-                .equals(other.resolvedBy, resolvedBy));
+                .equals(other.resolvedBy, resolvedBy) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
@@ -349,7 +370,8 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(cccNumber),
       const DeepCollectionEquality().hash(resolvedTime),
-      const DeepCollectionEquality().hash(resolvedBy));
+      const DeepCollectionEquality().hash(resolvedBy),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -374,7 +396,8 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
           @JsonKey(name: 'Status') RequestStatus? status,
           @JsonKey(name: 'CCCNumber') String? cccNumber,
           @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-          @JsonKey(name: 'ResolvedBy') String? resolvedBy}) =
+          @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+          @JsonKey(name: 'CreatedAt') String? createdAt}) =
       _$_ServiceRequestContent;
 
   factory _ServiceRequestContent.fromJson(Map<String, dynamic> json) =
@@ -410,6 +433,9 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
   @override
   @JsonKey(name: 'ResolvedBy')
   String? get resolvedBy;
+  @override
+  @JsonKey(name: 'CreatedAt')
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestContentCopyWith<_ServiceRequestContent> get copyWith =>

@@ -18,6 +18,7 @@ class ServiceRequestContent with _$ServiceRequestContent {
     @JsonKey(name: 'CCCNumber') String? cccNumber,
     @JsonKey(name: 'ResolvedAt') String? resolvedTime,
     @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+    @JsonKey(name: 'CreatedAt') String? createdAt,
   }) = _ServiceRequestContent;
 
   factory ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
@@ -32,5 +33,6 @@ class ServiceRequestContent with _$ServiceRequestContent {
         clientPhoneNumber: UNKNOWN,
         status: RequestStatus.PENDING,
         cccNumber: UNKNOWN,
+        createdAt: UNKNOWN,
       );
 }
