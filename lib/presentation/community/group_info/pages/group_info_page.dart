@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
@@ -18,7 +17,6 @@ import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/constants.dart';
-
 import 'package:shared_themes/spaces.dart';
 
 class GroupInfoPage extends StatefulWidget {
@@ -127,9 +125,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                         final GroupMember currentMember =
                                             groupMembers.elementAt(index)!;
 
-                                        final String name =
-                                            currentMember.memberDetails?.name ??
-                                                '';
+                                        final String name = currentMember
+                                                .memberDetails?.username ??
+                                            '';
                                         final String id =
                                             currentMember.memberDetails?.id ??
                                                 '';

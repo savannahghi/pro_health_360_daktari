@@ -11,7 +11,6 @@ class Member with _$Member {
   factory Member({
     @JsonKey(name: 'ID') String? id,
     @JsonKey(name: 'userID') String? userID,
-    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'role') String? role,
     @JsonKey(name: 'username') String? username,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -23,7 +22,6 @@ class Member with _$Member {
   factory Member.initial() => Member(
         id: UNKNOWN,
         userID: UNKNOWN,
-        name: UNKNOWN,
         role: UNKNOWN,
         username: UNKNOWN,
         gender: Gender.unknown,
