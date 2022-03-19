@@ -56,6 +56,7 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!){
     CCCNumber
     ResolvedAt
     ResolvedBy
+    CreatedAt
   }
 }
 ''';

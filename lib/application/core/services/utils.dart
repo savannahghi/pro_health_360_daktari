@@ -479,3 +479,32 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
       .toList(),
   apiFieldValue: 'caregiverType',
 );
+
+// Parses date then converts it to the format 18 May 2021 at 12:00 AM
+Widget humanizeDate({
+  required TextStyle dateTextStyle,
+  required String loadedDate,
+  bool showTime = false,
+  bool showYear = true,
+}) {
+  if (loadedDate != UNKNOWN && loadedDate.isNotEmpty) {
+    final DateTime parsedDate =
+        DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+
+    final String postDayTime = DateFormat.jm().format(parsedDate);
+    final String postDay = DateFormat.d().format(parsedDate);
+    final String postMonth = DateFormat.MMM().format(parsedDate);
+    final String postYear = DateFormat.y().format(parsedDate);
+
+    return Row(
+      children: <Widget>[
+        Text(
+          '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
+          style: dateTextStyle,
+        ),
+      ],
+    );
+  }
+
+  return const SizedBox();
+}
