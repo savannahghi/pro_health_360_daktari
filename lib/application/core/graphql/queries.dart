@@ -124,8 +124,6 @@ query searchClientsByCCCNumber($CCCNumber: String!){
       Username
       Active
       Contacts{
-        ID
-        ContactType
         ContactValue
         Active
         OptedIn
