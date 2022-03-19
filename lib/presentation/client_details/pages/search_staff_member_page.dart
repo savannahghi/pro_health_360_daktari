@@ -1,13 +1,19 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/search_staff_member_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SearchStaffMemberPage extends StatefulWidget {
@@ -21,8 +27,9 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
   final TextEditingController searchController = TextEditingController();
   List<String> inviteMemberIds = <String>[];
 
-  String searchQuery = '';
-  bool staffMemberFound = false;
+  String staffNumberQuery = '';
+  List<SearchUserResponse>? staffMembers;
+  bool staffMembersAvailable = false;
   bool showZeroState = false;
 
   @override
@@ -31,11 +38,11 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
     searchController.addListener(() async {
       if (searchController.text.isEmpty) {
         setState(() {
-          searchQuery = '';
+          staffNumberQuery = '';
         });
       } else {
         setState(() {
-          searchQuery = searchController.text;
+          staffNumberQuery = searchController.text;
         });
       }
     });
@@ -77,14 +84,37 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
                             padding: const EdgeInsets.only(right: 4.0),
                             child: IconButton(
                               onPressed: () {
-                                if (searchQuery.isNotEmpty) {
+                                if (staffNumberQuery.isNotEmpty) {
                                   setState(() {
-                                    staffMemberFound = false;
+                                    staffMembersAvailable = false;
                                     showZeroState = false;
                                   });
-                                  showTextSnackbar(
-                                    ScaffoldMessenger.of(context),
-                                    content: comingSoonText,
+
+                                  StoreProvider.dispatch(
+                                    context,
+                                    SearchStaffMemberAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      staffNumberQuery: staffNumberQuery,
+                                      staffNotFound: () {
+                                        setState(() {
+                                          showZeroState = true;
+                                        });
+                                      },
+                                      onFailure: (String message) {
+                                        showTextSnackbar(
+                                          ScaffoldMessenger.of(context),
+                                          content: message,
+                                        );
+                                      },
+                                      onSuccess:
+                                          (List<SearchUserResponse>? response) {
+                                        setState(() {
+                                          staffMembers = response;
+                                          staffMembersAvailable = true;
+                                        });
+                                      },
+                                    ),
                                   );
                                 }
                               },
@@ -100,6 +130,53 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
                             height: 300,
                             padding: const EdgeInsets.all(20),
                             child: const PlatformLoader(),
+                          ),
+                        const SizedBox(height: 24),
+                        if (staffMembersAvailable && staffMembers != null)
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: staffMembers?.length,
+                            itemBuilder: (_, int index) {
+                              final SearchUserResponse staffDetails =
+                                  staffMembers![index];
+                              return SearchUserItem(
+                                clientDetails: staffDetails,
+                                number: staffDetails.staffNumber ?? UNKNOWN,
+                              );
+                            },
+                          ),
+                        if (showZeroState)
+                          GenericErrorWidget(
+                            actionKey: const Key('search_not_found_key'),
+                            headerIconSvgUrl: searchNotFoundImage,
+                            padding: EdgeInsets.zero,
+                            recoverCallback: () {
+                              Navigator.of(context)
+                                  .pushNamed(AppRoutes.addNewStaffPage);
+                            },
+                            actionText: registerStaffMemberString,
+                            messageTitle: noStaffMemberFoundString,
+                            messageBody: <TextSpan>[
+                              TextSpan(
+                                text: couldNotFindStaffMemberString,
+                                style: normalSize16Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              TextSpan(
+                                text: staffNumberQuery,
+                                style: boldSize18Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              TextSpan(
+                                text: confirmStaffMemberIsCorrectString,
+                                style: normalSize16Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              )
+                            ],
                           ),
                       ],
                     ),

@@ -12,7 +12,9 @@ class SearchUserResponse with _$SearchUserResponse {
   factory SearchUserResponse({
     @JsonKey(name: 'ID') String? id, // This is the nickname
     @JsonKey(name: 'CCCNumber')
-        String? clientCCCNumber, // This is the CCCNumber
+        String? clientCCCNumber, // This is the CCC number
+    @JsonKey(name: 'StaffNumber')
+        String? staffNumber, // This is the Staff number
     @JsonKey(name: 'User') UserData? user,
   }) = _SearchUserResponse;
 
@@ -22,6 +24,7 @@ class SearchUserResponse with _$SearchUserResponse {
   factory SearchUserResponse.initial() => SearchUserResponse(
         id: UNKNOWN,
         clientCCCNumber: UNKNOWN,
+        staffNumber: UNKNOWN,
         user: UserData.initial(),
       );
 }
