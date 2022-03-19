@@ -19,7 +19,7 @@ import 'package:mycarehubpro/presentation/notifications/notifications_page.dart'
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
@@ -115,8 +115,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.addNewPatientPage:
-        return MaterialPageRoute<AddNewPatientPage>(
-          builder: (_) => const AddNewPatientPage(),
+        return MaterialPageRoute<AddNewClientPage>(
+          builder: (_) => const AddNewClientPage(),
         );
 
       case AppRoutes.addNewStaffPage:

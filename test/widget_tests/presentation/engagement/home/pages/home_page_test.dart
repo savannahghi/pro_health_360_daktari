@@ -14,7 +14,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
@@ -48,7 +48,7 @@ void main() {
         ),
       );
 
-      final Finder addNewUserWidget = find.text(addNewUserText);
+      final Finder addNewUserWidget = find.text(addNewClientText);
 
       expect(find.byType(AppbarUser), findsOneWidget);
       expect(
@@ -65,9 +65,9 @@ void main() {
 
       await tester.ensureVisible(addNewUserWidget);
       await tester.pumpAndSettle();
-      await tester.tap(find.text(addNewUserText));
+      await tester.tap(find.text(addNewClientText));
       await tester.pumpAndSettle();
-      expect(find.byType(AddNewPatientPage), findsWidgets);
+      expect(find.byType(AddNewClientPage), findsWidgets);
     });
 
     testWidgets('navigates to ServiceRequestsPage',

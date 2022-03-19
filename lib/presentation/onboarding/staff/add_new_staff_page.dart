@@ -128,7 +128,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                     Flexible(
                       child: FacilityDropdown(
                         dropdownInputKey: facilitySelectOptionFieldKey,
-                        label: preferredFacilityLabel,
+                        label: facilityLabel,
                         stream: _formManager.facility,
                         onChanged: (String? value) {
                           if (value != null) {
