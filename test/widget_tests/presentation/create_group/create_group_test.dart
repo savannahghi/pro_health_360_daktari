@@ -36,6 +36,7 @@ void main() {
       await tester.enterText(groupDesc, 'Test');
       await tester.pumpAndSettle();
 
+      await tester.ensureVisible(find.text('PMTCT'));
       await tester.tap(find.text('PMTCT'));
       await tester.pumpAndSettle();
 

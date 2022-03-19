@@ -185,7 +185,9 @@ const String registerStaffSuccess = 'Successfully registered staff';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';
+const String groupNameHintText = 'Name your new group...';
 const String aboutGroupText = 'About Group';
+const String groupDescriptionHintText = 'Describe your new group...';
 const String bandLabelText = 'Band';
 const String ageLabelText = 'Age';
 const String locationLabelText = 'Location';

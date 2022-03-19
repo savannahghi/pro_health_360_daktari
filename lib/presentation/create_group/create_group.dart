@@ -69,6 +69,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                         ) {
                           return PatientDetailsTextFormField(
                             textFieldKey: groupNameKey,
+                            hintText: groupNameHintText,
                             label: groupName,
                             onChanged: (String value) {
                               _formManager.inName.add(value);
@@ -104,8 +105,14 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     return TextFormField(
                       key: groupDescriptionKey,
                       maxLines: 5,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
+                      decoration: InputDecoration(
+                        hintText: groupDescriptionHintText,
+                        hintStyle:
+                            const TextStyle(color: AppColors.hintTextColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
                         filled: true,
                         fillColor: AppColors.galleryColor,
                       ),
@@ -137,6 +144,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   children: clientTypeFields.entries
                       .map<Widget>((MapEntry<String, bool> entry) {
                     return CheckboxListTile(
+                      activeColor: AppColors.primaryColor,
+                      selectedTileColor: AppColors.primaryColor,
                       title: Text(entry.key),
                       value: entry.value,
                       onChanged: (bool? value) {
@@ -224,6 +233,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     ...genderFields.entries
                         .map<Widget>((MapEntry<String, bool> entry) {
                       return CheckboxListTile(
+                        activeColor: AppColors.primaryColor,
+                        selectedTileColor: AppColors.primaryColor,
                         title: Text(entry.key),
                         value: entry.value,
                         onChanged: (bool? value) {
@@ -257,6 +268,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                       ) {
                         return CheckboxListTile(
                           key: inviteOnlyKey,
+                          activeColor: AppColors.primaryColor,
+                          selectedTileColor: AppColors.primaryColor,
                           title: const Text(inviteOnlyText),
                           value: snapshot.data ?? false,
                           onChanged: (bool? value) {
@@ -286,10 +299,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                         style: ElevatedButton.styleFrom(
                           primary: AppColors.primaryColor,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(createGroupText),
-                        ),
+                        child: const Text(createGroupText),
                       );
                     },
                   ),

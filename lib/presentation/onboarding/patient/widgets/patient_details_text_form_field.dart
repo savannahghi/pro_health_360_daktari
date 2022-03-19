@@ -43,6 +43,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
           key: textFieldKey,
           decoration: InputDecoration(
             hintText: hintText,
+            hintStyle: const TextStyle(color: AppColors.hintTextColor),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
