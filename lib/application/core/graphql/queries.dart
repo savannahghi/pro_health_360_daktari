@@ -135,9 +135,10 @@ query searchClientsByCCCNumber($CCCNumber: String!){
 ''';
 
 const String searchStaffMemberQuery = r'''
-query getStaffByStaffNumber($CCCNumber: String!){
-  getStaffByStaffNumber(CCCNumber: $CCCNumber){
+query searchStaffByStaffNumber($staffNumber: String!){
+  searchStaffByStaffNumber(staffNumber: $staffNumber){
     ID
+    StaffNumber
     User{
       Username
       Active
