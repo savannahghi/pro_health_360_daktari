@@ -56,7 +56,7 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
         UserException(errors),
       );
 
-      throw UserException(getErrorMessage('completing the onbaording tour'));
+      throw UserException(getErrorMessage('completing the onboarding tour'));
     }
 
     return state;

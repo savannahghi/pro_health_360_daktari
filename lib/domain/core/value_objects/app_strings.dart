@@ -316,7 +316,7 @@ const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
 
 // user friendly messages
 const String defaultUserFriendlyMessage =
-    'Sorry, an unknown error occurred, please try again or get help from our help center.';
+    'Sorry, an unknown error occurred, please try again or contact your admin.';
 const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
 const String sendOTPError =
@@ -476,3 +476,5 @@ const String contentManagement = 'Content management';
 const String systemAdminstration = 'System administration';
 const String communityManagement = 'Community management';
 const String updateRoles = 'Update roles';
+
+const String authenticationErrorText = 'Authentication error';

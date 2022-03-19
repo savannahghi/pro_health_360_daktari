@@ -16,7 +16,6 @@ class AppTheme {
         selectionColor: AppColors.themeColors.textSelectionColor,
       ),
       iconTheme: const IconThemeData(color: Colors.black),
-    ).copyWith(
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
           TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
@@ -25,8 +24,13 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(12),
           primary: AppColors.primaryColor,
-          textStyle: const TextStyle(color: Colors.white),
+          textStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
