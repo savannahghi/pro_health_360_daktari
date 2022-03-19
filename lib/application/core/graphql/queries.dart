@@ -91,7 +91,6 @@ query listMembers($input: QueryOption){
   listMembers(input: $input){
     ID
     userID
-    name
     role
     username
   }
@@ -125,8 +124,6 @@ query searchClientsByCCCNumber($CCCNumber: String!){
       Username
       Active
       Contacts{
-        ID
-        ContactType
         ContactValue
         Active
         OptedIn

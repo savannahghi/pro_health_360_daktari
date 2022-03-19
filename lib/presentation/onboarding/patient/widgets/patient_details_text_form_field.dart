@@ -14,6 +14,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.validator,
+    this.hintText,
   });
 
   final String label;
@@ -21,6 +22,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String?)? validator;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
         TextFormField(
           key: textFieldKey,
           decoration: InputDecoration(
+            hintText: hintText,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,

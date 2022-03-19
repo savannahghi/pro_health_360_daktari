@@ -8,10 +8,12 @@ import 'package:mycarehubpro/application/redux/actions/check_and_update_connecti
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
+import 'package:mycarehubpro/presentation/core/widgets/error_dialog.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -74,7 +76,7 @@ class _AuthManagerState extends State<AuthManager> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(_) {
     return StoreConnector<AppState, InitialRouteViewModel>(
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
@@ -91,6 +93,30 @@ class _AuthManagerState extends State<AuthManager> {
         return MaterialApp(
           builder: (BuildContext context, Widget? childWidget) {
             return UserExceptionDialog<AppState>(
+              onShowUserExceptionDialog: (
+                BuildContext context,
+                UserException userException,
+                bool useLocalContext,
+              ) {
+                showDialog(
+                  context: globalAppNavigatorKey.currentContext!,
+                  builder: (BuildContext context) {
+                    String? subtitle;
+
+                    if (userException.cause != null &&
+                        userException.cause?.runtimeType == String) {
+                      subtitle = userException.cause! as String;
+                    }
+
+                    return ErrorDialog(
+                      title: userException.msg ?? defaultUserFriendlyMessage,
+                      subTitle: subtitle,
+                      buttonAction: () =>
+                          globalAppNavigatorKey.currentState?.pop(),
+                    );
+                  },
+                );
+              },
               child: StreamChat(
                 client: widget.streamClient,
                 streamChatThemeData: StreamChatThemeData(
