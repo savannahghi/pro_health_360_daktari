@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
@@ -23,6 +24,7 @@ class RedFlagListItem extends StatelessWidget {
     this.isResolved = false,
     this.resolvedBy,
     this.resolvedAt,
+    this.createdAt,
   });
 
   final String clientName;
@@ -31,6 +33,7 @@ class RedFlagListItem extends StatelessWidget {
   final bool isResolved;
   final String? resolvedBy;
   final String? resolvedAt;
+  final String? createdAt;
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +160,15 @@ class RedFlagListItem extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                smallVerticalSizedBox,
+                if (createdAt != null && createdAt!.isNotEmpty)
+                  humanizeDate(
+                    dateTextStyle: normalSize13Text(
+                      AppColors.greyTextColor.withOpacity(0.5),
+                    ),
+                    loadedDate: createdAt!,
+                    showTime: true,
                   )
               ],
             ),
