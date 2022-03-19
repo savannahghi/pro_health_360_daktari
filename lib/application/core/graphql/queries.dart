@@ -90,7 +90,6 @@ query listMembers($input: QueryOption){
   listMembers(input: $input){
     ID
     userID
-    name
     role
     username
   }

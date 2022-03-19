@@ -27,8 +27,6 @@ class _$MemberTearOff {
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
-      @JsonKey(name: 'name')
-          String? name,
       @JsonKey(name: 'role')
           String? role,
       @JsonKey(name: 'username')
@@ -38,7 +36,6 @@ class _$MemberTearOff {
     return _Member(
       id: id,
       userID: userID,
-      name: name,
       role: role,
       username: username,
       gender: gender,
@@ -59,8 +56,6 @@ mixin _$Member {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'userID')
   String? get userID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
@@ -82,8 +77,6 @@ abstract class $MemberCopyWith<$Res> {
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
-      @JsonKey(name: 'name')
-          String? name,
       @JsonKey(name: 'role')
           String? role,
       @JsonKey(name: 'username')
@@ -104,7 +97,6 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? userID = freezed,
-    Object? name = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? gender = freezed,
@@ -117,10 +109,6 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
       userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       role: role == freezed
           ? _value.role
@@ -148,8 +136,6 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
-      @JsonKey(name: 'name')
-          String? name,
       @JsonKey(name: 'role')
           String? role,
       @JsonKey(name: 'username')
@@ -171,7 +157,6 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? userID = freezed,
-    Object? name = freezed,
     Object? role = freezed,
     Object? username = freezed,
     Object? gender = freezed,
@@ -184,10 +169,6 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
       userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       role: role == freezed
           ? _value.role
@@ -213,8 +194,6 @@ class _$_Member implements _Member {
           this.id,
       @JsonKey(name: 'userID')
           this.userID,
-      @JsonKey(name: 'name')
-          this.name,
       @JsonKey(name: 'role')
           this.role,
       @JsonKey(name: 'username')
@@ -232,9 +211,6 @@ class _$_Member implements _Member {
   @JsonKey(name: 'userID')
   final String? userID;
   @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
   @JsonKey(name: 'role')
   final String? role;
   @override
@@ -246,7 +222,7 @@ class _$_Member implements _Member {
 
   @override
   String toString() {
-    return 'Member(id: $id, userID: $userID, name: $name, role: $role, username: $username, gender: $gender)';
+    return 'Member(id: $id, userID: $userID, role: $role, username: $username, gender: $gender)';
   }
 
   @override
@@ -256,7 +232,6 @@ class _$_Member implements _Member {
             other is _Member &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userID, userID) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.gender, gender));
@@ -267,7 +242,6 @@ class _$_Member implements _Member {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userID),
-      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(gender));
@@ -289,8 +263,6 @@ abstract class _Member implements Member {
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
-      @JsonKey(name: 'name')
-          String? name,
       @JsonKey(name: 'role')
           String? role,
       @JsonKey(name: 'username')
@@ -306,9 +278,6 @@ abstract class _Member implements Member {
   @override
   @JsonKey(name: 'userID')
   String? get userID;
-  @override
-  @JsonKey(name: 'name')
-  String? get name;
   @override
   @JsonKey(name: 'role')
   String? get role;

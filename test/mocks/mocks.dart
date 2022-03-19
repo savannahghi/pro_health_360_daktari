@@ -1275,25 +1275,22 @@ final List<dynamic> listMembersMock = <dynamic>[
   <String, dynamic>{
     'ID': 'id1',
     'userID': 'some-user-id',
-    'name': 'Sam Doe',
     'role': 'user',
-    'username': 'doe',
+    'username': 'Sam',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
     'ID': 'id1',
     'userID': 'some-user-id',
-    'name': 'Jane Doe',
     'role': 'user',
-    'username': 'doe',
+    'username': 'Jane',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
     'ID': 'id1',
     'userID': 'some-user-id',
-    'name': 'Julian Doe',
     'role': 'user',
-    'username': 'doe',
+    'username': 'Julian',
     'gender': Gender.male.name,
   },
 ];
