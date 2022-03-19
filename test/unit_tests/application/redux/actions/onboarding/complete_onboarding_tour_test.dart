@@ -40,7 +40,7 @@ void main() {
 
       expect(
         (info.error as UserException?)?.msg,
-        getErrorMessage('completing the onbaording tour'),
+        getErrorMessage('completing the onboarding tour'),
       );
     });
   });
