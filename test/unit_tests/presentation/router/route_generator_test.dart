@@ -20,7 +20,7 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
@@ -174,10 +174,10 @@ void main() {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.addNewPatientPage);
 
-    final MaterialPageRoute<AddNewPatientPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<AddNewPatientPage>?;
-    expect(route, isA<MaterialPageRoute<AddNewPatientPage>>());
-    expect(route?.builder(context), isA<AddNewPatientPage>());
+    final MaterialPageRoute<AddNewClientPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<AddNewClientPage>?;
+    expect(route, isA<MaterialPageRoute<AddNewClientPage>>());
+    expect(route?.builder(context), isA<AddNewClientPage>());
   });
 
   test('Test router returns InviteMembersPage', () {

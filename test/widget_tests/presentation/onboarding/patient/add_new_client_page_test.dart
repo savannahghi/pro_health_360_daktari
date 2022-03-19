@@ -7,7 +7,7 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_patient_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -28,7 +28,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
         graphQlClient: MockTestGraphQlClient(),
       );
       await tester.pumpAndSettle();
@@ -126,7 +126,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
         graphQlClient: MockTestGraphQlClient(),
       );
       await tester.pumpAndSettle();
@@ -227,7 +227,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -247,7 +247,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -266,7 +266,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -285,7 +285,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const AddNewPatientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 

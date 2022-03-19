@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                   child: Wrap(
                     children: <Widget>[
                       ActionCard(
-                        title: addNewUserText,
+                        title: addNewClientText,
                         iconUrl: addNewUserIconSvg,
                         onTap: () {
                           Navigator.of(context)
