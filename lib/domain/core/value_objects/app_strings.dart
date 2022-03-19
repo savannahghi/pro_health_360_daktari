@@ -101,7 +101,7 @@ const String firstName = 'John';
 const String time = '09:56 pm';
 const String username = 'John Doe';
 const String comingSoonText = 'Coming Soon';
-const String addNewUserText = 'Add New User';
+const String addNewClientText = 'Add New Client';
 const String serviceRequestsText = 'Service Requests';
 const String profileUpdateText = 'Profile Update';
 const String contactRequestText = 'Contact Request';
@@ -162,7 +162,8 @@ const String noNotificationsDescription =
 
 // Add patient page
 const String CCCNumberLabel = 'CCC Number *';
-const String preferredFacilityLabel = 'Preferred Facility *';
+const String cccNumberHint = 'Enter a 10 digit number...';
+const String facilityLabel = 'Facility *';
 const String firstNameLabel = 'First Name *';
 const String lastNameLabel = 'Last Name *';
 const String birthDateLabel = 'Birth Date *';
@@ -170,7 +171,7 @@ const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
 const String registerBtnText = 'Register';
-const String addNewPatientTitleText = 'Add new patient';
+const String addNewClientTitleText = 'Add new client';
 const String enrollmentDateLabel = 'Enrollment Date *';
 const String clientTypeLabel = 'Client Type *';
 const String registerClientSuccess = 'Successfully registered client';

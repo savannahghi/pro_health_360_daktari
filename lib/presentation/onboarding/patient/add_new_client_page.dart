@@ -21,14 +21,14 @@ import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_det
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 
-class AddNewPatientPage extends StatefulWidget {
-  const AddNewPatientPage({Key? key}) : super(key: key);
+class AddNewClientPage extends StatefulWidget {
+  const AddNewClientPage({Key? key}) : super(key: key);
 
   @override
-  State<AddNewPatientPage> createState() => _AddNewPatientPageState();
+  State<AddNewClientPage> createState() => _AddNewClientPageState();
 }
 
-class _AddNewPatientPageState extends State<AddNewPatientPage> {
+class _AddNewClientPageState extends State<AddNewClientPage> {
   final RegisterClientFormManager _formManager = RegisterClientFormManager();
   final TextEditingController dobTextController = TextEditingController();
   final TextEditingController enrollmentDateTextController =
@@ -56,7 +56,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
-        title: addNewPatientTitleText,
+        title: addNewClientTitleText,
         showShadow: false,
       ),
       body: SafeArea(
@@ -82,6 +82,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                         ) {
                           return PatientDetailsTextFormField(
                             textFieldKey: cccFieldKey,
+                            hintText: cccNumberHint,
                             label: CCCNumberLabel,
                             onChanged: (String value) {
                               _formManager.inCccNumber.add(value);
@@ -105,7 +106,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                     Flexible(
                       child: FacilityDropdown(
                         dropdownInputKey: facilitySelectOptionFieldKey,
-                        label: preferredFacilityLabel,
+                        label: facilityLabel,
                         stream: _formManager.facility,
                         onChanged: (String? value) {
                           if (value != null) {
@@ -416,6 +417,9 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                 return Checkbox(
                                   key: myAfyaHubInviteKey,
                                   value: data ?? false,
+                                  fillColor: MaterialStateProperty.all<Color>(
+                                    AppColors.primaryColor,
+                                  ),
                                   onChanged: (bool? value) {
                                     if (value != null) {
                                       _formManager.inInviteClient.add(value);
@@ -468,13 +472,7 @@ class _AddNewPatientPageState extends State<AddNewPatientPage> {
                                           vm.hasConnection,
                                         )
                                     : null,
-                                style: ElevatedButton.styleFrom(
-                                  primary: AppColors.secondaryColor,
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Text(registerBtnText),
-                                ),
+                                child: const Text(registerBtnText),
                               );
                             },
                           );
