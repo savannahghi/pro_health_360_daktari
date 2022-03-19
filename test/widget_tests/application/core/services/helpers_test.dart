@@ -1,10 +1,10 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/widgets/login_widget.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:http/http.dart';
 
@@ -39,7 +39,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(LoginWidget), findsOneWidget);
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
     });
 
     testWidgets(
@@ -61,7 +61,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(LoginWidget), findsOneWidget);
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
     });
   });
 }
