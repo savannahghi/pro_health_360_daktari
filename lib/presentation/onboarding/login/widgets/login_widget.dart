@@ -1,13 +1,14 @@
 // Flutter imports:
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/application/core/services/input_invalidators.dart';
+import 'package:mycarehubpro/application/core/services/input_validators.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/core/phone_login_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -76,6 +77,11 @@ class LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // A small indicator to help us identify whether the app is running in
+    // staging or testing
+    final bool isAppTest =
+        AppWrapperBase.of(context)!.appContexts.contains(AppContext.AppTest);
+
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
@@ -230,6 +236,9 @@ class LoginWidgetState extends State<LoginWidget> {
                     buttonColor: Theme.of(context).primaryColor,
                     borderColor: Theme.of(context).primaryColor,
                     text: phoneLoginText,
+                    textColor: isAppTest
+                        ? Theme.of(context).colorScheme.primaryVariant
+                        : null,
                   ),
                 ),
 
