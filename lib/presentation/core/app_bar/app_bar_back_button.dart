@@ -1,9 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -26,7 +24,8 @@ class AppBarBackButton extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.only(left: 15),
+          padding:
+              const EdgeInsets.only(left: 15, top: 10, bottom: 10, right: 15),
           child: SvgPicture.asset(
             backIconSvgPath,
             color: color,
