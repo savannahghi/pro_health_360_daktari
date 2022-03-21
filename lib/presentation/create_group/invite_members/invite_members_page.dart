@@ -292,10 +292,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                         style: ElevatedButton.styleFrom(
                           primary: AppColors.primaryColor,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(inviteMembersTitle),
-                        ),
+                        child: const Text(inviteMembersTitle),
                       ),
                     ),
                   ),
