@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -148,6 +149,50 @@ void main() {
       await tester.tap(buttonTextFinder);
       await tester.pumpAndSettle();
       expect(find.byType(PinResetRequestsPage), findsNothing);
+    });
+
+    testWidgets('tapping call button launches dialler',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'verifyPinResetServiceRequest': true,
+              'getServiceRequests': <Map<String, dynamic>>[
+                <String, dynamic>{
+                  'ID': 'some-id',
+                  'RequestType': 'PIN_RESET',
+                  'ClientName': 'John Doe',
+                  'ClientContact': '+254798000000',
+                  'Status': 'PENDING',
+                  'Meta': <String, dynamic>{
+                    'ccc_number': '12345678',
+                    'is_ccc_number_valid': true,
+                  }
+                },
+              ],
+            }
+          }),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: client,
+        widget: const PinResetRequestsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PinResetRequestsPage), findsOneWidget);
+
+      final Finder phoneIcon = find.byIcon(Icons.phone_outlined);
+      expect(phoneIcon, findsOneWidget);
+
+      await tester.tap(phoneIcon);
+      await tester.pumpAndSettle();
     });
   });
 }

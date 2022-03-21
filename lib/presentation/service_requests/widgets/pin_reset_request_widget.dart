@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PinResetRequestWidget extends StatelessWidget {
   const PinResetRequestWidget({
@@ -65,14 +66,20 @@ class PinResetRequestWidget extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: AppColors.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(
-                  Icons.phone_outlined,
+                child: IconButton(
+                  icon: const Icon(Icons.phone_outlined),
                   color: AppColors.primaryColor,
+                  onPressed: () {
+                    final Uri launchUri = Uri(
+                      scheme: 'tel',
+                      path: phoneNumber,
+                    );
+                    launch(launchUri.toString());
+                  },
                 ),
               ),
             ],
