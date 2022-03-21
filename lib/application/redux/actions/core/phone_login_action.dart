@@ -151,6 +151,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       return state;
     } else {
+      // Check error codes here
       if (processedResponse.message == wrongLoginCredentials) {
         dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       }
