@@ -438,6 +438,11 @@ const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
 const String pinApprovedSuccessText = 'Pin Approved Successfully';
 const String pinRejectedSuccessText = 'Pin Rejected Successfully';
+const String cccNoShortText = 'CCC #:';
+const String cccNumberVerifiedText = 'CCC number verified';
+const String cccNumberUnverifiedText =
+    'The client provided the wrong CCC number. Please physically verify their '
+    'identity before approving this request';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';
