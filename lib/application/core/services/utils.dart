@@ -9,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/redux/actions/create_pin_action.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/create_pin_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -355,8 +354,8 @@ Future<void> setUserPIN({
   // this is the Redux Action that store the PINs user enters
   StoreProvider.dispatch(
     context,
-    CreatePINStateAction(
-      newPIN: newPIN,
+    UpdateOnboardingStateAction(
+      pin: newPIN,
       confirmPIN: confirmPIN,
     ),
   );

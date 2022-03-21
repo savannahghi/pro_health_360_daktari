@@ -12,10 +12,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
           ? null
           : TermsAndConditions.fromJson(
               json['termsAndConditions'] as Map<String, dynamic>),
-      createPINState: json['createPINState'] == null
-          ? null
-          : CreatePINState.fromJson(
-              json['createPINState'] as Map<String, dynamic>),
       securityQuestions: (json['securityQuestions'] as List<dynamic>?)
           ?.map((e) => SecurityQuestion.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -47,7 +43,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
     <String, dynamic>{
       'termsAndConditions': instance.termsAndConditions,
-      'createPINState': instance.createPINState,
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,
       'currentOnboardingStage':

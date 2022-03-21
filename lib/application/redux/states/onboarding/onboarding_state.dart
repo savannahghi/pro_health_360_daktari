@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/login/create_pin.dart';
 import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
@@ -12,7 +11,6 @@ part 'onboarding_state.g.dart';
 class OnboardingState with _$OnboardingState {
   factory OnboardingState({
     TermsAndConditions? termsAndConditions,
-    CreatePINState? createPINState,
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
 
@@ -76,7 +74,6 @@ class OnboardingState with _$OnboardingState {
 
   factory OnboardingState.initial() => OnboardingState(
         termsAndConditions: TermsAndConditions.initial(),
-        createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
         currentOnboardingStage: CurrentOnboardingStage.Login,

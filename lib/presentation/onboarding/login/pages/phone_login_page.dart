@@ -18,33 +18,42 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:shared_themes/spaces.dart';
 
-//Project imports
-
 class PhoneLoginPage extends StatefulWidget {
   @override
   State<PhoneLoginPage> createState() => _PhoneLoginPageState();
 }
 
 class _PhoneLoginPageState extends State<PhoneLoginPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? _phoneNumber;
+  String? phoneNumber;
+  final TextEditingController phoneNumberInputController =
+      TextEditingController();
 
-  String? _pinCode;
+  String? pin;
+  TextEditingController pinController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void didChangeDependencies() {
+    if (phoneNumber == null) {
+      /// reset login state upon entering this page
+      StoreProvider.dispatch(context, ResetOnboardingStateAction());
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    pinController.dispose();
+    phoneNumberInputController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        UpdateOnboardingStateAction(
-          phoneNumber: UNKNOWN,
-          pin: UNKNOWN,
-          invalidCredentials: false,
-        ),
-      );
-    });
+    /// clear any active flags
   }
 
   @override
@@ -136,8 +145,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                       ),
                                     );
                                   }
+
                                   setState(() {
-                                    _phoneNumber = value;
+                                    phoneNumber = value;
                                   });
                                 },
                               ),
@@ -176,8 +186,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                       ),
                                     );
                                   }
+
                                   setState(() {
-                                    _pinCode = val;
+                                    pin = val;
                                   });
                                 },
                               ),
@@ -226,14 +237,14 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
 
                         if (isFormValid != null &&
                             isFormValid &&
-                            _pinCode != null &&
-                            _phoneNumber != null &&
-                            _pinCode != UNKNOWN &&
+                            pin != null &&
+                            phoneNumber != null &&
+                            pin != UNKNOWN &&
                             phoneNumber != UNKNOWN) {
                           login(
                             context: context,
-                            phoneNumber: _phoneNumber,
-                            pin: _pinCode,
+                            phoneNumber: phoneNumber,
+                            pin: pin,
                           );
                         }
                       },
@@ -259,15 +270,11 @@ Future<void> login({
 }) async {
   StoreProvider.dispatch<AppState>(
     context,
-    UpdateOnboardingStateAction(
-      phoneNumber: phoneNumber,
-    ),
+    UpdateOnboardingStateAction(phoneNumber: phoneNumber),
   );
 
   await StoreProvider.dispatch<AppState>(
     context,
-    PhoneLoginAction(
-      context: context,
-    ),
+    PhoneLoginAction(context: context),
   );
 }

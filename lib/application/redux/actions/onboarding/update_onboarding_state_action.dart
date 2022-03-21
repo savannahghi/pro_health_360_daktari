@@ -89,3 +89,15 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     return newState;
   }
 }
+
+class ResetOnboardingStateAction extends ReduxAction<AppState> {
+  ResetOnboardingStateAction();
+
+  @override
+  AppState reduce() {
+    final AppState newState =
+        state.copyWith(onboardingState: OnboardingState.initial());
+
+    return newState;
+  }
+}
