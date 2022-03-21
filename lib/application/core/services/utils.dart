@@ -187,7 +187,7 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   } else if (!isPhoneVerified) {
     return OnboardingPathConfig(
       route: AppRoutes.verifyPhonePage,
-      arguments: state.onboardingState!.phoneLogin!.phoneNumber,
+      arguments: state.onboardingState!.phoneNumber,
     );
   } else if (!termsAccepted) {
     return OnboardingPathConfig(route: AppRoutes.termsAndConditions);

@@ -32,15 +32,18 @@ void main() {
             )
             .copyWith
             .onboardingState!
-            .verifyPhoneState!
-            .call(otp: '123456', invalidOTP: false),
+            .call(
+              otp: '123456',
+              invalidOTP: false,
+              phoneNumber: '+254717356476',
+            ),
       );
     });
 
     testWidgets('should fail to verify an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState!.failedToSendOTP,
         false,
       );
 

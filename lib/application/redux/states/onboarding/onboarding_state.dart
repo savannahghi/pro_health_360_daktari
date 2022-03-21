@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/application/redux/states/onboarding/verify_phone_state.dart';
 import 'package:mycarehubpro/domain/core/entities/login/create_pin.dart';
 import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
@@ -16,7 +15,6 @@ class OnboardingState with _$OnboardingState {
     CreatePINState? createPINState,
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
-    VerifyPhoneState? verifyPhoneState,
 
     ///------------WORKFLOW RELATED BOOLEANS------------
     /// Have standardized shared values that will be used across all states
@@ -81,7 +79,6 @@ class OnboardingState with _$OnboardingState {
         createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
-        verifyPhoneState: VerifyPhoneState.initial(),
         currentOnboardingStage: CurrentOnboardingStage.Login,
         isPhoneVerified: false,
         hasSetSecurityQuestions: false,
