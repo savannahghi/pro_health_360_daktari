@@ -66,8 +66,6 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
-        final bool invalidCredentials =
-            vm.state.onboardingState!.invalidCredentials!;
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SizedBox(
@@ -137,6 +135,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                 ),
                                 phoneNumberFormatter: formatPhoneNumber,
                                 onChanged: (String? value) {
+                                  final bool invalidCredentials = vm.state
+                                      .onboardingState!.invalidCredentials!;
+
                                   if (invalidCredentials) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
@@ -178,6 +179,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 onChanged: (String val) {
+                                  final bool invalidCredentials = vm.state
+                                      .onboardingState!.invalidCredentials!;
+
                                   if (invalidCredentials) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
@@ -270,7 +274,7 @@ Future<void> login({
 }) async {
   StoreProvider.dispatch<AppState>(
     context,
-    UpdateOnboardingStateAction(phoneNumber: phoneNumber),
+    UpdateOnboardingStateAction(phoneNumber: phoneNumber, pin: pin),
   );
 
   await StoreProvider.dispatch<AppState>(

@@ -25,6 +25,7 @@ import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
@@ -152,17 +153,52 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       return state;
     } else {
-      // Check error codes here
-      if (processedResponse.message == wrongLoginCredentials) {
-        dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
-      }
+      // final Map<String, dynamic> parsed =
+      //     jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-      await captureException(
-        errorPhoneLogin,
-        error: processedResponse.message,
-        response: processedResponse.response.body,
-      );
-      throw const UserException(wrongCredentials);
+      switch (processedResponse.code) {
+        case 8:
+          dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
+          break;
+        case 48:
+          // TODO(abiud): add PIN expired page navigate
+          // dispatch(
+          //   NavigateAction<AppState>.pushNamedAndRemoveUntil(
+          //     AppRoutes.pinExpiredPage,
+          //     (Route<dynamic> route) => false,
+          //   ),
+          // );
+          return state;
+        case 72:
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.pendingPINRequestPage,
+              (Route<dynamic> route) => false,
+            ),
+          );
+          return state;
+        case 73:
+          // final double? retryTime = parsed['retryTime'] as double?;
+
+          // TODO(abiud): add exponential backoff page
+          // dispatch(
+          //   NavigateAction<AppState>.pushNamedAndRemoveUntil(
+          //     AppRoutes.loginCounterPage,
+          //     (Route<dynamic> route) => false,
+          //     arguments: retryTime?.ceil(),
+          //   ),
+          // );
+
+          return state;
+
+        default:
+          await captureException(
+            errorPhoneLogin,
+            error: processedResponse.message,
+            response: processedResponse.response.body,
+          );
+          throw const UserException(wrongCredentials);
+      }
     }
   }
 
