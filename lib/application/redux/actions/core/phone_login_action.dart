@@ -21,6 +21,7 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -140,11 +141,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         ),
       );
 
-      final OnboardingPathConfig path = getOnboardingPath(state: state);
+      final OnboardingPathInfo path = getOnboardingPath(state: state);
 
       dispatch(
         NavigateAction<AppState>.pushNamedAndRemoveAll(
-          path.route,
+          path.nextRoute,
           arguments: path.arguments,
         ),
       );

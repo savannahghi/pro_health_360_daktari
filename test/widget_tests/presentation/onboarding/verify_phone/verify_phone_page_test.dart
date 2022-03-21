@@ -54,9 +54,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -75,9 +73,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -103,9 +99,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       expect(find.byType(VerifyOTPWidget), findsOneWidget);
@@ -123,9 +117,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       store.dispatch(WaitAction<AppState>.add(verifyOTPFlag));
@@ -152,9 +144,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -179,9 +169,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -221,9 +209,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(
-          phoneNumber: '+254712345678',
-        ),
+        widget: const VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();

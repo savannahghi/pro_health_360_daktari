@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:afya_moja_core/src/domain/core/entities/onboarding_path_config.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,6 +13,7 @@ import 'package:mycarehubpro/application/redux/actions/core/update_credentials_a
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/infrastructure/endpoints.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -42,22 +42,22 @@ void main() {
     });
 
     test('should return login page', () async {
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.loginPage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.loginPage);
     });
 
     test('should return verify otp page', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.verifyPhonePage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.verifyPhonePage);
     });
 
     test('should return terms accepted', () async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
 
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.termsAndConditions);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.termsAndConditions);
     });
 
     test('should return security questions', () async {
@@ -65,8 +65,8 @@ void main() {
       store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.securityQuestionsPage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.securityQuestionsPage);
     });
 
     test('should return set pin page', () async {
@@ -79,8 +79,8 @@ void main() {
       );
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.setPinPage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.setPinPage);
     });
 
     test('should return set nickname page', () async {
@@ -94,8 +94,8 @@ void main() {
       );
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.setNicknamePage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.setNicknamePage);
     });
 
     test('should return home page', () async {
@@ -110,8 +110,8 @@ void main() {
       );
       store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
 
-      final OnboardingPathConfig path = getOnboardingPath(state: store.state);
-      expect(path.route, AppRoutes.homePage);
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.homePage);
     });
 
     testWidgets('should test logout user works correctly',

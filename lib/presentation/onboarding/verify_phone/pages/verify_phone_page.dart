@@ -12,9 +12,8 @@ import 'package:mycarehubpro/presentation/onboarding/verify_phone/widgets/verify
 import 'package:shared_themes/spaces.dart';
 
 class VerifyPhonePage extends StatefulWidget {
-  const VerifyPhonePage({Key? key, required this.phoneNumber})
-      : super(key: key);
-  final String phoneNumber;
+  const VerifyPhonePage({Key? key}) : super(key: key);
+
   @override
   VerifyPhonePageState createState() => VerifyPhonePageState();
 }
@@ -28,10 +27,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
-        SendOTPAction(
-          context: context,
-          resetPinPhoneNumber: widget.phoneNumber,
-        ),
+        SendOTPAction(context: context),
       );
     });
   }
@@ -43,8 +39,8 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
         return VerifyPhoneViewModel.fromStore(store);
       },
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
-        final String phone =
-            vm.isResetPin ? widget.phoneNumber : vm.phoneNumber ?? UNKNOWN;
+        final String phone = vm.phoneNumber ?? UNKNOWN;
+
         return OnboardingScaffold(
           title: verifyPhoneNumberTitle,
           description: verifyPhoneNumberDescription,
@@ -98,10 +94,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                       : () async {
                           StoreProvider.dispatch<AppState>(
                             context,
-                            SendOTPAction(
-                              context: context,
-                              resetPinPhoneNumber: widget.phoneNumber,
-                            ),
+                            SendOTPAction(context: context),
                           );
                         },
                 )

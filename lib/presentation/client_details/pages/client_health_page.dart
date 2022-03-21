@@ -47,7 +47,7 @@ class _ClientHealthPageState extends State<ClientHealthPage> {
                 name: name,
                 cccNumber: userCCCNumberString,
                 age: ageExampleString,
-                phoneNumber: phoneNumber,
+                phoneNumber: dummyPhoneNumber,
                 home: homeExampleString,
                 onTapViewProfile: () {
                   setState(() {

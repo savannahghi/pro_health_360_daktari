@@ -12,6 +12,7 @@ import 'package:mycarehubpro/application/redux/actions/create_pin_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
 import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
@@ -172,7 +173,10 @@ Role roleFromJson(String? roleString) {
 
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
-OnboardingPathConfig getOnboardingPath({required AppState state}) {
+OnboardingPathInfo getOnboardingPath({required AppState state}) {
+  final CurrentOnboardingStage? currentOnboardingStage =
+      state.onboardingState?.currentOnboardingStage;
+
   final bool isSignedIn = state.credentials?.isSignedIn ?? false;
   final bool isPhoneVerified = state.onboardingState?.isPhoneVerified ?? false;
   final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
@@ -181,24 +185,102 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   final bool hasSetPin = state.onboardingState?.hasSetPin ?? false;
   final bool hasSetNickName = state.onboardingState?.hasSetNickName ?? false;
 
-  if (!isSignedIn) {
-    return OnboardingPathConfig(route: AppRoutes.loginPage);
-  } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(
-      route: AppRoutes.verifyPhonePage,
-      arguments: state.onboardingState!.phoneNumber,
-    );
-  } else if (!termsAccepted) {
-    return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
-  } else if (!hasSetSecurityQuestions) {
-    return OnboardingPathConfig(route: AppRoutes.securityQuestionsPage);
-  } else if (!hasSetPin) {
-    return OnboardingPathConfig(route: AppRoutes.setPinPage);
-  } else if (!hasSetNickName) {
-    return OnboardingPathConfig(route: AppRoutes.setNicknamePage);
-  }
+  if (currentOnboardingStage == CurrentOnboardingStage.Login) {
+    if (!isSignedIn) {
+      return OnboardingPathInfo(
+        previousRoute: '',
+        nextRoute: AppRoutes.loginPage,
+      );
+    } else if (!isPhoneVerified) {
+      return OnboardingPathInfo(
+        previousRoute: '',
+        nextRoute: AppRoutes.verifyPhonePage,
+      );
+    } else if (!termsAccepted) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.verifyPhonePage,
+        nextRoute: AppRoutes.termsAndConditions,
+      );
+    } else if (!hasSetSecurityQuestions) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.termsAndConditions,
+        nextRoute: AppRoutes.securityQuestionsPage,
+      );
+    } else if (!hasSetPin) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.securityQuestionsPage,
+        nextRoute: AppRoutes.setPinPage,
+      );
+    } else if (!hasSetNickName) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.setPinPage,
+        nextRoute: AppRoutes.setNicknamePage,
+      );
+    }
 
-  return OnboardingPathConfig(route: AppRoutes.homePage);
+    return OnboardingPathInfo(
+      previousRoute: '',
+      nextRoute: AppRoutes.homePage,
+    );
+
+    /// The PIN expiry workflow
+  } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired) {
+    // check whether the phone is verified
+    if (!isPhoneVerified) {
+      return OnboardingPathInfo(
+        previousRoute: '',
+        nextRoute: AppRoutes.verifyPhonePage,
+      );
+    }
+
+    // check whether the PIN has been changed
+    if (!hasSetPin) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.securityQuestionsPage,
+        nextRoute: AppRoutes.setPinPage,
+      );
+    }
+
+    // Reset the state and navigate to the login page
+    return OnboardingPathInfo(
+      nextRoute: AppRoutes.loginPage,
+      previousRoute: '',
+    );
+
+    // This means it is the [CurrentOnboardingStage.ChangePIN] that is in play
+  } else {
+    // check whether the phone is verified
+    if (!isPhoneVerified) {
+      return OnboardingPathInfo(
+        previousRoute: '',
+        nextRoute: AppRoutes.verifyPhonePage,
+      );
+    }
+
+    // (optional) set new security questions
+    if (!hasSetSecurityQuestions) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.termsAndConditions,
+        nextRoute: AppRoutes.securityQuestionsPage,
+      );
+    }
+
+    // change the PIN
+    // check whether the PIN has been changed
+    // check whether the PIN has been changed
+    if (!hasSetPin) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.securityQuestionsPage,
+        nextRoute: AppRoutes.setPinPage,
+      );
+    }
+
+    // Reset the state and navigate to the login page
+    return OnboardingPathInfo(
+      nextRoute: AppRoutes.loginPage,
+      previousRoute: '',
+    );
+  }
 }
 
 Function() logoutUser({required BuildContext context}) {
@@ -447,7 +529,7 @@ final EditInformationItem careGiverEditInfo = EditInformationItem(
 );
 
 final EditInformationInputItem phoneInputItem = EditInformationInputItem(
-  fieldName: phoneNumber,
+  fieldName: dummyPhoneNumber,
   hintText: hotlineNumberString,
   inputType: EditInformationInputType.Text,
   inputController: TextEditingController(),
