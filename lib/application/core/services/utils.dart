@@ -179,7 +179,7 @@ OnboardingPathConfig getOnboardingPath({required AppState state}) {
   final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
   final bool hasSetSecurityQuestions =
       state.onboardingState?.hasSetSecurityQuestions ?? false;
-  final bool hasSetPin = state.onboardingState?.isPINSet ?? false;
+  final bool hasSetPin = state.onboardingState?.hasSetPin ?? false;
   final bool hasSetNickName = state.onboardingState?.hasSetNickName ?? false;
 
   if (!isSignedIn) {

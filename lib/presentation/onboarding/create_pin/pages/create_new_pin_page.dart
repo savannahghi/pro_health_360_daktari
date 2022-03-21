@@ -7,6 +7,7 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/onboarding/create_pin_view_model.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
@@ -31,9 +32,11 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isResetPin =
-        StoreProvider.state<AppState>(context)?.onboardingState?.isResetPin ??
-            false;
+    final bool isResetPin = StoreProvider.state<AppState>(context)
+            ?.onboardingState
+            ?.currentOnboardingStage ==
+        CurrentOnboardingStage.ResetPIN;
+
     return OnboardingScaffold(
       title: isResetPin ? resetPINTitleString : createNewPINTitleString,
       description: createNewPINSubTitleString,

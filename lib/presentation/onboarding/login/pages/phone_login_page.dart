@@ -5,7 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/services.dart';
-import 'package:mycarehubpro/application/core/services/input_invalidators.dart';
+import 'package:mycarehubpro/application/core/services/input_validators.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/core/phone_login_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -39,9 +39,8 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
       StoreProvider.dispatch<AppState>(
         context,
         UpdateOnboardingStateAction(
-          unKnownPhoneNo: false,
           phoneNumber: UNKNOWN,
-          pinCode: UNKNOWN,
+          pin: UNKNOWN,
           invalidCredentials: false,
         ),
       );
@@ -58,10 +57,10 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
-         final bool invalidCredentials =
+        final bool invalidCredentials =
             vm.state.onboardingState!.phoneLogin!.invalidCredentials!;
-            final bool unKnownPhoneNo = vm.state.onboardingState!.phoneLogin!
-                                          .unKnownPhoneNo!;
+        final bool unKnownPhoneNo =
+            vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!;
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SizedBox(
@@ -131,15 +130,11 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                 ),
                                 phoneNumberFormatter: formatPhoneNumber,
                                 onChanged: (String? value) {
-                                 
-
-                                  if (invalidCredentials ||
-                                      unKnownPhoneNo) {
+                                  if (invalidCredentials || unKnownPhoneNo) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
                                       UpdateOnboardingStateAction(
                                         invalidCredentials: false,
-                                        unKnownPhoneNo: false,
                                       ),
                                     );
                                   }
@@ -175,13 +170,11 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 onChanged: (String val) {
-                                   if (invalidCredentials||
-                                      unKnownPhoneNo) {
+                                  if (invalidCredentials || unKnownPhoneNo) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
                                       UpdateOnboardingStateAction(
                                         invalidCredentials: false,
-                                        unKnownPhoneNo: false,
                                       ),
                                     );
                                   }
@@ -270,7 +263,6 @@ Future<void> login({
     context,
     UpdateOnboardingStateAction(
       phoneNumber: phoneNumber,
-      pinCode: pin,
     ),
   );
 
