@@ -12,7 +12,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/widgets/animated_count.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 // ignore: implementation_imports
@@ -103,7 +102,6 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
   @override
   Widget build(BuildContext context) {
     final bool canResend = widget.verifyPhoneViewModel.canResendOTP!;
-    final bool isResetPin = widget.verifyPhoneViewModel.isResetPin;
     return Column(
       children: <Widget>[
         smallVerticalSizedBox,
@@ -112,21 +110,13 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
           controller: textEditingController,
           onDone: (String enteredCode) async {
             if (enteredCode == widget.verifyPhoneViewModel.otp) {
-              if (isResetPin) {
-                Navigator.pushNamed(
-                  context,
-                  AppRoutes.setPinPage,
-                  arguments: widget.phoneNumber,
-                );
-              } else {
-                await StoreProvider.dispatch<AppState>(
-                  context,
-                  VerifyOTPAction(
-                    otp: enteredCode,
-                    context: context,
-                  ),
-                );
-              }
+              await StoreProvider.dispatch<AppState>(
+                context,
+                VerifyOTPAction(
+                  otp: enteredCode,
+                  context: context,
+                ),
+              );
               return;
             } else {
               feedbackBottomSheet(

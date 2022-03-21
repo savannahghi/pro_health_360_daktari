@@ -4,6 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -13,7 +14,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_card_widget.dart';
-import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:http/http.dart' as http;
@@ -44,9 +44,27 @@ void main() {
               phoneNumber: '+254712345678',
             ),
       );
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Login,
+          isPhoneVerified: false,
+          hasAcceptedTerms: true,
+          hasSetSecurityQuestions: true,
+          hasVerifiedSecurityQuestions: true,
+          phoneNumber: '+2547123456',
+          hasSetPin: false,
+        ),
+      );
+      store.dispatch(
+        UpdateUserAction(
+          user:
+              store.state.staffState!.user!.copyWith.call(termsAccepted: true),
+        ),
+      );
     });
 
-    testWidgets('should verify an OTP correctly and navigate to terms page',
+    testWidgets('should verify an OTP correctly and navigate to set PIN page',
         (WidgetTester tester) async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
 
@@ -64,7 +82,7 @@ void main() {
       await tester.enterText(find.byType(PINInputField), '123456');
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      expect(find.byType(TermsAndConditionsPage), findsWidgets);
+      expect(find.byType(CreateNewPINPage), findsWidgets);
     });
 
     testWidgets('should show error if code is invalid',

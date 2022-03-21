@@ -5,9 +5,13 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -21,10 +25,29 @@ void main() {
   group('CreateNewPINPage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Login,
+          isPhoneVerified: true,
+          hasAcceptedTerms: true,
+          hasSetSecurityQuestions: true,
+          phoneNumber: '+2547123456',
+        ),
+      );
+      store.dispatch(
+        UpdateUserAction(
+          user: store.state.staffState!.user!.copyWith.call(
+            termsAccepted: true,
+            isPhoneVerified: true,
+            hasSetSecurityQuestions: true,
+          ),
+        ),
+      );
     });
 
     testWidgets('PIN field validates correctly', (WidgetTester tester) async {
@@ -45,7 +68,7 @@ void main() {
       await tester.ensureVisible(saveAndContinueButton);
       await tester.tap(saveAndContinueButton);
       await tester.pumpAndSettle();
-      expect(find.text('A PIN is required'), findsNWidgets(2));
+      expect(find.text('A PIN is required'), findsOneWidget);
     });
 
     testWidgets('confirm PIN validates correctly', (WidgetTester tester) async {
@@ -81,6 +104,7 @@ void main() {
         graphQlClient: MockTestGraphQlClient(),
         widget: const CreateNewPINPage(),
       );
+
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byKey(pinInputKey);
       final Finder confirmPinInputField = find.byKey(confirmPinInputKey);
@@ -96,6 +120,7 @@ void main() {
       await tester.ensureVisible(saveAndContinueButton);
       await tester.tap(saveAndContinueButton);
       await tester.pumpAndSettle();
+
       expect(find.byType(SetNickNamePage), findsOneWidget);
     });
 
