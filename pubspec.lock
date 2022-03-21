@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.76"
+    version: "0.0.77"
   analyzer:
     dependency: transitive
     description:
@@ -28,7 +28,7 @@ packages:
       name: app_wrapper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.34"
+    version: "0.1.35"
   archive:
     dependency: transitive
     description:

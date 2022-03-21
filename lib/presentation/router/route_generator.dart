@@ -18,10 +18,13 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
@@ -248,6 +251,20 @@ class RouteGenerator {
       case AppRoutes.searchStaffMemberPage:
         return MaterialPageRoute<SearchStaffMemberPage>(
           builder: (_) => const SearchStaffMemberPage(),
+        );
+      case AppRoutes.verifySecurityQuestionsHelpPage:
+        return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
+          builder: (_) => VerifySecurityQuestionsHelpPage(),
+        );
+      case AppRoutes.loginCounterPage:
+        return MaterialPageRoute<LoginCounterPage>(
+          builder: (_) => LoginCounterPage(
+            retryTime: args as int?,
+          ),
+        );
+      case AppRoutes.pinExpiredPage:
+        return MaterialPageRoute<PinExpiredPage>(
+          builder: (_) => const PinExpiredPage(),
         );
     }
   }

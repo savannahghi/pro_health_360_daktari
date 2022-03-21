@@ -51,3 +51,6 @@ const String searchClientFlag = 'search_client_flag';
 
 // search staff member
 const String searchStaffMemberFlag = 'search_staff_member_flag';
+
+//pin reset service request
+const String pinResetServiceRequestFlag = 'pin_reset_service_request_flag';
