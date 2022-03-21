@@ -406,6 +406,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
 
                                 return Checkbox(
                                   key: myAfyaHubInviteKey,
+                                  activeColor: AppColors.primaryColor,
                                   value: data ?? false,
                                   onChanged: (bool? value) {
                                     if (value != null) {
@@ -444,18 +445,15 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                                 return const PlatformLoader();
                               }
 
-                              return ElevatedButton(
-                                key: const Key('staffRegisterButton'),
-                                onPressed: hasData && snapshot.data!
-                                    ? () =>
-                                        _processAndNavigate(vm.hasConnection)
-                                    : null,
-                                style: ElevatedButton.styleFrom(
-                                  primary: AppColors.secondaryColor,
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Text(registerBtnText),
+                              return SizedBox(
+                                height: 48,
+                                child: MyAfyaHubPrimaryButton(
+                                  buttonKey: const Key('staffRegisterButton'),
+                                  onPressed: hasData && snapshot.data!
+                                      ? () =>
+                                          _processAndNavigate(vm.hasConnection)
+                                      : null,
+                                  text: registerBtnText,
                                 ),
                               );
                             },

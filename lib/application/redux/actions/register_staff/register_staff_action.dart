@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/register_staff/register_staff_payload.dart';
@@ -60,6 +61,11 @@ class RegisterStaffAction extends ReduxAction<AppState> {
 
       this.onSuccess();
     } else {
+      await captureException(
+        errorPhoneLogin,
+        error: processedResponse.message,
+        response: processedResponse.response.body,
+      );
       throw UserException(processedResponse.message);
     }
 

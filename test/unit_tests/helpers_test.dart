@@ -12,6 +12,7 @@ void main() {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
     'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+    'DEMO_SENTRY_DNS': 'test_prod_sentry_dns',
     'DEV_STREAM_API_KEY': 'dev_stream_api_key',
     'DEMO_STREAM_API_KEY': 'demo_stream_api_key',
     'PROD_STREAM_API_KEY': 'prod_stream_api_key',
