@@ -159,6 +159,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       switch (processedResponse.code) {
         case 8:
           dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
+          await captureException(
+            errorPhoneLogin,
+            error: processedResponse.message,
+            response: processedResponse.response.body,
+          );
           throw const UserException(wrongCredentials);
         case 48:
           dispatch(
