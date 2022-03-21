@@ -54,3 +54,11 @@ extension RoleName on Role {
     return describeEnum(this).split('_').join(' ');
   }
 }
+
+enum PinResetState { APPROVED, REJECTED }
+
+extension PinResetStateExtension on PinResetState {
+  String get name {
+    return describeEnum(this);
+  }
+}

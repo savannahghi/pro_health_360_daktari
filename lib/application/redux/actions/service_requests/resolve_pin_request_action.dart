@@ -8,24 +8,27 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class AcceptPinRequestAction extends ReduxAction<AppState> {
+class ResolvePinRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient httpClient;
   final String clientId;
   final String serviceRequestId;
   final String cccNumber;
   final String phoneNumber;
   final bool physicalIdentityVerified;
+  final PinResetState pinResetState;
   final VoidCallback? onPinVerified;
 
-  AcceptPinRequestAction({
+  ResolvePinRequestAction({
     required this.clientId,
     required this.serviceRequestId,
     required this.cccNumber,
     required this.phoneNumber,
     required this.physicalIdentityVerified,
     required this.httpClient,
+    required this.pinResetState,
     this.onPinVerified,
   });
 
@@ -33,14 +36,18 @@ class AcceptPinRequestAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(
-      WaitAction<AppState>.add('${pinResetAcceptFlag}_$serviceRequestId'),
+      WaitAction<AppState>.add(
+        '${pinResetRequestFlag}_${serviceRequestId}_$pinResetState',
+      ),
     );
   }
 
   @override
   void after() {
     dispatch(
-      WaitAction<AppState>.remove('${pinResetAcceptFlag}_$serviceRequestId'),
+      WaitAction<AppState>.remove(
+        '${pinResetRequestFlag}_${serviceRequestId}_$pinResetState',
+      ),
     );
     super.after();
   }
@@ -53,6 +60,7 @@ class AcceptPinRequestAction extends ReduxAction<AppState> {
       'cccNumber': cccNumber,
       'phoneNumber': phoneNumber,
       'physicalIdentityVerified': physicalIdentityVerified,
+      'state': pinResetState.name,
     };
 
     final Response result =
@@ -60,6 +68,10 @@ class AcceptPinRequestAction extends ReduxAction<AppState> {
 
     final ProcessedResponse processedResponse = processHttpResponse(result);
     httpClient.close();
+
+    final String acceptOrRejectText =
+        pinResetState == PinResetState.APPROVED ? 'accepting' : 'rejecting';
+    final String sentryHint = 'Error while $acceptOrRejectText pin request';
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body =
@@ -70,13 +82,13 @@ class AcceptPinRequestAction extends ReduxAction<AppState> {
       if (error != null) {
         Sentry.captureException(
           error,
-          hint: 'Error while accepting pin request',
+          hint: sentryHint,
         );
         throw UserException(getErrorMessage());
       }
 
       final bool isRequestApproved =
-          body['data']['approvePinResetServiceRequest'] as bool? ?? false;
+          body['data']['verifyPinResetServiceRequest'] as bool? ?? false;
 
       if (isRequestApproved) {
         final Map<String, ServiceRequestContent>? serviceRequests =
@@ -108,7 +120,7 @@ class AcceptPinRequestAction extends ReduxAction<AppState> {
     } else {
       Sentry.captureException(
         processedResponse.message,
-        hint: 'Error while accepting pin request',
+        hint: sentryHint,
       );
       throw UserException(getErrorMessage());
     }

@@ -201,6 +201,7 @@ void main() {
         expect(genericNoDataButton, findsOneWidget);
       },
     );
+
     testWidgets(
         'should show a loading indicator when fetching service request count',
         (WidgetTester tester) async {

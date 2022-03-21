@@ -49,6 +49,30 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             ServiceRequestsViewModel.fromStore(store),
         builder: (BuildContext context, ServiceRequestsViewModel vm) {
           final bool error = vm.errorFetchingServiceRequests ?? false;
+
+          if (error) {
+            return GenericErrorWidget(
+              actionKey: helpNoDataWidgetKey,
+              recoverCallback: () {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  FetchServiceRequestsCountAction(
+                    client: AppWrapperBase.of(context)!.graphQLClient,
+                  ),
+                );
+              },
+              messageTitle: genericErrorOccurred,
+              messageBody: <TextSpan>[
+                TextSpan(
+                  text: getErrorMessage('retrieving the service requests'),
+                  style: normalSize16Text(
+                    AppColors.greyTextColor,
+                  ),
+                ),
+              ],
+            );
+          }
+
           final int total = vm.pendingServiceRequests?.total ?? 0;
           final List<RequestCountContent>? serviceRequestsCount =
               vm.pendingServiceRequests?.serviceRequestsCount;
@@ -72,122 +96,100 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                if (!error) ...<Widget>{
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 30,
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        serviceRequestsIconSvg,
-                        width: 200,
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 30,
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      serviceRequestsIconSvg,
+                      width: 200,
                     ),
                   ),
-                  if (vm.wait
-                      .isWaitingFor(fetchServiceRequestsCountFlag)) ...<Widget>{
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        top: 150,
-                      ),
-                      child: PlatformLoader(),
-                    )
-                  } else if (total > 0) ...<Widget>{
-                    Container(
-                      padding: const EdgeInsets.only(
-                        top: 16.0,
-                        left: 16.0,
-                        right: 16.0,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Wrap(
-                            children: <Widget>[
-                              if (redFlagCount > 0)
-                                ActionCard(
-                                  count: redFlagCount,
-                                  iconUrl: redFlagStressSvgPath,
-                                  title: redFlagString,
-                                  backgroundColor: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.2),
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.redFlagsPage,
-                                  ),
+                ),
+                if (vm.wait
+                    .isWaitingFor(fetchServiceRequestsCountFlag)) ...<Widget>{
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 150,
+                    ),
+                    child: PlatformLoader(),
+                  )
+                } else if (total > 0) ...<Widget>{
+                  Container(
+                    padding: const EdgeInsets.only(
+                      top: 16.0,
+                      left: 16.0,
+                      right: 16.0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Wrap(
+                          children: <Widget>[
+                            if (redFlagCount > 0)
+                              ActionCard(
+                                count: redFlagCount,
+                                iconUrl: redFlagStressSvgPath,
+                                title: redFlagString,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.redFlagsPage,
                                 ),
-                              if (pinResetCount > 0)
-                                ActionCard(
-                                  count: pinResetCount,
-                                  iconUrl: pinResetImageSvgPath,
-                                  title: pinResetString,
-                                  backgroundColor: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.2),
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.pinResetRequestsPage,
-                                  ),
+                              ),
+                            if (pinResetCount > 0)
+                              ActionCard(
+                                count: pinResetCount,
+                                iconUrl: pinResetImageSvgPath,
+                                title: pinResetString,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.pinResetRequestsPage,
                                 ),
-                              if (profileUpdateCount > 0)
-                                ActionCard(
-                                  count: profileUpdateCount,
-                                  iconUrl: profileUpdateImageSvgPath,
-                                  title: profileUpdateString,
-                                  backgroundColor: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.2),
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.profileUpdateRequestsPage,
-                                  ),
-                                )
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  } else ...<Widget>{
-                    GenericErrorWidget(
-                      actionKey: helpNoDataWidgetKey,
-                      actionText: actionTextGenericNoData,
-                      type: GenericNoDataTypes.noData,
-                      recoverCallback: () {
-                        Navigator.of(context).pop();
-                      },
-                      messageTitle: getNoDataTile('Service requests'),
-                      messageBody: <TextSpan>[
-                        TextSpan(
-                          text: serviceRequestsNoDataBodyString,
-                          style: normalSize16Text(
-                            AppColors.greyTextColor,
-                          ),
+                              ),
+                            if (profileUpdateCount > 0)
+                              ActionCard(
+                                count: profileUpdateCount,
+                                iconUrl: profileUpdateImageSvgPath,
+                                title: profileUpdateString,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.profileUpdateRequestsPage,
+                                ),
+                              )
+                          ],
                         ),
                       ],
-                    )
-                  }
+                    ),
+                  )
                 } else ...<Widget>{
                   GenericErrorWidget(
                     actionKey: helpNoDataWidgetKey,
+                    actionText: actionTextGenericNoData,
+                    type: GenericNoDataTypes.noData,
                     recoverCallback: () {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        FetchServiceRequestsCountAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                        ),
-                      );
+                      Navigator.of(context).pop();
                     },
+                    messageTitle: getNoDataTile('Service requests'),
                     messageBody: <TextSpan>[
                       TextSpan(
-                        text: getErrorMessage(fetchingPendingServiceString),
+                        text: serviceRequestsNoDataBodyString,
                         style: normalSize16Text(
                           AppColors.greyTextColor,
                         ),
                       ),
                     ],
                   )
-                },
+                }
               ],
             ),
           );

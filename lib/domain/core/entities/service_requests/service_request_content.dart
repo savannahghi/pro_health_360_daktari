@@ -1,5 +1,5 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_meta.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 part 'service_request_content.freezed.dart';
@@ -15,24 +15,12 @@ class ServiceRequestContent with _$ServiceRequestContent {
     @JsonKey(name: 'ClientName') String? clientName,
     @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
     @JsonKey(name: 'Status') RequestStatus? status,
-    @JsonKey(name: 'CCCNumber') String? cccNumber,
     @JsonKey(name: 'ResolvedAt') String? resolvedTime,
     @JsonKey(name: 'ResolvedBy') String? resolvedBy,
     @JsonKey(name: 'CreatedAt') String? createdAt,
+    @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
   }) = _ServiceRequestContent;
 
   factory ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
       _$ServiceRequestContentFromJson(json);
-
-  factory ServiceRequestContent.initial() => ServiceRequestContent(
-        id: UNKNOWN,
-        description: UNKNOWN,
-        serviceRequestType: ServiceRequestType.UNKNOWN,
-        clientId: UNKNOWN,
-        clientName: UNKNOWN,
-        clientPhoneNumber: UNKNOWN,
-        status: RequestStatus.PENDING,
-        cccNumber: UNKNOWN,
-        createdAt: UNKNOWN,
-      );
 }

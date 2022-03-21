@@ -437,6 +437,7 @@ const String acceptText = 'Accept';
 const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
 const String pinApprovedSuccessText = 'Pin Approved Successfully';
+const String pinRejectedSuccessText = 'Pin Rejected Successfully';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';

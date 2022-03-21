@@ -12,9 +12,10 @@ class PinResetRequestWidget extends StatelessWidget {
     this.clientId,
     this.serviceRequestId,
     this.cccNumber,
-    this.isLoading = false,
     this.onAccept,
     this.onReject,
+    this.isAccepting = false,
+    this.isRejecting = false,
   });
 
   final String name;
@@ -24,9 +25,10 @@ class PinResetRequestWidget extends StatelessWidget {
   final String? clientId;
   final String? serviceRequestId;
   final String? cccNumber;
-  final bool isLoading;
   final VoidCallback? onAccept;
   final VoidCallback? onReject;
+  final bool isAccepting;
+  final bool isRejecting;
 
   @override
   Widget build(BuildContext context) {
@@ -79,32 +81,33 @@ class PinResetRequestWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              // TODO: wait for implementation
-              // Expanded(
-              //   child: TextButton(
-              //     key: rejectKey,
-              //     style: ButtonStyle(
-              //       backgroundColor: MaterialStateProperty.all<Color>(
-              //         AppColors.primaryColor.withOpacity(0.1),
-              //       ),
-              //     ),
-              //     onPressed: onReject,
-              //     child: const Text(
-              //       rejectText,
-              //       style: TextStyle(
-              //         color: Color(0xFFFF888B),
-              //         fontSize: 18,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(width: 16),
+              Expanded(
+                child: TextButton(
+                  key: rejectKey,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      AppColors.primaryColor.withOpacity(0.1),
+                    ),
+                  ),
+                  onPressed: isAccepting ? null : onReject,
+                  child: isRejecting
+                      ? const PlatformLoader()
+                      : const Text(
+                          rejectText,
+                          style: TextStyle(
+                            color: Color(0xFFFF888B),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ),
+              const SizedBox(width: 16),
               Expanded(
                 child: ElevatedButton(
                   key: acceptKey,
-                  onPressed: onAccept,
-                  child: isLoading
+                  onPressed: isRejecting ? null : onAccept,
+                  child: isAccepting
                       ? const PlatformLoader()
                       : const Text(
                           acceptText,

@@ -17,10 +17,12 @@ _$_ServiceRequestContent _$$_ServiceRequestContentFromJson(
       clientName: json['ClientName'] as String?,
       clientPhoneNumber: json['ClientContact'] as String?,
       status: $enumDecodeNullable(_$RequestStatusEnumMap, json['Status']),
-      cccNumber: json['CCCNumber'] as String?,
       resolvedTime: json['ResolvedAt'] as String?,
       resolvedBy: json['ResolvedBy'] as String?,
       createdAt: json['CreatedAt'] as String?,
+      meta: json['Meta'] == null
+          ? null
+          : ServiceRequestMeta.fromJson(json['Meta'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ServiceRequestContentToJson(
@@ -33,10 +35,10 @@ Map<String, dynamic> _$$_ServiceRequestContentToJson(
       'ClientName': instance.clientName,
       'ClientContact': instance.clientPhoneNumber,
       'Status': _$RequestStatusEnumMap[instance.status],
-      'CCCNumber': instance.cccNumber,
       'ResolvedAt': instance.resolvedTime,
       'ResolvedBy': instance.resolvedBy,
       'CreatedAt': instance.createdAt,
+      'Meta': instance.meta,
     };
 
 const _$ServiceRequestTypeEnumMap = {
