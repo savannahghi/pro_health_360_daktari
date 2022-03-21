@@ -18,7 +18,9 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
@@ -233,6 +235,14 @@ class RouteGenerator {
             clientResponse: args['clientResponse'] as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
+        );
+      case AppRoutes.pinRequestSentPage:
+        return MaterialPageRoute<PinRequestSentPage>(
+          builder: (_) => const PinRequestSentPage(),
+        );
+      case AppRoutes.pendingPINRequestPage:
+        return MaterialPageRoute<PendingPINRequestPage>(
+          builder: (_) => const PendingPINRequestPage(),
         );
 
       case AppRoutes.searchStaffMemberPage:

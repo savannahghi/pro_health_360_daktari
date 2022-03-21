@@ -133,3 +133,9 @@ const Key clientManagementKey = Key('client_management_checkbox_key');
 const Key contentManagementKey = Key('content_management_checkbox_key');
 const Key systemAdminstrationKey = Key('system_management_checkbox_key');
 const Key communityManagementKey = Key('community_management_checkbox_key');
+
+//pin request
+const Key signInWithAnotherNumberButtonKey =
+    Key('sign_in_with_another_number_button_key');
+const Key askForHelpButtonKey = Key('ask_for_help_button_key');
+const Key tryAgainButtonKey = Key('try_again_button_key');

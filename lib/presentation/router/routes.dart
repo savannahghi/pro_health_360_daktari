@@ -73,4 +73,8 @@ class AppRoutes {
 
   // search staff member
   static const String searchStaffMemberPage = '/searchStaffMemberPage';
+
+  //pin requests
+  static const String pinRequestSentPage = '/pinRequestSentPage';
+  static const String pendingPINRequestPage = '/pendingPINRequestPage';
 }
