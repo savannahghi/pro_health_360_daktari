@@ -62,3 +62,18 @@ extension PinResetStateExtension on PinResetState {
     return describeEnum(this);
   }
 }
+
+/// The current onboarding workflow that is running
+///
+/// [Login] stage is when a user is signing up normally. It was combined and
+///  tweaked to handle signup as well because once a user has been invited they
+///  will still have to login
+///
+/// [ChangePin] is used when the user's PIN has been changed by someone else
+///  like their HCW or an admin
+///
+/// [PINExpired] is used when a user's PIN has expired
+///
+/// The [CurrentOnboardingStage] is stored in the [onboardingState] and must be
+///  changed at the end of each workflow
+enum CurrentOnboardingStage { Login, ResetPIN, PINExpired }

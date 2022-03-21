@@ -5,6 +5,7 @@ import 'package:mycarehubpro/application/redux/states/onboarding/verify_phone_st
 import 'package:mycarehubpro/domain/core/entities/login/create_pin.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_state.dart';
 import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';
@@ -18,20 +19,60 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestionResponse>? securityQuestionResponses,
     VerifyPhoneState? verifyPhoneState,
     PhoneLoginState? phoneLogin,
-    // If the user has accepted terms
-    bool? termsAccepted,
+
+    ///------------WORKFLOW RELATED BOOLEANS------------
+    /// Have standardized shared values that will be used across all states
+    /// regardless of the workflow
+    // The current stage of onboarding that the user is in
+    CurrentOnboardingStage? currentOnboardingStage,
+
     // If the user has verified their phone number
     bool? isPhoneVerified,
-    //If the user has set their PIN
-    bool? isPINSet,
-    //If the user wants to reset their PIN
-    bool? isResetPin,
+
     // If the user has set their security questions
     bool? hasSetSecurityQuestions,
+
     // If the user has successfully verified their security questions if pin is expired
     bool? hasVerifiedSecurityQuestions,
+
     // If the user has set their nickname
     bool? hasSetNickName,
+
+    // Whether the user's PIN has been set
+    final bool? hasSetPin,
+
+    // Whether the user has accepted terms and conditions
+    final bool? hasAcceptedTerms,
+
+    ///------------WORKFLOW RELATED VALUES------------
+    // The currently active user's phone number
+    final String? phoneNumber,
+
+    // The PIN
+    final String? pin,
+
+    // The confirm PIN
+    final String? confirmPIN,
+
+    // The OTP used when confirming the phone number
+    final String? otp,
+
+    ///------------LOGIN RELATED VALUES------------
+    // The number of failed login attempts that this user has
+    final int? failedLoginCount,
+
+    // Whether the credentials this user entered are invalid
+    final bool? invalidCredentials,
+
+    ///------------VERIFY PHONE RELATED VALUES------------
+    // If the OTP entered is invalid
+    final bool? invalidOTP,
+
+    // Whether there was a failure while sending an OTP
+    final bool? failedToSendOTP,
+
+    //  Whether the user is allowed to resend their PIN
+    final bool? canResendOTP,
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -39,20 +80,26 @@ class OnboardingState with _$OnboardingState {
 
   factory OnboardingState.initial() => OnboardingState(
         termsAndConditions: TermsAndConditions.initial(),
-        verifyPhoneState: VerifyPhoneState.initial(),
-        isResetPin: false,
-
-        ///   - Login state
-        ///   - create pin
-        phoneLogin: PhoneLoginState.initial(),
         createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
-        termsAccepted: false,
+        verifyPhoneState: VerifyPhoneState.initial(),
+        phoneLogin: PhoneLoginState.initial(),
+        currentOnboardingStage: CurrentOnboardingStage.Login,
         isPhoneVerified: false,
-        isPINSet: false,
         hasSetSecurityQuestions: false,
         hasVerifiedSecurityQuestions: false,
         hasSetNickName: false,
+        hasSetPin: false,
+        hasAcceptedTerms: false,
+        phoneNumber: UNKNOWN,
+        pin: UNKNOWN,
+        confirmPIN: UNKNOWN,
+        otp: UNKNOWN,
+        failedLoginCount: 0,
+        invalidCredentials: false,
+        invalidOTP: false,
+        failedToSendOTP: false,
+        canResendOTP: false,
       );
 }
