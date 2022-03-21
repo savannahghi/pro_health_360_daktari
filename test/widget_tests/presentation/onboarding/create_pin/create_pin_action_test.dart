@@ -36,7 +36,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CreatePINAction);
 
-      expect(info.state.onboardingState?.isPINSet, false);
+      expect(info.state.onboardingState?.hasSetPin, false);
     });
   });
 }

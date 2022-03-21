@@ -10,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
 
@@ -45,7 +46,8 @@ class SendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+    final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
+        CurrentOnboardingStage.ResetPIN;
 
     final String phoneNumber = isResetPin
         ? resetPinPhoneNumber
