@@ -40,8 +40,11 @@ void main() {
             )
             .copyWith
             .onboardingState!
-            .verifyPhoneState!
-            .call(otp: '123456', invalidOTP: false),
+            .call(
+              otp: '123456',
+              invalidOTP: false,
+              phoneNumber: '+254712345678',
+            ),
       );
     });
 

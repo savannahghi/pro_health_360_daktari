@@ -154,7 +154,7 @@ void main() {
       await tester.tap(find.byKey(loginKey));
       await tester.pumpAndSettle();
 
-      expect(store.state.onboardingState!.phoneLogin!.invalidCredentials, true);
+      expect(store.state.onboardingState!.invalidCredentials, true);
       expect(find.byType(SnackBar), findsOneWidget);
       expect(
         find.text(
@@ -184,16 +184,15 @@ void main() {
       await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
 
       expect(
-        store.state.onboardingState!.phoneLogin!.invalidCredentials,
+        store.state.onboardingState!.invalidCredentials,
         false,
       );
-      expect(store.state.onboardingState!.phoneLogin!.unKnownPhoneNo, false);
 
       store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       await tester.pumpAndSettle();
       await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
       expect(
-        store.state.onboardingState!.phoneLogin!.invalidCredentials,
+        store.state.onboardingState!.invalidCredentials,
         false,
       );
     });

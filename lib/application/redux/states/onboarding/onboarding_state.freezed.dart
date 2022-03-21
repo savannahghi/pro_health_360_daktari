@@ -27,8 +27,6 @@ class _$OnboardingStateTearOff {
       CreatePINState? createPINState,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      VerifyPhoneState? verifyPhoneState,
-      PhoneLoginState? phoneLogin,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -50,8 +48,6 @@ class _$OnboardingStateTearOff {
       createPINState: createPINState,
       securityQuestions: securityQuestions,
       securityQuestionResponses: securityQuestionResponses,
-      verifyPhoneState: verifyPhoneState,
-      phoneLogin: phoneLogin,
       currentOnboardingStage: currentOnboardingStage,
       isPhoneVerified: isPhoneVerified,
       hasSetSecurityQuestions: hasSetSecurityQuestions,
@@ -88,8 +84,6 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
-  VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
-  PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
@@ -147,8 +141,6 @@ abstract class $OnboardingStateCopyWith<$Res> {
       CreatePINState? createPINState,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      VerifyPhoneState? verifyPhoneState,
-      PhoneLoginState? phoneLogin,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -168,8 +160,6 @@ abstract class $OnboardingStateCopyWith<$Res> {
 
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $CreatePINStateCopyWith<$Res>? get createPINState;
-  $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
@@ -187,8 +177,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? createPINState = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
-    Object? verifyPhoneState = freezed,
-    Object? phoneLogin = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -223,14 +211,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      verifyPhoneState: verifyPhoneState == freezed
-          ? _value.verifyPhoneState
-          : verifyPhoneState // ignore: cast_nullable_to_non_nullable
-              as VerifyPhoneState?,
-      phoneLogin: phoneLogin == freezed
-          ? _value.phoneLogin
-          : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLoginState?,
       currentOnboardingStage: currentOnboardingStage == freezed
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -320,28 +300,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
       return _then(_value.copyWith(createPINState: value));
     });
   }
-
-  @override
-  $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState {
-    if (_value.verifyPhoneState == null) {
-      return null;
-    }
-
-    return $VerifyPhoneStateCopyWith<$Res>(_value.verifyPhoneState!, (value) {
-      return _then(_value.copyWith(verifyPhoneState: value));
-    });
-  }
-
-  @override
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin {
-    if (_value.phoneLogin == null) {
-      return null;
-    }
-
-    return $PhoneLoginStateCopyWith<$Res>(_value.phoneLogin!, (value) {
-      return _then(_value.copyWith(phoneLogin: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -356,8 +314,6 @@ abstract class _$OnboardingStateCopyWith<$Res>
       CreatePINState? createPINState,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      VerifyPhoneState? verifyPhoneState,
-      PhoneLoginState? phoneLogin,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -379,10 +335,6 @@ abstract class _$OnboardingStateCopyWith<$Res>
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
   $CreatePINStateCopyWith<$Res>? get createPINState;
-  @override
-  $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
-  @override
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
@@ -402,8 +354,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? createPINState = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
-    Object? verifyPhoneState = freezed,
-    Object? phoneLogin = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -438,14 +388,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      verifyPhoneState: verifyPhoneState == freezed
-          ? _value.verifyPhoneState
-          : verifyPhoneState // ignore: cast_nullable_to_non_nullable
-              as VerifyPhoneState?,
-      phoneLogin: phoneLogin == freezed
-          ? _value.phoneLogin
-          : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLoginState?,
       currentOnboardingStage: currentOnboardingStage == freezed
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -522,8 +464,6 @@ class _$_OnboardingState implements _OnboardingState {
       this.createPINState,
       this.securityQuestions,
       this.securityQuestionResponses,
-      this.verifyPhoneState,
-      this.phoneLogin,
       this.currentOnboardingStage,
       this.isPhoneVerified,
       this.hasSetSecurityQuestions,
@@ -552,10 +492,6 @@ class _$_OnboardingState implements _OnboardingState {
   final List<SecurityQuestion>? securityQuestions;
   @override
   final List<SecurityQuestionResponse>? securityQuestionResponses;
-  @override
-  final VerifyPhoneState? verifyPhoneState;
-  @override
-  final PhoneLoginState? phoneLogin;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
@@ -605,7 +541,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(termsAndConditions: $termsAndConditions, createPINState: $createPINState, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifyPhoneState: $verifyPhoneState, phoneLogin: $phoneLogin, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, hasAcceptedTerms: $hasAcceptedTerms, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions, createPINState: $createPINState, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, hasAcceptedTerms: $hasAcceptedTerms, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -621,10 +557,6 @@ class _$_OnboardingState implements _OnboardingState {
                 .equals(other.securityQuestions, securityQuestions) &&
             const DeepCollectionEquality().equals(
                 other.securityQuestionResponses, securityQuestionResponses) &&
-            const DeepCollectionEquality()
-                .equals(other.verifyPhoneState, verifyPhoneState) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneLogin, phoneLogin) &&
             const DeepCollectionEquality()
                 .equals(other.currentOnboardingStage, currentOnboardingStage) &&
             const DeepCollectionEquality()
@@ -664,8 +596,6 @@ class _$_OnboardingState implements _OnboardingState {
         const DeepCollectionEquality().hash(createPINState),
         const DeepCollectionEquality().hash(securityQuestions),
         const DeepCollectionEquality().hash(securityQuestionResponses),
-        const DeepCollectionEquality().hash(verifyPhoneState),
-        const DeepCollectionEquality().hash(phoneLogin),
         const DeepCollectionEquality().hash(currentOnboardingStage),
         const DeepCollectionEquality().hash(isPhoneVerified),
         const DeepCollectionEquality().hash(hasSetSecurityQuestions),
@@ -701,8 +631,6 @@ abstract class _OnboardingState implements OnboardingState {
       CreatePINState? createPINState,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      VerifyPhoneState? verifyPhoneState,
-      PhoneLoginState? phoneLogin,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -731,10 +659,6 @@ abstract class _OnboardingState implements OnboardingState {
   List<SecurityQuestion>? get securityQuestions;
   @override
   List<SecurityQuestionResponse>? get securityQuestionResponses;
-  @override
-  VerifyPhoneState? get verifyPhoneState;
-  @override
-  PhoneLoginState? get phoneLogin;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
