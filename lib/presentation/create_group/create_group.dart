@@ -7,6 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/create_group/create_group_action.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_models/create_group/create_group_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -293,13 +296,21 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     ) {
                       final bool isValid = snapshot.data ?? false;
 
-                      return ElevatedButton(
-                        key: createGroupBtnKey,
-                        onPressed: isValid ? () => _submitForm() : null,
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.primaryColor,
-                        ),
-                        child: const Text(createGroupText),
+                      return StoreConnector<AppState, CreateGroupViewModel>(
+                        converter: (Store<AppState> store) =>
+                            CreateGroupViewModel.fromStore(store),
+                        builder: (_, CreateGroupViewModel vm) {
+                          return ElevatedButton(
+                            key: createGroupBtnKey,
+                            onPressed: isValid ? () => _submitForm() : null,
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.primaryColor,
+                            ),
+                            child: vm.wait.isWaitingFor(createGroupFlag)
+                                ? const PlatformLoader(color: Colors.white)
+                                : const Text(createGroupText),
+                          );
+                        },
                       );
                     },
                   ),
