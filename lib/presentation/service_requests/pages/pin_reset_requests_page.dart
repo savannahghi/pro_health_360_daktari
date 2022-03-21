@@ -74,6 +74,8 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                     final String clientId = request?.clientId ?? '';
                     final String serviceRequestId = request?.id ?? '';
                     final String cccNumber = request?.meta?.cccNumber ?? '';
+                    final bool isCccNumberVerified =
+                        request?.meta?.isCccNumberValid ?? false;
 
                     requestWidgetList.add(
                       PinResetRequestWidget(
@@ -84,6 +86,7 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                         rejectKey: ValueKey<String>('reject_key_$i'),
                         phoneNumber: phoneNumber,
                         name: name,
+                        isCccNumberVerified: isCccNumberVerified,
                         isAccepting: vm.wait.isWaitingFor(
                           '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.APPROVED}',
                         ),

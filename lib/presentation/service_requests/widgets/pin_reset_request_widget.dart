@@ -17,6 +17,7 @@ class PinResetRequestWidget extends StatelessWidget {
     this.onReject,
     this.isAccepting = false,
     this.isRejecting = false,
+    this.isCccNumberVerified = false,
   });
 
   final String name;
@@ -30,6 +31,7 @@ class PinResetRequestWidget extends StatelessWidget {
   final VoidCallback? onReject;
   final bool isAccepting;
   final bool isRejecting;
+  final bool isCccNumberVerified;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class PinResetRequestWidget extends StatelessWidget {
         color: AppColors.primaryColor.withOpacity(0.1),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +62,7 @@ class PinResetRequestWidget extends StatelessWidget {
                   Text(
                     phoneNumber,
                     style: const TextStyle(
-                      color: Color(0xFF696979),
+                      color: AppColors.lightGrey,
                       fontSize: 15,
                     ),
                   )
@@ -84,6 +87,21 @@ class PinResetRequestWidget extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
+          RichText(
+            text: TextSpan(
+              style: const TextStyle(color: AppColors.lightGrey, fontSize: 15),
+              children: <TextSpan>[
+                const TextSpan(text: cccNoShortText),
+                TextSpan(
+                  text: cccNumber,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          CccNumberVerifiedWidget(cccNumberVerified: isCccNumberVerified),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -129,6 +147,44 @@ class PinResetRequestWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class CccNumberVerifiedWidget extends StatelessWidget {
+  const CccNumberVerifiedWidget({
+    Key? key,
+    required this.cccNumberVerified,
+  }) : super(key: key);
+
+  final bool cccNumberVerified;
+
+  @override
+  Widget build(BuildContext context) {
+    final IconData icon = cccNumberVerified ? Icons.check : Icons.close;
+    final String text =
+        cccNumberVerified ? cccNumberVerifiedText : cccNumberUnverifiedText;
+    final Color infoColor =
+        cccNumberVerified ? AppColors.malachiteColor : AppColors.warningColor;
+
+    return Row(
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: infoColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Icon(icon, color: Colors.white),
+        ),
+        const SizedBox(width: 8),
+        Flexible(
+          child: Text(
+            text,
+            style: TextStyle(color: infoColor, fontSize: 15),
+          ),
+        )
+      ],
     );
   }
 }
