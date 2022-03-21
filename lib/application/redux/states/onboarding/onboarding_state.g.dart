@@ -32,14 +32,24 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
           ? null
           : PhoneLoginState.fromJson(
               json['phoneLogin'] as Map<String, dynamic>),
-      termsAccepted: json['termsAccepted'] as bool?,
+      currentOnboardingStage: $enumDecodeNullable(
+          _$CurrentOnboardingStageEnumMap, json['currentOnboardingStage']),
       isPhoneVerified: json['isPhoneVerified'] as bool?,
-      isPINSet: json['isPINSet'] as bool?,
-      isResetPin: json['isResetPin'] as bool?,
       hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
       hasVerifiedSecurityQuestions:
           json['hasVerifiedSecurityQuestions'] as bool?,
       hasSetNickName: json['hasSetNickName'] as bool?,
+      hasSetPin: json['hasSetPin'] as bool?,
+      hasAcceptedTerms: json['hasAcceptedTerms'] as bool?,
+      phoneNumber: json['phoneNumber'] as String?,
+      pin: json['pin'] as String?,
+      confirmPIN: json['confirmPIN'] as String?,
+      otp: json['otp'] as String?,
+      failedLoginCount: json['failedLoginCount'] as int?,
+      invalidCredentials: json['invalidCredentials'] as bool?,
+      invalidOTP: json['invalidOTP'] as bool?,
+      failedToSendOTP: json['failedToSendOTP'] as bool?,
+      canResendOTP: json['canResendOTP'] as bool?,
     );
 
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
@@ -50,11 +60,27 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestionResponses': instance.securityQuestionResponses,
       'verifyPhoneState': instance.verifyPhoneState,
       'phoneLogin': instance.phoneLogin,
-      'termsAccepted': instance.termsAccepted,
+      'currentOnboardingStage':
+          _$CurrentOnboardingStageEnumMap[instance.currentOnboardingStage],
       'isPhoneVerified': instance.isPhoneVerified,
-      'isPINSet': instance.isPINSet,
-      'isResetPin': instance.isResetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
+      'hasSetPin': instance.hasSetPin,
+      'hasAcceptedTerms': instance.hasAcceptedTerms,
+      'phoneNumber': instance.phoneNumber,
+      'pin': instance.pin,
+      'confirmPIN': instance.confirmPIN,
+      'otp': instance.otp,
+      'failedLoginCount': instance.failedLoginCount,
+      'invalidCredentials': instance.invalidCredentials,
+      'invalidOTP': instance.invalidOTP,
+      'failedToSendOTP': instance.failedToSendOTP,
+      'canResendOTP': instance.canResendOTP,
     };
+
+const _$CurrentOnboardingStageEnumMap = {
+  CurrentOnboardingStage.Login: 'Login',
+  CurrentOnboardingStage.ResetPIN: 'ResetPIN',
+  CurrentOnboardingStage.PINExpired: 'PINExpired',
+};
