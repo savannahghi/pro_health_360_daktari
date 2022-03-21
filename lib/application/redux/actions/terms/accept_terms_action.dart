@@ -15,6 +15,7 @@ import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_st
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/terms/accept_terms_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
@@ -75,12 +76,12 @@ class AcceptTermAction extends ReduxAction<AppState> {
       ),
     );
 
-    final OnboardingPathConfig onboardingPathConfig =
+    final OnboardingPathInfo onboardingPathConfig =
         getOnboardingPath(state: state);
 
     dispatch(
       NavigateAction<AppState>.pushNamedAndRemoveUntil(
-        onboardingPathConfig.route,
+        onboardingPathConfig.nextRoute,
         (Route<dynamic> route) => false,
         arguments: onboardingPathConfig.arguments,
       ),

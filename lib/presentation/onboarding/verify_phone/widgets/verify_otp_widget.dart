@@ -174,9 +174,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
                       context,
                       SendOTPAction(
                         context: context,
-                        isResend: true,
                         callBackFunction: restartTimer,
-                        resetPinPhoneNumber: widget.phoneNumber,
                       ),
                     );
                   },
