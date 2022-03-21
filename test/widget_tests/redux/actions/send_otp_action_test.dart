@@ -1,23 +1,19 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/verify_otp_action.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/send_otp_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/contact.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart';
 
-import '../../mocks/mocks.dart';
-import '../../mocks/test_helpers.dart';
+import '../../../mocks/mocks.dart';
+import '../../../mocks/test_helpers.dart';
 
 void main() {
-  group('VerifyOTPAction', () {
+  group('SendOTPAction', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -33,14 +29,57 @@ void main() {
             .copyWith
             .onboardingState!
             .call(
-              otp: '123456',
+              otp: '1234',
               invalidOTP: false,
               phoneNumber: '+254717356476',
             ),
       );
     });
 
-    testWidgets('should fail to verify an OTP if there is an API error',
+    testWidgets(
+        'should fail to send an otp if the userID and phone number are '
+        'UNKNOWN', (WidgetTester tester) async {
+      store = Store<AppState>(initialState: AppState.initial());
+
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              buttonKey: const Key('update_contacts'),
+              onPressed: () {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  SendOTPAction(context: context),
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+
+      expect(
+        store.state.onboardingState!.failedToSendOTP,
+        true,
+      );
+    });
+
+    testWidgets('should fail to send an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
         store.state.onboardingState!.failedToSendOTP,
@@ -52,12 +91,11 @@ void main() {
         'idToken',
         'endpoint',
         Response(
-          json.encode(<String, dynamic>{'error': 'some error'}),
+          json.encode(<String, dynamic>{'data': 'some data'}),
           403,
         ),
       );
 
-      late dynamic err;
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -65,79 +103,24 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return MyAfyaHubPrimaryButton(
-              buttonKey: const Key('verify_otp'),
+              buttonKey: const Key('update_contacts'),
               onPressed: () async {
-                try {
-                  await store.dispatch(
-                    VerifyOTPAction(
-                      context: context,
-                      otp: '123456',
-                    ),
-                  );
-                } catch (e) {
-                  err = e;
-                }
+                await store.dispatch(
+                  SendOTPAction(context: context),
+                );
               },
             );
           },
         ),
       );
 
-      await tester.tap(find.byKey(const Key('verify_otp')));
+      await tester.tap(find.byKey(const Key('update_contacts')));
       await tester.pumpAndSettle();
 
-      expect(find.text(getErrorMessage()), findsOneWidget);
-
-      expect(err, isA<Future<dynamic>>());
-    });
-
-    testWidgets('should be invalid if otp is wrong',
-        (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortSILGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'verifyOTP': false,
-            }
-          }),
-          201,
-        ),
+      expect(
+        store.state.onboardingState!.failedToSendOTP,
+        true,
       );
-      late dynamic err;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        graphQlClient: mockShortSILGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              buttonKey: const Key('verify_otp'),
-              onPressed: () async {
-                try {
-                  await store.dispatch(
-                    VerifyOTPAction(
-                      context: context,
-                      otp: '123456',
-                    ),
-                  );
-                } catch (e) {
-                  err = e;
-                }
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.tap(find.byKey(const Key('verify_otp')));
-      await tester.pumpAndSettle();
-
-      expect(err, isA<Future<dynamic>>());
-      expect(find.text(invalidCode), findsWidgets);
     });
   });
 }

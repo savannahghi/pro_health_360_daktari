@@ -6,11 +6,13 @@ generate:
 test:
 	rm -rf coverage* && \
 	flutter test --coverage test/ && \
-	lcov --remove coverage/lcov.info 'lib/**/*.g.dart' -o coverage/lcov.info && \
-    lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info && \
-    lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info && \
-	lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info \
-	genhtml -q -o coverage coverage/lcov.info && \
+	lcov --remove coverage/lcov.info 'lib/*.g.dart' -o coverage/lcov.info && \
+            lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info && \
+            lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info && \
+            lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info && \
+            lcov --remove coverage/lcov.info 'lib/presentation/communities/*.dart' -o coverage/lcov.info && \
+            lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/*.dart' -o coverage/lcov.info && \
+            genhtml -q -o coverage coverage/lcov.info && \
 	google-chrome coverage/index.html
 
 .PHONY: covTest

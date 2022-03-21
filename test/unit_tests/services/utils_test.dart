@@ -14,6 +14,7 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/infrastructure/endpoints.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
@@ -34,7 +35,7 @@ void main() {
     });
   });
 
-  group('onboardingPath', () {
+  group('Login workflow onboardingPath', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -113,63 +114,178 @@ void main() {
       final OnboardingPathInfo path = getOnboardingPath(state: store.state);
       expect(path.nextRoute, AppRoutes.homePage);
     });
+  });
 
-    testWidgets('should test logout user works correctly',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        graphQlClient: MockShortGraphQlClient.withResponse(
-          'idToken',
-          kTestGraphqlEndpoint,
-          Response(
-            json.encode(<String, String>{'error': 'error occurred'}),
-            201,
-          ),
-        ),
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () {
-                logoutUser(context: context).call();
-              },
-            );
-          },
+  group('Pin expired workflow onboardingPath', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
         ),
       );
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(store.state, AppState.initial());
-      expect(find.byType(PhoneLoginPage), findsOneWidget);
-    });
-    test('formatSecurityQuestionDate should return birth date in en_GB format',
-        () {
-      initializeDateFormatting();
-      const String enFormat = '1990-02-19';
-      const String looseFormat = '19 Feb 1990';
-
-      final String r1 = formatSecurityQuestionDate(enFormat);
-      final String r2 = formatSecurityQuestionDate(looseFormat);
-
-      expect(r1, equals(r2));
     });
 
-    test(
-        'formatSecurityQuestionDate should return birth date from britain format',
-        () {
-      initializeDateFormatting();
-      const String enFormat = '1990-02-19';
-      const String looseFormat = '19 Feb, 1990';
-
-      final String r2 =
-          formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
-
-      expect(enFormat, equals(r2));
+    test('should return verify otp page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.verifyPhonePage);
     });
+
+    test('should return set pin page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.setPinPage);
+    });
+
+    test('should return login page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.loginPage);
+    });
+  });
+
+  group('Pin reset workflow onboardingPath', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+        ),
+      );
+    });
+
+    test('should return verify otp page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.verifyPhonePage);
+    });
+
+    test('should return security questions', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasVerifiedSecurityQuestions: false,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.securityQuestionsPage);
+    });
+
+    test('should return set pin page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasVerifiedSecurityQuestions: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.setPinPage);
+    });
+
+    test('should return login page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasVerifiedSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.loginPage);
+    });
+  });
+
+  testWidgets('should test logout user works correctly',
+      (WidgetTester tester) async {
+    final Store<AppState> store =
+        Store<AppState>(initialState: AppState.initial());
+
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      graphQlClient: MockShortGraphQlClient.withResponse(
+        'idToken',
+        kTestGraphqlEndpoint,
+        Response(
+          json.encode(<String, String>{'error': 'error occurred'}),
+          201,
+        ),
+      ),
+      widget: Builder(
+        builder: (BuildContext context) {
+          return MyAfyaHubPrimaryButton(
+            onPressed: () {
+              logoutUser(context: context).call();
+            },
+          );
+        },
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+    await tester.pumpAndSettle();
+
+    expect(store.state, AppState.initial());
+    expect(find.byType(PhoneLoginPage), findsOneWidget);
+  });
+  test('formatSecurityQuestionDate should return birth date in en_GB format',
+      () {
+    initializeDateFormatting();
+    const String enFormat = '1990-02-19';
+    const String looseFormat = '19 Feb 1990';
+
+    final String r1 = formatSecurityQuestionDate(enFormat);
+    final String r2 = formatSecurityQuestionDate(looseFormat);
+
+    expect(r1, equals(r2));
+  });
+
+  test(
+      'formatSecurityQuestionDate should return birth date from britain format',
+      () {
+    initializeDateFormatting();
+    const String enFormat = '1990-02-19';
+    const String looseFormat = '19 Feb, 1990';
+
+    final String r2 =
+        formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
+
+    expect(enFormat, equals(r2));
   });
 
   group('dismissSnackBar', () {

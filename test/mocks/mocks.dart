@@ -1153,31 +1153,23 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'termsAndConditions': <String, dynamic>{'termsID': 0, 'text': 'UNKNOWN'},
-  'createPINState': <String, dynamic>{
-    'newPIN': 'UNKNOWN',
-    'confirmPIN': 'UNKNOWN'
-  },
+  'pin': 'UNKNOWN',
+  'confirmPIN': 'UNKNOWN',
   'securityQuestions': <dynamic>[],
   'securityQuestionResponses': <dynamic>[],
-  'verifyPhoneState': <String, dynamic>{
-    'invalidOTP': false,
-    'otp': 'UNKNOWN',
-    'failedToSendOTP': false,
-    'canResendOTP': false,
-  },
-  'phoneLogin': <String, dynamic>{
-    'invalidCredentials': false,
-    'phoneNumber': 'UNKNOWN',
-    'pinCode': 'UNKNOWN',
-    'unKnownPhoneNo': false,
-  },
+  'invalidOTP': false,
+  'otp': 'UNKNOWN',
+  'failedToSendOTP': false,
+  'canResendOTP': false,
+  'invalidCredentials': false,
+  'phoneNumber': 'UNKNOWN',
   'isPhoneVerified': false,
-  'isPINSet': false,
-  'isResetPin': false,
-  'termsAccepted': false,
+  'hasSetPin': false,
+  'hasAcceptedTerms': false,
   'hasSetSecurityQuestions': false,
   'hasVerifiedSecurityQuestions': false,
-  'hasSetNickName': false
+  'hasSetNickName': false,
+  'failedLoginCount': 0,
 };
 
 final Map<String, dynamic> appStateMock = <String, dynamic>{

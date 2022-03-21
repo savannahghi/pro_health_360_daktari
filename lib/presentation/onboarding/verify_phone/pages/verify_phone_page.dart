@@ -3,6 +3,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/resend_otp_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/send_otp_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/onboarding/verify_phone_view_model.dart';
@@ -94,7 +95,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                       : () async {
                           StoreProvider.dispatch<AppState>(
                             context,
-                            SendOTPAction(context: context),
+                            ResendOTPAction(context: context),
                           );
                         },
                 )

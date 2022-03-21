@@ -59,16 +59,6 @@ class ResendOTPAction extends ReduxAction<AppState> {
       final ProcessedResponse processedResponse =
           processHttpResponse(httpResponse);
 
-      final Map<String, dynamic> payLoad = _client.toMap(httpResponse);
-
-      final String? error = parseError(payLoad);
-
-      if (error != null) {
-        dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
-
-        return null;
-      }
-
       if (processedResponse.ok == true) {
         // Return OTP sent as string
         final Map<String, dynamic> parsed =

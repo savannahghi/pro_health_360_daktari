@@ -4,9 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/redux/actions/create_pin_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -33,12 +31,12 @@ List<NotificationDetails> notifications = <NotificationDetails>[
   ),
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
-    description: 'Upcoming tele-consult with Dennis Kilonzo at 2.00pm.',
+    description: 'Upcoming teleconsult with Dennis Smith at 2.00pm.',
     date: customDate,
   ),
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
-    description: 'New tele-consult request',
+    description: 'New teleconsult request',
     date: customDate,
   ),
 ];
@@ -182,6 +180,8 @@ OnboardingPathInfo getOnboardingPath({required AppState state}) {
   final bool termsAccepted = state.staffState?.user?.termsAccepted ?? false;
   final bool hasSetSecurityQuestions =
       state.onboardingState?.hasSetSecurityQuestions ?? false;
+  final bool hasVerifiedSecurityQuestions =
+      state.onboardingState?.hasVerifiedSecurityQuestions ?? false;
   final bool hasSetPin = state.onboardingState?.hasSetPin ?? false;
   final bool hasSetNickName = state.onboardingState?.hasSetNickName ?? false;
 
@@ -247,7 +247,7 @@ OnboardingPathInfo getOnboardingPath({required AppState state}) {
       previousRoute: '',
     );
 
-    // This means it is the [CurrentOnboardingStage.ChangePIN] that is in play
+    // This means it is the [CurrentOnboardingStage.ResetPIN] that is in play
   } else {
     // check whether the phone is verified
     if (!isPhoneVerified) {
@@ -258,7 +258,7 @@ OnboardingPathInfo getOnboardingPath({required AppState state}) {
     }
 
     // (optional) set new security questions
-    if (!hasSetSecurityQuestions) {
+    if (!hasVerifiedSecurityQuestions) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.termsAndConditions,
         nextRoute: AppRoutes.securityQuestionsPage,
@@ -396,37 +396,6 @@ Future<dynamic> feedbackBottomSheet({
   );
 }
 
-Future<http.Response> retrieveOTP({
-  required IGraphQlClient httpClient,
-  required BuildContext context,
-  required bool isResetPin,
-  required bool isResend,
-  required Map<String, dynamic> variables,
-}) async {
-  final String verifyPhoneEndpoint =
-      AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
-
-  final String sendOTPEndpoint =
-      AppWrapperBase.of(context)!.customContext!.sendRecoverAccountOtpEndpoint;
-
-  final String reSendOTPEndpoint =
-      AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
-
-  if (isResetPin || (isResetPin && isResend)) {
-    return httpClient.callRESTAPI(
-      endpoint: verifyPhoneEndpoint,
-      method: httpPOST,
-      variables: variables,
-    );
-  } else {
-    return httpClient.callRESTAPI(
-      endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
-      method: httpPOST,
-      variables: variables,
-    );
-  }
-}
-
 Future<void> setUserPIN({
   required BuildContext context,
   required String newPIN,
@@ -436,10 +405,7 @@ Future<void> setUserPIN({
   // this is the Redux Action that store the PINs user enters
   StoreProvider.dispatch(
     context,
-    UpdateOnboardingStateAction(
-      pin: newPIN,
-      confirmPIN: confirmPIN,
-    ),
+    UpdateOnboardingStateAction(pin: newPIN, confirmPIN: confirmPIN),
   );
 
   // this is the Redux Action that handles set PIN for an existing user
@@ -460,10 +426,10 @@ Future<void> setUserPIN({
           UpdateOnboardingStateAction(hasSetPin: true),
         );
 
-        Navigator.pushReplacementNamed(
-          context,
-          AppRoutes.setNicknamePage,
-        );
+        final OnboardingPathInfo path =
+            getOnboardingPath(state: StoreProvider.state<AppState>(context)!);
+
+        Navigator.pushReplacementNamed(context, path.nextRoute);
       },
       // scaffold that handles a mismatch in the just entered PINs by the user
       pinMismatchCallback: () => ScaffoldMessenger.of(context).showSnackBar(

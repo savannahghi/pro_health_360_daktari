@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
@@ -21,10 +22,10 @@ void main() {
     });
 
     test('fromJson', () {
-      expect(
-        AppState.fromJson(appStateMock),
-        AppState.initial().copyWith(wait: null),
-      );
+      final AppState appStateJson = AppState.fromJson(appStateMock);
+
+      expect(appStateJson.onboardingState!.pin, UNKNOWN);
+      expect(appStateJson.onboardingState!.confirmPIN, UNKNOWN);
     });
   });
 }

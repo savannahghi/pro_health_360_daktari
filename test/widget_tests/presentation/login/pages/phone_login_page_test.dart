@@ -13,9 +13,13 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 
 import '../../../../mocks/mocks.dart';
@@ -163,6 +167,145 @@ void main() {
         ),
         findsOneWidget,
       );
+    });
+
+    testWidgets('should navigate to PIN expired page when a PIN has expired',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient graphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(json.encode(<String, dynamic>{'code': 48}), 400),
+      );
+
+      await buildTestWidget(
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+        graphQlClient: graphQlClient,
+      );
+
+      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+
+      // Enter phone number
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+      // Enter PIN
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
+
+      // Tap the login button
+      await tester.ensureVisible(find.byKey(loginKey));
+      await tester.tap(find.byKey(loginKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PinExpiredPage), findsOneWidget);
+    });
+
+    testWidgets('should show a generic error if any other error occurs',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient graphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(json.encode(<String, dynamic>{'code': 100}), 400),
+      );
+
+      await buildTestWidget(
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+        graphQlClient: graphQlClient,
+      );
+
+      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+
+      // Enter phone number
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+      // Enter PIN
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
+
+      // Tap the login button
+      await tester.ensureVisible(find.byKey(loginKey));
+      await tester.tap(find.byKey(loginKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text(somethingWentWrongText), findsOneWidget);
+    });
+
+    testWidgets(
+        'should navigate to pending PIN reset request page when a '
+        'pending PIN reset request exists', (WidgetTester tester) async {
+      final MockShortGraphQlClient graphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(json.encode(<String, dynamic>{'code': 72}), 400),
+      );
+
+      await buildTestWidget(
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+        graphQlClient: graphQlClient,
+      );
+
+      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+
+      // Enter phone number
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+      // Enter PIN
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
+
+      // Tap the login button
+      await tester.ensureVisible(find.byKey(loginKey));
+      await tester.tap(find.byKey(loginKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PendingPINRequestPage), findsOneWidget);
+    });
+
+    testWidgets(
+        'should navigate to login counter page when a '
+        'exponential backoff is triggered', (WidgetTester tester) async {
+      final MockShortGraphQlClient graphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'message': '73: wrong PIN',
+            'code': 73,
+            'retryTime': 21.8990
+          }),
+          400,
+        ),
+      );
+
+      await buildTestWidget(
+        store: store,
+        tester: tester,
+        widget: PhoneLoginPage(),
+        graphQlClient: graphQlClient,
+      );
+
+      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+
+      // Enter phone number
+      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+      // Enter PIN
+      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
+
+      // Tap the login button
+      await tester.ensureVisible(find.byKey(loginKey));
+      await tester.tap(find.byKey(loginKey));
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+      expect(find.byType(LoginCounterPage), findsOneWidget);
+
+      await tester.pumpAndSettle(const Duration(seconds: 30));
+      expect(find.byType(PhoneLoginPage), findsOneWidget);
     });
 
     testWidgets(

@@ -71,9 +71,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
     if (errors != null) {
       onError?.call();
-      Sentry.captureException(
-        UserException(errors),
-      );
+      Sentry.captureException(UserException(errors));
 
       throw const UserException(somethingWentWrongText);
     }

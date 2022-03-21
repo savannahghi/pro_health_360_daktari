@@ -34,15 +34,15 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   final BuildContext context;
 
   @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(phoneLoginStateFlag));
-  }
-
-  @override
   Future<void> after() async {
     dispatch(WaitAction<AppState>.remove(phoneLoginStateFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(phoneLoginStateFlag));
   }
 
   @override
@@ -153,21 +153,20 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       return state;
     } else {
-      // final Map<String, dynamic> parsed =
-      //     jsonDecode(httpResponse.body) as Map<String, dynamic>;
+      final Map<String, dynamic> parsed =
+          jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
       switch (processedResponse.code) {
         case 8:
           dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
-          break;
+          throw const UserException(wrongCredentials);
         case 48:
-          // TODO(abiud): add PIN expired page navigate
-          // dispatch(
-          //   NavigateAction<AppState>.pushNamedAndRemoveUntil(
-          //     AppRoutes.pinExpiredPage,
-          //     (Route<dynamic> route) => false,
-          //   ),
-          // );
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.pinExpiredPage,
+              (Route<dynamic> route) => false,
+            ),
+          );
           return state;
         case 72:
           dispatch(
@@ -178,16 +177,16 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           );
           return state;
         case 73:
-          // final double? retryTime = parsed['retryTime'] as double?;
+          final double? retryTime =
+              double.tryParse(parsed['retryTime'].toString());
 
-          // TODO(abiud): add exponential backoff page
-          // dispatch(
-          //   NavigateAction<AppState>.pushNamedAndRemoveUntil(
-          //     AppRoutes.loginCounterPage,
-          //     (Route<dynamic> route) => false,
-          //     arguments: retryTime?.ceil(),
-          //   ),
-          // );
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.loginCounterPage,
+              (Route<dynamic> route) => false,
+              arguments: retryTime?.ceil(),
+            ),
+          );
 
           return state;
 
@@ -197,7 +196,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             error: processedResponse.message,
             response: processedResponse.response.body,
           );
-          throw const UserException(wrongCredentials);
+          throw const UserException(somethingWentWrongText);
       }
     }
   }
