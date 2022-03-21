@@ -496,3 +496,17 @@ const String pendingPINRequestTitleString =
 const String pendingPINRequestMessageString =
     'Please be patient while an admin approves your request. If you signed in with the wrong phone number, tap the button below to try again';
 const String signInWithAnotherNumberString = 'Sign in with another number';
+const String verifySecurityQuestionHelpMessageString =
+    'You seem to be having trouble verifying your security questions. If you need help, you can make a request for an admin to reset your PIN.\n\nKindly enter your CCC number below to verify your identity';
+const String askForHelpString = 'Ask for help';
+const String tryAgainString = 'Try Again';
+const String cccNumberString = 'CCC number';
+const String successfulPINResetRequestString =
+    'PIN reset requested successfully';
+const String sendingPINResetRequestSting = 'sending your pin reset request';
+
+// PIN expired page strings
+const String pinExpiredTitle = 'Your PIN has expired';
+const String pinExpiredDescription =
+    'It seems that your PIN has expired. No worries though. We expire PINs so as to enhance security of your data on myCareHub.\n\nTap the button below to change your PIN';
+const String changePinCTA = 'Change my PIN';

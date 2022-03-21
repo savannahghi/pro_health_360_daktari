@@ -77,4 +77,8 @@ class AppRoutes {
   //pin requests
   static const String pinRequestSentPage = '/pinRequestSentPage';
   static const String pendingPINRequestPage = '/pendingPINRequestPage';
+  static const String verifySecurityQuestionsHelpPage =
+      '/verifySecurityQuestionsHelpPage';
+  static const String loginCounterPage = '/loginCounterPage';
+  static const String pinExpiredPage = '/pinExpiredPage';
 }

@@ -119,3 +119,5 @@ const String clientSearchSvgPath = 'assets/images/client_search.svg';
 const String staffSearchSvgPath = 'assets/images/staff_search.svg';
 
 const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
+
+const String pinExpiredImage = 'assets/images/pin_expired.svg';

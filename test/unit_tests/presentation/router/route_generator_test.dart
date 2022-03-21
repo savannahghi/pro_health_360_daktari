@@ -20,9 +20,12 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
@@ -388,5 +391,37 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
     expect(route?.builder(context), isA<PinRequestSentPage>());
+  });
+  test('Test router returns VerifySecurityQuestionsHelpPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.verifySecurityQuestionsHelpPage);
+
+    final MaterialPageRoute<VerifySecurityQuestionsHelpPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
+
+    expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
+    expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
+  });
+  test('Test router returns LoginCounterPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.loginCounterPage, arguments: 0);
+
+    final MaterialPageRoute<LoginCounterPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<LoginCounterPage>?;
+
+    expect(route, isA<MaterialPageRoute<LoginCounterPage>>());
+    expect(route?.builder(context), isA<LoginCounterPage>());
+  });
+
+  test('Test router returns PinExpiredPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pinExpiredPage);
+
+    final MaterialPageRoute<PinExpiredPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PinExpiredPage>?;
+
+    expect(route, isA<MaterialPageRoute<PinExpiredPage>>());
+    expect(route?.builder(context), isA<PinExpiredPage>());
   });
 }
