@@ -46,9 +46,8 @@ class CreatePINAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String? userID = state.staffState?.user?.userId;
-    final String? newPIN = state.onboardingState?.createPINState?.newPIN;
-    final String? confirmPIN =
-        state.onboardingState?.createPINState?.confirmPIN;
+    final String? newPIN = state.onboardingState?.pin;
+    final String? confirmPIN = state.onboardingState?.confirmPIN;
 
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {
