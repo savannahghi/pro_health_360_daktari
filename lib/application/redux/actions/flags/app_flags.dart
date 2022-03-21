@@ -32,7 +32,7 @@ const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
 const String fetchServiceRequestsCountFlag =
     'fetch_service_requests_count_flag';
-const String pinResetAcceptFlag = 'pin_reset_accept_flag';
+const String pinResetRequestFlag = 'pin_reset_accept_flag';
 
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';

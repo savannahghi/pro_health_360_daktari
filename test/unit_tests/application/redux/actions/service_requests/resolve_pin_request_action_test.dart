@@ -7,18 +7,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/accept_pin_request_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_pin_request_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../mocks/mocks.dart';
 
-import 'accept_pin_request_action_test.mocks.dart';
+import 'resolve_pin_request_action_test.mocks.dart';
 
 @GenerateMocks(<Type>[IGraphQlClient])
 void main() {
-  group('AcceptPinRequestAction', () {
+  group('ResolvePinRequestAction', () {
     late StoreTester<AppState> storeTester;
 
     setUp(() {
@@ -32,7 +33,7 @@ void main() {
       int pinVerified = 0;
 
       storeTester.dispatch(
-        AcceptPinRequestAction(
+        ResolvePinRequestAction(
           clientId: '',
           serviceRequestId: '',
           cccNumber: '',
@@ -40,10 +41,11 @@ void main() {
           physicalIdentityVerified: true,
           httpClient: MockTestGraphQlClient(),
           onPinVerified: () => pinVerified++,
+          pinResetState: PinResetState.APPROVED,
         ),
       );
 
-      await storeTester.waitUntil(AcceptPinRequestAction);
+      await storeTester.waitUntil(ResolvePinRequestAction);
 
       expect(pinVerified, 1);
     });
@@ -76,7 +78,7 @@ void main() {
       int pinVerified = 0;
 
       storeTester.dispatch(
-        AcceptPinRequestAction(
+        ResolvePinRequestAction(
           clientId: '',
           serviceRequestId: 'service-request-id',
           cccNumber: '',
@@ -84,11 +86,12 @@ void main() {
           physicalIdentityVerified: true,
           httpClient: MockTestGraphQlClient(),
           onPinVerified: () => pinVerified++,
+          pinResetState: PinResetState.APPROVED,
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(AcceptPinRequestAction);
+          await storeTester.waitUntil(ResolvePinRequestAction);
 
       expect(
         info.state.serviceRequestState
@@ -111,7 +114,7 @@ void main() {
       int pinVerified = 0;
 
       storeTester.dispatch(
-        AcceptPinRequestAction(
+        ResolvePinRequestAction(
           clientId: '',
           serviceRequestId: '',
           cccNumber: '',
@@ -119,11 +122,12 @@ void main() {
           physicalIdentityVerified: true,
           httpClient: client,
           onPinVerified: () => pinVerified++,
+          pinResetState: PinResetState.APPROVED,
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(AcceptPinRequestAction);
+          await storeTester.waitUntil(ResolvePinRequestAction);
 
       expect(pinVerified, 0);
       expect(info.error, UserException(getErrorMessage()));
@@ -142,7 +146,7 @@ void main() {
       int pinVerified = 0;
 
       storeTester.dispatch(
-        AcceptPinRequestAction(
+        ResolvePinRequestAction(
           clientId: '',
           serviceRequestId: '',
           cccNumber: '',
@@ -150,11 +154,12 @@ void main() {
           physicalIdentityVerified: true,
           httpClient: client,
           onPinVerified: () => pinVerified++,
+          pinResetState: PinResetState.APPROVED,
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(AcceptPinRequestAction);
+          await storeTester.waitUntil(ResolvePinRequestAction);
 
       expect(pinVerified, 0);
       expect(info.error, UserException(getErrorMessage()));
@@ -170,7 +175,7 @@ void main() {
       int pinVerified = 0;
 
       storeTester.dispatch(
-        AcceptPinRequestAction(
+        ResolvePinRequestAction(
           clientId: '',
           serviceRequestId: '',
           cccNumber: '',
@@ -178,11 +183,12 @@ void main() {
           physicalIdentityVerified: true,
           httpClient: client,
           onPinVerified: () => pinVerified++,
+          pinResetState: PinResetState.APPROVED,
         ),
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(AcceptPinRequestAction);
+          await storeTester.waitUntil(ResolvePinRequestAction);
 
       expect(pinVerified, 0);
       expect(info.errors.removeFirst(), UserException(getErrorMessage()));

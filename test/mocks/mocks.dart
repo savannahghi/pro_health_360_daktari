@@ -846,7 +846,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
         http.Response(
           json.encode(
             <String, dynamic>{
-              'data': <String, dynamic>{'approvePinResetServiceRequest': true}
+              'data': <String, dynamic>{'verifyPinResetServiceRequest': true}
             },
           ),
           201,

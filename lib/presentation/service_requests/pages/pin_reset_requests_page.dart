@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/accept_pin_request_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_pin_request_action.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
@@ -73,7 +73,7 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                         request?.clientPhoneNumber ?? UNKNOWN;
                     final String clientId = request?.clientId ?? '';
                     final String serviceRequestId = request?.id ?? '';
-                    final String cccNumber = request?.cccNumber ?? '';
+                    final String cccNumber = request?.meta?.cccNumber ?? '';
 
                     requestWidgetList.add(
                       PinResetRequestWidget(
@@ -84,36 +84,30 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                         rejectKey: ValueKey<String>('reject_key_$i'),
                         phoneNumber: phoneNumber,
                         name: name,
-                        isLoading: vm.wait.isWaitingFor(
-                          '${pinResetAcceptFlag}_$serviceRequestId',
+                        isAccepting: vm.wait.isWaitingFor(
+                          '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.APPROVED}',
+                        ),
+                        isRejecting: vm.wait.isWaitingFor(
+                          '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.REJECTED}',
                         ),
                         onAccept: () {
-                          StoreProvider.dispatch(
-                            context,
-                            AcceptPinRequestAction(
-                              clientId: clientId,
-                              serviceRequestId: serviceRequestId,
-                              cccNumber: cccNumber,
-                              phoneNumber: phoneNumber,
-                              physicalIdentityVerified: true,
-                              httpClient:
-                                  AppWrapperBase.of(context)!.graphQLClient,
-                              onPinVerified: () {
-                                showTextSnackbar(
-                                  ScaffoldMessenger.of(context),
-                                  content: pinApprovedSuccessText,
-                                );
-                              },
-                            ),
+                          _resolvePinRequest(
+                            clientId: clientId,
+                            serviceRequestId: serviceRequestId,
+                            cccNumber: cccNumber,
+                            phoneNumber: phoneNumber,
+                            pinResetState: PinResetState.APPROVED,
                           );
                         },
-                        // TODO: wait for backend implementation
-                        // onReject: () {
-                        //   showTextSnackbar(
-                        //     ScaffoldMessenger.of(context),
-                        //     content: comingSoonText,
-                        //   );
-                        // },
+                        onReject: () {
+                          _resolvePinRequest(
+                            clientId: clientId,
+                            serviceRequestId: serviceRequestId,
+                            cccNumber: cccNumber,
+                            phoneNumber: phoneNumber,
+                            pinResetState: PinResetState.REJECTED,
+                          );
+                        },
                       ),
                     );
 
@@ -155,6 +149,35 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  void _resolvePinRequest({
+    required String clientId,
+    required String serviceRequestId,
+    required String cccNumber,
+    required String phoneNumber,
+    required PinResetState pinResetState,
+  }) {
+    StoreProvider.dispatch(
+      context,
+      ResolvePinRequestAction(
+        clientId: clientId,
+        serviceRequestId: serviceRequestId,
+        cccNumber: cccNumber,
+        phoneNumber: phoneNumber,
+        physicalIdentityVerified: true,
+        pinResetState: pinResetState,
+        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+        onPinVerified: () {
+          showTextSnackbar(
+            ScaffoldMessenger.of(context),
+            content: pinResetState == PinResetState.APPROVED
+                ? pinApprovedSuccessText
+                : pinRejectedSuccessText,
+          );
+        },
       ),
     );
   }

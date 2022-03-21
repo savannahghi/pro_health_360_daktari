@@ -31,10 +31,10 @@ class _$ServiceRequestContentTearOff {
       @JsonKey(name: 'ClientName') String? clientName,
       @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
       @JsonKey(name: 'Status') RequestStatus? status,
-      @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-      @JsonKey(name: 'CreatedAt') String? createdAt}) {
+      @JsonKey(name: 'CreatedAt') String? createdAt,
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) {
     return _ServiceRequestContent(
       id: id,
       description: description,
@@ -43,10 +43,10 @@ class _$ServiceRequestContentTearOff {
       clientName: clientName,
       clientPhoneNumber: clientPhoneNumber,
       status: status,
-      cccNumber: cccNumber,
       resolvedTime: resolvedTime,
       resolvedBy: resolvedBy,
       createdAt: createdAt,
+      meta: meta,
     );
   }
 
@@ -75,14 +75,14 @@ mixin _$ServiceRequestContent {
   String? get clientPhoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'Status')
   RequestStatus? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: 'CCCNumber')
-  String? get cccNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'ResolvedAt')
   String? get resolvedTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'ResolvedBy')
   String? get resolvedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedAt')
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Meta')
+  ServiceRequestMeta? get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -103,10 +103,12 @@ abstract class $ServiceRequestContentCopyWith<$Res> {
       @JsonKey(name: 'ClientName') String? clientName,
       @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
       @JsonKey(name: 'Status') RequestStatus? status,
-      @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-      @JsonKey(name: 'CreatedAt') String? createdAt});
+      @JsonKey(name: 'CreatedAt') String? createdAt,
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta});
+
+  $ServiceRequestMetaCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -127,10 +129,10 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
     Object? clientName = freezed,
     Object? clientPhoneNumber = freezed,
     Object? status = freezed,
-    Object? cccNumber = freezed,
     Object? resolvedTime = freezed,
     Object? resolvedBy = freezed,
     Object? createdAt = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -161,10 +163,6 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus?,
-      cccNumber: cccNumber == freezed
-          ? _value.cccNumber
-          : cccNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
       resolvedTime: resolvedTime == freezed
           ? _value.resolvedTime
           : resolvedTime // ignore: cast_nullable_to_non_nullable
@@ -177,7 +175,22 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      meta: meta == freezed
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as ServiceRequestMeta?,
     ));
+  }
+
+  @override
+  $ServiceRequestMetaCopyWith<$Res>? get meta {
+    if (_value.meta == null) {
+      return null;
+    }
+
+    return $ServiceRequestMetaCopyWith<$Res>(_value.meta!, (value) {
+      return _then(_value.copyWith(meta: value));
+    });
   }
 }
 
@@ -196,10 +209,13 @@ abstract class _$ServiceRequestContentCopyWith<$Res>
       @JsonKey(name: 'ClientName') String? clientName,
       @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
       @JsonKey(name: 'Status') RequestStatus? status,
-      @JsonKey(name: 'CCCNumber') String? cccNumber,
       @JsonKey(name: 'ResolvedAt') String? resolvedTime,
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-      @JsonKey(name: 'CreatedAt') String? createdAt});
+      @JsonKey(name: 'CreatedAt') String? createdAt,
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta});
+
+  @override
+  $ServiceRequestMetaCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -222,10 +238,10 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
     Object? clientName = freezed,
     Object? clientPhoneNumber = freezed,
     Object? status = freezed,
-    Object? cccNumber = freezed,
     Object? resolvedTime = freezed,
     Object? resolvedBy = freezed,
     Object? createdAt = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_ServiceRequestContent(
       id: id == freezed
@@ -256,10 +272,6 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus?,
-      cccNumber: cccNumber == freezed
-          ? _value.cccNumber
-          : cccNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
       resolvedTime: resolvedTime == freezed
           ? _value.resolvedTime
           : resolvedTime // ignore: cast_nullable_to_non_nullable
@@ -272,6 +284,10 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      meta: meta == freezed
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as ServiceRequestMeta?,
     ));
   }
 }
@@ -287,10 +303,10 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       @JsonKey(name: 'ClientName') this.clientName,
       @JsonKey(name: 'ClientContact') this.clientPhoneNumber,
       @JsonKey(name: 'Status') this.status,
-      @JsonKey(name: 'CCCNumber') this.cccNumber,
       @JsonKey(name: 'ResolvedAt') this.resolvedTime,
       @JsonKey(name: 'ResolvedBy') this.resolvedBy,
-      @JsonKey(name: 'CreatedAt') this.createdAt});
+      @JsonKey(name: 'CreatedAt') this.createdAt,
+      @JsonKey(name: 'Meta') this.meta});
 
   factory _$_ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestContentFromJson(json);
@@ -317,9 +333,6 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
   @JsonKey(name: 'Status')
   final RequestStatus? status;
   @override
-  @JsonKey(name: 'CCCNumber')
-  final String? cccNumber;
-  @override
   @JsonKey(name: 'ResolvedAt')
   final String? resolvedTime;
   @override
@@ -328,10 +341,13 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
   @override
   @JsonKey(name: 'CreatedAt')
   final String? createdAt;
+  @override
+  @JsonKey(name: 'Meta')
+  final ServiceRequestMeta? meta;
 
   @override
   String toString() {
-    return 'ServiceRequestContent(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, cccNumber: $cccNumber, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, createdAt: $createdAt)';
+    return 'ServiceRequestContent(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, createdAt: $createdAt, meta: $meta)';
   }
 
   @override
@@ -350,12 +366,12 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
             const DeepCollectionEquality()
                 .equals(other.clientPhoneNumber, clientPhoneNumber) &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.cccNumber, cccNumber) &&
             const DeepCollectionEquality()
                 .equals(other.resolvedTime, resolvedTime) &&
             const DeepCollectionEquality()
                 .equals(other.resolvedBy, resolvedBy) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.meta, meta));
   }
 
   @override
@@ -368,10 +384,10 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       const DeepCollectionEquality().hash(clientName),
       const DeepCollectionEquality().hash(clientPhoneNumber),
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(cccNumber),
       const DeepCollectionEquality().hash(resolvedTime),
       const DeepCollectionEquality().hash(resolvedBy),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(meta));
 
   @JsonKey(ignore: true)
   @override
@@ -394,10 +410,10 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
           @JsonKey(name: 'ClientName') String? clientName,
           @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
           @JsonKey(name: 'Status') RequestStatus? status,
-          @JsonKey(name: 'CCCNumber') String? cccNumber,
           @JsonKey(name: 'ResolvedAt') String? resolvedTime,
           @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-          @JsonKey(name: 'CreatedAt') String? createdAt}) =
+          @JsonKey(name: 'CreatedAt') String? createdAt,
+          @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) =
       _$_ServiceRequestContent;
 
   factory _ServiceRequestContent.fromJson(Map<String, dynamic> json) =
@@ -425,9 +441,6 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
   @JsonKey(name: 'Status')
   RequestStatus? get status;
   @override
-  @JsonKey(name: 'CCCNumber')
-  String? get cccNumber;
-  @override
   @JsonKey(name: 'ResolvedAt')
   String? get resolvedTime;
   @override
@@ -436,6 +449,9 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
   @override
   @JsonKey(name: 'CreatedAt')
   String? get createdAt;
+  @override
+  @JsonKey(name: 'Meta')
+  ServiceRequestMeta? get meta;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestContentCopyWith<_ServiceRequestContent> get copyWith =>

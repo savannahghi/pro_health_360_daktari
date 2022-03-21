@@ -1,4 +1,3 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
 
@@ -10,11 +9,6 @@ void main() {
         'getServiceRequests': <dynamic>[],
       });
       expect(mockResponse, isA<ServiceRequestContent>());
-    });
-    test('expects to ServiceRequestContent,initial to return UNKNOWN', () {
-      final ServiceRequestContent mockResponse =
-          ServiceRequestContent.initial();
-      expect(mockResponse.clientName, UNKNOWN);
     });
   });
 }
