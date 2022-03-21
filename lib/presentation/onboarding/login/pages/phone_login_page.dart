@@ -58,9 +58,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
         final bool invalidCredentials =
-            vm.state.onboardingState!.phoneLogin!.invalidCredentials!;
-        final bool unKnownPhoneNo =
-            vm.state.onboardingState!.phoneLogin!.unKnownPhoneNo!;
+            vm.state.onboardingState!.invalidCredentials!;
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SizedBox(
@@ -130,7 +128,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                 ),
                                 phoneNumberFormatter: formatPhoneNumber,
                                 onChanged: (String? value) {
-                                  if (invalidCredentials || unKnownPhoneNo) {
+                                  if (invalidCredentials) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
                                       UpdateOnboardingStateAction(
@@ -170,7 +168,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 onChanged: (String val) {
-                                  if (invalidCredentials || unKnownPhoneNo) {
+                                  if (invalidCredentials) {
                                     StoreProvider.dispatch<AppState>(
                                       context,
                                       UpdateOnboardingStateAction(
@@ -187,7 +185,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                               mediumVerticalSizedBox,
 
                               /// error alert box for invalid credentials
-                              if (vm.state.onboardingState!.phoneLogin!
+                              if (vm.state.onboardingState!
                                   .invalidCredentials!) ...<Widget>[
                                 mediumVerticalSizedBox,
                                 const ErrorAlertBox(

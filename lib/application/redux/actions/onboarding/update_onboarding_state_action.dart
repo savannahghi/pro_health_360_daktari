@@ -79,10 +79,9 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       canResendOTP:
           canResendOTP ?? state.onboardingState?.verifyPhoneState?.canResendOTP,
       pin: pin ?? state.onboardingState?.pin,
-      invalidCredentials: invalidCredentials ??
-          state.onboardingState?.phoneLogin?.invalidCredentials,
-      phoneNumber:
-          phoneNumber ?? state.onboardingState?.phoneLogin?.phoneNumber,
+      invalidCredentials:
+          invalidCredentials ?? state.onboardingState?.invalidCredentials,
+      phoneNumber: phoneNumber ?? state.onboardingState?.phoneNumber,
     );
 
     final AppState newState =

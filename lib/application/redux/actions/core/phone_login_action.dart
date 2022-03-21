@@ -50,8 +50,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     final OnboardingState? onboardingState = state.onboardingState;
 
     final Map<String, String> credentials = <String, String>{
-      'phoneNumber': onboardingState!.phoneLogin!.phoneNumber!,
-      'pin': onboardingState.phoneLogin!.pinCode!,
+      'phoneNumber': onboardingState!.phoneNumber!,
+      'pin': onboardingState.pin!,
       'flavour': Flavour.pro.name,
     };
 
