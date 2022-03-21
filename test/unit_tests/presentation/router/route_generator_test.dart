@@ -20,6 +20,8 @@ import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
@@ -366,5 +368,25 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SearchPageDetailView>>());
     expect(route?.builder(context), isA<SearchPageDetailView>());
+  });
+  test('Test router returns PendingPINRequestPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pendingPINRequestPage);
+
+    final MaterialPageRoute<PendingPINRequestPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PendingPINRequestPage>?;
+
+    expect(route, isA<MaterialPageRoute<PendingPINRequestPage>>());
+    expect(route?.builder(context), isA<PendingPINRequestPage>());
+  });
+  test('Test router returns pin request sent page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pinRequestSentPage, arguments: '');
+
+    final MaterialPageRoute<PinRequestSentPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PinRequestSentPage>?;
+
+    expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
+    expect(route?.builder(context), isA<PinRequestSentPage>());
   });
 }

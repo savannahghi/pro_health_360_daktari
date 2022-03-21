@@ -25,20 +25,6 @@ import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
-String? userPinValidator(dynamic val) {
-  final String value = val as String;
-  if (value.isEmpty) {
-    return 'A PIN is required';
-  }
-  if (!RegExp(r'^-?[0-9]+$').hasMatch(value)) {
-    return 'Only digits are allowed, 0-9';
-  }
-  if (value.length < 4) {
-    return 'Enter a four digit PIN';
-  }
-  return null;
-}
-
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: surveyCollectionNotificationIcon),

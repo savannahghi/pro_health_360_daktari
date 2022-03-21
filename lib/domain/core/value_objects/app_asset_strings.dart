@@ -117,3 +117,5 @@ const String notificationIconSvgPath = 'assets/icons/notification_icon.svg';
 const String searchSvgPath = 'assets/images/search.svg';
 const String clientSearchSvgPath = 'assets/images/client_search.svg';
 const String staffSearchSvgPath = 'assets/images/staff_search.svg';
+
+const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';

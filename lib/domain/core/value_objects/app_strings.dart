@@ -482,3 +482,17 @@ const String communityManagement = 'Community management';
 const String updateRoles = 'Update roles';
 
 const String authenticationErrorText = 'Authentication error';
+
+// pin request
+const String pinResetRequestSent = 'PIN reset request sent';
+const String weHaveNotifiedAdmin =
+    'Hey, we have notified your admin about your difficulty while signing in. '
+    'They will reset your PIN once they verify your information';
+const String oncePinRest =
+    'Once your PIN has been reset, you will receive an SMS with a new PIN that'
+    ' you will be required to change in your next login';
+const String pendingPINRequestTitleString =
+    'You have a pending PIN reset request';
+const String pendingPINRequestMessageString =
+    'Please be patient while an admin approves your request. If you signed in with the wrong phone number, tap the button below to try again';
+const String signInWithAnotherNumberString = 'Sign in with another number';
