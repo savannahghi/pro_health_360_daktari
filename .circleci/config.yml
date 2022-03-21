@@ -64,9 +64,9 @@ commands:
 
 jobs:
   run_tests_and_generate_coverage:
-    resource_class: large
+    resource_class: xlarge
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: cimg/android:2022.01.1-ndk
     steps:
       - install_packages
       - run:
@@ -78,7 +78,7 @@ jobs:
             - flutter_root_and_dependencies_cache
       - run:
          name: Analyze, test and report coverage
-         no_output_timeout: 5m
+         no_output_timeout: 12m
          command: |
             flutter clean
             flutter pub get
@@ -101,7 +101,7 @@ jobs:
   deploy_to_internal_firebase_app_tester:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: cimg/android:2022.01.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -121,7 +121,7 @@ jobs:
   deploy_to_play_store_alpha:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: cimg/android:2022.01.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -155,7 +155,7 @@ jobs:
   deploy_to_play_store_beta:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: cimg/android:2022.01.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -183,7 +183,7 @@ jobs:
   deploy_to_play_store_prod:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: cimg/android:2022.01.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
