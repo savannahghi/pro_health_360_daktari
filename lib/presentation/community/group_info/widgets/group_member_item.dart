@@ -8,11 +8,13 @@ class GroupMemberItem extends StatelessWidget {
   const GroupMemberItem({
     required this.userName,
     required this.memberID,
-    required this.communityID,
+    this.communityID,
+    this.communityName,
   });
   final String userName;
   final String memberID;
-  final String communityID;
+  final String? communityID;
+  final String? communityName;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class GroupMemberItem extends StatelessWidget {
             return MemberListActionsDialog(
               memberID: memberID,
               communityID: communityID,
+              communityName: communityName,
               memberName: userName,
             );
           },

@@ -892,6 +892,19 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+     if (queryString.contains(banUserMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'banUser': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );

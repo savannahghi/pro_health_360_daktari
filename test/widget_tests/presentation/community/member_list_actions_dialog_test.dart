@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 
@@ -12,6 +15,11 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('MemberListActionsDialog', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+    });
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -83,6 +91,7 @@ void main() {
     testWidgets('ban button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
+        graphQlClient: MockTestGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return GestureDetector(
@@ -90,8 +99,9 @@ void main() {
                 context: context,
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
-                    memberID: '',
-                    communityID: '',
+                    memberID: 'test',
+                    communityID: 'test',
+                    communityName: 'test',
                     memberName: '',
                   );
                 },
@@ -114,6 +124,146 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SnackBar, skipOffstage: false), findsOneWidget);
+    });
+    testWidgets('should show snackbar with error message when an error occurs',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error occurred'}),
+          400,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const MemberListActionsDialog(
+                    memberID: 'test',
+                    communityID: 'test',
+                    communityName: 'test',
+                    memberName: '',
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+
+      expect(find.byType(GestureDetector), findsOneWidget);
+      await tester.tap(find.byType(GestureDetector));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Dialog), findsOneWidget);
+
+      final Finder banButtonKeyFinder = find.byKey(banButtonKey);
+      expect(banButtonKeyFinder, findsOneWidget);
+
+      await tester.tap(banButtonKeyFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar, skipOffstage: false), findsOneWidget);
+    });
+    testWidgets(
+        'should show snackbar with error message when an when banUserStatus in not true',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'banUser': null}
+          }),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const MemberListActionsDialog(
+                    memberID: 'test',
+                    communityID: 'test',
+                    communityName: 'test',
+                    memberName: '',
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+
+      expect(find.byType(GestureDetector), findsOneWidget);
+      await tester.tap(find.byType(GestureDetector));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Dialog), findsOneWidget);
+
+      final Finder banButtonKeyFinder = find.byKey(banButtonKey);
+      expect(banButtonKeyFinder, findsOneWidget);
+
+      await tester.tap(banButtonKeyFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar, skipOffstage: false), findsOneWidget);
+    });
+    testWidgets('ban button should be replaced by a loading indicator',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        ),
+      );
+      store.dispatch(WaitAction<AppState>.add(banUserFlag));
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const MemberListActionsDialog(
+                    memberID: 'test',
+                    communityID: 'test',
+                    communityName: 'test',
+                    memberName: '',
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+      expect(find.byType(GestureDetector), findsOneWidget);
+      await tester.tap(find.byType(GestureDetector));
+      await tester.pump();
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
 
     testWidgets('remove button works correctly', (WidgetTester tester) async {

@@ -329,4 +329,13 @@ void main() {
       expect(find.text('test snackbar'), findsNothing);
     });
   });
+    test(
+      'userBannedMessage should return the correct message',
+      () {
+        
+
+    expect(userBannedMessage(), 'User banned successfully');
+    expect(userBannedMessage(userName: 'test', communityName: 'test'), 'You have banned test form test');
+    expect(userBannedMessage(userName: 'test'), 'You have banned test');
+  });
 }

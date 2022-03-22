@@ -137,3 +137,9 @@ mutation removeMembersFromCommunity($communityID: String!, $memberIDs: [String!]
   removeMembersFromCommunity(communityID: $communityID, memberIDs: $memberIDs)
 }
 ''';
+
+const String banUserMutation = r'''
+mutation BanUser($memberID: String!, $bannedBy: String!, $communityID: String!){
+  banUser(MemberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
+}
+''';
