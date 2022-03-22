@@ -3,9 +3,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/verify_security_questions_help_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -38,8 +38,8 @@ void main() {
     expect(button, findsOneWidget);
 
     await tester.tap(button);
-    await tester.pumpAndSettle();
-    expect(find.byType(VerifySecurityQuestionsHelpPage), findsOneWidget);
+    await tester.pump(const Duration(seconds: 3));
+    expect(find.text(comingSoonText), findsOneWidget);
   });
 
   testWidgets(

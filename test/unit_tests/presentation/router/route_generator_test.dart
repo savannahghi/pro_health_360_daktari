@@ -23,7 +23,6 @@ import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page
 import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
@@ -390,17 +389,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
     expect(route?.builder(context), isA<PinRequestSentPage>());
-  });
-  test('Test router returns VerifySecurityQuestionsHelpPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.verifySecurityQuestionsHelpPage);
-
-    final MaterialPageRoute<VerifySecurityQuestionsHelpPage>? route =
-        routeGenerator(settings)
-            as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
-
-    expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
-    expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
   });
   test('Test router returns LoginCounterPage', () {
     const RouteSettings settings =

@@ -18,7 +18,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
 import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 
@@ -321,7 +321,7 @@ void main() {
       store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       await tester.pumpAndSettle();
 
-      expect(find.byType(ErrorAlertBox), findsOneWidget);
+      expect(find.byType(PhoneLoginErrorWidget), findsOneWidget);
 
       // Enter PIN
       await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');

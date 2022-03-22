@@ -136,6 +136,7 @@ const Key signInWithAnotherNumberButtonKey =
 const Key askForHelpButtonKey = Key('ask_for_help_button_key');
 const Key tryAgainButtonKey = Key('try_again_button_key');
 const Key cccInputKey = Key('ccc_input_key');
+const Key resetPINButtonKey = Key('reset_pin_button_key');
 
 //PIN expired
 const Key changeMyPinButtonKey = Key('change_my_pin');

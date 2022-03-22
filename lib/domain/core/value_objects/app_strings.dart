@@ -538,3 +538,8 @@ String userBannedMessage({String? userName, String? communityName}) {
     return 'User banned successfully';
   }
 }
+//Login error widget
+const String invalidCredentialsErrorMsg =
+    'Sorry, the credentials you provided are incorrect. Please try again \n\nYou can also tap the button below to reset your PIN\n';
+const String invalidCredentialSting = 'Invalid credentials';
+const String resetPINString = 'Reset your PIN';
