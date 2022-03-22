@@ -66,7 +66,7 @@ jobs:
   run_tests_and_generate_coverage:
     resource_class: xlarge
     docker:
-      - image: cimg/android:2022.01.1-ndk
+      - image: cimg/android:2022.03.1-ndk
     steps:
       - install_packages
       - run:
@@ -101,7 +101,7 @@ jobs:
   deploy_to_internal_firebase_app_tester:
     resource_class: xlarge
     docker:
-      - image: cimg/android:2022.01.1-ndk
+      - image: cimg/android:2022.03.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -121,7 +121,7 @@ jobs:
   deploy_to_play_store_alpha:
     resource_class: xlarge
     docker:
-      - image: cimg/android:2022.01.1-ndk
+      - image: cimg/android:2022.03.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -155,7 +155,7 @@ jobs:
   deploy_to_play_store_beta:
     resource_class: xlarge
     docker:
-      - image: cimg/android:2022.01.1-ndk
+      - image: cimg/android:2022.03.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -183,7 +183,7 @@ jobs:
   deploy_to_play_store_prod:
     resource_class: xlarge
     docker:
-      - image: cimg/android:2022.01.1-ndk
+      - image: cimg/android:2022.03.1-ndk
     steps:
       - install_packages
       - download_and_setup_keystore
