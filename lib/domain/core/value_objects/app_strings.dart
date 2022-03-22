@@ -526,3 +526,15 @@ const String rolesAssigned = 'Roles have been successfully assigned to';
 // remove user from group
 const String removedFromGroup = 'removed from the group successfully';
 const String unableToRemove = 'was not removed from group due to an error';
+String userBannedMessage({String? userName, String? communityName}) {
+  if (userName != null &&
+      userName.isNotEmpty &&
+      communityName != null &&
+      communityName.isNotEmpty) {
+    return 'You have banned $userName form $communityName';
+  } else if (userName != null && userName.isNotEmpty) {
+    return 'You have banned $userName';
+  } else {
+    return 'User banned successfully';
+  }
+}
