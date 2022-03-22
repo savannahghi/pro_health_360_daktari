@@ -31,6 +31,8 @@ class GroupInfoPage extends StatefulWidget {
 class _GroupInfoPageState extends State<GroupInfoPage> {
   @override
   void initState() {
+    super.initState();
+
     WidgetsBinding.instance?.addPostFrameCallback(
       (Duration timeStamp) async {
         await StoreProvider.dispatch<AppState>(
@@ -57,12 +59,11 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
         );
       },
     );
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final String channelName = widget.payload['channelName'] as String;
     return Scaffold(
       appBar: const CustomAppBar(title: groupInfoText),
       body: Stack(
@@ -79,7 +80,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                     width: 200.0,
                   ),
                   Text(
-                    widget.payload['channelName']?.toString() ?? groupTitle,
+                    channelName,
                     style: boldSize20Text(AppColors.lightBlackTextColor),
                   ),
                   verySmallVerticalSizedBox,
@@ -94,56 +95,53 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                         GroupsViewModel.fromStore(store),
                     builder: (BuildContext context, GroupsViewModel vm) {
                       final List<GroupMember?>? groupMembers = vm.groupMembers;
-                      return vm.wait.isWaitingFor(fetchGroupMembersFlag)
-                          ? const Padding(
-                              padding: EdgeInsets.only(
-                                top: 50,
-                              ),
-                              child: PlatformLoader(),
-                            )
-                          : groupMembers == null || groupMembers.isEmpty
-                              ? const SizedBox()
-                              : Column(
-                                  children: <Widget>[
-                                    largeVerticalSizedBox,
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        groupMembersText,
-                                        style: boldSize20Text(
-                                          AppColors.blackColor,
-                                        ),
-                                      ),
-                                    ),
-                                    largeVerticalSizedBox,
-                                    ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: groupMembers.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        final GroupMember currentMember =
-                                            groupMembers.elementAt(index)!;
 
-                                        final String name = currentMember
-                                                .memberDetails?.username ??
-                                            '';
-                                        final String id =
-                                            currentMember.memberDetails?.id ??
-                                                '';
-                                        return GroupMemberItem(
-                                          userName: name,
-                                          memberID: id,
-                                          communityID: widget
-                                              .payload['channelId'] as String,
-                                              communityName:
-                                              widget.payload['channelName']
-                                                  as String?,
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                );
+                      if (vm.wait.isWaitingFor(fetchGroupMembersFlag)) {
+                        return const Padding(
+                          padding: EdgeInsets.only(
+                            top: 50,
+                          ),
+                          child: PlatformLoader(),
+                        );
+                      }
+
+                      return Column(
+                        children: <Widget>[
+                          largeVerticalSizedBox,
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              groupMembersText,
+                              style: boldSize20Text(
+                                AppColors.blackColor,
+                              ),
+                            ),
+                          ),
+                          largeVerticalSizedBox,
+                          ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: groupMembers!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final GroupMember currentMember =
+                                  groupMembers.elementAt(index)!;
+
+                              final String name =
+                                  currentMember.memberDetails?.username ?? '';
+                              final String id =
+                                  currentMember.memberDetails?.id ?? '';
+
+                              return GroupMemberItem(
+                                userName: name,
+                                memberID: id,
+                                communityId:
+                                    widget.payload['channelId'] as String,
+                                communityName: channelName,
+                              );
+                            },
+                          ),
+                        ],
+                      );
                     },
                   ),
                 ],

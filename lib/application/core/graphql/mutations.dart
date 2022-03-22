@@ -126,6 +126,7 @@ mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!)
   inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour )
 }
 ''';
+
 const String assignRoleMutation = r'''
 mutation assignRole($userID: String!, $roles: [UserRoleType!]!){
   assignRoles(userID: $userID, roles: $roles)
@@ -141,5 +142,11 @@ mutation removeMembersFromCommunity($communityID: String!, $memberIDs: [String!]
 const String banUserMutation = r'''
 mutation BanUser($memberID: String!, $bannedBy: String!, $communityID: String!){
   banUser(MemberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
+}
+''';
+
+const String promoteToModeratorMutation = r'''
+mutation addModerators($memberIDs: [String!]!, $communityID: String!){
+  addModerators(memberIDs: $memberIDs, communityID: $communityID)
 }
 ''';

@@ -25,20 +25,15 @@ void main() {
 
   group('InviteMembersPage', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
-      store.dispatch(
-        UpdateConnectivityAction(hasConnection: true),
-      );
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
       const String testName = 'Sam';
 
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(
-          channelId: 'some-channel-id',
-        ),
+        widget: const InviteMembersPage(channelId: 'some-channel-id'),
       );
-
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomTextField), findsOneWidget);

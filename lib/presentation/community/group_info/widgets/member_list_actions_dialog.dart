@@ -2,26 +2,31 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/community/group_info/widgets/moderation_actions_view_model.dart';
 
 import 'package:shared_themes/spaces.dart';
 
 class MemberListActionsDialog extends StatelessWidget {
-   const MemberListActionsDialog({
+  const MemberListActionsDialog({
     required this.memberID,
-    required this.communityID,
-    this.communityName, required this.memberName,
+    required this.communityId,
+    required this.communityName,
+    required this.memberName,
   });
+
   final String memberID;
-  final String? communityID;
-  final String? communityName;
+  final String communityId;
+  final String communityName;
   final String memberName;
 
   @override
@@ -46,18 +51,42 @@ class MemberListActionsDialog extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 48,
-              child: MyAfyaHubPrimaryButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackbar(content: comingSoonText));
+              child: StoreConnector<AppState, ModerationActionsViewModel>(
+                converter: (Store<AppState> store) {
+                  return ModerationActionsViewModel.fromStore(store);
                 },
-                buttonKey: promoteButtonKey,
-                text: promoteToModeratorText,
-                buttonColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                textColor: AppColors.blackColor,
-                borderColor: AppColors.primaryColor.withOpacity(0.3),
-                textStyle: normalSize14Text(),
+                builder: (_, ModerationActionsViewModel vm) {
+                  if (vm.wait.isWaitingFor(promoteToAdminFlag)) {
+                    return const PlatformLoader();
+                  }
+
+                  return MyAfyaHubPrimaryButton(
+                    onPressed: () {
+                      StoreProvider.dispatch(
+                        context,
+                        PromoteToModeratorAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          memberIds: <String>[memberID],
+                          communityId: communityId,
+                          successCallback: () {
+                            showTextSnackbar(
+                              ScaffoldMessenger.of(context),
+                              content: 'Successfully promoted to admin',
+                            );
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      );
+                    },
+                    buttonKey: promoteButtonKey,
+                    text: promoteToModeratorText,
+                    buttonColor:
+                        Theme.of(context).primaryColor.withOpacity(0.2),
+                    textColor: AppColors.blackColor,
+                    borderColor: AppColors.primaryColor.withOpacity(0.3),
+                    textStyle: normalSize14Text(),
+                  );
+                },
               ),
             ),
             smallVerticalSizedBox,
@@ -81,7 +110,7 @@ class MemberListActionsDialog extends StatelessWidget {
                                 client:
                                     AppWrapperBase.of(context)!.graphQLClient,
                                 memberID: memberID,
-                                communityID: communityID,
+                                communityID: communityId,
                                 onError: () =>
                                     ScaffoldMessenger.of(context).showSnackBar(
                                   snackbar(content: getErrorMessage()),
@@ -134,20 +163,19 @@ class MemberListActionsDialog extends StatelessWidget {
                         RemoveFromGroupAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
                           memberID: memberID,
-                          communityID: communityID ?? '',
-                          memberName: memberName,
-                          onFailure: (String name) {
+                          communityID: communityId,
+                          onFailure: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('$name $unableToRemove'),
+                                content: Text('$memberName $unableToRemove'),
                               ),
                             );
                             Navigator.of(context).pop();
                           },
-                          onSuccess: (String name) {
+                          onSuccess: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('$name $removedFromGroup'),
+                                content: Text('$memberName $removedFromGroup'),
                               ),
                             );
                             Navigator.of(context).pop();

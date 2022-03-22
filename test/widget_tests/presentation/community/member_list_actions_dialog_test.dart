@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -15,11 +16,21 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('MemberListActionsDialog', () {
-    late Store<AppState> store;
+    late IGraphQlClient client;
 
     setUp(() {
-      store = Store<AppState>(initialState: AppState.initial());
+      client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          jsonEncode(<String, dynamic>{
+            'data': <String, bool>{'addModerators': true}
+          }),
+          200,
+        ),
+      );
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -31,8 +42,9 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: '',
-                    communityID: '',
+                    communityId: '',
                     memberName: '',
+                    communityName: '',
                   );
                 },
               ),
@@ -55,6 +67,7 @@ void main() {
     testWidgets('promote button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
+        graphQlClient: client,
         widget: Builder(
           builder: (BuildContext context) {
             return GestureDetector(
@@ -63,8 +76,9 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: '',
-                    communityID: '',
+                    communityId: '',
                     memberName: '',
+                    communityName: '',
                   );
                 },
               ),
@@ -74,9 +88,9 @@ void main() {
       );
 
       expect(find.byType(GestureDetector), findsOneWidget);
+
       await tester.tap(find.byType(GestureDetector));
       await tester.pumpAndSettle();
-
       expect(find.byType(Dialog), findsOneWidget);
 
       final Finder promoteKeyFinder = find.byKey(promoteButtonKey);
@@ -85,7 +99,7 @@ void main() {
       await tester.tap(promoteKeyFinder);
       await tester.pumpAndSettle();
 
-      expect(find.byType(SnackBar, skipOffstage: false), findsOneWidget);
+      expect(find.text('Successfully promoted to admin'), findsOneWidget);
     });
 
     testWidgets('ban button works correctly', (WidgetTester tester) async {
@@ -100,7 +114,7 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: 'test',
-                    communityID: 'test',
+                    communityId: 'test',
                     communityName: 'test',
                     memberName: '',
                   );
@@ -136,9 +150,9 @@ void main() {
           400,
         ),
       );
+
       await buildTestWidget(
         tester: tester,
-        store: store,
         graphQlClient: mockShortGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
@@ -148,7 +162,7 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: 'test',
-                    communityID: 'test',
+                    communityId: 'test',
                     communityName: 'test',
                     memberName: '',
                   );
@@ -189,7 +203,6 @@ void main() {
       );
       await buildTestWidget(
         tester: tester,
-        store: store,
         graphQlClient: mockShortGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
@@ -198,10 +211,10 @@ void main() {
                 context: context,
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
-                    memberID: 'test',
-                    communityID: 'test',
-                    communityName: 'test',
+                    memberID: '',
+                    communityId: '',
                     memberName: '',
+                    communityName: '',
                   );
                 },
               ),
@@ -237,7 +250,12 @@ void main() {
           201,
         ),
       );
+
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
       store.dispatch(WaitAction<AppState>.add(banUserFlag));
+
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -250,7 +268,7 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: 'test',
-                    communityID: 'test',
+                    communityId: 'test',
                     communityName: 'test',
                     memberName: '',
                   );
@@ -278,8 +296,9 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: '',
-                    communityID: '',
+                    communityId: '',
                     memberName: '',
+                    communityName: '',
                   );
                 },
               ),
@@ -329,8 +348,9 @@ void main() {
                 builder: (BuildContext context) {
                   return const MemberListActionsDialog(
                     memberID: '',
-                    communityID: '',
+                    communityId: '',
                     memberName: '',
+                    communityName: '',
                   );
                 },
               ),

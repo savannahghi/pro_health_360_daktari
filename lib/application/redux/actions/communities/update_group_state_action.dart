@@ -6,9 +6,7 @@ import 'package:mycarehubpro/domain/core/entities/community_members/group_member
 class UpdateGroupStateAction extends ReduxAction<AppState> {
   final List<GroupMember?>? groupMembers;
 
-  UpdateGroupStateAction({
-    this.groupMembers,
-  });
+  UpdateGroupStateAction({this.groupMembers});
 
   @override
   Future<AppState> reduce() async {

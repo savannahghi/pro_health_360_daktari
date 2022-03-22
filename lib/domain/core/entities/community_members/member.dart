@@ -12,7 +12,7 @@ class Member with _$Member {
     @JsonKey(name: 'ID') String? id,
     @JsonKey(name: 'userID') String? userID,
     @JsonKey(name: 'role') String? role,
-    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'name') String? username,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
         Gender? gender,
   }) = _Member;

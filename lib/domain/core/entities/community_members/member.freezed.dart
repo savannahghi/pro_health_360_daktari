@@ -29,7 +29,7 @@ class _$MemberTearOff {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
-      @JsonKey(name: 'username')
+      @JsonKey(name: 'name')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender}) {
@@ -58,7 +58,7 @@ mixin _$Member {
   String? get userID => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'name')
   String? get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender => throw _privateConstructorUsedError;
@@ -79,7 +79,7 @@ abstract class $MemberCopyWith<$Res> {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
-      @JsonKey(name: 'username')
+      @JsonKey(name: 'name')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender});
@@ -138,7 +138,7 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
-      @JsonKey(name: 'username')
+      @JsonKey(name: 'name')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender});
@@ -196,7 +196,7 @@ class _$_Member implements _Member {
           this.userID,
       @JsonKey(name: 'role')
           this.role,
-      @JsonKey(name: 'username')
+      @JsonKey(name: 'name')
           this.username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           this.gender});
@@ -214,7 +214,7 @@ class _$_Member implements _Member {
   @JsonKey(name: 'role')
   final String? role;
   @override
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'name')
   final String? username;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -265,7 +265,7 @@ abstract class _Member implements Member {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
-      @JsonKey(name: 'username')
+      @JsonKey(name: 'name')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender}) = _$_Member;
@@ -282,7 +282,7 @@ abstract class _Member implements Member {
   @JsonKey(name: 'role')
   String? get role;
   @override
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'name')
   String? get username;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)

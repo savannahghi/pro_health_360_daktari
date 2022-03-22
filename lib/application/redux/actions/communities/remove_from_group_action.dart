@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
@@ -13,7 +14,6 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
   RemoveFromGroupAction({
     required this.memberID,
     required this.communityID,
-    required this.memberName,
     required this.client,
     required this.onSuccess,
     required this.onFailure,
@@ -21,10 +21,9 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
 
   final String communityID;
   final String memberID;
-  final String memberName;
   final IGraphQlClient client;
-  final void Function(String name)? onSuccess;
-  final void Function(String name)? onFailure;
+  final VoidCallback? onSuccess;
+  final VoidCallback? onFailure;
 
   @override
   void after() {
@@ -69,9 +68,9 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
           body['data']['removeMembersFromCommunity'] != null &&
           body['data']['removeMembersFromCommunity'] is bool &&
           body['data']['removeMembersFromCommunity'] == true) {
-        onSuccess?.call(memberName);
+        onSuccess?.call();
       } else {
-        onFailure?.call(memberName);
+        onFailure?.call();
       }
     } else {
       throw UserException(processedResponse.message);
