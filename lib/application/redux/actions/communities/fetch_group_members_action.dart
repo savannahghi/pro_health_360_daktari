@@ -65,17 +65,9 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
     final List<GroupMember?>? groupMembers = groupState.groupMembers;
 
     if (groupMembers != null && groupMembers.isNotEmpty) {
-      dispatch(
-        UpdateGroupStateAction(
-          groupMembers: groupMembers,
-        ),
-      );
+      dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
     } else {
-      dispatch(
-        UpdateGroupStateAction(
-          groupMembers: <GroupMember>[],
-        ),
-      );
+      dispatch(UpdateGroupStateAction(groupMembers: <GroupMember>[]));
     }
 
     return state;

@@ -9,12 +9,7 @@ class GroupsViewModel extends Vm {
   GroupsViewModel({
     required this.wait,
     this.groupMembers,
-  }) : super(
-          equals: <Object?>[
-            wait,
-            groupMembers,
-          ],
-        );
+  }) : super(equals: <Object?>[wait, groupMembers]);
 
   factory GroupsViewModel.fromStore(Store<AppState> store) {
     return GroupsViewModel(

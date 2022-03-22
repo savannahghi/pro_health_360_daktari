@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/group_member_item.dart';
@@ -22,6 +21,7 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets('invite members button navigates correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
@@ -32,7 +32,7 @@ void main() {
       );
 
       expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
-      expect(find.text(groupTitle), findsOneWidget);
+      expect(find.text('Ruaraka Group'), findsOneWidget);
 
       await tester.tap(find.byKey(inviteMembersButtonKey));
       await tester.pumpAndSettle();
@@ -49,7 +49,7 @@ void main() {
       );
 
       expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
-      expect(find.text(groupTitle), findsOneWidget);
+      expect(find.text('Ruaraka Group'), findsOneWidget);
       final Finder memberItemFinder = find.byType(GestureDetector).first;
       expect(memberItemFinder, findsOneWidget);
 

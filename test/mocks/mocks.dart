@@ -1324,21 +1324,21 @@ final List<dynamic> listMembersMock = <dynamic>[
     'ID': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
-    'username': 'Sam',
+    'name': 'Sam',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
     'ID': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
-    'username': 'Jane',
+    'name': 'Jane',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
     'ID': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
-    'username': 'Julian',
+    'name': 'Julian',
     'gender': Gender.male.name,
   },
 ];
@@ -1346,4 +1346,5 @@ final List<dynamic> listMembersMock = <dynamic>[
 final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{
   'channelId': testString,
   'memberCount': 1,
+  'channelName': 'Ruaraka Group'
 };

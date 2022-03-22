@@ -40,11 +40,10 @@ void main() {
       storeTester.dispatch(
         RemoveFromGroupAction(
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           communityID: '',
           memberID: '',
-          memberName: '',
-          onFailure: (String name) {},
+          onFailure: () {},
         ),
       );
 
@@ -76,11 +75,10 @@ void main() {
       storeTester.dispatch(
         RemoveFromGroupAction(
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           communityID: '',
           memberID: '',
-          memberName: '',
-          onFailure: (String name) {},
+          onFailure: () {},
         ),
       );
 

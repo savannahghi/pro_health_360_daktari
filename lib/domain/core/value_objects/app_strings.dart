@@ -414,7 +414,6 @@ const String confirmTheNamesAreCorrectText =
 
 // group info
 const String groupInfoText = 'Group Info';
-const String groupTitle = 'Ruaraka Group';
 
 const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';
@@ -430,6 +429,7 @@ String getGroupMembersNumber(int numberOfMembers) {
 
 const String actionsText = 'Actions';
 const String promoteToModeratorText = 'Promote to moderator';
+const String errorPromotingAdminText = 'Error promoting user to admin';
 
 const String removeFromGroupText = 'Remove user from group';
 
@@ -538,6 +538,7 @@ String userBannedMessage({String? userName, String? communityName}) {
     return 'User banned successfully';
   }
 }
+
 //Login error widget
 const String invalidCredentialsErrorMsg =
     'Sorry, the credentials you provided are incorrect. Please try again \n\nYou can also tap the button below to reset your PIN\n';

@@ -180,24 +180,23 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                                   communityMembers[index].username ?? UNKNOWN;
                               final String memberUserId =
                                   communityMembers[index].id?.trim() ?? '';
-                              return GestureDetector(
-                                child: MemberListItem(
-                                  username: memberName.trim().isEmpty
-                                      ? UNKNOWN
-                                      : memberName,
-                                  onClicked: (bool value) {
-                                    if (value) {
-                                      if (memberUserId.isNotEmpty) {
-                                        inviteMemberIds.add(memberUserId);
-                                      }
-                                    } else {
-                                      inviteMemberIds.removeWhere(
-                                        (String element) =>
-                                            memberUserId == element,
-                                      );
+
+                              return MemberListItem(
+                                username: memberName.trim().isEmpty
+                                    ? UNKNOWN
+                                    : memberName,
+                                onClicked: (bool value) {
+                                  if (value) {
+                                    if (memberUserId.isNotEmpty) {
+                                      inviteMemberIds.add(memberUserId);
                                     }
-                                  },
-                                ),
+                                  } else {
+                                    inviteMemberIds.removeWhere(
+                                      (String element) =>
+                                          memberUserId == element,
+                                    );
+                                  }
+                                },
                               );
                             },
                           ),
