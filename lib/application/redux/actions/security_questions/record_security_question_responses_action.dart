@@ -74,11 +74,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
       );
     }
 
-    dispatch(
-      UpdateOnboardingStateAction(
-        hasSetSecurityQuestions: true,
-      ),
-    );
+    dispatch(UpdateOnboardingStateAction(hasSetSecurityQuestions: true));
 
     final String route = utils.getOnboardingPath(state: state).nextRoute;
 

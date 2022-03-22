@@ -122,7 +122,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       dispatch(
         UpdateOnboardingStateAction(
-          hasSetNickName: user?.username != null,
+          hasSetNickName:
+              user?.username != null && user?.username != user!.name,
           hasAcceptedTerms: user?.termsAccepted,
           hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
           hasSetPin: user?.hasSetPin,
