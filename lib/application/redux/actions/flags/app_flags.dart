@@ -63,3 +63,6 @@ const String inviteStaffFlag = 'invite_staff_flag';
 
 // invite client
 const String inviteClientFlag = 'invite_client_flag';
+
+// remove from group
+const String removeFromGroupFlag = 'remove_from group_flag';

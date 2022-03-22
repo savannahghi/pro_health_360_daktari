@@ -879,6 +879,18 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(removeFromGroupMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'removeMembersFromCommunity': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),

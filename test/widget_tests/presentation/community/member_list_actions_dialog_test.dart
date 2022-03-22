@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 
+import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
@@ -17,7 +21,11 @@ void main() {
               onTap: () => showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const MemberListActionsDialog(memberID: '');
+                  return const MemberListActionsDialog(
+                    memberID: '',
+                    communityID: '',
+                    memberName: '',
+                  );
                 },
               ),
             );
@@ -45,7 +53,11 @@ void main() {
               onTap: () => showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const MemberListActionsDialog(memberID: '');
+                  return const MemberListActionsDialog(
+                    memberID: '',
+                    communityID: '',
+                    memberName: '',
+                  );
                 },
               ),
             );
@@ -77,7 +89,11 @@ void main() {
               onTap: () => showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const MemberListActionsDialog(memberID: '');
+                  return const MemberListActionsDialog(
+                    memberID: '',
+                    communityID: '',
+                    memberName: '',
+                  );
                 },
               ),
             );
@@ -103,13 +119,69 @@ void main() {
     testWidgets('remove button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
+        graphQlClient: MockTestGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return GestureDetector(
               onTap: () => showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const MemberListActionsDialog(memberID: '');
+                  return const MemberListActionsDialog(
+                    memberID: '',
+                    communityID: '',
+                    memberName: '',
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+
+      expect(find.byType(GestureDetector), findsOneWidget);
+      await tester.tap(find.byType(GestureDetector));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Dialog), findsOneWidget);
+
+      final Finder removeButtonKeyFinder = find.byKey(removeButtonKey);
+      expect(removeButtonKeyFinder, findsOneWidget);
+
+      await tester.tap(removeButtonKeyFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar, skipOffstage: false), findsOneWidget);
+    });
+
+    testWidgets('remove button shows snackbar correctly if api has an error',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'message': '4: error',
+            }
+          }),
+          200,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const MemberListActionsDialog(
+                    memberID: '',
+                    communityID: '',
+                    memberName: '',
+                  );
                 },
               ),
             );

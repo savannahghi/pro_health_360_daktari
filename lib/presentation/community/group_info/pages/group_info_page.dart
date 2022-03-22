@@ -134,6 +134,8 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                         return GroupMemberItem(
                                           userName: name,
                                           memberID: id,
+                                          communityID: widget
+                                              .payload['channelId'] as String,
                                         );
                                       },
                                     ),
