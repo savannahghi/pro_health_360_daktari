@@ -54,3 +54,12 @@ const String searchStaffMemberFlag = 'search_staff_member_flag';
 
 //pin reset service request
 const String pinResetServiceRequestFlag = 'pin_reset_service_request_flag';
+
+// assign roles
+const String assignRolesFlag = 'assign_roles_flag';
+
+// invite staff
+const String inviteStaffFlag = 'invite_staff_flag';
+
+// invite client
+const String inviteClientFlag = 'invite_client_flag';

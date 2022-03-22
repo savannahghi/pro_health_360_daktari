@@ -126,3 +126,8 @@ mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!)
   inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour )
 }
 ''';
+const String assignRoleMutation = r'''
+mutation assignRole($userID: String!, $roles: [UserRoleType!]!){
+  assignRoles(userID: $userID, roles: $roles)
+}
+''';
