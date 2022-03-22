@@ -3,10 +3,16 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles_action.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
@@ -24,11 +30,22 @@ class StaffSearchWidget extends StatefulWidget {
   State<StaffSearchWidget> createState() => _StaffSearchWidgetState();
 }
 
+Map<String, bool> roleFields = <String, bool>{};
+
+void createRoleFields() {
+  for (final Role role in Role.values) {
+    final String key = capitalizeFirst(role.name);
+    roleFields[key] = false;
+  }
+}
+
 class _StaffSearchWidgetState extends State<StaffSearchWidget> {
-  bool hasClientManagementRole = false;
-  bool hasContentManagementRole = false;
-  bool hasSystemAdministrationRole = false;
-  bool hasCommunityManagementRole = false;
+  @override
+  void initState() {
+    super.initState();
+    createRoleFields();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,63 +70,79 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                 smallVerticalSizedBox,
                 Text(
                   '1. $myCareHubInviteText',
-                  style: boldSize15Text(AppColors.greyTextColor),
+                  style: boldSize16Text(AppColors.greyTextColor),
                 ),
-                verySmallVerticalSizedBox,
+                smallVerticalSizedBox,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
                     tapBelowToInvite(widget.searchUserResponse.user!.userName!),
-                    style: normalSize14Text(AppColors.greyTextColor),
+                    style: normalSize15Text(AppColors.greyTextColor),
                   ),
                 ),
                 mediumVerticalSizedBox,
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                  width: double.infinity,
-                  child: MyAfyaHubPrimaryButton(
-                    buttonKey: inviteStaffToMyCareHubButtonKey,
-                    text: inviteToMyCareHubString,
-                    onPressed: () {
-                      StoreProvider.dispatch(
-                        context,
-                        InviteStaffAction(
-                          clientResponse: widget.searchUserResponse,
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          onSuccess: (String name) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('$inviteSent $name')),
-                            );
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.homePage,
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                          onFailure: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text(unableToSendInvite)),
-                            );
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.homePage,
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                StoreConnector<AppState, AppStateViewModel>(
+                  converter: (Store<AppState> store) =>
+                      AppStateViewModel.fromStore(store),
+                  builder: (BuildContext context, AppStateViewModel vm) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                      width: double.infinity,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: inviteStaffToMyCareHubButtonKey,
+                        customChild: (vm.state.wait!
+                                .isWaitingFor(inviteStaffFlag))
+                            ? const PlatformLoader()
+                            : Text(
+                                inviteToMyCareHubString,
+                                style: veryBoldSize15Text(AppColors.whiteColor),
+                              ),
+                        onPressed: () {
+                          StoreProvider.dispatch(
+                            context,
+                            InviteStaffAction(
+                              clientResponse: widget.searchUserResponse,
+                              client: AppWrapperBase.of(context)!.graphQLClient,
+                              onSuccess: (String name) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('$inviteSent $name'),
+                                  ),
+                                );
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  AppRoutes.homePage,
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              onFailure: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(unableToSendInvite),
+                                  ),
+                                );
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  AppRoutes.homePage,
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
                 mediumVerticalSizedBox,
                 Text(
                   '2. $consent ',
-                  style: boldSize15Text(AppColors.greyTextColor),
+                  style: boldSize16Text(AppColors.greyTextColor),
                 ),
-                verySmallVerticalSizedBox,
+                smallVerticalSizedBox,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
                     '${widget.searchUserResponse.user!.userName!.split(' ').first} $hasAgreedToUse',
-                    style: normalSize14Text(AppColors.greyTextColor),
+                    style: normalSize15Text(AppColors.greyTextColor),
                   ),
                 ),
                 smallVerticalSizedBox,
@@ -122,7 +155,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                       verySmallHorizontalSizedBox,
                       Text(
                         consentRecorded,
-                        style: normalSize12Text(AppColors.malachiteColor),
+                        style: normalSize13Text(AppColors.malachiteColor),
                       )
                     ],
                   ),
@@ -134,71 +167,80 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                   userRoles,
                   style: boldSize18Text(AppColors.greyTextColor),
                 ),
-                CheckboxListTile(
-                  key: clientManagementKey,
-                  title: Text(
-                    clientManagement,
-                    style: normalSize14Text(AppColors.greyTextColor),
-                  ),
-                  value: hasClientManagementRole,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      hasClientManagementRole = value!;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  key: contentManagementKey,
-                  title: Text(
-                    contentManagement,
-                    style: normalSize14Text(AppColors.greyTextColor),
-                  ),
-                  value: hasContentManagementRole,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      hasClientManagementRole = value!;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  key: systemAdminstrationKey,
-                  title: Text(
-                    systemAdminstration,
-                    style: normalSize14Text(AppColors.greyTextColor),
-                  ),
-                  value: hasSystemAdministrationRole,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      hasClientManagementRole = value!;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  key: communityManagementKey,
-                  title: Text(
-                    communityManagement,
-                    style: normalSize14Text(AppColors.greyTextColor),
-                  ),
-                  value: hasCommunityManagementRole,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      hasClientManagementRole = value!;
-                    });
-                  },
+                Wrap(
+                  children: roleFields.entries
+                      .map<Widget>((MapEntry<String, bool> entry) {
+                    return CheckboxListTile(
+                      key: Key(entry.key),
+                      activeColor: AppColors.primaryColor,
+                      selectedTileColor: AppColors.primaryColor,
+                      title: Text(
+                        entry.key,
+                        style: normalSize15Text(AppColors.greyTextColor),
+                      ),
+                      value: entry.value,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          roleFields[entry.key] = value ?? false;
+                        });
+                      },
+                    );
+                  }).toList(),
                 ),
                 mediumVerticalSizedBox,
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                  width: double.infinity,
-                  child: MyAfyaHubPrimaryButton(
-                    buttonKey: updateRolesButtonKey,
-                    text: updateRoles,
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text(comingSoonText)),
-                      );
-                    },
-                  ),
+                StoreConnector<AppState, AppStateViewModel>(
+                  converter: (Store<AppState> store) =>
+                      AppStateViewModel.fromStore(store),
+                  builder: (BuildContext context, AppStateViewModel vm) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                      width: double.infinity,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: updateRolesButtonKey,
+                        customChild: (vm.state.wait!
+                                .isWaitingFor(assignRolesFlag))
+                            ? const PlatformLoader()
+                            : Text(
+                                updateRoles,
+                                style: veryBoldSize15Text(AppColors.whiteColor),
+                              ),
+                        onPressed: () {
+                          StoreProvider.dispatch(
+                            context,
+                            AssignRolesAction(
+                              client: AppWrapperBase.of(context)!.graphQLClient,
+                              searchUserResponse: widget.searchUserResponse,
+                              roles: roleFields,
+                              onFailure: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(genericErrorOccurred),
+                                  ),
+                                );
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  AppRoutes.homePage,
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              onSuccess: (String name) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '$rolesAssigned $name',
+                                    ),
+                                  ),
+                                );
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  AppRoutes.homePage,
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

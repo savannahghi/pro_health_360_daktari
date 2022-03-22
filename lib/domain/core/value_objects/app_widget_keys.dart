@@ -129,10 +129,6 @@ const Key clientSearchActionCardKey = Key('clients_search_action_card_key');
 const Key staffSearchActionCardKey = Key('staff_search_action_card_key');
 const Key inviteStaffToMyCareHubButtonKey = Key('invite_staff_button_key');
 const Key updateRolesButtonKey = Key('update_roles_button_key');
-const Key clientManagementKey = Key('client_management_checkbox_key');
-const Key contentManagementKey = Key('content_management_checkbox_key');
-const Key systemAdminstrationKey = Key('system_management_checkbox_key');
-const Key communityManagementKey = Key('community_management_checkbox_key');
 
 //pin request
 const Key signInWithAnotherNumberButtonKey =

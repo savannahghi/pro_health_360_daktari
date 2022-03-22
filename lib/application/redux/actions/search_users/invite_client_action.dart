@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -21,6 +22,18 @@ class InviteClientAction extends ReduxAction<AppState> {
   final SearchUserResponse clientResponse;
   final void Function(String name)? onSuccess;
   final void Function()? onFailure;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(inviteClientFlag));
+    super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(inviteClientFlag));
+  }
 
   @override
   Future<AppState?> reduce() async {

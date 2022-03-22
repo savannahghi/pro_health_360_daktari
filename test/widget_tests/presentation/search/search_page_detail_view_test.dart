@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
@@ -248,25 +249,99 @@ void main() {
       await tester.pumpAndSettle();
       await tester.ensureVisible(find.byKey(updateRolesButtonKey));
 
+      final Finder clientManagementFinder =
+          find.byKey(const Key('Client management'));
+      final Finder contentManagementFinder =
+          find.byKey(const Key('Content management'));
+      final Finder systemAdministrationFinder =
+          find.byKey(const Key('System administrator'));
+      final Finder communityManagementFinder =
+          find.byKey(const Key('Community management'));
+
       expect(find.byKey(updateRolesButtonKey), findsOneWidget);
-      expect(find.byKey(clientManagementKey), findsOneWidget);
-      expect(find.byKey(contentManagementKey), findsOneWidget);
-      expect(find.byKey(systemAdminstrationKey), findsOneWidget);
-      expect(find.byKey(communityManagementKey), findsOneWidget);
+      expect(clientManagementFinder, findsOneWidget);
+      expect(contentManagementFinder, findsOneWidget);
+      expect(systemAdministrationFinder, findsOneWidget);
+      expect(communityManagementFinder, findsOneWidget);
 
-      await tester.tap(find.byKey(clientManagementKey));
+      await tester.tap(clientManagementFinder);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(contentManagementKey));
+      await tester.tap(contentManagementFinder);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(systemAdminstrationKey));
+      await tester.tap(systemAdministrationFinder);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(communityManagementKey));
+      await tester.tap(communityManagementFinder);
       await tester.pumpAndSettle();
 
-      // todo(byron) add assertions once API is ready
+      expect(find.text(updateRoles), findsOneWidget);
+      await tester.tap(find.text(updateRoles));
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.byType(HomePage), findsOneWidget);
+    });
+
+    testWidgets('assigning roles fails when api returns an error',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'assignRoles': false}
+          }),
+          200,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: SearchPageDetailView(
+          searchUserResponse: SearchUserResponse.initial(),
+          isClient: false,
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byKey(updateRolesButtonKey));
+
+      final Finder clientManagementFinder =
+          find.byKey(const Key('Client management'));
+      final Finder contentManagementFinder =
+          find.byKey(const Key('Content management'));
+      final Finder systemAdministrationFinder =
+          find.byKey(const Key('System administrator'));
+      final Finder communityManagementFinder =
+          find.byKey(const Key('Community management'));
+
+      expect(find.byKey(updateRolesButtonKey), findsOneWidget);
+      expect(clientManagementFinder, findsOneWidget);
+      expect(contentManagementFinder, findsOneWidget);
+      expect(systemAdministrationFinder, findsOneWidget);
+      expect(communityManagementFinder, findsOneWidget);
+
+      await tester.tap(clientManagementFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(contentManagementFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(systemAdministrationFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(communityManagementFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.text(updateRoles), findsOneWidget);
+      await tester.tap(find.text(updateRoles));
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.byType(HomePage), findsOneWidget);
     });
   });
 }
