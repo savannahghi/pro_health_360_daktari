@@ -1,10 +1,12 @@
 // Flutter imports:
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -16,6 +18,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
 
 import '../../../../mocks/mocks.dart';
@@ -96,7 +99,8 @@ void main() {
       expect(find.text(pinMustMatchString), findsOneWidget);
     });
 
-    testWidgets('Navigates to Congratulations page if PINs are valid  ',
+    testWidgets(
+        'Navigates to SetNickname page if PINs are valid when signing up',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -122,6 +126,57 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SetNickNamePage), findsOneWidget);
+    });
+
+    testWidgets(
+        'Navigates to Login page page if PINs are valid when resetting a PIN',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'resetPIN': true}
+            },
+          ),
+          200,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+          hasVerifiedSecurityQuestions: true,
+          isPhoneVerified: true,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: const CreateNewPINPage(),
+      );
+
+      await tester.pumpAndSettle();
+      final Finder pinInputField = find.byKey(pinInputKey);
+      final Finder confirmPinInputField = find.byKey(confirmPinInputKey);
+      final Finder saveAndContinueButton =
+          find.byKey(createPINContinueButtonKey);
+
+      expect(confirmPinInputField, findsOneWidget);
+
+      await tester.showKeyboard(pinInputField);
+      await tester.enterText(pinInputField, '0000');
+      await tester.showKeyboard(confirmPinInputField);
+      await tester.enterText(confirmPinInputField, '0000');
+      await tester.ensureVisible(saveAndContinueButton);
+      await tester.tap(saveAndContinueButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PhoneLoginPage), findsOneWidget);
     });
 
     testWidgets('should show No Internet text when there is no connectivity ',

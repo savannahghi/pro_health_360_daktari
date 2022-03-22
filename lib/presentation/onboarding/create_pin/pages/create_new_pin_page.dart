@@ -1,15 +1,19 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/create_pin_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/onboarding/create_pin_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
@@ -136,11 +140,54 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                               }
 
                               if (_formKey.currentState!.validate()) {
-                                setUserPIN(
-                                  context: context,
-                                  newPIN: pin,
-                                  confirmPIN: confirmPin,
-                                  flavour: Flavour.pro.name,
+                                // this is the Redux Action that store the PINs user enters
+                                StoreProvider.dispatch(
+                                  context,
+                                  UpdateOnboardingStateAction(
+                                    pin: pin,
+                                    confirmPIN: confirmPin,
+                                  ),
+                                );
+
+                                final IGraphQlClient client =
+                                    AppWrapperBase.of(context)!.graphQLClient;
+                                final String resetPinEndpoint =
+                                    AppWrapperBase.of(context)!
+                                        .customContext!
+                                        .updateUserPinEndpoint;
+
+                                StoreProvider.dispatch(
+                                  context,
+                                  CreatePINAction(
+                                    client: client,
+                                    resetPinEndpoint: resetPinEndpoint,
+                                    onSuccess: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(pinSuccessString),
+                                          duration: Duration(seconds: 2),
+                                        ),
+                                      );
+                                    },
+                                    onError: (String? error) {
+                                      ScaffoldMessenger.of(context)
+                                        ..hideCurrentSnackBar()
+                                        ..showSnackBar(
+                                          SnackBar(
+                                            content: Text(error.toString()),
+                                            duration: const Duration(
+                                              seconds: kShortSnackBarDuration,
+                                            ),
+                                            action: dismissSnackBar(
+                                              closeString,
+                                              Colors.white,
+                                              context,
+                                            ),
+                                          ),
+                                        );
+                                    },
+                                  ),
                                 );
                               }
                             },

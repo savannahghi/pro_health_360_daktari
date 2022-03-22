@@ -273,6 +273,10 @@ const String confirmPinMatch = 'PINs do not match';
 const String loginPinDigits = 'Only numbers are allowed, 0-9';
 const String loginPinLength = 'Enter a four digit PIN';
 const String phoneLoginText = 'Sign In';
+const String pinResetSuccessString =
+    'PIN successfully reset. Please log in with your new PIN';
+const String pinChangeSuccessString =
+    'PIN successfully changed. Please log in with your new PIN';
 
 const String drawerTestRootText = 'You have closed the drawer';
 
