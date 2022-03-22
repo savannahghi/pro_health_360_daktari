@@ -37,15 +37,13 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String userID = state.staffState?.user?.userId ?? UNKNOWN;
     final String phoneNumber = state.onboardingState!.phoneNumber ?? UNKNOWN;
 
-    if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
+    if (phoneNumber != UNKNOWN) {
       final String sendOTPEndpoint =
           AppWrapperBase.of(context)!.customContext!.verifyContactOTPEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
-        'user_id': userID,
         'otp': otp,
         'phoneNumber': phoneNumber,
         'flavour': Flavour.pro.name,

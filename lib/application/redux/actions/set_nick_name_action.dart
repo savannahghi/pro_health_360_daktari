@@ -29,21 +29,21 @@ class SetNicknameAction extends ReduxAction<AppState> {
     this.shouldNavigate = true,
   });
 
-  final bool shouldNavigate;
-  final IGraphQlClient client;
   final void Function()? onSuccess;
   final void Function()? onError;
-
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(setNickNameFlag));
-  }
+  final IGraphQlClient client;
+  final bool shouldNavigate;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(setNickNameFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(setNickNameFlag));
   }
 
   @override
