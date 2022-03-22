@@ -131,3 +131,9 @@ mutation assignRole($userID: String!, $roles: [UserRoleType!]!){
   assignRoles(userID: $userID, roles: $roles)
 }
 ''';
+
+const String removeFromGroupMutation = r'''
+mutation removeMembersFromCommunity($communityID: String!, $memberIDs: [String!]!){
+  removeMembersFromCommunity(communityID: $communityID, memberIDs: $memberIDs)
+}
+''';

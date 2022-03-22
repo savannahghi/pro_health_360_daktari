@@ -518,3 +518,7 @@ const String changePinCTA = 'Change my PIN';
 const String inviteSent = 'An invite to join myCareHub has been sent to';
 const String unableToSendInvite = 'An invite was not sent due to an error';
 const String rolesAssigned = 'Roles have been successfully assigned to';
+
+// remove user from group
+const String removedFromGroup = 'removed from the group successfully';
+const String unableToRemove = 'was not removed from group due to an error';
