@@ -45,9 +45,10 @@ if (debugKeystorePropertiesFile.exists()) {
 
 android {
     compileSdkVersion 31
+    ndkVersion "22.1.7171670"
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'            
+        main.java.srcDirs += 'src/main/kotlin'    
     }
 
     lintOptions {
