@@ -142,7 +142,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     child: CheckBoxComponent(
                       text: acceptTermsText,
                       value: isAgreed,
-                      color: AppColors.secondaryColor,
+                      color: AppColors.primaryColor,
                       onChanged: (bool? value) async {
                         setState(() {
                           isAgreed = value!;
@@ -169,10 +169,10 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                         : MyAfyaHubPrimaryButton(
                             text: continueText,
                             borderColor: userAccepted
-                                ? AppColors.secondaryColor
+                                ? AppColors.primaryColor
                                 : Colors.grey,
                             buttonColor: userAccepted
-                                ? AppColors.secondaryColor
+                                ? AppColors.primaryColor
                                 : Colors.grey,
                             onPressed: !isAgreed
                                 ? null

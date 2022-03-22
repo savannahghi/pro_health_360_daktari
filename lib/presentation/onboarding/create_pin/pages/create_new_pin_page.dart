@@ -70,9 +70,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                         maxLines: 1,
                         keyboardType: TextInputType.number,
                         obscureText: true,
-                        validator: (String? value) {
-                          
-                        },
+                        validator: (String? value) {},
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
@@ -116,9 +114,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                 ),
                 veryLargeVerticalSizedBox,
                 if (vm.wait.isWaitingFor(createPinFlag)) ...<Widget>{
-                  const PlatformLoader(
-                    color: AppColors.secondaryColor,
-                  )
+                  const PlatformLoader(color: AppColors.secondaryColor)
                 },
                 Align(
                   alignment: Alignment.bottomCenter,

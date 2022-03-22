@@ -38,8 +38,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String userID = state.staffState?.user?.userId ?? UNKNOWN;
-    final String phoneNumber =
-        state.staffState?.user?.primaryContact?.value ?? UNKNOWN;
+    final String phoneNumber = state.onboardingState!.phoneNumber ?? UNKNOWN;
 
     if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
       final String sendOTPEndpoint =

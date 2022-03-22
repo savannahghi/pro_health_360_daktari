@@ -420,16 +420,6 @@ Future<void> setUserPIN({
             duration: Duration(seconds: 2),
           ),
         );
-
-        StoreProvider.dispatch(
-          context,
-          UpdateOnboardingStateAction(hasSetPin: true),
-        );
-
-        final OnboardingPathInfo path =
-            getOnboardingPath(state: StoreProvider.state<AppState>(context)!);
-
-        Navigator.pushReplacementNamed(context, path.nextRoute);
       },
       // scaffold that handles a mismatch in the just entered PINs by the user
       pinMismatchCallback: () => ScaffoldMessenger.of(context).showSnackBar(

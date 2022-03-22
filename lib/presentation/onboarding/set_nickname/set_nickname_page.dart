@@ -158,8 +158,8 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                         );
                       }
                     },
-                    buttonColor: AppColors.secondaryColor,
-                    borderColor: AppColors.secondaryColor,
+                    buttonColor: AppColors.primaryColor,
+                    borderColor: AppColors.primaryColor,
                     text: continueText,
                   ),
           );

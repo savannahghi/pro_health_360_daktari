@@ -93,9 +93,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
 
     StoreProvider.dispatch<AppState>(
       context,
-      UpdateOnboardingStateAction(
-        canResendOTP: false,
-      ),
+      UpdateOnboardingStateAction(canResendOTP: false),
     );
   }
 

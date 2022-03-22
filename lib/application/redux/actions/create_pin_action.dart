@@ -5,9 +5,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -58,6 +61,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         'confirmPIN': confirmPIN,
         'flavour': Flavour.pro.name,
       };
+
       final http.Response result = await client.query(
         setUserPINMutation,
         setUserPINMutationVariables(_updateUserPinVariables),
@@ -80,6 +84,10 @@ class CreatePINAction extends ReduxAction<AppState> {
       }
 
       if (responseMap['data']['setUserPIN'] == true) {
+        dispatch(UpdateOnboardingStateAction(hasSetPin: true));
+        final OnboardingPathInfo path = getOnboardingPath(state: state);
+
+        dispatch(NavigateAction<AppState>.pushNamed(path.nextRoute));
         successCallback?.call();
       }
     } else {
