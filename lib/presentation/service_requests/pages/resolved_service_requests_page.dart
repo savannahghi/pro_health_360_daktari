@@ -130,6 +130,8 @@ class _ResolvedServiceRequestsPageState
                           final String resolvedByName =
                               activeEntry?.resolvedByName ?? '';
 
+                          final String createdAt = activeEntry?.createdAt ?? '';
+
                           return Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
@@ -140,6 +142,7 @@ class _ResolvedServiceRequestsPageState
                               phoneNumber: clientPhoneNumber,
                               resolvedAt: resolvedTime,
                               resolvedBy: resolvedByName,
+                              createdAt: createdAt,
                             ),
                           );
                         },

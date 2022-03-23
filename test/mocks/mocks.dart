@@ -892,7 +892,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
-     if (queryString.contains(banUserMutation)) {
+    if (queryString.contains(banUserMutation)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(
@@ -1101,6 +1101,7 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
       'ClientContact': 'test',
       'ResolvedAt': 'test',
       'ResolvedBy': 'test',
+      'ResolvedByName': 'test',
       'CreatedAt': '2022-02-09T08:40:46Z'
     },
   ]
