@@ -63,7 +63,7 @@ const String shieldIcon = 'assets/icons/shield_icon.svg';
 // Add group page
 const String addImage = 'assets/icons/add_image.svg';
 const String addNewGroupImage = 'assets/images/texting-amico.svg';
-const String newGroupImage = 'assets/images/texting-bro.svg';
+const String newGroupImage = 'assets/images/conversations.svg';
 
 // New broadcast page
 const String addUserIconPath = 'assets/icons/add-user.svg';
