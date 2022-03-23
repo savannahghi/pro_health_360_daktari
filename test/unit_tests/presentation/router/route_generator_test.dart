@@ -41,6 +41,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_reque
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
 
 import '../../../mocks/mocks.dart';
@@ -410,5 +411,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PinExpiredPage>>());
     expect(route?.builder(context), isA<PinExpiredPage>());
+  });
+  test('Test router returns VerifySecurityQuestionsHelpPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.verifySecurityQuestionsHelpPage);
+
+    final MaterialPageRoute<VerifySecurityQuestionsHelpPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
+
+    expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
+    expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
   });
 }

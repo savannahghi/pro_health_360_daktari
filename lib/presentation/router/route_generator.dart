@@ -43,6 +43,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
 
 class RouteGenerator {
@@ -255,6 +256,10 @@ class RouteGenerator {
           builder: (_) => LoginCounterPage(
             retryTime: args as int?,
           ),
+        );
+        case AppRoutes.verifySecurityQuestionsHelpPage:
+        return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
+          builder: (_) => VerifySecurityQuestionsHelpPage(),
         );
       case AppRoutes.pinExpiredPage:
         return MaterialPageRoute<PinExpiredPage>(
