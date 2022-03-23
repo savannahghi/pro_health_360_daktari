@@ -41,7 +41,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
   }
 
   @override
-  Future<AppState> reduce() async {
+  Future<AppState?> reduce() async {
     final String? phone = state.onboardingState?.phoneNumber;
     final List<SecurityQuestionResponse> securityQuestionsResponses =
         state.onboardingState!.securityQuestionResponses!;
