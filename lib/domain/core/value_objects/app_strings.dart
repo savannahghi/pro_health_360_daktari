@@ -510,6 +510,10 @@ const String cccNumberString = 'CCC number';
 const String successfulPINResetRequestString =
     'PIN reset requested successfully';
 const String sendingPINResetRequestSting = 'sending your pin reset request';
+const String forgotYourPINString = 'Forgot your PIN?';
+const String forgotPINPageMessageString =
+    'Tap below to reset your PIN. You will be required to perform the following steps:\n\n1. Verify your phone number\n2. Verify your security questions\n3. Change your PIN';
+const String resetMyPINString = 'Reset my PIN';
 
 // PIN expired page strings
 const String pinExpiredTitle = 'Your PIN has expired';
