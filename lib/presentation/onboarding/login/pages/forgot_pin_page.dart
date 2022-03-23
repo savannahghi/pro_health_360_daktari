@@ -1,103 +1,70 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-
-// Project imports:
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
-
-// Project Imports
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ForgotPinPage extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightGreyBackgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Form(
-          key: _formKey,
+      body: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Align(
-                alignment: Alignment.topCenter,
-                child: SvgPicture.asset(
-                  shieldIcon,
-                  height: 75,
-                  width: 75,
-                  color: Colors.black,
-                ),
+              veryLargeVerticalSizedBox,
+              SvgPicture.asset(
+                forgotPINImageSvgPath,
+                width: 260,
               ),
               largeVerticalSizedBox,
-              Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  resetPassword,
-                  style: boldSize16Text(Colors.grey),
-                ),
+              Text(
+                forgotYourPINString,
+                style: heavySize20Text(),
+                textAlign: TextAlign.center,
               ),
-              mediumVerticalSizedBox,
-
-              /// Phone number input
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  resetPasswordDescription,
-                  style: boldSize14Text(Colors.grey),
-                ),
-              ),
-              verySmallVerticalSizedBox,
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: MyAfyaHubPhoneInput(
-                  phoneNumberFormatter: formatPhoneNumber,
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelText: phoneNumberInputLabelText,
-                    labelStyle: boldSize16Text(),
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    contentPadding: const EdgeInsets.fromLTRB(
-                      15,
-                      0,
-                      15,
-                      15,
-                    ),
-                  ),
-                  onChanged: (String? value) {},
+              smallVerticalSizedBox,
+              Text(
+                forgotPINPageMessageString,
+                style: normalSize14Text(
+                  AppColors.greyTextColor,
                 ),
               ),
               mediumVerticalSizedBox,
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 48,
                 child: MyAfyaHubPrimaryButton(
-                  buttonKey: sendOTPButtonKey,
-                  buttonColor: AppColors.buttonAltColor,
-                  borderColor: Colors.transparent,
-                  text: sendOTPString,
-                  onPressed: () async => triggerNavigationEvent(
-                    context: context,
-                    route: AppRoutes.verifyPhonePage,
-                    shouldReplace: true,
-                    args: '',
-                  ),
+                  buttonKey: resetPINButtonKey,
+                  text: resetMyPINString,
+                  onPressed: () {
+                    StoreProvider.dispatch(
+                      context,
+                      UpdateOnboardingStateAction(
+                        currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+                      ),
+                    );
+                    final OnboardingPathInfo config = getOnboardingPath(
+                      state: StoreProvider.state<AppState>(context)!,
+                    );
+
+                    Navigator.of(context)
+                        .pushReplacementNamed(config.nextRoute);
+                  },
                 ),
-              ),
+              )
             ],
           ),
         ),

@@ -7,8 +7,8 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
-import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -75,6 +75,6 @@ void main() {
     await tester.tap(resetPINButton);
     await tester.pumpAndSettle();
 
-    expect(find.byType(VerifyPhonePage), findsOneWidget);
+    expect(find.byType(ForgotPinPage), findsOneWidget);
   });
 }

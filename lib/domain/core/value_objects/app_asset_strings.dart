@@ -57,9 +57,6 @@ const String teleConsultVideoNotificationIcon =
 const String surveyCollectionNotificationIcon = 'assets/icons/survey_icon.svg';
 const String searchIconSvg = 'assets/icons/search_icon.svg';
 
-//Forgot Pin Page
-const String shieldIcon = 'assets/icons/shield_icon.svg';
-
 // Add group page
 const String addImage = 'assets/icons/add_image.svg';
 const String addNewGroupImage = 'assets/images/texting-amico.svg';
@@ -121,3 +118,5 @@ const String staffSearchSvgPath = 'assets/images/staff_search.svg';
 const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
 
 const String pinExpiredImage = 'assets/images/pin_expired.svg';
+
+const String forgotPINImageSvgPath = 'assets/images/forgot_pin_image.svg';
