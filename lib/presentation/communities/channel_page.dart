@@ -51,6 +51,8 @@ class ChannelPage extends StatelessWidget {
               arguments: <String, dynamic>{
                 'channelId': StreamChannel.of(context).channel.id,
                 'memberCount': StreamChannel.of(context).channel.memberCount,
+                'channelName':
+                    StreamChannel.of(context).channel.extraData['Name'],
               },
             ),
             child: Padding(
