@@ -165,7 +165,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             error: processedResponse.message,
             response: processedResponse.response.body,
           );
-          throw const UserException(wrongCredentials);
+          return null;
         case 48:
           dispatch(
             NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -205,17 +205,5 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           throw const UserException(somethingWentWrongText);
       }
     }
-  }
-
-  @override
-  Object? wrapError(dynamic error) {
-    if (error.runtimeType == UserException) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar(content: (error as UserException).msg));
-
-      return null;
-    }
-
-    return error;
   }
 }
