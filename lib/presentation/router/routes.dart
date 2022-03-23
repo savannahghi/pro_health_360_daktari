@@ -79,4 +79,6 @@ class AppRoutes {
   static const String pendingPINRequestPage = '/pendingPINRequestPage';
   static const String loginCounterPage = '/loginCounterPage';
   static const String pinExpiredPage = '/pinExpiredPage';
+    static const String verifySecurityQuestionsHelpPage =
+      '/verifySecurityQuestionsHelpPage';
 }
