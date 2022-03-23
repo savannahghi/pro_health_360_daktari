@@ -17,6 +17,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/identity_verification_action_dialog.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/pin_reset_request_widget.dart';
 
 class PinResetRequestsPage extends StatefulWidget {
@@ -94,13 +95,26 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                           '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.REJECTED}',
                         ),
                         onAccept: () {
-                          _resolvePinRequest(
-                            clientId: clientId,
-                            serviceRequestId: serviceRequestId,
-                            cccNumber: cccNumber,
-                            phoneNumber: phoneNumber,
-                            pinResetState: PinResetState.APPROVED,
-                          );
+                          isCccNumberVerified
+                              ? _resolvePinRequest(
+                                  clientId: clientId,
+                                  serviceRequestId: serviceRequestId,
+                                  cccNumber: cccNumber,
+                                  phoneNumber: phoneNumber,
+                                  pinResetState: PinResetState.APPROVED,
+                                )
+                              : showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return IdentityVerificationActionDialog(
+                                      clientId: clientId,
+                                      serviceRequestId: serviceRequestId,
+                                      cccNumber: cccNumber,
+                                      phoneNumber: phoneNumber,
+                                      pinResetState: PinResetState.APPROVED,
+                                    );
+                                  },
+                                );
                         },
                         onReject: () {
                           _resolvePinRequest(
