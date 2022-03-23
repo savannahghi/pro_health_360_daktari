@@ -6,7 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/identity_verification_action_dialog.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -50,7 +52,6 @@ void main() {
           201,
         ),
       );
-
       await buildTestWidget(
         tester: tester,
         graphQlClient: client,
@@ -66,6 +67,68 @@ void main() {
       expect(acceptFinder, findsOneWidget);
 
       await tester.tap(acceptFinder);
+      await tester.pumpAndSettle();
+      expect(find.text(pinApprovedSuccessText), findsOneWidget);
+    });
+    testWidgets(
+        'accepting service request shows dialog when cccNumber is not valid',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'verifyPinResetServiceRequest': true,
+              'getServiceRequests': <Map<String, dynamic>>[
+                <String, dynamic>{
+                  'ID': 'some-id',
+                  'RequestType': 'PIN_RESET',
+                  'ClientName': 'John Doe',
+                  'ClientContact': '+254798000000',
+                  'Status': 'PENDING',
+                  'Meta': <String, dynamic>{
+                    'ccc_number': '12345678',
+                    'is_ccc_number_valid': false,
+                  }
+                },
+              ],
+            }
+          }),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortGraphQlClient,
+        widget: const PinResetRequestsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PinResetRequestsPage), findsOneWidget);
+
+      final Finder acceptFinder =
+          find.byKey(const ValueKey<String>('accept_key_0'));
+
+      expect(acceptFinder, findsOneWidget);
+
+      await tester.tap(acceptFinder);
+      await tester.pumpAndSettle();
+      expect(find.byType(IdentityVerificationActionDialog), findsOneWidget);
+
+      final Finder checkbox = find.byKey(verifyPhysicalIdentityCheckboxKey);
+
+      Checkbox checkboxFinder = tester.firstWidget(checkbox) as Checkbox;
+      expect(checkboxFinder.value, false);
+
+      await tester.tap(checkbox);
+      await tester.pump();
+
+      checkboxFinder = tester.firstWidget(checkbox) as Checkbox;
+      expect(checkboxFinder.value, true);
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(find.text(pinApprovedSuccessText), findsOneWidget);
     });
