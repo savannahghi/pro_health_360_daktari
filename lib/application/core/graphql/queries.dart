@@ -55,6 +55,7 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!){
     Status
     ResolvedAt
     ResolvedBy
+    ResolvedByName
     CreatedAt
     Meta
   }

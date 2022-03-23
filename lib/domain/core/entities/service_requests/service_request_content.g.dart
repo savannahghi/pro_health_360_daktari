@@ -19,6 +19,7 @@ _$_ServiceRequestContent _$$_ServiceRequestContentFromJson(
       status: $enumDecodeNullable(_$RequestStatusEnumMap, json['Status']),
       resolvedTime: json['ResolvedAt'] as String?,
       resolvedBy: json['ResolvedBy'] as String?,
+      resolvedByName: json['ResolvedByName'] as String?,
       createdAt: json['CreatedAt'] as String?,
       meta: json['Meta'] == null
           ? null
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$_ServiceRequestContentToJson(
       'Status': _$RequestStatusEnumMap[instance.status],
       'ResolvedAt': instance.resolvedTime,
       'ResolvedBy': instance.resolvedBy,
+      'ResolvedByName': instance.resolvedByName,
       'CreatedAt': instance.createdAt,
       'Meta': instance.meta,
     };

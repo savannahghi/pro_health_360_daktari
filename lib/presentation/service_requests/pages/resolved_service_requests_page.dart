@@ -103,41 +103,47 @@ class _ResolvedServiceRequestsPageState
                         ],
                       )
                     } else
-                      ...List<Widget>.generate(vm.serviceRequests?.length ?? 0,
-                          (int index) {
-                        final List<MapEntry<String, ServiceRequestContent?>>?
-                            entries = vm.serviceRequests?.entries.toList();
+                      ...List<Widget>.generate(
+                        vm.serviceRequests?.length ?? 0,
+                        (int index) {
+                          final List<MapEntry<String, ServiceRequestContent?>>?
+                              entries = vm.serviceRequests?.entries.toList();
 
-                        final String clientName =
-                            entries?.elementAt(index).value?.clientName ?? '';
+                          final ServiceRequestContent? activeEntry =
+                              entries?.elementAt(index).value;
 
-                        final String clientPhoneNumber = entries
-                                ?.elementAt(index)
-                                .value
-                                ?.clientPhoneNumber ??
-                            '';
+                          final String clientName =
+                              activeEntry?.clientName ?? '';
 
-                        final String description =
-                            entries?.elementAt(index).value?.description ?? '';
+                          final String clientPhoneNumber = entries
+                                  ?.elementAt(index)
+                                  .value
+                                  ?.clientPhoneNumber ??
+                              '';
 
-                        final String resolvedTime =
-                            entries?.elementAt(index).value?.resolvedTime ?? '';
+                          final String description =
+                              activeEntry?.description ?? '';
 
-                        final String resolvedBy =
-                            entries?.elementAt(index).value?.resolvedBy ?? '';
+                          final String resolvedTime =
+                              activeEntry?.resolvedTime ?? '';
 
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: RedFlagListItem(
-                            isResolved: true,
-                            clientName: clientName,
-                            feelingDescription: description,
-                            phoneNumber: clientPhoneNumber,
-                            resolvedAt: resolvedTime,
-                            resolvedBy: resolvedBy,
-                          ),
-                        );
-                      }),
+                          final String resolvedByName =
+                              activeEntry?.resolvedByName ?? '';
+
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: RedFlagListItem(
+                              isResolved: true,
+                              clientName: clientName,
+                              feelingDescription: description,
+                              phoneNumber: clientPhoneNumber,
+                              resolvedAt: resolvedTime,
+                              resolvedBy: resolvedByName,
+                            ),
+                          );
+                        },
+                      ),
                   } else ...<Widget>{
                     GenericErrorWidget(
                       actionKey: helpNoDataWidgetKey,

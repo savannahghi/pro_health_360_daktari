@@ -17,6 +17,7 @@ class ServiceRequestContent with _$ServiceRequestContent {
     @JsonKey(name: 'Status') RequestStatus? status,
     @JsonKey(name: 'ResolvedAt') String? resolvedTime,
     @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+    @JsonKey(name: 'ResolvedByName') String? resolvedByName,
     @JsonKey(name: 'CreatedAt') String? createdAt,
     @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
   }) = _ServiceRequestContent;
