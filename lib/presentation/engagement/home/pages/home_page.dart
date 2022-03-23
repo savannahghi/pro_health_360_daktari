@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                     children: <Widget>[
                       ActionCard(
                         title: addNewClientText,
-                        iconUrl: addNewUserIconSvg,
+                        iconUrl: addNewStaffImageSvg,
                         onTap: () {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.addNewPatientPage);
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                       ),
                       ActionCard(
                         title: addNewStaffText,
-                        iconUrl: addNewStaffImageSvg,
+                        iconUrl: addNewUserIconSvg,
                         onTap: () {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.addNewStaffPage);
