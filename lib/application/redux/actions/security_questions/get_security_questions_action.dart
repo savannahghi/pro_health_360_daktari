@@ -14,6 +14,7 @@ import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
@@ -21,9 +22,7 @@ import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
 class GetSecurityQuestionsAction extends ReduxAction<AppState> {
-  GetSecurityQuestionsAction({
-    required this.context,
-  });
+  GetSecurityQuestionsAction({required this.context});
 
   final BuildContext context;
 
@@ -41,12 +40,33 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
+    final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
+        CurrentOnboardingStage.ResetPIN;
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+    final String getRecordedSecurityQuestions = AppWrapperBase.of(context)!
+        .customContext!
+        .respondedSecurityQuestionsEndpoint!;
 
-    final http.Response result = await client.query(
-      getSecurityQuestionsQuery,
-      <String, dynamic>{'flavour': Flavour.pro.name},
-    );
+    final String? otp = state.onboardingState?.otp;
+    final String? phone = state.onboardingState?.phoneNumber;
+
+    final Map<String, dynamic> getRecordedQuestionsVariables =
+        <String, dynamic>{
+      'phoneNumber': phone,
+      'flavour': Flavour.pro.name,
+      'otp': otp,
+    };
+
+    final http.Response result = isResetPin
+        ? await client.callRESTAPI(
+            endpoint: getRecordedSecurityQuestions,
+            method: httpPOST,
+            variables: getRecordedQuestionsVariables,
+          )
+        : await client.query(
+            getSecurityQuestionsQuery,
+            <String, dynamic>{'flavour': Flavour.pro.name},
+          );
 
     final Map<String, dynamic> body = client.toMap(result);
 
@@ -60,24 +80,43 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
       );
     }
 
-    final SecurityQuestionsData securityQuestionsData =
-        SecurityQuestionsData.fromJson(
-      responseMap['data'] as Map<String, dynamic>,
-    );
+    if (isResetPin) {
+      final RespondedSecurityQuestionsData responseData =
+          RespondedSecurityQuestionsData.fromJson(
+        responseMap['data'] as Map<String, dynamic>,
+      );
 
-    final List<SecurityQuestionResponse> responses =
-        <SecurityQuestionResponse>[];
-    for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
-      responses.add(SecurityQuestionResponse.initial());
+      final List<SecurityQuestionResponse> responses =
+          <SecurityQuestionResponse>[];
+      for (int i = 0; i < responseData.securityQuestions.length; i++) {
+        responses.add(SecurityQuestionResponse.initial());
+      }
+
+      dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: responseData.securityQuestions,
+          securityQuestionsResponses: responses,
+        ),
+      );
+    } else {
+      final SecurityQuestionsData securityQuestionsData =
+          SecurityQuestionsData.fromJson(
+        responseMap['data'] as Map<String, dynamic>,
+      );
+
+      final List<SecurityQuestionResponse> responses =
+          <SecurityQuestionResponse>[];
+      for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
+        responses.add(SecurityQuestionResponse.initial());
+      }
+
+      dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: securityQuestionsData.securityQuestions,
+          securityQuestionsResponses: responses,
+        ),
+      );
     }
-
-    dispatch(
-      UpdateOnboardingStateAction(
-        securityQuestions: securityQuestionsData.securityQuestions,
-        securityQuestionsResponses: responses,
-      ),
-    );
-
     return state;
   }
 
