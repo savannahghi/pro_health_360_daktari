@@ -7,9 +7,11 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/security_questions/get_security_questions_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:http/http.dart' as http;
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../../mocks/mocks.dart';
 import '../../../../../../mocks/test_helpers.dart';
@@ -31,9 +33,7 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'errors': <Object>[
-              <String, dynamic>{
-                'message': '4: error',
-              }
+              <String, dynamic>{'message': '4: error'}
             ]
           }),
           401,
@@ -67,6 +67,63 @@ void main() {
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
+    });
+
+    testWidgets(
+        'should fetch security questions correctly ans save them to state '
+        'when resetting a PIN', (WidgetTester tester) async {
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          phoneNumber: '+2547123456',
+          otp: '123456',
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+        ),
+      );
+
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getUserRespondedSecurityQuestions': <dynamic>[
+                mockSecurityQuestion,
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              onPressed: () async {
+                await store.dispatch(
+                  GetSecurityQuestionsAction(context: context),
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(store.state.onboardingState?.securityQuestions?.length, 1);
+      expect(
+        store.state.onboardingState?.securityQuestions?.first.description,
+        'description',
+      );
+
+      expect(store.state.onboardingState?.securityQuestionResponses?.length, 1);
     });
   });
 }
