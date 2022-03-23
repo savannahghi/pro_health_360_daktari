@@ -98,9 +98,7 @@ class RedFlagListItem extends StatelessWidget {
                       ),
                       child: Text(
                         verySadString,
-                        style: heavySize12Text(
-                          AppColors.redColor,
-                        ),
+                        style: heavySize12Text(AppColors.redColor),
                       ),
                     ),
                   ],
@@ -108,9 +106,7 @@ class RedFlagListItem extends StatelessWidget {
                 size15VerticalSizedBox,
                 Text(
                   feelingDescription,
-                  style: normalSize14Text(
-                    AppColors.greyTextColor,
-                  ),
+                  style: normalSize14Text(AppColors.greyTextColor),
                 ),
                 if (isResolved)
                   Padding(
@@ -122,42 +118,28 @@ class RedFlagListItem extends StatelessWidget {
                           width: 20,
                         ),
                         verySmallHorizontalSizedBox,
-                        RichText(
-                          text: TextSpan(
-                            text: resolvedString,
-                            style: normalSize12Text(
-                              AppColors.greyTextColor,
-                            ),
-                            children: <TextSpan>[
-                              if (resolvedBy != null &&
-                                  resolvedBy!.isNotEmpty &&
-                                  resolvedBy != UNKNOWN) ...<TextSpan>[
-                                const TextSpan(
-                                  text: spacedByString,
-                                ),
-                                TextSpan(
-                                  text: resolvedBy,
-                                  style: heavySize12Text(
-                                    AppColors.greyTextColor,
+                        if (createdAt != null && createdAt!.isNotEmpty)
+                          RichText(
+                            text: TextSpan(
+                              text: resolvedString,
+                              style: normalSize12Text(AppColors.greyTextColor),
+                              children: <TextSpan>[
+                                if (resolvedBy != null &&
+                                    resolvedBy!.isNotEmpty &&
+                                    resolvedBy != UNKNOWN) ...<TextSpan>[
+                                  const TextSpan(
+                                    text: spacedByString,
                                   ),
-                                ),
+                                  TextSpan(
+                                    text: resolvedBy,
+                                    style: heavySize12Text(
+                                      AppColors.greyTextColor,
+                                    ),
+                                  ),
+                                ],
                               ],
-                              if (resolvedAt != null &&
-                                  resolvedAt!.isNotEmpty &&
-                                  resolvedAt != UNKNOWN) ...<TextSpan>[
-                                const TextSpan(
-                                  text: spacedOnString,
-                                ),
-                                TextSpan(
-                                  text: resolvedAt,
-                                  style: heavySize12Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                ),
-                              ]
-                            ],
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
