@@ -467,9 +467,6 @@ const String registerClientString = 'Register Client';
 const String actions = 'Actions';
 String tapBelowToInvite(String userName) =>
     'Tap the button below to invite $userName to myCareHub. They will receive and SMS with instructions on how to sign up';
-const String consent = 'Consent';
-const String consentRecorded = 'Consent recorded';
-const String hasAgreedToUse = 'has already agreed to the use of myCareHub';
 
 // search client
 const String searchStaffMembersTitle = 'Search staff members';

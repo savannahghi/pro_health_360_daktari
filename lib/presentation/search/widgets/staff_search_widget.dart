@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,7 +10,6 @@ import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -53,7 +51,6 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
         children: <Widget>[
           SearchDetailsInformationWidget(
             searchUserResponse: widget.searchUserResponse,
-            // staffNumber: widget.searchUserResponse.id,
             isClient: false,
           ),
           const Divider(),
@@ -131,34 +128,6 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                       ),
                     );
                   },
-                ),
-                mediumVerticalSizedBox,
-                Text(
-                  '2. $consent ',
-                  style: boldSize16Text(AppColors.greyTextColor),
-                ),
-                smallVerticalSizedBox,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                  child: Text(
-                    '${widget.searchUserResponse.user!.userName!.split(' ').first} $hasAgreedToUse',
-                    style: normalSize15Text(AppColors.greyTextColor),
-                  ),
-                ),
-                smallVerticalSizedBox,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      SvgPicture.asset(doneIconSvgPath),
-                      verySmallHorizontalSizedBox,
-                      Text(
-                        consentRecorded,
-                        style: normalSize13Text(AppColors.malachiteColor),
-                      )
-                    ],
-                  ),
                 ),
                 mediumVerticalSizedBox,
                 const Divider(),
