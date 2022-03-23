@@ -9,6 +9,9 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
@@ -18,9 +21,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
+
 // Project imports:
 
 import '../../../../mocks/mocks.dart';
@@ -266,14 +267,10 @@ void main() {
       store.dispatch(
         UpdateOnboardingStateAction(
           securityQuestions: <SecurityQuestion>[
-            SecurityQuestion.initial(),
-            SecurityQuestion.initial(),
-            SecurityQuestion.initial(),
+            SecurityQuestion.initial().copyWith(questionStem: firstQuestion),
           ],
           securityQuestionsResponses: <SecurityQuestionResponse>[
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
-            SecurityQuestionResponse.initial().copyWith(response: ''),
-            SecurityQuestionResponse.initial().copyWith(response: ''),
           ],
           currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
         ),
@@ -286,6 +283,15 @@ void main() {
         widget: const SecurityQuestionsPage(),
       );
 
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      final Finder textFormField = find.byType(TextFormField);
+      expect(textFormField, findsOneWidget);
+      await tester.showKeyboard(textFormField);
+      await tester.enterText(textFormField, 'text');
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(firstQuestion));
