@@ -526,3 +526,20 @@ const String rolesAssigned = 'Roles have been successfully assigned to';
 // remove user from group
 const String removedFromGroup = 'removed from the group successfully';
 const String unableToRemove = 'was not removed from group due to an error';
+String userBannedMessage({String? userName, String? communityName}) {
+  if (userName != null &&
+      userName.isNotEmpty &&
+      communityName != null &&
+      communityName.isNotEmpty) {
+    return 'You have banned $userName form $communityName';
+  } else if (userName != null && userName.isNotEmpty) {
+    return 'You have banned $userName';
+  } else {
+    return 'User banned successfully';
+  }
+}
+//Login error widget
+const String invalidCredentialsErrorMsg =
+    'Sorry, the credentials you provided are incorrect. Please try again \n\nYou can also tap the button below to reset your PIN\n';
+const String invalidCredentialSting = 'Invalid credentials';
+const String resetPINString = 'Reset your PIN';

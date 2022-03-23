@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
@@ -13,13 +14,14 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 
 class MemberListActionsDialog extends StatelessWidget {
-  const MemberListActionsDialog({
+   const MemberListActionsDialog({
     required this.memberID,
     required this.communityID,
-    required this.memberName,
+    this.communityName, required this.memberName,
   });
   final String memberID;
-  final String communityID;
+  final String? communityID;
+  final String? communityName;
   final String memberName;
 
   @override
@@ -62,18 +64,49 @@ class MemberListActionsDialog extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 48,
-              child: MyAfyaHubPrimaryButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackbar(content: comingSoonText));
+              child: StoreConnector<AppState, AppStateViewModel>(
+                converter: (Store<AppState> store) =>
+                    AppStateViewModel.fromStore(store),
+                builder: (BuildContext context, AppStateViewModel vm) {
+                  return vm.state.wait!.isWaitingFor(banUserFlag)
+                      ? const Padding(
+                          padding: EdgeInsets.all(40.0),
+                          child: PlatformLoader(),
+                        )
+                      : MyAfyaHubPrimaryButton(
+                          onPressed: () {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              BanUserAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                memberID: memberID,
+                                communityID: communityID,
+                                onError: () =>
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                  snackbar(content: getErrorMessage()),
+                                ),
+                                onSuccess: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    snackbar(
+                                      content: userBannedMessage(
+                                        communityName: communityName,
+                                      ),
+                                    ),
+                                  );
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            );
+                          },
+                          buttonKey: banButtonKey,
+                          text: banUserText,
+                          buttonColor: AppColors.lightRedColor.withOpacity(0.6),
+                          textColor: AppColors.blackColor,
+                          borderColor: AppColors.lightRedColor.withOpacity(0.9),
+                          textStyle: boldSize14Text(AppColors.redColor),
+                        );
                 },
-                buttonKey: banButtonKey,
-                text: banUserText,
-                buttonColor: AppColors.lightRedColor.withOpacity(0.6),
-                textColor: AppColors.blackColor,
-                borderColor: AppColors.lightRedColor.withOpacity(0.9),
-                textStyle: boldSize14Text(AppColors.redColor),
               ),
             ),
             smallVerticalSizedBox,
@@ -101,7 +134,7 @@ class MemberListActionsDialog extends StatelessWidget {
                         RemoveFromGroupAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
                           memberID: memberID,
-                          communityID: communityID,
+                          communityID: communityID ?? '',
                           memberName: memberName,
                           onFailure: (String name) {
                             ScaffoldMessenger.of(context).showSnackBar(
