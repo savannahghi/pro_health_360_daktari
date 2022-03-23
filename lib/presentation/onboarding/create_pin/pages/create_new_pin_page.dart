@@ -193,10 +193,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                             },
                       buttonColor: vm.wait.isWaitingFor(createPinFlag)
                           ? Colors.grey
-                          : AppColors.secondaryColor,
+                          : AppColors.primaryColor,
                       borderColor: vm.wait.isWaitingFor(createPinFlag)
                           ? Colors.grey
-                          : AppColors.secondaryColor,
+                          : AppColors.primaryColor,
                       text: saveAndContinueButtonText,
                     ),
                   ),
