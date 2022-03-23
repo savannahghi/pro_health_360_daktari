@@ -14,6 +14,7 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/update_user_profile_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
@@ -38,6 +39,10 @@ void main() {
           'getSecurityQuestions': securityQuestionsMock,
           'recordSecurityQuestionResponses':
               mockRecordSecurityQuestionResponseData,
+          'verifySecurityQuestionResponses': true,
+          'getUserRespondedSecurityQuestions': <dynamic>[
+            mockSecurityQuestion,
+          ]
         },
       }),
       201,
@@ -235,6 +240,45 @@ void main() {
           ],
         ),
       );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsNothing);
+    });
+
+    testWidgets(
+        'should validate if all questions are answered when resetting '
+        'a user PIN', (WidgetTester tester) async {
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+          ],
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: store,

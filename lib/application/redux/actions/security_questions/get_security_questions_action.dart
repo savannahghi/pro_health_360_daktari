@@ -98,6 +98,8 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
           securityQuestionsResponses: responses,
         ),
       );
+
+      return state;
     } else {
       final SecurityQuestionsData securityQuestionsData =
           SecurityQuestionsData.fromJson(

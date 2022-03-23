@@ -925,13 +925,11 @@ final List<Map<String, dynamic>> mockFacilities = <Map<String, dynamic>>[
 ];
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
-  'id': 'id',
-  'questionStem': 'question_stem',
-  'description': 'description',
-  'responseType': 'response_type',
-  'flavour': 'flavour',
-  'active': true,
-  'sequence': 1,
+  'SecurityQuestionID': 'id',
+  'QuestionStem': 'What are the last 4 digits of your CCC number?',
+  'Description': 'description',
+  'ResponseType': 'NUMBER',
+  'Active': true,
 };
 
 Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
