@@ -3,8 +3,6 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
@@ -13,7 +11,6 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
@@ -128,8 +125,7 @@ void main() {
       });
     });
 
-    testWidgets(
-        'should show an error message if invalid credentials are entered',
+    testWidgets('should update state if invalid credentials are entered',
         (WidgetTester tester) async {
       final MockShortGraphQlClient graphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -159,14 +155,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(store.state.onboardingState!.invalidCredentials, true);
-      expect(find.byType(SnackBar), findsOneWidget);
-      expect(
-        find.text(
-          'Sorry, the credentials you entered are incorrect. Please try '
-          'again or contact support',
-        ),
-        findsOneWidget,
-      );
     });
 
     testWidgets('should navigate to PIN expired page when a PIN has expired',
@@ -199,38 +187,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(PinExpiredPage), findsOneWidget);
-    });
-
-    testWidgets('should show a generic error if any other error occurs',
-        (WidgetTester tester) async {
-      final MockShortGraphQlClient graphQlClient =
-          MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(json.encode(<String, dynamic>{'code': 100}), 400),
-      );
-
-      await buildTestWidget(
-        store: store,
-        tester: tester,
-        widget: PhoneLoginPage(),
-        graphQlClient: graphQlClient,
-      );
-
-      expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
-
-      // Enter phone number
-      await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
-
-      // Enter PIN
-      await tester.enterText(find.byKey(phoneLoginPinInputKey), '1234');
-
-      // Tap the login button
-      await tester.ensureVisible(find.byKey(loginKey));
-      await tester.tap(find.byKey(loginKey));
-      await tester.pumpAndSettle();
-
-      expect(find.text(somethingWentWrongText), findsOneWidget);
     });
 
     testWidgets(
