@@ -25,8 +25,8 @@ class _MemberListItemState extends State<MemberListItem> {
 
   @override
   void initState() {
-    isSelected = widget.isSelected;
     super.initState();
+    isSelected = widget.isSelected;
   }
 
   @override
