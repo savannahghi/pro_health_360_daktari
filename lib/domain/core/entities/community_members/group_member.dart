@@ -9,6 +9,7 @@ part 'group_member.g.dart';
 class GroupMember with _$GroupMember {
   factory GroupMember({
     @JsonKey(name: 'user') Member? memberDetails,
+    @JsonKey(name: 'isModerator') @Default(false) bool isModerator,
   }) = _GroupMember;
 
   factory GroupMember.fromJson(Map<String, dynamic> json) =>
@@ -16,5 +17,6 @@ class GroupMember with _$GroupMember {
 
   factory GroupMember.initial() => GroupMember(
         memberDetails: Member.initial(),
+        isModerator: false,
       );
 }

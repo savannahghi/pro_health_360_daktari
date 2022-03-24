@@ -11,9 +11,11 @@ _$_GroupMember _$$_GroupMemberFromJson(Map<String, dynamic> json) =>
       memberDetails: json['user'] == null
           ? null
           : Member.fromJson(json['user'] as Map<String, dynamic>),
+      isModerator: json['isModerator'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_GroupMemberToJson(_$_GroupMember instance) =>
     <String, dynamic>{
       'user': instance.memberDetails,
+      'isModerator': instance.isModerator,
     };

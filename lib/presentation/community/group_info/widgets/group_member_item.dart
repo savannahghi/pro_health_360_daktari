@@ -1,6 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -10,12 +11,14 @@ class GroupMemberItem extends StatelessWidget {
     required this.memberID,
     required this.communityId,
     required this.communityName,
+    this.isModerator = false,
   });
 
   final String userName;
   final String memberID;
   final String communityId;
   final String communityName;
+  final bool isModerator;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +67,18 @@ class GroupMemberItem extends StatelessWidget {
                 ),
               ],
             ),
+            if (isModerator)
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.lightGrey),
+                ),
+                padding: const EdgeInsets.all(4),
+                child: const Text(
+                  moderatorText,
+                  style: TextStyle(fontSize: 11, color: AppColors.lightGrey),
+                ),
+              ),
           ],
         ),
       ),

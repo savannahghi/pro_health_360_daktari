@@ -420,6 +420,7 @@ const String confirmTheNamesAreCorrectText =
 
 // group info
 const String groupInfoText = 'Group Info';
+const String moderatorText = 'Moderator';
 
 const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';
@@ -520,8 +521,10 @@ const String forgotYourPINString = 'Forgot your PIN?';
 const String forgotPINPageMessageString =
     'Tap below to reset your PIN. You will be required to perform the following steps:\n\n1. Verify your phone number\n2. Verify your security questions\n3. Change your PIN';
 const String resetMyPINString = 'Reset my PIN';
-const String haveYouVerifiedQuestionString = 'Have you verified their identity?';
-const String identityConfirmationDialogMessageString = 'You are required to verify this user’s identity physically before approving their request. Tap below to confirm';
+const String haveYouVerifiedQuestionString =
+    'Have you verified their identity?';
+const String identityConfirmationDialogMessageString =
+    'You are required to verify this user’s identity physically before approving their request. Tap below to confirm';
 const String identityVerified = 'Identity verified';
 
 // PIN expired page strings
