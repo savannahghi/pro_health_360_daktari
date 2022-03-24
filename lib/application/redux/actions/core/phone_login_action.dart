@@ -3,7 +3,6 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -29,9 +28,13 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
-  PhoneLoginAction({required this.context});
+  PhoneLoginAction({
+    required this.httpClient,
+    required this.phoneLoginEndpoint,
+  });
 
-  final BuildContext context;
+  final IGraphQlClient httpClient;
+  final String phoneLoginEndpoint;
 
   @override
   Future<void> after() async {
@@ -47,8 +50,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
-
     final OnboardingState? onboardingState = state.onboardingState;
 
     final Map<String, String> credentials = <String, String>{
@@ -56,9 +57,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       'pin': onboardingState.pin!,
       'flavour': Flavour.pro.name,
     };
-
-    final String phoneLoginEndpoint =
-        AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
 
     final Response httpResponse = await httpClient.callRESTAPI(
       endpoint: phoneLoginEndpoint,
@@ -165,7 +163,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             error: processedResponse.message,
             response: processedResponse.response.body,
           );
-          throw const UserException(wrongCredentials);
+          return null;
         case 48:
           dispatch(
             NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -205,17 +203,5 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           throw const UserException(somethingWentWrongText);
       }
     }
-  }
-
-  @override
-  Object? wrapError(dynamic error) {
-    if (error.runtimeType == UserException) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar(content: (error as UserException).msg));
-
-      return null;
-    }
-
-    return error;
   }
 }

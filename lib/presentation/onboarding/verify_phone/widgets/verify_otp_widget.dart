@@ -3,7 +3,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/send_otp_action.dart';
+// ignore: implementation_imports
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/onboarding/resend_otp_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/verify_otp_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -14,8 +16,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/widgets/animated_count.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:sms_autofill/sms_autofill.dart';
-// ignore: implementation_imports
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 
 class VerifyOTPWidget extends StatefulWidget {
   const VerifyOTPWidget({
@@ -37,7 +37,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
     with SingleTickerProviderStateMixin, CodeAutoFill {
   Animation<double>? animation;
   int resendTimeout = 60;
-  String testCode = '1234';
+  String testCode = '123456';
   TextEditingController textEditingController = TextEditingController();
 
   late AnimationController _controller;
@@ -110,10 +110,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
             if (enteredCode == widget.verifyPhoneViewModel.otp) {
               await StoreProvider.dispatch<AppState>(
                 context,
-                VerifyOTPAction(
-                  otp: enteredCode,
-                  context: context,
-                ),
+                VerifyOTPAction(otp: enteredCode, context: context),
               );
               return;
             } else {
@@ -160,7 +157,7 @@ class VerifyOTPWidgetState extends State<VerifyOTPWidget>
                     textEditingController.clear();
                     StoreProvider.dispatch<AppState>(
                       context,
-                      SendOTPAction(
+                      ResendOTPAction(
                         context: context,
                         callBackFunction: restartTimer,
                       ),

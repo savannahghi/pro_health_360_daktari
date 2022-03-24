@@ -9,17 +9,19 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/update_user_profile_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
+
 // Project imports:
 
 import '../../../../mocks/mocks.dart';
@@ -38,6 +40,10 @@ void main() {
           'getSecurityQuestions': securityQuestionsMock,
           'recordSecurityQuestionResponses':
               mockRecordSecurityQuestionResponseData,
+          'verifySecurityQuestionResponses': true,
+          'getUserRespondedSecurityQuestions': <dynamic>[
+            mockSecurityQuestion,
+          ]
         },
       }),
       201,
@@ -242,6 +248,50 @@ void main() {
         widget: const SecurityQuestionsPage(),
       );
 
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsNothing);
+    });
+
+    testWidgets(
+        'should validate if all questions are answered when resetting '
+        'a user PIN', (WidgetTester tester) async {
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial().copyWith(questionStem: firstQuestion),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+          ],
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      final Finder textFormField = find.byType(TextFormField);
+      expect(textFormField, findsOneWidget);
+      await tester.showKeyboard(textFormField);
+      await tester.enterText(textFormField, 'text');
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(firstQuestion));
