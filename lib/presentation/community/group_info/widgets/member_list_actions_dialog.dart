@@ -6,6 +6,7 @@ import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/unban_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
@@ -22,12 +23,14 @@ class MemberListActionsDialog extends StatelessWidget {
     required this.communityId,
     required this.communityName,
     required this.memberName,
+    this.isBanned = false,
   });
 
   final String memberID;
   final String communityId;
   final String communityName;
   final String memberName;
+  final bool isBanned;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,8 @@ class MemberListActionsDialog extends StatelessWidget {
                 converter: (Store<AppState> store) =>
                     AppStateViewModel.fromStore(store),
                 builder: (BuildContext context, AppStateViewModel vm) {
-                  return vm.state.wait!.isWaitingFor(banUserFlag)
+                  return vm.state.wait!
+                          .isWaitingFor(isBanned ? unBanUserFlag : banUserFlag)
                       ? const Padding(
                           padding: EdgeInsets.all(40.0),
                           child: PlatformLoader(),
@@ -106,30 +110,56 @@ class MemberListActionsDialog extends StatelessWidget {
                           onPressed: () {
                             StoreProvider.dispatch<AppState>(
                               context,
-                              BanUserAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                memberID: memberID,
-                                communityID: communityId,
-                                onError: () =>
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                  snackbar(content: getErrorMessage()),
-                                ),
-                                onSuccess: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackbar(
-                                      content: userBannedMessage(
-                                        communityName: communityName,
+                              isBanned
+                                  ? UnBanUserAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      memberID: memberID,
+                                      communityID: communityId,
+                                      onError: () =>
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                        snackbar(content: getErrorMessage()),
                                       ),
-                                    ),
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                              ),
+                                      onSuccess: () {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          snackbar(
+                                            content: userBannedMessage(
+                                              isBanned: true,
+                                              communityName: communityName,
+                                            ),
+                                          ),
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  : BanUserAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        memberID: memberID,
+                                        communityID: communityId,
+                                        onError: () =>
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                          snackbar(content: getErrorMessage()),
+                                        ),
+                                        onSuccess: () {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            snackbar(
+                                              content: userBannedMessage(
+                                                communityName: communityName,
+                                              ),
+                                            ),
+                                          );
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
                             );
                           },
                           buttonKey: banButtonKey,
-                          text: banUserText,
+                          text: isBanned ? unBanUserText : banUserText,
                           buttonColor: AppColors.lightRedColor.withOpacity(0.6),
                           textColor: AppColors.blackColor,
                           borderColor: AppColors.lightRedColor.withOpacity(0.9),
