@@ -38,7 +38,7 @@ import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/client_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';

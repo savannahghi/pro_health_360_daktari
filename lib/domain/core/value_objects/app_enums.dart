@@ -26,7 +26,13 @@ extension ClientTypeEx on ClientType {
   }
 }
 
-enum ServiceRequestType { RED_FLAG, PIN_RESET, PROFILE_UPDATE, UNKNOWN }
+enum ServiceRequestType {
+  RED_FLAG,
+  CLIENT_PIN_RESET,
+  STAFF_PIN_RESET,
+  PROFILE_UPDATE,
+  UNKNOWN,
+}
 
 extension ServiceRequestTypeEx on ServiceRequestType {
   String get name {

@@ -21,7 +21,7 @@ import 'package:mycarehubpro/presentation/service_requests/widgets/identity_veri
 import 'package:mycarehubpro/presentation/service_requests/widgets/pin_reset_request_widget.dart';
 
 class PinResetRequestsPage extends StatefulWidget {
-  const PinResetRequestsPage({Key? key}) : super(key: key);
+  const PinResetRequestsPage();
 
   @override
   State<PinResetRequestsPage> createState() => _PinResetRequestsPageState();
@@ -36,7 +36,7 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
       FetchServiceRequestsAction(
         client: AppWrapperBase.of(context)!.graphQLClient,
         serviceRequestStatus: RequestStatus.PENDING,
-        serviceRequestType: ServiceRequestType.PIN_RESET,
+        serviceRequestType: ServiceRequestType.CLIENT_PIN_RESET,
       ),
     );
   }
@@ -65,10 +65,11 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                   vm.serviceRequests!.isNotEmpty) {
                 final List<MapEntry<String, ServiceRequestContent?>> entries =
                     serviceRequests!.entries.toList();
+
                 for (int i = 0; i < entries.length; i++) {
                   final ServiceRequestContent? request = entries[i].value;
                   if (request?.serviceRequestType ==
-                      ServiceRequestType.PIN_RESET) {
+                      ServiceRequestType.CLIENT_PIN_RESET) {
                     final String name = request?.clientName ?? UNKNOWN;
                     final String phoneNumber =
                         request?.clientPhoneNumber ?? UNKNOWN;

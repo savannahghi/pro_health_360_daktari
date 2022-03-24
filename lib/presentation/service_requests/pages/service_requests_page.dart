@@ -84,12 +84,17 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
 
           final int pinResetCount = _getServiceRequestTypeCount(
             serviceRequestsCount,
-            ServiceRequestType.PIN_RESET,
+            ServiceRequestType.CLIENT_PIN_RESET,
           );
 
           final int profileUpdateCount = _getServiceRequestTypeCount(
             serviceRequestsCount,
             ServiceRequestType.PROFILE_UPDATE,
+          );
+
+          final int staffPinResetCount = _getServiceRequestTypeCount(
+            serviceRequestsCount,
+            ServiceRequestType.STAFF_PIN_RESET,
           );
 
           return SingleChildScrollView(
@@ -165,7 +170,20 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                   context,
                                   AppRoutes.profileUpdateRequestsPage,
                                 ),
-                              )
+                              ),
+                            if (staffPinResetCount > 0)
+                              ActionCard(
+                                count: staffPinResetCount,
+                                iconUrl: staffPINResetImage,
+                                title: staffResetString,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.pinResetRequestsPage,
+                                ),
+                              ),
                           ],
                         ),
                       ],

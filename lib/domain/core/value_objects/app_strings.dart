@@ -128,7 +128,8 @@ const String reachOutDescriptionPart2String =
     ' or tap the button below to call them directly';
 const String verySadString = 'Very Sad';
 const String profileUpdateString = 'Profile Update';
-const String pinResetString = 'PIN resets';
+const String pinResetString = 'Client PIN resets';
+const String staffResetString = 'Staff PIN resets';
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
 const String resolvedServiceRequestsNoDataBodyString =

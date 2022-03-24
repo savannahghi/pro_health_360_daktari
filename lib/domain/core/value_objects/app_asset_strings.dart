@@ -120,3 +120,4 @@ const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
 const String pinExpiredImage = 'assets/images/pin_expired.svg';
 
 const String forgotPINImageSvgPath = 'assets/images/forgot_pin_image.svg';
+const String staffPINResetImage = 'assets/images/staff_pin_requests.svg';

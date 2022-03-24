@@ -12,7 +12,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/client_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
