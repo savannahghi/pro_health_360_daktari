@@ -121,6 +121,18 @@ mutation verifyPinResetServiceRequest(
 }
 ''';
 
+const String acceptInvitationMutation = r'''
+mutation acceptInvitation($memberID: String!, $communityID: String!){
+  acceptInvitation(memberID: $memberID, communityID: $communityID)
+}
+''';
+
+const String rejectInvitationMutation = r'''
+mutation rejectInvitation($memberID: String!, $communityID: String!){
+  rejectInvitation(memberID: $memberID, communityID: $communityID)
+}
+''';
+
 const String inviteUserMutation = r'''
 mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
   inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour )

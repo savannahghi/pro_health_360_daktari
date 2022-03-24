@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mycarehubpro/domain/core/entities/core/communities_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 
@@ -17,6 +18,9 @@ class StaffState with _$StaffState {
     @JsonKey(name: 'facilities') List<Facility>? facilities,
     @JsonKey(name: 'default_facility') String? defaultFacility,
     @JsonKey(name: 'user') User? user,
+
+    // communities state
+    CommunitiesState? communitiesState,
   }) = _StaffState;
 
   factory StaffState.fromJson(Map<String, dynamic> json) =>
@@ -30,5 +34,6 @@ class StaffState with _$StaffState {
         facilities: <Facility>[],
         defaultFacility: UNKNOWN,
         user: User.initial(),
+        communitiesState: CommunitiesState.initial(),
       );
 }

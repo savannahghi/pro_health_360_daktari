@@ -41,6 +41,9 @@ class AppRoutes {
 
   static const String newBroadcastPage = '/newBroadcastPage';
 
+  static const String groupInvitesPage = '/groupInvitesPage';
+  static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
+
   static const String surveysPage = '/surveys';
   static const String searchPage = '/searchPage';
   static const String communityChatScreen = '/communityChatScreen';
@@ -79,6 +82,6 @@ class AppRoutes {
   static const String pendingPINRequestPage = '/pendingPINRequestPage';
   static const String loginCounterPage = '/loginCounterPage';
   static const String pinExpiredPage = '/pinExpiredPage';
-    static const String verifySecurityQuestionsHelpPage =
+  static const String verifySecurityQuestionsHelpPage =
       '/verifySecurityQuestionsHelpPage';
 }

@@ -9,6 +9,7 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
+import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -422,5 +423,22 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
     expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
+  });
+
+  test('Test router returns accept decline invites page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.acceptGroupInvitesPage,
+      arguments: <String, dynamic>{
+        'groupId': '',
+        'groupName': '',
+        'numberOfMembers': 0,
+      },
+    );
+
+    final MaterialPageRoute<AcceptGroupInvitesPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<AcceptGroupInvitesPage>?;
+
+    expect(route, isA<MaterialPageRoute<AcceptGroupInvitesPage>>());
+    expect(route?.builder(context), isA<AcceptGroupInvitesPage>());
   });
 }

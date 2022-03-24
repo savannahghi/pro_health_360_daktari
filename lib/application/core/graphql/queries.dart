@@ -117,6 +117,21 @@ query listCommunityMembers($communityID: ID!){
 }
 ''';
 
+const String listUserInvitedCommunitiesQuery = r'''
+query listPendingInvites($memberID: String!, $input: QueryOption){
+  listPendingInvites(memberID: $memberID, input: $input){
+    id
+    name
+    memberCount
+    gender
+    description
+    createdBy{
+      ID
+    }
+  }
+}
+''';
+
 const String searchClientQuery = r'''
 query searchClientsByCCCNumber($CCCNumber: String!){
   searchClientsByCCCNumber(CCCNumber: $CCCNumber){

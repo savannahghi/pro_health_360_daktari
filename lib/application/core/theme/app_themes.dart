@@ -79,6 +79,7 @@ class AppColors {
   static const Color lightGrey = Color(0xFF696979);
   static const Color warningColor = Color(0xFFDC0000);
   static const Color whiteColor = Colors.white;
+  static const Color lightRedTextColor = Color(0xFFFF888B);
 }
 
 class ThemeColors {

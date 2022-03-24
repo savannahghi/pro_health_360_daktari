@@ -1397,3 +1397,36 @@ final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{
   'memberCount': 1,
   'channelName': 'Ruaraka Group'
 };
+
+final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
+  'invitedCommunities': <dynamic>[
+    <String, dynamic>{
+      'id': UNKNOWN,
+      'name': UNKNOWN,
+      'memberCount': 0,
+      'description': UNKNOWN,
+      'createdBy': UNKNOWN,
+    },
+  ]
+};
+
+final Map<String, dynamic> mockCommunity = <String, dynamic>{
+  'id': UNKNOWN,
+  'name': UNKNOWN,
+  'memberCount': 0,
+  'description': UNKNOWN,
+  'createdBy': UNKNOWN,
+};
+
+final Map<String, dynamic> mockPendingInvites = <String, dynamic>{
+  'listPendingInvites': <dynamic>[
+    <String, dynamic>{
+      'id': '12345',
+      'name': 'Test',
+      'memberCount': 3,
+      'gender': <dynamic>[],
+      'description': '',
+      'createdBy': null
+    }
+  ]
+};

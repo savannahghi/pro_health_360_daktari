@@ -7,13 +7,13 @@ part of 'role.dart';
 // **************************************************************************
 
 _$_Role _$$_RoleFromJson(Map<String, dynamic> json) => _$_Role(
-      roleID: json['roleID'] as String?,
+      roleID: json['authorityRoleID'] as String?,
       name: roleValueFromJson(json['name'] as String?),
       active: json['active'] as bool?,
     );
 
 Map<String, dynamic> _$$_RoleToJson(_$_Role instance) => <String, dynamic>{
-      'roleID': instance.roleID,
+      'authorityRoleID': instance.roleID,
       'name': _$RoleValueEnumMap[instance.name],
       'active': instance.active,
     };

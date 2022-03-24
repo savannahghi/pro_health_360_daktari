@@ -7,6 +7,8 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';
+import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
+import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -234,14 +236,17 @@ class RouteGenerator {
       case AppRoutes.searchDetailViewPage:
         return MaterialPageRoute<SearchPageDetailView>(
           builder: (_) => SearchPageDetailView(
-            searchUserResponse: args['searchUserResponse'] as SearchUserResponse,
+            searchUserResponse:
+                args['searchUserResponse'] as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
         );
+
       case AppRoutes.pinRequestSentPage:
         return MaterialPageRoute<PinRequestSentPage>(
           builder: (_) => const PinRequestSentPage(),
         );
+
       case AppRoutes.pendingPINRequestPage:
         return MaterialPageRoute<PendingPINRequestPage>(
           builder: (_) => const PendingPINRequestPage(),
@@ -251,19 +256,40 @@ class RouteGenerator {
         return MaterialPageRoute<SearchStaffMemberPage>(
           builder: (_) => const SearchStaffMemberPage(),
         );
+
       case AppRoutes.loginCounterPage:
         return MaterialPageRoute<LoginCounterPage>(
           builder: (_) => LoginCounterPage(
             retryTime: args as int?,
           ),
         );
-        case AppRoutes.verifySecurityQuestionsHelpPage:
+
+      case AppRoutes.verifySecurityQuestionsHelpPage:
         return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
           builder: (_) => VerifySecurityQuestionsHelpPage(),
         );
+
       case AppRoutes.pinExpiredPage:
         return MaterialPageRoute<PinExpiredPage>(
           builder: (_) => const PinExpiredPage(),
+        );
+
+      case AppRoutes.groupInvitesPage:
+        return MaterialPageRoute<InvitedGroupsPage>(
+          builder: (_) => const InvitedGroupsPage(),
+        );
+
+      case AppRoutes.acceptGroupInvitesPage:
+        final String groupId = args['groupId'] as String;
+        final String groupName = args['groupName'] as String;
+        final int numberOfMembers = args['numberOfMembers'] as int;
+
+        return MaterialPageRoute<AcceptGroupInvitesPage>(
+          builder: (_) => AcceptGroupInvitesPage(
+            groupId: groupId,
+            groupName: groupName,
+            numberOfMembers: numberOfMembers,
+          ),
         );
     }
   }

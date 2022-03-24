@@ -8,12 +8,10 @@ void main() {
       expect(
         Role.fromJson(<String, dynamic>{
           'name': 'SYSTEM_ADMINISTRATOR',
-          'roleID': 'some-id',
           'active': true,
         }),
         Role(
           active: true,
-          roleID: 'some-id',
           name: RoleValue.SYSTEM_ADMINISTRATOR,
         ),
       );
