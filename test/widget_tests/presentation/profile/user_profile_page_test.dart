@@ -5,14 +5,16 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
+import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
-import 'package:http/http.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -45,7 +47,7 @@ void main() {
       expect(find.byType(local.UserDetailsCard), findsWidgets);
       final Finder userProfileListItem = find.byType(InformationListCard);
       final Finder backButton = find.byKey(appBarBackButtonKey);
-      expect(userProfileListItem, findsNWidgets(4));
+      expect(userProfileListItem, findsNWidgets(5));
       expect(backButton, findsOneWidget);
     });
 
@@ -63,7 +65,7 @@ void main() {
       expect(find.byType(local.UserDetailsCard), findsWidgets);
       final Finder userProfileListItem = find.byType(InformationListCard);
       final Finder backButton = find.byKey(appBarBackButtonKey);
-      expect(userProfileListItem, findsNWidgets(4));
+      expect(userProfileListItem, findsNWidgets(5));
       expect(backButton, findsOneWidget);
 
       await tester.tap(find.text(helpContactAdminString));
@@ -85,7 +87,7 @@ void main() {
       expect(find.byType(local.UserDetailsCard), findsWidgets);
       final Finder userProfileListItem = find.byType(InformationListCard);
       final Finder backButton = find.byKey(appBarBackButtonKey);
-      expect(userProfileListItem, findsNWidgets(4));
+      expect(userProfileListItem, findsNWidgets(5));
       expect(backButton, findsOneWidget);
 
       await tester.tap(find.text(settingsString));
@@ -132,6 +134,42 @@ void main() {
       await tester.tap(genericNoDataButton);
       await tester.pumpAndSettle();
       expect(find.byType(UserProfilePage), findsOneWidget);
+    });
+
+    testWidgets('navigates to invited groups page correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return UserProfilePage();
+          },
+        ),
+      );
+
+      await tester.tap(find.text(conversationsInvitesTitle));
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(find.byType(InvitedGroupsPage), findsOneWidget);
+    });
+
+    testWidgets('navigates to settings page correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return UserProfilePage();
+          },
+        ),
+      );
+      final Finder settings = find.text(settingsString);
+      await tester.ensureVisible(settings);
+      expect(settings, findsOneWidget);
+      await tester.tap(settings);
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(find.byType(SettingsPage), findsOneWidget);
     });
   });
 }

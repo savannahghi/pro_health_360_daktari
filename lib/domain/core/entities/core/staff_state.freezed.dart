@@ -29,7 +29,8 @@ class _$StaffStateTearOff {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'user') User? user}) {
+      @JsonKey(name: 'user') User? user,
+      CommunitiesState? communitiesState}) {
     return _StaffState(
       id: id,
       userId: userId,
@@ -38,6 +39,7 @@ class _$StaffStateTearOff {
       facilities: facilities,
       defaultFacility: defaultFacility,
       user: user,
+      communitiesState: communitiesState,
     );
   }
 
@@ -64,7 +66,8 @@ mixin _$StaffState {
   @JsonKey(name: 'default_facility')
   String? get defaultFacility => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError; // communities state
+  CommunitiesState? get communitiesState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,9 +87,11 @@ abstract class $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'user') User? user});
+      @JsonKey(name: 'user') User? user,
+      CommunitiesState? communitiesState});
 
   $UserCopyWith<$Res>? get user;
+  $CommunitiesStateCopyWith<$Res>? get communitiesState;
 }
 
 /// @nodoc
@@ -106,6 +111,7 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
     Object? facilities = freezed,
     Object? defaultFacility = freezed,
     Object? user = freezed,
+    Object? communitiesState = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -136,6 +142,10 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      communitiesState: communitiesState == freezed
+          ? _value.communitiesState
+          : communitiesState // ignore: cast_nullable_to_non_nullable
+              as CommunitiesState?,
     ));
   }
 
@@ -147,6 +157,17 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $CommunitiesStateCopyWith<$Res>? get communitiesState {
+    if (_value.communitiesState == null) {
+      return null;
+    }
+
+    return $CommunitiesStateCopyWith<$Res>(_value.communitiesState!, (value) {
+      return _then(_value.copyWith(communitiesState: value));
     });
   }
 }
@@ -164,10 +185,13 @@ abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'user') User? user});
+      @JsonKey(name: 'user') User? user,
+      CommunitiesState? communitiesState});
 
   @override
   $UserCopyWith<$Res>? get user;
+  @override
+  $CommunitiesStateCopyWith<$Res>? get communitiesState;
 }
 
 /// @nodoc
@@ -189,6 +213,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
     Object? facilities = freezed,
     Object? defaultFacility = freezed,
     Object? user = freezed,
+    Object? communitiesState = freezed,
   }) {
     return _then(_StaffState(
       id: id == freezed
@@ -219,6 +244,10 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      communitiesState: communitiesState == freezed
+          ? _value.communitiesState
+          : communitiesState // ignore: cast_nullable_to_non_nullable
+              as CommunitiesState?,
     ));
   }
 }
@@ -233,7 +262,8 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'staff_number') this.staffNumber,
       @JsonKey(name: 'facilities') this.facilities,
       @JsonKey(name: 'default_facility') this.defaultFacility,
-      @JsonKey(name: 'user') this.user});
+      @JsonKey(name: 'user') this.user,
+      this.communitiesState});
 
   factory _$_StaffState.fromJson(Map<String, dynamic> json) =>
       _$$_StaffStateFromJson(json);
@@ -259,10 +289,12 @@ class _$_StaffState implements _StaffState {
   @override
   @JsonKey(name: 'user')
   final User? user;
+  @override // communities state
+  final CommunitiesState? communitiesState;
 
   @override
   String toString() {
-    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, user: $user)';
+    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, user: $user, communitiesState: $communitiesState)';
   }
 
   @override
@@ -279,7 +311,9 @@ class _$_StaffState implements _StaffState {
                 .equals(other.facilities, facilities) &&
             const DeepCollectionEquality()
                 .equals(other.defaultFacility, defaultFacility) &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.communitiesState, communitiesState));
   }
 
   @override
@@ -291,7 +325,8 @@ class _$_StaffState implements _StaffState {
       const DeepCollectionEquality().hash(staffNumber),
       const DeepCollectionEquality().hash(facilities),
       const DeepCollectionEquality().hash(defaultFacility),
-      const DeepCollectionEquality().hash(user));
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(communitiesState));
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +347,8 @@ abstract class _StaffState implements StaffState {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'user') User? user}) = _$_StaffState;
+      @JsonKey(name: 'user') User? user,
+      CommunitiesState? communitiesState}) = _$_StaffState;
 
   factory _StaffState.fromJson(Map<String, dynamic> json) =
       _$_StaffState.fromJson;
@@ -338,6 +374,8 @@ abstract class _StaffState implements StaffState {
   @override
   @JsonKey(name: 'user')
   User? get user;
+  @override // communities state
+  CommunitiesState? get communitiesState;
   @override
   @JsonKey(ignore: true)
   _$StaffStateCopyWith<_StaffState> get copyWith =>

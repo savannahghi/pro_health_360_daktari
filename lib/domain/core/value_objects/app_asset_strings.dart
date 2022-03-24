@@ -120,3 +120,6 @@ const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
 const String pinExpiredImage = 'assets/images/pin_expired.svg';
 
 const String forgotPINImageSvgPath = 'assets/images/forgot_pin_image.svg';
+const String groupInvitesImage = 'assets/images/group_invites.svg';
+const String noInvitesImage = 'assets/images/no_invites.svg';
+const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';

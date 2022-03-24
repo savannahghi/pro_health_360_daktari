@@ -58,6 +58,20 @@ const String emptyConversationTitle =
     'Oops! We are unable to load your conversations';
 const String emptyConversationBody =
     'Relax and enjoy a cup of coffee as we get your conversations up and running.';
+const String conversationsInvitesTitle = 'Conversations invites';
+const String groupInvitesString = 'Group Invites';
+const String groupsYouHaveBeenInvited = 'Groups you have been invited to';
+const String youHaveNoInvites = 'You have no invites';
+const String noInvitesDescription =
+    'There seems to be no group invites for you at the moment. We will notify you the moment you get more invites. Enjoy your day!';
+const String invitationAcceptedSuccessfully =
+    'Invitation accepted successfully';
+const String communitiesRejectionSuccessful = 'Invite rejection successful';
+String groupInviteDescription(String groupName) =>
+    'You have been invited to join the $groupName group. Tap the options below to accept or decline the group invite';
+const String okThanksText = 'Ok, thanks';
+const String joinGroup = 'Join Group';
+const String declineInvite = 'Decline Invite';
 
 //Phone Login
 const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';

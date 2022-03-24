@@ -23,7 +23,7 @@ class _$RoleTearOff {
   const _$RoleTearOff();
 
   _Role call(
-      {String? roleID,
+      {@JsonKey(name: 'authorityRoleID') String? roleID,
       @JsonKey(name: 'name', fromJson: roleValueFromJson) RoleValue? name,
       bool? active}) {
     return _Role(
@@ -43,6 +43,7 @@ const $Role = _$RoleTearOff();
 
 /// @nodoc
 mixin _$Role {
+  @JsonKey(name: 'authorityRoleID')
   String? get roleID => throw _privateConstructorUsedError;
   @JsonKey(name: 'name', fromJson: roleValueFromJson)
   RoleValue? get name => throw _privateConstructorUsedError;
@@ -58,7 +59,7 @@ abstract class $RoleCopyWith<$Res> {
   factory $RoleCopyWith(Role value, $Res Function(Role) then) =
       _$RoleCopyWithImpl<$Res>;
   $Res call(
-      {String? roleID,
+      {@JsonKey(name: 'authorityRoleID') String? roleID,
       @JsonKey(name: 'name', fromJson: roleValueFromJson) RoleValue? name,
       bool? active});
 }
@@ -100,7 +101,7 @@ abstract class _$RoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
       __$RoleCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? roleID,
+      {@JsonKey(name: 'authorityRoleID') String? roleID,
       @JsonKey(name: 'name', fromJson: roleValueFromJson) RoleValue? name,
       bool? active});
 }
@@ -141,13 +142,14 @@ class __$RoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Role implements _Role {
   _$_Role(
-      {this.roleID,
+      {@JsonKey(name: 'authorityRoleID') this.roleID,
       @JsonKey(name: 'name', fromJson: roleValueFromJson) this.name,
       this.active});
 
   factory _$_Role.fromJson(Map<String, dynamic> json) => _$$_RoleFromJson(json);
 
   @override
+  @JsonKey(name: 'authorityRoleID')
   final String? roleID;
   @override
   @JsonKey(name: 'name', fromJson: roleValueFromJson)
@@ -190,13 +192,14 @@ class _$_Role implements _Role {
 
 abstract class _Role implements Role {
   factory _Role(
-      {String? roleID,
+      {@JsonKey(name: 'authorityRoleID') String? roleID,
       @JsonKey(name: 'name', fromJson: roleValueFromJson) RoleValue? name,
       bool? active}) = _$_Role;
 
   factory _Role.fromJson(Map<String, dynamic> json) = _$_Role.fromJson;
 
   @override
+  @JsonKey(name: 'authorityRoleID')
   String? get roleID;
   @override
   @JsonKey(name: 'name', fromJson: roleValueFromJson)

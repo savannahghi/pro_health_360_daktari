@@ -51,6 +51,13 @@ class UserProfilePage extends StatelessWidget {
                   ),
                   mediumVerticalSizedBox,
                   UserProfileItem(
+                    iconPath: communityIconSvgPath,
+                    title: conversationsInvitesTitle,
+                    itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(AppRoutes.groupInvitesPage),
+                  ),
+                  UserProfileItem(
                     iconPath: helpCircleIcon,
                     title: helpContactAdminString,
                     itemBackgroundColor: AppColors.profileListCardColor,

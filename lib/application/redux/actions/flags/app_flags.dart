@@ -48,6 +48,9 @@ const String fetchMembersFlag = 'fetch_members_flag';
 const String connectionFlag = 'connection_flag';
 const String fetchGroupMembersFlag = 'fetch_group_members_flag';
 const String banUserFlag = 'ban_user_flag';
+const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';
+const String acceptDeclineCommunitiesInviteFlag =
+    'accept_decline_communities_invite_flag';
 
 // search client
 const String searchClientFlag = 'search_client_flag';
