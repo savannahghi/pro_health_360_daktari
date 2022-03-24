@@ -45,8 +45,8 @@ class RegisterStaffFormManager with Validator {
   Stream<bool> get inviteClient => _inviteStaff.stream;
   Sink<bool> get inInviteClient => _inviteStaff.sink;
 
-  Stream<bool> get isFormValid => CombineLatestStream.combine9<String, String,
-              String, DateTime, Gender, String, String, String, Role, bool>(
+  Stream<bool> get isFormValid => CombineLatestStream.combine8<String, String,
+              String, DateTime, Gender, String, String, String, bool>(
           _firstName,
           _lastName,
           _facility,
@@ -54,8 +54,7 @@ class RegisterStaffFormManager with Validator {
           _gender,
           _phoneNumber,
           _idNumber,
-          _staffNumber,
-          _role, (
+          _staffNumber, (
         String firstName,
         String lastName,
         String facility,
@@ -64,7 +63,6 @@ class RegisterStaffFormManager with Validator {
         String phoneNumber,
         String idNumber,
         String staffNumber,
-        Role role,
       ) {
         return Validator.isValidName(firstName) &&
             Validator.isValidName(lastName) &&

@@ -54,8 +54,8 @@ class RegisterClientAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        if (errors == clientExists) {
-          throw UserException(capitalizeFirst(cccExists));
+        if (errors == cccExists) {
+          throw UserException(capitalizeFirst(clientCccExists));
         }
 
         Sentry.captureException(UserException(errors));

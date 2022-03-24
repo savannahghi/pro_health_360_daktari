@@ -447,13 +447,16 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
 
                               return SizedBox(
                                 height: 48,
-                                child: MyAfyaHubPrimaryButton(
-                                  buttonKey: const Key('staffRegisterButton'),
+                                child: ElevatedButton(
+                                  key: const Key('staffRegisterButton'),
                                   onPressed: hasData && snapshot.data!
                                       ? () =>
                                           _processAndNavigate(vm.hasConnection)
                                       : null,
-                                  text: registerBtnText,
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.all(8),
+                                  ),
+                                  child: const Text(registerBtnText),
                                 ),
                               );
                             },
