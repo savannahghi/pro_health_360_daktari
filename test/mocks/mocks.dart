@@ -909,6 +909,18 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(unBanUserMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'unBanUser': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     if (queryString.contains(getUserRolesQuery)) {
       return Future<http.Response>.value(

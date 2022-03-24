@@ -162,3 +162,9 @@ mutation addModerators($memberIDs: [String!]!, $communityID: String!){
   addModerators(memberIDs: $memberIDs, communityID: $communityID)
 }
 ''';
+
+const String unBanUserMutation = r'''
+mutation UnBanUser($memberID: String!, $communityID: String!){
+  unBanUser(memberID: $memberID, communityID: $communityID)
+}
+''';
