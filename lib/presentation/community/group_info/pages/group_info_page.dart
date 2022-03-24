@@ -131,12 +131,16 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                               final String id =
                                   currentMember.memberDetails?.id ?? '';
 
+                              final bool isModerator =
+                                  currentMember.isModerator;
+
                               return GroupMemberItem(
                                 userName: name,
                                 memberID: id,
                                 communityId:
                                     widget.payload['channelId'] as String,
                                 communityName: channelName,
+                                isModerator: isModerator,
                               );
                             },
                           ),

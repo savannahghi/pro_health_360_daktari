@@ -112,6 +112,7 @@ query listCommunityMembers($communityID: ID!){
         name
         role
       }
+      isModerator
   }
 }
 ''';

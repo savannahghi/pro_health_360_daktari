@@ -58,6 +58,7 @@ void main() {
 
       expect(find.byType(Dialog, skipOffstage: false), findsOneWidget);
     });
+
     testWidgets('display nothing when the list of group members is empty',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
@@ -80,6 +81,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(GroupMemberItem), findsNothing);
     });
+
     testWidgets(
         'should show a snackbar with error message in case of error while fetching members',
         (WidgetTester tester) async {
