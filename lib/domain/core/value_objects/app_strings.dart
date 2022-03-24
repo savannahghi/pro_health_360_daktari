@@ -176,12 +176,18 @@ const String enrollmentDateLabel = 'Enrollment Date *';
 const String clientTypeLabel = 'Client Type *';
 const String registerClientSuccess = 'Successfully registered client';
 const String appAccessText = 'Invite to myAfyaHub';
-const String clientExists =
+const String cccExists =
     'a client with this identifier type and value already exists';
-const String cccExists = 'A client with that CCC number already exists';
+const String clientCccExists = 'A client with that CCC number already exists';
 
 // add new staff page
 const String registerStaffSuccess = 'Successfully registered staff';
+const String userWithPhoneExists =
+    'A staff member with that phone already exists';
+const String phoneExists =
+    'a contact with this value and flavour already exists';
+const String staffCccExists =
+    'A staff member with that CCC number already exists';
 
 // add new group page
 const String enterGroupNameText = 'Enter Group name';

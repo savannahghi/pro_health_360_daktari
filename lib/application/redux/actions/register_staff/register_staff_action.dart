@@ -54,6 +54,14 @@ class RegisterStaffAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
+        if (errors.contains(phoneExists)) {
+          throw const UserException(userWithPhoneExists);
+        }
+
+        if (errors.contains(cccExists)) {
+          throw const UserException(staffCccExists);
+        }
+
         Sentry.captureException(UserException(errors));
 
         throw const UserException(somethingWentWrongText);

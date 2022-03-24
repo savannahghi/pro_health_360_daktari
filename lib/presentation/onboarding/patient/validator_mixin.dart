@@ -69,7 +69,7 @@ mixin Validator {
   }
 
   static bool isValidPhone(String value) {
-    return value.length > 12 && PhoneNumber.withValue(value).isValid();
+    return PhoneNumber.withValue(value).isValid();
   }
 
   static bool isValidGender(Gender gender) {
