@@ -46,7 +46,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
   void initState() {
     super.initState();
     _formManager.inGender.add(Gender.other);
-    _formManager.inRole.add(Role.CLIENT_MANAGEMENT);
+    _formManager.inRole.add(RoleValue.CLIENT_MANAGEMENT);
   }
 
   @override
@@ -353,24 +353,24 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          StreamBuilder<Role>(
+                          StreamBuilder<RoleValue>(
                             stream: _formManager.role,
-                            builder: (_, AsyncSnapshot<Role> snapshot) {
-                              final Role? data = snapshot.data;
+                            builder: (_, AsyncSnapshot<RoleValue> snapshot) {
+                              final RoleValue? data = snapshot.data;
 
                               return SelectOptionField(
                                 decoration: dropdownDecoration,
                                 dropDownInputKey: const Key('role_key'),
                                 value: data == null
                                     ? capitalizeFirst(
-                                        Role.CLIENT_MANAGEMENT.name,
+                                        RoleValue.CLIENT_MANAGEMENT.name,
                                       )
                                     : capitalizeFirst(data.name),
                                 options: getRoleList(),
                                 onChanged: (String? value) {
                                   if (value != null) {
                                     _formManager.inRole
-                                        .add(roleFromJson(value));
+                                        .add(_roleValueFromString(value));
                                   }
                                 },
                               );
@@ -489,11 +489,21 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
   List<String> getRoleList() {
     final List<String> result = <String>[];
 
-    for (final Role role in Role.values) {
+    for (final RoleValue role in RoleValue.values) {
       result.add(capitalizeFirst(role.name));
     }
 
     return result;
+  }
+
+  RoleValue _roleValueFromString(String? roleString) {
+    if (roleString == null || roleString.isEmpty || roleString == UNKNOWN) {
+      return RoleValue.CONTENT_MANAGEMENT;
+    }
+
+    return RoleValue.values.firstWhere((RoleValue role) {
+      return role.name.toLowerCase() == roleString.toLowerCase();
+    });
   }
 
   void _processAndNavigate(bool hasConnection) {

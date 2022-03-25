@@ -65,6 +65,8 @@ class _$UserTearOff {
           bool? suspended,
       @JsonKey(name: 'avatar')
           String? avatar,
+      @JsonKey(name: 'roles')
+          List<Role>? roles,
       String? chatRoomToken}) {
     return _User(
       userId: userId,
@@ -88,6 +90,7 @@ class _$UserTearOff {
       acceptedTermsID: acceptedTermsID,
       suspended: suspended,
       avatar: avatar,
+      roles: roles,
       chatRoomToken: chatRoomToken,
     );
   }
@@ -145,6 +148,8 @@ mixin _$User {
   bool? get suspended => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
+  @JsonKey(name: 'roles')
+  List<Role>? get roles => throw _privateConstructorUsedError;
   String? get chatRoomToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -199,6 +204,8 @@ abstract class $UserCopyWith<$Res> {
           bool? suspended,
       @JsonKey(name: 'avatar')
           String? avatar,
+      @JsonKey(name: 'roles')
+          List<Role>? roles,
       String? chatRoomToken});
 
   $ContactCopyWith<$Res>? get primaryContact;
@@ -235,6 +242,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
     Object? avatar = freezed,
+    Object? roles = freezed,
     Object? chatRoomToken = freezed,
   }) {
     return _then(_value.copyWith(
@@ -322,6 +330,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      roles: roles == freezed
+          ? _value.roles
+          : roles // ignore: cast_nullable_to_non_nullable
+              as List<Role>?,
       chatRoomToken: chatRoomToken == freezed
           ? _value.chatRoomToken
           : chatRoomToken // ignore: cast_nullable_to_non_nullable
@@ -389,6 +401,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           bool? suspended,
       @JsonKey(name: 'avatar')
           String? avatar,
+      @JsonKey(name: 'roles')
+          List<Role>? roles,
       String? chatRoomToken});
 
   @override
@@ -427,6 +441,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? acceptedTermsID = freezed,
     Object? suspended = freezed,
     Object? avatar = freezed,
+    Object? roles = freezed,
     Object? chatRoomToken = freezed,
   }) {
     return _then(_User(
@@ -514,6 +529,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      roles: roles == freezed
+          ? _value.roles
+          : roles // ignore: cast_nullable_to_non_nullable
+              as List<Role>?,
       chatRoomToken: chatRoomToken == freezed
           ? _value.chatRoomToken
           : chatRoomToken // ignore: cast_nullable_to_non_nullable
@@ -568,6 +587,8 @@ class _$_User implements _User {
           this.suspended,
       @JsonKey(name: 'avatar')
           this.avatar,
+      @JsonKey(name: 'roles')
+          this.roles,
       this.chatRoomToken});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -636,11 +657,14 @@ class _$_User implements _User {
   @JsonKey(name: 'avatar')
   final String? avatar;
   @override
+  @JsonKey(name: 'roles')
+  final List<Role>? roles;
+  @override
   final String? chatRoomToken;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar, chatRoomToken: $chatRoomToken)';
+    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar, roles: $roles, chatRoomToken: $chatRoomToken)';
   }
 
   @override
@@ -679,6 +703,7 @@ class _$_User implements _User {
                 .equals(other.acceptedTermsID, acceptedTermsID) &&
             const DeepCollectionEquality().equals(other.suspended, suspended) &&
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
+            const DeepCollectionEquality().equals(other.roles, roles) &&
             const DeepCollectionEquality()
                 .equals(other.chatRoomToken, chatRoomToken));
   }
@@ -707,6 +732,7 @@ class _$_User implements _User {
         const DeepCollectionEquality().hash(acceptedTermsID),
         const DeepCollectionEquality().hash(suspended),
         const DeepCollectionEquality().hash(avatar),
+        const DeepCollectionEquality().hash(roles),
         const DeepCollectionEquality().hash(chatRoomToken)
       ]);
 
@@ -765,6 +791,8 @@ abstract class _User implements User {
           bool? suspended,
       @JsonKey(name: 'avatar')
           String? avatar,
+      @JsonKey(name: 'roles')
+          List<Role>? roles,
       String? chatRoomToken}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -832,6 +860,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'avatar')
   String? get avatar;
+  @override
+  @JsonKey(name: 'roles')
+  List<Role>? get roles;
   @override
   String? get chatRoomToken;
   @override

@@ -15,7 +15,7 @@ _$_RegisterStaffPayload _$$_RegisterStaffPayloadFromJson(
       phoneNumber: json['phoneNumber'] as String?,
       idNumber: json['idNumber'] as String?,
       staffNumber: json['staffNumber'] as String?,
-      role: roleFromJson(json['staffRoles'] as String?),
+      role: roleValueFromJson(json['staffRoles'] as String?),
       inviteStaff: json['inviteStaff'] as bool?,
       dateOfBirth: json['dateOfBirth'] == null
           ? null
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_RegisterStaffPayloadToJson(
       'phoneNumber': instance.phoneNumber,
       'idNumber': instance.idNumber,
       'staffNumber': instance.staffNumber,
-      'staffRoles': _$RoleEnumMap[instance.role],
+      'staffRoles': _$RoleValueEnumMap[instance.role],
       'inviteStaff': instance.inviteStaff,
       'dateOfBirth': dobToJson(instance.dateOfBirth),
     };
@@ -43,9 +43,9 @@ const _$GenderEnumMap = {
   Gender.unknown: 'unknown',
 };
 
-const _$RoleEnumMap = {
-  Role.SYSTEM_ADMINISTRATOR: 'SYSTEM_ADMINISTRATOR',
-  Role.COMMUNITY_MANAGEMENT: 'COMMUNITY_MANAGEMENT',
-  Role.CONTENT_MANAGEMENT: 'CONTENT_MANAGEMENT',
-  Role.CLIENT_MANAGEMENT: 'CLIENT_MANAGEMENT',
+const _$RoleValueEnumMap = {
+  RoleValue.SYSTEM_ADMINISTRATOR: 'SYSTEM_ADMINISTRATOR',
+  RoleValue.COMMUNITY_MANAGEMENT: 'COMMUNITY_MANAGEMENT',
+  RoleValue.CONTENT_MANAGEMENT: 'CONTENT_MANAGEMENT',
+  RoleValue.CLIENT_MANAGEMENT: 'CLIENT_MANAGEMENT',
 };

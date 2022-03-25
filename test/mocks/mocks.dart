@@ -1116,6 +1116,7 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
         'username': UNKNOWN,
         'gender': 'unknown',
       },
+      'isModerator': true,
     },
   ],
 };

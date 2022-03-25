@@ -3,8 +3,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_contexts.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/infrastructure/endpoints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -206,3 +208,9 @@ void showTextSnackbar(
       ),
     );
 }
+
+final Role communityManagementRole = Role(
+  roleID: '05aee7d1-13c4-4910-9c21-3406e480e53c',
+  name: RoleValue.COMMUNITY_MANAGEMENT,
+  active: true,
+);

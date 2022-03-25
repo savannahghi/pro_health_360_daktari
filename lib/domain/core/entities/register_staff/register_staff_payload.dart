@@ -15,7 +15,7 @@ class RegisterStaffPayload with _$RegisterStaffPayload {
     @JsonKey(name: 'phoneNumber') String? phoneNumber,
     @JsonKey(name: 'idNumber') String? idNumber,
     @JsonKey(name: 'staffNumber') String? staffNumber,
-    @JsonKey(name: 'staffRoles', fromJson: roleFromJson) Role? role,
+    @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) RoleValue? role,
     @JsonKey(name: 'inviteStaff') bool? inviteStaff,
     @JsonKey(name: 'dateOfBirth', toJson: dobToJson) DateTime? dateOfBirth,
   }) = _RegisterStaffPayload;

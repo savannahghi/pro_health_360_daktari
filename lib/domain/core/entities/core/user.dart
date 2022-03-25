@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/core/contact.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -33,6 +34,7 @@ class User with _$User {
     @JsonKey(name: 'acceptedTermsID') int? acceptedTermsID,
     @JsonKey(name: 'suspended') bool? suspended,
     @JsonKey(name: 'avatar') String? avatar,
+    @JsonKey(name: 'roles') List<Role>? roles,
     String? chatRoomToken,
   }) = _User;
 
@@ -60,5 +62,6 @@ class User with _$User {
         acceptedTermsID: 0,
         suspended: false,
         avatar: UNKNOWN,
+        roles: <Role>[],
       );
 }

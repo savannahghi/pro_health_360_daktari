@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -156,14 +157,17 @@ String dobToJson(DateTime? dateTime) {
   return DateFormat('yyyy-MM-dd').format(DateUtils.dateOnly(DateTime.now()));
 }
 
-Role roleFromJson(String? roleString) {
+RoleValue roleValueFromJson(String? roleString) {
   if (roleString == null || roleString.isEmpty || roleString == UNKNOWN) {
-    return Role.CONTENT_MANAGEMENT;
+    return RoleValue.CONTENT_MANAGEMENT;
   }
 
-  return Role.values.where((Role role) {
-    return role.name.toLowerCase() == roleString.toLowerCase();
-  }).first;
+  return RoleValue.values.firstWhere((RoleValue role) {
+    return describeEnum(role)
+            .toLowerCase()
+            .compareTo(roleString.toLowerCase()) ==
+        0;
+  });
 }
 
 /// checks where user has reached in their onboarding and returns the

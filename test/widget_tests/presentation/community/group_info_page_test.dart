@@ -4,11 +4,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_group_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
+import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/group_member_item.dart';
+import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 
 import '../../../mocks/mocks.dart';
@@ -20,6 +25,11 @@ void main() {
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateUserAction(
+          user: User.initial().copyWith(roles: <Role>[communityManagementRole]),
+        ),
+      );
     });
 
     testWidgets('invite members button navigates correctly',
@@ -47,16 +57,21 @@ void main() {
         graphQlClient: MockTestGraphQlClient(),
         widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
       );
+      await tester.pumpAndSettle();
 
       expect(find.byKey(inviteMembersButtonKey), findsOneWidget);
       expect(find.text('Ruaraka Group'), findsOneWidget);
-      final Finder memberItemFinder = find.byType(GestureDetector).first;
+
+      final Finder memberItemFinder = find.byKey(const ValueKey<int>(0));
       expect(memberItemFinder, findsOneWidget);
 
       await tester.tap(memberItemFinder);
       await tester.pumpAndSettle();
 
-      expect(find.byType(Dialog, skipOffstage: false), findsOneWidget);
+      final Finder dialogFinder =
+          find.byType(MemberListActionsDialog, skipOffstage: false);
+
+      expect(dialogFinder, findsOneWidget);
     });
 
     testWidgets('display nothing when the list of group members is empty',
