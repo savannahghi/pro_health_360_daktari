@@ -8,51 +8,45 @@ import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/searched_clients.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class SearchClientAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
-  String cccNumber;
-
-  SearchClientAction({
+class FetchStaffRolesAction extends ReduxAction<AppState> {
+  FetchStaffRolesAction({
+    required this.userID,
     required this.client,
-    required this.cccNumber,
+    required this.onFailure,
   });
+
+  final IGraphQlClient client;
+  final String userID;
+  final void Function()? onFailure;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(getUserRolesFlag));
+    super.after();
+  }
 
   @override
   void before() {
     super.before();
-    dispatch(
-      UpdateSearchUserResponseStateAction(
-        searchUserResponses: <SearchUserResponse>[],
-        errorSearchingUser: false,
-        noUserFound: false,
-        timeoutSearchingUser: false,
-      ),
-    );
-    dispatch(WaitAction<AppState>.add(searchClientFlag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(searchClientFlag));
-    super.after();
+    dispatch(WaitAction<AppState>.add(getUserRolesFlag));
   }
 
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'CCCNumber': cccNumber,
+      'userID': userID,
     };
-
-    final Response response = await client.query(searchClientQuery, variables);
+    final Response response = await client.query(getUserRolesQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
+
       client.close();
 
       final String? errors = client.parseError(body);
@@ -62,30 +56,30 @@ class SearchClientAction extends ReduxAction<AppState> {
           UserException(errors),
         );
 
-        throw UserException(getErrorMessage('fetching clients'));
+        throw UserException(getErrorMessage('getting user roles'));
       }
 
-      final SearchedClients clientResponse = SearchedClients.fromJson(
-        body['data'] as Map<String, dynamic>,
-      );
+      if (body['data'] != null &&
+          body['data']['getUserRoles'] != null &&
+          body['data']['getUserRoles'] is List &&
+          (body['data']['getUserRoles'] as List<dynamic>).isNotEmpty) {
+        final RolesList roles =
+            RolesList.fromJson(body['data'] as Map<String, dynamic>);
 
-      if (clientResponse.clients == null) {
+        final SearchUserResponse newUserResponse = state
+            .miscState!.searchUserResponseState!.selectedSearchUserResponse!
+            .copyWith(rolesList: roles);
+
         dispatch(
           UpdateSearchUserResponseStateAction(
-            noUserFound: true,
+            selectedSearchUserResponse: newUserResponse,
           ),
         );
-        return null;
+      } else {
+        onFailure?.call();
       }
-      dispatch(
-        UpdateSearchUserResponseStateAction(
-          searchUserResponses: clientResponse.clients ?? <SearchUserResponse>[],
-        ),
-      );
     } else {
       throw UserException(processedResponse.message);
     }
-
-    return null;
   }
 }

@@ -26,12 +26,14 @@ class _$SearchUserResponseTearOff {
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
-      @JsonKey(name: 'User') UserData? user}) {
+      @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'rolesList') RolesList? rolesList}) {
     return _SearchUserResponse(
       id: id,
       clientCCCNumber: clientCCCNumber,
       staffNumber: staffNumber,
       user: user,
+      rolesList: rolesList,
     );
   }
 
@@ -55,6 +57,8 @@ mixin _$SearchUserResponse {
       throw _privateConstructorUsedError; // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rolesList')
+  RolesList? get rolesList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,9 +75,11 @@ abstract class $SearchUserResponseCopyWith<$Res> {
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
-      @JsonKey(name: 'User') UserData? user});
+      @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'rolesList') RolesList? rolesList});
 
   $UserDataCopyWith<$Res>? get user;
+  $RolesListCopyWith<$Res>? get rolesList;
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class _$SearchUserResponseCopyWithImpl<$Res>
     Object? clientCCCNumber = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
+    Object? rolesList = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -109,6 +116,10 @@ class _$SearchUserResponseCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      rolesList: rolesList == freezed
+          ? _value.rolesList
+          : rolesList // ignore: cast_nullable_to_non_nullable
+              as RolesList?,
     ));
   }
 
@@ -120,6 +131,17 @@ class _$SearchUserResponseCopyWithImpl<$Res>
 
     return $UserDataCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $RolesListCopyWith<$Res>? get rolesList {
+    if (_value.rolesList == null) {
+      return null;
+    }
+
+    return $RolesListCopyWith<$Res>(_value.rolesList!, (value) {
+      return _then(_value.copyWith(rolesList: value));
     });
   }
 }
@@ -135,10 +157,13 @@ abstract class _$SearchUserResponseCopyWith<$Res>
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
-      @JsonKey(name: 'User') UserData? user});
+      @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'rolesList') RolesList? rolesList});
 
   @override
   $UserDataCopyWith<$Res>? get user;
+  @override
+  $RolesListCopyWith<$Res>? get rolesList;
 }
 
 /// @nodoc
@@ -158,6 +183,7 @@ class __$SearchUserResponseCopyWithImpl<$Res>
     Object? clientCCCNumber = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
+    Object? rolesList = freezed,
   }) {
     return _then(_SearchUserResponse(
       id: id == freezed
@@ -176,6 +202,10 @@ class __$SearchUserResponseCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      rolesList: rolesList == freezed
+          ? _value.rolesList
+          : rolesList // ignore: cast_nullable_to_non_nullable
+              as RolesList?,
     ));
   }
 }
@@ -187,7 +217,8 @@ class _$_SearchUserResponse implements _SearchUserResponse {
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'CCCNumber') this.clientCCCNumber,
       @JsonKey(name: 'StaffNumber') this.staffNumber,
-      @JsonKey(name: 'User') this.user});
+      @JsonKey(name: 'User') this.user,
+      @JsonKey(name: 'rolesList') this.rolesList});
 
   factory _$_SearchUserResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SearchUserResponseFromJson(json);
@@ -204,10 +235,13 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   final UserData? user;
+  @override
+  @JsonKey(name: 'rolesList')
+  final RolesList? rolesList;
 
   @override
   String toString() {
-    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, staffNumber: $staffNumber, user: $user)';
+    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, staffNumber: $staffNumber, user: $user, rolesList: $rolesList)';
   }
 
   @override
@@ -220,7 +254,8 @@ class _$_SearchUserResponse implements _SearchUserResponse {
                 .equals(other.clientCCCNumber, clientCCCNumber) &&
             const DeepCollectionEquality()
                 .equals(other.staffNumber, staffNumber) &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.rolesList, rolesList));
   }
 
   @override
@@ -229,7 +264,8 @@ class _$_SearchUserResponse implements _SearchUserResponse {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(clientCCCNumber),
       const DeepCollectionEquality().hash(staffNumber),
-      const DeepCollectionEquality().hash(user));
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(rolesList));
 
   @JsonKey(ignore: true)
   @override
@@ -244,10 +280,12 @@ class _$_SearchUserResponse implements _SearchUserResponse {
 
 abstract class _SearchUserResponse implements SearchUserResponse {
   factory _SearchUserResponse(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
-      @JsonKey(name: 'StaffNumber') String? staffNumber,
-      @JsonKey(name: 'User') UserData? user}) = _$_SearchUserResponse;
+          {@JsonKey(name: 'ID') String? id,
+          @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+          @JsonKey(name: 'StaffNumber') String? staffNumber,
+          @JsonKey(name: 'User') UserData? user,
+          @JsonKey(name: 'rolesList') RolesList? rolesList}) =
+      _$_SearchUserResponse;
 
   factory _SearchUserResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchUserResponse.fromJson;
@@ -264,6 +302,9 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user;
+  @override
+  @JsonKey(name: 'rolesList')
+  RolesList? get rolesList;
   @override
   @JsonKey(ignore: true)
   _$SearchUserResponseCopyWith<_SearchUserResponse> get copyWith =>

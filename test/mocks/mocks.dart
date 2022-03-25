@@ -275,6 +275,11 @@ Map<String, dynamic> mockClientResponse = <String, dynamic>{
   }
 };
 
+Map<String, dynamic> mockRoleResponse = <String, dynamic>{
+  'roleID': 'some-id',
+  'name': 'some-name',
+};
+
 Map<String, dynamic> mockRegisterClient = <String, dynamic>{
   'ID': 'id',
   'active': true,
@@ -905,6 +910,24 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(getUserRolesQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getUserRoles': <dynamic>[
+                <String, dynamic>{
+                  'roleID': 'some_id',
+                  'name': 'CONTENT_MANAGEMENT'
+                },
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),
     );
@@ -1187,6 +1210,33 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
   },
   'communityMembers': <dynamic>[],
   'groupState': groupStateMock,
+  'searchUserResponseState': mockSearchUserResponseState,
+};
+
+final Map<String, dynamic> mockSearchUserResponseState = <String, dynamic>{
+  'searchUserResponses': <dynamic>[],
+  'selectedSearchUserResponse': <String, dynamic>{
+    'ID': UNKNOWN,
+    'CCCNumber': UNKNOWN,
+    'StaffNumber': UNKNOWN,
+    'rolesList': <String, dynamic>{'getUserRoles': <dynamic>[]},
+    'User': <String, dynamic>{
+      'ID': UNKNOWN,
+      'Username': UNKNOWN,
+      'TermsAccepted': false,
+      'Active': false,
+      'Contacts': <String, dynamic>{
+        'ID': UNKNOWN,
+        'Active': false,
+        'ContactType': 'PHONE',
+        'ContactValue': UNKNOWN,
+        'OptedIn': false
+      },
+    }
+  },
+  'errorSearchingUser': false,
+  'timeoutSearchingUser': false,
+  'noUserFound': null,
 };
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{

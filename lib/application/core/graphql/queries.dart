@@ -158,3 +158,12 @@ query searchStaffByStaffNumber($staffNumber: String!){
   }
 }
 ''';
+
+const String getUserRolesQuery = r'''
+query getUserRoles($userID: String!){
+  getUserRoles(userID: $userID){
+    roleID
+    name
+  }
+}
+''';

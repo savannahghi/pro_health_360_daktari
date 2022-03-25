@@ -2,12 +2,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/search_client_action.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -26,15 +26,25 @@ class SearchClientPage extends StatefulWidget {
 class _SearchClientPageState extends State<SearchClientPage> {
   final TextEditingController searchController = TextEditingController();
   List<String> inviteMemberIds = <String>[];
-
   String cccNumber = '';
-  List<SearchUserResponse>? clients;
-  bool clientFound = false;
-  bool showZeroState = false;
 
   @override
   void initState() {
     super.initState();
+
+    // reset the values in state
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      StoreProvider.dispatch(
+        context,
+        UpdateSearchUserResponseStateAction(
+          searchUserResponses: <SearchUserResponse>[],
+          noUserFound: false,
+          errorSearchingUser: false,
+          timeoutSearchingUser: false,
+        ),
+      );
+    });
+
     searchController.addListener(() async {
       if (searchController.text.isEmpty) {
         setState(() {
@@ -57,10 +67,9 @@ class _SearchClientPageState extends State<SearchClientPage> {
         showShadow: false,
         showNotificationIcon: true,
       ),
-      body: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
-            AppStateViewModel.fromStore(store),
-        builder: (BuildContext context, AppStateViewModel vm) {
+      body: StoreConnector<AppState, SearchViewModel>(
+        converter: (Store<AppState> store) => SearchViewModel.fromStore(store),
+        builder: (BuildContext context, SearchViewModel vm) {
           return Column(
             children: <Widget>[
               Expanded(
@@ -87,34 +96,12 @@ class _SearchClientPageState extends State<SearchClientPage> {
                             child: IconButton(
                               onPressed: () {
                                 if (cccNumber.isNotEmpty) {
-                                  setState(() {
-                                    clientFound = false;
-                                    showZeroState = false;
-                                  });
                                   StoreProvider.dispatch(
                                     context,
                                     SearchClientAction(
                                       client: AppWrapperBase.of(context)!
                                           .graphQLClient,
                                       cccNumber: cccNumber,
-                                      clientNotFound: () {
-                                        setState(() {
-                                          showZeroState = true;
-                                        });
-                                      },
-                                      onFailure: (String message) {
-                                        showTextSnackbar(
-                                          ScaffoldMessenger.of(context),
-                                          content: message,
-                                        );
-                                      },
-                                      onSuccess:
-                                          (List<SearchUserResponse> response) {
-                                        setState(() {
-                                          clients = response;
-                                          clientFound = true;
-                                        });
-                                      },
                                     ),
                                   );
                                 }
@@ -126,28 +113,32 @@ class _SearchClientPageState extends State<SearchClientPage> {
                           customFillColor: AppColors.galleryColor,
                           onChanged: (String val) {},
                         ),
-                        if (vm.state.wait!.isWaitingFor(searchClientFlag))
+                        if (vm.wait.isWaitingFor(searchClientFlag))
                           Container(
                             height: 300,
                             padding: const EdgeInsets.all(20),
                             child: const PlatformLoader(),
                           ),
                         const SizedBox(height: 24),
-                        if (clientFound && clients != null)
+                        if (vm.searchUserResponses != null &&
+                            vm.searchUserResponses!.isNotEmpty &&
+                            !vm.wait.isWaitingFor(searchClientFlag))
                           ListView.builder(
                             shrinkWrap: true,
                             physics: const BouncingScrollPhysics(),
-                            itemCount: clients?.length,
+                            itemCount: vm.searchUserResponses!.length,
                             itemBuilder: (_, int index) {
                               final SearchUserResponse searchUserResponse =
-                                  clients![index];
+                                  vm.searchUserResponses![index]!;
                               return SearchUserItem(
                                 searchUserResponse: searchUserResponse,
                                 isCCCNumber: true,
                               );
                             },
                           ),
-                        if (showZeroState)
+                        if ((vm.errorFetchingSearchUserResponse ?? false) ||
+                            (vm.timeoutFetchingSearchUserResponse ?? false) ||
+                            (vm.noUserFound ?? false))
                           GenericErrorWidget(
                             actionKey: const Key('search_not_found_key'),
                             headerIconSvgUrl: searchNotFoundImage,

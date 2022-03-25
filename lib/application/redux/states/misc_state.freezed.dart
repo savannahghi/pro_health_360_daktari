@@ -27,13 +27,15 @@ class _$MiscStateTearOff {
       String? error,
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
-      GroupState? groupState}) {
+      GroupState? groupState,
+      SearchUserResponseState? searchUserResponseState}) {
     return _MiscState(
       initialRoute: initialRoute,
       error: error,
       profileFAQsContentState: profileFAQsContentState,
       communityMembers: communityMembers,
       groupState: groupState,
+      searchUserResponseState: searchUserResponseState,
     );
   }
 
@@ -53,6 +55,8 @@ mixin _$MiscState {
       throw _privateConstructorUsedError;
   List<Member>? get communityMembers => throw _privateConstructorUsedError;
   GroupState? get groupState => throw _privateConstructorUsedError;
+  SearchUserResponseState? get searchUserResponseState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,10 +73,12 @@ abstract class $MiscStateCopyWith<$Res> {
       String? error,
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
-      GroupState? groupState});
+      GroupState? groupState,
+      SearchUserResponseState? searchUserResponseState});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
+  $SearchUserResponseStateCopyWith<$Res>? get searchUserResponseState;
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? profileFAQsContentState = freezed,
     Object? communityMembers = freezed,
     Object? groupState = freezed,
+    Object? searchUserResponseState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -112,6 +119,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
+      searchUserResponseState: searchUserResponseState == freezed
+          ? _value.searchUserResponseState
+          : searchUserResponseState // ignore: cast_nullable_to_non_nullable
+              as SearchUserResponseState?,
     ));
   }
 
@@ -137,6 +148,18 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       return _then(_value.copyWith(groupState: value));
     });
   }
+
+  @override
+  $SearchUserResponseStateCopyWith<$Res>? get searchUserResponseState {
+    if (_value.searchUserResponseState == null) {
+      return null;
+    }
+
+    return $SearchUserResponseStateCopyWith<$Res>(
+        _value.searchUserResponseState!, (value) {
+      return _then(_value.copyWith(searchUserResponseState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -150,12 +173,15 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       String? error,
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
-      GroupState? groupState});
+      GroupState? groupState,
+      SearchUserResponseState? searchUserResponseState});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   @override
   $GroupStateCopyWith<$Res>? get groupState;
+  @override
+  $SearchUserResponseStateCopyWith<$Res>? get searchUserResponseState;
 }
 
 /// @nodoc
@@ -174,6 +200,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? profileFAQsContentState = freezed,
     Object? communityMembers = freezed,
     Object? groupState = freezed,
+    Object? searchUserResponseState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -196,6 +223,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
+      searchUserResponseState: searchUserResponseState == freezed
+          ? _value.searchUserResponseState
+          : searchUserResponseState // ignore: cast_nullable_to_non_nullable
+              as SearchUserResponseState?,
     ));
   }
 }
@@ -208,7 +239,8 @@ class _$_MiscState implements _MiscState {
       this.error,
       this.profileFAQsContentState,
       this.communityMembers,
-      this.groupState});
+      this.groupState,
+      this.searchUserResponseState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -223,10 +255,12 @@ class _$_MiscState implements _MiscState {
   final List<Member>? communityMembers;
   @override
   final GroupState? groupState;
+  @override
+  final SearchUserResponseState? searchUserResponseState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState)';
+    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState, searchUserResponseState: $searchUserResponseState)';
   }
 
   @override
@@ -242,7 +276,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.communityMembers, communityMembers) &&
             const DeepCollectionEquality()
-                .equals(other.groupState, groupState));
+                .equals(other.groupState, groupState) &&
+            const DeepCollectionEquality().equals(
+                other.searchUserResponseState, searchUserResponseState));
   }
 
   @override
@@ -252,7 +288,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(profileFAQsContentState),
       const DeepCollectionEquality().hash(communityMembers),
-      const DeepCollectionEquality().hash(groupState));
+      const DeepCollectionEquality().hash(groupState),
+      const DeepCollectionEquality().hash(searchUserResponseState));
 
   @JsonKey(ignore: true)
   @override
@@ -271,7 +308,8 @@ abstract class _MiscState implements MiscState {
       String? error,
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
-      GroupState? groupState}) = _$_MiscState;
+      GroupState? groupState,
+      SearchUserResponseState? searchUserResponseState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -286,6 +324,8 @@ abstract class _MiscState implements MiscState {
   List<Member>? get communityMembers;
   @override
   GroupState? get groupState;
+  @override
+  SearchUserResponseState? get searchUserResponseState;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>
