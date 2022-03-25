@@ -44,7 +44,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               500,
             ),
           ),
@@ -55,11 +55,6 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(SearchClientAction);
 
-      expect(
-        info.state,
-        AppState.initial()
-            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
-      );
       expect(
         (info.error! as UserException).msg,
         'Sorry, an unknown error occurred, please try again or get help from our '
@@ -74,7 +69,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               200,
             ),
           ),
@@ -85,11 +80,6 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(SearchClientAction);
 
-      expect(
-        info.state,
-        AppState.initial()
-            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
-      );
       expect(
         (info.error! as UserException).msg,
         getErrorMessage('fetching clients'),

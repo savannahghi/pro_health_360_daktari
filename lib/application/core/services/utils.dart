@@ -170,6 +170,11 @@ RoleValue roleValueFromJson(String? roleString) {
   });
 }
 
+// converts role sting from 'CLIENT_MANAGEMENT' to 'Client management'
+String roleToString(String role) {
+  return capitalizeFirst(role.split('_').join(' '));
+}
+
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
 OnboardingPathInfo getOnboardingPath({required AppState state}) {

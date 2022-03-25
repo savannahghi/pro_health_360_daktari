@@ -329,13 +329,16 @@ void main() {
       expect(find.text('test snackbar'), findsNothing);
     });
   });
-    test(
-      'userBannedMessage should return the correct message',
-      () {
-        
-
+  test('userBannedMessage should return the correct message', () {
     expect(userBannedMessage(), 'User banned successfully');
-    expect(userBannedMessage(userName: 'test', communityName: 'test'), 'You have banned test form test');
+    expect(
+      userBannedMessage(userName: 'test', communityName: 'test'),
+      'You have banned test form test',
+    );
     expect(userBannedMessage(userName: 'test'), 'You have banned test');
+  });
+  test('roleToString should return the correct role String', () {
+    final String roleString = roleToString('CONTENT_MANAGEMENT');
+    expect(roleString, 'Content management');
   });
 }

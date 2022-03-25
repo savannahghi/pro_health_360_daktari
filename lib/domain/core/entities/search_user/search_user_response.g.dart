@@ -15,6 +15,9 @@ _$_SearchUserResponse _$$_SearchUserResponseFromJson(
       user: json['User'] == null
           ? null
           : UserData.fromJson(json['User'] as Map<String, dynamic>),
+      rolesList: json['rolesList'] == null
+          ? null
+          : RolesList.fromJson(json['rolesList'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_SearchUserResponseToJson(
@@ -24,4 +27,5 @@ Map<String, dynamic> _$$_SearchUserResponseToJson(
       'CCCNumber': instance.clientCCCNumber,
       'StaffNumber': instance.staffNumber,
       'User': instance.user,
+      'rolesList': instance.rolesList,
     };
