@@ -14,7 +14,6 @@ import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:mycarehubpro/presentation/service_requests/widgets/service_request_action_card.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
@@ -96,7 +95,13 @@ class HomePage extends StatelessWidget {
                               .pushNamed(AppRoutes.addNewStaffPage);
                         },
                       ),
-                      const ServiceRequestActionCard(),
+                     ActionCard(
+                        iconUrl: serviceRequestsIconSvg,
+                        title: serviceRequestsText,
+                        onTap: () => Navigator.of(context).pushNamed(
+                          AppRoutes.serviceRequestsPage,
+                        ),
+                      ),
                       ActionCard(
                         title: createGroupText,
                         iconUrl: newGroupImage,
