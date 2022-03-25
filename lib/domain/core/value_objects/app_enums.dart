@@ -42,14 +42,14 @@ extension RequestStatusEx on RequestStatus {
   }
 }
 
-enum Role {
+enum RoleValue {
   SYSTEM_ADMINISTRATOR,
   COMMUNITY_MANAGEMENT,
   CONTENT_MANAGEMENT,
   CLIENT_MANAGEMENT,
 }
 
-extension RoleName on Role {
+extension RoleName on RoleValue {
   String get name {
     return describeEnum(this).split('_').join(' ');
   }

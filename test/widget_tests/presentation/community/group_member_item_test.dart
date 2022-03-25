@@ -11,10 +11,10 @@ void main() {
         tester: tester,
         widget: const GroupMemberItem(
           userName: 'userName',
-          memberID: 'memberID',
-          communityId: 'communityId',
-          communityName: 'communityName',
           isModerator: true,
+          communityId: '',
+          communityName: '',
+          memberID: '',
         ),
       );
 

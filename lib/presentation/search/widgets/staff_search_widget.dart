@@ -31,7 +31,7 @@ class StaffSearchWidget extends StatefulWidget {
 Map<String, bool> roleFields = <String, bool>{};
 
 void createRoleFields() {
-  for (final Role role in Role.values) {
+  for (final RoleValue role in RoleValue.values) {
     final String key = capitalizeFirst(role.name);
     roleFields[key] = false;
   }

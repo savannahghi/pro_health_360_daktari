@@ -3,12 +3,14 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/groups/groups_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -30,34 +32,28 @@ class GroupInfoPage extends StatefulWidget {
 
 class _GroupInfoPageState extends State<GroupInfoPage> {
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback(
-      (Duration timeStamp) async {
-        await StoreProvider.dispatch<AppState>(
-          context,
-          FetchGroupMembersAction(
-            context,
-            client: AppWrapperBase.of(context)!.graphQLClient,
-            variables: <String, dynamic>{
-              'communityID': widget.payload['channelId'] as String,
-            },
-            onError: (String? error) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content:
-                      Text(getErrorMessage(groupMembersText.toLowerCase())),
-                  duration: const Duration(seconds: kShortSnackBarDuration),
-                ),
-              );
-              Sentry.captureException(
-                UserException(error),
-              );
-            },
-          ),
-        );
-      },
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    StoreProvider.dispatch<AppState>(
+      context,
+      FetchGroupMembersAction(
+        context,
+        client: AppWrapperBase.of(context)!.graphQLClient,
+        variables: <String, dynamic>{
+          'communityID': widget.payload['channelId'] as String,
+        },
+        onError: (String? error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(getErrorMessage(groupMembersText.toLowerCase())),
+              duration: const Duration(seconds: kShortSnackBarDuration),
+            ),
+          );
+          Sentry.captureException(
+            UserException(error),
+          );
+        },
+      ),
     );
   }
 
@@ -94,8 +90,6 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                     converter: (Store<AppState> store) =>
                         GroupsViewModel.fromStore(store),
                     builder: (BuildContext context, GroupsViewModel vm) {
-                      final List<GroupMember?>? groupMembers = vm.groupMembers;
-
                       if (vm.wait.isWaitingFor(fetchGroupMembersFlag)) {
                         return const Padding(
                           padding: EdgeInsets.only(
@@ -104,6 +98,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                           child: PlatformLoader(),
                         );
                       }
+
+                      final List<GroupMember?>? groupMembers = vm.groupMembers;
+                      final List<Role>? staffRoles = vm.staffRoles;
 
                       return Column(
                         children: <Widget>[
@@ -134,13 +131,18 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                               final bool isModerator =
                                   currentMember.isModerator;
 
+                              final bool canModerate = staffRoles != null &&
+                                  staffRoles.isNotEmpty &&
+                                  staffRoles.contains(communityManagementRole);
+
                               return GroupMemberItem(
+                                itemKey: ValueKey<int>(index),
                                 userName: name,
                                 memberID: id,
                                 communityId:
                                     widget.payload['channelId'] as String,
                                 communityName: channelName,
-                                isModerator: isModerator,
+                                isModerator: isModerator && canModerate,
                               );
                             },
                           ),
