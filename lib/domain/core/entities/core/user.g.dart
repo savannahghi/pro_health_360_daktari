@@ -30,6 +30,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       acceptedTermsID: json['acceptedTermsID'] as int?,
       suspended: json['suspended'] as bool?,
       avatar: json['avatar'] as String?,
+      roles: (json['roles'] as List<dynamic>?)
+          ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+          .toList(),
       chatRoomToken: json['chatRoomToken'] as String?,
     );
 
@@ -55,5 +58,6 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'acceptedTermsID': instance.acceptedTermsID,
       'suspended': instance.suspended,
       'avatar': instance.avatar,
+      'roles': instance.roles,
       'chatRoomToken': instance.chatRoomToken,
     };

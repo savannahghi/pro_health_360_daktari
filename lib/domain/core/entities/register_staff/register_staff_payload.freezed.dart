@@ -29,7 +29,7 @@ class _$RegisterStaffPayloadTearOff {
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'idNumber') String? idNumber,
       @JsonKey(name: 'staffNumber') String? staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleFromJson) Role? role,
+      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) RoleValue? role,
       @JsonKey(name: 'inviteStaff') bool? inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson) DateTime? dateOfBirth}) {
     return _RegisterStaffPayload(
@@ -67,8 +67,8 @@ mixin _$RegisterStaffPayload {
   String? get idNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'staffNumber')
   String? get staffNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: 'staffRoles', fromJson: roleFromJson)
-  Role? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
+  RoleValue? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'inviteStaff')
   bool? get inviteStaff => throw _privateConstructorUsedError;
   @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
@@ -92,7 +92,7 @@ abstract class $RegisterStaffPayloadCopyWith<$Res> {
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'idNumber') String? idNumber,
       @JsonKey(name: 'staffNumber') String? staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleFromJson) Role? role,
+      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) RoleValue? role,
       @JsonKey(name: 'inviteStaff') bool? inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson) DateTime? dateOfBirth});
 }
@@ -146,7 +146,7 @@ class _$RegisterStaffPayloadCopyWithImpl<$Res>
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as Role?,
+              as RoleValue?,
       inviteStaff: inviteStaff == freezed
           ? _value.inviteStaff
           : inviteStaff // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ abstract class _$RegisterStaffPayloadCopyWith<$Res>
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'idNumber') String? idNumber,
       @JsonKey(name: 'staffNumber') String? staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleFromJson) Role? role,
+      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) RoleValue? role,
       @JsonKey(name: 'inviteStaff') bool? inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson) DateTime? dateOfBirth});
 }
@@ -229,7 +229,7 @@ class __$RegisterStaffPayloadCopyWithImpl<$Res>
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as Role?,
+              as RoleValue?,
       inviteStaff: inviteStaff == freezed
           ? _value.inviteStaff
           : inviteStaff // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
       @JsonKey(name: 'phoneNumber') this.phoneNumber,
       @JsonKey(name: 'idNumber') this.idNumber,
       @JsonKey(name: 'staffNumber') this.staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleFromJson) this.role,
+      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) this.role,
       @JsonKey(name: 'inviteStaff') this.inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson) this.dateOfBirth});
 
@@ -278,8 +278,8 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
   @JsonKey(name: 'staffNumber')
   final String? staffNumber;
   @override
-  @JsonKey(name: 'staffRoles', fromJson: roleFromJson)
-  final Role? role;
+  @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
+  final RoleValue? role;
   @override
   @JsonKey(name: 'inviteStaff')
   final bool? inviteStaff;
@@ -351,8 +351,8 @@ abstract class _RegisterStaffPayload implements RegisterStaffPayload {
           String? idNumber,
       @JsonKey(name: 'staffNumber')
           String? staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleFromJson)
-          Role? role,
+      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
+          RoleValue? role,
       @JsonKey(name: 'inviteStaff')
           bool? inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
@@ -380,8 +380,8 @@ abstract class _RegisterStaffPayload implements RegisterStaffPayload {
   @JsonKey(name: 'staffNumber')
   String? get staffNumber;
   @override
-  @JsonKey(name: 'staffRoles', fromJson: roleFromJson)
-  Role? get role;
+  @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
+  RoleValue? get role;
   @override
   @JsonKey(name: 'inviteStaff')
   bool? get inviteStaff;

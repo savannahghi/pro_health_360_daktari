@@ -30,7 +30,7 @@ dependencies:
   freezed_annotation: ^1.1.0
   http: ^0.13.4
   intl: ^0.17.0
-  json_annotation: ^4.0.1
+  json_annotation: ^4.4.0
   json_serializable: ^6.1.4
   path: ^1.8.0
   quiver: ^3.0.1

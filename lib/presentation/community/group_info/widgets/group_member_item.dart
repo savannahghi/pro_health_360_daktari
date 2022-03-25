@@ -12,6 +12,7 @@ class GroupMemberItem extends StatelessWidget {
     required this.communityId,
     required this.communityName,
     this.isModerator = false,
+    this.itemKey,
   });
 
   final String userName;
@@ -19,23 +20,27 @@ class GroupMemberItem extends StatelessWidget {
   final String communityId;
   final String communityName;
   final bool isModerator;
+  final Key? itemKey;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: itemKey,
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            return MemberListActionsDialog(
-              memberID: memberID,
-              communityId: communityId,
-              communityName: communityName,
-              memberName: userName,
-            );
-          },
-        );
+        if (isModerator) {
+          showDialog(
+            context: context,
+            builder: (_) {
+              return MemberListActionsDialog(
+                memberID: memberID,
+                communityId: communityId,
+                communityName: communityName,
+                memberName: name,
+              );
+            },
+          );
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(8),
