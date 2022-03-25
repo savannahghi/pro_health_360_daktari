@@ -72,3 +72,6 @@ const String removeFromGroupFlag = 'remove_from group_flag';
 
 // promote to admin
 const String promoteToAdminFlag = 'promote_to_admin_flag';
+
+//pin reset service request
+const String staffPinResetServiceRequestFlag = 'pin_reset_service_request_flag';
