@@ -17,6 +17,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/flagged_messages/pages/flagged_messages_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -277,6 +278,11 @@ class RouteGenerator {
       case AppRoutes.groupInvitesPage:
         return MaterialPageRoute<InvitedGroupsPage>(
           builder: (_) => const InvitedGroupsPage(),
+        );
+
+      case AppRoutes.flaggedMessagesPage:
+        return MaterialPageRoute<FlaggedMessagesPage>(
+          builder: (_) => const FlaggedMessagesPage(),
         );
 
       case AppRoutes.acceptGroupInvitesPage:
