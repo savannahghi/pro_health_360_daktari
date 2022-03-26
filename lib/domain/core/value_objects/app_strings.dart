@@ -573,3 +573,12 @@ const String invalidCredentialSting = 'Invalid credentials';
 const String resetPINString = 'Reset your PIN';
 
 const String responseNotMatchingText = 'One or more responses do not match';
+
+// Flagged messages
+const String flaggedMessagesString = 'Flagged messages';
+const String groupTitle = 'Ruaraka Group';
+const String flaggedMessagesDescription =
+    'Here are messages that have been marked as inappropriate or offensive by this group’s members';
+const String deleteMessageString = 'Delete Message';
+const String muteUserString = 'Mute User';
+const String flaggedMessageText = 'I don’t like this group. Delete';

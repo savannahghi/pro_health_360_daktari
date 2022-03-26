@@ -84,4 +84,7 @@ class AppRoutes {
   static const String pinExpiredPage = '/pinExpiredPage';
   static const String verifySecurityQuestionsHelpPage =
       '/verifySecurityQuestionsHelpPage';
+
+  // Flagged Messages
+  static const String flaggedMessagesPage = '/flaggedMessagesPage';
 }
