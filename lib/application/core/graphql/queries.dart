@@ -109,7 +109,7 @@ query listCommunityMembers($communityID: ID!){
 	listCommunityMembers(communityID: $communityID) {
       user{
         ID
-        name
+        username
         role
       }
       isModerator

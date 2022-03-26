@@ -23,11 +23,11 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final AppState newState = state.copyWith.call(
+    final AppState newState = state.copyWith(
       miscState: state.miscState!.copyWith(
         error: error ?? state.miscState?.error,
         initialRoute: initialRoute ?? state.miscState?.initialRoute,
-        communityMembers: communityMembers ?? state.miscState?.communityMembers,
+        communityMembers: communityMembers,
       ),
     );
 
