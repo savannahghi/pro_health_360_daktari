@@ -434,6 +434,8 @@ const String confirmTheNamesAreCorrectText =
 
 // group info
 const String groupInfoText = 'Group Info';
+const String flaggedMessagesText = 'Flagged messages';
+const String tapToViewFlaggedMessagesText = 'Tap to view flagged messages';
 const String moderatorText = 'Moderator';
 
 const String groupMembersText = 'Group Members';
