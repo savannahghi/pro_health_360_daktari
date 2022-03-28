@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -156,7 +154,7 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                     const SizedBox(height: 20),
                     const Text(
                       pinResetRequestsLeading,
-                      style: TextStyle(color: Color(0xFF7A7B8E)),
+                      style: TextStyle(color: AppColors.grey50),
                     ),
                     const SizedBox(height: 20),
                     ...requestWidgetList,

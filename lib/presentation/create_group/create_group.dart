@@ -303,9 +303,6 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           return ElevatedButton(
                             key: createGroupBtnKey,
                             onPressed: isValid ? () => _submitForm() : null,
-                            style: ElevatedButton.styleFrom(
-                              primary: AppColors.primaryColor,
-                            ),
                             child: vm.wait.isWaitingFor(createGroupFlag)
                                 ? const PlatformLoader(color: Colors.white)
                                 : const Text(createGroupText),

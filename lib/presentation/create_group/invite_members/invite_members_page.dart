@@ -290,9 +290,6 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                             );
                           }
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.primaryColor,
-                        ),
                         child: const Text(inviteMembersTitle),
                       ),
                     ),
