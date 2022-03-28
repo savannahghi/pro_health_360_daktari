@@ -558,6 +558,7 @@ const String rolesAssigned = 'Roles have been successfully assigned to';
 // remove user from group
 const String removedFromGroup = 'removed from the group successfully';
 const String unableToRemove = 'was not removed from group due to an error';
+const String bannedString = 'Banned';
 
 String userBannedMessage({
   bool isBanned = false,

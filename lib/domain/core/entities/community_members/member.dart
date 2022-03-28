@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/domain/core/entities/community_members/ban_status.dart';
 
 part 'member.freezed.dart';
 part 'member.g.dart';
@@ -15,6 +16,7 @@ class Member with _$Member {
     @JsonKey(name: 'username') String? username,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
         Gender? gender,
+    @JsonKey(name: 'extraData') BanStatus? banStatus,
   }) = _Member;
 
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
@@ -25,5 +27,6 @@ class Member with _$Member {
         role: UNKNOWN,
         username: UNKNOWN,
         gender: Gender.unknown,
+        banStatus: BanStatus.initial(),
       );
 }

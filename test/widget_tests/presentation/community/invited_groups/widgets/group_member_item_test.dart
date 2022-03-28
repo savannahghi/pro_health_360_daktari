@@ -15,6 +15,7 @@ void main() {
           communityId: '',
           communityName: '',
           memberID: '',
+          isBanned: true,
         ),
       );
 
