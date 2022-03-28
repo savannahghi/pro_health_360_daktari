@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/update_invited_communities_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/update_communities_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/community_members/community.dart';
@@ -69,7 +69,7 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
       );
 
       dispatch(
-        UpdateInvitedCommunitiesStateAction(
+        UpdateCommunitiesStateAction(
           communitiesList: communitiesMap.communitiesList ?? <Community>[],
         ),
       );
