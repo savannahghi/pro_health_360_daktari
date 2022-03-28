@@ -1158,6 +1158,9 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
         'role': UNKNOWN,
         'username': UNKNOWN,
         'gender': 'unknown',
+        'extraData': <String, dynamic>{
+          'bannedInCommunity': false,
+        }
       },
       'isModerator': true,
     },

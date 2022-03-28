@@ -118,6 +118,7 @@ query listCommunityMembers($communityID: ID!){
         ID
         username
         role
+        extraData
       }
       isModerator
   }

@@ -12,6 +12,9 @@ _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       role: json['role'] as String?,
       username: json['username'] as String?,
       gender: genderFromJson(json['gender'] as String?),
+      banStatus: json['extraData'] == null
+          ? null
+          : BanStatus.fromJson(json['extraData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
@@ -20,4 +23,5 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'role': instance.role,
       'username': instance.username,
       'gender': genderToJson(instance.gender),
+      'extraData': instance.banStatus,
     };

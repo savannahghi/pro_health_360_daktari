@@ -32,13 +32,16 @@ class _$MemberTearOff {
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender}) {
+          Gender? gender,
+      @JsonKey(name: 'extraData')
+          BanStatus? banStatus}) {
     return _Member(
       id: id,
       userID: userID,
       role: role,
       username: username,
       gender: gender,
+      banStatus: banStatus,
     );
   }
 
@@ -62,6 +65,8 @@ mixin _$Member {
   String? get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'extraData')
+  BanStatus? get banStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -82,7 +87,11 @@ abstract class $MemberCopyWith<$Res> {
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender});
+          Gender? gender,
+      @JsonKey(name: 'extraData')
+          BanStatus? banStatus});
+
+  $BanStatusCopyWith<$Res>? get banStatus;
 }
 
 /// @nodoc
@@ -100,6 +109,7 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
     Object? role = freezed,
     Object? username = freezed,
     Object? gender = freezed,
+    Object? banStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -122,7 +132,22 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
+      banStatus: banStatus == freezed
+          ? _value.banStatus
+          : banStatus // ignore: cast_nullable_to_non_nullable
+              as BanStatus?,
     ));
+  }
+
+  @override
+  $BanStatusCopyWith<$Res>? get banStatus {
+    if (_value.banStatus == null) {
+      return null;
+    }
+
+    return $BanStatusCopyWith<$Res>(_value.banStatus!, (value) {
+      return _then(_value.copyWith(banStatus: value));
+    });
   }
 }
 
@@ -141,7 +166,12 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender});
+          Gender? gender,
+      @JsonKey(name: 'extraData')
+          BanStatus? banStatus});
+
+  @override
+  $BanStatusCopyWith<$Res>? get banStatus;
 }
 
 /// @nodoc
@@ -160,6 +190,7 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
     Object? role = freezed,
     Object? username = freezed,
     Object? gender = freezed,
+    Object? banStatus = freezed,
   }) {
     return _then(_Member(
       id: id == freezed
@@ -182,6 +213,10 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
+      banStatus: banStatus == freezed
+          ? _value.banStatus
+          : banStatus // ignore: cast_nullable_to_non_nullable
+              as BanStatus?,
     ));
   }
 }
@@ -199,7 +234,9 @@ class _$_Member implements _Member {
       @JsonKey(name: 'username')
           this.username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          this.gender});
+          this.gender,
+      @JsonKey(name: 'extraData')
+          this.banStatus});
 
   factory _$_Member.fromJson(Map<String, dynamic> json) =>
       _$$_MemberFromJson(json);
@@ -219,10 +256,13 @@ class _$_Member implements _Member {
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   final Gender? gender;
+  @override
+  @JsonKey(name: 'extraData')
+  final BanStatus? banStatus;
 
   @override
   String toString() {
-    return 'Member(id: $id, userID: $userID, role: $role, username: $username, gender: $gender)';
+    return 'Member(id: $id, userID: $userID, role: $role, username: $username, gender: $gender, banStatus: $banStatus)';
   }
 
   @override
@@ -234,7 +274,8 @@ class _$_Member implements _Member {
             const DeepCollectionEquality().equals(other.userID, userID) &&
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.gender, gender));
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.banStatus, banStatus));
   }
 
   @override
@@ -244,7 +285,8 @@ class _$_Member implements _Member {
       const DeepCollectionEquality().hash(userID),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(gender));
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(banStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +310,9 @@ abstract class _Member implements Member {
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender}) = _$_Member;
+          Gender? gender,
+      @JsonKey(name: 'extraData')
+          BanStatus? banStatus}) = _$_Member;
 
   factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
 
@@ -287,6 +331,9 @@ abstract class _Member implements Member {
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender;
+  @override
+  @JsonKey(name: 'extraData')
+  BanStatus? get banStatus;
   @override
   @JsonKey(ignore: true)
   _$MemberCopyWith<_Member> get copyWith => throw _privateConstructorUsedError;

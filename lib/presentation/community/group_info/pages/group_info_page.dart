@@ -139,6 +139,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                     staffRoles.isNotEmpty &&
                                     staffRoles
                                         .contains(communityManagementRole);
+                                        final bool isBanned = currentMember
+                                        .memberDetails?.banStatus?.value ??
+                                    false;
 
                                 return GroupMemberItem(
                                   itemKey: ValueKey<int>(index),
@@ -148,6 +151,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                       widget.payload['channelId'] as String,
                                   communityName: channelName,
                                   isModerator: isModerator && canModerate,
+                                  isBanned: isBanned,
                                 );
                               },
                             ),

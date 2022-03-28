@@ -13,6 +13,7 @@ class GroupMemberItem extends StatelessWidget {
     required this.communityName,
     this.isModerator = false,
     this.itemKey,
+    required this.isBanned,
   });
 
   final String userName;
@@ -20,6 +21,7 @@ class GroupMemberItem extends StatelessWidget {
   final String communityId;
   final String communityName;
   final bool isModerator;
+  final bool isBanned;
   final Key? itemKey;
 
   @override
@@ -37,6 +39,7 @@ class GroupMemberItem extends StatelessWidget {
                 communityId: communityId,
                 communityName: communityName,
                 memberName: name,
+                isBanned: isBanned,
               );
             },
           );
@@ -66,9 +69,21 @@ class GroupMemberItem extends StatelessWidget {
                   ),
                 ),
                 size15HorizontalSizedBox,
-                Text(
-                  userName.isNotEmpty ? userName : UNKNOWN,
-                  style: boldSize12Text(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      userName.isNotEmpty ? userName : UNKNOWN,
+                      style:
+                          boldSize12Text(isBanned ? AppColors.lightGrey.withOpacity(0.6) : null),
+                    ),
+                    if (isBanned)
+                      Text(
+                        bannedString,
+                        style: boldSize12Text(AppColors.redColor.withOpacity(0.6)),
+                      ),
+                  ],
                 ),
               ],
             ),
