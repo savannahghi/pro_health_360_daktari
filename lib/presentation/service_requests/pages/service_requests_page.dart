@@ -92,14 +92,17 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             ServiceRequestType.PROFILE_UPDATE,
           );
 
+          final int staffPINResetCount = _getServiceRequestTypeCount(
+            serviceRequestsCount,
+            ServiceRequestType.STAFF_PIN_RESET,
+          );
+
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 30,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 30),
                   child: Center(
                     child: SvgPicture.asset(
                       serviceRequestsIconSvg,
@@ -110,9 +113,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                 if (vm.wait
                     .isWaitingFor(fetchServiceRequestsCountFlag)) ...<Widget>{
                   const Padding(
-                    padding: EdgeInsets.only(
-                      top: 150,
-                    ),
+                    padding: EdgeInsets.only(top: 150),
                     child: PlatformLoader(),
                   )
                 } else if (total > 0) ...<Widget>{
@@ -127,6 +128,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                       children: <Widget>[
                         Wrap(
                           children: <Widget>[
+                            // RED FLAGS
                             if (redFlagCount > 0)
                               ActionCard(
                                 count: redFlagCount,
@@ -140,11 +142,13 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                   AppRoutes.redFlagsPage,
                                 ),
                               ),
+
+                            // CLIENT PIN RESET REQUESTS
                             if (pinResetCount > 0)
                               ActionCard(
                                 count: pinResetCount,
                                 iconUrl: pinResetImageSvgPath,
-                                title: pinResetString,
+                                title: clientPINResetString,
                                 backgroundColor: Theme.of(context)
                                     .primaryColor
                                     .withOpacity(0.2),
@@ -153,6 +157,22 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                   AppRoutes.pinResetRequestsPage,
                                 ),
                               ),
+
+                            // STAFF PIN RESET REQUESTS
+                            if (staffPINResetCount > 0)
+                              ActionCard(
+                                count: staffPINResetCount,
+                                iconUrl: pinResetImageSvgPath,
+                                title: staffPINResetString,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.pinResetRequestsPage,
+                                ),
+                              ),
+                            // SCREENING TOOLS
                             if (profileUpdateCount > 0)
                               ActionCard(
                                 count: profileUpdateCount,
@@ -165,7 +185,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                   context,
                                   AppRoutes.profileUpdateRequestsPage,
                                 ),
-                              )
+                              ),
                           ],
                         ),
                       ],
@@ -183,9 +203,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                     messageBody: <TextSpan>[
                       TextSpan(
                         text: serviceRequestsNoDataBodyString,
-                        style: normalSize16Text(
-                          AppColors.greyTextColor,
-                        ),
+                        style: normalSize16Text(AppColors.greyTextColor),
                       ),
                     ],
                   )

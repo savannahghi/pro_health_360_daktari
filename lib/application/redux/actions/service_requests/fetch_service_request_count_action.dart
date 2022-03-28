@@ -37,7 +37,7 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
 
     final Response response = await client.query(
       getPendingServiceRequestsCountQuery,
-      <String, dynamic>{'facilityID': facilityID},
+      <String, dynamic>{'facilityID': facilityID, 'flavour': Flavour.pro.name},
     );
     client.close();
 
