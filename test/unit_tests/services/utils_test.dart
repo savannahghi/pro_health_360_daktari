@@ -333,9 +333,30 @@ void main() {
     expect(userBannedMessage(), 'User banned successfully');
     expect(
       userBannedMessage(userName: 'test', communityName: 'test'),
-      'You have banned test form test',
+      'You have banned test from test',
     );
     expect(userBannedMessage(userName: 'test'), 'You have banned test');
+    expect(
+      userBannedMessage(
+        isBanned: true,
+      ),
+      'User unbanned successfully',
+    );
+    expect(
+      userBannedMessage(
+        userName: 'test',
+        communityName: 'test',
+        isBanned: true,
+      ),
+      'You have unbanned test from test',
+    );
+    expect(
+      userBannedMessage(
+        userName: 'test',
+        isBanned: true,
+      ),
+      'You have unbanned test',
+    );
   });
   test('roleToString should return the correct role String', () {
     final String roleString = roleToString('CONTENT_MANAGEMENT');

@@ -18,6 +18,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/flagged_messages/pages/flagged_messages_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -440,5 +441,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<AcceptGroupInvitesPage>>());
     expect(route?.builder(context), isA<AcceptGroupInvitesPage>());
+  });
+
+  test('Test router returns flagged messages page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.flaggedMessagesPage,
+    );
+
+    final MaterialPageRoute<FlaggedMessagesPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<FlaggedMessagesPage>?;
+
+    expect(route, isA<MaterialPageRoute<FlaggedMessagesPage>>());
+    expect(route?.builder(context), isA<FlaggedMessagesPage>());
   });
 }

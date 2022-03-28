@@ -49,6 +49,7 @@ const String rejectChatDialogTitle = 'Reject message';
 const String rejectChatDialogDescription =
     'Are you sure you want to reject these message ?';
 const String banUserText = 'Ban user';
+const String unBanUserText = 'UnBan user';
 const String reportSpamText = 'Report spam';
 const String cancelText = '';
 
@@ -555,16 +556,21 @@ const String rolesAssigned = 'Roles have been successfully assigned to';
 // remove user from group
 const String removedFromGroup = 'removed from the group successfully';
 const String unableToRemove = 'was not removed from group due to an error';
-String userBannedMessage({String? userName, String? communityName}) {
+
+String userBannedMessage({
+  bool isBanned = false,
+  String? userName,
+  String? communityName,
+}) {
   if (userName != null &&
       userName.isNotEmpty &&
       communityName != null &&
       communityName.isNotEmpty) {
-    return 'You have banned $userName form $communityName';
+    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName from $communityName';
   } else if (userName != null && userName.isNotEmpty) {
-    return 'You have banned $userName';
+    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName';
   } else {
-    return 'User banned successfully';
+    return 'User ${isBanned ? 'unbanned' : 'banned'} successfully';
   }
 }
 
@@ -575,3 +581,12 @@ const String invalidCredentialSting = 'Invalid credentials';
 const String resetPINString = 'Reset your PIN';
 
 const String responseNotMatchingText = 'One or more responses do not match';
+
+// Flagged messages
+const String flaggedMessagesString = 'Flagged messages';
+const String groupTitle = 'Ruaraka Group';
+const String flaggedMessagesDescription =
+    'Here are messages that have been marked as inappropriate or offensive by this group’s members';
+const String deleteMessageString = 'Delete Message';
+const String muteUserString = 'Mute User';
+const String flaggedMessageText = 'I don’t like this group. Delete';
