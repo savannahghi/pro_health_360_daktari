@@ -4,17 +4,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/promote_to_moderator_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/unban_user_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/moderation_actions_view_model.dart';
-
 import 'package:shared_themes/spaces.dart';
 
 class MemberListActionsDialog extends StatelessWidget {
@@ -135,27 +134,27 @@ class MemberListActionsDialog extends StatelessWidget {
                                       },
                                     )
                                   : BanUserAction(
-                                        client: AppWrapperBase.of(context)!
-                                            .graphQLClient,
-                                        memberID: memberID,
-                                        communityID: communityId,
-                                        onError: () =>
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                          snackbar(content: getErrorMessage()),
-                                        ),
-                                        onSuccess: () {
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      memberID: memberID,
+                                      communityID: communityId,
+                                      onError: () =>
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
-                                            snackbar(
-                                              content: userBannedMessage(
-                                                communityName: communityName,
-                                              ),
-                                            ),
-                                          );
-                                          Navigator.of(context).pop();
-                                        },
+                                        snackbar(content: getErrorMessage()),
                                       ),
+                                      onSuccess: () {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          snackbar(
+                                            content: userBannedMessage(
+                                              communityName: communityName,
+                                            ),
+                                          ),
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
                             );
                           },
                           buttonKey: banButtonKey,

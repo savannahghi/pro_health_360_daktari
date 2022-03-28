@@ -473,9 +473,9 @@ const String cccNumberVerifiedText = 'CCC number verified';
 const String cccNumberUnverifiedText =
     'The client provided the wrong CCC number. Please physically verify their '
     'identity before approving this request';
-    const String staffPinResetRequestsMessage =
+const String staffPinResetRequestsMessage =
     'These are staff who are having trouble signing in and have requested your assistance';
-    const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
+const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';
@@ -590,9 +590,11 @@ const String responseNotMatchingText = 'One or more responses do not match';
 
 // Flagged messages
 const String flaggedMessagesString = 'Flagged messages';
-const String groupTitle = 'Ruaraka Group';
 const String flaggedMessagesDescription =
     'Here are messages that have been marked as inappropriate or offensive by this group’s members';
 const String deleteMessageString = 'Delete Message';
 const String muteUserString = 'Mute User';
-const String flaggedMessageText = 'I don’t like this group. Delete';
+const String noAvailableFlaggedMessagesDescription =
+    'Please try again or contact support';
+const String availableFlaggedMessagesText = 'flagged messages';
+const String messageDeletedText = 'Message deleted successfully';

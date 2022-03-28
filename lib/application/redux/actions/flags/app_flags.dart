@@ -81,3 +81,7 @@ const String promoteToAdminFlag = 'promote_to_admin_flag';
 const String staffPinResetServiceRequestFlag = 'pin_reset_service_request_flag';
 // get user roles
 const String getUserRolesFlag = 'get_user-roles_flag';
+
+// flagged messages
+const String fetchFlaggedMessagesFlag = 'fetch_flagged_messages_flag';
+const String deleteCommunityMessageFlag = 'delete_community_messages_flag';

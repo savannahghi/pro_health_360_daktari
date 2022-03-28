@@ -23,10 +23,11 @@ class _$CommunitiesStateTearOff {
   const _$CommunitiesStateTearOff();
 
   _CommunitiesState call(
-      {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities}) {
+      {List<Community?>? invitedCommunities,
+      List<FlaggedMessage?>? flaggedMessages}) {
     return _CommunitiesState(
       invitedCommunities: invitedCommunities,
+      flaggedMessages: flaggedMessages,
     );
   }
 
@@ -40,8 +41,11 @@ const $CommunitiesState = _$CommunitiesStateTearOff();
 
 /// @nodoc
 mixin _$CommunitiesState {
-  @JsonKey(name: 'invitedCommunities')
-  List<Community>? get invitedCommunities => throw _privateConstructorUsedError;
+// invited communities
+  List<Community?>? get invitedCommunities =>
+      throw _privateConstructorUsedError; // flagged messages
+  List<FlaggedMessage?>? get flaggedMessages =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,8 +59,8 @@ abstract class $CommunitiesStateCopyWith<$Res> {
           CommunitiesState value, $Res Function(CommunitiesState) then) =
       _$CommunitiesStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities});
+      {List<Community?>? invitedCommunities,
+      List<FlaggedMessage?>? flaggedMessages});
 }
 
 /// @nodoc
@@ -71,12 +75,17 @@ class _$CommunitiesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? invitedCommunities = freezed,
+    Object? flaggedMessages = freezed,
   }) {
     return _then(_value.copyWith(
       invitedCommunities: invitedCommunities == freezed
           ? _value.invitedCommunities
           : invitedCommunities // ignore: cast_nullable_to_non_nullable
-              as List<Community>?,
+              as List<Community?>?,
+      flaggedMessages: flaggedMessages == freezed
+          ? _value.flaggedMessages
+          : flaggedMessages // ignore: cast_nullable_to_non_nullable
+              as List<FlaggedMessage?>?,
     ));
   }
 }
@@ -89,8 +98,8 @@ abstract class _$CommunitiesStateCopyWith<$Res>
       __$CommunitiesStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities});
+      {List<Community?>? invitedCommunities,
+      List<FlaggedMessage?>? flaggedMessages});
 }
 
 /// @nodoc
@@ -107,12 +116,17 @@ class __$CommunitiesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? invitedCommunities = freezed,
+    Object? flaggedMessages = freezed,
   }) {
     return _then(_CommunitiesState(
       invitedCommunities: invitedCommunities == freezed
           ? _value.invitedCommunities
           : invitedCommunities // ignore: cast_nullable_to_non_nullable
-              as List<Community>?,
+              as List<Community?>?,
+      flaggedMessages: flaggedMessages == freezed
+          ? _value.flaggedMessages
+          : flaggedMessages // ignore: cast_nullable_to_non_nullable
+              as List<FlaggedMessage?>?,
     ));
   }
 }
@@ -120,19 +134,19 @@ class __$CommunitiesStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CommunitiesState implements _CommunitiesState {
-  _$_CommunitiesState(
-      {@JsonKey(name: 'invitedCommunities') this.invitedCommunities});
+  _$_CommunitiesState({this.invitedCommunities, this.flaggedMessages});
 
   factory _$_CommunitiesState.fromJson(Map<String, dynamic> json) =>
       _$$_CommunitiesStateFromJson(json);
 
-  @override
-  @JsonKey(name: 'invitedCommunities')
-  final List<Community>? invitedCommunities;
+  @override // invited communities
+  final List<Community?>? invitedCommunities;
+  @override // flagged messages
+  final List<FlaggedMessage?>? flaggedMessages;
 
   @override
   String toString() {
-    return 'CommunitiesState(invitedCommunities: $invitedCommunities)';
+    return 'CommunitiesState(invitedCommunities: $invitedCommunities, flaggedMessages: $flaggedMessages)';
   }
 
   @override
@@ -141,12 +155,16 @@ class _$_CommunitiesState implements _CommunitiesState {
         (other.runtimeType == runtimeType &&
             other is _CommunitiesState &&
             const DeepCollectionEquality()
-                .equals(other.invitedCommunities, invitedCommunities));
+                .equals(other.invitedCommunities, invitedCommunities) &&
+            const DeepCollectionEquality()
+                .equals(other.flaggedMessages, flaggedMessages));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(invitedCommunities));
+      runtimeType,
+      const DeepCollectionEquality().hash(invitedCommunities),
+      const DeepCollectionEquality().hash(flaggedMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -161,15 +179,16 @@ class _$_CommunitiesState implements _CommunitiesState {
 
 abstract class _CommunitiesState implements CommunitiesState {
   factory _CommunitiesState(
-      {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities}) = _$_CommunitiesState;
+      {List<Community?>? invitedCommunities,
+      List<FlaggedMessage?>? flaggedMessages}) = _$_CommunitiesState;
 
   factory _CommunitiesState.fromJson(Map<String, dynamic> json) =
       _$_CommunitiesState.fromJson;
 
-  @override
-  @JsonKey(name: 'invitedCommunities')
-  List<Community>? get invitedCommunities;
+  @override // invited communities
+  List<Community?>? get invitedCommunities;
+  @override // flagged messages
+  List<FlaggedMessage?>? get flaggedMessages;
   @override
   @JsonKey(ignore: true)
   _$CommunitiesStateCopyWith<_CommunitiesState> get copyWith =>

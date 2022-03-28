@@ -66,7 +66,7 @@ mixin _$StaffState {
   @JsonKey(name: 'default_facility')
   String? get defaultFacility => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError; // communities state
+  User? get user => throw _privateConstructorUsedError; // invited communities
   CommunitiesState? get communitiesState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -289,7 +289,7 @@ class _$_StaffState implements _StaffState {
   @override
   @JsonKey(name: 'user')
   final User? user;
-  @override // communities state
+  @override // invited communities
   final CommunitiesState? communitiesState;
 
   @override
@@ -374,7 +374,7 @@ abstract class _StaffState implements StaffState {
   @override
   @JsonKey(name: 'user')
   User? get user;
-  @override // communities state
+  @override // invited communities
   CommunitiesState? get communitiesState;
   @override
   @JsonKey(ignore: true)

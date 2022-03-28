@@ -783,6 +783,32 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(listFlaggedMessagesQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listFlaggedMessages': mockListFlaggedMessages,
+            }
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(deleteCommunityMessageMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'deleteCommunityMessage': true,
+            }
+          }),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(createCommunity)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1427,13 +1453,38 @@ final List<dynamic> listMembersMock = <dynamic>[
   },
 ];
 
+final List<dynamic> mockListFlaggedMessages = <dynamic>[
+  <String, dynamic>{
+    'message': <String, dynamic>{
+      'id': 'some-id-1',
+      'text': 'text',
+      'createdAt': '2022-03-08T07:42:36Z',
+      'user': <String, dynamic>{
+        'userID': 'some-user-id',
+        'username': 'a-username'
+      }
+    }
+  },
+  <String, dynamic>{
+    'message': <String, dynamic>{
+      'id': 'some-id-2',
+      'text': 'text',
+      'createdAt': '2022-03-08T07:42:36Z',
+      'user': <String, dynamic>{
+        'userID': 'some-user-id',
+        'username': 'another-username'
+      }
+    }
+  },
+];
+
 final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{
   'channelId': testString,
   'memberCount': 1,
   'channelName': 'Ruaraka Group'
 };
 
-final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
+final Map<String, dynamic> mockInvitedCommunities = <String, dynamic>{
   'invitedCommunities': <dynamic>[
     <String, dynamic>{
       'id': UNKNOWN,
@@ -1451,6 +1502,11 @@ final Map<String, dynamic> mockCommunity = <String, dynamic>{
   'memberCount': 0,
   'description': UNKNOWN,
   'createdBy': UNKNOWN,
+};
+
+final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
+  'invitedCommunities': <dynamic>[],
+  'flaggedMessages': <dynamic>[],
 };
 
 final Map<String, dynamic> mockPendingInvites = <String, dynamic>{

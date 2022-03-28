@@ -174,3 +174,9 @@ mutation UnBanUser($memberID: String!, $communityID: String!){
   unBanUser(memberID: $memberID, communityID: $communityID)
 }
 ''';
+
+const String deleteCommunityMessageMutation = r'''
+mutation deleteCommunityMessage($messageID: String!){
+  deleteCommunityMessage(messageID: $messageID)
+}
+''';

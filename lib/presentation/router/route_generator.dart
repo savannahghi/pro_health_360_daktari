@@ -283,7 +283,10 @@ class RouteGenerator {
 
       case AppRoutes.flaggedMessagesPage:
         return MaterialPageRoute<FlaggedMessagesPage>(
-          builder: (_) => const FlaggedMessagesPage(),
+          builder: (_) => FlaggedMessagesPage(
+            communityName: args['communityName'] as String,
+            communityId: args['communityId'] as String,
+          ),
         );
          case AppRoutes.staffPinResetRequestsPage:
         return MaterialPageRoute<StaffPinResetRequestsPage>(
