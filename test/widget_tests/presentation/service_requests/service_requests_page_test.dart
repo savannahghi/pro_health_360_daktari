@@ -96,7 +96,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(pinResetString));
+      await tester.tap(find.text(clientPINResetString));
       await tester.pumpAndSettle();
       expect(find.byType(PinResetRequestsPage), findsOneWidget);
     });

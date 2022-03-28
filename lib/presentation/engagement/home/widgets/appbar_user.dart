@@ -52,9 +52,7 @@ class AppbarUser extends StatelessWidget {
                 child: Center(
                   child: userHasProfileImage
                       ? Text(
-                          extractNamesInitials(
-                            name: user?.name ?? '$UNKNOWN $UNKNOWN',
-                          ),
+                          extractNamesInitials(name: user?.name ?? 'UU'),
                           style: boldSize14Text(Colors.white),
                         )
                       : CircleAvatar(
