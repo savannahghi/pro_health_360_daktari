@@ -16,10 +16,12 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final RequestStatus serviceRequestStatus;
   final ServiceRequestType? serviceRequestType;
+  final Flavour flavour;
 
   FetchServiceRequestsAction({
     required this.client,
     required this.serviceRequestStatus,
+    required this.flavour,
     this.serviceRequestType,
   });
 
@@ -27,7 +29,9 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(
-      UpdateServiceRequestsStateAction(errorFetchingServiceRequests: false),
+      UpdateServiceRequestsStateAction(
+        errorFetchingPendingServiceRequests: false,
+      ),
     );
     dispatch(WaitAction<AppState>.add(fetchServiceRequestFlag));
   }
@@ -45,7 +49,8 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'status': serviceRequestStatus.name,
       'facilityID': facilityID,
-      'type': serviceRequestType?.name
+      'type': serviceRequestType?.name,
+      'flavour': flavour.name,
     };
 
     final Response response = await client.query(
@@ -62,20 +67,22 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
       Sentry.captureException(UserException(error));
 
       dispatch(
-        UpdateServiceRequestsStateAction(errorFetchingServiceRequests: true),
+        UpdateServiceRequestsStateAction(
+          errorFetchingPendingServiceRequests: true,
+        ),
       );
 
       return null;
     }
 
-    final ServiceRequestResponse serviceRequests =
+    final ServiceRequestResponse serviceRequestResponse =
         ServiceRequestResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
 
     dispatch(
       UpdateServiceRequestsStateAction(
-        serviceRequestContent: serviceRequests.serviceRequestContent,
+        clientServiceRequests: serviceRequestResponse.serviceRequests,
       ),
     );
 

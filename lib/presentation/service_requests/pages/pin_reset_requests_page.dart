@@ -10,7 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -35,6 +35,7 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
         client: AppWrapperBase.of(context)!.graphQLClient,
         serviceRequestStatus: RequestStatus.PENDING,
         serviceRequestType: ServiceRequestType.PIN_RESET,
+        flavour: Flavour.consumer,
       ),
     );
   }
@@ -56,33 +57,52 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
               }
 
               final List<Widget> requestWidgetList = <Widget>[];
-              final Map<String, ServiceRequestContent?>? serviceRequests =
-                  vm.serviceRequests;
+              final List<ServiceRequest>? serviceRequests =
+                  vm.clientServiceRequests;
 
-              if (vm.serviceRequests != null &&
-                  vm.serviceRequests!.isNotEmpty) {
-                final List<MapEntry<String, ServiceRequestContent?>> entries =
-                    serviceRequests!.entries.toList();
-                for (int i = 0; i < entries.length; i++) {
-                  final ServiceRequestContent? request = entries[i].value;
-                  if (request?.serviceRequestType ==
-                      ServiceRequestType.PIN_RESET) {
-                    final String name = request?.clientName ?? UNKNOWN;
+              if (vm.clientServiceRequests != null &&
+                  (vm.clientServiceRequests?.isEmpty ?? true)) {
+                return GenericErrorWidget(
+                  headerIconSvgUrl: noDataImageSvgPath,
+                  actionText: actionTextGenericNoData,
+                  type: GenericNoDataTypes.noData,
+                  recoverCallback: () => Navigator.of(context).pop(),
+                  messageTitle: getNoDataTile('service requests'),
+                  messageBody: <TextSpan>[
+                    TextSpan(
+                      text: serviceRequestsNoDataBodyString,
+                      style: normalSize16Text(AppColors.greyTextColor),
+                    ),
+                  ],
+                );
+              } else {
+                serviceRequests
+                    ?.where(
+                      (ServiceRequest request) =>
+                          request.serviceRequestType ==
+                          ServiceRequestType.PIN_RESET,
+                    )
+                    .toList()
+                    .map(
+                  (ServiceRequest request) {
+                    final String name = request.clientName ?? UNKNOWN;
                     final String phoneNumber =
-                        request?.clientPhoneNumber ?? UNKNOWN;
-                    final String clientId = request?.clientId ?? '';
-                    final String serviceRequestId = request?.id ?? '';
-                    final String cccNumber = request?.meta?.cccNumber ?? '';
+                        request.clientPhoneNumber ?? UNKNOWN;
+                    final String clientId = request.clientId ?? '';
+                    final String serviceRequestId = request.id ?? '';
+                    final String cccNumber = request.meta?.cccNumber ?? '';
                     final bool isCccNumberVerified =
-                        request?.meta?.isCccNumberValid ?? false;
+                        request.meta?.isCccNumberValid ?? false;
 
                     requestWidgetList.add(
                       PinResetRequestWidget(
                         clientId: clientId,
                         serviceRequestId: serviceRequestId,
                         cccNumber: cccNumber,
-                        acceptKey: ValueKey<String>('accept_key_$i'),
-                        rejectKey: ValueKey<String>('reject_key_$i'),
+                        acceptKey:
+                            ValueKey<String>('accept_key_$serviceRequestId'),
+                        rejectKey:
+                            ValueKey<String>('reject_key_$serviceRequestId'),
                         phoneNumber: phoneNumber,
                         name: name,
                         isCccNumberVerified: isCccNumberVerified,
@@ -125,26 +145,8 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                         },
                       ),
                     );
-
-                    if (i != serviceRequests.length - 1) {
-                      requestWidgetList.add(const SizedBox(height: 20));
-                    }
-                  }
-                }
-              } else {
-                return GenericErrorWidget(
-                  headerIconSvgUrl: noDataImageSvgPath,
-                  actionText: actionTextGenericNoData,
-                  type: GenericNoDataTypes.noData,
-                  recoverCallback: () => Navigator.of(context).pop(),
-                  messageTitle: getNoDataTile('service requests'),
-                  messageBody: <TextSpan>[
-                    TextSpan(
-                      text: serviceRequestsNoDataBodyString,
-                      style: normalSize16Text(AppColors.greyTextColor),
-                    ),
-                  ],
-                );
+                  },
+                ).toList();
               }
 
               return SingleChildScrollView(

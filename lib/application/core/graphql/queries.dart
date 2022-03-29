@@ -43,8 +43,8 @@ query fetchFacilities {
 ''';
 
 const String getServiceRequestsQuery = r'''
-query getServiceRequests($type: String, $status: String, $facilityID: String!){
-  getServiceRequests(requestType: $type, requestStatus: $status, facilityID: $facilityID){
+query getServiceRequests($type: String, $status: String, $facilityID: String!, $flavour: Flavour!){
+  getServiceRequests(requestType: $type, requestStatus: $status, facilityID: $facilityID, flavour: $flavour){
     ID
     RequestType
     Request
@@ -63,12 +63,19 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!){
 ''';
 
 const String getPendingServiceRequestsCountQuery = r'''
-query getPendingServiceRequestsCount($facilityID: String!, $flavour: Flavour!){
-  getPendingServiceRequestsCount(facilityID: $facilityID, flavour: $flavour){
-    total
-    requestsTypeCount{
-      requestType
-      total
+query getPendingServiceRequestsCount($facilityID: String!){
+  getPendingServiceRequestsCount(facilityID: $facilityID){
+    clientsServiceRequestCount{
+      requestsTypeCount{
+        total
+        requestType
+      }
+    }
+    staffServiceRequestCount{
+      requestsTypeCount{
+        total
+        requestType
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'service_request_content.dart';
+part of 'service_request.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,16 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ServiceRequestContent _$ServiceRequestContentFromJson(
-    Map<String, dynamic> json) {
-  return _ServiceRequestContent.fromJson(json);
+ServiceRequest _$ServiceRequestFromJson(Map<String, dynamic> json) {
+  return _ServiceRequest.fromJson(json);
 }
 
 /// @nodoc
-class _$ServiceRequestContentTearOff {
-  const _$ServiceRequestContentTearOff();
+class _$ServiceRequestTearOff {
+  const _$ServiceRequestTearOff();
 
-  _ServiceRequestContent call(
+  _ServiceRequest call(
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'Request') String? description,
       @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
@@ -36,7 +35,7 @@ class _$ServiceRequestContentTearOff {
       @JsonKey(name: 'ResolvedByName') String? resolvedByName,
       @JsonKey(name: 'CreatedAt') String? createdAt,
       @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) {
-    return _ServiceRequestContent(
+    return _ServiceRequest(
       id: id,
       description: description,
       serviceRequestType: serviceRequestType,
@@ -52,16 +51,16 @@ class _$ServiceRequestContentTearOff {
     );
   }
 
-  ServiceRequestContent fromJson(Map<String, Object?> json) {
-    return ServiceRequestContent.fromJson(json);
+  ServiceRequest fromJson(Map<String, Object?> json) {
+    return ServiceRequest.fromJson(json);
   }
 }
 
 /// @nodoc
-const $ServiceRequestContent = _$ServiceRequestContentTearOff();
+const $ServiceRequest = _$ServiceRequestTearOff();
 
 /// @nodoc
-mixin _$ServiceRequestContent {
+mixin _$ServiceRequest {
   @JsonKey(name: 'ID')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'Request')
@@ -90,15 +89,15 @@ mixin _$ServiceRequestContent {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ServiceRequestContentCopyWith<ServiceRequestContent> get copyWith =>
+  $ServiceRequestCopyWith<ServiceRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ServiceRequestContentCopyWith<$Res> {
-  factory $ServiceRequestContentCopyWith(ServiceRequestContent value,
-          $Res Function(ServiceRequestContent) then) =
-      _$ServiceRequestContentCopyWithImpl<$Res>;
+abstract class $ServiceRequestCopyWith<$Res> {
+  factory $ServiceRequestCopyWith(
+          ServiceRequest value, $Res Function(ServiceRequest) then) =
+      _$ServiceRequestCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'Request') String? description,
@@ -117,13 +116,13 @@ abstract class $ServiceRequestContentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ServiceRequestContentCopyWithImpl<$Res>
-    implements $ServiceRequestContentCopyWith<$Res> {
-  _$ServiceRequestContentCopyWithImpl(this._value, this._then);
+class _$ServiceRequestCopyWithImpl<$Res>
+    implements $ServiceRequestCopyWith<$Res> {
+  _$ServiceRequestCopyWithImpl(this._value, this._then);
 
-  final ServiceRequestContent _value;
+  final ServiceRequest _value;
   // ignore: unused_field
-  final $Res Function(ServiceRequestContent) _then;
+  final $Res Function(ServiceRequest) _then;
 
   @override
   $Res call({
@@ -205,11 +204,11 @@ class _$ServiceRequestContentCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestContentCopyWith<$Res>
-    implements $ServiceRequestContentCopyWith<$Res> {
-  factory _$ServiceRequestContentCopyWith(_ServiceRequestContent value,
-          $Res Function(_ServiceRequestContent) then) =
-      __$ServiceRequestContentCopyWithImpl<$Res>;
+abstract class _$ServiceRequestCopyWith<$Res>
+    implements $ServiceRequestCopyWith<$Res> {
+  factory _$ServiceRequestCopyWith(
+          _ServiceRequest value, $Res Function(_ServiceRequest) then) =
+      __$ServiceRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? id,
@@ -230,15 +229,15 @@ abstract class _$ServiceRequestContentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestContentCopyWithImpl<$Res>
-    extends _$ServiceRequestContentCopyWithImpl<$Res>
-    implements _$ServiceRequestContentCopyWith<$Res> {
-  __$ServiceRequestContentCopyWithImpl(_ServiceRequestContent _value,
-      $Res Function(_ServiceRequestContent) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestContent));
+class __$ServiceRequestCopyWithImpl<$Res>
+    extends _$ServiceRequestCopyWithImpl<$Res>
+    implements _$ServiceRequestCopyWith<$Res> {
+  __$ServiceRequestCopyWithImpl(
+      _ServiceRequest _value, $Res Function(_ServiceRequest) _then)
+      : super(_value, (v) => _then(v as _ServiceRequest));
 
   @override
-  _ServiceRequestContent get _value => super._value as _ServiceRequestContent;
+  _ServiceRequest get _value => super._value as _ServiceRequest;
 
   @override
   $Res call({
@@ -255,7 +254,7 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_ServiceRequestContent(
+    return _then(_ServiceRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -310,8 +309,8 @@ class __$ServiceRequestContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ServiceRequestContent implements _ServiceRequestContent {
-  _$_ServiceRequestContent(
+class _$_ServiceRequest implements _ServiceRequest {
+  _$_ServiceRequest(
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'Request') this.description,
       @JsonKey(name: 'RequestType') this.serviceRequestType,
@@ -325,8 +324,8 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
       @JsonKey(name: 'CreatedAt') this.createdAt,
       @JsonKey(name: 'Meta') this.meta});
 
-  factory _$_ServiceRequestContent.fromJson(Map<String, dynamic> json) =>
-      _$$_ServiceRequestContentFromJson(json);
+  factory _$_ServiceRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_ServiceRequestFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -367,14 +366,14 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
 
   @override
   String toString() {
-    return 'ServiceRequestContent(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, resolvedByName: $resolvedByName, createdAt: $createdAt, meta: $meta)';
+    return 'ServiceRequest(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, resolvedByName: $resolvedByName, createdAt: $createdAt, meta: $meta)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestContent &&
+            other is _ServiceRequest &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -414,34 +413,32 @@ class _$_ServiceRequestContent implements _ServiceRequestContent {
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestContentCopyWith<_ServiceRequestContent> get copyWith =>
-      __$ServiceRequestContentCopyWithImpl<_ServiceRequestContent>(
-          this, _$identity);
+  _$ServiceRequestCopyWith<_ServiceRequest> get copyWith =>
+      __$ServiceRequestCopyWithImpl<_ServiceRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ServiceRequestContentToJson(this);
+    return _$$_ServiceRequestToJson(this);
   }
 }
 
-abstract class _ServiceRequestContent implements ServiceRequestContent {
-  factory _ServiceRequestContent(
-          {@JsonKey(name: 'ID') String? id,
-          @JsonKey(name: 'Request') String? description,
-          @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
-          @JsonKey(name: 'ClientID') String? clientId,
-          @JsonKey(name: 'ClientName') String? clientName,
-          @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
-          @JsonKey(name: 'Status') RequestStatus? status,
-          @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-          @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-          @JsonKey(name: 'ResolvedByName') String? resolvedByName,
-          @JsonKey(name: 'CreatedAt') String? createdAt,
-          @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) =
-      _$_ServiceRequestContent;
+abstract class _ServiceRequest implements ServiceRequest {
+  factory _ServiceRequest(
+      {@JsonKey(name: 'ID') String? id,
+      @JsonKey(name: 'Request') String? description,
+      @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
+      @JsonKey(name: 'ClientID') String? clientId,
+      @JsonKey(name: 'ClientName') String? clientName,
+      @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
+      @JsonKey(name: 'Status') RequestStatus? status,
+      @JsonKey(name: 'ResolvedAt') String? resolvedTime,
+      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+      @JsonKey(name: 'ResolvedByName') String? resolvedByName,
+      @JsonKey(name: 'CreatedAt') String? createdAt,
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) = _$_ServiceRequest;
 
-  factory _ServiceRequestContent.fromJson(Map<String, dynamic> json) =
-      _$_ServiceRequestContent.fromJson;
+  factory _ServiceRequest.fromJson(Map<String, dynamic> json) =
+      _$_ServiceRequest.fromJson;
 
   @override
   @JsonKey(name: 'ID')
@@ -481,6 +478,6 @@ abstract class _ServiceRequestContent implements ServiceRequestContent {
   ServiceRequestMeta? get meta;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestContentCopyWith<_ServiceRequestContent> get copyWith =>
+  _$ServiceRequestCopyWith<_ServiceRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_request_content.dart';
+part of 'service_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ServiceRequestContent _$$_ServiceRequestContentFromJson(
-        Map<String, dynamic> json) =>
-    _$_ServiceRequestContent(
+_$_ServiceRequest _$$_ServiceRequestFromJson(Map<String, dynamic> json) =>
+    _$_ServiceRequest(
       id: json['ID'] as String?,
       description: json['Request'] as String?,
       serviceRequestType:
@@ -26,8 +25,7 @@ _$_ServiceRequestContent _$$_ServiceRequestContentFromJson(
           : ServiceRequestMeta.fromJson(json['Meta'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ServiceRequestContentToJson(
-        _$_ServiceRequestContent instance) =>
+Map<String, dynamic> _$$_ServiceRequestToJson(_$_ServiceRequest instance) =>
     <String, dynamic>{
       'ID': instance.id,
       'Request': instance.description,

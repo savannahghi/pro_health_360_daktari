@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'request_count_content.dart';
+part of 'service_request_count.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RequestCountContent _$$_RequestCountContentFromJson(
+_$_ServiceRequestCount _$$_ServiceRequestCountFromJson(
         Map<String, dynamic> json) =>
-    _$_RequestCountContent(
+    _$_ServiceRequestCount(
       requestType:
           $enumDecodeNullable(_$ServiceRequestTypeEnumMap, json['requestType']),
       count: json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_RequestCountContentToJson(
-        _$_RequestCountContent instance) =>
+Map<String, dynamic> _$$_ServiceRequestCountToJson(
+        _$_ServiceRequestCount instance) =>
     <String, dynamic>{
       'requestType': _$ServiceRequestTypeEnumMap[instance.requestType],
       'total': instance.count,
