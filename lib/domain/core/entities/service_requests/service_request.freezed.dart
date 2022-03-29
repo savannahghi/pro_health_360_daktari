@@ -34,7 +34,10 @@ class _$ServiceRequestTearOff {
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
       @JsonKey(name: 'ResolvedByName') String? resolvedByName,
       @JsonKey(name: 'CreatedAt') String? createdAt,
-      @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) {
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
+      @JsonKey(name: 'StaffID') String? staffId,
+      @JsonKey(name: 'StaffName') String? staffName,
+      @JsonKey(name: 'StaffContact') String? staffPhoneNumber}) {
     return _ServiceRequest(
       id: id,
       description: description,
@@ -48,6 +51,9 @@ class _$ServiceRequestTearOff {
       resolvedByName: resolvedByName,
       createdAt: createdAt,
       meta: meta,
+      staffId: staffId,
+      staffName: staffName,
+      staffPhoneNumber: staffPhoneNumber,
     );
   }
 
@@ -86,6 +92,12 @@ mixin _$ServiceRequest {
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'Meta')
   ServiceRequestMeta? get meta => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StaffID')
+  String? get staffId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StaffName')
+  String? get staffName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StaffContact')
+  String? get staffPhoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -110,7 +122,10 @@ abstract class $ServiceRequestCopyWith<$Res> {
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
       @JsonKey(name: 'ResolvedByName') String? resolvedByName,
       @JsonKey(name: 'CreatedAt') String? createdAt,
-      @JsonKey(name: 'Meta') ServiceRequestMeta? meta});
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
+      @JsonKey(name: 'StaffID') String? staffId,
+      @JsonKey(name: 'StaffName') String? staffName,
+      @JsonKey(name: 'StaffContact') String? staffPhoneNumber});
 
   $ServiceRequestMetaCopyWith<$Res>? get meta;
 }
@@ -138,6 +153,9 @@ class _$ServiceRequestCopyWithImpl<$Res>
     Object? resolvedByName = freezed,
     Object? createdAt = freezed,
     Object? meta = freezed,
+    Object? staffId = freezed,
+    Object? staffName = freezed,
+    Object? staffPhoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -188,6 +206,18 @@ class _$ServiceRequestCopyWithImpl<$Res>
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as ServiceRequestMeta?,
+      staffId: staffId == freezed
+          ? _value.staffId
+          : staffId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      staffName: staffName == freezed
+          ? _value.staffName
+          : staffName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      staffPhoneNumber: staffPhoneNumber == freezed
+          ? _value.staffPhoneNumber
+          : staffPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -222,7 +252,10 @@ abstract class _$ServiceRequestCopyWith<$Res>
       @JsonKey(name: 'ResolvedBy') String? resolvedBy,
       @JsonKey(name: 'ResolvedByName') String? resolvedByName,
       @JsonKey(name: 'CreatedAt') String? createdAt,
-      @JsonKey(name: 'Meta') ServiceRequestMeta? meta});
+      @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
+      @JsonKey(name: 'StaffID') String? staffId,
+      @JsonKey(name: 'StaffName') String? staffName,
+      @JsonKey(name: 'StaffContact') String? staffPhoneNumber});
 
   @override
   $ServiceRequestMetaCopyWith<$Res>? get meta;
@@ -253,6 +286,9 @@ class __$ServiceRequestCopyWithImpl<$Res>
     Object? resolvedByName = freezed,
     Object? createdAt = freezed,
     Object? meta = freezed,
+    Object? staffId = freezed,
+    Object? staffName = freezed,
+    Object? staffPhoneNumber = freezed,
   }) {
     return _then(_ServiceRequest(
       id: id == freezed
@@ -303,6 +339,18 @@ class __$ServiceRequestCopyWithImpl<$Res>
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as ServiceRequestMeta?,
+      staffId: staffId == freezed
+          ? _value.staffId
+          : staffId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      staffName: staffName == freezed
+          ? _value.staffName
+          : staffName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      staffPhoneNumber: staffPhoneNumber == freezed
+          ? _value.staffPhoneNumber
+          : staffPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -322,7 +370,10 @@ class _$_ServiceRequest implements _ServiceRequest {
       @JsonKey(name: 'ResolvedBy') this.resolvedBy,
       @JsonKey(name: 'ResolvedByName') this.resolvedByName,
       @JsonKey(name: 'CreatedAt') this.createdAt,
-      @JsonKey(name: 'Meta') this.meta});
+      @JsonKey(name: 'Meta') this.meta,
+      @JsonKey(name: 'StaffID') this.staffId,
+      @JsonKey(name: 'StaffName') this.staffName,
+      @JsonKey(name: 'StaffContact') this.staffPhoneNumber});
 
   factory _$_ServiceRequest.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestFromJson(json);
@@ -363,10 +414,19 @@ class _$_ServiceRequest implements _ServiceRequest {
   @override
   @JsonKey(name: 'Meta')
   final ServiceRequestMeta? meta;
+  @override
+  @JsonKey(name: 'StaffID')
+  final String? staffId;
+  @override
+  @JsonKey(name: 'StaffName')
+  final String? staffName;
+  @override
+  @JsonKey(name: 'StaffContact')
+  final String? staffPhoneNumber;
 
   @override
   String toString() {
-    return 'ServiceRequest(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, resolvedByName: $resolvedByName, createdAt: $createdAt, meta: $meta)';
+    return 'ServiceRequest(id: $id, description: $description, serviceRequestType: $serviceRequestType, clientId: $clientId, clientName: $clientName, clientPhoneNumber: $clientPhoneNumber, status: $status, resolvedTime: $resolvedTime, resolvedBy: $resolvedBy, resolvedByName: $resolvedByName, createdAt: $createdAt, meta: $meta, staffId: $staffId, staffName: $staffName, staffPhoneNumber: $staffPhoneNumber)';
   }
 
   @override
@@ -392,7 +452,11 @@ class _$_ServiceRequest implements _ServiceRequest {
             const DeepCollectionEquality()
                 .equals(other.resolvedByName, resolvedByName) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.meta, meta));
+            const DeepCollectionEquality().equals(other.meta, meta) &&
+            const DeepCollectionEquality().equals(other.staffId, staffId) &&
+            const DeepCollectionEquality().equals(other.staffName, staffName) &&
+            const DeepCollectionEquality()
+                .equals(other.staffPhoneNumber, staffPhoneNumber));
   }
 
   @override
@@ -409,7 +473,10 @@ class _$_ServiceRequest implements _ServiceRequest {
       const DeepCollectionEquality().hash(resolvedBy),
       const DeepCollectionEquality().hash(resolvedByName),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(meta));
+      const DeepCollectionEquality().hash(meta),
+      const DeepCollectionEquality().hash(staffId),
+      const DeepCollectionEquality().hash(staffName),
+      const DeepCollectionEquality().hash(staffPhoneNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -424,18 +491,22 @@ class _$_ServiceRequest implements _ServiceRequest {
 
 abstract class _ServiceRequest implements ServiceRequest {
   factory _ServiceRequest(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Request') String? description,
-      @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
-      @JsonKey(name: 'ClientID') String? clientId,
-      @JsonKey(name: 'ClientName') String? clientName,
-      @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
-      @JsonKey(name: 'Status') RequestStatus? status,
-      @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-      @JsonKey(name: 'ResolvedByName') String? resolvedByName,
-      @JsonKey(name: 'CreatedAt') String? createdAt,
-      @JsonKey(name: 'Meta') ServiceRequestMeta? meta}) = _$_ServiceRequest;
+          {@JsonKey(name: 'ID') String? id,
+          @JsonKey(name: 'Request') String? description,
+          @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
+          @JsonKey(name: 'ClientID') String? clientId,
+          @JsonKey(name: 'ClientName') String? clientName,
+          @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
+          @JsonKey(name: 'Status') RequestStatus? status,
+          @JsonKey(name: 'ResolvedAt') String? resolvedTime,
+          @JsonKey(name: 'ResolvedBy') String? resolvedBy,
+          @JsonKey(name: 'ResolvedByName') String? resolvedByName,
+          @JsonKey(name: 'CreatedAt') String? createdAt,
+          @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
+          @JsonKey(name: 'StaffID') String? staffId,
+          @JsonKey(name: 'StaffName') String? staffName,
+          @JsonKey(name: 'StaffContact') String? staffPhoneNumber}) =
+      _$_ServiceRequest;
 
   factory _ServiceRequest.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequest.fromJson;
@@ -476,6 +547,15 @@ abstract class _ServiceRequest implements ServiceRequest {
   @override
   @JsonKey(name: 'Meta')
   ServiceRequestMeta? get meta;
+  @override
+  @JsonKey(name: 'StaffID')
+  String? get staffId;
+  @override
+  @JsonKey(name: 'StaffName')
+  String? get staffName;
+  @override
+  @JsonKey(name: 'StaffContact')
+  String? get staffPhoneNumber;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestCopyWith<_ServiceRequest> get copyWith =>

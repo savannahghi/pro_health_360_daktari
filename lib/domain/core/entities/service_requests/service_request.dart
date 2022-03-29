@@ -20,6 +20,9 @@ class ServiceRequest with _$ServiceRequest {
     @JsonKey(name: 'ResolvedByName') String? resolvedByName,
     @JsonKey(name: 'CreatedAt') String? createdAt,
     @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
+    @JsonKey(name: 'StaffID') String? staffId,
+    @JsonKey(name: 'StaffName') String? staffName,
+    @JsonKey(name: 'StaffContact') String? staffPhoneNumber,
   }) = _ServiceRequest;
 
   factory ServiceRequest.fromJson(Map<String, dynamic> json) =>

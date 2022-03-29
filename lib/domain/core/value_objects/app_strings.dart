@@ -473,6 +473,9 @@ const String cccNumberVerifiedText = 'CCC number verified';
 const String cccNumberUnverifiedText =
     'The client provided the wrong CCC number. Please physically verify their '
     'identity before approving this request';
+    const String staffPinResetRequestsMessage =
+    'These are staff who are having trouble signing in and have requested your assistance';
+    const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';

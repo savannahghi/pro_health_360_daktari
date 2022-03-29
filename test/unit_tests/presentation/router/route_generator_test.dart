@@ -43,6 +43,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_reque
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
 
@@ -453,5 +454,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<FlaggedMessagesPage>>());
     expect(route?.builder(context), isA<FlaggedMessagesPage>());
+  });
+  test('Test router returns StaffPinResetRequestsPage', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.staffPinResetRequestsPage,
+    );
+
+    final MaterialPageRoute<StaffPinResetRequestsPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<StaffPinResetRequestsPage>?;
+
+    expect(route, isA<MaterialPageRoute<StaffPinResetRequestsPage>>());
+    expect(route?.builder(context), isA<StaffPinResetRequestsPage>());
   });
 }

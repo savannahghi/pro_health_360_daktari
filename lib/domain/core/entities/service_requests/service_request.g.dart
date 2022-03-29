@@ -23,6 +23,9 @@ _$_ServiceRequest _$$_ServiceRequestFromJson(Map<String, dynamic> json) =>
       meta: json['Meta'] == null
           ? null
           : ServiceRequestMeta.fromJson(json['Meta'] as Map<String, dynamic>),
+      staffId: json['StaffID'] as String?,
+      staffName: json['StaffName'] as String?,
+      staffPhoneNumber: json['StaffContact'] as String?,
     );
 
 Map<String, dynamic> _$$_ServiceRequestToJson(_$_ServiceRequest instance) =>
@@ -39,6 +42,9 @@ Map<String, dynamic> _$$_ServiceRequestToJson(_$_ServiceRequest instance) =>
       'ResolvedByName': instance.resolvedByName,
       'CreatedAt': instance.createdAt,
       'Meta': instance.meta,
+      'StaffID': instance.staffId,
+      'StaffName': instance.staffName,
+      'StaffContact': instance.staffPhoneNumber,
     };
 
 const _$ServiceRequestTypeEnumMap = {

@@ -46,6 +46,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
 
@@ -283,6 +284,10 @@ class RouteGenerator {
       case AppRoutes.flaggedMessagesPage:
         return MaterialPageRoute<FlaggedMessagesPage>(
           builder: (_) => const FlaggedMessagesPage(),
+        );
+         case AppRoutes.staffPinResetRequestsPage:
+        return MaterialPageRoute<StaffPinResetRequestsPage>(
+          builder: (_) => const StaffPinResetRequestsPage(),
         );
 
       case AppRoutes.acceptGroupInvitesPage:

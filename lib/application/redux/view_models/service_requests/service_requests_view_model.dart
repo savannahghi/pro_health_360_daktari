@@ -33,6 +33,7 @@ class ServiceRequestsViewModel extends Vm {
       wait: store.state.wait!,
       clientServiceRequests:
           store.state.serviceRequestState?.clientServiceRequests,
+          staffServiceRequests: store.state.serviceRequestState?.staffServiceRequests,
       pendingServiceRequestCount:
           store.state.serviceRequestState?.pendingServiceRequestsCount,
       errorFetchingServiceRequests:
