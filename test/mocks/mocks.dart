@@ -854,7 +854,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
-    if (queryString.contains(pinResetRequestMutation)) {
+    if (queryString.contains(verifyClientPinResetServiceRequestQuery)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(

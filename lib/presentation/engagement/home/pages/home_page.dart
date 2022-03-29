@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                               .pushNamed(AppRoutes.addNewStaffPage);
                         },
                       ),
-                     ActionCard(
+                      ActionCard(
                         iconUrl: serviceRequestsIconSvg,
                         title: serviceRequestsText,
                         onTap: () => Navigator.of(context).pushNamed(
