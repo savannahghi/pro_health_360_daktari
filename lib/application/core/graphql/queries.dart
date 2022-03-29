@@ -58,6 +58,9 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
     ResolvedByName
     CreatedAt
     Meta
+    StaffID
+    StaffName
+    StaffContact
   }
 }
 ''';

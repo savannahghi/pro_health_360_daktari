@@ -183,7 +183,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                     .withOpacity(0.2),
                                 onTap: () => Navigator.pushNamed(
                                   context,
-                                  AppRoutes.pinResetRequestsPage,
+                                  AppRoutes.staffPinResetRequestsPage,
                                 ),
                               ),
                             // SCREENING TOOLS

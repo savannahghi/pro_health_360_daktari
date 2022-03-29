@@ -15,6 +15,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_reque
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -125,7 +126,7 @@ void main() {
       await tester.tap(staffPinResetActionCard);
       await tester.pumpAndSettle();
 
-      expect(find.byType(PinResetRequestsPage), findsOneWidget);
+      expect(find.byType(StaffPinResetRequestsPage), findsOneWidget);
     });
 
     testWidgets(

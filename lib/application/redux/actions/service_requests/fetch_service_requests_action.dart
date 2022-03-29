@@ -79,12 +79,19 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
         ServiceRequestResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
-
-    dispatch(
-      UpdateServiceRequestsStateAction(
-        clientServiceRequests: serviceRequestResponse.serviceRequests,
-      ),
-    );
+    if (serviceRequestType == ServiceRequestType.STAFF_PIN_RESET) {
+      dispatch(
+        UpdateServiceRequestsStateAction(
+          staffServiceRequests: serviceRequestResponse.serviceRequests,
+        ),
+      );
+    } else {
+      dispatch(
+        UpdateServiceRequestsStateAction(
+          clientServiceRequests: serviceRequestResponse.serviceRequests,
+        ),
+      );
+    }
 
     return state;
   }
