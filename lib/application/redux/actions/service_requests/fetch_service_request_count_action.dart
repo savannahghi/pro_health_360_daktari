@@ -67,7 +67,7 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
 
     dispatch(
       UpdateServiceRequestsStateAction(
-        pendingServiceRequests: serviceRequests.pendingServiceRequests,
+        pendingServiceRequestsCount: serviceRequests.pendingServiceRequests,
       ),
     );
   }

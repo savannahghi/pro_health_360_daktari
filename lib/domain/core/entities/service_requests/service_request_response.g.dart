@@ -14,7 +14,7 @@ _$_ServiceRequestResponse _$$_ServiceRequestResponseFromJson(
           .toList(),
       pendingServiceRequests: json['getPendingServiceRequestsCount'] == null
           ? null
-          : PendingServiceRequest.fromJson(
+          : PendingServiceRequestCount.fromJson(
               json['getPendingServiceRequestsCount'] as Map<String, dynamic>),
       errorFetchingServiceRequests:
           json['errorFetchingServiceRequests'] as bool?,

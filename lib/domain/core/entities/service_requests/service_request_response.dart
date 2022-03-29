@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_request_count.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 
 part 'service_request_response.freezed.dart';
@@ -11,7 +11,7 @@ class ServiceRequestResponse with _$ServiceRequestResponse {
   factory ServiceRequestResponse({
     @JsonKey(name: 'getServiceRequests') List<ServiceRequest>? serviceRequests,
     @JsonKey(name: 'getPendingServiceRequestsCount')
-        PendingServiceRequest? pendingServiceRequests,
+        PendingServiceRequestCount? pendingServiceRequests,
     bool? errorFetchingServiceRequests,
   }) = _ServiceRequestResponse;
 

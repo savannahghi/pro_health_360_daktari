@@ -11,7 +11,6 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
@@ -28,36 +27,15 @@ void main() {
     });
 
     testWidgets('should show red flags requests', (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getPendingServiceRequestsCount': <String, dynamic>{
-                'total': 4,
-                'requestsTypeCount': <dynamic>[
-                  <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
-                  <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
-                ],
-              }
-            }
-          }),
-          201,
-        ),
-      );
-
       await buildTestWidget(
         tester: tester,
         widget: const ServiceRequestsPage(),
-        graphQlClient: mockShortGraphQlClient,
+        graphQlClient: MockTestGraphQlClient(),
       );
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
-      expect(find.byType(ActionCard), findsNWidgets(2));
 
       await tester.tap(find.text(redFlagString));
       await tester.pumpAndSettle();
@@ -69,31 +47,12 @@ void main() {
     });
 
     testWidgets('should show pin reset requests', (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getPendingServiceRequestsCount': <String, dynamic>{
-                'total': 4,
-                'requestsTypeCount': <dynamic>[
-                  <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
-                  <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
-                ],
-              }
-            }
-          }),
-          201,
-        ),
-      );
-
       await buildTestWidget(
         tester: tester,
         widget: const ServiceRequestsPage(),
-        graphQlClient: mockShortGraphQlClient,
+        graphQlClient: MockTestGraphQlClient(),
       );
+
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(clientPINResetString));
@@ -131,40 +90,42 @@ void main() {
 
     testWidgets('profile updates ActionCard is tappable',
         (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getPendingServiceRequestsCount': <String, dynamic>{
-                'total': 2,
-                'requestsTypeCount': <dynamic>[
-                  <String, dynamic>{
-                    'requestType': 'PROFILE_UPDATE',
-                    'total': 2
-                  },
-                ],
-              }
-            }
-          }),
-          201,
-        ),
-      );
       await buildTestWidget(
         tester: tester,
-        graphQlClient: mockShortGraphQlClient,
+        graphQlClient: MockTestGraphQlClient(),
         store: store,
         widget: const ServiceRequestsPage(),
       );
-      final Finder profileUpdateActionCard = find.byType(ActionCard);
+      final Finder profileUpdateActionCard =
+          find.byKey(profileUpdateActionCardKey);
+      await tester.scrollUntilVisible(profileUpdateActionCard, 500);
       await tester.pumpAndSettle();
       expect(profileUpdateActionCard, findsOneWidget);
 
       await tester.tap(profileUpdateActionCard);
       await tester.pumpAndSettle();
       expect(profileUpdateActionCard, findsNothing);
+    });
+
+    testWidgets(
+        'should navigate to client service requests page when the '
+        'staff PIN resets card is tapped', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: MockTestGraphQlClient(),
+        store: store,
+        widget: const ServiceRequestsPage(),
+      );
+      final Finder staffPinResetActionCard =
+          find.byKey(staffPINResetActionCardKey);
+      await tester.scrollUntilVisible(staffPinResetActionCard, 500);
+      await tester.pumpAndSettle();
+      expect(staffPinResetActionCard, findsOneWidget);
+
+      await tester.tap(staffPinResetActionCard);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PinResetRequestsPage), findsOneWidget);
     });
 
     testWidgets(
