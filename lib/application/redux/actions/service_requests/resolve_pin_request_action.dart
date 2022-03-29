@@ -64,7 +64,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
     };
 
     final Response result =
-        await httpClient.query(pinResetRequestMutation, variables);
+        await httpClient.query(verifyClientPinResetServiceRequestQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(result);
     httpClient.close();

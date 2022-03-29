@@ -45,7 +45,7 @@ const String kTestVerifySecurityQuestionsEndpoint =
 
 /*DEMO ENDPOINTS  */
 const String kDemoGraphqlEndpoint =
-    'https://gateway.test.savannahghi.org/graphql';
+    'https://mycarehub-testing.savannahghi.org/graphql';
 const String kDemoLoginByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_by_phone';
 const String kDemoPinResetEndpoint =
@@ -85,7 +85,7 @@ const String kDemoVerifySecurityQuestionsEndpoint =
 
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint =
-    'https://gateway.test.savannahghi.org/graphql';
+    'https://mycarehub-prod.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =
     'https://onboarding-prod.savannahghi.org/login_by_phone';
 const String kProdPinResetEndpoint =

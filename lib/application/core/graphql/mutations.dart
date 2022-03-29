@@ -101,8 +101,8 @@ mutation createCommunity($input: CommunityInput!) {
 }
 ''';
 
-const String pinResetRequestMutation = r'''
-mutation verifyPinResetServiceRequest(
+const String verifyClientPinResetServiceRequestQuery = r'''
+mutation verifyClientPinResetServiceRequest(
   $clientID: String!
   $serviceRequestID: String!
   $cccNumber: String!
@@ -110,7 +110,7 @@ mutation verifyPinResetServiceRequest(
   $physicalIdentityVerified: Boolean!
   $state:String!
 ) {
-  verifyPinResetServiceRequest(
+  verifyClientPinResetServiceRequest(
     clientID: $clientID
     serviceRequestID: $serviceRequestID
     cccNumber: $cccNumber
