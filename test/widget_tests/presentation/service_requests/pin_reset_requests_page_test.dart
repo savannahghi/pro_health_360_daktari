@@ -62,7 +62,7 @@ void main() {
       expect(find.byType(PinResetRequestsPage), findsOneWidget);
 
       final Finder acceptFinder =
-          find.byKey(const ValueKey<String>('accept_key_0'));
+          find.byKey(const ValueKey<String>('accept_key_some-id'));
 
       expect(acceptFinder, findsOneWidget);
 
@@ -70,6 +70,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text(pinApprovedSuccessText), findsOneWidget);
     });
+
     testWidgets(
         'accepting service request shows dialog when cccNumber is not valid',
         (WidgetTester tester) async {
@@ -109,7 +110,7 @@ void main() {
       expect(find.byType(PinResetRequestsPage), findsOneWidget);
 
       final Finder acceptFinder =
-          find.byKey(const ValueKey<String>('accept_key_0'));
+          find.byKey(const ValueKey<String>('accept_key_some-id'));
 
       expect(acceptFinder, findsOneWidget);
 
@@ -174,7 +175,7 @@ void main() {
       expect(find.byType(PinResetRequestsPage), findsOneWidget);
 
       final Finder rejectFinder =
-          find.byKey(const ValueKey<String>('reject_key_0'));
+          find.byKey(const ValueKey<String>('reject_key_some-id'));
 
       expect(rejectFinder, findsOneWidget);
 

@@ -73,10 +73,14 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             );
           }
 
-          final int total = vm.clientServiceRequests?.length ?? 0;
           final List<ServiceRequestCount>? clientServiceRequestsCount = vm
               .pendingServiceRequestCount
               ?.clientsServiceRequestCount
+              ?.requestsTypeCount;
+
+          final List<ServiceRequestCount>? staffServiceRequestsCount = vm
+              .pendingServiceRequestCount
+              ?.staffServiceRequestCount
               ?.requestsTypeCount;
 
           final int redFlagCount = _getServiceRequestTypeCount(
@@ -95,9 +99,14 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
           );
 
           final int staffPINResetCount = _getServiceRequestTypeCount(
-            clientServiceRequestsCount,
+            staffServiceRequestsCount,
             ServiceRequestType.STAFF_PIN_RESET,
           );
+
+          final int totalCount = redFlagCount +
+              pinResetCount +
+              profileUpdateCount +
+              staffPINResetCount;
 
           return SingleChildScrollView(
             child: Column(
@@ -118,7 +127,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                     padding: EdgeInsets.only(top: 150),
                     child: PlatformLoader(),
                   )
-                } else if (total > 0) ...<Widget>{
+                } else if (totalCount > 0) ...<Widget>{
                   Container(
                     padding: const EdgeInsets.only(
                       top: 16.0,
@@ -133,6 +142,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                             // RED FLAGS
                             if (redFlagCount > 0)
                               ActionCard(
+                                key: redFlagActionCardKey,
                                 count: redFlagCount,
                                 iconUrl: redFlagStressSvgPath,
                                 title: redFlagString,
@@ -148,6 +158,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                             // CLIENT PIN RESET REQUESTS
                             if (pinResetCount > 0)
                               ActionCard(
+                                key: clientPINResetActionCardKey,
                                 count: pinResetCount,
                                 iconUrl: pinResetImageSvgPath,
                                 title: clientPINResetString,
@@ -163,6 +174,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                             // STAFF PIN RESET REQUESTS
                             if (staffPINResetCount > 0)
                               ActionCard(
+                                key: staffPINResetActionCardKey,
                                 count: staffPINResetCount,
                                 iconUrl: pinResetImageSvgPath,
                                 title: staffPINResetString,
@@ -177,6 +189,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                             // SCREENING TOOLS
                             if (profileUpdateCount > 0)
                               ActionCard(
+                                key: profileUpdateActionCardKey,
                                 count: profileUpdateCount,
                                 iconUrl: profileUpdateImageSvgPath,
                                 title: profileUpdateString,

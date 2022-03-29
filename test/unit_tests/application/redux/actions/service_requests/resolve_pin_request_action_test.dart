@@ -68,9 +68,10 @@ void main() {
       );
 
       expect(
-        store.state.serviceRequestState?.clientServiceRequests?.first.id,
+        store.state.serviceRequestState?.clientServiceRequests?.first,
         ServiceRequest(id: 'service-request-id'),
       );
+      expect(store.state.serviceRequestState?.clientServiceRequests?.length, 2);
 
       int pinVerified = 0;
 
@@ -90,10 +91,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(ResolvePinRequestAction);
 
-      expect(
-        info.state.serviceRequestState?.clientServiceRequests?.first.id,
-        null,
-      );
+      expect(info.state.serviceRequestState?.clientServiceRequests?.length, 1);
       expect(pinVerified, 1);
     });
 

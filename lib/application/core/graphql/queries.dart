@@ -65,16 +65,16 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
 const String getPendingServiceRequestsCountQuery = r'''
 query getPendingServiceRequestsCount($facilityID: String!){
   getPendingServiceRequestsCount(facilityID: $facilityID){
-    clientsServiceRequestCount{
-      requestsTypeCount{
-        total
+    clientsServiceRequestCount {
+      requestsTypeCount {
         requestType
+        total
       }
     }
-    staffServiceRequestCount{
-      requestsTypeCount{
-        total
+    staffServiceRequestCount {
+      requestsTypeCount {
         requestType
+        total
       }
     }
   }

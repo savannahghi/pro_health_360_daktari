@@ -381,12 +381,24 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
     'change_pin': false,
   },
 };
-final Map<String, dynamic> mockPendingServiceRequests = <String, dynamic>{
-  'total': 4,
-  'requestsTypeCount': <dynamic>[
-    <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
-    <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
-  ],
+
+final Map<String, dynamic> mockPendingServiceRequestCount = <String, dynamic>{
+  'data': <String, dynamic>{
+    'getPendingServiceRequestsCount': <String, dynamic>{
+      'clientsServiceRequestCount': <String, dynamic>{
+        'requestsTypeCount': <Map<String, dynamic>>[
+          <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
+          <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
+          <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2}
+        ],
+      },
+      'staffServiceRequestCount': <String, dynamic>{
+        'requestsTypeCount': <Map<String, dynamic>>[
+          <String, dynamic>{'requestType': 'STAFF_PIN_RESET', 'total': 1}
+        ]
+      }
+    }
+  }
 };
 
 final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
@@ -728,11 +740,7 @@ class MockTestGraphQlClient extends IGraphQlClient {
     if (queryString.contains(getPendingServiceRequestsCountQuery)) {
       return Future<http.Response>.value(
         http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getPendingServiceRequestsCount': mockPendingServiceRequests
-            }
-          }),
+          json.encode(mockPendingServiceRequestCount),
           201,
         ),
       );

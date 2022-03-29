@@ -137,7 +137,14 @@ const Key askForHelpButtonKey = Key('ask_for_help_button_key');
 const Key tryAgainButtonKey = Key('try_again_button_key');
 const Key cccInputKey = Key('ccc_input_key');
 const Key resetPINButtonKey = Key('reset_pin_button_key');
-const Key verifyPhysicalIdentityCheckboxKey = Key('verify__physical_identity_checkbox_key');
+const Key verifyPhysicalIdentityCheckboxKey =
+    Key('verify__physical_identity_checkbox_key');
 
 //PIN expired
 const Key changeMyPinButtonKey = Key('change_my_pin');
+
+// Service request list page keys
+const Key redFlagActionCardKey = Key('red_flag_action_card_key');
+const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
+const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
+const Key profileUpdateActionCardKey = Key('profile_update_action_card_key');

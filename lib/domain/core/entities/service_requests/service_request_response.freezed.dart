@@ -27,7 +27,7 @@ class _$ServiceRequestResponseTearOff {
       {@JsonKey(name: 'getServiceRequests')
           List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequest? pendingServiceRequests,
+          PendingServiceRequestCount? pendingServiceRequests,
       bool? errorFetchingServiceRequests}) {
     return _ServiceRequestResponse(
       serviceRequests: serviceRequests,
@@ -50,7 +50,7 @@ mixin _$ServiceRequestResponse {
   List<ServiceRequest>? get serviceRequests =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'getPendingServiceRequestsCount')
-  PendingServiceRequest? get pendingServiceRequests =>
+  PendingServiceRequestCount? get pendingServiceRequests =>
       throw _privateConstructorUsedError;
   bool? get errorFetchingServiceRequests => throw _privateConstructorUsedError;
 
@@ -69,10 +69,10 @@ abstract class $ServiceRequestResponseCopyWith<$Res> {
       {@JsonKey(name: 'getServiceRequests')
           List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequest? pendingServiceRequests,
+          PendingServiceRequestCount? pendingServiceRequests,
       bool? errorFetchingServiceRequests});
 
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests;
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequests;
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$ServiceRequestResponseCopyWithImpl<$Res>
       pendingServiceRequests: pendingServiceRequests == freezed
           ? _value.pendingServiceRequests
           : pendingServiceRequests // ignore: cast_nullable_to_non_nullable
-              as PendingServiceRequest?,
+              as PendingServiceRequestCount?,
       errorFetchingServiceRequests: errorFetchingServiceRequests == freezed
           ? _value.errorFetchingServiceRequests
           : errorFetchingServiceRequests // ignore: cast_nullable_to_non_nullable
@@ -107,13 +107,13 @@ class _$ServiceRequestResponseCopyWithImpl<$Res>
   }
 
   @override
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests {
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequests {
     if (_value.pendingServiceRequests == null) {
       return null;
     }
 
-    return $PendingServiceRequestCopyWith<$Res>(_value.pendingServiceRequests!,
-        (value) {
+    return $PendingServiceRequestCountCopyWith<$Res>(
+        _value.pendingServiceRequests!, (value) {
       return _then(_value.copyWith(pendingServiceRequests: value));
     });
   }
@@ -130,11 +130,11 @@ abstract class _$ServiceRequestResponseCopyWith<$Res>
       {@JsonKey(name: 'getServiceRequests')
           List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequest? pendingServiceRequests,
+          PendingServiceRequestCount? pendingServiceRequests,
       bool? errorFetchingServiceRequests});
 
   @override
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests;
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequests;
 }
 
 /// @nodoc
@@ -162,7 +162,7 @@ class __$ServiceRequestResponseCopyWithImpl<$Res>
       pendingServiceRequests: pendingServiceRequests == freezed
           ? _value.pendingServiceRequests
           : pendingServiceRequests // ignore: cast_nullable_to_non_nullable
-              as PendingServiceRequest?,
+              as PendingServiceRequestCount?,
       errorFetchingServiceRequests: errorFetchingServiceRequests == freezed
           ? _value.errorFetchingServiceRequests
           : errorFetchingServiceRequests // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ class _$_ServiceRequestResponse implements _ServiceRequestResponse {
   final List<ServiceRequest>? serviceRequests;
   @override
   @JsonKey(name: 'getPendingServiceRequestsCount')
-  final PendingServiceRequest? pendingServiceRequests;
+  final PendingServiceRequestCount? pendingServiceRequests;
   @override
   final bool? errorFetchingServiceRequests;
 
@@ -236,7 +236,7 @@ abstract class _ServiceRequestResponse implements ServiceRequestResponse {
       {@JsonKey(name: 'getServiceRequests')
           List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequest? pendingServiceRequests,
+          PendingServiceRequestCount? pendingServiceRequests,
       bool? errorFetchingServiceRequests}) = _$_ServiceRequestResponse;
 
   factory _ServiceRequestResponse.fromJson(Map<String, dynamic> json) =
@@ -247,7 +247,7 @@ abstract class _ServiceRequestResponse implements ServiceRequestResponse {
   List<ServiceRequest>? get serviceRequests;
   @override
   @JsonKey(name: 'getPendingServiceRequestsCount')
-  PendingServiceRequest? get pendingServiceRequests;
+  PendingServiceRequestCount? get pendingServiceRequests;
   @override
   bool? get errorFetchingServiceRequests;
   @override
