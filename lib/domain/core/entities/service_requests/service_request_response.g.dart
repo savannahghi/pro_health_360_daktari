@@ -9,9 +9,8 @@ part of 'service_request_response.dart';
 _$_ServiceRequestResponse _$$_ServiceRequestResponseFromJson(
         Map<String, dynamic> json) =>
     _$_ServiceRequestResponse(
-      serviceRequestContent: (json['getServiceRequests'] as List<dynamic>?)
-          ?.map(
-              (e) => ServiceRequestContent.fromJson(e as Map<String, dynamic>))
+      serviceRequests: (json['getServiceRequests'] as List<dynamic>?)
+          ?.map((e) => ServiceRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
       pendingServiceRequests: json['getPendingServiceRequestsCount'] == null
           ? null
@@ -24,7 +23,7 @@ _$_ServiceRequestResponse _$$_ServiceRequestResponseFromJson(
 Map<String, dynamic> _$$_ServiceRequestResponseToJson(
         _$_ServiceRequestResponse instance) =>
     <String, dynamic>{
-      'getServiceRequests': instance.serviceRequestContent,
+      'getServiceRequests': instance.serviceRequests,
       'getPendingServiceRequestsCount': instance.pendingServiceRequests,
       'errorFetchingServiceRequests': instance.errorFetchingServiceRequests,
     };

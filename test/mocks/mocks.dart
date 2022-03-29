@@ -1288,7 +1288,7 @@ final Map<String, dynamic> appStateMock = <String, dynamic>{
   'staffState': mockStaffState,
   'surveyState': <String, dynamic>{},
   'serviceRequestState': <String, dynamic>{
-    'serviceRequestContent': <String, dynamic>{},
+    'ServiceRequest': <String, dynamic>{},
     'pendingServiceRequests': <String, dynamic>{
       'total': 0,
       'requestsTypeCount': <dynamic>[]

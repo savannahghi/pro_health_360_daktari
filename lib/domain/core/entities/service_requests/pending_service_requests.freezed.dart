@@ -27,7 +27,7 @@ class _$PendingServiceRequestTearOff {
       {@JsonKey(name: 'total')
           int? total,
       @JsonKey(name: 'requestsTypeCount')
-          List<RequestCountContent>? serviceRequestsCount}) {
+          List<ServiceRequestCount>? serviceRequestsCount}) {
     return _PendingServiceRequest(
       total: total,
       serviceRequestsCount: serviceRequestsCount,
@@ -47,7 +47,7 @@ mixin _$PendingServiceRequest {
   @JsonKey(name: 'total')
   int? get total => throw _privateConstructorUsedError;
   @JsonKey(name: 'requestsTypeCount')
-  List<RequestCountContent>? get serviceRequestsCount =>
+  List<ServiceRequestCount>? get serviceRequestsCount =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,7 +65,7 @@ abstract class $PendingServiceRequestCopyWith<$Res> {
       {@JsonKey(name: 'total')
           int? total,
       @JsonKey(name: 'requestsTypeCount')
-          List<RequestCountContent>? serviceRequestsCount});
+          List<ServiceRequestCount>? serviceRequestsCount});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$PendingServiceRequestCopyWithImpl<$Res>
       serviceRequestsCount: serviceRequestsCount == freezed
           ? _value.serviceRequestsCount
           : serviceRequestsCount // ignore: cast_nullable_to_non_nullable
-              as List<RequestCountContent>?,
+              as List<ServiceRequestCount>?,
     ));
   }
 }
@@ -106,7 +106,7 @@ abstract class _$PendingServiceRequestCopyWith<$Res>
       {@JsonKey(name: 'total')
           int? total,
       @JsonKey(name: 'requestsTypeCount')
-          List<RequestCountContent>? serviceRequestsCount});
+          List<ServiceRequestCount>? serviceRequestsCount});
 }
 
 /// @nodoc
@@ -133,7 +133,7 @@ class __$PendingServiceRequestCopyWithImpl<$Res>
       serviceRequestsCount: serviceRequestsCount == freezed
           ? _value.serviceRequestsCount
           : serviceRequestsCount // ignore: cast_nullable_to_non_nullable
-              as List<RequestCountContent>?,
+              as List<ServiceRequestCount>?,
     ));
   }
 }
@@ -153,7 +153,7 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
   final int? total;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  final List<RequestCountContent>? serviceRequestsCount;
+  final List<ServiceRequestCount>? serviceRequestsCount;
 
   @override
   String toString() {
@@ -193,7 +193,7 @@ abstract class _PendingServiceRequest implements PendingServiceRequest {
           {@JsonKey(name: 'total')
               int? total,
           @JsonKey(name: 'requestsTypeCount')
-              List<RequestCountContent>? serviceRequestsCount}) =
+              List<ServiceRequestCount>? serviceRequestsCount}) =
       _$_PendingServiceRequest;
 
   factory _PendingServiceRequest.fromJson(Map<String, dynamic> json) =
@@ -204,7 +204,7 @@ abstract class _PendingServiceRequest implements PendingServiceRequest {
   int? get total;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  List<RequestCountContent>? get serviceRequestsCount;
+  List<ServiceRequestCount>? get serviceRequestsCount;
   @override
   @JsonKey(ignore: true)
   _$PendingServiceRequestCopyWith<_PendingServiceRequest> get copyWith =>

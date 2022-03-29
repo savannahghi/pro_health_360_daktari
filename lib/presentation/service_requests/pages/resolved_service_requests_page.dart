@@ -8,7 +8,7 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -36,6 +36,7 @@ class _ResolvedServiceRequestsPageState
         FetchServiceRequestsAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
           serviceRequestStatus: RequestStatus.RESOLVED,
+          flavour: Flavour.consumer,
         ),
       );
     });
@@ -81,7 +82,8 @@ class _ResolvedServiceRequestsPageState
                         ),
                         child: PlatformLoader(),
                       )
-                    } else if (vm.serviceRequests?.isEmpty ?? true) ...<Widget>{
+                    } else if (vm.clientServiceRequests?.isEmpty ??
+                        true) ...<Widget>{
                       GenericErrorWidget(
                         actionKey: helpNoDataWidgetKey,
                         actionText: actionTextGenericNoData,
@@ -104,22 +106,19 @@ class _ResolvedServiceRequestsPageState
                       )
                     } else
                       ...List<Widget>.generate(
-                        vm.serviceRequests?.length ?? 0,
+                        vm.clientServiceRequests?.length ?? 0,
                         (int index) {
-                          final List<MapEntry<String, ServiceRequestContent?>>?
-                              entries = vm.serviceRequests?.entries.toList();
+                          final List<ServiceRequest>? entries =
+                              vm.clientServiceRequests;
 
-                          final ServiceRequestContent? activeEntry =
-                              entries?.elementAt(index).value;
+                          final ServiceRequest? activeEntry =
+                              entries?.elementAt(index);
 
                           final String clientName =
                               activeEntry?.clientName ?? '';
 
-                          final String clientPhoneNumber = entries
-                                  ?.elementAt(index)
-                                  .value
-                                  ?.clientPhoneNumber ??
-                              '';
+                          final String clientPhoneNumber =
+                              entries?.elementAt(index).clientPhoneNumber ?? '';
 
                           final String description =
                               activeEntry?.description ?? '';
@@ -156,6 +155,7 @@ class _ResolvedServiceRequestsPageState
                           FetchServiceRequestsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
                             serviceRequestStatus: RequestStatus.RESOLVED,
+                            flavour: Flavour.consumer,
                           ),
                         );
                       },

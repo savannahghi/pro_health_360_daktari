@@ -2,40 +2,32 @@ import 'package:async_redux/async_redux.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_requests.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 
 class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
-  final List<ServiceRequestContent>? serviceRequestContent;
-  final bool? errorFetchingServiceRequests;
-  final PendingServiceRequest? pendingServiceRequests;
-
   UpdateServiceRequestsStateAction({
-    this.serviceRequestContent,
-    this.errorFetchingServiceRequests,
+    this.clientServiceRequests,
+    this.errorFetchingPendingServiceRequests,
     this.pendingServiceRequests,
+    this.staffServiceRequests,
   });
+
+  final List<ServiceRequest>? clientServiceRequests;
+  final bool? errorFetchingPendingServiceRequests;
+  final PendingServiceRequest? pendingServiceRequests;
+  final List<ServiceRequest>? staffServiceRequests;
 
   @override
   Future<AppState> reduce() async {
-    Map<String, ServiceRequestContent>? requests =
-        <String, ServiceRequestContent>{};
-
-    if (serviceRequestContent != null) {
-      requests = <String, ServiceRequestContent>{
-        for (ServiceRequestContent v in serviceRequestContent!) v.id!: v
-      };
-    } else {
-      requests = state.serviceRequestState?.serviceRequestContent;
-    }
-
     final ServiceRequestState? serviceRequestsState =
         state.serviceRequestState?.copyWith(
-      serviceRequestContent: requests,
-      pendingServiceRequests: pendingServiceRequests ??
-          state.serviceRequestState?.pendingServiceRequests,
-      errorFetchingServiceRequests: errorFetchingServiceRequests ??
-          state.serviceRequestState?.errorFetchingServiceRequests ??
-          false,
+      clientServiceRequests: clientServiceRequests ??
+          state.serviceRequestState?.clientServiceRequests,
+      staffServiceRequests: staffServiceRequests ??
+          state.serviceRequestState?.staffServiceRequests,
+      errorFetchingPendingServiceRequests:
+          errorFetchingPendingServiceRequests ??
+              state.serviceRequestState?.errorFetchingPendingServiceRequests,
     );
 
     final AppState newState = state.copyWith(

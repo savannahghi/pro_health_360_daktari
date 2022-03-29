@@ -7,7 +7,7 @@ import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -91,28 +91,19 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
           body['data']['verifyPinResetServiceRequest'] as bool? ?? false;
 
       if (isRequestApproved) {
-        final Map<String, ServiceRequestContent>? serviceRequests =
-            state.serviceRequestState?.serviceRequestContent;
+        final List<ServiceRequest>? serviceRequests =
+            state.serviceRequestState?.clientServiceRequests;
 
         if (serviceRequests != null) {
-          final ServiceRequestContent? removed =
-              serviceRequests.remove(serviceRequestId);
+          serviceRequests.removeWhere(
+            (ServiceRequest request) => request.id == serviceRequestId,
+          );
 
-          if (removed != null) {
-            final List<ServiceRequestContent> newRequests =
-                <ServiceRequestContent>[];
-
-            for (final MapEntry<String, ServiceRequestContent> entry
-                in serviceRequests.entries) {
-              newRequests.add(entry.value);
-            }
-
-            dispatch(
-              UpdateServiceRequestsStateAction(
-                serviceRequestContent: newRequests,
-              ),
-            );
-          }
+          dispatch(
+            UpdateServiceRequestsStateAction(
+              clientServiceRequests: serviceRequests,
+            ),
+          );
         }
 
         onPinVerified?.call();

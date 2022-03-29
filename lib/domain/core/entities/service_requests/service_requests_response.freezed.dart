@@ -23,9 +23,9 @@ class _$ServiceRequestsResponseTearOff {
 
   _ServiceRequestsResponse call(
       {@JsonKey(name: 'getServiceRequests')
-          List<ServiceRequestContent>? serviceRequestContent}) {
+          List<ServiceRequest>? ServiceRequest}) {
     return _ServiceRequestsResponse(
-      serviceRequestContent: serviceRequestContent,
+      ServiceRequest: ServiceRequest,
     );
   }
 
@@ -40,7 +40,7 @@ const $ServiceRequestsResponse = _$ServiceRequestsResponseTearOff();
 /// @nodoc
 mixin _$ServiceRequestsResponse {
   @JsonKey(name: 'getServiceRequests')
-  List<ServiceRequestContent>? get serviceRequestContent =>
+  List<ServiceRequest>? get ServiceRequest =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ abstract class $ServiceRequestsResponseCopyWith<$Res> {
       _$ServiceRequestsResponseCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'getServiceRequests')
-          List<ServiceRequestContent>? serviceRequestContent});
+          List<ServiceRequest>? ServiceRequest});
 }
 
 /// @nodoc
@@ -70,13 +70,13 @@ class _$ServiceRequestsResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceRequestContent = freezed,
+    Object? ServiceRequest = freezed,
   }) {
     return _then(_value.copyWith(
-      serviceRequestContent: serviceRequestContent == freezed
-          ? _value.serviceRequestContent
-          : serviceRequestContent // ignore: cast_nullable_to_non_nullable
-              as List<ServiceRequestContent>?,
+      ServiceRequest: ServiceRequest == freezed
+          ? _value.ServiceRequest
+          : ServiceRequest // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
     ));
   }
 }
@@ -90,7 +90,7 @@ abstract class _$ServiceRequestsResponseCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'getServiceRequests')
-          List<ServiceRequestContent>? serviceRequestContent});
+          List<ServiceRequest>? ServiceRequest});
 }
 
 /// @nodoc
@@ -107,13 +107,13 @@ class __$ServiceRequestsResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceRequestContent = freezed,
+    Object? ServiceRequest = freezed,
   }) {
     return _then(_ServiceRequestsResponse(
-      serviceRequestContent: serviceRequestContent == freezed
-          ? _value.serviceRequestContent
-          : serviceRequestContent // ignore: cast_nullable_to_non_nullable
-              as List<ServiceRequestContent>?,
+      ServiceRequest: ServiceRequest == freezed
+          ? _value.ServiceRequest
+          : ServiceRequest // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
     ));
   }
 }
@@ -122,33 +122,33 @@ class __$ServiceRequestsResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ServiceRequestsResponse implements _ServiceRequestsResponse {
   _$_ServiceRequestsResponse(
-      {@JsonKey(name: 'getServiceRequests') this.serviceRequestContent});
+      {@JsonKey(name: 'getServiceRequests') this.ServiceRequest});
 
   factory _$_ServiceRequestsResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_ServiceRequestsResponseFromJson(json);
 
   @override
   @JsonKey(name: 'getServiceRequests')
-  final List<ServiceRequestContent>? serviceRequestContent;
+  final List<ServiceRequest>? ServiceRequest;
 
   @override
   String toString() {
-    return 'ServiceRequestsResponse(serviceRequestContent: $serviceRequestContent)';
+    return 'ServiceRequestsResponse(ServiceRequest: $ServiceRequest)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ServiceRequestsResponse &&
-            (identical(other.serviceRequestContent, serviceRequestContent) ||
-                const DeepCollectionEquality().equals(
-                    other.serviceRequestContent, serviceRequestContent)));
+            (identical(other.ServiceRequest, ServiceRequest) ||
+                const DeepCollectionEquality()
+                    .equals(other.ServiceRequest, ServiceRequest)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(serviceRequestContent);
+      const DeepCollectionEquality().hash(ServiceRequest);
 
   @JsonKey(ignore: true)
   @override
@@ -164,16 +164,15 @@ class _$_ServiceRequestsResponse implements _ServiceRequestsResponse {
 
 abstract class _ServiceRequestsResponse implements ServiceRequestsResponse {
   factory _ServiceRequestsResponse(
-          {@JsonKey(name: 'getServiceRequests')
-              List<ServiceRequestContent>? serviceRequestContent}) =
-      _$_ServiceRequestsResponse;
+      {@JsonKey(name: 'getServiceRequests')
+          List<ServiceRequest>? ServiceRequest}) = _$_ServiceRequestsResponse;
 
   factory _ServiceRequestsResponse.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestsResponse.fromJson;
 
   @override
   @JsonKey(name: 'getServiceRequests')
-  List<ServiceRequestContent>? get serviceRequestContent =>
+  List<ServiceRequest>? get ServiceRequest =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

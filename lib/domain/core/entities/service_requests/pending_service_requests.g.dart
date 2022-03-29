@@ -11,7 +11,7 @@ _$_PendingServiceRequest _$$_PendingServiceRequestFromJson(
     _$_PendingServiceRequest(
       total: json['total'] as int?,
       serviceRequestsCount: (json['requestsTypeCount'] as List<dynamic>?)
-          ?.map((e) => RequestCountContent.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ServiceRequestCount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

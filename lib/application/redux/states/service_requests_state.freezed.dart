@@ -23,13 +23,15 @@ class _$ServiceRequestStateTearOff {
   const _$ServiceRequestStateTearOff();
 
   _ServiceRequestState call(
-      {Map<String, ServiceRequestContent>? serviceRequestContent,
-      PendingServiceRequest? pendingServiceRequests,
-      bool? errorFetchingServiceRequests}) {
+      {List<ServiceRequest>? clientServiceRequests,
+      List<ServiceRequest>? staffServiceRequests,
+      PendingServiceRequestCount? pendingServiceRequestsCount,
+      bool? errorFetchingPendingServiceRequests}) {
     return _ServiceRequestState(
-      serviceRequestContent: serviceRequestContent,
-      pendingServiceRequests: pendingServiceRequests,
-      errorFetchingServiceRequests: errorFetchingServiceRequests,
+      clientServiceRequests: clientServiceRequests,
+      staffServiceRequests: staffServiceRequests,
+      pendingServiceRequestsCount: pendingServiceRequestsCount,
+      errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests,
     );
   }
 
@@ -43,11 +45,17 @@ const $ServiceRequestState = _$ServiceRequestStateTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestState {
-  Map<String, ServiceRequestContent>? get serviceRequestContent =>
+// Client service requests
+  List<ServiceRequest>? get clientServiceRequests =>
+      throw _privateConstructorUsedError; // Staff service requests
+  List<ServiceRequest>? get staffServiceRequests =>
+      throw _privateConstructorUsedError; // Service requests count
+  PendingServiceRequestCount? get pendingServiceRequestsCount =>
       throw _privateConstructorUsedError;
-  PendingServiceRequest? get pendingServiceRequests =>
+
+  /// Other booleans
+  bool? get errorFetchingPendingServiceRequests =>
       throw _privateConstructorUsedError;
-  bool? get errorFetchingServiceRequests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,11 +69,12 @@ abstract class $ServiceRequestStateCopyWith<$Res> {
           ServiceRequestState value, $Res Function(ServiceRequestState) then) =
       _$ServiceRequestStateCopyWithImpl<$Res>;
   $Res call(
-      {Map<String, ServiceRequestContent>? serviceRequestContent,
-      PendingServiceRequest? pendingServiceRequests,
-      bool? errorFetchingServiceRequests});
+      {List<ServiceRequest>? clientServiceRequests,
+      List<ServiceRequest>? staffServiceRequests,
+      PendingServiceRequestCount? pendingServiceRequestsCount,
+      bool? errorFetchingPendingServiceRequests});
 
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests;
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequestsCount;
 }
 
 /// @nodoc
@@ -79,35 +88,41 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceRequestContent = freezed,
-    Object? pendingServiceRequests = freezed,
-    Object? errorFetchingServiceRequests = freezed,
+    Object? clientServiceRequests = freezed,
+    Object? staffServiceRequests = freezed,
+    Object? pendingServiceRequestsCount = freezed,
+    Object? errorFetchingPendingServiceRequests = freezed,
   }) {
     return _then(_value.copyWith(
-      serviceRequestContent: serviceRequestContent == freezed
-          ? _value.serviceRequestContent
-          : serviceRequestContent // ignore: cast_nullable_to_non_nullable
-              as Map<String, ServiceRequestContent>?,
-      pendingServiceRequests: pendingServiceRequests == freezed
-          ? _value.pendingServiceRequests
-          : pendingServiceRequests // ignore: cast_nullable_to_non_nullable
-              as PendingServiceRequest?,
-      errorFetchingServiceRequests: errorFetchingServiceRequests == freezed
-          ? _value.errorFetchingServiceRequests
-          : errorFetchingServiceRequests // ignore: cast_nullable_to_non_nullable
+      clientServiceRequests: clientServiceRequests == freezed
+          ? _value.clientServiceRequests
+          : clientServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      staffServiceRequests: staffServiceRequests == freezed
+          ? _value.staffServiceRequests
+          : staffServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      pendingServiceRequestsCount: pendingServiceRequestsCount == freezed
+          ? _value.pendingServiceRequestsCount
+          : pendingServiceRequestsCount // ignore: cast_nullable_to_non_nullable
+              as PendingServiceRequestCount?,
+      errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests ==
+              freezed
+          ? _value.errorFetchingPendingServiceRequests
+          : errorFetchingPendingServiceRequests // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
 
   @override
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests {
-    if (_value.pendingServiceRequests == null) {
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequestsCount {
+    if (_value.pendingServiceRequestsCount == null) {
       return null;
     }
 
-    return $PendingServiceRequestCopyWith<$Res>(_value.pendingServiceRequests!,
-        (value) {
-      return _then(_value.copyWith(pendingServiceRequests: value));
+    return $PendingServiceRequestCountCopyWith<$Res>(
+        _value.pendingServiceRequestsCount!, (value) {
+      return _then(_value.copyWith(pendingServiceRequestsCount: value));
     });
   }
 }
@@ -120,12 +135,13 @@ abstract class _$ServiceRequestStateCopyWith<$Res>
       __$ServiceRequestStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Map<String, ServiceRequestContent>? serviceRequestContent,
-      PendingServiceRequest? pendingServiceRequests,
-      bool? errorFetchingServiceRequests});
+      {List<ServiceRequest>? clientServiceRequests,
+      List<ServiceRequest>? staffServiceRequests,
+      PendingServiceRequestCount? pendingServiceRequestsCount,
+      bool? errorFetchingPendingServiceRequests});
 
   @override
-  $PendingServiceRequestCopyWith<$Res>? get pendingServiceRequests;
+  $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequestsCount;
 }
 
 /// @nodoc
@@ -141,22 +157,28 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceRequestContent = freezed,
-    Object? pendingServiceRequests = freezed,
-    Object? errorFetchingServiceRequests = freezed,
+    Object? clientServiceRequests = freezed,
+    Object? staffServiceRequests = freezed,
+    Object? pendingServiceRequestsCount = freezed,
+    Object? errorFetchingPendingServiceRequests = freezed,
   }) {
     return _then(_ServiceRequestState(
-      serviceRequestContent: serviceRequestContent == freezed
-          ? _value.serviceRequestContent
-          : serviceRequestContent // ignore: cast_nullable_to_non_nullable
-              as Map<String, ServiceRequestContent>?,
-      pendingServiceRequests: pendingServiceRequests == freezed
-          ? _value.pendingServiceRequests
-          : pendingServiceRequests // ignore: cast_nullable_to_non_nullable
-              as PendingServiceRequest?,
-      errorFetchingServiceRequests: errorFetchingServiceRequests == freezed
-          ? _value.errorFetchingServiceRequests
-          : errorFetchingServiceRequests // ignore: cast_nullable_to_non_nullable
+      clientServiceRequests: clientServiceRequests == freezed
+          ? _value.clientServiceRequests
+          : clientServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      staffServiceRequests: staffServiceRequests == freezed
+          ? _value.staffServiceRequests
+          : staffServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      pendingServiceRequestsCount: pendingServiceRequestsCount == freezed
+          ? _value.pendingServiceRequestsCount
+          : pendingServiceRequestsCount // ignore: cast_nullable_to_non_nullable
+              as PendingServiceRequestCount?,
+      errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests ==
+              freezed
+          ? _value.errorFetchingPendingServiceRequests
+          : errorFetchingPendingServiceRequests // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -166,23 +188,28 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ServiceRequestState implements _ServiceRequestState {
   _$_ServiceRequestState(
-      {this.serviceRequestContent,
-      this.pendingServiceRequests,
-      this.errorFetchingServiceRequests});
+      {this.clientServiceRequests,
+      this.staffServiceRequests,
+      this.pendingServiceRequestsCount,
+      this.errorFetchingPendingServiceRequests});
 
   factory _$_ServiceRequestState.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestStateFromJson(json);
 
+  @override // Client service requests
+  final List<ServiceRequest>? clientServiceRequests;
+  @override // Staff service requests
+  final List<ServiceRequest>? staffServiceRequests;
+  @override // Service requests count
+  final PendingServiceRequestCount? pendingServiceRequestsCount;
   @override
-  final Map<String, ServiceRequestContent>? serviceRequestContent;
-  @override
-  final PendingServiceRequest? pendingServiceRequests;
-  @override
-  final bool? errorFetchingServiceRequests;
+
+  /// Other booleans
+  final bool? errorFetchingPendingServiceRequests;
 
   @override
   String toString() {
-    return 'ServiceRequestState(serviceRequestContent: $serviceRequestContent, pendingServiceRequests: $pendingServiceRequests, errorFetchingServiceRequests: $errorFetchingServiceRequests)';
+    return 'ServiceRequestState(clientServiceRequests: $clientServiceRequests, staffServiceRequests: $staffServiceRequests, pendingServiceRequestsCount: $pendingServiceRequestsCount, errorFetchingPendingServiceRequests: $errorFetchingPendingServiceRequests)';
   }
 
   @override
@@ -191,20 +218,24 @@ class _$_ServiceRequestState implements _ServiceRequestState {
         (other.runtimeType == runtimeType &&
             other is _ServiceRequestState &&
             const DeepCollectionEquality()
-                .equals(other.serviceRequestContent, serviceRequestContent) &&
+                .equals(other.clientServiceRequests, clientServiceRequests) &&
             const DeepCollectionEquality()
-                .equals(other.pendingServiceRequests, pendingServiceRequests) &&
+                .equals(other.staffServiceRequests, staffServiceRequests) &&
             const DeepCollectionEquality().equals(
-                other.errorFetchingServiceRequests,
-                errorFetchingServiceRequests));
+                other.pendingServiceRequestsCount,
+                pendingServiceRequestsCount) &&
+            const DeepCollectionEquality().equals(
+                other.errorFetchingPendingServiceRequests,
+                errorFetchingPendingServiceRequests));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(serviceRequestContent),
-      const DeepCollectionEquality().hash(pendingServiceRequests),
-      const DeepCollectionEquality().hash(errorFetchingServiceRequests));
+      const DeepCollectionEquality().hash(clientServiceRequests),
+      const DeepCollectionEquality().hash(staffServiceRequests),
+      const DeepCollectionEquality().hash(pendingServiceRequestsCount),
+      const DeepCollectionEquality().hash(errorFetchingPendingServiceRequests));
 
   @JsonKey(ignore: true)
   @override
@@ -220,19 +251,24 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
 abstract class _ServiceRequestState implements ServiceRequestState {
   factory _ServiceRequestState(
-      {Map<String, ServiceRequestContent>? serviceRequestContent,
-      PendingServiceRequest? pendingServiceRequests,
-      bool? errorFetchingServiceRequests}) = _$_ServiceRequestState;
+      {List<ServiceRequest>? clientServiceRequests,
+      List<ServiceRequest>? staffServiceRequests,
+      PendingServiceRequestCount? pendingServiceRequestsCount,
+      bool? errorFetchingPendingServiceRequests}) = _$_ServiceRequestState;
 
   factory _ServiceRequestState.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestState.fromJson;
 
+  @override // Client service requests
+  List<ServiceRequest>? get clientServiceRequests;
+  @override // Staff service requests
+  List<ServiceRequest>? get staffServiceRequests;
+  @override // Service requests count
+  PendingServiceRequestCount? get pendingServiceRequestsCount;
   @override
-  Map<String, ServiceRequestContent>? get serviceRequestContent;
-  @override
-  PendingServiceRequest? get pendingServiceRequests;
-  @override
-  bool? get errorFetchingServiceRequests;
+
+  /// Other booleans
+  bool? get errorFetchingPendingServiceRequests;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestStateCopyWith<_ServiceRequestState> get copyWith =>

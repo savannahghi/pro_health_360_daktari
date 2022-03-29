@@ -20,7 +20,9 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(
-      UpdateServiceRequestsStateAction(errorFetchingServiceRequests: false),
+      UpdateServiceRequestsStateAction(
+        errorFetchingPendingServiceRequests: false,
+      ),
     );
     dispatch(WaitAction<AppState>.add(fetchServiceRequestsCountFlag));
   }
@@ -37,8 +39,9 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
 
     final Response response = await client.query(
       getPendingServiceRequestsCountQuery,
-      <String, dynamic>{'facilityID': facilityID, 'flavour': Flavour.pro.name},
+      <String, dynamic>{'facilityID': facilityID},
     );
+
     client.close();
 
     final Map<String, dynamic> payLoad = client.toMap(response);
@@ -49,7 +52,9 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
       Sentry.captureException(UserException(error));
 
       dispatch(
-        UpdateServiceRequestsStateAction(errorFetchingServiceRequests: true),
+        UpdateServiceRequestsStateAction(
+          errorFetchingPendingServiceRequests: true,
+        ),
       );
 
       return null;

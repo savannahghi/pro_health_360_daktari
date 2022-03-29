@@ -8,7 +8,7 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/request_count_content.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_count.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -73,27 +73,29 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             );
           }
 
-          final int total = vm.pendingServiceRequests?.total ?? 0;
-          final List<RequestCountContent>? serviceRequestsCount =
-              vm.pendingServiceRequests?.serviceRequestsCount;
+          final int total = vm.clientServiceRequests?.length ?? 0;
+          final List<ServiceRequestCount>? clientServiceRequestsCount = vm
+              .pendingServiceRequestCount
+              ?.clientsServiceRequestCount
+              ?.requestsTypeCount;
 
           final int redFlagCount = _getServiceRequestTypeCount(
-            serviceRequestsCount,
+            clientServiceRequestsCount,
             ServiceRequestType.RED_FLAG,
           );
 
           final int pinResetCount = _getServiceRequestTypeCount(
-            serviceRequestsCount,
+            clientServiceRequestsCount,
             ServiceRequestType.PIN_RESET,
           );
 
           final int profileUpdateCount = _getServiceRequestTypeCount(
-            serviceRequestsCount,
+            clientServiceRequestsCount,
             ServiceRequestType.PROFILE_UPDATE,
           );
 
           final int staffPINResetCount = _getServiceRequestTypeCount(
-            serviceRequestsCount,
+            clientServiceRequestsCount,
             ServiceRequestType.STAFF_PIN_RESET,
           );
 
@@ -217,13 +219,13 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
   }
 
   int _getServiceRequestTypeCount(
-    List<RequestCountContent>? requests,
+    List<ServiceRequestCount>? requests,
     ServiceRequestType type,
   ) {
     return requests
             ?.singleWhere(
-              (RequestCountContent? element) => element?.requestType == type,
-              orElse: () => RequestCountContent.initial(),
+              (ServiceRequestCount element) => element.requestType == type,
+              orElse: () => ServiceRequestCount.initial(),
             )
             .count ??
         0;
