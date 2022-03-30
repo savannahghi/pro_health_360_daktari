@@ -90,6 +90,10 @@ const String whatsYourFavoriteFoodString = 'What is your favorite food?';
 const String whereDidYouFirstLiveString = 'Where did you first live?';
 const String answerHereString = 'Answer here';
 
+const String verifySecurityQuestionsString = 'Verify your security questions';
+const String verifyQuestionsDescriptionString =
+    'Please answer the following security questions about yourself. You provided the answers to these questions when you first signed up.';
+
 const String informationRequired =
     'Please provide all the required information';
 const String successMessage = 'Information saved successfully';
@@ -473,9 +477,9 @@ const String cccNumberVerifiedText = 'CCC number verified';
 const String cccNumberUnverifiedText =
     'The client provided the wrong CCC number. Please physically verify their '
     'identity before approving this request';
-    const String staffPinResetRequestsMessage =
+const String staffPinResetRequestsMessage =
     'These are staff who are having trouble signing in and have requested your assistance';
-    const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
+const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
 
 // search page
 const String searchPageTitle = 'Please select who you want to search below';
