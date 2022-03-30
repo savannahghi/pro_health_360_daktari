@@ -13,7 +13,7 @@ void main() {
     initialState: AppState.initial(),
   );
 
-  group('PinRequestSentPage', () {
+  group('StaffPinRequestSentPage', () {
     testWidgets('navigates to login page once a user dismisses the page',
         (WidgetTester tester) async {
       await buildTestWidget(

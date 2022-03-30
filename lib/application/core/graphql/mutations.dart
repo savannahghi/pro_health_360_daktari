@@ -121,6 +121,12 @@ mutation verifyClientPinResetServiceRequest(
 }
 ''';
 
+const String verifyStaffPinResetServiceRequestQuery = r'''
+mutation verifyStaffPinResetServiceRequest($phoneNumber: String!, $serviceRequestID: String!, $verificationStatus: String!){
+  verifyStaffPinResetServiceRequest(phoneNumber: $phoneNumber, serviceRequestID: $serviceRequestID, verificationStatus: $verificationStatus)
+}
+''';
+
 const String acceptInvitationMutation = r'''
 mutation acceptInvitation($memberID: String!, $communityID: String!){
   acceptInvitation(memberID: $memberID, communityID: $communityID)

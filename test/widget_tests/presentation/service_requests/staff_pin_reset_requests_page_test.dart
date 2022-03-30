@@ -11,6 +11,54 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('PinResetRequestsPage', () {
+     testWidgets('accepting service request shows success message',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'verifyStaffPinResetServiceRequest': true,
+              'getServiceRequests': <Map<String, dynamic>>[
+                 <String, dynamic>{
+                  'ID': 'some-id',
+                  'RequestType': 'STAFF_PIN_RESET',
+                  'StaffName': 'John Doe',
+                  'StaffContact': '+254798000000',
+                  'Status': 'PENDING',
+                },
+                <String, dynamic>{
+                  'ID': 'some-id-2',
+                  'RequestType': 'STAFF_PIN_RESET',
+                  'StaffName': 'John Doe',
+                  'StaffContact': '+254798000000',
+                  'Status': 'PENDING',
+                }
+              ],
+            }
+          }),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: client,
+        widget: const StaffPinResetRequestsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(StaffPinResetRequestsPage), findsOneWidget);
+
+      final Finder acceptFinder =
+          find.text('Accept');
+
+      expect(acceptFinder, findsNWidgets(2));
+
+      await tester.tap(acceptFinder.first);
+      await tester.pumpAndSettle();
+      expect(find.text(pinApprovedSuccessText), findsOneWidget);
+    });
 
     testWidgets('should show zero state if no more requests',
         (WidgetTester tester) async {
@@ -51,7 +99,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'verifyPinResetServiceRequest': true,
+              'verifyStaffPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'ID': 'some-id',

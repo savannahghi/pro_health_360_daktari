@@ -3,9 +3,11 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_staff_pin_request_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
@@ -58,9 +60,7 @@ class _StaffPinResetRequestsPageState extends State<StaffPinResetRequestsPage> {
               final List<ServiceRequest>? serviceRequests =
                   vm.staffServiceRequests;
 
-              if (
-                  vm.staffServiceRequests?.isNotEmpty ?? false) {
-
+              if (vm.staffServiceRequests?.isNotEmpty ?? false) {
                 serviceRequests
                     ?.where(
                       (ServiceRequest request) =>
@@ -81,14 +81,24 @@ class _StaffPinResetRequestsPageState extends State<StaffPinResetRequestsPage> {
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: StaffPinResetRequestWidget(
                           serviceRequestId: serviceRequestId,
-                          acceptKey: ValueKey<String>('accept_key_$serviceRequestId'),
+                          acceptKey:
+                              ValueKey<String>('accept_key_$serviceRequestId'),
                           phoneNumber: phoneNumber,
                           name: name,
                           staffId: staffId,
+                          isAccepting: vm.wait.isWaitingFor(
+                            '${pinResetRequestFlag}_$serviceRequestId',
+                          ),
+                          onAccept: () => _resolvePinRequest(
+                            staffId: staffId,
+                            serviceRequestId: serviceRequestId,
+                            phoneNumber: phoneNumber,
+                            pinResetState: PinResetState.APPROVED,
+                          ),
                         ),
                       ),
                     );
-  },
+                  },
                 ).toList();
               } else {
                 return GenericErrorWidget(
@@ -122,6 +132,30 @@ class _StaffPinResetRequestsPageState extends State<StaffPinResetRequestsPage> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  void _resolvePinRequest({
+    required String staffId,
+    required String serviceRequestId,
+    required String phoneNumber,
+    required PinResetState pinResetState,
+  }) {
+    StoreProvider.dispatch(
+      context,
+      ResolveStaffPinRequestAction(
+        staffId: staffId,
+        serviceRequestId: serviceRequestId,
+        phoneNumber: phoneNumber,
+        pinResetState: pinResetState,
+        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+        onPinVerified: () {
+          showTextSnackbar(
+            ScaffoldMessenger.of(context),
+            content: pinApprovedSuccessText,
+          );
+        },
       ),
     );
   }
