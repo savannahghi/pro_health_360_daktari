@@ -111,37 +111,12 @@ class _ResolvedServiceRequestsPageState
                           final List<ServiceRequest>? entries =
                               vm.clientServiceRequests;
 
-                          final ServiceRequest? activeEntry =
-                              entries?.elementAt(index);
-
-                          final String clientName =
-                              activeEntry?.clientName ?? '';
-
-                          final String clientPhoneNumber =
-                              entries?.elementAt(index).clientPhoneNumber ?? '';
-
-                          final String description =
-                              activeEntry?.description ?? '';
-
-                          final String resolvedTime =
-                              activeEntry?.resolvedTime ?? '';
-
-                          final String resolvedByName =
-                              activeEntry?.resolvedByName ?? '';
-
-                          final String createdAt = activeEntry?.createdAt ?? '';
-
                           return Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
                             child: RedFlagListItem(
                               isResolved: true,
-                              clientName: clientName,
-                              feelingDescription: description,
-                              phoneNumber: clientPhoneNumber,
-                              resolvedAt: resolvedTime,
-                              resolvedBy: resolvedByName,
-                              createdAt: createdAt,
+                              serviceRequest: entries?.elementAt(index),
                             ),
                           );
                         },

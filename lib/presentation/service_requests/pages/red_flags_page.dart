@@ -14,6 +14,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
 
 class RedFlagsPage extends StatefulWidget {
@@ -48,7 +49,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
-        title: redFlagString,
+        title: '${redFlagString}s',
         showNotificationIcon: true,
       ),
       body: StoreConnector<AppState, ServiceRequestsViewModel>(
@@ -104,24 +105,16 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                       final List<ServiceRequest>? entries =
                           vm.clientServiceRequests;
 
-                      final String clientName =
-                          entries?.elementAt(index).clientName ?? '';
-
-                      final String clientPhoneNumber =
-                          entries?.elementAt(index).clientPhoneNumber ?? '';
-
-                      final String description =
-                          entries?.elementAt(index).description ?? '';
-                      final String createdAt =
-                          entries?.elementAt(index).createdAt ?? '';
-
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: RedFlagListItem(
-                          clientName: clientName,
-                          feelingDescription: description,
-                          phoneNumber: clientPhoneNumber,
-                          createdAt: createdAt,
+                        child: GestureDetector(
+                          onTap: () => Navigator.of(context).pushNamed(
+                            AppRoutes.redFlagActionsPage,
+                            arguments: entries?.elementAt(index),
+                          ),
+                          child: RedFlagListItem(
+                            serviceRequest: entries?.elementAt(index),
+                          ),
                         ),
                       );
                     }),

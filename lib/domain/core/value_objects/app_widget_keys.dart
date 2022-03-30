@@ -36,7 +36,10 @@ const Key pinRequestApproveCheckboxKey =
     Key('pin_request_approve_checkbox_key');
 const Key reachOutButtonKey = Key('reach_out_button_key');
 const Key redFlagItemKey = Key('red_flag_item_key');
-const Key dialogCallButtonKey = Key('dialog_call_button_key');
+const Key redFlagCallActionButtonKey = Key('red_flag_call_action_button_key');
+const Key redFlagSMSActionButtonKey = Key('red_flag_sms_action_button_key');
+const Key redFlagWhatsappActionButtonKey = Key('red_flag_whatsapp_action_button_key');
+
 
 // Surveys
 const Key bandSelectOptionFieldKey = Key('band_select_option_field');

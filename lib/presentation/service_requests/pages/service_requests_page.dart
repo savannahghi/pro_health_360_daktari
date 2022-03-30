@@ -145,7 +145,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                 key: redFlagActionCardKey,
                                 count: redFlagCount,
                                 iconUrl: redFlagStressSvgPath,
-                                title: redFlagString,
+                                title: '${redFlagString}s',
                                 backgroundColor: Theme.of(context)
                                     .primaryColor
                                     .withOpacity(0.2),

@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -43,6 +44,7 @@ import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
@@ -288,9 +290,15 @@ class RouteGenerator {
             communityId: args['communityId'] as String,
           ),
         );
-         case AppRoutes.staffPinResetRequestsPage:
+      case AppRoutes.staffPinResetRequestsPage:
         return MaterialPageRoute<StaffPinResetRequestsPage>(
           builder: (_) => const StaffPinResetRequestsPage(),
+        );
+      case AppRoutes.redFlagActionsPage:
+        return MaterialPageRoute<RedFlagActionsPage>(
+          builder: (_) => RedFlagActionsPage(
+            serviceRequest: args as ServiceRequest?,
+          ),
         );
 
       case AppRoutes.acceptGroupInvitesPage:
