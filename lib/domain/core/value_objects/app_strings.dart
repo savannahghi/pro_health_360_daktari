@@ -90,6 +90,10 @@ const String whatsYourFavoriteFoodString = 'What is your favorite food?';
 const String whereDidYouFirstLiveString = 'Where did you first live?';
 const String answerHereString = 'Answer here';
 
+const String verifySecurityQuestionsString = 'Verify your security questions';
+const String verifyQuestionsDescriptionString =
+    'Please answer the following security questions about yourself. You provided the answers to these questions when you first signed up.';
+
 const String informationRequired =
     'Please provide all the required information';
 const String successMessage = 'Information saved successfully';

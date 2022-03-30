@@ -56,11 +56,18 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
 
         final String userId = vm.userID;
 
+        final bool isResetPin =
+            vm.currentOnboardingStage == CurrentOnboardingStage.ResetPIN;
+
         return Form(
           key: _formKey,
           child: OnboardingScaffold(
-            title: setSecurityQuestionsString,
-            description: securityQuestionsDescriptionString,
+            title: isResetPin
+                ? verifySecurityQuestionsString
+                : setSecurityQuestionsString,
+            description: isResetPin
+                ? verifyQuestionsDescriptionString
+                : securityQuestionsDescriptionString,
             child: SizedBox(
               height: MediaQuery.of(context).size.height / 1.6,
               child: Stack(
@@ -68,7 +75,9 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50),
                     child: (vm.wait!.isWaitingFor(getSecurityQuestionsFlag) ||
-                            vm.wait!.isWaitingFor(recordSecurityQuestionsFlag))
+                            vm.wait!
+                                .isWaitingFor(recordSecurityQuestionsFlag) ||
+                            vm.wait!.isWaitingFor(verifySecurityQuestionsFlag))
                         ? Container(
                             height: 300,
                             padding: const EdgeInsets.all(20),
@@ -132,7 +141,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                           ),
                   ),
                   if (!vm.wait!.isWaitingFor(getSecurityQuestionsFlag) &&
-                      !vm.wait!.isWaitingFor(recordSecurityQuestionsFlag))
+                      !vm.wait!.isWaitingFor(recordSecurityQuestionsFlag) &&
+                      !vm.wait!.isWaitingFor(verifySecurityQuestionsFlag))
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
@@ -159,8 +169,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                               );
 
                               if (emptyResponses.isEmpty) {
-                                if (vm.currentOnboardingStage ==
-                                    CurrentOnboardingStage.ResetPIN) {
+                                if (isResetPin) {
                                   StoreProvider.dispatch<AppState>(
                                     context,
                                     VerifySecurityQuestionAction(
