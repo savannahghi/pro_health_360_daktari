@@ -38,7 +38,7 @@ void main() {
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.text(serviceRequestString), findsOneWidget);
 
-      await tester.tap(find.text(redFlagString));
+      await tester.tap(find.text('${redFlagString}s'));
       await tester.pumpAndSettle();
 
       expect(find.text(serviceRequestString), findsNothing);

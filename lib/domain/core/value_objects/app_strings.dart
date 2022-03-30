@@ -136,9 +136,11 @@ const String serviceRequestString = 'Service requests';
 const String approveString = 'Approve';
 const String searchString = 'Search';
 const String needsAttentionString = ' needs attention';
-const String redFlagString = 'Red Flags';
+const String redFlagString = 'Red Flag';
 const String reachOutString = 'Reach out?';
 const String callString = 'Call';
+const String smsString = 'SMS';
+const String whatsappString = 'Whatsapp';
 const String forString = 'for';
 const String reviewString = 'Review';
 const String wantProfiledUpdatedString = ' wants to update their profile';
@@ -602,3 +604,17 @@ const String noAvailableFlaggedMessagesDescription =
     'Please try again or contact support';
 const String availableFlaggedMessagesText = 'flagged messages';
 const String messageDeletedText = 'Message deleted successfully';
+const String flaggedMessageText = 'I don’t like this group. Delete';
+
+String redFlagSMSTemplate({
+  required String clientName,
+  required String staffFirstName,
+  required String staffLastName,
+}) {
+  return 'Hi $clientName, my name is $staffFirstName $staffLastName from myCareHub.';
+}
+
+const String spacedIsFeelingString = ' is feeling ';
+
+const String hereIsEntryString = ' here is their diary entry';
+const String methodsToReachOutString = 'Use the methods below to reach out to them';

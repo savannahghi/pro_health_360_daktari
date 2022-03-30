@@ -89,4 +89,6 @@ class AppRoutes {
   static const String flaggedMessagesPage = '/flaggedMessagesPage';
 
   static const String staffPinResetRequestsPage = '/staffPinResetRequestsPage';
+
+  static const String redFlagActionsPage = '/redFlagActionsPage';
 }

@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -41,6 +42,7 @@ import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
@@ -470,5 +472,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<StaffPinResetRequestsPage>>());
     expect(route?.builder(context), isA<StaffPinResetRequestsPage>());
+  });
+  test('Test router returns RedFlagActionsPage', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.redFlagActionsPage,
+      arguments: ServiceRequest(),
+    );
+
+    final MaterialPageRoute<RedFlagActionsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<RedFlagActionsPage>?;
+
+    expect(route, isA<MaterialPageRoute<RedFlagActionsPage>>());
+    expect(route?.builder(context), isA<RedFlagActionsPage>());
   });
 }

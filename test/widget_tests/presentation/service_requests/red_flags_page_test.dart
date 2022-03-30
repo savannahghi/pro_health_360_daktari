@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
 import 'package:http/http.dart';
@@ -39,7 +40,7 @@ void main() {
       expect(redFlagItem, findsOneWidget);
     });
 
-    testWidgets('ScheduleMeetDialog renders correctly',
+    testWidgets('Routes to RedFlagActionsPage correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -49,16 +50,11 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder redFlagListItem = find.byType(RedFlagListItem);
-      final Finder callButton = find.byKey(dialogCallButtonKey);
 
       await tester.tap(redFlagListItem.first);
       await tester.pumpAndSettle();
 
-      expect(callButton, findsOneWidget);
-
-      await tester.tap(callButton);
-      await tester.pumpAndSettle();
-      expect(callButton, findsNothing);
+      expect(find.byType(RedFlagActionsPage), findsOneWidget);
     });
 
     testWidgets(
