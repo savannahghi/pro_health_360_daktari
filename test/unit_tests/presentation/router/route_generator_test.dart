@@ -447,6 +447,10 @@ void main() {
   test('Test router returns flagged messages page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.flaggedMessagesPage,
+      arguments: <String, String>{
+        'communityName': 'community',
+        'communityId': 'community-id'
+      },
     );
 
     final MaterialPageRoute<FlaggedMessagesPage>? route =

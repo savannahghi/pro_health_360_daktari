@@ -54,8 +54,8 @@ class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
                 child: const PlatformLoader(),
               );
             } else {
-              final List<Community> communitiesList =
-                  vm.communitiesState?.invitedCommunities ?? <Community>[];
+              final List<Community?> communitiesList =
+                  vm.invitedCommunities ?? <Community>[];
               if (communitiesList.isNotEmpty) {
                 return ListView(
                   shrinkWrap: true,
@@ -72,10 +72,10 @@ class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
                       itemCount: communitiesList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GroupInviteItem(
-                          groupName: communitiesList[index].name ?? '',
-                          groupId: communitiesList[index].id!,
+                          groupName: communitiesList[index]?.name ?? '',
+                          groupId: communitiesList[index]?.id ?? UNKNOWN,
                           numberOfMembers:
-                              communitiesList[index].memberCount ?? 0,
+                              communitiesList[index]?.memberCount ?? 0,
                         );
                       },
                     )

@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/core/communities_state.dart';
+import 'package:mycarehubpro/application/redux/states/communities_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 
@@ -19,7 +19,7 @@ class StaffState with _$StaffState {
     @JsonKey(name: 'default_facility') String? defaultFacility,
     @JsonKey(name: 'user') User? user,
 
-    // communities state
+    // invited communities
     CommunitiesState? communitiesState,
   }) = _StaffState;
 
