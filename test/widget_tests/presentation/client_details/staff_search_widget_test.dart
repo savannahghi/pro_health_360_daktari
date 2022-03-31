@@ -7,6 +7,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dart';
 
+import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
@@ -18,6 +19,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
+        graphQlClient: MockTestGraphQlClient(),
         widget: StaffSearchWidget(
           rolesList: RolesList(
             roles: <Role>[

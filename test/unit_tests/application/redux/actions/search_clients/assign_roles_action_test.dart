@@ -22,6 +22,37 @@ void main() {
       );
     });
 
+    test('should run successfully', () async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'assignOrRevokeRoles': true,
+            }
+          }),
+          200,
+        ),
+      );
+      int testNumber = 0;
+      storeTester.dispatch(
+        AssignRolesAction(
+          searchUserResponse: SearchUserResponse.initial(),
+          client: mockShortSILGraphQlClient,
+          onSuccess: (String name) {
+            testNumber += 1;
+          },
+          onFailure: () {},
+          roles: <String, bool>{},
+        ),
+      );
+
+      await storeTester.waitUntil(AssignRolesAction);
+      expect(testNumber, 1);
+    });
+
     test('should throw error if api call is not 200', () async {
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(

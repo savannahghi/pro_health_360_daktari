@@ -897,7 +897,9 @@ class MockTestGraphQlClient extends IGraphQlClient {
         http.Response(
           json.encode(
             <String, dynamic>{
-              'data': <String, dynamic>{'verifyStaffPinResetServiceRequest': true}
+              'data': <String, dynamic>{
+                'verifyStaffPinResetServiceRequest': true
+              }
             },
           ),
           201,
@@ -918,12 +920,12 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
-    if (queryString.contains(assignRoleMutation)) {
+    if (queryString.contains(assignOrRevokeRoles)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(
             <String, dynamic>{
-              'data': <String, dynamic>{'assignRoles': true}
+              'data': <String, dynamic>{'assignOrRevokeRoles': true}
             },
           ),
           201,
