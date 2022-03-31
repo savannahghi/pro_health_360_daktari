@@ -20,6 +20,8 @@ class RedFlagActionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TargetPlatform _platform = Theme.of(context).platform;
+
     final String phoneNumber = serviceRequest?.clientPhoneNumber ?? '';
     final String clientName = serviceRequest?.clientName ?? '';
     final String staffFirstName =
@@ -124,13 +126,21 @@ class RedFlagActionsPage extends StatelessWidget {
                             ? () {
                                 String url() {
                                   // add the [https]
-                                  return 'https://wa.me/$phoneNumber/?text=${Uri.parse(
-                                    redFlagSMSTemplate(
-                                      clientName: clientName,
-                                      staffFirstName: staffFirstName,
-                                      staffLastName: staffLastName,
-                                    ),
-                                  )}'; // new line
+                                  return _platform == TargetPlatform.iOS
+                                      ? 'https://api.whatsapp.com/send?phone=$phoneNumber=${Uri.parse(
+                                          redFlagSMSTemplate(
+                                            clientName: clientName,
+                                            staffFirstName: staffFirstName,
+                                            staffLastName: staffLastName,
+                                          ),
+                                        )}'
+                                      : 'https://wa.me/$phoneNumber/?text=${Uri.parse(
+                                          redFlagSMSTemplate(
+                                            clientName: clientName,
+                                            staffFirstName: staffFirstName,
+                                            staffLastName: staffLastName,
+                                          ),
+                                        )}';
                                 }
 
                                 launch(url());
