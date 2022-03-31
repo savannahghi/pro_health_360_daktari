@@ -1,11 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-
+import 'package:flutter/services.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
 
 class PatientDetailsTextFormField extends StatelessWidget {
   const PatientDetailsTextFormField({
@@ -15,6 +14,8 @@ class PatientDetailsTextFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.validator,
     this.hintText,
+    this.keyboardType,
+    this.inputFormatters,
   });
 
   final String label;
@@ -23,6 +24,8 @@ class PatientDetailsTextFormField extends StatelessWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String?)? validator;
   final String? hintText;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,8 @@ class PatientDetailsTextFormField extends StatelessWidget {
           onFieldSubmitted: onFieldSubmitted,
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
         ),
       ],
     );

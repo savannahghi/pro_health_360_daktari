@@ -233,8 +233,8 @@ void main() {
 
       final Finder cccFieldFinder = find.byKey(cccFieldKey);
       expect(cccFieldFinder, findsOneWidget);
-      await tester.enterText(cccFieldFinder, 'test');
-      expect(find.text('test'), findsOneWidget);
+      await tester.enterText(cccFieldFinder, '1234567890');
+      expect(find.text('1234567890'), findsOneWidget);
 
       await tester.enterText(cccFieldFinder, '');
       await tester.pump();
