@@ -3,7 +3,9 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -18,7 +20,6 @@ import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/register_client_form_manager.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 
 class AddNewClientPage extends StatefulWidget {
@@ -83,6 +84,11 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                           return PatientDetailsTextFormField(
                             textFieldKey: cccFieldKey,
                             hintText: cccNumberHint,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(10),
+                            ],
                             label: CCCNumberLabel,
                             onChanged: (String value) {
                               _formManager.inCccNumber.add(value);
@@ -465,14 +471,17 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                                 return const PlatformLoader();
                               }
 
-                              return ElevatedButton(
-                                key: patientRegisterBtnKey,
-                                onPressed: hasData && snapshot.data!
-                                    ? () => _processAndNavigate(
-                                          vm.hasConnection,
-                                        )
-                                    : null,
-                                child: const Text(registerBtnText),
+                              return SizedBox(
+                                height: 48,
+                                child: ElevatedButton(
+                                  key: patientRegisterBtnKey,
+                                  onPressed: hasData && snapshot.data!
+                                      ? () => _processAndNavigate(
+                                            vm.hasConnection,
+                                          )
+                                      : null,
+                                  child: const Text(registerBtnText),
+                                ),
                               );
                             },
                           );
