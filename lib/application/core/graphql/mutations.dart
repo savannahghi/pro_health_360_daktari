@@ -145,9 +145,9 @@ mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!)
 }
 ''';
 
-const String assignRoleMutation = r'''
-mutation assignRole($userID: String!, $roles: [UserRoleType!]!){
-  assignRoles(userID: $userID, roles: $roles)
+const String assignOrRevokeRoles = r'''
+mutation assignOrRevokeRoles($userID: String!, $roles: [UserRoleType!]!){
+  assignOrRevokeRoles(userID: $userID, roles: $roles)
 }
 ''';
 

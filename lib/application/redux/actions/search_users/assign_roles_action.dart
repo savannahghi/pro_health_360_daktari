@@ -67,7 +67,8 @@ class AssignRolesAction extends ReduxAction<AppState> {
       'userID': searchUserResponse.user!.id!,
       'roles': roleTitles
     };
-    final Response response = await client.query(assignRoleMutation, variables);
+    final Response response =
+        await client.query(assignOrRevokeRoles, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
@@ -84,9 +85,9 @@ class AssignRolesAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('assigning roles'));
       }
       if (body['data'] != null &&
-          body['data']['assignRoles'] != null &&
-          body['data']['assignRoles'] is bool &&
-          body['data']['assignRoles'] == true) {
+          body['data']['assignOrRevokeRoles'] != null &&
+          body['data']['assignOrRevokeRoles'] is bool &&
+          body['data']['assignOrRevokeRoles'] == true) {
         onSuccess?.call(searchUserResponse.user?.userName ?? UNKNOWN);
       } else {
         onFailure?.call();
