@@ -38,6 +38,7 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
       context,
       FetchFlaggedMessagesAction(
         client: AppWrapperBase.of(context)!.graphQLClient,
+        communityCID: widget.communityId,
       ),
     );
   }

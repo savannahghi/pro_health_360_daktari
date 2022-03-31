@@ -10,11 +10,13 @@ import 'package:mycarehubpro/application/redux/actions/core/update_user_action.d
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/group_member_item.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
+import 'package:mycarehubpro/presentation/flagged_messages/pages/flagged_messages_page.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -48,6 +50,23 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(InviteMembersPage), findsOneWidget);
+    });
+
+    testWidgets('flagged messages button navigates correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: GroupInfoPage(payload: groupInfoPagePayloadMock),
+      );
+
+      expect(find.text(flaggedMessagesText), findsOneWidget);
+
+      await tester.tap(find.text(flaggedMessagesText));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(FlaggedMessagesPage), findsOneWidget);
     });
 
     testWidgets('tap function works correctly', (WidgetTester tester) async {

@@ -139,7 +139,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                     staffRoles.isNotEmpty &&
                                     staffRoles
                                         .contains(communityManagementRole);
-                                        final bool isBanned = currentMember
+                                final bool isBanned = currentMember
                                         .memberDetails?.banStatus?.value ??
                                     false;
 
@@ -163,34 +163,45 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: AppColors.primaryColor.withOpacity(0.14),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    flaggedMessagesText,
-                    style: TextStyle(
-                      color: AppColors.lightBlackTextColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.flaggedMessagesPage,
+                  arguments: <String, dynamic>{
+                    'communityId': widget.payload['channelId'] as String,
+                    'communityName': widget.payload['channelName'] as String,
+                  },
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: AppColors.primaryColor.withOpacity(0.14),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const <Widget>[
+                    Text(
+                      flaggedMessagesText,
+                      style: TextStyle(
+                        color: AppColors.lightBlackTextColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 14),
-                  Text(
-                    tapToViewFlaggedMessagesText,
-                    style: TextStyle(
-                      color: AppColors.grey50,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
+                    SizedBox(height: 14),
+                    Text(
+                      tapToViewFlaggedMessagesText,
+                      style: TextStyle(
+                        color: AppColors.grey50,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 16),
