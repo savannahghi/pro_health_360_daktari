@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
@@ -72,8 +73,7 @@ void main() {
       expect(find.byType(RedFlagActionsPage), findsOneWidget);
     });
 
-    testWidgets('whatsapp button works correctly',
-        (WidgetTester tester) async {
+    testWidgets('whatsapp button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -92,6 +92,29 @@ void main() {
       await tester.tap(redFlagWhatsappActionButton);
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagActionsPage), findsOneWidget);
+    });
+    testWidgets('whatsapp button works correctly for iOS',
+        (WidgetTester tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: RedFlagActionsPage(
+          serviceRequest: ServiceRequest(
+            clientId: 'test',
+            clientPhoneNumber: '+2547000000000',
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final Finder redFlagWhatsappActionButton =
+          find.byKey(redFlagWhatsappActionButtonKey);
+      expect(redFlagWhatsappActionButton, findsOneWidget);
+
+      await tester.tap(redFlagWhatsappActionButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(RedFlagActionsPage), findsOneWidget);
+      debugDefaultTargetPlatformOverride = null;
     });
   });
 }
