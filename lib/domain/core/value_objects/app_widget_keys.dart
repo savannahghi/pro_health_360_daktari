@@ -37,7 +37,6 @@ const Key pinRequestApproveCheckboxKey =
 const Key reachOutButtonKey = Key('reach_out_button_key');
 const Key redFlagItemKey = Key('red_flag_item_key');
 const Key redFlagCallActionButtonKey = Key('red_flag_call_action_button_key');
-const Key redFlagSMSActionButtonKey = Key('red_flag_sms_action_button_key');
 const Key redFlagWhatsappActionButtonKey = Key('red_flag_whatsapp_action_button_key');
 
 

@@ -139,7 +139,6 @@ const String needsAttentionString = ' needs attention';
 const String redFlagString = 'Red Flag';
 const String reachOutString = 'Reach out?';
 const String callString = 'Call';
-const String smsString = 'SMS';
 const String whatsappString = 'Whatsapp';
 const String forString = 'for';
 const String reviewString = 'Review';
