@@ -124,5 +124,4 @@ const String groupInvitesImage = 'assets/images/group_invites.svg';
 const String noInvitesImage = 'assets/images/no_invites.svg';
 const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';
 const String callIconSvgPath = 'assets/icons/call_icon.svg';
-const String smsIconSvgPath = 'assets/icons/sms_icon.svg';
 const String whatsappIconSvgPath = 'assets/icons/whatsapp_icon.svg';

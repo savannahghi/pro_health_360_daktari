@@ -78,8 +78,7 @@ class RedFlagActionsPage extends StatelessWidget {
               ),
               smallVerticalSizedBox,
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <ReachOutChannelWidget>[
+                children: <Widget>[
                   ReachOutChannelWidget(
                     key: redFlagCallActionButtonKey,
                     iconSvgUrl: callIconSvgPath,
@@ -95,28 +94,7 @@ class RedFlagActionsPage extends StatelessWidget {
                               }
                             : null,
                   ),
-                  ReachOutChannelWidget(
-                    key: redFlagSMSActionButtonKey,
-                    description: smsString,
-                    iconSvgUrl: smsIconSvgPath,
-                    onTapCallback:
-                        phoneNumber.isNotEmpty && phoneNumber != UNKNOWN
-                            ? () {
-                                final Uri launchUri = Uri(
-                                  scheme: 'sms',
-                                  path: phoneNumber,
-                                  queryParameters: <String, dynamic>{
-                                    'body': redFlagSMSTemplate(
-                                      clientName: clientName,
-                                      staffFirstName: staffFirstName,
-                                      staffLastName: staffLastName,
-                                    ),
-                                  },
-                                );
-                                launch(launchUri.toString());
-                              }
-                            : null,
-                  ),
+                  smallHorizontalSizedBox,
                   ReachOutChannelWidget(
                     key: redFlagWhatsappActionButtonKey,
                     description: whatsappString,

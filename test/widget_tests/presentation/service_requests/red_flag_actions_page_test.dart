@@ -30,7 +30,7 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder reachOutChannelWidget = find.byType(ReachOutChannelWidget);
-      expect(reachOutChannelWidget, findsNWidgets(3));
+      expect(reachOutChannelWidget, findsNWidgets(2));
     });
     testWidgets('call button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
@@ -49,26 +49,6 @@ void main() {
       expect(redFlagCallActionButton, findsOneWidget);
 
       await tester.tap(redFlagCallActionButton);
-      await tester.pumpAndSettle();
-      expect(find.byType(RedFlagActionsPage), findsOneWidget);
-    });
-    testWidgets('sms button works correctly', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: RedFlagActionsPage(
-          serviceRequest: ServiceRequest(
-            clientId: 'test',
-            clientPhoneNumber: '+2547000000000',
-          ),
-        ),
-      );
-      await tester.pumpAndSettle();
-      final Finder redFlagSMSActionButton =
-          find.byKey(redFlagSMSActionButtonKey);
-      expect(redFlagSMSActionButton, findsOneWidget);
-
-      await tester.tap(redFlagSMSActionButton);
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagActionsPage), findsOneWidget);
     });
