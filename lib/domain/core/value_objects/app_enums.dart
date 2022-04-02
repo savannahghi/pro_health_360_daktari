@@ -31,6 +31,7 @@ enum ServiceRequestType {
   PIN_RESET,
   PROFILE_UPDATE,
   STAFF_PIN_RESET,
+  SCREENING_TOOL,
   UNKNOWN
 }
 

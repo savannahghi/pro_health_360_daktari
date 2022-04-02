@@ -47,6 +47,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
@@ -299,6 +300,10 @@ class RouteGenerator {
           builder: (_) => RedFlagActionsPage(
             serviceRequest: args as ServiceRequest?,
           ),
+        );
+      case AppRoutes.screeningToolsListPage:
+        return MaterialPageRoute<ScreeningToolsListPage>(
+          builder: (_) => const ScreeningToolsListPage(),
         );
 
       case AppRoutes.acceptGroupInvitesPage:

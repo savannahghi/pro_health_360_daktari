@@ -125,3 +125,5 @@ const String noInvitesImage = 'assets/images/no_invites.svg';
 const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';
 const String callIconSvgPath = 'assets/icons/call_icon.svg';
 const String whatsappIconSvgPath = 'assets/icons/whatsapp_icon.svg';
+
+const String screeningToolsImage = 'assets/images/screening_tools_image.svg';

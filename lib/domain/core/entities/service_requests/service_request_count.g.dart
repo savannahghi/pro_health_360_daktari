@@ -26,5 +26,6 @@ const _$ServiceRequestTypeEnumMap = {
   ServiceRequestType.PIN_RESET: 'PIN_RESET',
   ServiceRequestType.PROFILE_UPDATE: 'PROFILE_UPDATE',
   ServiceRequestType.STAFF_PIN_RESET: 'STAFF_PIN_RESET',
+  ServiceRequestType.SCREENING_TOOL: 'SCREENING_TOOL',
   ServiceRequestType.UNKNOWN: 'UNKNOWN',
 };
