@@ -616,4 +616,22 @@ String redFlagSMSTemplate({
 const String spacedIsFeelingString = ' is feeling ';
 
 const String hereIsEntryString = ' here is their diary entry';
-const String methodsToReachOutString = 'Use the methods below to reach out to them';
+const String methodsToReachOutString =
+    'Use the methods below to reach out to them';
+
+// Screening tools
+const String screeningToolsTitle = 'Screening tools';
+final String screeningToolsPageLongDescription =
+    'Responses from the various ${screeningToolsTitle.toLowerCase()}';
+const String violenceString = 'Violence';
+const String violenceDescriptionString =
+    'Responses from the GBV screening tool';
+const String contraceptivesString = 'Contraceptives';
+const String contraceptivesDescriptionString =
+    'Responses from the contraceptive use screening tool';
+const String tuberculosisString = 'Tuberculosis';
+const String tuberculosisDescriptionString =
+    'Responses from the TB screening tool';
+const String alcoholUseAssessmentString = 'Alcohol use assessment';
+const String alcoholUseAssessmentDescriptionString =
+    'Responses from the CRAFFT screening tool';

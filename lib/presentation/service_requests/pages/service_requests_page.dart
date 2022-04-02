@@ -87,6 +87,10 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
             clientServiceRequestsCount,
             ServiceRequestType.RED_FLAG,
           );
+          final int screeningToolsCount = _getServiceRequestTypeCount(
+            clientServiceRequestsCount,
+            ServiceRequestType.SCREENING_TOOL,
+          );
 
           final int pinResetCount = _getServiceRequestTypeCount(
             clientServiceRequestsCount,
@@ -106,7 +110,8 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
           final int totalCount = redFlagCount +
               pinResetCount +
               profileUpdateCount +
-              staffPINResetCount;
+              staffPINResetCount +
+              screeningToolsCount;
 
           return SingleChildScrollView(
             child: Column(
@@ -152,6 +157,21 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
                                 onTap: () => Navigator.pushNamed(
                                   context,
                                   AppRoutes.redFlagsPage,
+                                ),
+                              ),
+                            // SCREENING TOOLS
+                            if (screeningToolsCount > 0)
+                              ActionCard(
+                                key: screeningToolsActionCardKey,
+                                count: screeningToolsCount,
+                                iconUrl: screeningToolsImage,
+                                title: screeningToolsTitle,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.screeningToolsListPage,
                                 ),
                               ),
 

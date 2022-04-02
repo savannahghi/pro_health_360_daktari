@@ -13,6 +13,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
@@ -56,9 +57,21 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(clientPINResetString));
+      final Finder clientPINReset = find.text(clientPINResetString);
+      final Finder screeningToolsActionCard =
+          find.byKey(screeningToolsActionCardKey);
+
+      await tester.ensureVisible(clientPINReset);
+      await tester.tap(clientPINReset);
       await tester.pumpAndSettle();
       expect(find.byType(PinResetRequestsPage), findsOneWidget);
+
+      await tester.tap(find.byKey(appBarBackButtonKey));
+      await tester.pumpAndSettle();
+        await tester.ensureVisible(screeningToolsActionCard);
+      await tester.tap(screeningToolsActionCard);
+      await tester.pumpAndSettle();
+      expect(find.byType(ScreeningToolsListPage), findsOneWidget);
     });
 
     testWidgets('genericNoData widget is tappable',

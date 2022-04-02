@@ -45,6 +45,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
@@ -484,5 +485,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<RedFlagActionsPage>>());
     expect(route?.builder(context), isA<RedFlagActionsPage>());
+  });
+  test('Test router returns ScreeningToolsListPage', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.screeningToolsListPage,
+    );
+
+    final MaterialPageRoute<ScreeningToolsListPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ScreeningToolsListPage>?;
+
+    expect(route, isA<MaterialPageRoute<ScreeningToolsListPage>>());
+    expect(route?.builder(context), isA<ScreeningToolsListPage>());
   });
 }

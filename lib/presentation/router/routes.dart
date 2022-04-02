@@ -91,4 +91,5 @@ class AppRoutes {
   static const String staffPinResetRequestsPage = '/staffPinResetRequestsPage';
 
   static const String redFlagActionsPage = '/redFlagActionsPage';
+  static const String screeningToolsListPage = '/screeningToolsListPage';
 }
