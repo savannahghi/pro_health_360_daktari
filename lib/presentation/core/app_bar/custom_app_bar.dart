@@ -71,9 +71,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: <Widget>[
             if (showBackButton) const AppBarBackButton() else leadingWidget!,
 
-            Text(
-              title ?? '',
-              style: boldSize16Text().copyWith(color: AppColors.secondaryColor),
+            Flexible(
+              child: Text(
+                title ?? '',
+                style:
+                    boldSize16Text().copyWith(color: AppColors.secondaryColor),
+              ),
             ),
 
             // This can never be null because the default widget is already
