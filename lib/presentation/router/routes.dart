@@ -92,4 +92,6 @@ class AppRoutes {
 
   static const String redFlagActionsPage = '/redFlagActionsPage';
   static const String screeningToolsListPage = '/screeningToolsListPage';
+  static const String screeningToolsAssessmentPage =
+      'screeningToolsAssessmentPage';
 }

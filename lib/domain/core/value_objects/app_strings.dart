@@ -635,3 +635,12 @@ const String tuberculosisDescriptionString =
 const String alcoholUseAssessmentString = 'Alcohol use assessment';
 const String alcoholUseAssessmentDescriptionString =
     'Responses from the CRAFFT screening tool';
+
+const String screeningToolsAssessmentCardTitle =
+    'Screening tools assessment card';
+String hereIsWhatString = 'Here is what ';
+String respondedInAssessmentToolString =
+    ' responded in their violence assessment tool on ';
+const String assessmentCardString = 'Assessment card';
+const String yesString = 'Yes';
+const String noString = 'No';
