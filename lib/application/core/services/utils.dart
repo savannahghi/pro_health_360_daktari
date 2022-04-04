@@ -8,6 +8,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/screening_question.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/screening_questions_list.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
@@ -524,4 +527,57 @@ Widget humanizeDate({
   }
 
   return const SizedBox();
+}
+
+List<ScreeningQuestionsList> screeningQuestionItems = <ScreeningQuestionsList>[
+  ScreeningQuestionsList(
+    name: 'John',
+    date: '2 April, 2022',
+    screeningQuestionsList: screeningQuestionsList,
+  ),
+  ScreeningQuestionsList(
+    name: 'Peris',
+    date: '2 April, 2022',
+    screeningQuestionsList: screeningQuestionsList,
+  ),
+];
+
+List<ScreeningQuestion> screeningQuestionsList = <ScreeningQuestion>[
+  ScreeningQuestion(
+    questionText:
+        'In the past, has anyone made you feel threatened, fearful, or in danger?',
+    answer: 'Yes',
+  ),
+  ScreeningQuestion(
+    questionText:
+        'In the past, have you been slapped, punched, hit or physically hurt by someone in any way?',
+    answer: 'No',
+  ),
+  ScreeningQuestion(
+    questionText:
+        'In the past, has anyone forced or coerced you to have sexual relations against your will?',
+    answer: 'Yes',
+  ),
+  ScreeningQuestion(
+    questionText:
+        'Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?',
+    answer: 'Yes',
+  ),
+];
+
+List<ScreeningQuestionsList>? getScreeningQuestions({
+  ScreeningToolsState? screeningToolsState,
+  required ScreeningToolsType toolsType,
+}) {
+  switch (toolsType) {
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      return screeningToolsState?.contraceptiveState?.screeningQuestionItems;
+    case ScreeningToolsType.TB_ASSESSMENT:
+      return screeningToolsState?.tbState?.screeningQuestionItems;
+    case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
+      return screeningToolsState
+          ?.alcoholSubstanceUseState?.screeningQuestionItems;
+    default:
+      return screeningToolsState?.violenceState?.screeningQuestionItems;
+  }
 }

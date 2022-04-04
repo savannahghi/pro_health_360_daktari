@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -42,6 +43,7 @@ import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_category_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
@@ -89,7 +91,7 @@ class RouteGenerator {
         return MaterialPageRoute<PhoneLoginPage>(
           builder: (_) => PhoneLoginPage(),
         );
-
+        
       case AppRoutes.communityPage:
         return MaterialPageRoute<CommunityListPage>(
           builder: (_) => const CommunityListPage(),
@@ -306,6 +308,12 @@ class RouteGenerator {
       case AppRoutes.screeningToolsListPage:
         return MaterialPageRoute<ScreeningToolsListPage>(
           builder: (_) => const ScreeningToolsListPage(),
+        );
+      case AppRoutes.assessmentToolsCategoryPage:
+        return MaterialPageRoute<AssessmentToolsCategoryPage>(
+          builder: (_) => AssessmentToolsCategoryPage(
+            screeningToolsType: args as ScreeningToolsType,
+          ),
         );
 
       case AppRoutes.screeningToolsAssessmentPage:

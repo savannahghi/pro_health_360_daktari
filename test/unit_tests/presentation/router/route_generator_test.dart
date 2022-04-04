@@ -7,6 +7,7 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -40,6 +41,7 @@ import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_category_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
@@ -510,5 +512,18 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ScreeningToolsAssessmentPage>>());
     expect(route?.builder(context), isA<ScreeningToolsAssessmentPage>());
+  });
+  test('Test router returns AssessmentToolsCategoryPage', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.assessmentToolsCategoryPage,
+      arguments: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+    );
+
+    final MaterialPageRoute<AssessmentToolsCategoryPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<AssessmentToolsCategoryPage>?;
+
+    expect(route, isA<MaterialPageRoute<AssessmentToolsCategoryPage>>());
+    expect(route?.builder(context), isA<AssessmentToolsCategoryPage>());
   });
 }

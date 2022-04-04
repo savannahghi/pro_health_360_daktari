@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_request_count.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 
@@ -18,6 +19,9 @@ class ServiceRequestState with _$ServiceRequestState {
     // Service requests count
     PendingServiceRequestCount? pendingServiceRequestsCount,
 
+    // Screening tools
+    ScreeningToolsState? screeningToolsState,
+
     /// Other booleans
     bool? errorFetchingPendingServiceRequests,
   }) = _ServiceRequestState;
@@ -28,6 +32,8 @@ class ServiceRequestState with _$ServiceRequestState {
         clientServiceRequests: <ServiceRequest>[],
         staffServiceRequests: <ServiceRequest>[],
         pendingServiceRequestsCount: PendingServiceRequestCount.initial(),
+
+        screeningToolsState: ScreeningToolsState.initial(),
         errorFetchingPendingServiceRequests: false,
       );
 }

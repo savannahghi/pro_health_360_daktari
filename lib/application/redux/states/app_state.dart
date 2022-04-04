@@ -9,7 +9,7 @@ import 'package:mycarehubpro/application/redux/states/home/bottom_nav_state.dart
 import 'package:mycarehubpro/application/redux/states/home_state.dart';
 import 'package:mycarehubpro/application/redux/states/misc_state.dart';
 import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/service_requests_state.dart';
 import 'package:mycarehubpro/application/redux/states/survey_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
 import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';

@@ -94,4 +94,7 @@ class AppRoutes {
   static const String screeningToolsListPage = '/screeningToolsListPage';
   static const String screeningToolsAssessmentPage =
       'screeningToolsAssessmentPage';
+
+  static const String assessmentToolsCategoryPage =
+      '/assessmentToolsCategoryPage';
 }

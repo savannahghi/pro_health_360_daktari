@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/service_requests_state.dart';
 
 void main() {
   group('ServiceRequestState', () {
