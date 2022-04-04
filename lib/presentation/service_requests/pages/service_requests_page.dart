@@ -113,137 +113,148 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
               staffPINResetCount +
               screeningToolsCount;
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 30),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      serviceRequestsIconSvg,
-                      width: 200,
+          return RefreshIndicator(
+            onRefresh: () async {
+              StoreProvider.dispatch<AppState>(
+                context,
+                FetchServiceRequestsCountAction(
+                  client: AppWrapperBase.of(context)!.graphQLClient,
+                ),
+              );
+            },
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        serviceRequestsIconSvg,
+                        width: 200,
+                      ),
                     ),
                   ),
-                ),
-                if (vm.wait
-                    .isWaitingFor(fetchServiceRequestsCountFlag)) ...<Widget>{
-                  const Padding(
-                    padding: EdgeInsets.only(top: 150),
-                    child: PlatformLoader(),
-                  )
-                } else if (totalCount > 0) ...<Widget>{
-                  Container(
-                    padding: const EdgeInsets.only(
-                      top: 16.0,
-                      left: 16.0,
-                      right: 16.0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Wrap(
-                          children: <Widget>[
-                            // RED FLAGS
-                            if (redFlagCount > 0)
-                              ActionCard(
-                                key: redFlagActionCardKey,
-                                count: redFlagCount,
-                                iconUrl: redFlagStressSvgPath,
-                                title: '${redFlagString}s',
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.2),
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.redFlagsPage,
+                  if (vm.wait
+                      .isWaitingFor(fetchServiceRequestsCountFlag)) ...<Widget>{
+                    const Padding(
+                      padding: EdgeInsets.only(top: 150),
+                      child: PlatformLoader(),
+                    )
+                  } else if (totalCount > 0) ...<Widget>{
+                    Container(
+                      padding: const EdgeInsets.only(
+                        top: 16.0,
+                        left: 16.0,
+                        right: 16.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Wrap(
+                            children: <Widget>[
+                              // RED FLAGS
+                              if (redFlagCount > 0)
+                                ActionCard(
+                                  key: redFlagActionCardKey,
+                                  count: redFlagCount,
+                                  iconUrl: redFlagStressSvgPath,
+                                  title: '${redFlagString}s',
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.redFlagsPage,
+                                  ),
                                 ),
-                              ),
-                            // SCREENING TOOLS
-                            if (screeningToolsCount > 0)
-                              ActionCard(
-                                key: screeningToolsActionCardKey,
-                                count: screeningToolsCount,
-                                iconUrl: screeningToolsImage,
-                                title: screeningToolsTitle,
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.2),
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.screeningToolsListPage,
+                              // SCREENING TOOLS
+                              if (screeningToolsCount > 0)
+                                ActionCard(
+                                  key: screeningToolsActionCardKey,
+                                  count: screeningToolsCount,
+                                  iconUrl: screeningToolsImage,
+                                  title: screeningToolsTitle,
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.screeningToolsListPage,
+                                  ),
                                 ),
-                              ),
 
-                            // CLIENT PIN RESET REQUESTS
-                            if (pinResetCount > 0)
-                              ActionCard(
-                                key: clientPINResetActionCardKey,
-                                count: pinResetCount,
-                                iconUrl: pinResetImageSvgPath,
-                                title: clientPINResetString,
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.2),
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.pinResetRequestsPage,
+                              // CLIENT PIN RESET REQUESTS
+                              if (pinResetCount > 0)
+                                ActionCard(
+                                  key: clientPINResetActionCardKey,
+                                  count: pinResetCount,
+                                  iconUrl: pinResetImageSvgPath,
+                                  title: clientPINResetString,
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.pinResetRequestsPage,
+                                  ),
                                 ),
-                              ),
 
-                            // STAFF PIN RESET REQUESTS
-                            if (staffPINResetCount > 0)
-                              ActionCard(
-                                key: staffPINResetActionCardKey,
-                                count: staffPINResetCount,
-                                iconUrl: pinResetImageSvgPath,
-                                title: staffPINResetString,
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.2),
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.staffPinResetRequestsPage,
+                              // STAFF PIN RESET REQUESTS
+                              if (staffPINResetCount > 0)
+                                ActionCard(
+                                  key: staffPINResetActionCardKey,
+                                  count: staffPINResetCount,
+                                  iconUrl: pinResetImageSvgPath,
+                                  title: staffPINResetString,
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.staffPinResetRequestsPage,
+                                  ),
                                 ),
-                              ),
-                            // SCREENING TOOLS
-                            if (profileUpdateCount > 0)
-                              ActionCard(
-                                key: profileUpdateActionCardKey,
-                                count: profileUpdateCount,
-                                iconUrl: profileUpdateImageSvgPath,
-                                title: profileUpdateString,
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.2),
-                                onTap: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.profileUpdateRequestsPage,
+                              // SCREENING TOOLS
+                              if (profileUpdateCount > 0)
+                                ActionCard(
+                                  key: profileUpdateActionCardKey,
+                                  count: profileUpdateCount,
+                                  iconUrl: profileUpdateImageSvgPath,
+                                  title: profileUpdateString,
+                                  backgroundColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.2),
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.profileUpdateRequestsPage,
+                                  ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  } else ...<Widget>{
+                    GenericErrorWidget(
+                      actionKey: helpNoDataWidgetKey,
+                      actionText: actionTextGenericNoData,
+                      type: GenericNoDataTypes.noData,
+                      recoverCallback: () {
+                        Navigator.of(context).pop();
+                      },
+                      messageTitle: getNoDataTile('Service requests'),
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: serviceRequestsNoDataBodyString,
+                          style: normalSize16Text(AppColors.greyTextColor),
                         ),
                       ],
-                    ),
-                  )
-                } else ...<Widget>{
-                  GenericErrorWidget(
-                    actionKey: helpNoDataWidgetKey,
-                    actionText: actionTextGenericNoData,
-                    type: GenericNoDataTypes.noData,
-                    recoverCallback: () {
-                      Navigator.of(context).pop();
-                    },
-                    messageTitle: getNoDataTile('Service requests'),
-                    messageBody: <TextSpan>[
-                      TextSpan(
-                        text: serviceRequestsNoDataBodyString,
-                        style: normalSize16Text(AppColors.greyTextColor),
-                      ),
-                    ],
-                  )
-                }
-              ],
+                    )
+                  }
+                ],
+              ),
             ),
           );
         },

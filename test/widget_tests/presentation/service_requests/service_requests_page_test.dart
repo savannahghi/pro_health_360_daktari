@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -15,8 +15,8 @@ import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_reque
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
-import 'package:http/http.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
+
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -48,6 +48,24 @@ void main() {
       expect(find.text(serviceRequestString), findsOneWidget);
     });
 
+    testWidgets('should refresh service request items correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        widget: const ServiceRequestsPage(),
+        graphQlClient: MockTestGraphQlClient(),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.fling(
+        find.text('${redFlagString}s'),
+        const Offset(0.0, 300.0),
+        1000.0,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('${redFlagString}s'), findsOneWidget);
+    });
+
     testWidgets('should show pin reset requests', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -68,7 +86,7 @@ void main() {
 
       await tester.tap(find.byKey(appBarBackButtonKey));
       await tester.pumpAndSettle();
-        await tester.ensureVisible(screeningToolsActionCard);
+      await tester.ensureVisible(screeningToolsActionCard);
       await tester.tap(screeningToolsActionCard);
       await tester.pumpAndSettle();
       expect(find.byType(ScreeningToolsListPage), findsOneWidget);
