@@ -14,7 +14,7 @@ class ScreeningToolsAssessmentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TargetPlatform _platform = Theme.of(context).platform;
     return Scaffold(
-      appBar: const CustomAppBar(title: screeningToolsAssessmentCardTitle),
+      appBar: const CustomAppBar(title: assessmentCardTitle),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
