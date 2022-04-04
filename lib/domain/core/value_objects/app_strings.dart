@@ -1,4 +1,5 @@
 import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 const String appName = 'myCareHub Professional';
 
@@ -643,3 +644,23 @@ String respondedInAssessmentToolString =
 const String assessmentCardString = 'Assessment card';
 const String yesString = 'Yes';
 const String noString = 'No';
+
+// Assessment tools category page
+String getAssessmentScorePageTitle({
+  required ScreeningToolsType screeningToolsType,
+}) {
+  const String assessmentScoreString = 'assessment scores';
+  switch (screeningToolsType) {
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      return 'Contraceptives $assessmentScoreString';
+    case ScreeningToolsType.TB_ASSESSMENT:
+      return 'Tuberculosis $assessmentScoreString';
+    case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
+      return 'Alcohol use $assessmentScoreString';
+    default:
+      return 'Violence $assessmentScoreString';
+  }
+}
+
+const String assessmentRequestItemDescriptionString =
+    'Tap to view their full assessment card and reach our to them';

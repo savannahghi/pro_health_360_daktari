@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/screening_tools_item_widget.dart';
@@ -38,18 +39,23 @@ class ScreeningToolsListPage extends StatelessWidget {
             const ScreeningToolsItemWidget(
               title: violenceString,
               description: violenceDescriptionString,
+              screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
             ),
             const ScreeningToolsItemWidget(
               title: contraceptivesString,
               description: contraceptivesDescriptionString,
+              screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
             ),
             const ScreeningToolsItemWidget(
               title: tuberculosisString,
               description: tuberculosisDescriptionString,
+              screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
             ),
             const ScreeningToolsItemWidget(
               title: alcoholUseAssessmentString,
               description: alcoholUseAssessmentDescriptionString,
+              screeningToolsType:
+                  ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
             ),
           ],
         ),

@@ -19,6 +19,10 @@ _$_ServiceRequestState _$$_ServiceRequestStateFromJson(
           ? null
           : PendingServiceRequestCount.fromJson(
               json['pendingServiceRequestsCount'] as Map<String, dynamic>),
+      screeningToolsState: json['screeningToolsState'] == null
+          ? null
+          : ScreeningToolsState.fromJson(
+              json['screeningToolsState'] as Map<String, dynamic>),
       errorFetchingPendingServiceRequests:
           json['errorFetchingPendingServiceRequests'] as bool?,
     );
@@ -29,6 +33,7 @@ Map<String, dynamic> _$$_ServiceRequestStateToJson(
       'clientServiceRequests': instance.clientServiceRequests,
       'staffServiceRequests': instance.staffServiceRequests,
       'pendingServiceRequestsCount': instance.pendingServiceRequestsCount,
+      'screeningToolsState': instance.screeningToolsState,
       'errorFetchingPendingServiceRequests':
           instance.errorFetchingPendingServiceRequests,
     };

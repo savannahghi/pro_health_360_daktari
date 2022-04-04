@@ -9,7 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_staff_pin_request_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/service_requests_state.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 

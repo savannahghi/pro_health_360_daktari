@@ -26,11 +26,13 @@ class _$ServiceRequestStateTearOff {
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
+      ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests}) {
     return _ServiceRequestState(
       clientServiceRequests: clientServiceRequests,
       staffServiceRequests: staffServiceRequests,
       pendingServiceRequestsCount: pendingServiceRequestsCount,
+      screeningToolsState: screeningToolsState,
       errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests,
     );
   }
@@ -51,6 +53,8 @@ mixin _$ServiceRequestState {
   List<ServiceRequest>? get staffServiceRequests =>
       throw _privateConstructorUsedError; // Service requests count
   PendingServiceRequestCount? get pendingServiceRequestsCount =>
+      throw _privateConstructorUsedError; // Screening tools
+  ScreeningToolsState? get screeningToolsState =>
       throw _privateConstructorUsedError;
 
   /// Other booleans
@@ -72,9 +76,11 @@ abstract class $ServiceRequestStateCopyWith<$Res> {
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
+      ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests});
 
   $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequestsCount;
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState;
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
     Object? clientServiceRequests = freezed,
     Object? staffServiceRequests = freezed,
     Object? pendingServiceRequestsCount = freezed,
+    Object? screeningToolsState = freezed,
     Object? errorFetchingPendingServiceRequests = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +113,10 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
           ? _value.pendingServiceRequestsCount
           : pendingServiceRequestsCount // ignore: cast_nullable_to_non_nullable
               as PendingServiceRequestCount?,
+      screeningToolsState: screeningToolsState == freezed
+          ? _value.screeningToolsState
+          : screeningToolsState // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsState?,
       errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests ==
               freezed
           ? _value.errorFetchingPendingServiceRequests
@@ -125,6 +136,18 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
       return _then(_value.copyWith(pendingServiceRequestsCount: value));
     });
   }
+
+  @override
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState {
+    if (_value.screeningToolsState == null) {
+      return null;
+    }
+
+    return $ScreeningToolsStateCopyWith<$Res>(_value.screeningToolsState!,
+        (value) {
+      return _then(_value.copyWith(screeningToolsState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -138,10 +161,13 @@ abstract class _$ServiceRequestStateCopyWith<$Res>
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
+      ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests});
 
   @override
   $PendingServiceRequestCountCopyWith<$Res>? get pendingServiceRequestsCount;
+  @override
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState;
 }
 
 /// @nodoc
@@ -160,6 +186,7 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
     Object? clientServiceRequests = freezed,
     Object? staffServiceRequests = freezed,
     Object? pendingServiceRequestsCount = freezed,
+    Object? screeningToolsState = freezed,
     Object? errorFetchingPendingServiceRequests = freezed,
   }) {
     return _then(_ServiceRequestState(
@@ -175,6 +202,10 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
           ? _value.pendingServiceRequestsCount
           : pendingServiceRequestsCount // ignore: cast_nullable_to_non_nullable
               as PendingServiceRequestCount?,
+      screeningToolsState: screeningToolsState == freezed
+          ? _value.screeningToolsState
+          : screeningToolsState // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsState?,
       errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests ==
               freezed
           ? _value.errorFetchingPendingServiceRequests
@@ -191,6 +222,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
       {this.clientServiceRequests,
       this.staffServiceRequests,
       this.pendingServiceRequestsCount,
+      this.screeningToolsState,
       this.errorFetchingPendingServiceRequests});
 
   factory _$_ServiceRequestState.fromJson(Map<String, dynamic> json) =>
@@ -202,6 +234,8 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   final List<ServiceRequest>? staffServiceRequests;
   @override // Service requests count
   final PendingServiceRequestCount? pendingServiceRequestsCount;
+  @override // Screening tools
+  final ScreeningToolsState? screeningToolsState;
   @override
 
   /// Other booleans
@@ -209,7 +243,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
   @override
   String toString() {
-    return 'ServiceRequestState(clientServiceRequests: $clientServiceRequests, staffServiceRequests: $staffServiceRequests, pendingServiceRequestsCount: $pendingServiceRequestsCount, errorFetchingPendingServiceRequests: $errorFetchingPendingServiceRequests)';
+    return 'ServiceRequestState(clientServiceRequests: $clientServiceRequests, staffServiceRequests: $staffServiceRequests, pendingServiceRequestsCount: $pendingServiceRequestsCount, screeningToolsState: $screeningToolsState, errorFetchingPendingServiceRequests: $errorFetchingPendingServiceRequests)';
   }
 
   @override
@@ -224,6 +258,8 @@ class _$_ServiceRequestState implements _ServiceRequestState {
             const DeepCollectionEquality().equals(
                 other.pendingServiceRequestsCount,
                 pendingServiceRequestsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.screeningToolsState, screeningToolsState) &&
             const DeepCollectionEquality().equals(
                 other.errorFetchingPendingServiceRequests,
                 errorFetchingPendingServiceRequests));
@@ -235,6 +271,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
       const DeepCollectionEquality().hash(clientServiceRequests),
       const DeepCollectionEquality().hash(staffServiceRequests),
       const DeepCollectionEquality().hash(pendingServiceRequestsCount),
+      const DeepCollectionEquality().hash(screeningToolsState),
       const DeepCollectionEquality().hash(errorFetchingPendingServiceRequests));
 
   @JsonKey(ignore: true)
@@ -254,6 +291,7 @@ abstract class _ServiceRequestState implements ServiceRequestState {
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
+      ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests}) = _$_ServiceRequestState;
 
   factory _ServiceRequestState.fromJson(Map<String, dynamic> json) =
@@ -265,6 +303,8 @@ abstract class _ServiceRequestState implements ServiceRequestState {
   List<ServiceRequest>? get staffServiceRequests;
   @override // Service requests count
   PendingServiceRequestCount? get pendingServiceRequestsCount;
+  @override // Screening tools
+  ScreeningToolsState? get screeningToolsState;
   @override
 
   /// Other booleans
