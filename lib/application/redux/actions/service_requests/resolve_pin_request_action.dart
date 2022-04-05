@@ -20,6 +20,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
   final bool physicalIdentityVerified;
   final PinResetState pinResetState;
   final VoidCallback? onPinVerified;
+  final VoidCallback? onDone;
 
   ResolvePinRequestAction({
     required this.clientId,
@@ -30,6 +31,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
     required this.httpClient,
     required this.pinResetState,
     this.onPinVerified,
+    this.onDone,
   });
 
   @override
@@ -49,6 +51,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
         '${pinResetRequestFlag}_${serviceRequestId}_$pinResetState',
       ),
     );
+    onDone?.call();
     super.after();
   }
 
@@ -63,8 +66,10 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
       'state': pinResetState.name,
     };
 
-    final Response result =
-        await httpClient.query(verifyClientPinResetServiceRequestQuery, variables);
+    final Response result = await httpClient.query(
+      verifyClientPinResetServiceRequestQuery,
+      variables,
+    );
 
     final ProcessedResponse processedResponse = processHttpResponse(result);
     httpClient.close();
@@ -105,7 +110,6 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
             ),
           );
         }
-
         onPinVerified?.call();
       }
     } else {

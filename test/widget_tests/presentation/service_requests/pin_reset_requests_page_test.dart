@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
@@ -14,6 +16,12 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('PinResetRequestsPage', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+    });
+
     testWidgets('accepting service request shows success message',
         (WidgetTester tester) async {
       final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
@@ -54,6 +62,7 @@ void main() {
       );
       await buildTestWidget(
         tester: tester,
+        store: store,
         graphQlClient: client,
         widget: const PinResetRequestsPage(),
       );
@@ -94,6 +103,17 @@ void main() {
                     'is_ccc_number_valid': false,
                   }
                 },
+                <String, dynamic>{
+                  'ID': 'some-id2',
+                  'RequestType': 'PIN_RESET',
+                  'ClientName': 'John Doe',
+                  'ClientContact': '+254798000000',
+                  'Status': 'PENDING',
+                  'Meta': <String, dynamic>{
+                    'ccc_number': '12345678',
+                    'is_ccc_number_valid': false,
+                  }
+                },
               ],
             }
           }),
@@ -102,6 +122,7 @@ void main() {
       );
       await buildTestWidget(
         tester: tester,
+        store: store,
         graphQlClient: mockShortGraphQlClient,
         widget: const PinResetRequestsPage(),
       );
@@ -130,7 +151,7 @@ void main() {
       expect(checkboxFinder.value, true);
 
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 4));
       expect(find.text(pinApprovedSuccessText), findsOneWidget);
     });
 
