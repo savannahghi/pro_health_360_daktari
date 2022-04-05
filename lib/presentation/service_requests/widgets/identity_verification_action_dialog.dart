@@ -4,7 +4,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_pin_request_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -17,14 +20,12 @@ class IdentityVerificationActionDialog extends StatefulWidget {
     required this.cccNumber,
     required this.phoneNumber,
     required this.pinResetState,
-    this.isWaiting = false,
   });
   final String clientId;
   final String serviceRequestId;
   final String cccNumber;
   final String phoneNumber;
   final PinResetState pinResetState;
-  final bool isWaiting;
 
   @override
   State<IdentityVerificationActionDialog> createState() =>
@@ -77,47 +78,60 @@ class _IdentityVerificationActionDialogState
                   ),
                 ),
                 verySmallHorizontalSizedBox,
-                Text(identityVerified, style: boldSize15Text(AppColors.greyTextColor),
+                Text(
+                  identityVerified,
+                  style: boldSize15Text(AppColors.greyTextColor),
                 ),
               ],
             ),
             size15VerticalSizedBox,
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: widget.isWaiting
-                  ? const PlatformLoader()
-                  : MyAfyaHubPrimaryButton(
-                      text: approveString,
-                      textStyle: boldSize16Text(AppColors.whiteColor),
-                      textColor: AppColors.whiteColor,
-                      onPressed: () {
-                        StoreProvider.dispatch(
-                          context,
-                          ResolvePinRequestAction(
-                            clientId: widget.clientId,
-                            serviceRequestId: widget.serviceRequestId,
-                            cccNumber: widget.cccNumber,
-                            phoneNumber: widget.phoneNumber,
-                            physicalIdentityVerified: physicalIdentityVerified,
-                            pinResetState: widget.pinResetState,
-                            httpClient:
-                                AppWrapperBase.of(context)!.graphQLClient,
-                            onPinVerified: () {
-                              showTextSnackbar(
-                                ScaffoldMessenger.of(context),
-                                content: widget.pinResetState ==
-                                        PinResetState.APPROVED
-                                    ? pinApprovedSuccessText
-                                    : pinRejectedSuccessText,
-                              );
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        );
-                      },
-                    ),
-            )
+            StoreConnector<AppState, ServiceRequestsViewModel>(
+              converter: (Store<AppState> store) {
+                return ServiceRequestsViewModel.fromStore(store);
+              },
+              builder: (BuildContext context, ServiceRequestsViewModel vm) {
+                return SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: vm.wait.isWaitingFor(
+                    '${pinResetRequestFlag}_${widget.serviceRequestId}_${PinResetState.APPROVED}',
+                  )
+                      ? const PlatformLoader()
+                      : MyAfyaHubPrimaryButton(
+                          text: approveString,
+                          textStyle: boldSize16Text(AppColors.whiteColor),
+                          textColor: AppColors.whiteColor,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            StoreProvider.dispatch(
+                              context,
+                              ResolvePinRequestAction(
+                                clientId: widget.clientId,
+                                serviceRequestId: widget.serviceRequestId,
+                                cccNumber: widget.cccNumber,
+                                phoneNumber: widget.phoneNumber,
+                                physicalIdentityVerified:
+                                    physicalIdentityVerified,
+                                pinResetState: widget.pinResetState,
+                                httpClient:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                onPinVerified: () {
+                                  showTextSnackbar(
+                                    ScaffoldMessenger.of(context),
+                                    content: widget.pinResetState ==
+                                            PinResetState.APPROVED
+                                        ? pinApprovedSuccessText
+                                        : pinRejectedSuccessText,
+                                  );
+                                },
+                                onDone: () => Navigator.of(context).pop(),
+                              ),
+                            );
+                          },
+                        ),
+                );
+              },
+            ),
           ],
         ),
       ),
