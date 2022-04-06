@@ -150,7 +150,8 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   communityId:
                                       widget.payload['channelId'] as String,
                                   communityName: channelName,
-                                  isModerator: isModerator && canModerate,
+                                  isModerator: isModerator,
+                                  canModerate: canModerate,
                                   isBanned: isBanned,
                                 );
                               },
