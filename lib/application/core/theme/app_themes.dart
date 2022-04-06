@@ -81,6 +81,7 @@ class AppColors {
   static const Color whiteColor = Colors.white;
   static const Color lightRedTextColor = Color(0xFFFF888B);
   static const Color grey50 = Color(0xFF7A7B8E);
+  static const Color greenHappyColor = Color(0xFF00BE33);
 }
 
 class ThemeColors {

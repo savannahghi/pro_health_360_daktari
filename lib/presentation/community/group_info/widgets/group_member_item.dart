@@ -5,6 +5,8 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
+import 'group_member_badge.dart';
+
 class GroupMemberItem extends StatelessWidget {
   const GroupMemberItem({
     required this.userName,
@@ -12,8 +14,9 @@ class GroupMemberItem extends StatelessWidget {
     required this.communityId,
     required this.communityName,
     this.isModerator = false,
+    this.canModerate = false,
+    this.isBanned = false,
     this.itemKey,
-    required this.isBanned,
   });
 
   final String userName;
@@ -21,6 +24,7 @@ class GroupMemberItem extends StatelessWidget {
   final String communityId;
   final String communityName;
   final bool isModerator;
+  final bool canModerate;
   final bool isBanned;
   final Key? itemKey;
 
@@ -30,7 +34,7 @@ class GroupMemberItem extends StatelessWidget {
       key: itemKey,
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        if (isModerator) {
+        if (canModerate) {
           showDialog(
             context: context,
             builder: (_) {
@@ -69,36 +73,24 @@ class GroupMemberItem extends StatelessWidget {
                   ),
                 ),
                 size15HorizontalSizedBox,
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      userName.isNotEmpty ? userName : UNKNOWN,
-                      style:
-                          boldSize12Text(isBanned ? AppColors.lightGrey.withOpacity(0.6) : null),
-                    ),
-                    if (isBanned)
-                      Text(
-                        bannedString,
-                        style: boldSize12Text(AppColors.redColor.withOpacity(0.6)),
-                      ),
-                  ],
+                Text(
+                  userName.isNotEmpty ? userName : UNKNOWN,
+                  style: boldSize12Text(
+                    isBanned ? AppColors.lightGrey.withOpacity(0.6) : null,
+                  ),
                 ),
               ],
             ),
             if (isModerator)
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.lightGrey),
-                ),
-                padding: const EdgeInsets.all(4),
-                child: const Text(
-                  moderatorText,
-                  style: TextStyle(fontSize: 11, color: AppColors.lightGrey),
-                ),
-              ),
+              const GroupMemberBadge(
+                text: moderatorText,
+                color: AppColors.greenHappyColor,
+              )
+            else if (isBanned)
+              const GroupMemberBadge(
+                text: bannedString,
+                color: AppColors.warningColor,
+              )
           ],
         ),
       ),
