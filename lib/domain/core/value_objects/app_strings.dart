@@ -605,6 +605,11 @@ const String noAvailableFlaggedMessagesDescription =
 const String availableFlaggedMessagesText = 'flagged messages';
 const String messageDeletedText = 'Message deleted successfully';
 const String flaggedMessageText = 'I don’t like this group. Delete';
+const String noFlaggedMessagesTitle = 'No flagged messages';
+const String messagesDisplayedHereText =
+    'When users flag messages, they will be displayed here for your intervention.';
+const String canDeleteOrBanText =
+    'You can choose to delete the message or ban a user from this group';
 
 String redFlagSMSTemplate({
   required String clientName,
