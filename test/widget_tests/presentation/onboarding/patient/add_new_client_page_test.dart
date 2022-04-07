@@ -61,8 +61,8 @@ void main() {
       await tester.ensureVisible(dobField);
       await tester.tap(dobField);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+      expect(find.text(currentYear.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
       expect(find.text(currentDay.toString()), findsOneWidget);
       await tester.tap(find.text(currentDay.toString()));
@@ -86,8 +86,8 @@ void main() {
       await tester.ensureVisible(enrollmentField);
       await tester.tap(enrollmentField);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+      expect(find.text(currentYear.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
       expect(find.text(currentDay.toString()), findsOneWidget);
       await tester.tap(find.text(currentDay.toString()));
@@ -159,8 +159,8 @@ void main() {
       await tester.ensureVisible(dobField);
       await tester.tap(dobField);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+      expect(find.text(currentYear.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
       expect(find.text(currentDay.toString()), findsOneWidget);
       await tester.tap(find.text(currentDay.toString()));
@@ -184,8 +184,8 @@ void main() {
       await tester.ensureVisible(enrollmentField);
       await tester.tap(enrollmentField);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+      expect(find.text(currentYear.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
       expect(find.text(currentDay.toString()), findsOneWidget);
       await tester.tap(find.text(currentDay.toString()));

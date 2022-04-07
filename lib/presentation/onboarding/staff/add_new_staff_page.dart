@@ -158,6 +158,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                           ),
                           smallVerticalSizedBox,
                           DatePickerField(
+                            allowCurrentYear: true,
                             gestureDateKey: dobKey,
                             controller: dobTextController,
                             decoration: InputDecoration(
