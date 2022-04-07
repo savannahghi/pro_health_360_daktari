@@ -32,6 +32,7 @@ const String createPinFlag = 'create_pin_flag';
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 //Service requests
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
+const String fetchAvailableScreeningToolsFlag = 'fetch_available_screening_tools_flag';
 const String fetchServiceRequestsCountFlag =
     'fetch_service_requests_count_flag';
 const String pinResetRequestFlag = 'pin_reset_accept_flag';

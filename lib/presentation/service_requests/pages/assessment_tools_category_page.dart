@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/update_screening_tools_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/alcohol_substance_use_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/contraceptive_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/screening_questions_list.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/tb_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/violence_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
@@ -41,8 +40,7 @@ class _AssessmentToolsCategoryPageState
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       StoreProvider.dispatch(
         context,
-        UpdateServiceRequestsStateAction(
-          screeningToolsState: ScreeningToolsState(
+        UpdateScreeningToolsStateAction(
             alcoholSubstanceUseState: AlcoholSubstanceUseState(
               screeningQuestionItems: screeningQuestionItems,
             ),
@@ -52,9 +50,9 @@ class _AssessmentToolsCategoryPageState
             contraceptiveState: ContraceptiveState(
               screeningQuestionItems: screeningQuestionItems,
             ),
-            tbState: TBState.initial(),
-          ),
-        ),
+            tbState: TBState(
+              screeningQuestionItems: screeningQuestionItems,
+            ),),
       );
     });
   }
@@ -93,24 +91,23 @@ class _AssessmentToolsCategoryPageState
               builder: (BuildContext context, ServiceRequestsViewModel vm) {
                 final List<ScreeningQuestionsList>? screeningQuestions =
                     getScreeningQuestions(
-                          toolsType: widget.screeningToolsType,
-                          screeningToolsState: vm.screeningToolsState,
-                        );
+                  toolsType: widget.screeningToolsType,
+                  screeningToolsState: vm.screeningToolsState,
+                );
                 return ListView(
-                        shrinkWrap: true,
-                        children: <Widget>[
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: screeningQuestions!.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return AssessmentRequestItemWidget(
-                                screeningQuestionsList:
-                                    screeningQuestions[index],
-                              );
-                            },
-                          )
-                        ],
-                      );
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: screeningQuestions!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return AssessmentRequestItemWidget(
+                          screeningQuestionsList: screeningQuestions[index],
+                        );
+                      },
+                    )
+                  ],
+                );
               },
             ),
           ],

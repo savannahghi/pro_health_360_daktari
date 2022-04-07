@@ -9,6 +9,10 @@ part of 'screening_tools_state.dart';
 _$_ScreeningToolsState _$$_ScreeningToolsStateFromJson(
         Map<String, dynamic> json) =>
     _$_ScreeningToolsState(
+      availableTools:
+          (json['getAvailableFacilityScreeningTools'] as List<dynamic>?)
+              ?.map((e) => ToolType.fromJson(e as Map<String, dynamic>))
+              .toList(),
       violenceState: json['violenceState'] == null
           ? null
           : ViolenceState.fromJson(
@@ -29,6 +33,7 @@ _$_ScreeningToolsState _$$_ScreeningToolsStateFromJson(
 Map<String, dynamic> _$$_ScreeningToolsStateToJson(
         _$_ScreeningToolsState instance) =>
     <String, dynamic>{
+      'getAvailableFacilityScreeningTools': instance.availableTools,
       'violenceState': instance.violenceState,
       'contraceptiveState': instance.contraceptiveState,
       'tbState': instance.tbState,

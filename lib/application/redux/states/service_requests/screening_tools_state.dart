@@ -3,6 +3,7 @@ import 'package:mycarehubpro/application/redux/states/service_requests/alcohol_s
 import 'package:mycarehubpro/application/redux/states/service_requests/contraceptive_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/tb_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/violence_state.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/tool_type.dart';
 
 part 'screening_tools_state.g.dart';
 part 'screening_tools_state.freezed.dart';
@@ -10,6 +11,7 @@ part 'screening_tools_state.freezed.dart';
 @freezed
 class ScreeningToolsState with _$ScreeningToolsState {
   factory ScreeningToolsState({
+     @JsonKey(name: 'getAvailableFacilityScreeningTools') List<ToolType>? availableTools,
     ViolenceState? violenceState,
     ContraceptiveState? contraceptiveState,
     TBState? tbState,
@@ -24,5 +26,6 @@ class ScreeningToolsState with _$ScreeningToolsState {
         contraceptiveState: ContraceptiveState.initial(),
         tbState: TBState.initial(),
         alcoholSubstanceUseState: AlcoholSubstanceUseState.initial(),
+        availableTools: <ToolType>[],
       );
 }

@@ -211,3 +211,11 @@ const String listFlaggedMessagesQuery = r'''
   }
 }
 ''';
+
+const String getAvailableFacilityScreeningToolsQuery = r'''
+query getAvailableFacilityScreeningTools($facilityID: String!){
+  getAvailableFacilityScreeningTools(facilityID: $facilityID){
+    toolType
+  }
+}
+''';
