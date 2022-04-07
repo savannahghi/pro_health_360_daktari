@@ -173,6 +173,45 @@ void main() {
       expect(info.dispatchCount, 4);
     });
 
+    test(
+        'should handle StreamWebSocketError when a connection is already in progress',
+        () async {
+      store.dispatch(UpdateStaffProfileAction(id: 'some-id'));
+
+      final StoreTester<AppState> storeTester =
+          StoreTester<AppState>.from(store);
+
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'getStreamToken': 'some-token'}),
+          200,
+        ),
+      );
+
+      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.connectUserWithProvider(any, any)).thenThrow(
+        const StreamChatError('connection already in progress'),
+      );
+
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
+      storeTester.dispatch(
+        ConnectGetStreamUserAction(
+          streamClient: mockStreamChatClient,
+          client: client,
+          endpoint: kTestRefreshStreamTokenEndpoint,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(ConnectGetStreamUserAction);
+
+      expect(info.dispatchCount, 4);
+    });
+
     test('should handle general errors', () async {
       store.dispatch(UpdateStaffProfileAction(id: 'some-id'));
 

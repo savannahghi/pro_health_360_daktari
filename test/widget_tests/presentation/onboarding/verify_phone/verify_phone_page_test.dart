@@ -72,7 +72,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -91,7 +91,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -117,8 +117,10 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
+
+      await tester.pump();
 
       expect(find.byType(VerifyOTPWidget), findsOneWidget);
 
@@ -135,7 +137,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       store.dispatch(WaitAction<AppState>.add(verifyOTPFlag));
@@ -162,7 +164,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -187,7 +189,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
@@ -227,7 +229,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockTestGraphQlClient,
-        widget: const VerifyPhonePage(),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();

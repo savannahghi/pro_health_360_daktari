@@ -35,7 +35,7 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String staffId = state.staffState?.id ?? '';
+    final String staffId = state.staffState?.id ?? UNKNOWN;
 
     if (staffId.isEmpty || staffId == UNKNOWN) {
       throw const UserException(kindlyLogOutText);
@@ -73,11 +73,14 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
         default:
           Sentry.captureException(e, hint: e.message);
       }
+    } on stream.StreamChatError catch (e) {
+      if (e.message.toLowerCase().contains('connection already in progress')) {
+        return null;
+      }
     } catch (e) {
       Sentry.captureException(e);
       throw UserException(getErrorMessage());
     }
-
     return null;
   }
 }

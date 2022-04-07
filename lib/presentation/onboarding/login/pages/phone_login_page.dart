@@ -50,19 +50,13 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    /// clear any active flags
-  }
-
-  @override
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 8;
     // A small indicator to help us identify whether the app is running in
     // staging or testing
     final bool isAppTest =
         AppWrapperBase.of(context)!.appContexts.contains(AppContext.AppTest);
+
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
@@ -85,9 +79,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(
-                        height: sizedBoxHeight,
-                      ),
+                      SizedBox(height: sizedBoxHeight),
                       const OnboardingScaffoldHeader(
                         title: phoneLoginPageTitle,
                         description: phoneLoginPageDescription,
