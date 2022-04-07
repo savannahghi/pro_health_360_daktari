@@ -197,6 +197,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                           ),
                           smallVerticalSizedBox,
                           DatePickerField(
+                            allowCurrentYear: true,
                             gestureDateKey: dobKey,
                             controller: dobTextController,
                             decoration: InputDecoration(
@@ -329,6 +330,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                           ),
                           smallVerticalSizedBox,
                           DatePickerField(
+                            allowCurrentYear: true,
                             gestureDateKey: enrollmentFieldKey,
                             controller: enrollmentDateTextController,
                             decoration: InputDecoration(
