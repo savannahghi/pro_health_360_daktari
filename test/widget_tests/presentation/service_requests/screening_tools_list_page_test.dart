@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
@@ -27,11 +32,27 @@ void main() {
         widget: const ScreeningToolsListPage(),
         graphQlClient: MockTestGraphQlClient(),
       );
-
-      final Finder violenceOption = find.text('Violence');
-      final Finder contraceptiveOption = find.text('Contraceptives');
-      final Finder tbOption = find.text('Tuberculosis');
-      final Finder alcoholOption = find.text(alcoholUseAssessmentString);
+      await tester.pumpAndSettle();
+      final Finder violenceOption = find.text(
+        getScreeningToolTitle(
+          ScreeningToolsType.VIOLENCE_ASSESSMENT,
+        ),
+      );
+      final Finder contraceptiveOption = find.text(
+        getScreeningToolTitle(
+          ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+        ),
+      );
+      final Finder tbOption = find.text(
+        getScreeningToolTitle(
+          ScreeningToolsType.TB_ASSESSMENT,
+        ),
+      );
+      final Finder alcoholOption = find.text(
+        getScreeningToolTitle(
+          ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+        ),
+      );
 
       expect(violenceOption, findsOneWidget);
       expect(contraceptiveOption, findsOneWidget);
@@ -96,5 +117,63 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ScreeningToolsAssessmentPage), findsOneWidget);
     });
+
+      testWidgets('should show a loading indicator when fetching screening tools',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        ),
+      );
+      store.dispatch(WaitAction<AppState>.add(fetchAvailableScreeningToolsFlag));
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget:  const ScreeningToolsListPage(),
+      );
+
+      expect(find.byType(PlatformLoader), findsOneWidget);
+    });
+      testWidgets(
+      'should show an error widget when fetching screening tools',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'some error occurred'}),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortGraphQlClient,
+          widget: const ScreeningToolsListPage(),
+        );
+
+        await tester.pumpAndSettle();
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
+
+        expect(genericNoDataButton, findsOneWidget);
+
+        /// Refresh and expect the same thing
+        await tester.ensureVisible(genericNoDataButton);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
+
+        await tester.pumpAndSettle();
+        expect(genericNoDataButton, findsOneWidget);
+      },
+    );
   });
 }

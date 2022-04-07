@@ -988,6 +988,23 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(getAvailableFacilityScreeningToolsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getAvailableFacilityScreeningTools': <dynamic>[
+                <String, dynamic>{'toolType': 'TB_ASSESSMENT'},
+                <String, dynamic>{'toolType': 'VIOLENCE_ASSESSMENT'},
+                <String, dynamic>{'toolType': 'CONTRACEPTIVE_ASSESSMENT'},
+                <String, dynamic>{'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT'},
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(json.encode(<String, dynamic>{}), 201),

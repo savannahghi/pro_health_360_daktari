@@ -23,11 +23,14 @@ class _$ScreeningToolsStateTearOff {
   const _$ScreeningToolsStateTearOff();
 
   _ScreeningToolsState call(
-      {ViolenceState? violenceState,
+      {@JsonKey(name: 'getAvailableFacilityScreeningTools')
+          List<ToolType>? availableTools,
+      ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
       AlcoholSubstanceUseState? alcoholSubstanceUseState}) {
     return _ScreeningToolsState(
+      availableTools: availableTools,
       violenceState: violenceState,
       contraceptiveState: contraceptiveState,
       tbState: tbState,
@@ -45,6 +48,8 @@ const $ScreeningToolsState = _$ScreeningToolsStateTearOff();
 
 /// @nodoc
 mixin _$ScreeningToolsState {
+  @JsonKey(name: 'getAvailableFacilityScreeningTools')
+  List<ToolType>? get availableTools => throw _privateConstructorUsedError;
   ViolenceState? get violenceState => throw _privateConstructorUsedError;
   ContraceptiveState? get contraceptiveState =>
       throw _privateConstructorUsedError;
@@ -64,7 +69,9 @@ abstract class $ScreeningToolsStateCopyWith<$Res> {
           ScreeningToolsState value, $Res Function(ScreeningToolsState) then) =
       _$ScreeningToolsStateCopyWithImpl<$Res>;
   $Res call(
-      {ViolenceState? violenceState,
+      {@JsonKey(name: 'getAvailableFacilityScreeningTools')
+          List<ToolType>? availableTools,
+      ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
       AlcoholSubstanceUseState? alcoholSubstanceUseState});
@@ -86,12 +93,17 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? availableTools = freezed,
     Object? violenceState = freezed,
     Object? contraceptiveState = freezed,
     Object? tbState = freezed,
     Object? alcoholSubstanceUseState = freezed,
   }) {
     return _then(_value.copyWith(
+      availableTools: availableTools == freezed
+          ? _value.availableTools
+          : availableTools // ignore: cast_nullable_to_non_nullable
+              as List<ToolType>?,
       violenceState: violenceState == freezed
           ? _value.violenceState
           : violenceState // ignore: cast_nullable_to_non_nullable
@@ -166,7 +178,9 @@ abstract class _$ScreeningToolsStateCopyWith<$Res>
       __$ScreeningToolsStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {ViolenceState? violenceState,
+      {@JsonKey(name: 'getAvailableFacilityScreeningTools')
+          List<ToolType>? availableTools,
+      ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
       AlcoholSubstanceUseState? alcoholSubstanceUseState});
@@ -194,12 +208,17 @@ class __$ScreeningToolsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? availableTools = freezed,
     Object? violenceState = freezed,
     Object? contraceptiveState = freezed,
     Object? tbState = freezed,
     Object? alcoholSubstanceUseState = freezed,
   }) {
     return _then(_ScreeningToolsState(
+      availableTools: availableTools == freezed
+          ? _value.availableTools
+          : availableTools // ignore: cast_nullable_to_non_nullable
+              as List<ToolType>?,
       violenceState: violenceState == freezed
           ? _value.violenceState
           : violenceState // ignore: cast_nullable_to_non_nullable
@@ -224,7 +243,8 @@ class __$ScreeningToolsStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ScreeningToolsState implements _ScreeningToolsState {
   _$_ScreeningToolsState(
-      {this.violenceState,
+      {@JsonKey(name: 'getAvailableFacilityScreeningTools') this.availableTools,
+      this.violenceState,
       this.contraceptiveState,
       this.tbState,
       this.alcoholSubstanceUseState});
@@ -232,6 +252,9 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
   factory _$_ScreeningToolsState.fromJson(Map<String, dynamic> json) =>
       _$$_ScreeningToolsStateFromJson(json);
 
+  @override
+  @JsonKey(name: 'getAvailableFacilityScreeningTools')
+  final List<ToolType>? availableTools;
   @override
   final ViolenceState? violenceState;
   @override
@@ -243,7 +266,7 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
   @override
   String toString() {
-    return 'ScreeningToolsState(violenceState: $violenceState, contraceptiveState: $contraceptiveState, tbState: $tbState, alcoholSubstanceUseState: $alcoholSubstanceUseState)';
+    return 'ScreeningToolsState(availableTools: $availableTools, violenceState: $violenceState, contraceptiveState: $contraceptiveState, tbState: $tbState, alcoholSubstanceUseState: $alcoholSubstanceUseState)';
   }
 
   @override
@@ -251,6 +274,8 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ScreeningToolsState &&
+            const DeepCollectionEquality()
+                .equals(other.availableTools, availableTools) &&
             const DeepCollectionEquality()
                 .equals(other.violenceState, violenceState) &&
             const DeepCollectionEquality()
@@ -263,6 +288,7 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(availableTools),
       const DeepCollectionEquality().hash(violenceState),
       const DeepCollectionEquality().hash(contraceptiveState),
       const DeepCollectionEquality().hash(tbState),
@@ -282,7 +308,9 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
 abstract class _ScreeningToolsState implements ScreeningToolsState {
   factory _ScreeningToolsState(
-          {ViolenceState? violenceState,
+          {@JsonKey(name: 'getAvailableFacilityScreeningTools')
+              List<ToolType>? availableTools,
+          ViolenceState? violenceState,
           ContraceptiveState? contraceptiveState,
           TBState? tbState,
           AlcoholSubstanceUseState? alcoholSubstanceUseState}) =
@@ -291,6 +319,9 @@ abstract class _ScreeningToolsState implements ScreeningToolsState {
   factory _ScreeningToolsState.fromJson(Map<String, dynamic> json) =
       _$_ScreeningToolsState.fromJson;
 
+  @override
+  @JsonKey(name: 'getAvailableFacilityScreeningTools')
+  List<ToolType>? get availableTools;
   @override
   ViolenceState? get violenceState;
   @override

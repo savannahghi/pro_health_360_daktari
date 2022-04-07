@@ -629,18 +629,34 @@ const String methodsToReachOutString =
 const String screeningToolsTitle = 'Screening tools';
 final String screeningToolsPageLongDescription =
     'Responses from the various ${screeningToolsTitle.toLowerCase()}';
-const String violenceString = 'Violence';
-const String violenceDescriptionString =
-    'Responses from the GBV screening tool';
-const String contraceptivesString = 'Contraceptives';
-const String contraceptivesDescriptionString =
-    'Responses from the contraceptive use screening tool';
-const String tuberculosisString = 'Tuberculosis';
-const String tuberculosisDescriptionString =
-    'Responses from the TB screening tool';
-const String alcoholUseAssessmentString = 'Alcohol use assessment';
-const String alcoholUseAssessmentDescriptionString =
-    'Responses from the CRAFFT screening tool';
+
+String getScreeningToolDescription(ScreeningToolsType toolType) {
+  switch (toolType) {
+    case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
+      return 'Responses from the CRAFFT screening tool';
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      return 'Responses from the contraceptive use screening tool';
+    case ScreeningToolsType.TB_ASSESSMENT:
+      return 'Responses from the TB screening tool';
+    default:
+      return 'Responses from the GBV screening tool';
+  }
+}
+
+String getScreeningToolTitle(ScreeningToolsType toolType) {
+  switch (toolType) {
+    case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
+      return 'Alcohol use assessment';
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      return 'Contraceptives';
+    case ScreeningToolsType.TB_ASSESSMENT:
+      return 'Tuberculosis';
+    default:
+      return 'Violence';
+  }
+}
+
+String fetchingScreeningToolsString = 'fetching screening tools';
 
 const String assessmentCardTitle = 'Assessment card';
 String hereIsWhatString = 'Here is what ';
