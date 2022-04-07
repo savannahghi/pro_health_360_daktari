@@ -15,11 +15,26 @@ void main() {
           communityId: '',
           communityName: '',
           memberID: '',
-          isBanned: true,
         ),
       );
 
       expect(find.text('Moderator'), findsOneWidget);
+    });
+
+    testWidgets('should display banned badge if isBanned',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        widget: const GroupMemberItem(
+          userName: 'userName',
+          communityId: '',
+          communityName: '',
+          memberID: '',
+          isBanned: true,
+        ),
+      );
+
+      expect(find.text('Banned'), findsOneWidget);
     });
   });
 }

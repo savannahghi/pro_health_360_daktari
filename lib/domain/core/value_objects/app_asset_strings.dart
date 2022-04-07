@@ -104,6 +104,7 @@ const String groupInfoImage = 'assets/images/group_info.svg';
 
 // Communities
 const String emptyChatsSvg = 'assets/images/empty_chats.svg';
+const String noFlaggedMessagesImage = 'assets/images/no_flagged_messages.svg';
 
 // Bottom nav icon paths
 const String homeIconSvgPath = 'assets/icons/home_icon.svg';
