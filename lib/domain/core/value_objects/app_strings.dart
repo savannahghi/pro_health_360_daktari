@@ -685,3 +685,9 @@ String getAssessmentScorePageTitle({
 
 const String assessmentRequestItemDescriptionString =
     'Tap to view their full assessment card and reach our to them';
+// resume with pin
+String welcomeBackUserText(String? user) => 'Welcome back, ${user ?? ''}';
+const String resumeWithPinText =
+    'Let’s get you authenticated to access your account. Please enter your '
+    'PIN to continue';
+const String wrongPINText = 'Wrong PIN supplied. Please try again';

@@ -40,6 +40,7 @@ import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.da
 import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
+import 'package:mycarehubpro/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
@@ -332,6 +333,11 @@ class RouteGenerator {
             groupName: groupName,
             numberOfMembers: numberOfMembers,
           ),
+        );
+
+        case AppRoutes.resumeWithPin:
+        return MaterialPageRoute<ResumePinConnector>(
+          builder: (_) => const ResumePinConnector(),
         );
     }
   }

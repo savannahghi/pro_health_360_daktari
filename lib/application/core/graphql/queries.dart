@@ -217,5 +217,10 @@ query getAvailableFacilityScreeningTools($facilityID: String!){
   getAvailableFacilityScreeningTools(facilityID: $facilityID){
     toolType
   }
+''';
+
+const String verifyPinQuery = r'''
+query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
+  verifyPIN(userID: $userID, flavour: $flavour, pin: $pin)
 }
 ''';

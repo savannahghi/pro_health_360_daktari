@@ -86,3 +86,6 @@ const String getUserRolesFlag = 'get_user-roles_flag';
 // flagged messages
 const String fetchFlaggedMessagesFlag = 'fetch_flagged_messages_flag';
 const String deleteCommunityMessageFlag = 'delete_community_messages_flag';
+
+// resume with pin
+const String resumeWithPinFlag = 'resume_with_pin';
