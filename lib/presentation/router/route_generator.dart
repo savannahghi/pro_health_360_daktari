@@ -91,7 +91,7 @@ class RouteGenerator {
         return MaterialPageRoute<PhoneLoginPage>(
           builder: (_) => PhoneLoginPage(),
         );
-        
+
       case AppRoutes.communityPage:
         return MaterialPageRoute<CommunityListPage>(
           builder: (_) => const CommunityListPage(),
@@ -151,7 +151,7 @@ class RouteGenerator {
 
       case AppRoutes.verifyPhonePage:
         return MaterialPageRoute<VerifyPhonePage>(
-          builder: (_) => const VerifyPhonePage(),
+          builder: (_) => VerifyPhonePage(),
         );
 
       case AppRoutes.profilePage:

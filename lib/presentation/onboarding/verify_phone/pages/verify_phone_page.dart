@@ -12,32 +12,22 @@ import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_card_wi
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
-class VerifyPhonePage extends StatefulWidget {
-  const VerifyPhonePage({Key? key}) : super(key: key);
+class VerifyPhonePage extends StatelessWidget {
+  VerifyPhonePage({Key? key}) : super(key: key);
 
-  @override
-  VerifyPhonePageState createState() => VerifyPhonePageState();
-}
-
-class VerifyPhonePageState extends State<VerifyPhonePage> {
   final TextEditingController otpEditingController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        SendOTPAction(context: context),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VerifyPhoneViewModel>(
       converter: (Store<AppState> store) {
         return VerifyPhoneViewModel.fromStore(store);
+      },
+      onInit: (Store<AppState> store) {
+        StoreProvider.dispatch<AppState>(
+          context,
+          SendOTPAction(context: context),
+        );
       },
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
         final String phone = vm.phoneNumber ?? UNKNOWN;
