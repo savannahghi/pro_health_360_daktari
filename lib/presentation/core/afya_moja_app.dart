@@ -14,7 +14,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.dart';
-import 'package:mycarehubpro/presentation/core/auth_manager.dart';
+import 'package:mycarehubpro/presentation/core/pre_load_app.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class MyCareHubProfessionalApp extends StatelessWidget {
@@ -58,7 +58,7 @@ class MyCareHubProfessionalApp extends StatelessWidget {
                 refreshTokenEndpoint: refreshTokenEndpoint,
                 userID: userID,
               ),
-              child: AuthManager(
+              child: PreLoadApp(
                 appName: appName,
                 appContexts: appSetupData.appContexts,
                 streamClient: streamClient,
