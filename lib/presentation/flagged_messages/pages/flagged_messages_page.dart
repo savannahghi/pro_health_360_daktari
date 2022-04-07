@@ -67,7 +67,7 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
           if (flaggedMessages.isEmpty) {
             return GenericErrorWidget(
               actionKey: helpNoDataWidgetKey,
-              headerIconSvgUrl: emptyChatsSvg,
+              headerIconSvgUrl: noFlaggedMessagesImage,
               recoverCallback: () {
                 StoreProvider.dispatch<AppState>(
                   context,
@@ -82,10 +82,17 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
                   ),
                 );
               },
-              messageTitle: getNoDataTile(availableFlaggedMessagesText),
+              messageTitle: noFlaggedMessagesTitle,
               messageBody: <TextSpan>[
                 TextSpan(
-                  text: noAvailableFlaggedMessagesDescription,
+                  text: messagesDisplayedHereText,
+                  style: normalSize16Text(
+                    AppColors.greyTextColor,
+                  ),
+                ),
+                const TextSpan(text: '\n\n'),
+                TextSpan(
+                  text: canDeleteOrBanText,
                   style: normalSize16Text(
                     AppColors.greyTextColor,
                   ),
