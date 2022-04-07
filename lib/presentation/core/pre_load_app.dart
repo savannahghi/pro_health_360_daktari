@@ -21,42 +21,36 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-class AuthManager extends StatefulWidget {
-  const AuthManager({
+class PreLoadApp extends StatefulWidget {
+  final List<AppContext> appContexts;
+  final String appName;
+  final StreamChatClient streamClient;
+
+  const PreLoadApp({
     required this.appName,
     required this.appContexts,
     required this.streamClient,
   });
 
-  final List<AppContext> appContexts;
-  final String appName;
-  final StreamChatClient streamClient;
-
   @override
-  _AuthManagerState createState() => _AuthManagerState();
+  State<PreLoadApp> createState() => _PreLoadAppState();
 }
 
-class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
+class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
-      StoreProvider.dispatch(
-        context,
-        CheckTokenAction(
-          httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          refreshTokenEndpoint:
-              AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
-        ),
-      );
-    });
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
-
     StoreProvider.dispatch(
       context,
       CheckTokenAction(
@@ -75,19 +69,24 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
         connectivityChecker: connectivityChecker,
       ),
     );
+
+    super.didChangeDependencies();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+
     if (state == AppLifecycleState.resumed) {
       final AppState? appState = StoreProvider.state<AppState>(context);
 
       final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
 
-      final OnboardingPathInfo navConfig = getOnboardingPath(state: appState ?? AppState.initial());
+      final OnboardingPathInfo navConfig =
+          getOnboardingPath(state: appState ?? AppState.initial());
 
-      if (isSignedIn && navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
+      if (isSignedIn &&
+          navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
         Navigator.pushNamedAndRemoveUntil(
           globalAppNavigatorKey.currentContext!,
           AppRoutes.resumeWithPin,
@@ -98,10 +97,23 @@ class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(_) {
+  Widget build(BuildContext context) {
     return StoreConnector<AppState, InitialRouteViewModel>(
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
+      onInit: (Store<AppState> store) {
+        WidgetsBinding.instance?.addObserver(this);
+
+        store.dispatch(
+          CheckTokenAction(
+            httpClient:
+                AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+            refreshTokenEndpoint:
+                AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+          ),
+        );
+      },
+      onDispose: (Store<AppState> store) {},
       builder: (BuildContext context, InitialRouteViewModel vm) {
         String initialRoute = vm.initialRoute ?? AppRoutes.loginPage;
 
