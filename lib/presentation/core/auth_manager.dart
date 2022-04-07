@@ -3,11 +3,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/custom_client.dart';
 import 'package:mycarehubpro/application/core/services/localization.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
@@ -34,7 +36,7 @@ class AuthManager extends StatefulWidget {
   _AuthManagerState createState() => _AuthManagerState();
 }
 
-class _AuthManagerState extends State<AuthManager> {
+class _AuthManagerState extends State<AuthManager> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -73,6 +75,26 @@ class _AuthManagerState extends State<AuthManager> {
         connectivityChecker: connectivityChecker,
       ),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      final AppState? appState = StoreProvider.state<AppState>(context);
+
+      final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+
+      final OnboardingPathInfo navConfig = getOnboardingPath(state: appState ?? AppState.initial());
+
+      if (isSignedIn && navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
+        Navigator.pushNamedAndRemoveUntil(
+          globalAppNavigatorKey.currentContext!,
+          AppRoutes.resumeWithPin,
+          (Route<dynamic> route) => false,
+        );
+      }
+    }
   }
 
   @override

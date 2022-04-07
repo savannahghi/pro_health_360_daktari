@@ -37,6 +37,7 @@ import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_p
 import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
+import 'package:mycarehubpro/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
@@ -525,5 +526,14 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<AssessmentToolsCategoryPage>>());
     expect(route?.builder(context), isA<AssessmentToolsCategoryPage>());
+  });
+   test('Test router returns successful resume pin connector', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.resumeWithPin);
+
+    final MaterialPageRoute<ResumePinConnector>? route =
+        routeGenerator(settings) as MaterialPageRoute<ResumePinConnector>?;
+
+    expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
+    expect(route?.builder(context), isA<ResumePinConnector>());
   });
 }

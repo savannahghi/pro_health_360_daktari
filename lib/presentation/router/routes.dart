@@ -97,4 +97,7 @@ class AppRoutes {
 
   static const String assessmentToolsCategoryPage =
       '/assessmentToolsCategoryPage';
+
+  // resume with pin
+  static const String resumeWithPin = '/resumeWithPin';
 }

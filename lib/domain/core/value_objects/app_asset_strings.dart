@@ -128,3 +128,6 @@ const String callIconSvgPath = 'assets/icons/call_icon.svg';
 const String whatsappIconSvgPath = 'assets/icons/whatsapp_icon.svg';
 
 const String screeningToolsImage = 'assets/images/screening_tools_image.svg';
+
+// resume with pin
+const String securitySvgAsset = 'assets/images/security.svg';
