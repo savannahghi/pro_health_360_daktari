@@ -42,7 +42,7 @@ import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_category_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
@@ -520,12 +520,12 @@ void main() {
       arguments: ScreeningToolsType.VIOLENCE_ASSESSMENT,
     );
 
-    final MaterialPageRoute<AssessmentToolsCategoryPage>? route =
+    final MaterialPageRoute<AssessmentToolResponsesPage>? route =
         routeGenerator(settings)
-            as MaterialPageRoute<AssessmentToolsCategoryPage>?;
+            as MaterialPageRoute<AssessmentToolResponsesPage>?;
 
-    expect(route, isA<MaterialPageRoute<AssessmentToolsCategoryPage>>());
-    expect(route?.builder(context), isA<AssessmentToolsCategoryPage>());
+    expect(route, isA<MaterialPageRoute<AssessmentToolResponsesPage>>());
+    expect(route?.builder(context), isA<AssessmentToolResponsesPage>());
   });
    test('Test router returns successful resume pin connector', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.resumeWithPin);

@@ -390,7 +390,7 @@ final Map<String, dynamic> mockPendingServiceRequestCount = <String, dynamic>{
           <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
           <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
           <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2},
-          <String, dynamic>{'requestType': 'SCREENING_TOOL', 'total': 2},
+          <String, dynamic>{'requestType': 'SCREENING_TOOLS_RED_FLAG', 'total': 2},
         ],
       },
       'staffServiceRequestCount': <String, dynamic>{
@@ -998,6 +998,29 @@ class MockTestGraphQlClient extends IGraphQlClient {
                 <String, dynamic>{'toolType': 'VIOLENCE_ASSESSMENT'},
                 <String, dynamic>{'toolType': 'CONTRACEPTIVE_ASSESSMENT'},
                 <String, dynamic>{'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT'},
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+    }
+    if (queryString.contains(getAssessmentResponsesByToolTypeQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getAssessmentResponsesByToolType': <dynamic>[
+                <String, dynamic>{
+                  'clientName': 'Byron Kimani',
+                  'dateAnswered': '2022-02-18T12:54:53Z',
+                  'clientID': '58074133-2d76-43ac-b233-3f33504a0bd8'
+                },
+                <String, dynamic>{
+                  'clientName': 'Abiud Consumer',
+                  'dateAnswered': '2022-03-24T14:54:28Z',
+                  'clientID': '305db9b5-2ff9-4e4c-9a7a-57660b31df4c'
+                },
               ]
             }
           }),

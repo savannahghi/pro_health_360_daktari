@@ -89,7 +89,7 @@ class _ServiceRequestsPageState extends State<ServiceRequestsPage> {
           );
           final int screeningToolsCount = _getServiceRequestTypeCount(
             clientServiceRequestsCount,
-            ServiceRequestType.SCREENING_TOOL,
+            ServiceRequestType.SCREENING_TOOLS_RED_FLAG,
           );
 
           final int pinResetCount = _getServiceRequestTypeCount(

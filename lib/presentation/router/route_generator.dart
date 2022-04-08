@@ -44,7 +44,7 @@ import 'package:mycarehubpro/presentation/resume_with_pin/resume_pin_connector.d
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_category_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
@@ -311,8 +311,8 @@ class RouteGenerator {
           builder: (_) => const ScreeningToolsListPage(),
         );
       case AppRoutes.assessmentToolsCategoryPage:
-        return MaterialPageRoute<AssessmentToolsCategoryPage>(
-          builder: (_) => AssessmentToolsCategoryPage(
+        return MaterialPageRoute<AssessmentToolResponsesPage>(
+          builder: (_) => AssessmentToolResponsesPage(
             screeningToolsType: args as ScreeningToolsType,
           ),
         );

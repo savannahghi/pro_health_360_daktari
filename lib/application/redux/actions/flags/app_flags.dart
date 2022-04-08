@@ -33,6 +33,7 @@ const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 //Service requests
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
 const String fetchAvailableScreeningToolsFlag = 'fetch_available_screening_tools_flag';
+const String fetchAssessmentResponsesByToolFlag = 'fetch_assessment_responses_by_tool_flag';
 const String fetchServiceRequestsCountFlag =
     'fetch_service_requests_count_flag';
 const String pinResetRequestFlag = 'pin_reset_accept_flag';
