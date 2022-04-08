@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
@@ -20,8 +21,8 @@ class InviteClientAction extends ReduxAction<AppState> {
 
   final IGraphQlClient client;
   final SearchUserResponse clientResponse;
-  final void Function(String name)? onSuccess;
-  final void Function()? onFailure;
+  final VoidCallback? onSuccess;
+  final VoidCallback? onFailure;
 
   @override
   void after() {
@@ -65,7 +66,7 @@ class InviteClientAction extends ReduxAction<AppState> {
           body['data']['inviteUser'] != null &&
           body['data']['inviteUser'] is bool &&
           body['data']['inviteUser'] == true) {
-        onSuccess?.call(clientResponse.user?.userName ?? UNKNOWN);
+        onSuccess?.call();
       } else {
         onFailure?.call();
       }

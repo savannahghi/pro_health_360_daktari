@@ -15,6 +15,9 @@ class SearchUserResponse with _$SearchUserResponse {
     @JsonKey(name: 'CCCNumber')
         String?
             clientCCCNumber, // This is the CCCNumber if the person being searched is a client
+    @JsonKey(name: 'Active')
+        bool?
+            isActive, // This is the CCCNumber if the person being searched is a client
     @JsonKey(name: 'StaffNumber')
         String?
             staffNumber, // this is the staff number if the person being searched is a staff member
@@ -30,6 +33,7 @@ class SearchUserResponse with _$SearchUserResponse {
   factory SearchUserResponse.initial() => SearchUserResponse(
         id: UNKNOWN,
         clientCCCNumber: UNKNOWN,
+        isActive: true,
         staffNumber: UNKNOWN,
         user: UserData.initial(),
         rolesList: RolesList.initial(),

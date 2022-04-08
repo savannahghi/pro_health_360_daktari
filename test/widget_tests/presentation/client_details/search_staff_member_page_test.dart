@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';

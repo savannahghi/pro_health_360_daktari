@@ -4,7 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/redux/actions/search_users/fetch_staff_roles_action.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 
