@@ -31,7 +31,7 @@ enum ServiceRequestType {
   PIN_RESET,
   PROFILE_UPDATE,
   STAFF_PIN_RESET,
-  SCREENING_TOOL,
+  SCREENING_TOOLS_RED_FLAG,
   UNKNOWN
 }
 
@@ -90,4 +90,10 @@ enum ScreeningToolsType {
   CONTRACEPTIVE_ASSESSMENT,
   TB_ASSESSMENT,
   ALCOHOL_SUBSTANCE_ASSESSMENT,
+}
+
+extension ScreeningToolsTypeExtension on ScreeningToolsType {
+  String get name {
+    return describeEnum(this);
+  }
 }

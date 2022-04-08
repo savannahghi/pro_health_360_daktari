@@ -657,6 +657,7 @@ String getScreeningToolTitle(ScreeningToolsType toolType) {
 }
 
 String fetchingScreeningToolsString = 'fetching screening tools';
+String fetchingAssessmentResponsesString = 'fetching this assessment tool responses';
 
 const String assessmentCardTitle = 'Assessment card';
 String hereIsWhatString = 'Here is what ';

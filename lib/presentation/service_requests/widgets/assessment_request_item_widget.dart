@@ -1,7 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/screening_questions_list.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -12,7 +13,7 @@ class AssessmentRequestItemWidget extends StatelessWidget {
     required this.screeningQuestionsList,
   }) : super(key: key);
 
-  final ScreeningQuestionsList screeningQuestionsList;
+  final ToolAssessmentResponse screeningQuestionsList;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +38,13 @@ class AssessmentRequestItemWidget extends StatelessWidget {
               style: veryBoldSize16Text(AppColors.greyTextColor),
             ),
             verySmallVerticalSizedBox,
-            Text(
-              screeningQuestionsList.date ?? '',
-              style: normalSize13Text(
+            humanizeDate(
+                          dateTextStyle: normalSize13Text(
                 AppColors.greyTextColor.withOpacity(0.5),
               ),
-            ),
+                          loadedDate:  screeningQuestionsList.date ?? '',
+                        ),
+            
             size15VerticalSizedBox,
             Text(
               assessmentRequestItemDescriptionString,

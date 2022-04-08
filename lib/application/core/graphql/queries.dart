@@ -224,3 +224,19 @@ query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
   verifyPIN(userID: $userID, flavour: $flavour, pin: $pin)
 }
 ''';
+
+const String getAssessmentResponsesByToolTypeQuery = r'''
+query getAssessmentResponsesByToolType(
+  $facilityID: String!
+  $toolType: String!
+) {
+  getAssessmentResponsesByToolType(
+    facilityID: $facilityID
+    toolType: $toolType
+  ) {
+    clientName
+    dateAnswered
+    clientID
+  }
+}
+''';
