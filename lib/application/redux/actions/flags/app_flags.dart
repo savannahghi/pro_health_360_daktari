@@ -90,3 +90,6 @@ const String deleteCommunityMessageFlag = 'delete_community_messages_flag';
 
 // resume with pin
 const String resumeWithPinFlag = 'resume_with_pin';
+
+// Reactivate client
+const String reactivateClientFlag = 'reactivate_client_flag';

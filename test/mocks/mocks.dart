@@ -390,7 +390,10 @@ final Map<String, dynamic> mockPendingServiceRequestCount = <String, dynamic>{
           <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
           <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
           <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2},
-          <String, dynamic>{'requestType': 'SCREENING_TOOLS_RED_FLAG', 'total': 2},
+          <String, dynamic>{
+            'requestType': 'SCREENING_TOOLS_RED_FLAG',
+            'total': 2
+          },
         ],
       },
       'staffServiceRequestCount': <String, dynamic>{
@@ -554,6 +557,14 @@ class MockTestGraphQlClient extends IGraphQlClient {
               }
             },
           ),
+          201,
+        ),
+      );
+    }
+    if (endpoint.contains('opt-in')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'status': true}),
           201,
         ),
       );
@@ -1253,6 +1264,7 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
     <String, dynamic>{
       'ID': 'some-id',
       'CCCNumber': '1234',
+      'Active': true,
       'User': <String, dynamic>{
         'ID': 'some-id',
         'Username': 'Username',
@@ -1323,6 +1335,7 @@ final Map<String, dynamic> mockSearchUserResponseState = <String, dynamic>{
     'ID': UNKNOWN,
     'CCCNumber': UNKNOWN,
     'StaffNumber': UNKNOWN,
+    'Active': true,
     'rolesList': <String, dynamic>{'getUserRoles': <dynamic>[]},
     'User': <String, dynamic>{
       'ID': UNKNOWN,

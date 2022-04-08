@@ -15,7 +15,7 @@ class UpdateSearchUserResponseStateAction extends ReduxAction<AppState> {
   final bool? errorSearchingUser;
   final bool? timeoutSearchingUser;
   final bool? noUserFound;
-  final List<SearchUserResponse>? searchUserResponses;
+  final List<SearchUserResponse?>? searchUserResponses;
   final SearchUserResponse? selectedSearchUserResponse;
 
   @override

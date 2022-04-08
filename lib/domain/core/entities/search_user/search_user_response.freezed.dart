@@ -25,12 +25,14 @@ class _$SearchUserResponseTearOff {
   _SearchUserResponse call(
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+      @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
       @JsonKey(name: 'rolesList') RolesList? rolesList}) {
     return _SearchUserResponse(
       id: id,
       clientCCCNumber: clientCCCNumber,
+      isActive: isActive,
       staffNumber: staffNumber,
       user: user,
       rolesList: rolesList,
@@ -51,6 +53,9 @@ mixin _$SearchUserResponse {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'CCCNumber')
   String? get clientCCCNumber =>
+      throw _privateConstructorUsedError; // This is the CCCNumber if the person being searched is a client
+  @JsonKey(name: 'Active')
+  bool? get isActive =>
       throw _privateConstructorUsedError; // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber =>
@@ -74,6 +79,7 @@ abstract class $SearchUserResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+      @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
       @JsonKey(name: 'rolesList') RolesList? rolesList});
@@ -95,6 +101,7 @@ class _$SearchUserResponseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? clientCCCNumber = freezed,
+    Object? isActive = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
     Object? rolesList = freezed,
@@ -108,6 +115,10 @@ class _$SearchUserResponseCopyWithImpl<$Res>
           ? _value.clientCCCNumber
           : clientCCCNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      isActive: isActive == freezed
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
       staffNumber: staffNumber == freezed
           ? _value.staffNumber
           : staffNumber // ignore: cast_nullable_to_non_nullable
@@ -156,6 +167,7 @@ abstract class _$SearchUserResponseCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'ID') String? id,
       @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+      @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
       @JsonKey(name: 'rolesList') RolesList? rolesList});
@@ -181,6 +193,7 @@ class __$SearchUserResponseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? clientCCCNumber = freezed,
+    Object? isActive = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
     Object? rolesList = freezed,
@@ -194,6 +207,10 @@ class __$SearchUserResponseCopyWithImpl<$Res>
           ? _value.clientCCCNumber
           : clientCCCNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      isActive: isActive == freezed
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
       staffNumber: staffNumber == freezed
           ? _value.staffNumber
           : staffNumber // ignore: cast_nullable_to_non_nullable
@@ -216,6 +233,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   _$_SearchUserResponse(
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'CCCNumber') this.clientCCCNumber,
+      @JsonKey(name: 'Active') this.isActive,
       @JsonKey(name: 'StaffNumber') this.staffNumber,
       @JsonKey(name: 'User') this.user,
       @JsonKey(name: 'rolesList') this.rolesList});
@@ -230,6 +248,9 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @JsonKey(name: 'CCCNumber')
   final String? clientCCCNumber;
   @override // This is the CCCNumber if the person being searched is a client
+  @JsonKey(name: 'Active')
+  final bool? isActive;
+  @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   final String? staffNumber;
   @override // this is the staff number if the person being searched is a staff member
@@ -241,7 +262,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
 
   @override
   String toString() {
-    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, staffNumber: $staffNumber, user: $user, rolesList: $rolesList)';
+    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, isActive: $isActive, staffNumber: $staffNumber, user: $user, rolesList: $rolesList)';
   }
 
   @override
@@ -252,6 +273,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.clientCCCNumber, clientCCCNumber) &&
+            const DeepCollectionEquality().equals(other.isActive, isActive) &&
             const DeepCollectionEquality()
                 .equals(other.staffNumber, staffNumber) &&
             const DeepCollectionEquality().equals(other.user, user) &&
@@ -263,6 +285,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(clientCCCNumber),
+      const DeepCollectionEquality().hash(isActive),
       const DeepCollectionEquality().hash(staffNumber),
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(rolesList));
@@ -282,6 +305,7 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   factory _SearchUserResponse(
           {@JsonKey(name: 'ID') String? id,
           @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
+          @JsonKey(name: 'Active') bool? isActive,
           @JsonKey(name: 'StaffNumber') String? staffNumber,
           @JsonKey(name: 'User') UserData? user,
           @JsonKey(name: 'rolesList') RolesList? rolesList}) =
@@ -296,6 +320,9 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @override
   @JsonKey(name: 'CCCNumber')
   String? get clientCCCNumber;
+  @override // This is the CCCNumber if the person being searched is a client
+  @JsonKey(name: 'Active')
+  bool? get isActive;
   @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber;

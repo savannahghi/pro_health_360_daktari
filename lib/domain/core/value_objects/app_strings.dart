@@ -693,3 +693,14 @@ const String resumeWithPinText =
     'Let’s get you authenticated to access your account. Please enter your '
     'PIN to continue';
 const String wrongPINText = 'Wrong PIN supplied. Please try again';
+
+// Deactivated user
+const String errorWhileReactivatingString =
+    'An error ocurred while reactivating';
+const String reactivatedSuccessfullyString =
+    'has been reactivated successfully';
+const String reactivateUserString = 'Reactivate User';
+const String deactivatedUserPageDescriptionString =
+    'is deactivated on myCareHub because they chose to opt-out of the platform.' +
+        '\n\nIf you wish to reactivate them, tap the button to send them an invite with a new PIN';
+const String deactivatedUserString = 'Deactivated user';

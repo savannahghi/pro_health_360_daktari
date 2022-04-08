@@ -2,7 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state_action.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';

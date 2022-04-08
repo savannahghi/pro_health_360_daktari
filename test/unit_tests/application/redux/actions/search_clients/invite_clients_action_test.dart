@@ -42,7 +42,7 @@ void main() {
         InviteClientAction(
           clientResponse: SearchUserResponse.initial(),
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           onFailure: () {},
         ),
       );
@@ -77,7 +77,7 @@ void main() {
         InviteClientAction(
           clientResponse: SearchUserResponse.initial(),
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           onFailure: () {},
         ),
       );

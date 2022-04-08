@@ -147,7 +147,8 @@ const String searchClientQuery = r'''
 query searchClientsByCCCNumber($CCCNumber: String!){
   searchClientsByCCCNumber(CCCNumber: $CCCNumber){
     ID
-    CCCNumber 
+    CCCNumber
+    Active 
     User{
       ID
       Username

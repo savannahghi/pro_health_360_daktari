@@ -42,6 +42,8 @@ const String kTestGetRecordedSecurityQuestionsEndpoint =
     'https://mycarehub-staging.savannahghi.org/get_user_responded_security_questions';
 const String kTestVerifySecurityQuestionsEndpoint =
     'https://mycarehub-staging.savannahghi.org/verify_security_questions';
+const String kTestOptInEndpoint =
+    'https://mycarehub-staging.savannahghi.org/opt-in';
 
 /*DEMO ENDPOINTS  */
 const String kDemoGraphqlEndpoint =
@@ -82,6 +84,8 @@ const String kDemoGetRecordedSecurityQuestionsEndpoint =
     'https://mycarehub-testing.savannahghi.org/get_user_responded_security_questions';
 const String kDemoVerifySecurityQuestionsEndpoint =
     'https://mycarehub-testing.savannahghi.org/verify_security_questions';
+const String kDemoOptInEndpoint =
+    'https://mycarehub-testing.savannahghi.org/opt-in';
 
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint =
@@ -122,3 +126,5 @@ const String kProdGetRecordedSecurityQuestionsEndpoint =
     'https://mycarehub-prod.savannahghi.org/get_user_responded_security_questions';
 const String kProdVerifySecurityQuestionsEndpoint =
     'https://mycarehub-prod.savannahghi.org/verify_security_questions';
+const String kProdOptInEndpoint =
+    'https://mycarehub-prod.savannahghi.org/opt-in';
