@@ -862,6 +862,15 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(recentlySharedHealthDiaryQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': mockDiaryEntry}),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(searchStaffMemberQuery)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1576,4 +1585,15 @@ final Map<String, dynamic> mockPendingInvites = <String, dynamic>{
       'createdBy': null
     }
   ]
+};
+
+final Map<String, dynamic> mockDiaryEntry = <String, dynamic>{
+  'getSharedHealthDiaryEntry': <String, dynamic>{
+    'id': 'some-id',
+    'mood': 'HAPPY',
+    'note': 'I am healthy',
+    'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
+    'createdAt': '2021-11-30T16:17:57Z',
+    'active': true,
+  }
 };

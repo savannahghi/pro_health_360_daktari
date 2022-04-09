@@ -30,7 +30,8 @@ class _$StaffStateTearOff {
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState}) {
+      CommunitiesState? communitiesState,
+      HealthDiaryEntry? clientSharedDiaryEntries}) {
     return _StaffState(
       id: id,
       userId: userId,
@@ -40,6 +41,7 @@ class _$StaffStateTearOff {
       defaultFacility: defaultFacility,
       user: user,
       communitiesState: communitiesState,
+      clientSharedDiaryEntries: clientSharedDiaryEntries,
     );
   }
 
@@ -67,7 +69,10 @@ mixin _$StaffState {
   String? get defaultFacility => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError; // invited communities
-  CommunitiesState? get communitiesState => throw _privateConstructorUsedError;
+  CommunitiesState? get communitiesState =>
+      throw _privateConstructorUsedError; // recently shared health diary entry
+  HealthDiaryEntry? get clientSharedDiaryEntries =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -88,10 +93,12 @@ abstract class $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState});
+      CommunitiesState? communitiesState,
+      HealthDiaryEntry? clientSharedDiaryEntries});
 
   $UserCopyWith<$Res>? get user;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
+  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries;
 }
 
 /// @nodoc
@@ -112,6 +119,7 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
     Object? defaultFacility = freezed,
     Object? user = freezed,
     Object? communitiesState = freezed,
+    Object? clientSharedDiaryEntries = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -146,6 +154,10 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
           ? _value.communitiesState
           : communitiesState // ignore: cast_nullable_to_non_nullable
               as CommunitiesState?,
+      clientSharedDiaryEntries: clientSharedDiaryEntries == freezed
+          ? _value.clientSharedDiaryEntries
+          : clientSharedDiaryEntries // ignore: cast_nullable_to_non_nullable
+              as HealthDiaryEntry?,
     ));
   }
 
@@ -170,6 +182,18 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
       return _then(_value.copyWith(communitiesState: value));
     });
   }
+
+  @override
+  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries {
+    if (_value.clientSharedDiaryEntries == null) {
+      return null;
+    }
+
+    return $HealthDiaryEntryCopyWith<$Res>(_value.clientSharedDiaryEntries!,
+        (value) {
+      return _then(_value.copyWith(clientSharedDiaryEntries: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -186,12 +210,15 @@ abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState});
+      CommunitiesState? communitiesState,
+      HealthDiaryEntry? clientSharedDiaryEntries});
 
   @override
   $UserCopyWith<$Res>? get user;
   @override
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
+  @override
+  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries;
 }
 
 /// @nodoc
@@ -214,6 +241,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
     Object? defaultFacility = freezed,
     Object? user = freezed,
     Object? communitiesState = freezed,
+    Object? clientSharedDiaryEntries = freezed,
   }) {
     return _then(_StaffState(
       id: id == freezed
@@ -248,6 +276,10 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
           ? _value.communitiesState
           : communitiesState // ignore: cast_nullable_to_non_nullable
               as CommunitiesState?,
+      clientSharedDiaryEntries: clientSharedDiaryEntries == freezed
+          ? _value.clientSharedDiaryEntries
+          : clientSharedDiaryEntries // ignore: cast_nullable_to_non_nullable
+              as HealthDiaryEntry?,
     ));
   }
 }
@@ -263,7 +295,8 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'facilities') this.facilities,
       @JsonKey(name: 'default_facility') this.defaultFacility,
       @JsonKey(name: 'user') this.user,
-      this.communitiesState});
+      this.communitiesState,
+      this.clientSharedDiaryEntries});
 
   factory _$_StaffState.fromJson(Map<String, dynamic> json) =>
       _$$_StaffStateFromJson(json);
@@ -291,10 +324,12 @@ class _$_StaffState implements _StaffState {
   final User? user;
   @override // invited communities
   final CommunitiesState? communitiesState;
+  @override // recently shared health diary entry
+  final HealthDiaryEntry? clientSharedDiaryEntries;
 
   @override
   String toString() {
-    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, user: $user, communitiesState: $communitiesState)';
+    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, user: $user, communitiesState: $communitiesState, clientSharedDiaryEntries: $clientSharedDiaryEntries)';
   }
 
   @override
@@ -313,7 +348,9 @@ class _$_StaffState implements _StaffState {
                 .equals(other.defaultFacility, defaultFacility) &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
-                .equals(other.communitiesState, communitiesState));
+                .equals(other.communitiesState, communitiesState) &&
+            const DeepCollectionEquality().equals(
+                other.clientSharedDiaryEntries, clientSharedDiaryEntries));
   }
 
   @override
@@ -326,7 +363,8 @@ class _$_StaffState implements _StaffState {
       const DeepCollectionEquality().hash(facilities),
       const DeepCollectionEquality().hash(defaultFacility),
       const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(communitiesState));
+      const DeepCollectionEquality().hash(communitiesState),
+      const DeepCollectionEquality().hash(clientSharedDiaryEntries));
 
   @JsonKey(ignore: true)
   @override
@@ -348,7 +386,8 @@ abstract class _StaffState implements StaffState {
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState}) = _$_StaffState;
+      CommunitiesState? communitiesState,
+      HealthDiaryEntry? clientSharedDiaryEntries}) = _$_StaffState;
 
   factory _StaffState.fromJson(Map<String, dynamic> json) =
       _$_StaffState.fromJson;
@@ -376,6 +415,8 @@ abstract class _StaffState implements StaffState {
   User? get user;
   @override // invited communities
   CommunitiesState? get communitiesState;
+  @override // recently shared health diary entry
+  HealthDiaryEntry? get clientSharedDiaryEntries;
   @override
   @JsonKey(ignore: true)
   _$StaffStateCopyWith<_StaffState> get copyWith =>

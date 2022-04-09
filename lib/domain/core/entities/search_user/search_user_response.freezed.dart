@@ -56,7 +56,7 @@ mixin _$SearchUserResponse {
       throw _privateConstructorUsedError; // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'Active')
   bool? get isActive =>
-      throw _privateConstructorUsedError; // This is the CCCNumber if the person being searched is a client
+      throw _privateConstructorUsedError; // This is a boolean for checking if the user was deactivated from the platform
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber =>
       throw _privateConstructorUsedError; // this is the staff number if the person being searched is a staff member
@@ -250,7 +250,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'Active')
   final bool? isActive;
-  @override // This is the CCCNumber if the person being searched is a client
+  @override // This is a boolean for checking if the user was deactivated from the platform
   @JsonKey(name: 'StaffNumber')
   final String? staffNumber;
   @override // this is the staff number if the person being searched is a staff member
@@ -323,7 +323,7 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'Active')
   bool? get isActive;
-  @override // This is the CCCNumber if the person being searched is a client
+  @override // This is a boolean for checking if the user was deactivated from the platform
   @JsonKey(name: 'StaffNumber')
   String? get staffNumber;
   @override // this is the staff number if the person being searched is a staff member

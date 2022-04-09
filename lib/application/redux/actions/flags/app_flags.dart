@@ -57,6 +57,7 @@ const String unBanUserFlag = 'unban_user_flag';
 
 // search client
 const String searchClientFlag = 'search_client_flag';
+const String sharedHealthDiaryFlag = 'shared_health_diary_flag';
 
 // search staff member
 const String searchStaffMemberFlag = 'search_staff_member_flag';
