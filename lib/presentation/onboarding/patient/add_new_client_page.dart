@@ -406,7 +406,7 @@ class _AddNewClientPageState extends State<AddNewClientPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         const Text(
-                          appAccessText,
+                          myCareHubInviteText,
                           style: TextStyle(
                             fontSize: 14,
                             color: AppColors.greyTextColor,

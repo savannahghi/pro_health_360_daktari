@@ -193,12 +193,12 @@ const String birthDateLabel = 'Birth Date *';
 const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
+const String proInviteText = 'Invite to myCareHub Professional';
 const String registerBtnText = 'Register';
 const String addNewClientTitleText = 'Add new client';
 const String enrollmentDateLabel = 'Enrollment Date *';
 const String clientTypeLabel = 'Client Type *';
 const String registerClientSuccess = 'Successfully registered client';
-const String appAccessText = 'Invite to myAfyaHub';
 const String cccExists =
     'a client with this identifier type and value already exists';
 const String clientCccExists = 'A client with that CCC number already exists';
@@ -657,7 +657,8 @@ String getScreeningToolTitle(ScreeningToolsType toolType) {
 }
 
 String fetchingScreeningToolsString = 'fetching screening tools';
-String fetchingAssessmentResponsesString = 'fetching this assessment tool responses';
+String fetchingAssessmentResponsesString =
+    'fetching this assessment tool responses';
 
 const String assessmentCardTitle = 'Assessment card';
 String hereIsWhatString = 'Here is what ';
