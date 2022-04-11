@@ -51,7 +51,7 @@ void main() {
       expect(find.byType(StaffPinResetRequestsPage), findsOneWidget);
 
       final Finder acceptFinder =
-          find.text('Accept');
+          find.text('Approve');
 
       expect(acceptFinder, findsNWidgets(2));
 

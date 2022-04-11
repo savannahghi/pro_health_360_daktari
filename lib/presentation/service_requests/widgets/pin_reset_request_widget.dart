@@ -135,7 +135,7 @@ class PinResetRequestWidget extends StatelessWidget {
                   child: isAccepting
                       ? const PlatformLoader()
                       : const Text(
-                          acceptText,
+                          approveText,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

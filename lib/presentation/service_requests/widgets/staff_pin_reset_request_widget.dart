@@ -85,7 +85,7 @@ class StaffPinResetRequestWidget extends StatelessWidget {
             child: isAccepting
                 ? const PlatformLoader()
                 : MyAfyaHubPrimaryButton(
-                    text: acceptText,
+                    text: approveText,
                     onPressed: onAccept,
                   ),
           ),

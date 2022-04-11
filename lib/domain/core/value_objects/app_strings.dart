@@ -470,7 +470,7 @@ const String removeFromGroupText = 'Remove user from group';
 const String pinResetRequestsLeading =
     'These are clients who are having trouble signing in and have'
     ' requested your assistance';
-const String acceptText = 'Accept';
+const String approveText = 'Approve';
 const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
 const String pinApprovedSuccessText = 'Pin Approved Successfully';
