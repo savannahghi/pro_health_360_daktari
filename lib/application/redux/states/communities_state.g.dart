@@ -13,9 +13,8 @@ _$_CommunitiesState _$$_CommunitiesStateFromJson(Map<String, dynamic> json) =>
               e == null ? null : Community.fromJson(e as Map<String, dynamic>))
           .toList(),
       flaggedMessages: (json['flaggedMessages'] as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : FlaggedMessage.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : Message.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -13,7 +13,7 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/community/group_info/widgets/moderation_actions_view_model.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/widgets/moderation_actions_view_model.dart';
 import 'package:shared_themes/spaces.dart';
 
 class MemberListActionsDialog extends StatelessWidget {

@@ -9,9 +9,9 @@ import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_communities_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_message.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class DeleteCommunityMessageAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
@@ -70,16 +70,12 @@ class DeleteCommunityMessageAction extends ReduxAction<AppState> {
     }
 
     if (responseMap['data']['deleteCommunityMessage'] == true) {
-      final List<FlaggedMessage?>? messages =
+      final List<Message?>? messages =
           state.staffState?.communitiesState?.flaggedMessages;
-      messages?.removeWhere(
-        (FlaggedMessage? item) => item?.message?.messageID == messageID,
-      );
+      messages?.removeWhere((Message? message) => message?.id == messageID);
 
       dispatch(
-        UpdateCommunitiesStateAction(
-          flaggedMessages: messages,
-        ),
+        UpdateCommunitiesStateAction(flaggedMessages: messages),
       );
       onSuccess?.call();
     }

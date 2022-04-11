@@ -10,7 +10,7 @@ part 'member.g.dart';
 @freezed
 class Member with _$Member {
   factory Member({
-    @JsonKey(name: 'ID') String? id,
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'userID') String? userID,
     @JsonKey(name: 'role') String? role,
     @JsonKey(name: 'username') String? username,

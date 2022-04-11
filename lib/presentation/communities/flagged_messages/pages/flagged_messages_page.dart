@@ -4,27 +4,19 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/flagged_messages/delete_community_message_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flagged_messages/fetch_flagged_messages_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_models/flagged_messages/flagged_messages_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_message.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/communities/flagged_messages/widgets/moderation_actions_dialog.dart';
+import 'package:mycarehubpro/presentation/communities/view_models/flagged_messages_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/flagged_messages/widgets/flagged_messages_list_item.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class FlaggedMessagesPage extends StatefulWidget {
-  const FlaggedMessagesPage({
-    required this.communityName,
-    required this.communityId,
-    Key? key,
-  }) : super(key: key);
-
-  final String communityName;
-  final String communityId;
+  const FlaggedMessagesPage();
 
   @override
   State<FlaggedMessagesPage> createState() => _FlaggedMessagesPageState();
@@ -34,17 +26,28 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    final Channel channel = StreamChannel.of(context).channel;
+
     StoreProvider.dispatch(
       context,
       FetchFlaggedMessagesAction(
         client: AppWrapperBase.of(context)!.graphQLClient,
-        communityCID: widget.communityId,
+        communityCID: channel.id,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final Channel channel = StreamChannel.of(context).channel;
+
+    String channelName = 'No title';
+
+    if (channel.extraData.containsKey('Name')) {
+      channelName = channel.extraData['Name']! as String;
+    }
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: flaggedMessagesString,
@@ -61,8 +64,8 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
             );
           }
 
-          final List<FlaggedMessage?> flaggedMessages =
-              vm.flaggedMessages ?? <FlaggedMessage>[];
+          final List<Message?> flaggedMessages =
+              vm.flaggedMessages ?? <Message>[];
 
           if (flaggedMessages.isEmpty) {
             return GenericErrorWidget(
@@ -109,7 +112,7 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      widget.communityName,
+                      channelName,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -127,61 +130,28 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
                     physics: const BouncingScrollPhysics(),
                     itemCount: flaggedMessages.length,
                     itemBuilder: (_, int index) {
-                      final String name =
-                          flaggedMessages[index]?.message?.user?.name ??
-                              UNKNOWN;
-                      final String createdAt =
-                          flaggedMessages[index]?.message?.createdAt ?? UNKNOWN;
-
-                      final String textMessage =
-                          flaggedMessages[index]?.message?.text ?? UNKNOWN;
-                      final String messageID =
-                          flaggedMessages[index]?.message?.messageID ?? UNKNOWN;
-
-                      final String memberID =
-                          flaggedMessages[index]?.message?.user?.userID ??
-                              UNKNOWN;
-
                       return Padding(
                         padding: const EdgeInsets.only(top: 8.0),
-                        child: FlaggedMessagesListItem(
-                          name: name.isEmpty ? UNKNOWN : name,
-                          createdAt: createdAt,
-                          textMessage: textMessage,
-                          memberID: memberID,
-                          communityId: widget.communityId,
-                          communityName: widget.communityName,
-                          deleteMessageKey: Key('delete_message_${index}_key'),
-                          banUserKey: Key('ban_user_${index}_key'),
-                          vm: vm,
-                          isDeletingMessage: vm.wait.isWaitingFor(
-                            '${deleteCommunityMessageFlag}_$messageID',
-                          ),
-                          onDeleteMessage: () {
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              DeleteCommunityMessageAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                messageID: messageID,
-                                onFailure: (String message) {
-                                  showTextSnackbar(
-                                    ScaffoldMessenger.of(context),
-                                    content: message,
-                                  );
-                                },
-                                onSuccess: () {
-                                  ScaffoldMessenger.of(context)
-                                    ..hideCurrentSnackBar()
-                                    ..showSnackBar(
-                                      snackbar(
-                                        content: messageDeletedText,
-                                      ),
-                                    );
-                                },
-                              ),
+                        child: MessageWidget(
+                          onMessageActions:
+                              (BuildContext context, Message message) {},
+                          onMessageTap: (Message message) {
+                            String channelName = '';
+                            if (channel.extraData.containsKey('Name')) {
+                              channelName =
+                                  channel.extraData['Name']! as String;
+                            }
+
+                            _showActionsDialog(
+                              messageId: message.id,
+                              memberId: message.user!.id,
+                              communityId: channel.id!,
+                              communityName: channelName,
                             );
                           },
+                          message: flaggedMessages[index]!,
+                          messageTheme:
+                              StreamChatTheme.of(context).ownMessageTheme,
                         ),
                       );
                     },
@@ -192,6 +162,25 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
           );
         },
       ),
+    );
+  }
+
+  void _showActionsDialog({
+    required String messageId,
+    required String communityName,
+    required String memberId,
+    required String communityId,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ModerationActionsDialog(
+          messageId: messageId,
+          communityName: communityName,
+          memberId: memberId,
+          communityId: communityId,
+        );
+      },
     );
   }
 }

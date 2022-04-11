@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/communities/thread_page.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -27,16 +27,7 @@ class ChannelPage extends StatelessWidget {
       appBar: ChannelHeader(
         title: GestureDetector(
           onTap: () {
-            final Channel channelDetails = StreamChannel.of(context).channel;
-
-            Navigator.of(context).pushNamed(
-              AppRoutes.groupInfoPage,
-              arguments: <String, dynamic>{
-                'channelId': channelDetails.id,
-                'memberCount': channelDetails.memberCount,
-                'channelName': channelDetails.extraData['Name'],
-              },
-            );
+            _navigateToGroupInfoPage(context, channel, channelName);
           },
           child: Text(
             channelName,
@@ -46,15 +37,9 @@ class ChannelPage extends StatelessWidget {
         showConnectionStateTile: true,
         actions: <Widget>[
           GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(
-              AppRoutes.groupInfoPage,
-              arguments: <String, dynamic>{
-                'channelId': StreamChannel.of(context).channel.id,
-                'memberCount': StreamChannel.of(context).channel.memberCount,
-                'channelName':
-                    StreamChannel.of(context).channel.extraData['Name'],
-              },
-            ),
+            onTap: () {
+              _navigateToGroupInfoPage(context, channel, channelName);
+            },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ClipOval(
@@ -89,6 +74,21 @@ class ChannelPage extends StatelessWidget {
       ),
     );
   }
-}
 
-enum ChannelOptions { invite_client }
+  Future<dynamic> _navigateToGroupInfoPage(
+    BuildContext context,
+    Channel channel,
+    String channelName,
+  ) {
+    return Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (_) {
+          return StreamChannel(
+            channel: channel,
+            child: GroupInfoPage(channelName: channelName),
+          );
+        },
+      ),
+    );
+  }
+}

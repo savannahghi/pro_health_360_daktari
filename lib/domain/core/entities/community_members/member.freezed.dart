@@ -23,7 +23,7 @@ class _$MemberTearOff {
   const _$MemberTearOff();
 
   _Member call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
@@ -55,7 +55,7 @@ const $Member = _$MemberTearOff();
 
 /// @nodoc
 mixin _$Member {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'userID')
   String? get userID => throw _privateConstructorUsedError;
@@ -78,7 +78,7 @@ abstract class $MemberCopyWith<$Res> {
   factory $MemberCopyWith(Member value, $Res Function(Member) then) =
       _$MemberCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
@@ -157,7 +157,7 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       __$MemberCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
@@ -225,7 +225,7 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Member implements _Member {
   _$_Member(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           this.id,
       @JsonKey(name: 'userID')
           this.userID,
@@ -242,7 +242,7 @@ class _$_Member implements _Member {
       _$$_MemberFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? id;
   @override
   @JsonKey(name: 'userID')
@@ -301,7 +301,7 @@ class _$_Member implements _Member {
 
 abstract class _Member implements Member {
   factory _Member(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'userID')
           String? userID,
@@ -317,7 +317,7 @@ abstract class _Member implements Member {
   factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id;
   @override
   @JsonKey(name: 'userID')

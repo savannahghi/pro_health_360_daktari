@@ -12,7 +12,7 @@ _$_FlaggedMessagesResponse _$$_FlaggedMessagesResponseFromJson(
       messages: (json['listFlaggedMessages'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
-              : FlaggedMessage.fromJson(e as Map<String, dynamic>))
+              : MessageObject.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

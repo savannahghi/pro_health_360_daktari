@@ -23,8 +23,7 @@ class _$CommunitiesStateTearOff {
   const _$CommunitiesStateTearOff();
 
   _CommunitiesState call(
-      {List<Community?>? invitedCommunities,
-      List<FlaggedMessage?>? flaggedMessages}) {
+      {List<Community?>? invitedCommunities, List<Message?>? flaggedMessages}) {
     return _CommunitiesState(
       invitedCommunities: invitedCommunities,
       flaggedMessages: flaggedMessages,
@@ -44,8 +43,7 @@ mixin _$CommunitiesState {
 // invited communities
   List<Community?>? get invitedCommunities =>
       throw _privateConstructorUsedError; // flagged messages
-  List<FlaggedMessage?>? get flaggedMessages =>
-      throw _privateConstructorUsedError;
+  List<Message?>? get flaggedMessages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,8 +57,7 @@ abstract class $CommunitiesStateCopyWith<$Res> {
           CommunitiesState value, $Res Function(CommunitiesState) then) =
       _$CommunitiesStateCopyWithImpl<$Res>;
   $Res call(
-      {List<Community?>? invitedCommunities,
-      List<FlaggedMessage?>? flaggedMessages});
+      {List<Community?>? invitedCommunities, List<Message?>? flaggedMessages});
 }
 
 /// @nodoc
@@ -85,7 +82,7 @@ class _$CommunitiesStateCopyWithImpl<$Res>
       flaggedMessages: flaggedMessages == freezed
           ? _value.flaggedMessages
           : flaggedMessages // ignore: cast_nullable_to_non_nullable
-              as List<FlaggedMessage?>?,
+              as List<Message?>?,
     ));
   }
 }
@@ -98,8 +95,7 @@ abstract class _$CommunitiesStateCopyWith<$Res>
       __$CommunitiesStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<Community?>? invitedCommunities,
-      List<FlaggedMessage?>? flaggedMessages});
+      {List<Community?>? invitedCommunities, List<Message?>? flaggedMessages});
 }
 
 /// @nodoc
@@ -126,7 +122,7 @@ class __$CommunitiesStateCopyWithImpl<$Res>
       flaggedMessages: flaggedMessages == freezed
           ? _value.flaggedMessages
           : flaggedMessages // ignore: cast_nullable_to_non_nullable
-              as List<FlaggedMessage?>?,
+              as List<Message?>?,
     ));
   }
 }
@@ -142,7 +138,7 @@ class _$_CommunitiesState implements _CommunitiesState {
   @override // invited communities
   final List<Community?>? invitedCommunities;
   @override // flagged messages
-  final List<FlaggedMessage?>? flaggedMessages;
+  final List<Message?>? flaggedMessages;
 
   @override
   String toString() {
@@ -180,7 +176,7 @@ class _$_CommunitiesState implements _CommunitiesState {
 abstract class _CommunitiesState implements CommunitiesState {
   factory _CommunitiesState(
       {List<Community?>? invitedCommunities,
-      List<FlaggedMessage?>? flaggedMessages}) = _$_CommunitiesState;
+      List<Message?>? flaggedMessages}) = _$_CommunitiesState;
 
   factory _CommunitiesState.fromJson(Map<String, dynamic> json) =
       _$_CommunitiesState.fromJson;
@@ -188,7 +184,7 @@ abstract class _CommunitiesState implements CommunitiesState {
   @override // invited communities
   List<Community?>? get invitedCommunities;
   @override // flagged messages
-  List<FlaggedMessage?>? get flaggedMessages;
+  List<Message?>? get flaggedMessages;
   @override
   @JsonKey(ignore: true)
   _$CommunitiesStateCopyWith<_CommunitiesState> get copyWith =>

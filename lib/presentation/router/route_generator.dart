@@ -12,14 +12,12 @@ import 'package:mycarehubpro/presentation/client_details/pages/search_staff_memb
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
-import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:mycarehubpro/presentation/core/widgets/handle_deep_link.dart';
 import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/flagged_messages/pages/flagged_messages_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -232,11 +230,6 @@ class RouteGenerator {
           builder: (_) => const ResolvedServiceRequestsPage(),
         );
 
-      case AppRoutes.groupInfoPage:
-        return MaterialPageRoute<GroupInfoPage>(
-          builder: (_) => GroupInfoPage(payload: args as Map<String, dynamic>),
-        );
-
       case AppRoutes.searchClientPage:
         return MaterialPageRoute<SearchClientPage>(
           builder: (_) => const SearchClientPage(),
@@ -288,13 +281,6 @@ class RouteGenerator {
           builder: (_) => const InvitedGroupsPage(),
         );
 
-      case AppRoutes.flaggedMessagesPage:
-        return MaterialPageRoute<FlaggedMessagesPage>(
-          builder: (_) => FlaggedMessagesPage(
-            communityName: args['communityName'] as String,
-            communityId: args['communityId'] as String,
-          ),
-        );
       case AppRoutes.staffPinResetRequestsPage:
         return MaterialPageRoute<StaffPinResetRequestsPage>(
           builder: (_) => const StaffPinResetRequestsPage(),
@@ -335,7 +321,7 @@ class RouteGenerator {
           ),
         );
 
-        case AppRoutes.resumeWithPin:
+      case AppRoutes.resumeWithPin:
         return MaterialPageRoute<ResumePinConnector>(
           builder: (_) => const ResumePinConnector(),
         );

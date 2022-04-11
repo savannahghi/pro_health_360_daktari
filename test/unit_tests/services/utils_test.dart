@@ -362,4 +362,8 @@ void main() {
     final String roleString = roleToString('CONTENT_MANAGEMENT');
     expect(roleString, 'Content management');
   });
+
+  test('getGroupMembersNumber', () {
+    expect(getGroupMembersNumber(5), '5 members');
+  });
 }

@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/invite_members/invite_members_action.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 import 'package:http/http.dart';
@@ -44,7 +45,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               500,
             ),
           ),
@@ -74,7 +75,7 @@ void main() {
             '',
             '',
             Response(
-              jsonEncode(<String, String>{'error': 'error occured'}),
+              jsonEncode(<String, String>{'error': 'error occurred'}),
               200,
             ),
           ),
@@ -93,6 +94,39 @@ void main() {
       expect(
         (info.error! as UserException).msg,
         getErrorMessage('inviting members'),
+      );
+    });
+
+    test('should throw error if connection error', () async {
+      storeTester.dispatch(UpdateConnectivityAction(hasConnection: false));
+      String failureMessage = '';
+
+      storeTester.dispatch(
+        InviteMembersAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              200,
+            ),
+          ),
+          variables: <String, dynamic>{},
+          onFailure: (String message) => failureMessage = message,
+        ),
+      );
+
+      expect(failureMessage, '');
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(InviteMembersAction);
+
+      expect(failureMessage, 'connection failure');
+
+      expect(
+        info.state,
+        AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: false)),
       );
     });
   });

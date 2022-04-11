@@ -5,11 +5,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_communities_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flagged_messages/delete_community_message_action.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_message.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/message.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../../../mocks/mocks.dart';
 
@@ -29,17 +29,9 @@ void main() {
     test('should update communities state', () async {
       storeTester.dispatch(
         UpdateCommunitiesStateAction(
-          flaggedMessages: <FlaggedMessage>[
-            FlaggedMessage(
-              message: Message.initial().copyWith(
-                messageID: 'id-1',
-              ),
-            ),
-            FlaggedMessage(
-              message: Message.initial().copyWith(
-                messageID: 'id-2',
-              ),
-            ),
+          flaggedMessages: <Message>[
+            Message(),
+            Message(id: 'id-2'),
           ],
         ),
       );
@@ -82,6 +74,32 @@ void main() {
         (info.error! as UserException).msg,
         somethingWentWrongText,
       );
+    });
+
+    test('should return error if no connection', () async {
+      String error = '';
+
+      storeTester.dispatch(UpdateConnectivityAction(hasConnection: false));
+      storeTester.dispatch(
+        DeleteCommunityMessageAction(
+          client: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(<String, dynamic>{'errors': 'error'}),
+              201,
+            ),
+          ),
+          messageID: 'message-id',
+          onFailure: (String message) => error = message,
+        ),
+      );
+
+      expect(error, '');
+
+      await storeTester.waitUntil(DeleteCommunityMessageAction);
+
+      expect(error, connectionLostText);
     });
   });
 }

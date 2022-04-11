@@ -100,7 +100,7 @@ query getFAQContent($flavour: Flavour!, $limit: Int!){
 const String listMembersQuery = r'''
 query listMembers($input: QueryOption){
   listMembers(input: $input){
-    ID
+    id
     userID
     role
     username
@@ -118,7 +118,7 @@ const String listCommunityMembersQuery = r'''
 query listCommunityMembers($communityID: ID!){
 	listCommunityMembers(communityID: $communityID) {
       user{
-        ID
+        id
         username
         role
         extraData
@@ -201,9 +201,9 @@ const String listFlaggedMessagesQuery = r'''
     message{
       id
       text
-      createdAt
+      created_at
       user{
-        ID
+        id
         userID
         name
         username

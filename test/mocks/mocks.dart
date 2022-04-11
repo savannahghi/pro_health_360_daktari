@@ -1253,7 +1253,7 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
   'listCommunityMembers': <dynamic>[
     <String, dynamic>{
       'user': <String, dynamic>{
-        'ID': UNKNOWN,
+        'id': UNKNOWN,
         'userID': UNKNOWN,
         'name': UNKNOWN,
         'role': UNKNOWN,
@@ -1496,21 +1496,21 @@ Map<String, dynamic> mockFAQContent = <String, dynamic>{
 
 final List<dynamic> listMembersMock = <dynamic>[
   <String, dynamic>{
-    'ID': 'id1',
+    'id': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
     'username': 'Sam',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
-    'ID': 'id1',
+    'id': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
     'username': 'Jane',
     'gender': Gender.male.name,
   },
   <String, dynamic>{
-    'ID': 'id1',
+    'id': 'id1',
     'userID': 'some-user-id',
     'role': 'user',
     'username': 'Julian',
@@ -1521,26 +1521,49 @@ final List<dynamic> listMembersMock = <dynamic>[
 final List<dynamic> mockListFlaggedMessages = <dynamic>[
   <String, dynamic>{
     'message': <String, dynamic>{
-      'id': 'some-id-1',
-      'text': 'text',
-      'createdAt': '2022-03-08T07:42:36Z',
+      'id': '1fc5d6be-8550-47a4-8f46-e515ae04f7a9',
+      'text': 'Test',
+      'created_at': '2022-04-08T12:02:20Z',
+      'attachments': <dynamic>[],
+      'mentioned_users': <dynamic>[],
       'user': <String, dynamic>{
-        'userID': 'some-user-id',
-        'username': 'a-username'
+        'id': '740128ce-32b4-4b5e-8359-a92442c8f741',
+        'userID': '',
+        'name': 'John Ngugi',
+        'username': ''
       }
     }
   },
   <String, dynamic>{
     'message': <String, dynamic>{
-      'id': 'some-id-2',
-      'text': 'text',
-      'createdAt': '2022-03-08T07:42:36Z',
+      'id': '71a64e8a-98cb-4a27-9ee7-4786eb7a8135',
+      'text': "Who's available?",
+      'created_at': '2022-03-04T12:45:54Z',
+      'attachments': <dynamic>[],
+      'mentioned_users': <dynamic>[],
       'user': <String, dynamic>{
-        'userID': 'some-user-id',
-        'username': 'another-username'
+        'id': 'da614cc4-b503-4bd8-9530-a7eb0d676433',
+        'userID': '',
+        'name': 'Nairoua Salaton',
+        'username': ''
       }
     }
   },
+  <String, dynamic>{
+    'message': <String, dynamic>{
+      'id': '1c2a059c-f49b-4b6e-a130-2812777bb280',
+      'text': 'Hi I am now available',
+      'created_at': '2022-04-09T08:07:38Z',
+      'attachments': <dynamic>[],
+      'mentioned_users': <dynamic>[],
+      'user': <String, dynamic>{
+        'id': '305db9b5-2ff9-4e4c-9a7a-57660b31df4c',
+        'userID': '',
+        'name': 'Abiud Consumer',
+        'username': ''
+      }
+    }
+  }
 ];
 
 final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{

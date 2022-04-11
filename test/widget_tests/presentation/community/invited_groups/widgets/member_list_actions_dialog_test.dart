@@ -10,10 +10,11 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/widgets/member_list_actions_dialog.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
+
 void main() {
   group('MemberListActionsDialog', () {
     late IGraphQlClient client;

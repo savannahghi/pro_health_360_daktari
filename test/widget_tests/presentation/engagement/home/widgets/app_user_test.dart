@@ -15,10 +15,9 @@ import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.da
 
 import '../../../../../mock_image_http_client.dart';
 import '../../../../../mocks/test_helpers.dart';
-import '../../../../../test_utils.dart';
 
 void main() {
-  group('AppbarUser', () {
+  group('AppBarUser', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -41,7 +40,7 @@ void main() {
         ),
       );
 
-      await fireEvent(tester);
+      await tester.pump();
 
       final Finder silAppBarGestureString = find.byKey(appBarUserKey);
       expect(find.byType(AppbarUser), findsOneWidget);

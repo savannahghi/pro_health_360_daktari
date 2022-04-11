@@ -13,14 +13,12 @@ import 'package:mycarehubpro/presentation/client_details/pages/client_health_pag
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
-import 'package:mycarehubpro/presentation/community/group_info/pages/group_info_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:mycarehubpro/presentation/core/widgets/handle_deep_link.dart';
 import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/create_group/invite_members/invite_members_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/content_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/flagged_messages/pages/flagged_messages_page.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page.dart';
@@ -343,19 +341,6 @@ void main() {
     expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
   });
 
-  test('Test router returns successful group info page', () {
-    const RouteSettings settings = RouteSettings(
-      name: AppRoutes.groupInfoPage,
-      arguments: <String, dynamic>{},
-    );
-
-    final MaterialPageRoute<GroupInfoPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>?;
-
-    expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
-    expect(route?.builder(context), isA<GroupInfoPage>());
-  });
-
   test('Test router returns SearchClientPage', () {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.searchClientPage);
@@ -451,21 +436,6 @@ void main() {
     expect(route?.builder(context), isA<AcceptGroupInvitesPage>());
   });
 
-  test('Test router returns flagged messages page', () {
-    const RouteSettings settings = RouteSettings(
-      name: AppRoutes.flaggedMessagesPage,
-      arguments: <String, String>{
-        'communityName': 'community',
-        'communityId': 'community-id'
-      },
-    );
-
-    final MaterialPageRoute<FlaggedMessagesPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<FlaggedMessagesPage>?;
-
-    expect(route, isA<MaterialPageRoute<FlaggedMessagesPage>>());
-    expect(route?.builder(context), isA<FlaggedMessagesPage>());
-  });
   test('Test router returns StaffPinResetRequestsPage', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.staffPinResetRequestsPage,
@@ -527,7 +497,7 @@ void main() {
     expect(route, isA<MaterialPageRoute<AssessmentToolResponsesPage>>());
     expect(route?.builder(context), isA<AssessmentToolResponsesPage>());
   });
-   test('Test router returns successful resume pin connector', () {
+  test('Test router returns successful resume pin connector', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.resumeWithPin);
 
     final MaterialPageRoute<ResumePinConnector>? route =

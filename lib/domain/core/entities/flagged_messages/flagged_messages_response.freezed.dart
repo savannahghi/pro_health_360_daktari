@@ -24,7 +24,7 @@ class _$FlaggedMessagesResponseTearOff {
   const _$FlaggedMessagesResponseTearOff();
 
   _FlaggedMessagesResponse call(
-      {@JsonKey(name: 'listFlaggedMessages') List<FlaggedMessage?>? messages}) {
+      {@JsonKey(name: 'listFlaggedMessages') List<MessageObject?>? messages}) {
     return _FlaggedMessagesResponse(
       messages: messages,
     );
@@ -41,7 +41,7 @@ const $FlaggedMessagesResponse = _$FlaggedMessagesResponseTearOff();
 /// @nodoc
 mixin _$FlaggedMessagesResponse {
   @JsonKey(name: 'listFlaggedMessages')
-  List<FlaggedMessage?>? get messages => throw _privateConstructorUsedError;
+  List<MessageObject?>? get messages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +55,7 @@ abstract class $FlaggedMessagesResponseCopyWith<$Res> {
           $Res Function(FlaggedMessagesResponse) then) =
       _$FlaggedMessagesResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'listFlaggedMessages') List<FlaggedMessage?>? messages});
+      {@JsonKey(name: 'listFlaggedMessages') List<MessageObject?>? messages});
 }
 
 /// @nodoc
@@ -75,7 +75,7 @@ class _$FlaggedMessagesResponseCopyWithImpl<$Res>
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<FlaggedMessage?>?,
+              as List<MessageObject?>?,
     ));
   }
 }
@@ -88,7 +88,7 @@ abstract class _$FlaggedMessagesResponseCopyWith<$Res>
       __$FlaggedMessagesResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'listFlaggedMessages') List<FlaggedMessage?>? messages});
+      {@JsonKey(name: 'listFlaggedMessages') List<MessageObject?>? messages});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$FlaggedMessagesResponseCopyWithImpl<$Res>
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<FlaggedMessage?>?,
+              as List<MessageObject?>?,
     ));
   }
 }
@@ -127,7 +127,7 @@ class _$_FlaggedMessagesResponse implements _FlaggedMessagesResponse {
 
   @override
   @JsonKey(name: 'listFlaggedMessages')
-  final List<FlaggedMessage?>? messages;
+  final List<MessageObject?>? messages;
 
   @override
   String toString() {
@@ -161,14 +161,14 @@ class _$_FlaggedMessagesResponse implements _FlaggedMessagesResponse {
 abstract class _FlaggedMessagesResponse implements FlaggedMessagesResponse {
   factory _FlaggedMessagesResponse(
       {@JsonKey(name: 'listFlaggedMessages')
-          List<FlaggedMessage?>? messages}) = _$_FlaggedMessagesResponse;
+          List<MessageObject?>? messages}) = _$_FlaggedMessagesResponse;
 
   factory _FlaggedMessagesResponse.fromJson(Map<String, dynamic> json) =
       _$_FlaggedMessagesResponse.fromJson;
 
   @override
   @JsonKey(name: 'listFlaggedMessages')
-  List<FlaggedMessage?>? get messages;
+  List<MessageObject?>? get messages;
   @override
   @JsonKey(ignore: true)
   _$FlaggedMessagesResponseCopyWith<_FlaggedMessagesResponse> get copyWith =>

@@ -14,7 +14,5 @@ class GroupState with _$GroupState {
   factory GroupState.fromJson(Map<String, dynamic> json) =>
       _$GroupStateFromJson(json);
 
-  factory GroupState.initial() => GroupState(
-        groupMembers: <GroupMember?>[GroupMember.initial()],
-      );
+  factory GroupState.initial() => GroupState(groupMembers: <GroupMember?>[]);
 }

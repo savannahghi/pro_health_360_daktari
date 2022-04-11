@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
@@ -11,19 +10,24 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/groups_state.dart';
 import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final Map<String, dynamic> variables;
+  final String channelId;
   final void Function(String?)? onError;
-  final BuildContext context;
 
-  FetchGroupMembersAction(
-    this.context, {
+  FetchGroupMembersAction({
     required this.client,
-    required this.variables,
+    required this.channelId,
     this.onError,
   });
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(fetchGroupMembersFlag));
+  }
 
   @override
   void after() {
@@ -32,13 +36,11 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
   }
 
   @override
-  void before() {
-    dispatch(WaitAction<AppState>.add(fetchGroupMembersFlag));
-    super.before();
-  }
-
-  @override
   Future<AppState?> reduce() async {
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'communityID': channelId
+    };
+
     final Response response = await client.query(
       listCommunityMembersQuery,
       variables,
@@ -51,11 +53,16 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onError?.call(error);
-      dispatch(
-        UpdateGroupStateAction(
-          groupMembers: <GroupMember>[],
-        ),
+      Sentry.captureException(
+        error,
+        hint: <String, dynamic>{
+          'variables': variables,
+          'query': listCommunityMembersQuery,
+          'response': response.body,
+        },
       );
+
+      dispatch(UpdateGroupStateAction(groupMembers: <GroupMember>[]));
       return state;
     }
 
@@ -64,12 +71,14 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
     );
     final List<GroupMember?>? groupMembers = groupState.groupMembers;
 
-    if (groupMembers != null && groupMembers.isNotEmpty) {
-      dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
-    } else {
-      dispatch(UpdateGroupStateAction(groupMembers: <GroupMember>[]));
-    }
+    dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
 
     return state;
+  }
+
+  @override
+  Object? wrapError(dynamic error) {
+    Sentry.captureException(error);
+    return UserException(getErrorMessage());
   }
 }
