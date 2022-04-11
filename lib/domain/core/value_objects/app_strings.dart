@@ -193,6 +193,7 @@ const String birthDateLabel = 'Birth Date *';
 const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
+const String myCareHubProInviteText = 'Invite to myCareHub professional';
 const String proInviteText = 'Invite to myCareHub Professional';
 const String registerBtnText = 'Register';
 const String addNewClientTitleText = 'Add new client';
