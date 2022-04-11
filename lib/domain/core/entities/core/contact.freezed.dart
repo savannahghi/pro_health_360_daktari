@@ -23,11 +23,11 @@ class _$ContactTearOff {
   const _$ContactTearOff();
 
   _Contact call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'ContactType') ContactType? contactType,
-      @JsonKey(name: 'ContactValue') String? value,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn}) {
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'contactType') ContactType? contactType,
+      @JsonKey(name: 'contactValue') String? value,
+      @JsonKey(name: 'active', defaultValue: false) bool? active,
+      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn}) {
     return _Contact(
       id: id,
       contactType: contactType,
@@ -47,15 +47,15 @@ const $Contact = _$ContactTearOff();
 
 /// @nodoc
 mixin _$Contact {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ContactType')
+  @JsonKey(name: 'contactType')
   ContactType? get contactType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ContactValue')
+  @JsonKey(name: 'contactValue')
   String? get value => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'OptedIn', defaultValue: false)
+  @JsonKey(name: 'optedIn', defaultValue: false)
   bool? get optedIn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -68,11 +68,11 @@ abstract class $ContactCopyWith<$Res> {
   factory $ContactCopyWith(Contact value, $Res Function(Contact) then) =
       _$ContactCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'ContactType') ContactType? contactType,
-      @JsonKey(name: 'ContactValue') String? value,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'contactType') ContactType? contactType,
+      @JsonKey(name: 'contactValue') String? value,
+      @JsonKey(name: 'active', defaultValue: false) bool? active,
+      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn});
 }
 
 /// @nodoc
@@ -122,11 +122,11 @@ abstract class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       __$ContactCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'ContactType') ContactType? contactType,
-      @JsonKey(name: 'ContactValue') String? value,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'contactType') ContactType? contactType,
+      @JsonKey(name: 'contactValue') String? value,
+      @JsonKey(name: 'active', defaultValue: false) bool? active,
+      @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn});
 }
 
 /// @nodoc
@@ -175,29 +175,29 @@ class __$ContactCopyWithImpl<$Res> extends _$ContactCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Contact implements _Contact {
   _$_Contact(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'ContactType') this.contactType,
-      @JsonKey(name: 'ContactValue') this.value,
-      @JsonKey(name: 'Active', defaultValue: false) this.active,
-      @JsonKey(name: 'OptedIn', defaultValue: false) this.optedIn});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'contactType') this.contactType,
+      @JsonKey(name: 'contactValue') this.value,
+      @JsonKey(name: 'active', defaultValue: false) this.active,
+      @JsonKey(name: 'optedIn', defaultValue: false) this.optedIn});
 
   factory _$_Contact.fromJson(Map<String, dynamic> json) =>
       _$$_ContactFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? id;
   @override
-  @JsonKey(name: 'ContactType')
+  @JsonKey(name: 'contactType')
   final ContactType? contactType;
   @override
-  @JsonKey(name: 'ContactValue')
+  @JsonKey(name: 'contactValue')
   final String? value;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
-  @JsonKey(name: 'OptedIn', defaultValue: false)
+  @JsonKey(name: 'optedIn', defaultValue: false)
   final bool? optedIn;
 
   @override
@@ -240,29 +240,29 @@ class _$_Contact implements _Contact {
 
 abstract class _Contact implements Contact {
   factory _Contact(
-          {@JsonKey(name: 'ID') String? id,
-          @JsonKey(name: 'ContactType') ContactType? contactType,
-          @JsonKey(name: 'ContactValue') String? value,
-          @JsonKey(name: 'Active', defaultValue: false) bool? active,
-          @JsonKey(name: 'OptedIn', defaultValue: false) bool? optedIn}) =
+          {@JsonKey(name: 'id') String? id,
+          @JsonKey(name: 'contactType') ContactType? contactType,
+          @JsonKey(name: 'contactValue') String? value,
+          @JsonKey(name: 'active', defaultValue: false) bool? active,
+          @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn}) =
       _$_Contact;
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id;
   @override
-  @JsonKey(name: 'ContactType')
+  @JsonKey(name: 'contactType')
   ContactType? get contactType;
   @override
-  @JsonKey(name: 'ContactValue')
+  @JsonKey(name: 'contactValue')
   String? get value;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
   @override
-  @JsonKey(name: 'OptedIn', defaultValue: false)
+  @JsonKey(name: 'optedIn', defaultValue: false)
   bool? get optedIn;
   @override
   @JsonKey(ignore: true)

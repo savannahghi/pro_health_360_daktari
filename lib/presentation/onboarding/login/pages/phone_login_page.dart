@@ -216,10 +216,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: vm.state.wait!.isWaitingFor(phoneLoginStateFlag)
-              ? const SizedBox(
-                  height: 48,
-                  child: PlatformLoader(),
-                )
+              ? const SizedBox(height: 48, child: PlatformLoader())
               : Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal:

@@ -10,7 +10,7 @@ class Role with _$Role {
   factory Role({
     @JsonKey(name: 'authorityRoleID') String? roleID,
     @JsonKey(name: 'name', fromJson: roleValueFromJson) RoleValue? name,
-    bool? active,
+    @JsonKey(name: 'active') bool? active,
   }) = _Role;
 
   factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);

@@ -17,8 +17,8 @@ import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.d
 import 'package:mycarehubpro/presentation/core/pre_load_app.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-class MyCareHubProfessionalApp extends StatelessWidget {
-  const MyCareHubProfessionalApp({
+class MyCareHubProApp extends StatelessWidget {
+  const MyCareHubProApp({
     Key? key,
     required this.store,
     required this.appSetupData,

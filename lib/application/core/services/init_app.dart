@@ -21,7 +21,7 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
 import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
 import 'package:mycarehubpro/infrastructure/repository/database_state_persistor.dart';
-import 'package:mycarehubpro/presentation/core/afya_moja_app.dart';
+import 'package:mycarehubpro/presentation/core/mycarehub_pro_app.dart';
 import 'package:mycarehubpro/presentation/core/widgets/unrecoverable_error_widget.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -113,7 +113,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
             ..diagnosticLevel = SentryLevel.error;
         },
         appRunner: () => runApp(
-          MyCareHubProfessionalApp(
+          MyCareHubProApp(
             connectivityChecker: connectivityChecker,
             store: store,
             appSetupData: appSetupData,
