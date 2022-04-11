@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'flagged_message.dart';
+part of 'message_object.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FlaggedMessage _$$_FlaggedMessageFromJson(Map<String, dynamic> json) =>
-    _$_FlaggedMessage(
+_$_MessageObject _$$_MessageObjectFromJson(Map<String, dynamic> json) =>
+    _$_MessageObject(
       message: json['message'] == null
           ? null
           : Message.fromJson(json['message'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_FlaggedMessageToJson(_$_FlaggedMessage instance) =>
+Map<String, dynamic> _$$_MessageObjectToJson(_$_MessageObject instance) =>
     <String, dynamic>{
       'message': instance.message,
     };

@@ -2,7 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/community/group_info/widgets/member_list_actions_dialog.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
 import 'group_member_badge.dart';

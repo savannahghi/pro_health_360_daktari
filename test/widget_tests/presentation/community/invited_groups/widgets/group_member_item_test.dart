@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/presentation/community/group_info/widgets/group_member_item.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/widgets/group_member_item.dart';
 
 import '../../../../../mocks/test_helpers.dart';
 

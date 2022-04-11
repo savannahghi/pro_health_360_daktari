@@ -8,10 +8,11 @@ import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_communities_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_message.dart';
 import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_messages_response.dart';
+import 'package:mycarehubpro/domain/core/entities/flagged_messages/message_object.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class FetchFlaggedMessagesAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
@@ -47,8 +48,7 @@ class FetchFlaggedMessagesAction extends ReduxAction<AppState> {
     }
 
     final Map<String, dynamic> variables = <String, dynamic>{
-      'communityCID': communityCID,
-      'memberIDs': memberIDs,
+      'communityCID': 'messaging:$communityCID',
     };
 
     final Response response = await client.query(
@@ -65,7 +65,7 @@ class FetchFlaggedMessagesAction extends ReduxAction<AppState> {
       Sentry.captureException(UserException(errors));
 
       dispatch(
-        UpdateCommunitiesStateAction(flaggedMessages: <FlaggedMessage>[]),
+        UpdateCommunitiesStateAction(flaggedMessages: <Message>[]),
       );
 
       throw const UserException(somethingWentWrongText);
@@ -76,10 +76,12 @@ class FetchFlaggedMessagesAction extends ReduxAction<AppState> {
       responseMap['data'] as Map<String, dynamic>,
     );
 
+    final List<Message?>? messages = flaggedMessagesMap.messages
+        ?.map((MessageObject? e) => e?.message)
+        .toList();
+
     dispatch(
-      UpdateCommunitiesStateAction(
-        flaggedMessages: flaggedMessagesMap.messages ?? <FlaggedMessage>[],
-      ),
+      UpdateCommunitiesStateAction(flaggedMessages: messages ?? <Message>[]),
     );
 
     return state;

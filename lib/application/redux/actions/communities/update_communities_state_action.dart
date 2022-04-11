@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/communities_state.dart';
 import 'package:mycarehubpro/domain/core/entities/community_members/community.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/flagged_message.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class UpdateCommunitiesStateAction extends ReduxAction<AppState> {
   UpdateCommunitiesStateAction({
@@ -11,7 +11,7 @@ class UpdateCommunitiesStateAction extends ReduxAction<AppState> {
   });
 
   final List<Community?>? communitiesList;
-  final List<FlaggedMessage?>? flaggedMessages;
+  final List<Message?>? flaggedMessages;
 
   @override
   AppState reduce() {

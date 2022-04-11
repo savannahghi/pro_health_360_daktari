@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class BanUserAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
@@ -25,15 +26,15 @@ class BanUserAction extends ReduxAction<AppState> {
   });
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(banUserFlag));
-    super.after();
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add('${banUserFlag}_$memberID'));
   }
 
   @override
-  void before() {
-    dispatch(WaitAction<AppState>.add(banUserFlag));
-    super.before();
+  void after() {
+    dispatch(WaitAction<AppState>.remove('${banUserFlag}_$memberID'));
+    super.after();
   }
 
   @override
@@ -44,6 +45,7 @@ class BanUserAction extends ReduxAction<AppState> {
       'bannedBy': staffID,
       'communityID': communityID ?? '',
     };
+
     final Response response = await client.query(
       banUserMutation,
       variables,
@@ -58,14 +60,18 @@ class BanUserAction extends ReduxAction<AppState> {
 
       return null;
     }
-    final bool? banUserStatus = payLoad['data']['banUser'] as bool?;
 
-    if (banUserStatus != null && banUserStatus) {
+    if (payLoad['data']['banUser'] == true) {
       onSuccess?.call();
-      return state;
     } else {
       onError?.call();
     }
     return null;
+  }
+
+  @override
+  Object? wrapError(dynamic error) {
+    Sentry.captureException(error);
+    return UserException(getErrorMessage());
   }
 }

@@ -9,10 +9,9 @@ class UpdateGroupStateAction extends ReduxAction<AppState> {
   UpdateGroupStateAction({this.groupMembers});
 
   @override
-  Future<AppState> reduce() async {
-    final GroupState? groupState = state.miscState?.groupState?.copyWith(
-      groupMembers: groupMembers ?? state.miscState?.groupState?.groupMembers,
-    );
+  AppState reduce() {
+    final GroupState? groupState =
+        state.miscState?.groupState?.copyWith(groupMembers: groupMembers);
 
     final AppState newState = state.copyWith(
       miscState: state.miscState?.copyWith(

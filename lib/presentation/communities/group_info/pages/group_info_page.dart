@@ -5,28 +5,35 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_models/groups/groups_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
 import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/community/group_info/widgets/group_member_item.dart';
+import 'package:mycarehubpro/presentation/communities/flagged_messages/pages/flagged_messages_page.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/widgets/group_member_item.dart';
+import 'package:mycarehubpro/presentation/communities/view_models/groups_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+
+final Role communityManagementRole = Role(
+  roleID: '05aee7d1-13c4-4910-9c21-3406e480e53c',
+  name: RoleValue.COMMUNITY_MANAGEMENT,
+  active: true,
+);
 
 class GroupInfoPage extends StatefulWidget {
-  const GroupInfoPage({required this.payload});
+  const GroupInfoPage({required this.channelName});
 
-  final Map<String, dynamic> payload;
+  final String channelName;
 
   @override
   State<GroupInfoPage> createState() => _GroupInfoPageState();
@@ -36,23 +43,20 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    final Channel channel = StreamChannel.of(context).channel;
+
     StoreProvider.dispatch<AppState>(
       context,
       FetchGroupMembersAction(
-        context,
         client: AppWrapperBase.of(context)!.graphQLClient,
-        variables: <String, dynamic>{
-          'communityID': widget.payload['channelId'] as String,
-        },
+        channelId: channel.id!,
         onError: (String? error) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(getErrorMessage(groupMembersText.toLowerCase())),
               duration: const Duration(seconds: kShortSnackBarDuration),
             ),
-          );
-          Sentry.captureException(
-            UserException(error),
           );
         },
       ),
@@ -61,7 +65,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String channelName = widget.payload['channelName'] as String;
+    final Channel channel = StreamChannel.of(context).channel;
+
+    final String channelName = widget.channelName;
     return Scaffold(
       appBar: const CustomAppBar(title: groupInfoText),
       body: Padding(
@@ -84,9 +90,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                     ),
                     verySmallVerticalSizedBox,
                     Text(
-                      getGroupMembersNumber(
-                        widget.payload['memberCount'] as int,
-                      ),
+                      getGroupMembersNumber(channel.memberCount!),
                       style: boldSize16Text(AppColors.greyTextColor),
                     ),
                     StoreConnector<AppState, GroupsViewModel>(
@@ -147,8 +151,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   itemKey: ValueKey<int>(index),
                                   userName: name,
                                   memberID: id,
-                                  communityId:
-                                      widget.payload['channelId'] as String,
+                                  communityId: channel.id!,
                                   communityName: channelName,
                                   isModerator: isModerator,
                                   canModerate: canModerate,
@@ -166,13 +169,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.flaggedMessagesPage,
-                  arguments: <String, dynamic>{
-                    'communityId': widget.payload['channelId'] as String,
-                    'communityName': widget.payload['channelName'] as String,
-                  },
-                );
+                _navigateToFlaggedMessagesPage(context, channel);
               },
               child: Container(
                 width: double.infinity,
@@ -219,7 +216,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                   onPressed: () {
                     Navigator.of(context).pushNamed(
                       AppRoutes.inviteMembersPage,
-                      arguments: widget.payload['channelId'] as String,
+                      arguments: channel.id,
                     );
                   },
                 ),
@@ -228,6 +225,22 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
             const SizedBox(height: 10),
           ],
         ),
+      ),
+    );
+  }
+
+  Future<dynamic> _navigateToFlaggedMessagesPage(
+    BuildContext context,
+    Channel channel,
+  ) {
+    return Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (_) {
+          return StreamChannel(
+            channel: channel,
+            child: const FlaggedMessagesPage(),
+          );
+        },
       ),
     );
   }
