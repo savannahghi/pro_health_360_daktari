@@ -417,7 +417,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                                 );
                               },
                             ),
-                            const Text(myCareHubInviteText),
+                            const Text(myCareHubProInviteText),
                           ],
                         ),
                       ],

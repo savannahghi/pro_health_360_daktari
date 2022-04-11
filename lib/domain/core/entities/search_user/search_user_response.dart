@@ -17,7 +17,7 @@ class SearchUserResponse with _$SearchUserResponse {
             clientCCCNumber, // This is the CCCNumber if the person being searched is a client
     @JsonKey(name: 'Active')
         bool?
-            isActive, // This is the CCCNumber if the person being searched is a client
+            isActive, // This is a boolean for checking if the user was deactivated from the platform
     @JsonKey(name: 'StaffNumber')
         String?
             staffNumber, // this is the staff number if the person being searched is a staff member
