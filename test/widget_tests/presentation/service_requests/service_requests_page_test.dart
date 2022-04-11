@@ -128,6 +128,9 @@ void main() {
         store: store,
         widget: const ServiceRequestsPage(),
       );
+
+      await tester.pumpAndSettle();
+
       final Finder profileUpdateActionCard =
           find.byKey(profileUpdateActionCardKey);
       await tester.scrollUntilVisible(profileUpdateActionCard, 500);
@@ -148,6 +151,9 @@ void main() {
         store: store,
         widget: const ServiceRequestsPage(),
       );
+
+      await tester.pumpAndSettle();
+
       final Finder staffPinResetActionCard =
           find.byKey(staffPINResetActionCardKey);
       await tester.scrollUntilVisible(staffPinResetActionCard, 500);

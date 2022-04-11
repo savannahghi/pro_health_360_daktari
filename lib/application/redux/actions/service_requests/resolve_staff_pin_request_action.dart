@@ -11,6 +11,8 @@ import 'package:mycarehubpro/domain/core/entities/service_requests/service_reque
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'fetch_service_request_count_action.dart';
+
 class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient httpClient;
   final String staffId;
@@ -95,6 +97,8 @@ class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
               staffServiceRequests: serviceRequests,
             ),
           );
+
+          dispatch(FetchServiceRequestsCountAction(client: httpClient));
         }
 
         onPinVerified?.call();
