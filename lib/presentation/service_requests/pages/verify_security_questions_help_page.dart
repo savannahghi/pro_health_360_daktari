@@ -22,102 +22,107 @@ class VerifySecurityQuestionsHelpPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              veryLargeVerticalSizedBox,
-              SvgPicture.asset(pinRequestSentImage),
-              largeVerticalSizedBox,
-              Text(
-                doYouNeedHelpString,
-                style: heavySize20Text(),
-                textAlign: TextAlign.center,
-              ),
-              smallVerticalSizedBox,
-              Text(
-                verifySecurityQuestionHelpMessageString,
-                style: normalSize14Text(darkGreyTextColor),
-                textAlign: TextAlign.center,
-              ),
-              mediumVerticalSizedBox,
-              StoreConnector<AppState, AppStateViewModel>(
-                converter: (Store<AppState> store) =>
-                    AppStateViewModel.fromStore(store),
-                builder: (BuildContext context, AppStateViewModel vm) {
-                  return vm.state.wait
-                              ?.isWaitingFor(pinResetServiceRequestFlag) ??
-                          false
-                      ? const Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: PlatformLoader(),
-                        )
-                      : SizedBox(
-                          width: double.infinity,
-                          height: 48,
-                          child: MyAfyaHubPrimaryButton(
-                            buttonKey: askForHelpButtonKey,
-                            text: askForHelpString,
-                            onPressed: () {
-                              final String? endpoint =
-                                  AppWrapperBase.of(context)
-                                      ?.customContext
-                                      ?.pinResetServiceRequestEndpoint;
-                              final IGraphQlClient? client =
-                                  AppWrapperBase.of(context)?.graphQLClient;
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                CreateStaffPINResetRequestAction(
-                                  pinResetServiceRequestEndpoint: endpoint!,
-                                  client: client!,
-                                  onSuccess: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          successfulPINResetRequestString,
-                                        ),
-                                        duration: Duration(
-                                          seconds: kShortSnackBarDuration,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  onError: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          getErrorMessage(
-                                            sendingPINResetRequestSting,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                veryLargeVerticalSizedBox,
+                SvgPicture.asset(pinRequestSentImage),
+                largeVerticalSizedBox,
+                Text(
+                  doYouNeedHelpString,
+                  style: heavySize20Text(),
+                  textAlign: TextAlign.center,
+                ),
+                smallVerticalSizedBox,
+                Text(
+                  verifySecurityQuestionHelpMessageString,
+                  style: normalSize14Text(darkGreyTextColor),
+                  textAlign: TextAlign.center,
+                ),
+                mediumVerticalSizedBox,
+                StoreConnector<AppState, AppStateViewModel>(
+                  converter: (Store<AppState> store) =>
+                      AppStateViewModel.fromStore(store),
+                  builder: (BuildContext context, AppStateViewModel vm) {
+                    return vm.state.wait
+                                ?.isWaitingFor(pinResetServiceRequestFlag) ??
+                            false
+                        ? const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: PlatformLoader(),
+                          )
+                        : SizedBox(
+                            width: double.infinity,
+                            height: 48,
+                            child: MyAfyaHubPrimaryButton(
+                              buttonKey: askForHelpButtonKey,
+                              text: askForHelpString,
+                              onPressed: () {
+                                final String? endpoint =
+                                    AppWrapperBase.of(context)
+                                        ?.customContext
+                                        ?.pinResetServiceRequestEndpoint;
+                                final IGraphQlClient? client =
+                                    AppWrapperBase.of(context)?.graphQLClient;
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  CreateStaffPINResetRequestAction(
+                                    pinResetServiceRequestEndpoint: endpoint!,
+                                    client: client!,
+                                    onSuccess: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            successfulPINResetRequestString,
+                                          ),
+                                          duration: Duration(
+                                            seconds: kShortSnackBarDuration,
                                           ),
                                         ),
-                                        duration: const Duration(
-                                          seconds: kShortSnackBarDuration,
+                                      );
+                                    },
+                                    onError: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            getErrorMessage(
+                                              sendingPINResetRequestSting,
+                                            ),
+                                          ),
+                                          duration: const Duration(
+                                            seconds: kShortSnackBarDuration,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                },
-              ),
-              smallVerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: tryAgainButtonKey,
-                  text: tryAgainString,
-                  buttonColor: Theme.of(context).primaryColor.withOpacity(0.1),
-                  textStyle: normalSize14Text(AppColors.redColor),
-                  borderColor: Colors.transparent,
-                  onPressed: () => Navigator.of(context).pushReplacementNamed(
-                    AppRoutes.loginPage,
-                  ),
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                  },
                 ),
-              )
-            ],
+                smallVerticalSizedBox,
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: tryAgainButtonKey,
+                    text: tryAgainString,
+                    buttonColor:
+                        Theme.of(context).primaryColor.withOpacity(0.1),
+                    textStyle: normalSize14Text(AppColors.redColor),
+                    borderColor: Colors.transparent,
+                    onPressed: () => Navigator.of(context).pushReplacementNamed(
+                      AppRoutes.loginPage,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

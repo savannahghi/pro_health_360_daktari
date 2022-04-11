@@ -72,16 +72,14 @@ class _ResumeWithPinPageState extends State<ResumeWithPinPage> {
                 const SizedBox(height: 116),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    key: const Key('logout_button'),
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: const Key('logout_button'),
                     onPressed: widget.logoutCallback,
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.primaryColor,
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(logoutButtonText),
-                    ),
+                    text: logoutButtonText,
+                    textColor: AppColors.primaryColor,
+                    borderColor: Colors.transparent,
+                    buttonColor: AppColors.primaryColor.withOpacity(0.14),
                   ),
                 ),
               ],

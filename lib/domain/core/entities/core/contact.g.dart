@@ -7,21 +7,21 @@ part of 'contact.dart';
 // **************************************************************************
 
 _$_Contact _$$_ContactFromJson(Map<String, dynamic> json) => _$_Contact(
-      id: json['ID'] as String?,
+      id: json['id'] as String?,
       contactType:
-          $enumDecodeNullable(_$ContactTypeEnumMap, json['ContactType']),
-      value: json['ContactValue'] as String?,
-      active: json['Active'] as bool? ?? false,
-      optedIn: json['OptedIn'] as bool? ?? false,
+          $enumDecodeNullable(_$ContactTypeEnumMap, json['contactType']),
+      value: json['contactValue'] as String?,
+      active: json['active'] as bool? ?? false,
+      optedIn: json['optedIn'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_ContactToJson(_$_Contact instance) =>
     <String, dynamic>{
-      'ID': instance.id,
-      'ContactType': _$ContactTypeEnumMap[instance.contactType],
-      'ContactValue': instance.value,
-      'Active': instance.active,
-      'OptedIn': instance.optedIn,
+      'id': instance.id,
+      'contactType': _$ContactTypeEnumMap[instance.contactType],
+      'contactValue': instance.value,
+      'active': instance.active,
+      'optedIn': instance.optedIn,
     };
 
 const _$ContactTypeEnumMap = {

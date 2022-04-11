@@ -19,53 +19,56 @@ class ForgotPinPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              veryLargeVerticalSizedBox,
-              SvgPicture.asset(
-                forgotPINImageSvgPath,
-                width: 260,
-              ),
-              largeVerticalSizedBox,
-              Text(
-                forgotYourPINString,
-                style: heavySize20Text(),
-                textAlign: TextAlign.center,
-              ),
-              smallVerticalSizedBox,
-              Text(
-                forgotPINPageMessageString,
-                style: normalSize14Text(
-                  AppColors.greyTextColor,
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                veryLargeVerticalSizedBox,
+                SvgPicture.asset(
+                  forgotPINImageSvgPath,
+                  width: 260,
                 ),
-              ),
-              mediumVerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: resetPINButtonKey,
-                  text: resetMyPINString,
-                  onPressed: () {
-                    StoreProvider.dispatch(
-                      context,
-                      UpdateOnboardingStateAction(
-                        currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
-                      ),
-                    );
-                    final OnboardingPathInfo config = getOnboardingPath(
-                      state: StoreProvider.state<AppState>(context)!,
-                    );
+                largeVerticalSizedBox,
+                Text(
+                  forgotYourPINString,
+                  style: heavySize20Text(),
+                  textAlign: TextAlign.center,
+                ),
+                smallVerticalSizedBox,
+                Text(
+                  forgotPINPageMessageString,
+                  style: normalSize14Text(
+                    AppColors.greyTextColor,
+                  ),
+                ),
+                mediumVerticalSizedBox,
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: resetPINButtonKey,
+                    text: resetMyPINString,
+                    onPressed: () {
+                      StoreProvider.dispatch(
+                        context,
+                        UpdateOnboardingStateAction(
+                          currentOnboardingStage:
+                              CurrentOnboardingStage.ResetPIN,
+                        ),
+                      );
+                      final OnboardingPathInfo config = getOnboardingPath(
+                        state: StoreProvider.state<AppState>(context)!,
+                      );
 
-                    Navigator.of(context)
-                        .pushReplacementNamed(config.nextRoute);
-                  },
-                ),
-              )
-            ],
+                      Navigator.of(context)
+                          .pushReplacementNamed(config.nextRoute);
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

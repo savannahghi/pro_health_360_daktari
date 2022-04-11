@@ -17,33 +17,11 @@ import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
 
-class RedFlagsPage extends StatefulWidget {
+class RedFlagsPage extends StatelessWidget {
   const RedFlagsPage({Key? key}) : super(key: key);
 
-  @override
-  State<RedFlagsPage> createState() => _RedFlagsPageState();
-}
-
-class _RedFlagsPageState extends State<RedFlagsPage> {
   // [RedFlagsPage] is used to display a list of red
   /// flags that demand immediate attention
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchServiceRequestsAction(
-          client: AppWrapperBase.of(context)!.graphQLClient,
-          serviceRequestStatus: RequestStatus.PENDING,
-          serviceRequestType: ServiceRequestType.RED_FLAG,
-          flavour: Flavour.consumer,
-        ),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +33,17 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
       body: StoreConnector<AppState, ServiceRequestsViewModel>(
         converter: (Store<AppState> store) =>
             ServiceRequestsViewModel.fromStore(store),
+        onInit: (Store<AppState> store) {
+          StoreProvider.dispatch<AppState>(
+            context,
+            FetchServiceRequestsAction(
+              client: AppWrapperBase.of(context)!.graphQLClient,
+              serviceRequestStatus: RequestStatus.PENDING,
+              serviceRequestType: ServiceRequestType.RED_FLAG,
+              flavour: Flavour.consumer,
+            ),
+          );
+        },
         builder: (BuildContext context, ServiceRequestsViewModel vm) {
           final bool error = vm.errorFetchingServiceRequests ?? false;
           return SingleChildScrollView(

@@ -23,6 +23,7 @@ import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 
@@ -46,6 +47,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(phoneLoginStateFlag));
+    dispatch(
+      UpdateOnboardingStateAction(
+        currentOnboardingStage: CurrentOnboardingStage.Login,
+      ),
+    );
   }
 
   @override

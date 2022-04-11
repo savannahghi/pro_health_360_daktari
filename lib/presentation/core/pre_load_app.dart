@@ -22,15 +22,15 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class PreLoadApp extends StatefulWidget {
-  final List<AppContext> appContexts;
-  final String appName;
-  final StreamChatClient streamClient;
-
   const PreLoadApp({
     required this.appName,
     required this.appContexts,
     required this.streamClient,
   });
+
+  final List<AppContext> appContexts;
+  final String appName;
+  final StreamChatClient streamClient;
 
   @override
   State<PreLoadApp> createState() => _PreLoadAppState();
@@ -38,15 +38,26 @@ class PreLoadApp extends StatefulWidget {
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
-  void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
-    super.dispose();
-  }
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    if (state == AppLifecycleState.resumed) {
+      final AppState? appState = StoreProvider.state<AppState>(context);
+
+      final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+
+      final OnboardingPathInfo navConfig =
+          getOnboardingPath(state: appState ?? AppState.initial());
+
+      if (isSignedIn &&
+          navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
+        Navigator.pushNamedAndRemoveUntil(
+          globalAppNavigatorKey.currentContext!,
+          AppRoutes.resumeWithPin,
+          (Route<dynamic> route) => false,
+        );
+      }
+    }
   }
 
   @override
@@ -74,26 +85,15 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
 
-    if (state == AppLifecycleState.resumed) {
-      final AppState? appState = StoreProvider.state<AppState>(context);
-
-      final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
-
-      final OnboardingPathInfo navConfig =
-          getOnboardingPath(state: appState ?? AppState.initial());
-
-      if (isSignedIn &&
-          navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
-        Navigator.pushNamedAndRemoveUntil(
-          globalAppNavigatorKey.currentContext!,
-          AppRoutes.resumeWithPin,
-          (Route<dynamic> route) => false,
-        );
-      }
-    }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
