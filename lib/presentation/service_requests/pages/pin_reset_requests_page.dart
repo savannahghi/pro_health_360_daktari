@@ -95,54 +95,57 @@ class _PinResetRequestsPageState extends State<PinResetRequestsPage> {
                         request.meta?.isCccNumberValid ?? false;
 
                     requestWidgetList.add(
-                      PinResetRequestWidget(
-                        clientId: clientId,
-                        serviceRequestId: serviceRequestId,
-                        cccNumber: cccNumber,
-                        acceptKey:
-                            ValueKey<String>('accept_key_$serviceRequestId'),
-                        rejectKey:
-                            ValueKey<String>('reject_key_$serviceRequestId'),
-                        phoneNumber: phoneNumber,
-                        name: name,
-                        isCccNumberVerified: isCccNumberVerified,
-                        isAccepting: vm.wait.isWaitingFor(
-                          '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.APPROVED}',
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: PinResetRequestWidget(
+                          clientId: clientId,
+                          serviceRequestId: serviceRequestId,
+                          cccNumber: cccNumber,
+                          acceptKey:
+                              ValueKey<String>('accept_key_$serviceRequestId'),
+                          rejectKey:
+                              ValueKey<String>('reject_key_$serviceRequestId'),
+                          phoneNumber: phoneNumber,
+                          name: name,
+                          isCccNumberVerified: isCccNumberVerified,
+                          isAccepting: vm.wait.isWaitingFor(
+                            '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.APPROVED}',
+                          ),
+                          isRejecting: vm.wait.isWaitingFor(
+                            '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.REJECTED}',
+                          ),
+                          onAccept: () {
+                            isCccNumberVerified
+                                ? _resolvePinRequest(
+                                    clientId: clientId,
+                                    serviceRequestId: serviceRequestId,
+                                    cccNumber: cccNumber,
+                                    phoneNumber: phoneNumber,
+                                    pinResetState: PinResetState.APPROVED,
+                                  )
+                                : showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return IdentityVerificationActionDialog(
+                                        clientId: clientId,
+                                        serviceRequestId: serviceRequestId,
+                                        cccNumber: cccNumber,
+                                        phoneNumber: phoneNumber,
+                                        pinResetState: PinResetState.APPROVED,
+                                      );
+                                    },
+                                  );
+                          },
+                          onReject: () {
+                            _resolvePinRequest(
+                              clientId: clientId,
+                              serviceRequestId: serviceRequestId,
+                              cccNumber: cccNumber,
+                              phoneNumber: phoneNumber,
+                              pinResetState: PinResetState.REJECTED,
+                            );
+                          },
                         ),
-                        isRejecting: vm.wait.isWaitingFor(
-                          '${pinResetRequestFlag}_${serviceRequestId}_${PinResetState.REJECTED}',
-                        ),
-                        onAccept: () {
-                          isCccNumberVerified
-                              ? _resolvePinRequest(
-                                  clientId: clientId,
-                                  serviceRequestId: serviceRequestId,
-                                  cccNumber: cccNumber,
-                                  phoneNumber: phoneNumber,
-                                  pinResetState: PinResetState.APPROVED,
-                                )
-                              : showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return IdentityVerificationActionDialog(
-                                      clientId: clientId,
-                                      serviceRequestId: serviceRequestId,
-                                      cccNumber: cccNumber,
-                                      phoneNumber: phoneNumber,
-                                      pinResetState: PinResetState.APPROVED,
-                                    );
-                                  },
-                                );
-                        },
-                        onReject: () {
-                          _resolvePinRequest(
-                            clientId: clientId,
-                            serviceRequestId: serviceRequestId,
-                            cccNumber: cccNumber,
-                            phoneNumber: phoneNumber,
-                            pinResetState: PinResetState.REJECTED,
-                          );
-                        },
                       ),
                     );
                   },
