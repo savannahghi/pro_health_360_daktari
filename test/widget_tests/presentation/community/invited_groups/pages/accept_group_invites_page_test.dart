@@ -8,6 +8,7 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
@@ -63,6 +64,7 @@ void main() {
           groupId: '',
           groupName: '',
           numberOfMembers: 0,
+          acceptInviteRoute: AppRoutes.profilePage,
         ),
       );
       await tester.pumpAndSettle();
