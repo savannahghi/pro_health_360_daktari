@@ -129,7 +129,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            '$inviteSent ${selectedSearchUserResponse.user!.userName}',
+                                            '$inviteSent ${selectedSearchUserResponse.user?.userName}',
                                           ),
                                         ),
                                       );

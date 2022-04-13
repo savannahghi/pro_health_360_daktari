@@ -15,26 +15,26 @@ import 'package:mycarehubpro/presentation/communities/view_models/flagged_messag
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-class FlaggedMessagesPage extends StatefulWidget {
+class FlaggedMessagesPage extends StatelessWidget {
   const FlaggedMessagesPage();
 
-  @override
-  State<FlaggedMessagesPage> createState() => _FlaggedMessagesPageState();
-}
-
-class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final Channel channel = StreamChannel.of(context).channel;
-
-    StoreProvider.dispatch(
-      context,
-      FetchFlaggedMessagesAction(
-        client: AppWrapperBase.of(context)!.graphQLClient,
-        communityCID: channel.id,
-      ),
+  void _showActionsDialog({
+    required String messageId,
+    required String communityName,
+    required String memberId,
+    required String communityId,
+    required BuildContext context,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ModerationActionsDialog(
+          messageId: messageId,
+          communityName: communityName,
+          memberId: memberId,
+          communityId: communityId,
+        );
+      },
     );
   }
 
@@ -42,7 +42,9 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
   Widget build(BuildContext context) {
     final Channel channel = StreamChannel.of(context).channel;
 
-    String channelName = 'No title';
+    String channelName = 'No name';
+
+    final String channelID = channel.id!;
 
     if (channel.extraData.containsKey('Name')) {
       channelName = channel.extraData['Name']! as String;
@@ -55,6 +57,15 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
       body: StoreConnector<AppState, FlaggedMessagesViewModel>(
         converter: (Store<AppState> store) =>
             FlaggedMessagesViewModel.fromStore(store),
+        onInit: (Store<AppState> store) {
+          StoreProvider.dispatch(
+            context,
+            FetchFlaggedMessagesAction(
+              client: AppWrapperBase.of(context)!.graphQLClient,
+              communityCID: channelID,
+            ),
+          );
+        },
         builder: (BuildContext context, FlaggedMessagesViewModel vm) {
           if (vm.wait.isWaitingFor(fetchFlaggedMessagesFlag)) {
             return Container(
@@ -76,6 +87,7 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
                   context,
                   FetchFlaggedMessagesAction(
                     client: AppWrapperBase.of(context)!.graphQLClient,
+                    communityCID: channelID,
                     onFailure: (String message) {
                       showTextSnackbar(
                         ScaffoldMessenger.of(context),
@@ -89,16 +101,12 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
               messageBody: <TextSpan>[
                 TextSpan(
                   text: messagesDisplayedHereText,
-                  style: normalSize16Text(
-                    AppColors.greyTextColor,
-                  ),
+                  style: normalSize16Text(AppColors.greyTextColor),
                 ),
                 const TextSpan(text: '\n\n'),
                 TextSpan(
                   text: canDeleteOrBanText,
-                  style: normalSize16Text(
-                    AppColors.greyTextColor,
-                  ),
+                  style: normalSize16Text(AppColors.greyTextColor),
                 ),
               ],
             );
@@ -145,8 +153,9 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
                             _showActionsDialog(
                               messageId: message.id,
                               memberId: message.user!.id,
-                              communityId: channel.id!,
+                              communityId: channelID,
                               communityName: channelName,
+                              context: context,
                             );
                           },
                           message: flaggedMessages[index]!,
@@ -162,25 +171,6 @@ class _FlaggedMessagesPageState extends State<FlaggedMessagesPage> {
           );
         },
       ),
-    );
-  }
-
-  void _showActionsDialog({
-    required String messageId,
-    required String communityName,
-    required String memberId,
-    required String communityId,
-  }) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return ModerationActionsDialog(
-          messageId: messageId,
-          communityName: communityName,
-          memberId: memberId,
-          communityId: communityId,
-        );
-      },
     );
   }
 }

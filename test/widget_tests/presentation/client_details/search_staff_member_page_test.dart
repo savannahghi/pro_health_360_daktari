@@ -34,6 +34,8 @@ void main() {
         widget: const SearchStaffMemberPage(),
       );
 
+      await tester.pump();
+
       final Finder searchNameFinder = find.byType(CustomTextField);
       expect(searchNameFinder, findsOneWidget);
       await tester.tap(searchNameFinder);

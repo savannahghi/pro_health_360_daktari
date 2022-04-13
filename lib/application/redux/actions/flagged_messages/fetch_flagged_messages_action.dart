@@ -16,13 +16,13 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class FetchFlaggedMessagesAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final String? communityCID;
+  final String communityCID;
   final List<String>? memberIDs;
   final void Function(String message)? onFailure;
 
   FetchFlaggedMessagesAction({
     required this.client,
-    this.communityCID,
+    required this.communityCID,
     this.memberIDs,
     this.onFailure,
   });
