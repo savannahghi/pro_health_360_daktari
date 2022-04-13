@@ -59,10 +59,8 @@ class _CommunityListPageState extends State<CommunityListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        showBackButton: false,
-        title: conversationsTitle,
-      ),
+      appBar:
+          const CustomAppBar(showBackButton: false, title: conversationsTitle),
       body: StoreConnector<AppState, CommunityListViewModel>(
         converter: (Store<AppState> store) {
           return CommunityListViewModel.fromStore(store);

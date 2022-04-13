@@ -489,6 +489,7 @@ const String staffPinResetRequestsTitle = 'Staff PIN reset requests';
 const String searchPageTitle = 'Please select who you want to search below';
 const String clients = 'Clients';
 const String staffMembers = 'Staff Members';
+const String noNumberAvailable = 'No number available';
 
 // search client
 const String searchClientsTitle = 'Search clients';

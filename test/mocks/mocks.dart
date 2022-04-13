@@ -1294,6 +1294,8 @@ final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
   'searchStaffByStaffNumber': <dynamic>[
     <String, dynamic>{
       'ID': 'some-id',
+      'CCCNumber': '12345',
+      'active': true,
       'User': <String, dynamic>{
         'ID': 'some-id',
         'Username': 'Username',

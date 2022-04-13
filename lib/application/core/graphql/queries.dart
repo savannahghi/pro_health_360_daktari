@@ -196,7 +196,7 @@ query getUserRoles($userID: String!){
 ''';
 
 const String listFlaggedMessagesQuery = r'''
- query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
+query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
   listFlaggedMessages(communityCID: $communityCID,memberIDs: $memberIDs){
     message{
       id

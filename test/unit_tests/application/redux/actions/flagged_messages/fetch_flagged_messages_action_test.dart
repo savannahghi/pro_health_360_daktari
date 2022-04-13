@@ -27,7 +27,10 @@ void main() {
 
     test('should update communities state', () async {
       storeTester.dispatch(
-        FetchFlaggedMessagesAction(client: MockTestGraphQlClient()),
+        FetchFlaggedMessagesAction(
+          client: MockTestGraphQlClient(),
+          communityCID: '',
+        ),
       );
 
       final TestInfo<AppState> info =
@@ -50,6 +53,7 @@ void main() {
               201,
             ),
           ),
+          communityCID: '',
         ),
       );
 
@@ -79,6 +83,7 @@ void main() {
           onFailure: (String message) {
             error = message;
           },
+          communityCID: '',
         ),
       );
 
