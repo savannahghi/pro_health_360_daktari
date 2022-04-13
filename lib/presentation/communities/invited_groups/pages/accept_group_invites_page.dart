@@ -17,9 +17,12 @@ class AcceptGroupInvitesPage extends StatefulWidget {
     required this.groupId,
     required this.groupName,
     required this.numberOfMembers,
+    this.acceptInviteRoute = AppRoutes.communityPage,
   });
-  final String groupName;
+
+  final String acceptInviteRoute;
   final String groupId;
+  final String groupName;
   final int numberOfMembers;
 
   @override
@@ -28,6 +31,7 @@ class AcceptGroupInvitesPage extends StatefulWidget {
 
 class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +85,7 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                                     ),
                                   );
                                 Navigator.of(context)
-                                    .pushNamed(AppRoutes.profilePage);
+                                    .pushNamed(widget.acceptInviteRoute);
                               },
                               onFailure: () {
                                 Navigator.of(context).pop();

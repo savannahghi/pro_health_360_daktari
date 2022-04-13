@@ -45,10 +45,7 @@ class AcceptCommunitiesInviteAction extends ReduxAction<AppState> {
 
       throw const UserException(somethingWentWrongText);
     }
-    if (responseMap['data'] != null &&
-        responseMap['data']['acceptInvitation'] != null &&
-        responseMap['data']['acceptInvitation'] is bool &&
-        responseMap['data']['acceptInvitation'] != false) {
+    if ((responseMap['data']?['acceptInvitation'] ?? false) == true) {
       onSuccess?.call();
     } else {
       onFailure?.call();
