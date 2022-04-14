@@ -139,6 +139,7 @@ const String searchString = 'Search';
 const String needsAttentionString = ' needs attention';
 const String redFlagString = 'Red Flag';
 const String reachOutString = 'Reach out?';
+const String resolveString = 'Resolve';
 const String callString = 'Call';
 const String whatsappString = 'Whatsapp';
 const String forString = 'for';
@@ -151,6 +152,8 @@ const String verySadString = 'Very Sad';
 const String profileUpdateString = 'Profile Update';
 const String clientPINResetString = 'Client PIN resets';
 const String staffPINResetString = 'Staff PIN resets';
+const String ifYouHaveReachedOutString = 'If you have reached out to ';
+const String tapTapBelowToResolveString = ', please tap the button below to resolve this service request.';
 
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
@@ -476,6 +479,7 @@ const String rejectText = 'Reject';
 const String pinResetRequestsTitle = 'PIN reset requests';
 const String pinApprovedSuccessText = 'Pin Approved Successfully';
 const String pinRejectedSuccessText = 'Pin Rejected Successfully';
+const String requestResolvedSuccessText = 'Service request resolved Successfully';
 const String cccNoShortText = 'CCC #:';
 const String cccNumberVerifiedText = 'CCC number verified';
 const String cccNumberUnverifiedText =
