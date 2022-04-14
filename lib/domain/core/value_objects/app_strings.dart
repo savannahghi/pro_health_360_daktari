@@ -148,7 +148,6 @@ const String wantProfiledUpdatedString = ' wants to update their profile';
 const String reachOutDescriptionPart1String = 'Use their phone number ';
 const String reachOutDescriptionPart2String =
     ' or tap the button below to call them directly';
-const String verySadString = 'Very Sad';
 const String profileUpdateString = 'Profile Update';
 const String clientPINResetString = 'Client PIN resets';
 const String staffPINResetString = 'Staff PIN resets';
@@ -195,7 +194,7 @@ const String lastNameLabel = 'Last Name *';
 const String birthDateLabel = 'Birth Date *';
 const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
-const String myCareHubInviteText = 'Invite to myCareHub';
+const String myCareHubInviteText = 'Reinvite to myCareHub';
 const String myCareHubProInviteText = 'Invite to myCareHub professional';
 const String proInviteText = 'Invite to myCareHub Professional';
 const String registerBtnText = 'Register';
@@ -259,7 +258,7 @@ const String newEntryString = 'New Entry';
 const String transferOut = 'Transfer out';
 
 //Client Details Card
-const String inviteToMyCareHubString = 'Invite to myCareHub';
+const String inviteToMyCareHubString = 'Reinvite to myCareHub';
 const String viewProfileString = 'View profile';
 const String userInitialsStrings = 'WJ';
 const String userCCCNumberString = '12345678';
@@ -509,6 +508,7 @@ const String registerClientString = 'Register Client';
 const String actions = 'Actions';
 String tapBelowToInvite(String userName) =>
     'Tap the button below to invite $userName to myCareHub. They will receive and SMS with instructions on how to sign up';
+const String shareDiaryEntry = 'Shared diary entry';
 
 // search client
 const String searchStaffMembersTitle = 'Search staff members';
@@ -711,3 +711,10 @@ const String deactivatedUserPageDescriptionString =
     'is deactivated on myCareHub because they chose to opt-out of the platform.' +
         '\n\nIf you wish to reactivate them, tap the button to send them an invite with a new PIN';
 const String deactivatedUserString = 'Deactivated user';
+
+// Mood Selection
+const String veryHappyString = 'Very Happy';
+const String happyString = 'Happy';
+const String neutralString = 'Meh';
+const String sadString = 'Sad';
+const String verySadString = 'Very Sad';

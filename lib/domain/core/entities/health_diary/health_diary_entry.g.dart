@@ -8,13 +8,14 @@ part of 'health_diary_entry.dart';
 
 _$_HealthDiaryEdge _$$_HealthDiaryEdgeFromJson(Map<String, dynamic> json) =>
     _$_HealthDiaryEdge(
-      healthDiaryEntry: HealthDiaryEntry.fromJson(
-          json['getSharedHealthDiaryEntry'] as Map<String, dynamic>),
+      healthDiaryEntry: (json['getSharedHealthDiaryEntries'] as List<dynamic>)
+          .map((e) => HealthDiaryEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_HealthDiaryEdgeToJson(_$_HealthDiaryEdge instance) =>
     <String, dynamic>{
-      'getSharedHealthDiaryEntry': instance.healthDiaryEntry,
+      'getSharedHealthDiaryEntries': instance.healthDiaryEntry,
     };
 
 _$_HealthDiaryEntry _$$_HealthDiaryEntryFromJson(Map<String, dynamic> json) =>
@@ -22,8 +23,7 @@ _$_HealthDiaryEntry _$$_HealthDiaryEntryFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       mood: json['mood'] as String?,
       note: json['note'] as String?,
-      entryType: json['entryType'] as String?,
-      createdAt: json['createdAt'] as String?,
+      sharedAt: json['sharedAt'] as String?,
       active: json['active'] as bool? ?? false,
     );
 
@@ -32,7 +32,6 @@ Map<String, dynamic> _$$_HealthDiaryEntryToJson(_$_HealthDiaryEntry instance) =>
       'id': instance.id,
       'mood': instance.mood,
       'note': instance.note,
-      'entryType': instance.entryType,
-      'createdAt': instance.createdAt,
+      'sharedAt': instance.sharedAt,
       'active': instance.active,
     };

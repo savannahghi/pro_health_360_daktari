@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 
 class SearchViewModel extends Vm {
@@ -9,6 +10,7 @@ class SearchViewModel extends Vm {
   final bool? noUserFound;
   final List<SearchUserResponse?>? searchUserResponses;
   final SearchUserResponse? selectedSearchUserResponse;
+  final List<HealthDiaryEntry?>? sharedDiaryEntries;
 
   SearchViewModel({
     required this.wait,
@@ -17,6 +19,7 @@ class SearchViewModel extends Vm {
     this.timeoutFetchingSearchUserResponse,
     this.noUserFound,
     this.selectedSearchUserResponse,
+    this.sharedDiaryEntries,
   }) : super(
           equals: <Object?>[
             wait,
@@ -25,6 +28,7 @@ class SearchViewModel extends Vm {
             searchUserResponses,
             selectedSearchUserResponse,
             noUserFound,
+            sharedDiaryEntries
           ],
         );
 
@@ -40,6 +44,7 @@ class SearchViewModel extends Vm {
           store.state.miscState?.searchUserResponseState?.searchUserResponses,
       selectedSearchUserResponse: store
           .state.miscState?.searchUserResponseState?.selectedSearchUserResponse,
+      sharedDiaryEntries: store.state.staffState?.clientSharedDiaryEntries,
     );
   }
 }

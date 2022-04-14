@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
@@ -365,5 +366,15 @@ void main() {
 
   test('getGroupMembersNumber', () {
     expect(getGroupMembersNumber(5), '5 members');
+  });
+
+  test('getMoodColor should return the various mood colors', () {
+    expect(getMoodColor('Happy').color, AppColors.greenHappyColor);
+    expect(getMoodColor('Very Happy').color, AppColors.greenHappyColor);
+    expect(getMoodColor('Meh').color, AppColors.mehMoodColor);
+    expect(getMoodColor('Sad').color, AppColors.warningColor);
+    expect(getMoodColor('Very Sad').color, AppColors.verySadColor);
+    expect(getMoodColor('Other').color, AppColors.secondaryColor);
+    expect(getMoodColor(null).color, AppColors.secondaryColor);
   });
 }

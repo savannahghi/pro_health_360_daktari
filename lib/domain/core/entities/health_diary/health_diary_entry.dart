@@ -9,8 +9,8 @@ part 'health_diary_entry.g.dart';
 @freezed
 class HealthDiaryEdge with _$HealthDiaryEdge {
   factory HealthDiaryEdge({
-    @JsonKey(name: 'getSharedHealthDiaryEntry')
-        required HealthDiaryEntry healthDiaryEntry,
+    @JsonKey(name: 'getSharedHealthDiaryEntries')
+        required List<HealthDiaryEntry> healthDiaryEntry,
   }) = _HealthDiaryEdge;
 
   factory HealthDiaryEdge.fromJson(Map<String, dynamic> json) =>
@@ -23,8 +23,7 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'mood') String? mood,
     @JsonKey(name: 'note') String? note,
-    @JsonKey(name: 'entryType') String? entryType,
-    @JsonKey(name: 'createdAt') String? createdAt,
+    @JsonKey(name: 'sharedAt') String? sharedAt,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
   }) = _HealthDiaryEntry;
 
@@ -34,8 +33,7 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
   factory HealthDiaryEntry.initial() => HealthDiaryEntry(
         mood: UNKNOWN,
         note: UNKNOWN,
-        entryType: UNKNOWN,
-        createdAt: UNKNOWN,
+        sharedAt: UNKNOWN,
         active: false,
         id: UNKNOWN,
       );

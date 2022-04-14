@@ -1625,12 +1625,30 @@ final Map<String, dynamic> mockPendingInvites = <String, dynamic>{
 };
 
 final Map<String, dynamic> mockDiaryEntry = <String, dynamic>{
-  'getSharedHealthDiaryEntry': <String, dynamic>{
+  'getSharedHealthDiaryEntries': <dynamic>[
+    <String, dynamic>{
+      'id': 'some-id',
+      'mood': 'HAPPY',
+      'note': 'I am healthy',
+      'sharedAt': '2021-11-30T16:17:57Z',
+      'active': true,
+    }
+  ]
+};
+
+final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
+  <String, dynamic>{
     'id': 'some-id',
+    'active': true,
     'mood': 'HAPPY',
     'note': 'I am healthy',
-    'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
-    'createdAt': '2021-11-30T16:17:57Z',
+    'sharedAt': '2021-11-30T16:17:57Z'
+  },
+  <String, dynamic>{
+    'id': 'some-id',
     'active': true,
-  }
-};
+    'mood': 'HAPPY',
+    'note': 'I am very healthy',
+    'sharedAt': '2021-11-30T16:17:53Z'
+  },
+];

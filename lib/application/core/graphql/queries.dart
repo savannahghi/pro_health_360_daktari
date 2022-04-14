@@ -244,14 +244,13 @@ query getAssessmentResponsesByToolType(
 ''';
 
 const String recentlySharedHealthDiaryQuery = r'''
- query getSharedHealthDiaryEntry($clientID: String!, $facilityID: String!){
-  getSharedHealthDiaryEntry(clientID:$clientID, facilityID: $facilityID){
+query getSharedHealthDiaryEntries($clientID: String!, $facilityID: String!){
+  getSharedHealthDiaryEntries(clientID:$clientID, facilityID: $facilityID){
     id
     active
     mood
     note
-    clientName
-    phoneNumber
+    sharedAt
   }
 }
 ''';
