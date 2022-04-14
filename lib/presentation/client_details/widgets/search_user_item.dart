@@ -41,15 +41,10 @@ class _SearchUserItemState extends State<SearchUserItem> {
         );
         Navigator.of(context).pushNamed(
           AppRoutes.searchDetailViewPage,
-          arguments: widget.isCCCNumber
-              ? <String, dynamic>{
-                  'searchUserResponse': widget.searchUserResponse,
-                  'isClient': true,
-                }
-              : <String, dynamic>{
-                  'searchUserResponse': widget.searchUserResponse,
-                  'isClient': false,
-                },
+          arguments: <String, dynamic>{
+            'searchUserResponse': widget.searchUserResponse,
+            'isClient': widget.isCCCNumber,
+          },
         );
       },
       child: Padding(

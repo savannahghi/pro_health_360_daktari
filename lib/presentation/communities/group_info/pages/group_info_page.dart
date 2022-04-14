@@ -24,12 +24,6 @@ import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-final Role communityManagementRole = Role(
-  roleID: '05aee7d1-13c4-4910-9c21-3406e480e53c',
-  name: RoleValue.COMMUNITY_MANAGEMENT,
-  active: true,
-);
-
 class GroupInfoPage extends StatefulWidget {
   const GroupInfoPage({required this.channelName});
 
@@ -108,7 +102,18 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
                         final List<GroupMember?>? groupMembers =
                             vm.groupMembers;
+
                         final List<Role>? staffRoles = vm.staffRoles;
+
+                        final List<Role>? communityRoles = staffRoles
+                            ?.where(
+                              (Role role) =>
+                                  role.name == RoleValue.COMMUNITY_MANAGEMENT,
+                            )
+                            .toList();
+
+                        final bool canModerate =
+                            communityRoles != null && communityRoles.isNotEmpty;
 
                         return Column(
                           children: <Widget>[
@@ -139,10 +144,6 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                 final bool isModerator =
                                     currentMember.isModerator;
 
-                                final bool canModerate = staffRoles != null &&
-                                    staffRoles.isNotEmpty &&
-                                    staffRoles
-                                        .contains(communityManagementRole);
                                 final bool isBanned = currentMember
                                         .memberDetails?.banStatus?.value ??
                                     false;
