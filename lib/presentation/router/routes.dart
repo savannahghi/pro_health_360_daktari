@@ -92,11 +92,11 @@ class AppRoutes {
 
   static const String redFlagActionsPage = '/redFlagActionsPage';
   static const String screeningToolsListPage = '/screeningToolsListPage';
-  static const String screeningToolsAssessmentPage =
-      'screeningToolsAssessmentPage';
+  static const String assessmentCardAnswersPage =
+      'assessmentCardAnswersPage';
 
-  static const String assessmentToolsCategoryPage =
-      '/assessmentToolsCategoryPage';
+  static const String assessmentToolResponsesPage =
+      '/assessmentToolResponsesPage';
 
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';

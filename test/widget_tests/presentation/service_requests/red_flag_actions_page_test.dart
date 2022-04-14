@@ -166,7 +166,7 @@ void main() {
       expect(find.text(somethingWentWrongText), findsOneWidget);
     });
     testWidgets(
-        'shows snackbar with error message when result is not true false',
+        'shows snackbar with error message when result is not true',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(

@@ -24,13 +24,22 @@ class _$ToolAssessmentResponseTearOff {
   const _$ToolAssessmentResponseTearOff();
 
   _ToolAssessmentResponse call(
-      {@JsonKey(name: 'clientName') String? name,
-      @JsonKey(name: 'dateAnswered') String? date,
-      @JsonKey(name: 'clientID') String? clientID}) {
+      {@JsonKey(name: 'clientName')
+          String? name,
+      @JsonKey(name: 'dateAnswered')
+          String? date,
+      @JsonKey(name: 'clientID')
+          String? clientID,
+      @JsonKey(name: 'serviceRequestID')
+          String? serviceRequestID,
+      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+          List<AssessmentQuestionResponse>? questionsResponses}) {
     return _ToolAssessmentResponse(
       name: name,
       date: date,
       clientID: clientID,
+      serviceRequestID: serviceRequestID,
+      questionsResponses: questionsResponses,
     );
   }
 
@@ -50,6 +59,11 @@ mixin _$ToolAssessmentResponse {
   String? get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientID')
   String? get clientID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'serviceRequestID')
+  String? get serviceRequestID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+  List<AssessmentQuestionResponse>? get questionsResponses =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,9 +77,16 @@ abstract class $ToolAssessmentResponseCopyWith<$Res> {
           $Res Function(ToolAssessmentResponse) then) =
       _$ToolAssessmentResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'clientName') String? name,
-      @JsonKey(name: 'dateAnswered') String? date,
-      @JsonKey(name: 'clientID') String? clientID});
+      {@JsonKey(name: 'clientName')
+          String? name,
+      @JsonKey(name: 'dateAnswered')
+          String? date,
+      @JsonKey(name: 'clientID')
+          String? clientID,
+      @JsonKey(name: 'serviceRequestID')
+          String? serviceRequestID,
+      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+          List<AssessmentQuestionResponse>? questionsResponses});
 }
 
 /// @nodoc
@@ -82,6 +103,8 @@ class _$ToolAssessmentResponseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? date = freezed,
     Object? clientID = freezed,
+    Object? serviceRequestID = freezed,
+    Object? questionsResponses = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -96,6 +119,14 @@ class _$ToolAssessmentResponseCopyWithImpl<$Res>
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
               as String?,
+      serviceRequestID: serviceRequestID == freezed
+          ? _value.serviceRequestID
+          : serviceRequestID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      questionsResponses: questionsResponses == freezed
+          ? _value.questionsResponses
+          : questionsResponses // ignore: cast_nullable_to_non_nullable
+              as List<AssessmentQuestionResponse>?,
     ));
   }
 }
@@ -108,9 +139,16 @@ abstract class _$ToolAssessmentResponseCopyWith<$Res>
       __$ToolAssessmentResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'clientName') String? name,
-      @JsonKey(name: 'dateAnswered') String? date,
-      @JsonKey(name: 'clientID') String? clientID});
+      {@JsonKey(name: 'clientName')
+          String? name,
+      @JsonKey(name: 'dateAnswered')
+          String? date,
+      @JsonKey(name: 'clientID')
+          String? clientID,
+      @JsonKey(name: 'serviceRequestID')
+          String? serviceRequestID,
+      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+          List<AssessmentQuestionResponse>? questionsResponses});
 }
 
 /// @nodoc
@@ -129,6 +167,8 @@ class __$ToolAssessmentResponseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? date = freezed,
     Object? clientID = freezed,
+    Object? serviceRequestID = freezed,
+    Object? questionsResponses = freezed,
   }) {
     return _then(_ToolAssessmentResponse(
       name: name == freezed
@@ -143,6 +183,14 @@ class __$ToolAssessmentResponseCopyWithImpl<$Res>
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
               as String?,
+      serviceRequestID: serviceRequestID == freezed
+          ? _value.serviceRequestID
+          : serviceRequestID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      questionsResponses: questionsResponses == freezed
+          ? _value.questionsResponses
+          : questionsResponses // ignore: cast_nullable_to_non_nullable
+              as List<AssessmentQuestionResponse>?,
     ));
   }
 }
@@ -151,9 +199,16 @@ class __$ToolAssessmentResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
   _$_ToolAssessmentResponse(
-      {@JsonKey(name: 'clientName') this.name,
-      @JsonKey(name: 'dateAnswered') this.date,
-      @JsonKey(name: 'clientID') this.clientID});
+      {@JsonKey(name: 'clientName')
+          this.name,
+      @JsonKey(name: 'dateAnswered')
+          this.date,
+      @JsonKey(name: 'clientID')
+          this.clientID,
+      @JsonKey(name: 'serviceRequestID')
+          this.serviceRequestID,
+      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+          this.questionsResponses});
 
   factory _$_ToolAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ToolAssessmentResponseFromJson(json);
@@ -167,10 +222,16 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
   @override
   @JsonKey(name: 'clientID')
   final String? clientID;
+  @override
+  @JsonKey(name: 'serviceRequestID')
+  final String? serviceRequestID;
+  @override
+  @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+  final List<AssessmentQuestionResponse>? questionsResponses;
 
   @override
   String toString() {
-    return 'ToolAssessmentResponse(name: $name, date: $date, clientID: $clientID)';
+    return 'ToolAssessmentResponse(name: $name, date: $date, clientID: $clientID, serviceRequestID: $serviceRequestID, questionsResponses: $questionsResponses)';
   }
 
   @override
@@ -180,7 +241,11 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
             other is _ToolAssessmentResponse &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.clientID, clientID));
+            const DeepCollectionEquality().equals(other.clientID, clientID) &&
+            const DeepCollectionEquality()
+                .equals(other.serviceRequestID, serviceRequestID) &&
+            const DeepCollectionEquality()
+                .equals(other.questionsResponses, questionsResponses));
   }
 
   @override
@@ -188,7 +253,9 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(clientID));
+      const DeepCollectionEquality().hash(clientID),
+      const DeepCollectionEquality().hash(serviceRequestID),
+      const DeepCollectionEquality().hash(questionsResponses));
 
   @JsonKey(ignore: true)
   @override
@@ -204,9 +271,17 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
 
 abstract class _ToolAssessmentResponse implements ToolAssessmentResponse {
   factory _ToolAssessmentResponse(
-      {@JsonKey(name: 'clientName') String? name,
-      @JsonKey(name: 'dateAnswered') String? date,
-      @JsonKey(name: 'clientID') String? clientID}) = _$_ToolAssessmentResponse;
+          {@JsonKey(name: 'clientName')
+              String? name,
+          @JsonKey(name: 'dateAnswered')
+              String? date,
+          @JsonKey(name: 'clientID')
+              String? clientID,
+          @JsonKey(name: 'serviceRequestID')
+              String? serviceRequestID,
+          @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+              List<AssessmentQuestionResponse>? questionsResponses}) =
+      _$_ToolAssessmentResponse;
 
   factory _ToolAssessmentResponse.fromJson(Map<String, dynamic> json) =
       _$_ToolAssessmentResponse.fromJson;
@@ -220,6 +295,12 @@ abstract class _ToolAssessmentResponse implements ToolAssessmentResponse {
   @override
   @JsonKey(name: 'clientID')
   String? get clientID;
+  @override
+  @JsonKey(name: 'serviceRequestID')
+  String? get serviceRequestID;
+  @override
+  @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+  List<AssessmentQuestionResponse>? get questionsResponses;
   @override
   @JsonKey(ignore: true)
   _$ToolAssessmentResponseCopyWith<_ToolAssessmentResponse> get copyWith =>

@@ -7,12 +7,11 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_assessment_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_request_item_widget.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -41,7 +40,7 @@ void main() {
 
       await tester.tap(responseItem.first);
       await tester.pumpAndSettle();
-      expect(find.byType(ScreeningToolsAssessmentPage), findsOneWidget);
+      expect(find.byType(AssessmentCardAnswersPage), findsOneWidget);
     });
 
     testWidgets('should show a loading indicator when fetching screening tools',
@@ -132,13 +131,11 @@ void main() {
             screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
           ),
         );
-
-        await tester.pumpAndSettle();
         final Finder responseItem = find.byType(AssessmentRequestItemWidget);
 
         expect(responseItem, findsNothing);
-        expect(find.text(screeningToolsPageLongDescription), findsOneWidget);
       },
     );
+    
   });
 }

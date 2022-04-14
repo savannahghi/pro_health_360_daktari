@@ -19,7 +19,7 @@ class AssessmentListItem extends StatelessWidget {
     return Column(
       children: <Widget>[
         Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(
               child: Text(

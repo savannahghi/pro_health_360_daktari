@@ -95,3 +95,4 @@ const String resumeWithPinFlag = 'resume_with_pin';
 
 // Reactivate client
 const String reactivateClientFlag = 'reactivate_client_flag';
+const String fetchScreeningToolResponsesFlag = 'fetch_screening_tool_responses_flag';
