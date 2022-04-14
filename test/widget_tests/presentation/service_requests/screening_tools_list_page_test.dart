@@ -11,7 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_assessment_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_request_item_widget.dart';
 import '../../../mocks/mocks.dart';
@@ -115,7 +115,7 @@ void main() {
         find.byType(AssessmentRequestItemWidget).first,
       );
       await tester.pumpAndSettle();
-      expect(find.byType(ScreeningToolsAssessmentPage), findsOneWidget);
+      expect(find.byType(AssessmentCardAnswersPage), findsOneWidget);
     });
 
       testWidgets('should show a loading indicator when fetching screening tools',

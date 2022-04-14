@@ -8,10 +8,12 @@ class UpdateScreeningToolsStateAction extends ReduxAction<AppState> {
   UpdateScreeningToolsStateAction({
     this.availableTools,
     this.toolAssessmentResponses,
+    this.errorFetchingScreeningTools,
   });
 
   List<ToolType>? availableTools;
   List<ToolAssessmentResponse>? toolAssessmentResponses;
+  bool? errorFetchingScreeningTools;
 
   @override
   Future<AppState> reduce() async {
@@ -20,8 +22,8 @@ class UpdateScreeningToolsStateAction extends ReduxAction<AppState> {
       toolAssessmentResponses: toolAssessmentResponses ??
           state.serviceRequestState?.screeningToolsState
               ?.toolAssessmentResponses,
-              availableTools: availableTools ??   state.serviceRequestState?.screeningToolsState
-              ?.availableTools,
+      availableTools: availableTools ??
+          state.serviceRequestState?.screeningToolsState?.availableTools,
     );
 
     final AppState newState = state.copyWith(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -11,15 +12,23 @@ class AssessmentRequestItemWidget extends StatelessWidget {
   const AssessmentRequestItemWidget({
     Key? key,
     required this.screeningQuestionsList,
+    required this.toolsType,
   }) : super(key: key);
 
   final ToolAssessmentResponse screeningQuestionsList;
+  final ScreeningToolsType toolsType;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          Navigator.pushNamed(context, AppRoutes.screeningToolsAssessmentPage),
+      onTap: () => Navigator.pushNamed(
+        context,
+        AppRoutes.assessmentCardAnswersPage,
+        arguments: <String, dynamic>{
+          'toolType': toolsType,
+          'assessmentResponse': screeningQuestionsList,
+        },
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor.withOpacity(0.14),
@@ -39,12 +48,11 @@ class AssessmentRequestItemWidget extends StatelessWidget {
             ),
             verySmallVerticalSizedBox,
             humanizeDate(
-                          dateTextStyle: normalSize13Text(
+              dateTextStyle: normalSize13Text(
                 AppColors.greyTextColor.withOpacity(0.5),
               ),
-                          loadedDate:  screeningQuestionsList.date ?? '',
-                        ),
-            
+              loadedDate: screeningQuestionsList.date ?? '',
+            ),
             size15VerticalSizedBox,
             Text(
               assessmentRequestItemDescriptionString,

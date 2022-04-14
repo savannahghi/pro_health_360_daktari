@@ -21,7 +21,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:mycarehubpro/presentation/service_requests/widgets/assement_list_item.dart';
 import 'package:shared_themes/spaces.dart';
 
 List<NotificationDetails> notifications = <NotificationDetails>[
@@ -66,28 +65,7 @@ final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-final List<AssessmentListItem> assessmentItems = <AssessmentListItem>[
-  const AssessmentListItem(
-    assessmentResponse:
-        '1. In the past, has anyone made you feel threatened, fearful, or in danger?',
-    responseStatus: yesString,
-  ),
-  const AssessmentListItem(
-    assessmentResponse:
-        '2. In the past, have you been slapped, punched, hit or physically hurt by someone in any way?',
-    responseStatus: yesString,
-  ),
-  const AssessmentListItem(
-    assessmentResponse:
-        '3. In the past, has anyone forced or coerced you to have sexual relations against your will?',
-    responseStatus: noString,
-  ),
-  const AssessmentListItem(
-    assessmentResponse:
-        '4. Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?',
-    responseStatus: noString,
-  ),
-];
+
 
 Future<void> addNewProfileEntryBottomSheet(BuildContext context) {
   return showModalBottomSheet<void>(

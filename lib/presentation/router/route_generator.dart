@@ -48,7 +48,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_assessment_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
@@ -296,16 +296,18 @@ class RouteGenerator {
         return MaterialPageRoute<ScreeningToolsListPage>(
           builder: (_) => const ScreeningToolsListPage(),
         );
-      case AppRoutes.assessmentToolsCategoryPage:
+      case AppRoutes.assessmentToolResponsesPage:
         return MaterialPageRoute<AssessmentToolResponsesPage>(
           builder: (_) => AssessmentToolResponsesPage(
             screeningToolsType: args as ScreeningToolsType,
           ),
         );
 
-      case AppRoutes.screeningToolsAssessmentPage:
-        return MaterialPageRoute<ScreeningToolsAssessmentPage>(
-          builder: (_) => const ScreeningToolsAssessmentPage(),
+      case AppRoutes.assessmentCardAnswersPage:
+        return MaterialPageRoute<AssessmentCardAnswersPage>(
+          builder: (_) => AssessmentCardAnswersPage(
+            payload: args as Map<String, dynamic>,
+          ),
         );
 
       case AppRoutes.acceptGroupInvitesPage:

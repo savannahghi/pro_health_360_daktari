@@ -21,7 +21,7 @@ class ScreeningToolsItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(
         context,
-        AppRoutes.assessmentToolsCategoryPage,
+        AppRoutes.assessmentToolResponsesPage,
         arguments: screeningToolsType,
       ),
       child: Container(

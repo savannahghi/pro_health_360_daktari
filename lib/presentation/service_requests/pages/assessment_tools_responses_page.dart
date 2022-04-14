@@ -73,9 +73,10 @@ class _AssessmentToolResponsesPageState
                       height: 150,
                     ),
                     smallVerticalSizedBox,
-                    Center(
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
                       child: Text(
-                        screeningToolsPageLongDescription,
+                        assessmentToolsResponsesPageDescription,
                         style: normalSize14Text(
                           AppColors.greyTextColor.withOpacity(0.5),
                         ),
@@ -94,6 +95,7 @@ class _AssessmentToolResponsesPageState
                       ...List<Widget>.generate(responses.length, (int index) {
                         return AssessmentRequestItemWidget(
                           screeningQuestionsList: responses[index],
+                          toolsType: widget.screeningToolsType,
                         );
                       })
                   } else ...<Widget>{

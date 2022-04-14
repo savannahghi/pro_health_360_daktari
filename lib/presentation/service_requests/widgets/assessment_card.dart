@@ -1,20 +1,35 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/assessment_question_response.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_list_item.dart';
 import 'package:shared_themes/spaces.dart';
 
 class AssessmentCard extends StatelessWidget {
   final String username;
   final String description;
+  final List<AssessmentQuestionResponse>? questionsResponses;
+  final bool isLoading;
 
   const AssessmentCard({
     required this.username,
     required this.description,
+    required this.questionsResponses,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final List<AssessmentListItem> assessmentItems = <AssessmentListItem>[];
+    for (final AssessmentQuestionResponse item
+        in questionsResponses ?? <AssessmentQuestionResponse>[]) {
+      assessmentItems.add(
+        AssessmentListItem(
+          assessmentResponse: '${item.index}. ${item.tool}',
+          responseStatus: '${item.response}',
+        ),
+      );
+    }
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.14),
@@ -43,7 +58,7 @@ class AssessmentCard extends StatelessWidget {
                   ),
                 ),
                 smallVerticalSizedBox,
-                ...assessmentItems,
+                if (isLoading) const PlatformLoader() else ...assessmentItems,
               ],
             ),
           )
