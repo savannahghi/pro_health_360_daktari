@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../mocks/mocks.dart';
 
@@ -36,16 +36,15 @@ void main() {
           200,
         ),
       );
+
       int testNumber = 0;
       storeTester.dispatch(
         AssignRolesAction(
-          searchUserResponse: SearchUserResponse.initial(),
+          userId: '',
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {
-            testNumber += 1;
-          },
+          onSuccess: () => testNumber += 1,
           onFailure: () {},
-          roles: <String, bool>{},
+          roles: <RoleValue>[],
         ),
       );
 
@@ -71,11 +70,11 @@ void main() {
       );
       storeTester.dispatch(
         AssignRolesAction(
-          searchUserResponse: SearchUserResponse.initial(),
+          userId: '',
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           onFailure: () {},
-          roles: <String, bool>{},
+          roles: <RoleValue>[],
         ),
       );
 
@@ -106,11 +105,11 @@ void main() {
       );
       storeTester.dispatch(
         AssignRolesAction(
-          searchUserResponse: SearchUserResponse.initial(),
+          userId: '',
           client: mockShortSILGraphQlClient,
-          onSuccess: (String name) {},
+          onSuccess: () {},
           onFailure: () {},
-          roles: <String, bool>{},
+          roles: <RoleValue>[],
         ),
       );
 

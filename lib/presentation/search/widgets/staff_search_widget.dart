@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -9,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles
 import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
@@ -17,7 +19,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/role.dart';
 
 class StaffSearchWidget extends StatefulWidget {
   const StaffSearchWidget({required this.rolesList});
@@ -28,21 +29,14 @@ class StaffSearchWidget extends StatefulWidget {
   State<StaffSearchWidget> createState() => _StaffSearchWidgetState();
 }
 
-Map<String, bool> roleFields = <String, bool>{};
+Map<RoleValue, bool> roleFields = <RoleValue, bool>{};
 
 void createRoleFields(RolesList rolesList) {
-  final List<String> rolesFromState = <String>[];
-  for (final Role role in rolesList.roles!) {
-    rolesFromState.add(roleToString(role.name!));
-  }
+  final List<RoleValue?>? roles =
+      rolesList.roles?.map((Role role) => role.name).toList();
 
   for (final RoleValue role in RoleValue.values) {
-    final String key = capitalizeFirst(role.name);
-    if (rolesFromState.contains(key)) {
-      roleFields[key] = true;
-    } else {
-      roleFields[key] = false;
-    }
+    roleFields[role] = roles?.contains(role) ?? false;
   }
 }
 
@@ -61,6 +55,9 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
         builder: (BuildContext context, SearchViewModel vm) {
           final SearchUserResponse selectedSearchUserResponse =
               vm.selectedSearchUserResponse!;
+
+          final String? userId = selectedSearchUserResponse.user?.id;
+          final String? userName = selectedSearchUserResponse.user?.userName;
 
           return (vm.wait.isWaitingFor(searchStaffMemberFlag))
               ? Container(
@@ -166,13 +163,13 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                           ),
                           Wrap(
                             children: roleFields.entries
-                                .map<Widget>((MapEntry<String, bool> entry) {
+                                .map<Widget>((MapEntry<RoleValue, bool> entry) {
                               return CheckboxListTile(
-                                key: Key(entry.key),
+                                key: Key(entry.key.name),
                                 activeColor: AppColors.primaryColor,
                                 selectedTileColor: AppColors.primaryColor,
                                 title: Text(
-                                  entry.key,
+                                  capitalizeFirst(entry.key.name),
                                   style:
                                       normalSize15Text(AppColors.greyTextColor),
                                 ),
@@ -202,14 +199,21 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                                           ),
                                         ),
                               onPressed: () {
+                                final List<RoleValue> newPermissions =
+                                    roleFields.keys
+                                        .where(
+                                          (RoleValue role) =>
+                                              roleFields[role] ?? false,
+                                        )
+                                        .toList();
+
                                 StoreProvider.dispatch(
                                   context,
                                   AssignRolesAction(
                                     client: AppWrapperBase.of(context)!
                                         .graphQLClient,
-                                    searchUserResponse:
-                                        selectedSearchUserResponse,
-                                    roles: roleFields,
+                                    userId: userId,
+                                    roles: newPermissions,
                                     onFailure: () {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -223,15 +227,12 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                                         (Route<dynamic> route) => false,
                                       );
                                     },
-                                    onSuccess: (String name) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            '$rolesAssigned ${selectedSearchUserResponse.user!.userName}',
-                                          ),
-                                        ),
+                                    onSuccess: () {
+                                      showTextSnackbar(
+                                        ScaffoldMessenger.of(context),
+                                        content: '$rolesAssigned $userName',
                                       );
+
                                       Navigator.of(context)
                                           .pushNamedAndRemoveUntil(
                                         AppRoutes.homePage,

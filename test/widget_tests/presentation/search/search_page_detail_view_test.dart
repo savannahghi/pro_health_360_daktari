@@ -8,10 +8,11 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/role.dart';
+import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/user_data.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
@@ -104,7 +105,7 @@ void main() {
               id: '123',
               rolesList: RolesList(
                 roles: <Role>[
-                  Role(name: 'CONTENT_MANAGEMENT', roleID: 'some_id'),
+                  Role(name: RoleValue.CONTENT_MANAGEMENT, roleID: 'some_id'),
                 ],
               ),
             ),
@@ -351,13 +352,13 @@ void main() {
         await tester.ensureVisible(find.byKey(updateRolesButtonKey));
 
         final Finder clientManagementFinder =
-            find.byKey(const Key('Client management'));
+            find.byKey(Key(RoleValue.CLIENT_MANAGEMENT.name));
         final Finder contentManagementFinder =
-            find.byKey(const Key('Content management'));
+            find.byKey(Key(RoleValue.CONTENT_MANAGEMENT.name));
         final Finder systemAdministrationFinder =
-            find.byKey(const Key('System administrator'));
+            find.byKey(Key(RoleValue.SYSTEM_ADMINISTRATOR.name));
         final Finder communityManagementFinder =
-            find.byKey(const Key('Community management'));
+            find.byKey(Key(RoleValue.COMMUNITY_MANAGEMENT.name));
 
         expect(find.byKey(updateRolesButtonKey), findsOneWidget);
         expect(clientManagementFinder, findsOneWidget);
@@ -411,13 +412,13 @@ void main() {
         await tester.ensureVisible(find.byKey(updateRolesButtonKey));
 
         final Finder clientManagementFinder =
-            find.byKey(const Key('Client management'));
+            find.byKey(Key(RoleValue.CLIENT_MANAGEMENT.name));
         final Finder contentManagementFinder =
-            find.byKey(const Key('Content management'));
+            find.byKey(Key(RoleValue.CONTENT_MANAGEMENT.name));
         final Finder systemAdministrationFinder =
-            find.byKey(const Key('System administrator'));
+            find.byKey(Key(RoleValue.SYSTEM_ADMINISTRATOR.name));
         final Finder communityManagementFinder =
-            find.byKey(const Key('Community management'));
+            find.byKey(Key(RoleValue.COMMUNITY_MANAGEMENT.name));
 
         expect(find.byKey(updateRolesButtonKey), findsOneWidget);
         expect(clientManagementFinder, findsOneWidget);
@@ -521,6 +522,7 @@ void main() {
         );
         expect(find.byType(SnackBar), findsOneWidget);
       });
+      
       testWidgets('renders loading indicator correctly',
           (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
