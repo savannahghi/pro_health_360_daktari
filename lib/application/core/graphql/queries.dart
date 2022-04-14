@@ -136,9 +136,6 @@ query listPendingInvites($memberID: String!, $input: QueryOption){
     memberCount
     gender
     description
-    createdBy{
-      ID
-    }
   }
 }
 ''';
