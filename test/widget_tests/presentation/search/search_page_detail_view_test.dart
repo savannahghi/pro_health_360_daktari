@@ -146,7 +146,38 @@ void main() {
           'idToken',
           'endpoint',
           Response(
-            json.encode(<String, dynamic>{'data': clientResponseMock}),
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'searchClientsByCCCNumber': <dynamic>[
+                  <String, dynamic>{
+                    'ID': 'some-id',
+                    'CCCNumber': '1234',
+                    'Active': true,
+                    'User': <String, dynamic>{
+                      'ID': 'some-id',
+                      'Username': 'Username',
+                      'Active': false,
+                      'TermsAccepted': false,
+                      'Contacts': <String, dynamic>{
+                        'ContactType': 'PHONE',
+                        'ContactValue': '07000000',
+                        'Active': false,
+                        'OptedIn': false,
+                      }
+                    }
+                  }
+                ],
+                'getSharedHealthDiaryEntries': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'some-id',
+                    'mood': 'HAPPY',
+                    'note': 'I am healthy',
+                    'sharedAt': '2021-11-30T16:17:57Z',
+                    'active': true,
+                  }
+                ]
+              }
+            }),
             200,
           ),
         );
@@ -416,10 +447,9 @@ void main() {
     });
 
     group('for deactivated user', () {
-      
       testWidgets('reactivate user button works correctly',
           (WidgetTester tester) async {
-            store.dispatch(
+        store.dispatch(
           UpdateSearchUserResponseStateAction(
             selectedSearchUserResponse:
                 SearchUserResponse.initial().copyWith(isActive: false),
@@ -452,7 +482,7 @@ void main() {
 
       testWidgets('handles api error when reactivate user button is tapped',
           (WidgetTester tester) async {
-            store.dispatch(
+        store.dispatch(
           UpdateSearchUserResponseStateAction(
             selectedSearchUserResponse:
                 SearchUserResponse.initial().copyWith(isActive: false),
@@ -493,18 +523,40 @@ void main() {
       });
       testWidgets('renders loading indicator correctly',
           (WidgetTester tester) async {
-           
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getSharedHealthDiaryEntries': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'some-id',
+                    'mood': 'HAPPY',
+                    'note': 'I am healthy',
+                    'sharedAt': '2021-11-30T16:17:57Z',
+                    'active': true,
+                  }
+                ]
+              }
+            }),
+            200,
+          ),
+        );
         store.dispatch(WaitAction<AppState>.add(reactivateClientFlag));
         await buildTestWidget(
           tester: tester,
-          graphQlClient: MockTestGraphQlClient(),
+          graphQlClient: mockShortGraphQlClient,
           store: store,
           widget: SearchPageDetailView(
-            searchUserResponse: SearchUserResponse.initial().copyWith(isActive: false),
+            searchUserResponse:
+                SearchUserResponse.initial().copyWith(isActive: false),
             isClient: true,
           ),
         );
-        expect(find.byType(PlatformLoader), findsOneWidget);
+
+        expect(find.byType(PlatformLoader), findsNWidgets(2));
       });
     });
   });

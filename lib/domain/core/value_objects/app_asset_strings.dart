@@ -131,3 +131,10 @@ const String screeningToolsImage = 'assets/images/screening_tools_image.svg';
 
 // resume with pin
 const String securitySvgAsset = 'assets/images/security.svg';
+
+// Mood selection icons
+const String excitedIconSvgPath = 'assets/icons/excited.svg';
+const String happyIconSvgPath = 'assets/icons/happy.svg';
+const String mehIconSvgPath = 'assets/icons/meh.svg';
+const String sadIconSvgPath = 'assets/icons/sad.svg';
+const String verySadIconSvgPath = 'assets/icons/very_sad.svg';

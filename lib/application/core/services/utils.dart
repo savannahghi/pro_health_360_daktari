@@ -6,9 +6,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
 import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
@@ -524,4 +526,40 @@ Widget humanizeDate({
   }
 
   return const SizedBox();
+}
+
+MoodItemData getMoodColor(String? mood) {
+  if (mood == null) {
+    return MoodItemData.initial();
+  }
+
+  switch (mood) {
+    case veryHappyString:
+      return MoodItemData(
+        color: AppColors.greenHappyColor,
+        svgIconUrl: excitedIconSvgPath,
+      );
+    case happyString:
+      return MoodItemData(
+        color: AppColors.greenHappyColor,
+        svgIconUrl: happyIconSvgPath,
+      );
+    case neutralString:
+      return MoodItemData(
+        color: AppColors.mehMoodColor,
+        svgIconUrl: mehIconSvgPath,
+      );
+    case sadString:
+      return MoodItemData(
+        color: AppColors.warningColor,
+        svgIconUrl: sadIconSvgPath,
+      );
+    case verySadString:
+      return MoodItemData(
+        color: AppColors.verySadColor,
+        svgIconUrl: verySadIconSvgPath,
+      );
+    default:
+      return MoodItemData.initial();
+  }
 }

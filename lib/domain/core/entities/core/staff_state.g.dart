@@ -23,10 +23,12 @@ _$_StaffState _$$_StaffStateFromJson(Map<String, dynamic> json) =>
           ? null
           : CommunitiesState.fromJson(
               json['communitiesState'] as Map<String, dynamic>),
-      clientSharedDiaryEntries: json['clientSharedDiaryEntries'] == null
-          ? null
-          : HealthDiaryEntry.fromJson(
-              json['clientSharedDiaryEntries'] as Map<String, dynamic>),
+      clientSharedDiaryEntries:
+          (json['clientSharedDiaryEntries'] as List<dynamic>?)
+              ?.map((e) => e == null
+                  ? null
+                  : HealthDiaryEntry.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>

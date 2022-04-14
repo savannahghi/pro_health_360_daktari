@@ -31,7 +31,7 @@ class _$StaffStateTearOff {
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
-      HealthDiaryEntry? clientSharedDiaryEntries}) {
+      List<HealthDiaryEntry?>? clientSharedDiaryEntries}) {
     return _StaffState(
       id: id,
       userId: userId,
@@ -70,8 +70,8 @@ mixin _$StaffState {
   @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError; // invited communities
   CommunitiesState? get communitiesState =>
-      throw _privateConstructorUsedError; // recently shared health diary entry
-  HealthDiaryEntry? get clientSharedDiaryEntries =>
+      throw _privateConstructorUsedError; // recently shared health diary entries
+  List<HealthDiaryEntry?>? get clientSharedDiaryEntries =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -94,11 +94,10 @@ abstract class $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
-      HealthDiaryEntry? clientSharedDiaryEntries});
+      List<HealthDiaryEntry?>? clientSharedDiaryEntries});
 
   $UserCopyWith<$Res>? get user;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
-  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries;
 }
 
 /// @nodoc
@@ -157,7 +156,7 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
       clientSharedDiaryEntries: clientSharedDiaryEntries == freezed
           ? _value.clientSharedDiaryEntries
           : clientSharedDiaryEntries // ignore: cast_nullable_to_non_nullable
-              as HealthDiaryEntry?,
+              as List<HealthDiaryEntry?>?,
     ));
   }
 
@@ -182,18 +181,6 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
       return _then(_value.copyWith(communitiesState: value));
     });
   }
-
-  @override
-  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries {
-    if (_value.clientSharedDiaryEntries == null) {
-      return null;
-    }
-
-    return $HealthDiaryEntryCopyWith<$Res>(_value.clientSharedDiaryEntries!,
-        (value) {
-      return _then(_value.copyWith(clientSharedDiaryEntries: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -211,14 +198,12 @@ abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
-      HealthDiaryEntry? clientSharedDiaryEntries});
+      List<HealthDiaryEntry?>? clientSharedDiaryEntries});
 
   @override
   $UserCopyWith<$Res>? get user;
   @override
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
-  @override
-  $HealthDiaryEntryCopyWith<$Res>? get clientSharedDiaryEntries;
 }
 
 /// @nodoc
@@ -279,7 +264,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
       clientSharedDiaryEntries: clientSharedDiaryEntries == freezed
           ? _value.clientSharedDiaryEntries
           : clientSharedDiaryEntries // ignore: cast_nullable_to_non_nullable
-              as HealthDiaryEntry?,
+              as List<HealthDiaryEntry?>?,
     ));
   }
 }
@@ -324,8 +309,8 @@ class _$_StaffState implements _StaffState {
   final User? user;
   @override // invited communities
   final CommunitiesState? communitiesState;
-  @override // recently shared health diary entry
-  final HealthDiaryEntry? clientSharedDiaryEntries;
+  @override // recently shared health diary entries
+  final List<HealthDiaryEntry?>? clientSharedDiaryEntries;
 
   @override
   String toString() {
@@ -387,7 +372,7 @@ abstract class _StaffState implements StaffState {
       @JsonKey(name: 'default_facility') String? defaultFacility,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
-      HealthDiaryEntry? clientSharedDiaryEntries}) = _$_StaffState;
+      List<HealthDiaryEntry?>? clientSharedDiaryEntries}) = _$_StaffState;
 
   factory _StaffState.fromJson(Map<String, dynamic> json) =
       _$_StaffState.fromJson;
@@ -415,8 +400,8 @@ abstract class _StaffState implements StaffState {
   User? get user;
   @override // invited communities
   CommunitiesState? get communitiesState;
-  @override // recently shared health diary entry
-  HealthDiaryEntry? get clientSharedDiaryEntries;
+  @override // recently shared health diary entries
+  List<HealthDiaryEntry?>? get clientSharedDiaryEntries;
   @override
   @JsonKey(ignore: true)
   _$StaffStateCopyWith<_StaffState> get copyWith =>

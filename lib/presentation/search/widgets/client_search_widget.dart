@@ -7,10 +7,13 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/invite_client_action.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/reactivate_client_action.dart';
+import 'package:mycarehubpro/application/redux/actions/search_users/shared_health_diary_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/client_details/widgets/health_diary_entry_widget.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
@@ -22,10 +25,26 @@ class ClientSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: StoreConnector<AppState, SearchViewModel>(
+        onInit: (Store<AppState> store) {
+          final String clientID = store.state.staffState?.id ?? '';
+          final String facilityID =
+              store.state.staffState?.defaultFacility ?? '';
+
+          store.dispatch(
+            SharedHealthDiaryAction(
+              client: AppWrapperBase.of(context)!.graphQLClient,
+              clientID: clientID,
+              facilityID: facilityID,
+            ),
+          );
+        },
         converter: (Store<AppState> store) => SearchViewModel.fromStore(store),
         builder: (BuildContext context, SearchViewModel vm) {
           final SearchUserResponse selectedSearchUserResponse =
               vm.selectedSearchUserResponse!;
+
+          final List<HealthDiaryEntry?> entries =
+              vm.sharedDiaryEntries ?? <HealthDiaryEntry>[];
 
           final bool isActive = selectedSearchUserResponse.isActive ?? true;
           return Column(
@@ -92,6 +111,40 @@ class ClientSearchWidget extends StatelessWidget {
                             ),
                     ),
                     mediumVerticalSizedBox,
+                    if (vm.wait.isWaitingFor(sharedHealthDiaryFlag))
+                      Container(
+                        height: 300,
+                        padding: const EdgeInsets.all(20),
+                        child: const PlatformLoader(),
+                      ),
+                    if (!vm.wait.isWaitingFor(sharedHealthDiaryFlag) &&
+                        entries.isNotEmpty)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            shareDiaryEntry,
+                            style: boldSize18Text(AppColors.greyTextColor),
+                          ),
+                          smallVerticalSizedBox,
+                          ListView.builder(
+                            itemCount: entries.length,
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              final HealthDiaryEntry? currentEntry =
+                                  entries.elementAt(index);
+                              if (currentEntry != null) {
+                                return HealthDiaryEntryWidget(
+                                  diaryEntry: currentEntry,
+                                  index: index,
+                                );
+                              } else {
+                                return const SizedBox();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ),
