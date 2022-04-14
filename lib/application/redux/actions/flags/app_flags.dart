@@ -37,6 +37,7 @@ const String fetchAssessmentResponsesByToolFlag = 'fetch_assessment_responses_by
 const String fetchServiceRequestsCountFlag =
     'fetch_service_requests_count_flag';
 const String pinResetRequestFlag = 'pin_reset_accept_flag';
+const String resolveServiceRequestFlag = 'resolves_service_request_flag';
 
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';

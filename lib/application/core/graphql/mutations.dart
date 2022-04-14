@@ -180,3 +180,8 @@ mutation deleteCommunityMessage($messageID: String!){
   deleteCommunityMessage(messageID: $messageID)
 }
 ''';
+const String resolveServiceRequestMutation = r'''
+mutation resolveServiceRequest($staffID: String!, $requestID: String!){
+  resolveServiceRequest(staffID: $staffID, requestID: $requestID)
+}
+''';
