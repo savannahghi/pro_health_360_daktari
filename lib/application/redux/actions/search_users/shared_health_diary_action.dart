@@ -25,6 +25,11 @@ class SharedHealthDiaryAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
+    dispatch(
+      UpdateStaffProfileAction(
+        healthDiaryEntries: <HealthDiaryEntry>[],
+      ),
+    );
     dispatch(WaitAction<AppState>.add(sharedHealthDiaryFlag));
   }
 
