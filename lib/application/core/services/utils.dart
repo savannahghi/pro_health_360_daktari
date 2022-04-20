@@ -514,6 +514,14 @@ Widget humanizeDate({
 
   return const SizedBox();
 }
+String formatDate(String date){
+   final DateTime parsedDate =
+      DateTime.tryParse(date)?.toLocal() ?? DateTime.now();
+  final String postDay = DateFormat.d().format(parsedDate);
+  final String postMonth = DateFormat.MMMM().format(parsedDate);
+  final String postYear = DateFormat.y().format(parsedDate);
+  return '$postDay $postMonth, $postYear';
+}
 
 MoodItemData getMoodColor(String? mood) {
   if (mood == null) {
