@@ -94,7 +94,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
       }
 
       final bool isRequestApproved =
-          body['data']['verifyPinResetServiceRequest'] as bool? ?? false;
+          body['data']['verifyClientPinResetServiceRequest'] as bool? ?? false;
 
       if (isRequestApproved) {
         final List<ServiceRequest>? serviceRequests =
