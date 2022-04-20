@@ -40,104 +40,104 @@ class ModerationActionsDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Expanded(
-                  child: TextButton(
-                    key: ValueKey<String>('delete_key_$messageId'),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        AppColors.primaryColor,
+                  child: SizedBox(
+                    height: 44,
+                    child: TextButton(
+                      key: ValueKey<String>('delete_key_$messageId'),
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
                       ),
-                    ),
-                    onPressed: () {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        DeleteCommunityMessageAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          messageID: messageId,
-                          onFailure: (String message) {
-                            showTextSnackbar(
-                              ScaffoldMessenger.of(context),
-                              content: message,
-                            );
+                      onPressed: () {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          DeleteCommunityMessageAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            messageID: messageId,
+                            onFailure: (String message) {
+                              showTextSnackbar(
+                                ScaffoldMessenger.of(context),
+                                content: message,
+                              );
 
-                            Navigator.of(context).pop();
-                          },
-                          onSuccess: () {
-                            showTextSnackbar(
-                              ScaffoldMessenger.of(context),
-                              content: messageDeletedText,
-                            );
+                              Navigator.of(context).pop();
+                            },
+                            onSuccess: () {
+                              showTextSnackbar(
+                                ScaffoldMessenger.of(context),
+                                content: messageDeletedText,
+                              );
 
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      );
-                    },
-                    child: vm.wait.isWaitingFor(
-                      '${deleteCommunityMessageFlag}_$messageId',
-                    )
-                        ? const PlatformLoader()
-                        : const Text(
-                            deleteMessageString,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                              Navigator.of(context).pop();
+                            },
                           ),
+                        );
+                      },
+                      child: vm.wait.isWaitingFor(
+                        '${deleteCommunityMessageFlag}_$messageId',
+                      )
+                          ? const PlatformLoader()
+                          : const Text(
+                              deleteMessageString,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: TextButton(
-                    key: ValueKey<String>('ban_user_key_$messageId'),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        AppColors.primaryColor.withOpacity(0.1),
-                      ),
-                      shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-                          (_) {
-                        return RoundedRectangleBorder(
+                  child: SizedBox(
+                    height: 44,
+                    child: TextButton(
+                      key: ValueKey<String>('ban_user_key_$messageId'),
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                            AppColors.primaryColor.withOpacity(0.1),
+                        shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: AppColors.primaryColor.withOpacity(0.1),
                           ),
                           borderRadius: BorderRadius.circular(5),
-                        );
-                      }),
-                    ),
-                    onPressed: () {
-                      StoreProvider.dispatch(
-                        context,
-                        BanUserAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          memberID: memberId,
-                          communityID: communityId,
-                          onError: () => showTextSnackbar(
-                            ScaffoldMessenger.of(context),
-                            content: getErrorMessage(),
-                          ),
-                          onSuccess: () {
-                            showTextSnackbar(
-                              ScaffoldMessenger.of(context),
-                              content: userBannedMessage(
-                                communityName: communityName,
-                              ),
-                            );
-
-                            Navigator.of(context).pop();
-                          },
                         ),
-                      );
-                    },
-                    child: vm.wait.isWaitingFor('${banUserFlag}_$memberId')
-                        ? const PlatformLoader()
-                        : const Text(
-                            banUserText,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                              color: AppColors.primaryColor,
+                      ),
+                      onPressed: () {
+                        StoreProvider.dispatch(
+                          context,
+                          BanUserAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            memberID: memberId,
+                            communityID: communityId,
+                            onError: () => showTextSnackbar(
+                              ScaffoldMessenger.of(context),
+                              content: getErrorMessage(),
                             ),
+                            onSuccess: () {
+                              showTextSnackbar(
+                                ScaffoldMessenger.of(context),
+                                content: userBannedMessage(
+                                  communityName: communityName,
+                                ),
+                              );
+
+                              Navigator.of(context).pop();
+                            },
                           ),
+                        );
+                      },
+                      child: vm.wait.isWaitingFor('${banUserFlag}_$memberId')
+                          ? const PlatformLoader()
+                          : const Text(
+                              banUserText,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                    ),
                   ),
                 ),
               ],
