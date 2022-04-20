@@ -1450,6 +1450,58 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   }
 };
 
+final Map<String, dynamic> pinChangeRequiredMock = <String, dynamic>{
+  'code': 0,
+  'message': 'success',
+  'response': <String, dynamic>{
+    'credentials': <String, dynamic>{
+      'expiresIn': '3600',
+      'idToken': 'some id token',
+      'refreshToken': 'some-refresh-token',
+      'tokenExpiryTimestamp': 'UNKNOWN',
+      'isSignedIn': false,
+      'signedInTime': 'UNKNOWN',
+    },
+    'staffProfile': <String, dynamic>{
+      'id': 'UNKNOWN',
+      'user_id': 'UNKNOWN',
+      'active': false,
+      'staff_number': 'UNKNOWN',
+      'facilities': <dynamic>[],
+      'default_facility': 'UNKNOWN',
+      'user': <String, dynamic>{
+        'userID': 'UNKNOWN',
+        'userName': 'UNKNOWN',
+        'firstName': 'John',
+        'lastName': 'Doe',
+        'name': 'John Doe',
+        'userType': 'UNKNOWN',
+        'gender': Gender.unknown.name,
+        'active': false,
+        'primaryContact': <String, dynamic>{
+          'contactType': 'PHONE',
+          'contactValue': 'UNKNOWN',
+          'active': false,
+          'optedIn': false,
+        },
+        'lastSuccessfulLogin': 'UNKNOWN',
+        'lastFailedLogin': 'UNKNOWN',
+        'failedLoginCount': 0,
+        'nextAllowedLogin': 'UNKNOWN',
+        'pinChangeRequired': true,
+        'pinUpdateRequired': true,
+        'hasSetPin': false,
+        'isPhoneVerified': false,
+        'hasSetSecurityQuestions': false,
+        'termsAccepted': false,
+        'acceptedTermsID': 0,
+        'suspended': false,
+        'avatar': 'UNKNOWN'
+      },
+    }
+  }
+};
+
 final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
   'expiresIn': '3600',
   'idToken': 'some id token',

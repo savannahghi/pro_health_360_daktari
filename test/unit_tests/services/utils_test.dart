@@ -229,6 +229,71 @@ void main() {
     });
   });
 
+  group('Pin update workflow onboardingPath', () {
+    late Store<AppState> store;
+
+    setUp(() {
+      store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
+        ),
+      );
+    });
+
+    test('should return verify otp page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.verifyPhonePage);
+    });
+
+    test('should return set pin page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasVerifiedSecurityQuestions: false,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.setPinPage);
+    });
+
+    test('should return security questions', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetPin: true,
+          hasVerifiedSecurityQuestions: false,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.securityQuestionsPage);
+    });
+
+    test('should return login page', () async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasVerifiedSecurityQuestions: true,
+          hasSetSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
+      );
+      store.dispatch(UpdateTermsAndConditionsAction(isAccepted: true));
+
+      final OnboardingPathInfo path = getOnboardingPath(state: store.state);
+      expect(path.nextRoute, AppRoutes.loginPage);
+    });
+  });
+
   testWidgets('should test logout user works correctly',
       (WidgetTester tester) async {
     final Store<AppState> store =

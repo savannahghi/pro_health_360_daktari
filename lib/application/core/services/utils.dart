@@ -256,11 +256,12 @@ OnboardingPathInfo getOnboardingPath({required AppState state}) {
     );
 
     /// The PIN expiry workflow
-  } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired) {
+  } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired ||
+      currentOnboardingStage == CurrentOnboardingStage.PINUpdate) {
     // check whether the phone is verified
     if (!isPhoneVerified) {
       return OnboardingPathInfo(
-        previousRoute: '',
+        previousRoute: AppRoutes.pinExpiredPage,
         nextRoute: AppRoutes.verifyPhonePage,
       );
     }
@@ -268,8 +269,16 @@ OnboardingPathInfo getOnboardingPath({required AppState state}) {
     // check whether the PIN has been changed
     if (!hasSetPin) {
       return OnboardingPathInfo(
-        previousRoute: AppRoutes.securityQuestionsPage,
+        previousRoute: AppRoutes.verifyPhonePage,
         nextRoute: AppRoutes.setPinPage,
+      );
+    }
+
+    if (currentOnboardingStage == CurrentOnboardingStage.PINUpdate &&
+        !hasSetSecurityQuestions) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.termsAndConditions,
+        nextRoute: AppRoutes.securityQuestionsPage,
       );
     }
 
