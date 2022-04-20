@@ -67,6 +67,8 @@ class _$UserTearOff {
           String? avatar,
       @JsonKey(name: 'roles')
           List<Role>? roles,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       String? chatRoomToken}) {
     return _User(
       userId: userId,
@@ -91,6 +93,7 @@ class _$UserTearOff {
       suspended: suspended,
       avatar: avatar,
       roles: roles,
+      pinUpdateRequired: pinUpdateRequired,
       chatRoomToken: chatRoomToken,
     );
   }
@@ -150,6 +153,12 @@ mixin _$User {
   String? get avatar => throw _privateConstructorUsedError;
   @JsonKey(name: 'roles')
   List<Role>? get roles => throw _privateConstructorUsedError;
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  bool? get pinUpdateRequired => throw _privateConstructorUsedError;
   String? get chatRoomToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -206,6 +215,8 @@ abstract class $UserCopyWith<$Res> {
           String? avatar,
       @JsonKey(name: 'roles')
           List<Role>? roles,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       String? chatRoomToken});
 
   $ContactCopyWith<$Res>? get primaryContact;
@@ -243,6 +254,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? suspended = freezed,
     Object? avatar = freezed,
     Object? roles = freezed,
+    Object? pinUpdateRequired = freezed,
     Object? chatRoomToken = freezed,
   }) {
     return _then(_value.copyWith(
@@ -334,6 +346,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
               as List<Role>?,
+      pinUpdateRequired: pinUpdateRequired == freezed
+          ? _value.pinUpdateRequired
+          : pinUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
       chatRoomToken: chatRoomToken == freezed
           ? _value.chatRoomToken
           : chatRoomToken // ignore: cast_nullable_to_non_nullable
@@ -403,6 +419,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? avatar,
       @JsonKey(name: 'roles')
           List<Role>? roles,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       String? chatRoomToken});
 
   @override
@@ -442,6 +460,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? suspended = freezed,
     Object? avatar = freezed,
     Object? roles = freezed,
+    Object? pinUpdateRequired = freezed,
     Object? chatRoomToken = freezed,
   }) {
     return _then(_User(
@@ -533,6 +552,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
               as List<Role>?,
+      pinUpdateRequired: pinUpdateRequired == freezed
+          ? _value.pinUpdateRequired
+          : pinUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
       chatRoomToken: chatRoomToken == freezed
           ? _value.chatRoomToken
           : chatRoomToken // ignore: cast_nullable_to_non_nullable
@@ -589,6 +612,8 @@ class _$_User implements _User {
           this.avatar,
       @JsonKey(name: 'roles')
           this.roles,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          this.pinUpdateRequired,
       this.chatRoomToken});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -660,11 +685,18 @@ class _$_User implements _User {
   @JsonKey(name: 'roles')
   final List<Role>? roles;
   @override
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  final bool? pinUpdateRequired;
+  @override
   final String? chatRoomToken;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar, roles: $roles, chatRoomToken: $chatRoomToken)';
+    return 'User(userId: $userId, username: $username, name: $name, firstName: $firstName, lastName: $lastName, userType: $userType, gender: $gender, active: $active, primaryContact: $primaryContact, lastSuccessfulLogin: $lastSuccessfulLogin, lastFailedLogin: $lastFailedLogin, failedLoginCount: $failedLoginCount, nextAllowedLogin: $nextAllowedLogin, pinChangeRequired: $pinChangeRequired, hasSetPin: $hasSetPin, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, termsAccepted: $termsAccepted, acceptedTermsID: $acceptedTermsID, suspended: $suspended, avatar: $avatar, roles: $roles, pinUpdateRequired: $pinUpdateRequired, chatRoomToken: $chatRoomToken)';
   }
 
   @override
@@ -705,6 +737,8 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.roles, roles) &&
             const DeepCollectionEquality()
+                .equals(other.pinUpdateRequired, pinUpdateRequired) &&
+            const DeepCollectionEquality()
                 .equals(other.chatRoomToken, chatRoomToken));
   }
 
@@ -733,6 +767,7 @@ class _$_User implements _User {
         const DeepCollectionEquality().hash(suspended),
         const DeepCollectionEquality().hash(avatar),
         const DeepCollectionEquality().hash(roles),
+        const DeepCollectionEquality().hash(pinUpdateRequired),
         const DeepCollectionEquality().hash(chatRoomToken)
       ]);
 
@@ -793,6 +828,8 @@ abstract class _User implements User {
           String? avatar,
       @JsonKey(name: 'roles')
           List<Role>? roles,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       String? chatRoomToken}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -863,6 +900,13 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'roles')
   List<Role>? get roles;
+  @override
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  bool? get pinUpdateRequired;
   @override
   String? get chatRoomToken;
   @override

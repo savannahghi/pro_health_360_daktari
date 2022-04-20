@@ -35,6 +35,12 @@ class User with _$User {
     @JsonKey(name: 'suspended') bool? suspended,
     @JsonKey(name: 'avatar') String? avatar,
     @JsonKey(name: 'roles') List<Role>? roles,
+
+    /// Used to indicate that the user's PIN has been reset by someone else
+    ///
+    /// This is used to trigger the change PIN workflow
+    @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+        bool? pinUpdateRequired,
     String? chatRoomToken,
   }) = _User;
 
@@ -63,5 +69,6 @@ class User with _$User {
         suspended: false,
         avatar: UNKNOWN,
         roles: <Role>[],
+        pinUpdateRequired: false,
       );
 }

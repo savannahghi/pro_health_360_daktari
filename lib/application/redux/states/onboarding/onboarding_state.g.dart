@@ -68,4 +68,5 @@ const _$CurrentOnboardingStageEnumMap = {
   CurrentOnboardingStage.Login: 'Login',
   CurrentOnboardingStage.ResetPIN: 'ResetPIN',
   CurrentOnboardingStage.PINExpired: 'PINExpired',
+  CurrentOnboardingStage.PINUpdate: 'PINUpdate',
 };

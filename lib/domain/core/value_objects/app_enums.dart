@@ -83,7 +83,7 @@ extension PinResetStateExtension on PinResetState {
 ///
 /// The [CurrentOnboardingStage] is stored in the [onboardingState] and must be
 ///  changed at the end of each workflow
-enum CurrentOnboardingStage { Login, ResetPIN, PINExpired }
+enum CurrentOnboardingStage { Login, ResetPIN, PINExpired, PINUpdate }
 
 enum ScreeningToolsType {
   VIOLENCE_ASSESSMENT,

@@ -147,6 +147,22 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         ),
       );
 
+      /// This addresses cases where a user's PIN has been reset by an admin
+      /// and it needs to be changed before accessing the platform
+      ///
+      /// Note: For this to work, the backend should trigger these properties
+      /// in the user profile (isPhoneVerified, hasSetPin, hasSetSecurityQuestions)
+      if (user?.pinUpdateRequired ?? false) {
+        dispatch(
+          UpdateOnboardingStateAction(
+            currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
+            isPhoneVerified: false,
+            hasSetPin: false,
+            hasSetSecurityQuestions: false,
+          ),
+        );
+      }
+
       final OnboardingPathInfo path = getOnboardingPath(state: state);
 
       dispatch(

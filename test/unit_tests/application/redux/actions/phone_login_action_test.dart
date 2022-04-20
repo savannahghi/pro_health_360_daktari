@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/core/phone_login_action.dart';
@@ -8,6 +9,8 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 import '../../../../mocks/mocks.dart';
 
@@ -55,6 +58,45 @@ void main() {
       expect(
         (info.error! as UserException).msg,
         somethingWentWrongText,
+      );
+    });
+
+    test('should change to new user workflow when pin update is required',
+        () async {
+      pinChangeRequiredMock['response']['staffProfile']['user']
+          ['pinUpdateRequired'] = true;
+      storeTester.dispatch(
+        PhoneLoginAction(
+          httpClient: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              jsonEncode(pinChangeRequiredMock),
+              201,
+            ),
+          ),
+          phoneLoginEndpoint: '',
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(NavigateAction);
+
+      final NavigateAction<AppState>? actionDispatched =
+          info.action as NavigateAction<AppState>?;
+
+      final NavigatorDetails_PushNamedAndRemoveUntil? navDetails =
+          actionDispatched?.details
+              as NavigatorDetails_PushNamedAndRemoveUntil?;
+
+      expect(navDetails?.newRouteName, AppRoutes.verifyPhonePage);
+      expect(
+        navDetails?.predicate.call(
+          MaterialPageRoute<VerifyPhonePage>(
+            builder: (BuildContext context) => VerifyPhonePage(),
+          ),
+        ),
+        false,
       );
     });
   });
