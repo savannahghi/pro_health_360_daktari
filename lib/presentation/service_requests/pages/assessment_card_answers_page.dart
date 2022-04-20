@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_screening_tool_responses_action.dart';
@@ -106,7 +107,8 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                           style: normalSize14Text(AppColors.greyTextColor),
                         ),
                         TextSpan(
-                          text: assessmentResponse.date,
+                          text: formatDate(
+                              assessmentResponse.date?? '',),
                           style: veryBoldSize14Text(AppColors.greyTextColor),
                         ),
                       ],

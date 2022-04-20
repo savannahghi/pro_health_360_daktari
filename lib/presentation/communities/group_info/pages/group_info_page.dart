@@ -5,6 +5,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -20,7 +21,6 @@ import 'package:mycarehubpro/presentation/communities/group_info/widgets/group_m
 import 'package:mycarehubpro/presentation/communities/view_models/groups_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -46,11 +46,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
         client: AppWrapperBase.of(context)!.graphQLClient,
         channelId: channel.id!,
         onError: (String? error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(getErrorMessage(groupMembersText.toLowerCase())),
-              duration: const Duration(seconds: kShortSnackBarDuration),
-            ),
+          showTextSnackbar(
+            ScaffoldMessenger.of(context),
+            content: getErrorMessage(groupMembersText.toLowerCase()),
           );
         },
       ),
