@@ -381,17 +381,17 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
     'change_pin': false,
   },
 };
-final Map<String, dynamic> mockAssessmentResponsesByToolType = <String, dynamic>{
-      'clientName': 'Byron Kimani',
-      'dateAnswered': '2022-02-18T12:54:53Z',
-      'clientID': '58074133-2d76-43ac-b233-3f33504a0bd8',
-      'serviceRequestID': 'test',
-    };
-
-final Map<String, dynamic>  mockToolAssessmentResponses =
+final Map<String, dynamic> mockAssessmentResponsesByToolType =
     <String, dynamic>{
+  'clientName': 'Byron Kimani',
+  'dateAnswered': '2022-02-18T12:54:53Z',
+  'clientID': '58074133-2d76-43ac-b233-3f33504a0bd8',
+  'serviceRequestID': 'test',
+};
+
+final Map<String, dynamic> mockToolAssessmentResponses = <String, dynamic>{
   'getAssessmentResponsesByToolType': <dynamic>[
-   mockAssessmentResponsesByToolType,
+    mockAssessmentResponsesByToolType,
     mockAssessmentResponsesByToolType,
   ]
 };
@@ -920,7 +920,9 @@ class MockTestGraphQlClient extends IGraphQlClient {
         http.Response(
           json.encode(
             <String, dynamic>{
-              'data': <String, dynamic>{'verifyPinResetServiceRequest': true}
+              'data': <String, dynamic>{
+                'verifyClientPinResetServiceRequest': true
+              }
             },
           ),
           201,
