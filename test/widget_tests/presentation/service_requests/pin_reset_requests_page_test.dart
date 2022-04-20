@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/identity_verification_action_dialog.dart';
+
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -30,7 +31,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'verifyPinResetServiceRequest': true,
+              'verifyClientPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'ID': 'some-id',
@@ -90,7 +91,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'verifyPinResetServiceRequest': true,
+              'verifyClientPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'ID': 'some-id',
@@ -163,7 +164,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'verifyPinResetServiceRequest': true,
+              'verifyClientPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'ID': 'some-id',
@@ -244,7 +245,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'verifyPinResetServiceRequest': true,
+              'verifyClientPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'ID': 'some-id',
