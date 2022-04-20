@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/unban_user_action.dart';
@@ -75,6 +76,23 @@ class MemberListActionsDialog extends StatelessWidget {
                               ScaffoldMessenger.of(context),
                               content: 'Successfully promoted to admin',
                             );
+
+                            StoreProvider.dispatch(
+                              context,
+                              FetchGroupMembersAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                channelId: communityId,
+                                onError: (String? error) {
+                                  showTextSnackbar(
+                                    ScaffoldMessenger.of(context),
+                                    content: getErrorMessage(
+                                      groupMembersText.toLowerCase(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
                             Navigator.of(context).pop();
                           },
                         ),
@@ -130,6 +148,24 @@ class MemberListActionsDialog extends StatelessWidget {
                                             ),
                                           ),
                                         );
+
+                                        StoreProvider.dispatch(
+                                          context,
+                                          FetchGroupMembersAction(
+                                            client: AppWrapperBase.of(context)!
+                                                .graphQLClient,
+                                            channelId: communityId,
+                                            onError: (String? error) {
+                                              showTextSnackbar(
+                                                ScaffoldMessenger.of(context),
+                                                content: getErrorMessage(
+                                                  groupMembersText
+                                                      .toLowerCase(),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
                                         Navigator.of(context).pop();
                                       },
                                     )
@@ -150,6 +186,24 @@ class MemberListActionsDialog extends StatelessWidget {
                                             content: userBannedMessage(
                                               communityName: communityName,
                                             ),
+                                          ),
+                                        );
+
+                                        StoreProvider.dispatch(
+                                          context,
+                                          FetchGroupMembersAction(
+                                            client: AppWrapperBase.of(context)!
+                                                .graphQLClient,
+                                            channelId: communityId,
+                                            onError: (String? error) {
+                                              showTextSnackbar(
+                                                ScaffoldMessenger.of(context),
+                                                content: getErrorMessage(
+                                                  groupMembersText
+                                                      .toLowerCase(),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         );
                                         Navigator.of(context).pop();
@@ -207,6 +261,24 @@ class MemberListActionsDialog extends StatelessWidget {
                                 content: Text('$memberName $removedFromGroup'),
                               ),
                             );
+
+                            StoreProvider.dispatch(
+                              context,
+                              FetchGroupMembersAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                channelId: communityId,
+                                onError: (String? error) {
+                                  showTextSnackbar(
+                                    ScaffoldMessenger.of(context),
+                                    content: getErrorMessage(
+                                      groupMembersText.toLowerCase(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+
                             Navigator.of(context).pop();
                           },
                         ),
