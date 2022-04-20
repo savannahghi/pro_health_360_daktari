@@ -3,7 +3,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_assessment_page.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_card.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/reach_out_widget.dart';
 
@@ -22,7 +24,12 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const ScreeningToolsAssessmentPage(),
+        widget: AssessmentCardAnswersPage(
+          payload: <String, dynamic>{
+            'assessmentResponse': ToolAssessmentResponse.initial(),
+            'toolType': ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          },
+        ),
       );
 
       expect(find.byType(AssessmentCard), findsOneWidget);

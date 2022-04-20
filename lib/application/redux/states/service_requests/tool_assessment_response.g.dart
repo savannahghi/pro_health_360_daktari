@@ -12,6 +12,12 @@ _$_ToolAssessmentResponse _$$_ToolAssessmentResponseFromJson(
       name: json['clientName'] as String?,
       date: json['dateAnswered'] as String?,
       clientID: json['clientID'] as String?,
+      serviceRequestID: json['serviceRequestID'] as String?,
+      questionsResponses: (json['getScreeningToolServiceRequestResponses']
+              as List<dynamic>?)
+          ?.map((e) =>
+              AssessmentQuestionResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ToolAssessmentResponseToJson(
@@ -20,4 +26,6 @@ Map<String, dynamic> _$$_ToolAssessmentResponseToJson(
       'clientName': instance.name,
       'dateAnswered': instance.date,
       'clientID': instance.clientID,
+      'serviceRequestID': instance.serviceRequestID,
+      'getScreeningToolServiceRequestResponses': instance.questionsResponses,
     };

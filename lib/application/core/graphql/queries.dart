@@ -251,3 +251,17 @@ query getSharedHealthDiaryEntries($clientID: String!, $facilityID: String!){
   }
 }
 ''';
+
+const String getScreeningToolServiceRequestResponsesQuery = r'''
+query getScreeningToolServiceRequestResponses($clientID: String!, $toolType: ScreeningToolType!) {
+  getScreeningToolServiceRequestResponses(
+    clientID: $clientID,
+    toolType: $toolType
+  ) {
+   toolIndex
+    tool
+    response
+    serviceRequestID
+  }
+}
+''';

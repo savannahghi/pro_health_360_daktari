@@ -636,6 +636,8 @@ const String methodsToReachOutString =
 const String screeningToolsTitle = 'Screening tools';
 final String screeningToolsPageLongDescription =
     'Responses from the various ${screeningToolsTitle.toLowerCase()}';
+const String assessmentToolsResponsesPageDescription =
+    "These are responses captured in the client's screening tools";
 
 String getScreeningToolDescription(ScreeningToolsType toolType) {
   switch (toolType) {
@@ -669,8 +671,10 @@ String fetchingAssessmentResponsesString =
 
 const String assessmentCardTitle = 'Assessment card';
 String hereIsWhatString = 'Here is what ';
-String respondedInAssessmentToolString =
-    ' responded in their violence assessment tool on ';
+String respondedInString =
+    ' responded in their ';
+String assessmentToolOnString =
+     ' assessment tool on ';
 const String assessmentCardString = 'Assessment card';
 const String yesString = 'Yes';
 const String noString = 'No';
@@ -689,6 +693,20 @@ String getAssessmentScorePageTitle({
       return 'Alcohol use $assessmentScoreString';
     default:
       return 'Violence $assessmentScoreString';
+  }
+}
+String getAssessmentScoreName({
+  required ScreeningToolsType screeningToolsType,
+}) {
+  switch (screeningToolsType) {
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      return 'contraceptives';
+    case ScreeningToolsType.TB_ASSESSMENT:
+      return 'tuberculosis';
+    case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
+      return 'alcohol use';
+    default:
+      return 'violence';
   }
 }
 
