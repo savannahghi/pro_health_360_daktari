@@ -102,7 +102,6 @@ class _IdentityVerificationActionDialogState
                           textStyle: boldSize16Text(AppColors.whiteColor),
                           textColor: AppColors.whiteColor,
                           onPressed: () {
-                            Navigator.of(context).pop();
                             StoreProvider.dispatch(
                               context,
                               ResolvePinRequestAction(
