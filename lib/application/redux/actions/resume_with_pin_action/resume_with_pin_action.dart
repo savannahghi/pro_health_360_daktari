@@ -1,6 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
@@ -9,14 +10,10 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ResumeWithPinAction extends ReduxAction<AppState> {
-  final IGraphQlClient httpClient;
-  final String endpoint;
-  final String pin;
-  final VoidCallback? wrongPinCallback;
-
   ResumeWithPinAction({
     required this.httpClient,
     required this.endpoint,
@@ -24,16 +21,21 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
     this.wrongPinCallback,
   });
 
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(resumeWithPinFlag));
-  }
+  final String endpoint;
+  final IGraphQlClient httpClient;
+  final String pin;
+  final VoidCallback? wrongPinCallback;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(resumeWithPinFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(resumeWithPinFlag));
   }
 
   @override
@@ -58,21 +60,29 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
       final String? error = httpClient.parseError(body);
 
       if (error != null) {
-        if (error.contains('8')) {
+        if (error.contains('48: pin expired')) {
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.pinExpiredPage,
+              (Route<dynamic> route) => false,
+            ),
+          );
+        } else if (error.contains('8: wrong PIN')) {
           wrongPinCallback?.call();
           throw const UserException(wrongPINText);
+        } else {
+          Sentry.captureException(
+            error,
+            hint: 'Error while verifying user PIN',
+          );
+          throw UserException(getErrorMessage());
         }
-
-        Sentry.captureException(error, hint: 'Error while verifying user PIN');
-        throw UserException(getErrorMessage());
       }
 
-      if (body['data']['verifyPIN'] != null) {
+      if (body['data']?['verifyPIN'] != null) {
         final bool pinVerified = body['data']['verifyPIN'] as bool;
         if (pinVerified) {
-          
-      final OnboardingPathInfo navConfig =
-              getOnboardingPath(state: state);
+          final OnboardingPathInfo navConfig = getOnboardingPath(state: state);
 
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(navConfig.nextRoute),
@@ -88,15 +98,5 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
     }
 
     return null;
-  }
-
-  @override
-  Object? wrapError(dynamic error) {
-    if (error.runtimeType == UserException) {
-      return error;
-    }
-
-    Sentry.captureException(error);
-    return UserException(getErrorMessage());
   }
 }
