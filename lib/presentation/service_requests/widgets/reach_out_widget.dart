@@ -61,27 +61,28 @@ class ReachOutWidget extends StatelessWidget {
               description: whatsappString,
               iconSvgUrl: whatsappIconSvgPath,
               onTapCallback: phoneNumber.isNotEmpty && phoneNumber != UNKNOWN
-                  ? () {
-                      String url() {
-                        // add the [https]
-                        return platform == TargetPlatform.iOS
-                            ? 'https://api.whatsapp.com/send?phone=$phoneNumber=${Uri.parse(
-                                redFlagSMSTemplate(
-                                  clientName: clientName,
-                                  staffFirstName: staffFirstName,
-                                  staffLastName: staffLastName,
-                                ),
-                              )}'
-                            : 'https://wa.me/$phoneNumber/?text=${Uri.parse(
-                                redFlagSMSTemplate(
-                                  clientName: clientName,
-                                  staffFirstName: staffFirstName,
-                                  staffLastName: staffLastName,
-                                ),
-                              )}';
+                  ? () async {
+                      if (platform == TargetPlatform.iOS) {
+                        final String whatsAppURL =
+                            'https://wa.me/$phoneNumber?text=${Uri.parse(
+                          redFlagSMSTemplate(
+                            clientName: clientName,
+                            staffFirstName: staffFirstName,
+                            staffLastName: staffLastName,
+                          ),
+                        )}';
+                        await launch(whatsAppURL, forceSafariVC: false);
+                      } else {
+                        await launch(
+                          'https://wa.me/$phoneNumber/?text=${Uri.parse(
+                            redFlagSMSTemplate(
+                              clientName: clientName,
+                              staffFirstName: staffFirstName,
+                              staffLastName: staffLastName,
+                            ),
+                          )}',
+                        );
                       }
-
-                      launch(url());
                     }
                   : null,
             ),
