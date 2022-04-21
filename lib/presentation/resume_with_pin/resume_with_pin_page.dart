@@ -15,11 +15,11 @@ class ResumeWithPinPage extends StatefulWidget {
     this.errorMessage,
   }) : super(key: key);
 
-  final String username;
-  final void Function(String) onSubmit;
-  final bool isLoading;
   final String? errorMessage;
+  final bool isLoading;
   final VoidCallback logoutCallback;
+  final void Function(String) onSubmit;
+  final String username;
 
   @override
   State<ResumeWithPinPage> createState() => _ResumeWithPinPageState();
