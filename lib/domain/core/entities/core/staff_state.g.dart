@@ -29,6 +29,11 @@ _$_StaffState _$$_StaffStateFromJson(Map<String, dynamic> json) =>
                   ? null
                   : HealthDiaryEntry.fromJson(e as Map<String, dynamic>))
               .toList(),
+      notifications: (json['notifications'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : NotificationDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
@@ -42,4 +47,5 @@ Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
       'user': instance.user,
       'communitiesState': instance.communitiesState,
       'clientSharedDiaryEntries': instance.clientSharedDiaryEntries,
+      'notifications': instance.notifications,
     };

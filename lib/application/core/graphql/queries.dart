@@ -266,3 +266,25 @@ query getScreeningToolServiceRequestResponses($clientID: String!, $toolType: Scr
   }
 }
 ''';
+
+const String listNotificationsQuery = r'''
+query listNotifications(
+  $flavour: Flavour!
+  $userID: ID!
+  $paginationInput: PaginationsInput!
+) {
+  fetchNotifications(
+    flavour: $flavour
+    userID: $userID
+    paginationInput: $paginationInput
+  ) {
+    notifications {
+      id
+      title
+      body
+      type
+      isRead
+    }
+  }
+}
+''';

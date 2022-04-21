@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 
 class UpdateStaffProfileAction extends ReduxAction<AppState> {
   UpdateStaffProfileAction({
@@ -14,6 +15,7 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
     this.defaultFacility,
     this.facilities,
     this.healthDiaryEntries,
+    this.notifications,
   });
 
   final String? id;
@@ -23,6 +25,7 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
   final List<Facility>? facilities;
   final String? defaultFacility;
   final List<HealthDiaryEntry?>? healthDiaryEntries;
+  final List<NotificationDetails?>? notifications;
 
   @override
   AppState reduce() {
@@ -35,7 +38,9 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
         defaultFacility:
             this.defaultFacility ?? state.staffState?.defaultFacility,
         facilities: this.facilities ?? state.staffState?.facilities,
-        clientSharedDiaryEntries: this.healthDiaryEntries ?? state.staffState?.clientSharedDiaryEntries,
+        clientSharedDiaryEntries: this.healthDiaryEntries ??
+            state.staffState?.clientSharedDiaryEntries,
+        notifications: this.notifications ?? state.staffState?.notifications,
       ),
     );
 

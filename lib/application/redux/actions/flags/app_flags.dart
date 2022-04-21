@@ -32,8 +32,10 @@ const String createPinFlag = 'create_pin_flag';
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 //Service requests
 const String fetchServiceRequestFlag = 'fetch_service_request_flag';
-const String fetchAvailableScreeningToolsFlag = 'fetch_available_screening_tools_flag';
-const String fetchAssessmentResponsesByToolFlag = 'fetch_assessment_responses_by_tool_flag';
+const String fetchAvailableScreeningToolsFlag =
+    'fetch_available_screening_tools_flag';
+const String fetchAssessmentResponsesByToolFlag =
+    'fetch_assessment_responses_by_tool_flag';
 const String fetchServiceRequestsCountFlag =
     'fetch_service_requests_count_flag';
 const String pinResetRequestFlag = 'pin_reset_accept_flag';
@@ -95,4 +97,8 @@ const String resumeWithPinFlag = 'resume_with_pin';
 
 // Reactivate client
 const String reactivateClientFlag = 'reactivate_client_flag';
-const String fetchScreeningToolResponsesFlag = 'fetch_screening_tool_responses_flag';
+const String fetchScreeningToolResponsesFlag =
+    'fetch_screening_tool_responses_flag';
+
+// notifications
+const String fetchNotificationsFlag = 'fetch_notifications_flag';
