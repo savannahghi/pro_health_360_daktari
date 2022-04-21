@@ -26,9 +26,16 @@ class ClientSearchWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: StoreConnector<AppState, SearchViewModel>(
         onInit: (Store<AppState> store) {
-          final String clientID = store.state.staffState?.id ?? '';
-          final String facilityID =
-              store.state.staffState?.defaultFacility ?? '';
+          final String clientID = store.state.miscState?.searchUserResponseState
+                  ?.selectedSearchUserResponse?.id ??
+              '';
+          final String facilityID = store
+                  .state
+                  .miscState
+                  ?.searchUserResponseState
+                  ?.selectedSearchUserResponse
+                  ?.facilityID ??
+              '';
 
           store.dispatch(
             SharedHealthDiaryAction(

@@ -28,6 +28,7 @@ class _$SearchUserResponseTearOff {
       @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'FacilityID') String? facilityID,
       @JsonKey(name: 'rolesList') RolesList? rolesList}) {
     return _SearchUserResponse(
       id: id,
@@ -35,6 +36,7 @@ class _$SearchUserResponseTearOff {
       isActive: isActive,
       staffNumber: staffNumber,
       user: user,
+      facilityID: facilityID,
       rolesList: rolesList,
     );
   }
@@ -62,6 +64,8 @@ mixin _$SearchUserResponse {
       throw _privateConstructorUsedError; // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FacilityID')
+  String? get facilityID => throw _privateConstructorUsedError;
   @JsonKey(name: 'rolesList')
   RolesList? get rolesList => throw _privateConstructorUsedError;
 
@@ -82,6 +86,7 @@ abstract class $SearchUserResponseCopyWith<$Res> {
       @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'FacilityID') String? facilityID,
       @JsonKey(name: 'rolesList') RolesList? rolesList});
 
   $UserDataCopyWith<$Res>? get user;
@@ -104,6 +109,7 @@ class _$SearchUserResponseCopyWithImpl<$Res>
     Object? isActive = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
+    Object? facilityID = freezed,
     Object? rolesList = freezed,
   }) {
     return _then(_value.copyWith(
@@ -127,6 +133,10 @@ class _$SearchUserResponseCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      facilityID: facilityID == freezed
+          ? _value.facilityID
+          : facilityID // ignore: cast_nullable_to_non_nullable
+              as String?,
       rolesList: rolesList == freezed
           ? _value.rolesList
           : rolesList // ignore: cast_nullable_to_non_nullable
@@ -170,6 +180,7 @@ abstract class _$SearchUserResponseCopyWith<$Res>
       @JsonKey(name: 'Active') bool? isActive,
       @JsonKey(name: 'StaffNumber') String? staffNumber,
       @JsonKey(name: 'User') UserData? user,
+      @JsonKey(name: 'FacilityID') String? facilityID,
       @JsonKey(name: 'rolesList') RolesList? rolesList});
 
   @override
@@ -196,6 +207,7 @@ class __$SearchUserResponseCopyWithImpl<$Res>
     Object? isActive = freezed,
     Object? staffNumber = freezed,
     Object? user = freezed,
+    Object? facilityID = freezed,
     Object? rolesList = freezed,
   }) {
     return _then(_SearchUserResponse(
@@ -219,6 +231,10 @@ class __$SearchUserResponseCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      facilityID: facilityID == freezed
+          ? _value.facilityID
+          : facilityID // ignore: cast_nullable_to_non_nullable
+              as String?,
       rolesList: rolesList == freezed
           ? _value.rolesList
           : rolesList // ignore: cast_nullable_to_non_nullable
@@ -236,6 +252,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
       @JsonKey(name: 'Active') this.isActive,
       @JsonKey(name: 'StaffNumber') this.staffNumber,
       @JsonKey(name: 'User') this.user,
+      @JsonKey(name: 'FacilityID') this.facilityID,
       @JsonKey(name: 'rolesList') this.rolesList});
 
   factory _$_SearchUserResponse.fromJson(Map<String, dynamic> json) =>
@@ -257,12 +274,15 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @JsonKey(name: 'User')
   final UserData? user;
   @override
+  @JsonKey(name: 'FacilityID')
+  final String? facilityID;
+  @override
   @JsonKey(name: 'rolesList')
   final RolesList? rolesList;
 
   @override
   String toString() {
-    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, isActive: $isActive, staffNumber: $staffNumber, user: $user, rolesList: $rolesList)';
+    return 'SearchUserResponse(id: $id, clientCCCNumber: $clientCCCNumber, isActive: $isActive, staffNumber: $staffNumber, user: $user, facilityID: $facilityID, rolesList: $rolesList)';
   }
 
   @override
@@ -277,6 +297,8 @@ class _$_SearchUserResponse implements _SearchUserResponse {
             const DeepCollectionEquality()
                 .equals(other.staffNumber, staffNumber) &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.facilityID, facilityID) &&
             const DeepCollectionEquality().equals(other.rolesList, rolesList));
   }
 
@@ -288,6 +310,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
       const DeepCollectionEquality().hash(isActive),
       const DeepCollectionEquality().hash(staffNumber),
       const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(facilityID),
       const DeepCollectionEquality().hash(rolesList));
 
   @JsonKey(ignore: true)
@@ -308,6 +331,7 @@ abstract class _SearchUserResponse implements SearchUserResponse {
           @JsonKey(name: 'Active') bool? isActive,
           @JsonKey(name: 'StaffNumber') String? staffNumber,
           @JsonKey(name: 'User') UserData? user,
+          @JsonKey(name: 'FacilityID') String? facilityID,
           @JsonKey(name: 'rolesList') RolesList? rolesList}) =
       _$_SearchUserResponse;
 
@@ -329,6 +353,9 @@ abstract class _SearchUserResponse implements SearchUserResponse {
   @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
   UserData? get user;
+  @override
+  @JsonKey(name: 'FacilityID')
+  String? get facilityID;
   @override
   @JsonKey(name: 'rolesList')
   RolesList? get rolesList;
