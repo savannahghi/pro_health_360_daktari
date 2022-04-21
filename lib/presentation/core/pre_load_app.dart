@@ -38,30 +38,15 @@ class PreLoadApp extends StatefulWidget {
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    if (state == AppLifecycleState.resumed) {
-      final AppState? appState = StoreProvider.state<AppState>(context);
-
-      final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
-
-      final OnboardingPathInfo navConfig =
-          getOnboardingPath(state: appState ?? AppState.initial());
-
-      if (isSignedIn &&
-          navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
-        Navigator.pushNamedAndRemoveUntil(
-          globalAppNavigatorKey.currentContext!,
-          AppRoutes.resumeWithPin,
-          (Route<dynamic> route) => false,
-        );
-      }
-    }
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
+
     StoreProvider.dispatch(
       context,
       CheckTokenAction(
@@ -80,8 +65,28 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         connectivityChecker: connectivityChecker,
       ),
     );
+  }
 
-    super.didChangeDependencies();
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.resumed) {
+      final AppState? appState = StoreProvider.state<AppState>(context);
+
+      final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+
+      final OnboardingPathInfo navConfig =
+          getOnboardingPath(state: appState ?? AppState.initial());
+
+      if (isSignedIn &&
+          navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0) {
+        Navigator.pushReplacementNamed(
+          globalAppNavigatorKey.currentContext!,
+          AppRoutes.resumeWithPin,
+        );
+      }
+    }
   }
 
   @override
@@ -91,36 +96,20 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addObserver(this);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, InitialRouteViewModel>(
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
-      onInit: (Store<AppState> store) {
-        WidgetsBinding.instance?.addObserver(this);
-
-        store.dispatch(
-          CheckTokenAction(
-            httpClient:
-                AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-            refreshTokenEndpoint:
-                AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
-          ),
-        );
-      },
       onDispose: (Store<AppState> store) {},
       builder: (BuildContext context, InitialRouteViewModel vm) {
         String initialRoute = vm.initialRoute ?? AppRoutes.loginPage;
 
         final bool isPhoneLogin =
             initialRoute.compareTo(AppRoutes.loginPage) == 0;
+        final bool isResumeWithPin =
+            initialRoute.compareTo(AppRoutes.resumeWithPin) == 0;
 
-        if (!isPhoneLogin) {
+        if (!isPhoneLogin && !isResumeWithPin) {
           initialRoute = bottomNavItems[vm.currentIndex ?? 0].onTapRoute;
         }
 

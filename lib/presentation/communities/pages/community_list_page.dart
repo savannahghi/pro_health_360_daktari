@@ -23,8 +23,6 @@ class CommunityListPage extends StatefulWidget {
 }
 
 class _CommunityListPageState extends State<CommunityListPage> {
-  late stream.StreamChatClient streamChatClient;
-
   final stream.ChannelListController channelListController =
       stream.ChannelListController();
 
@@ -32,28 +30,19 @@ class _CommunityListPageState extends State<CommunityListPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    streamChatClient = stream.StreamChat.of(context).client;
-
     final AppState state = StoreProvider.state<AppState>(context)!;
-
     if (state != AppState.initial()) {
       StoreProvider.dispatch(
         context,
         ConnectGetStreamUserAction(
           client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: streamChatClient,
+          streamClient: stream.StreamChat.of(context).client,
           endpoint: AppWrapperBase.of(context)!
               .customContext!
               .refreshStreamTokenEndpoint,
         ),
       );
     }
-  }
-
-  @override
-  void dispose() {
-    streamChatClient.disconnectUser();
-    super.dispose();
   }
 
   @override
