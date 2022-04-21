@@ -23,14 +23,22 @@ class _$NotificationDetailsTearOff {
   const _$NotificationDetailsTearOff();
 
   _NotificationDetails call(
-      {@JsonKey(name: 'icon') required IconDetails icon,
-      @JsonKey(name: 'description') required String description,
-      @JsonKey(name: 'date') required String date,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'isRead', defaultValue: false) bool? isRead,
+      @JsonKey(name: 'icon') IconDetails? icon,
+      @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'actions') List<NotificationActions>? actions,
       @JsonKey(name: 'status') String? status}) {
     return _NotificationDetails(
+      id: id,
+      title: title,
+      body: body,
+      type: type,
+      isRead: isRead,
       icon: icon,
-      description: description,
       date: date,
       actions: actions,
       status: status,
@@ -47,12 +55,20 @@ const $NotificationDetails = _$NotificationDetailsTearOff();
 
 /// @nodoc
 mixin _$NotificationDetails {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'title')
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'body')
+  String? get body => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  String? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isRead', defaultValue: false)
+  bool? get isRead => throw _privateConstructorUsedError;
   @JsonKey(name: 'icon')
-  IconDetails get icon => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
+  IconDetails? get icon => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
-  String get date => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'actions')
   List<NotificationActions>? get actions => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
@@ -70,13 +86,17 @@ abstract class $NotificationDetailsCopyWith<$Res> {
           NotificationDetails value, $Res Function(NotificationDetails) then) =
       _$NotificationDetailsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'icon') IconDetails icon,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'date') String date,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'isRead', defaultValue: false) bool? isRead,
+      @JsonKey(name: 'icon') IconDetails? icon,
+      @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'actions') List<NotificationActions>? actions,
       @JsonKey(name: 'status') String? status});
 
-  $IconDetailsCopyWith<$Res> get icon;
+  $IconDetailsCopyWith<$Res>? get icon;
 }
 
 /// @nodoc
@@ -90,25 +110,45 @@ class _$NotificationDetailsCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? type = freezed,
+    Object? isRead = freezed,
     Object? icon = freezed,
-    Object? description = freezed,
     Object? date = freezed,
     Object? actions = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRead: isRead == freezed
+          ? _value.isRead
+          : isRead // ignore: cast_nullable_to_non_nullable
+              as bool?,
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as IconDetails,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as IconDetails?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       actions: actions == freezed
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
@@ -121,8 +161,12 @@ class _$NotificationDetailsCopyWithImpl<$Res>
   }
 
   @override
-  $IconDetailsCopyWith<$Res> get icon {
-    return $IconDetailsCopyWith<$Res>(_value.icon, (value) {
+  $IconDetailsCopyWith<$Res>? get icon {
+    if (_value.icon == null) {
+      return null;
+    }
+
+    return $IconDetailsCopyWith<$Res>(_value.icon!, (value) {
       return _then(_value.copyWith(icon: value));
     });
   }
@@ -136,14 +180,18 @@ abstract class _$NotificationDetailsCopyWith<$Res>
       __$NotificationDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'icon') IconDetails icon,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'date') String date,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'isRead', defaultValue: false) bool? isRead,
+      @JsonKey(name: 'icon') IconDetails? icon,
+      @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'actions') List<NotificationActions>? actions,
       @JsonKey(name: 'status') String? status});
 
   @override
-  $IconDetailsCopyWith<$Res> get icon;
+  $IconDetailsCopyWith<$Res>? get icon;
 }
 
 /// @nodoc
@@ -159,25 +207,45 @@ class __$NotificationDetailsCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? type = freezed,
+    Object? isRead = freezed,
     Object? icon = freezed,
-    Object? description = freezed,
     Object? date = freezed,
     Object? actions = freezed,
     Object? status = freezed,
   }) {
     return _then(_NotificationDetails(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRead: isRead == freezed
+          ? _value.isRead
+          : isRead // ignore: cast_nullable_to_non_nullable
+              as bool?,
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as IconDetails,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as IconDetails?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       actions: actions == freezed
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
@@ -194,9 +262,13 @@ class __$NotificationDetailsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_NotificationDetails implements _NotificationDetails {
   _$_NotificationDetails(
-      {@JsonKey(name: 'icon') required this.icon,
-      @JsonKey(name: 'description') required this.description,
-      @JsonKey(name: 'date') required this.date,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'body') this.body,
+      @JsonKey(name: 'type') this.type,
+      @JsonKey(name: 'isRead', defaultValue: false) this.isRead,
+      @JsonKey(name: 'icon') this.icon,
+      @JsonKey(name: 'date') this.date,
       @JsonKey(name: 'actions') this.actions,
       @JsonKey(name: 'status') this.status});
 
@@ -204,14 +276,26 @@ class _$_NotificationDetails implements _NotificationDetails {
       _$$_NotificationDetailsFromJson(json);
 
   @override
-  @JsonKey(name: 'icon')
-  final IconDetails icon;
+  @JsonKey(name: 'id')
+  final String? id;
   @override
-  @JsonKey(name: 'description')
-  final String description;
+  @JsonKey(name: 'title')
+  final String? title;
+  @override
+  @JsonKey(name: 'body')
+  final String? body;
+  @override
+  @JsonKey(name: 'type')
+  final String? type;
+  @override
+  @JsonKey(name: 'isRead', defaultValue: false)
+  final bool? isRead;
+  @override
+  @JsonKey(name: 'icon')
+  final IconDetails? icon;
   @override
   @JsonKey(name: 'date')
-  final String date;
+  final String? date;
   @override
   @JsonKey(name: 'actions')
   final List<NotificationActions>? actions;
@@ -221,7 +305,7 @@ class _$_NotificationDetails implements _NotificationDetails {
 
   @override
   String toString() {
-    return 'NotificationDetails(icon: $icon, description: $description, date: $date, actions: $actions, status: $status)';
+    return 'NotificationDetails(id: $id, title: $title, body: $body, type: $type, isRead: $isRead, icon: $icon, date: $date, actions: $actions, status: $status)';
   }
 
   @override
@@ -229,9 +313,12 @@ class _$_NotificationDetails implements _NotificationDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NotificationDetails &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.isRead, isRead) &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.actions, actions) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -240,8 +327,12 @@ class _$_NotificationDetails implements _NotificationDetails {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(isRead),
       const DeepCollectionEquality().hash(icon),
-      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(actions),
       const DeepCollectionEquality().hash(status));
@@ -260,9 +351,13 @@ class _$_NotificationDetails implements _NotificationDetails {
 
 abstract class _NotificationDetails implements NotificationDetails {
   factory _NotificationDetails(
-      {@JsonKey(name: 'icon') required IconDetails icon,
-      @JsonKey(name: 'description') required String description,
-      @JsonKey(name: 'date') required String date,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'isRead', defaultValue: false) bool? isRead,
+      @JsonKey(name: 'icon') IconDetails? icon,
+      @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'actions') List<NotificationActions>? actions,
       @JsonKey(name: 'status') String? status}) = _$_NotificationDetails;
 
@@ -270,14 +365,26 @@ abstract class _NotificationDetails implements NotificationDetails {
       _$_NotificationDetails.fromJson;
 
   @override
-  @JsonKey(name: 'icon')
-  IconDetails get icon;
+  @JsonKey(name: 'id')
+  String? get id;
   @override
-  @JsonKey(name: 'description')
-  String get description;
+  @JsonKey(name: 'title')
+  String? get title;
+  @override
+  @JsonKey(name: 'body')
+  String? get body;
+  @override
+  @JsonKey(name: 'type')
+  String? get type;
+  @override
+  @JsonKey(name: 'isRead', defaultValue: false)
+  bool? get isRead;
+  @override
+  @JsonKey(name: 'icon')
+  IconDetails? get icon;
   @override
   @JsonKey(name: 'date')
-  String get date;
+  String? get date;
   @override
   @JsonKey(name: 'actions')
   List<NotificationActions>? get actions;

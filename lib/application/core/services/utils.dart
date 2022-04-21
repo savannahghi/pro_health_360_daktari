@@ -11,7 +11,6 @@ import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
 import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
@@ -22,24 +21,6 @@ import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_ent
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-
-List<NotificationDetails> notifications = <NotificationDetails>[
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: surveyCollectionNotificationIcon),
-    description: 'Your Survey is collecting responses',
-    date: customDate,
-  ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
-    description: 'Upcoming teleconsult with Dennis Smith at 2.00pm.',
-    date: customDate,
-  ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
-    description: 'New teleconsult request',
-    date: customDate,
-  ),
-];
 
 final List<RedFlagItem> reFlagItems = <RedFlagItem>[
   RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
@@ -64,8 +45,6 @@ final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
     title: 'Clinic information',
   ),
 ];
-
-
 
 Future<void> addNewProfileEntryBottomSheet(BuildContext context) {
   return showModalBottomSheet<void>(
@@ -514,8 +493,9 @@ Widget humanizeDate({
 
   return const SizedBox();
 }
-String formatDate(String date){
-   final DateTime parsedDate =
+
+String formatDate(String date) {
+  final DateTime parsedDate =
       DateTime.tryParse(date)?.toLocal() ?? DateTime.now();
   final String postDay = DateFormat.d().format(parsedDate);
   final String postMonth = DateFormat.MMMM().format(parsedDate);

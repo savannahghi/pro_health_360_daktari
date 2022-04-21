@@ -251,12 +251,35 @@ Map<String, dynamic> mockNotificationActions = <String, dynamic>{
 };
 
 Map<String, dynamic> mockNotification = <String, dynamic>{
-  'icon': mockIconDetails,
-  'description':
+  'id': 'some-id',
+  'title': 'title',
+  'body':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+  'type': 'some_type',
+  'isRead': false,
+  'icon': mockIconDetails,
   'date': 'July 21 2021',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
+};
+
+Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
+  'fetchNotifications': <String, dynamic>{
+    'notifications': <dynamic>[
+      mockNotification,
+      <String, dynamic>{
+        'id': 'some-id',
+        'title': 'title',
+        'body':
+            'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+        'type': 'some_type',
+        'isRead': false,
+        'date': 'July 21 2021',
+        'actions': <dynamic>[mockNotificationActions],
+        'status': 'Missed'
+      },
+    ]
+  }
 };
 
 Map<String, dynamic> mockClientResponse = <String, dynamic>{
@@ -880,6 +903,15 @@ class MockTestGraphQlClient extends IGraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{'data': mockDiaryEntry}),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(listNotificationsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': mockNotificationsResponse}),
           201,
         ),
       );

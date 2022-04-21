@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
@@ -40,13 +39,13 @@ import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
@@ -126,7 +125,6 @@ void main() {
   test('Test router returns NotificationsPage', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.notificationsPage,
-      arguments: <NotificationDetails>[],
     );
 
     final MaterialPageRoute<NotificationsPage>? route =
@@ -473,7 +471,7 @@ void main() {
   });
 
   test('Test router returns AssessmentCardAnswersPage', () {
-     const RouteSettings settings =  RouteSettings(
+    const RouteSettings settings = RouteSettings(
       name: AppRoutes.assessmentCardAnswersPage,
       arguments: <String, dynamic>{},
     );

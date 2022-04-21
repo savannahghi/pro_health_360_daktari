@@ -5,6 +5,7 @@ import 'package:mycarehubpro/application/redux/states/communities_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 
 part 'staff_state.freezed.dart';
 part 'staff_state.g.dart';
@@ -25,6 +26,9 @@ class StaffState with _$StaffState {
 
     // recently shared health diary entries
     List<HealthDiaryEntry?>? clientSharedDiaryEntries,
+
+    // staff notifications
+    List<NotificationDetails?>? notifications,
   }) = _StaffState;
 
   factory StaffState.fromJson(Map<String, dynamic> json) =>
@@ -40,5 +44,6 @@ class StaffState with _$StaffState {
         user: User.initial(),
         communitiesState: CommunitiesState.initial(),
         clientSharedDiaryEntries: <HealthDiaryEntry>[],
+        notifications: <NotificationDetails>[],
       );
 }
