@@ -145,6 +145,7 @@ query searchClientsByCCCNumber($CCCNumber: String!){
   searchClientsByCCCNumber(CCCNumber: $CCCNumber){
     ID
     CCCNumber
+    FacilityID
     Active 
     User{
       ID
@@ -186,7 +187,7 @@ query searchStaffByStaffNumber($staffNumber: String!){
 const String getUserRolesQuery = r'''
 query getUserRoles($userID: String!){
   getUserRoles(userID: $userID){
-    roleID
+    authorityRoleID
     name
   }
 }

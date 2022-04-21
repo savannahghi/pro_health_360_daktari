@@ -16,6 +16,7 @@ _$_SearchUserResponse _$$_SearchUserResponseFromJson(
       user: json['User'] == null
           ? null
           : UserData.fromJson(json['User'] as Map<String, dynamic>),
+      facilityID: json['FacilityID'] as String?,
       rolesList: json['rolesList'] == null
           ? null
           : RolesList.fromJson(json['rolesList'] as Map<String, dynamic>),
@@ -29,5 +30,6 @@ Map<String, dynamic> _$$_SearchUserResponseToJson(
       'Active': instance.isActive,
       'StaffNumber': instance.staffNumber,
       'User': instance.user,
+      'FacilityID': instance.facilityID,
       'rolesList': instance.rolesList,
     };
