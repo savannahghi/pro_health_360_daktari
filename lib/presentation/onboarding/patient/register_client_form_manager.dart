@@ -9,10 +9,6 @@ class RegisterClientFormManager with Validator {
   Stream<String> get facility => _facility.stream.transform(validateName);
   Sink<String> get inFacility => _facility.sink;
 
-  final BehaviorSubject<ClientType> _clientType = BehaviorSubject<ClientType>();
-  Stream<ClientType> get clientType => _clientType.stream;
-  Sink<ClientType> get inClientType => _clientType.sink;
-
   final BehaviorSubject<String> _firstName = BehaviorSubject<String>();
   Stream<String> get firstName => _firstName.stream.transform(validateName);
   Sink<String> get inFirstName => _firstName.sink;
@@ -40,37 +36,41 @@ class RegisterClientFormManager with Validator {
   Stream<String> get cccNumber => _cccNumber.stream.transform(validateCcc);
   Sink<String> get inCccNumber => _cccNumber.sink;
 
+  final BehaviorSubject<Map<ClientType, bool>> _clientTypes =
+      BehaviorSubject<Map<ClientType, bool>>();
+  Stream<Map<ClientType, bool>> get clientTypes => _clientTypes.stream;
+  Sink<Map<ClientType, bool>> get inClientTypes => _clientTypes.sink;
+
   final BehaviorSubject<bool> _inviteClient = BehaviorSubject<bool>();
   Stream<bool> get inviteClient => _inviteClient.stream;
   Sink<bool> get inInviteClient => _inviteClient.sink;
 
-  Stream<bool> get isFormValid => CombineLatestStream.list(
-        <Stream<dynamic>>[
+  // TODO: Wait for API
+  Stream<bool> get isFormValid => CombineLatestStream.combine8<String, String,
+              String, Gender, DateTime, String, DateTime, String, bool>(
           _facility,
-          _clientType,
+          // _clientType,
           _firstName,
           _lastName,
           _gender,
           _dateOfBirth,
           _phoneNumber,
           _enrollmentDate,
-          _cccNumber,
-        ],
-      ).map<bool>((List<dynamic> values) {
-        final String facility = values[0] as String;
-        final String firstName = values[2] as String;
-        final String lastName = values[3] as String;
-        final Gender gender = values[4] as Gender;
-        final DateTime dob = values[5] as DateTime;
-        final String phoneNumber = values[6] as String;
-        final DateTime enrollmentDate = values[7] as DateTime;
-        final String cccNumber = values[8] as String;
-
+          _cccNumber, (
+        String facility,
+        String firstName,
+        String lastName,
+        Gender gender,
+        DateTime dateOfBirth,
+        String phoneNumber,
+        DateTime enrollmentDate,
+        String cccNumber,
+      ) {
         return Validator.isValidName(facility) &&
             Validator.isValidName(firstName) &&
             Validator.isValidName(lastName) &&
             Validator.isValidGender(gender) &&
-            Validator.isValidDate(dob) &&
+            Validator.isValidDate(dateOfBirth) &&
             Validator.isValidPhone(phoneNumber) &&
             Validator.isValidDate(enrollmentDate) &&
             Validator.isValidCccNumber(cccNumber);
@@ -81,9 +81,10 @@ class RegisterClientFormManager with Validator {
     final String? lastNameValue = _lastName.valueOrNull;
     final bool? inviteClient = _inviteClient.valueOrNull;
 
+    // TODO: Wait for API
     return RegisterClientPayload(
       facility: _facility.valueOrNull,
-      clientType: _clientType.valueOrNull,
+      // clientType: _clientType.valueOrNull,
       clientName: '$firstNameValue $lastNameValue',
       gender: _gender.valueOrNull,
       dateOfBirth: _dateOfBirth.valueOrNull,
