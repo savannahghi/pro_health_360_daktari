@@ -74,7 +74,7 @@ class ClientSearchWidget extends StatelessWidget {
                     smallVerticalSizedBox,
                     if (isActive)
                       Text(
-                        '1. $myCareHubInviteText',
+                        '1. $myCareHubReInviteText',
                         style: boldSize15Text(AppColors.greyTextColor),
                       )
                     else

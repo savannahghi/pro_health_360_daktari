@@ -52,7 +52,7 @@ mutation registerClient($input: ClientRegistrationInput){
   registerClient(input:$input){
     ID
     active
-    clientType
+    clientTypes
     enrollmentDate
     fhirPatientID
     emrHealthRecordID

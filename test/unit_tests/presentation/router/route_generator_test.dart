@@ -24,7 +24,7 @@ import 'package:mycarehubpro/presentation/onboarding/login/pages/forgot_pin_page
 import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
@@ -181,14 +181,14 @@ void main() {
     expect(route?.builder(context), isA<ForgotPinPage>());
   });
 
-  test('Test router returns AddNewPatientPage', () {
+  test('Test router returns RegisterClientPage', () {
     const RouteSettings settings =
-        RouteSettings(name: AppRoutes.addNewPatientPage);
+        RouteSettings(name: AppRoutes.registerClientPage);
 
-    final MaterialPageRoute<AddNewClientPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<AddNewClientPage>?;
-    expect(route, isA<MaterialPageRoute<AddNewClientPage>>());
-    expect(route?.builder(context), isA<AddNewClientPage>());
+    final MaterialPageRoute<RegisterClientPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<RegisterClientPage>?;
+    expect(route, isA<MaterialPageRoute<RegisterClientPage>>());
+    expect(route?.builder(context), isA<RegisterClientPage>());
   });
 
   test('Test router returns InviteMembersPage', () {
