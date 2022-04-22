@@ -138,3 +138,6 @@ const String happyIconSvgPath = 'assets/icons/happy.svg';
 const String mehIconSvgPath = 'assets/icons/meh.svg';
 const String sadIconSvgPath = 'assets/icons/sad.svg';
 const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
+
+// security questions
+const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';

@@ -10,13 +10,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
@@ -29,6 +29,12 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
+    dispatch(
+      UpdateOnboardingStateAction(
+        securityQuestions: <SecurityQuestion>[],
+        securityQuestionsResponses: <SecurityQuestionResponse>[],
+      ),
+    );
     dispatch(WaitAction<AppState>.add(getSecurityQuestionsFlag));
   }
 

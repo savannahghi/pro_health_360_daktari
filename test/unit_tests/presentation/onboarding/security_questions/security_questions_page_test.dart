@@ -10,6 +10,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
@@ -19,6 +20,7 @@ import 'package:mycarehubpro/application/redux/actions/update_user_profile_actio
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 
@@ -336,6 +338,55 @@ void main() {
 
       expect(find.byType(CreateNewPINPage), findsNothing);
     });
+
+    testWidgets(
+      'should show GenericErrorWidget when security questions are empty',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getSecurityQuestions': <dynamic>[],
+                'recordSecurityQuestionResponses': <dynamic>[],
+                'verifySecurityQuestionResponses': false,
+                'getUserRespondedSecurityQuestions': <dynamic>[]
+              }
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          store: store,
+          tester: tester,
+          graphQlClient: mockShortGraphQlClient,
+          widget: const SecurityQuestionsPage(),
+        );
+        await tester.pumpAndSettle();
+
+        final Finder genericErrorWidgetButton = find.byKey(
+          helpNoDataWidgetKey,
+        );
+        expect(genericErrorWidgetButton, findsOneWidget);
+
+        await tester.ensureVisible(genericErrorWidgetButton);
+        await tester.pumpAndSettle();
+        await tester.tap(genericErrorWidgetButton);
+        await tester.pumpAndSettle();
+
+        final RawMaterialButton retryBtn = genericErrorWidgetButton.first
+            .evaluate()
+            .first
+            .widget as RawMaterialButton;
+
+        retryBtn.onPressed?.call();
+
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
+      },
+    );
 
     testWidgets('Shows loading indicator when fetching terms',
         (WidgetTester tester) async {
