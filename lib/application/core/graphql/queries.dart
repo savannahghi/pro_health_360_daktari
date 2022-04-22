@@ -151,10 +151,11 @@ query searchClientsByCCCNumber($CCCNumber: String!){
       ID
       Username
       Active
-      Contacts{
-        ContactValue
-        Active
-        OptedIn
+       Contacts{
+        id
+        contactValue
+        active
+        optedIn
       }
       TermsAccepted     
     }
@@ -172,11 +173,11 @@ query searchStaffByStaffNumber($staffNumber: String!){
       Username
       Active
       Contacts{
-        ID
-        ContactType
-        ContactValue
-        Active
-        OptedIn
+        id
+        contactType
+        contactValue
+        active
+        optedIn
       }
       TermsAccepted
     }
