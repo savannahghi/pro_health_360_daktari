@@ -550,6 +550,10 @@ const String pendingPINRequestMessageString =
 const String signInWithAnotherNumberString = 'Sign in with another number';
 const String verifySecurityQuestionHelpMessageString =
     'You seem to be having trouble verifying your security questions. If you need help, you can make a request for an admin to reset your PIN by tapping below';
+const String noQuestionsLoadedString = 'No questions loaded';
+const String noQuestionsLoadedDescription =
+    'We were unable to load your security questions. Tap below load them again';
+
 const String askForHelpString = 'Ask for help';
 const String tryAgainString = 'Try Again';
 const String cccNumberString = 'CCC number';

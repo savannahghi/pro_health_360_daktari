@@ -11,8 +11,10 @@ import 'package:mycarehubpro/application/redux/actions/security_questions/record
 import 'package:mycarehubpro/application/redux/actions/security_questions/verify_security_questions_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/onboarding/security_questions_page_view_model.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_question_widget.dart';
 // Project imports:
 
@@ -49,7 +51,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         return SecurityQuestionsViewModel.fromStore(store);
       },
       builder: (BuildContext context, SecurityQuestionsViewModel vm) {
-        final List<SecurityQuestion>? securityQuestions = vm.securityQuestions;
+        final List<SecurityQuestion?> securityQuestions =
+            vm.securityQuestions ?? <SecurityQuestion>[];
 
         final List<SecurityQuestionResponse> securityQuestionsResponses =
             vm.securityQuestionResponses ?? <SecurityQuestionResponse>[];
@@ -83,66 +86,18 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                             padding: const EdgeInsets.all(20),
                             child: const PlatformLoader(),
                           )
-                        : ListView.builder(
-                            itemCount: securityQuestions?.length,
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.only(top: 5, bottom: 5),
-                            itemBuilder: (BuildContext context, int index) {
-                              final SecurityQuestion? question =
-                                  securityQuestions?.elementAt(index);
-
-                              return SecurityQuestionWidget(
-                                securityQuestion: question!,
-                                response: (securityQuestionsResponses
-                                            .elementAt(index)
-                                            .response ==
-                                        UNKNOWN)
-                                    ? null
-                                    : securityQuestionsResponses
-                                        .elementAt(index)
-                                        .response,
-                                onChanged: (String? value) {
-                                  if (question.responseType ==
-                                          SecurityQuestionResponseType.DATE &&
-                                      value != null) {
-                                    final String convertedDate =
-                                        formatSecurityQuestionDate(
-                                      value,
-                                      format: 'dd-MM-yyyy',
-                                    );
-
-                                    securityQuestionsResponses[index] =
-                                        SecurityQuestionResponse(
-                                      userID: userId,
-                                      securityQuestionID:
-                                          question.securityQuestionID,
-                                      response: convertedDate,
-                                    );
-                                  } else {
-                                    securityQuestionsResponses[index] =
-                                        SecurityQuestionResponse(
-                                      userID: userId,
-                                      securityQuestionID:
-                                          question.securityQuestionID,
-                                      response: value,
-                                    );
-                                  }
-
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    UpdateOnboardingStateAction(
-                                      securityQuestionsResponses:
-                                          securityQuestionsResponses,
-                                    ),
-                                  );
-                                },
-                              );
-                            },
+                        : securityQuestionsBody(
+                            securityQuestions: securityQuestions,
+                            securityQuestionsResponses:
+                                securityQuestionsResponses,
+                            userID: userId,
                           ),
                   ),
-                  if (!vm.wait!.isWaitingFor(getSecurityQuestionsFlag) &&
-                      !vm.wait!.isWaitingFor(recordSecurityQuestionsFlag) &&
-                      !vm.wait!.isWaitingFor(verifySecurityQuestionsFlag))
+                  if ((!vm.wait!.isWaitingFor(getSecurityQuestionsFlag) &&
+                          !vm.wait!.isWaitingFor(recordSecurityQuestionsFlag) &&
+                          !vm.wait!
+                              .isWaitingFor(verifySecurityQuestionsFlag)) &&
+                      securityQuestions.isNotEmpty)
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
@@ -219,5 +174,75 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         );
       },
     );
+  }
+
+  Widget securityQuestionsBody({
+    required List<SecurityQuestion?> securityQuestions,
+    required List<SecurityQuestionResponse> securityQuestionsResponses,
+    required String userID,
+  }) {
+    if (securityQuestions.isEmpty) {
+      return GenericErrorWidget(
+        actionKey: helpNoDataWidgetKey,
+        headerIconSvgUrl: noSecurityQuestionsImage,
+        recoverCallback: () async {
+          StoreProvider.dispatch<AppState>(
+            context,
+            GetSecurityQuestionsAction(
+              context: context,
+            ),
+          );
+        },
+        messageTitle: noQuestionsLoadedString,
+        messageBody: const <TextSpan>[
+          TextSpan(text: noQuestionsLoadedDescription)
+        ],
+      );
+    } else {
+      return ListView.builder(
+        itemCount: securityQuestions.length,
+        shrinkWrap: true,
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
+        itemBuilder: (BuildContext context, int index) {
+          final SecurityQuestion? question = securityQuestions.elementAt(index);
+
+          return SecurityQuestionWidget(
+            securityQuestion: question!,
+            response: (securityQuestionsResponses.elementAt(index).response ==
+                    UNKNOWN)
+                ? null
+                : securityQuestionsResponses.elementAt(index).response,
+            onChanged: (String? value) {
+              if (question.responseType == SecurityQuestionResponseType.DATE &&
+                  value != null) {
+                final String convertedDate = formatSecurityQuestionDate(
+                  value,
+                  format: 'dd-MM-yyyy',
+                );
+
+                securityQuestionsResponses[index] = SecurityQuestionResponse(
+                  userID: userID,
+                  securityQuestionID: question.securityQuestionID,
+                  response: convertedDate,
+                );
+              } else {
+                securityQuestionsResponses[index] = SecurityQuestionResponse(
+                  userID: userID,
+                  securityQuestionID: question.securityQuestionID,
+                  response: value,
+                );
+              }
+
+              StoreProvider.dispatch<AppState>(
+                context,
+                UpdateOnboardingStateAction(
+                  securityQuestionsResponses: securityQuestionsResponses,
+                ),
+              );
+            },
+          );
+        },
+      );
+    }
   }
 }
