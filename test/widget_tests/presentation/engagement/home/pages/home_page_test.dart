@@ -14,7 +14,7 @@ import 'package:mycarehubpro/presentation/create_group/create_group.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
@@ -67,7 +67,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text(addNewClientText));
       await tester.pumpAndSettle();
-      expect(find.byType(AddNewClientPage), findsWidgets);
+      expect(find.byType(RegisterClientPage), findsWidgets);
     });
 
     testWidgets('navigates to ServiceRequestsPage',
