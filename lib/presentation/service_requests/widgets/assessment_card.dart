@@ -25,7 +25,7 @@ class AssessmentCard extends StatelessWidget {
         in questionsResponses ?? <AssessmentQuestionResponse>[]) {
       assessmentItems.add(
         AssessmentListItem(
-          assessmentResponse: '${item.index}. ${item.tool}',
+          assessmentResponse: '${item.index! + 1}. ${item.tool}',
           responseStatus: '${item.response}',
         ),
       );

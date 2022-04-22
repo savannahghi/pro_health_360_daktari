@@ -44,7 +44,7 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String staffId = state.staffState?.user?.userId ?? '';
+    final String staffId = state.staffState?.id ?? '';
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'staffID': staffId,
@@ -80,7 +80,8 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
       if (toolAssessmentResponses?.isNotEmpty ?? false) {
         toolAssessmentResponses!.removeWhere(
           (ToolAssessmentResponse request) =>
-              request.serviceRequestID == serviceRequestId,
+              request.toolAssessmentRequestResponse?.serviceRequestID ==
+              serviceRequestId,
         );
       }
 
