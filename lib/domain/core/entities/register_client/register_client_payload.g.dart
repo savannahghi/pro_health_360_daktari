@@ -10,7 +10,9 @@ _$_RegisterClientPayload _$$_RegisterClientPayloadFromJson(
         Map<String, dynamic> json) =>
     _$_RegisterClientPayload(
       facility: json['facility'] as String?,
-      clientType: $enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
+      clientTypes: (json['clientTypes'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
+          .toList(),
       clientName: json['clientName'] as String?,
       gender: genderFromJson(json['gender'] as String?),
       dateOfBirth: json['dateOfBirth'] == null
@@ -29,7 +31,8 @@ Map<String, dynamic> _$$_RegisterClientPayloadToJson(
         _$_RegisterClientPayload instance) =>
     <String, dynamic>{
       'facility': instance.facility,
-      'clientType': _$ClientTypeEnumMap[instance.clientType],
+      'clientTypes':
+          instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]).toList(),
       'clientName': instance.clientName,
       'gender': _$GenderEnumMap[instance.gender],
       'dateOfBirth': dobToJson(instance.dateOfBirth),
