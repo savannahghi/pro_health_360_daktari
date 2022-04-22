@@ -21,25 +21,27 @@ class AssignRolesAction extends ReduxAction<AppState> {
     required this.userId,
     required this.roles,
     required this.onSuccess,
+    required this.noPermissionsCallBack,
     required this.onFailure,
   });
 
-  final VoidCallback? onSuccess;
-  final VoidCallback? onFailure;
   final IGraphQlClient client;
+  final VoidCallback? noPermissionsCallBack;
+  final VoidCallback? onFailure;
+  final VoidCallback? onSuccess;
   final List<RoleValue> roles;
   final String? userId;
-
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(assignRolesFlag));
-  }
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(assignRolesFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(assignRolesFlag));
   }
 
   @override
@@ -62,6 +64,10 @@ class AssignRolesAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
+        if (errors.contains('65: user not authorized:')) {
+          noPermissionsCallBack?.call();
+          return null;
+        }
         Sentry.captureException(
           UserException(errors),
         );

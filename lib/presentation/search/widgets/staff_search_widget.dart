@@ -227,6 +227,19 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                                         (Route<dynamic> route) => false,
                                       );
                                     },
+                                    noPermissionsCallBack: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(youDoNotHavePermission),
+                                        ),
+                                      );
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                        AppRoutes.homePage,
+                                        (Route<dynamic> route) => false,
+                                      );
+                                    },
                                     onSuccess: () {
                                       showTextSnackbar(
                                         ScaffoldMessenger.of(context),

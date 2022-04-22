@@ -44,6 +44,44 @@ void main() {
           client: mockShortSILGraphQlClient,
           onSuccess: () => testNumber += 1,
           onFailure: () {},
+          noPermissionsCallBack: () {},
+          roles: <RoleValue>[],
+        ),
+      );
+
+      await storeTester.waitUntil(AssignRolesAction);
+      expect(testNumber, 1);
+    });
+
+    test('should call noPermissions callback ', () async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'errors': <dynamic>[
+                <String, dynamic>{
+                  'message': '65: user not authorized:',
+                  'path': <dynamic>['assignOrRevokeRoles']
+                }
+              ],
+              'data': null
+            },
+          ),
+          200,
+        ),
+      );
+
+      int testNumber = 0;
+      storeTester.dispatch(
+        AssignRolesAction(
+          userId: '',
+          client: mockShortSILGraphQlClient,
+          onSuccess: () {},
+          onFailure: () {},
+          noPermissionsCallBack: () => testNumber += 1,
           roles: <RoleValue>[],
         ),
       );
@@ -74,6 +112,7 @@ void main() {
           client: mockShortSILGraphQlClient,
           onSuccess: () {},
           onFailure: () {},
+          noPermissionsCallBack: () {},
           roles: <RoleValue>[],
         ),
       );
@@ -109,6 +148,7 @@ void main() {
           client: mockShortSILGraphQlClient,
           onSuccess: () {},
           onFailure: () {},
+          noPermissionsCallBack: () {},
           roles: <RoleValue>[],
         ),
       );
