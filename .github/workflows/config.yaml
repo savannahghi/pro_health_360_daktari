@@ -33,6 +33,7 @@ jobs:
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
+          INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
           GOOGLE_SERVICE_INFO_PLIST_FILE: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_FILE }}
         run: |
           touch .env
@@ -40,6 +41,8 @@ jobs:
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
+          touch Runner/Info.plist
+          echo $INFO_PLIST_FILE > Runner/Info.plist
           touch Runner/GoogleService-Info.plist
           echo $GOOGLE_SERVICE_INFO_PLIST_FILE > Runner/GoogleService-Info.plist
 
@@ -82,6 +85,7 @@ jobs:
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
+          INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
           GOOGLE_SERVICE_INFO_PLIST_FILE: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_FILE }}
         run: |
           touch .env
@@ -89,6 +93,8 @@ jobs:
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
+          touch Runner/Info.plist
+          echo $INFO_PLIST_FILE > Runner/Info.plist
           touch Runner/GoogleService-Info.plist
           echo $GOOGLE_SERVICE_INFO_PLIST_FILE > Runner/GoogleService-Info.plist
 
