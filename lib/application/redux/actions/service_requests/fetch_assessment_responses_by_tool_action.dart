@@ -10,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/service_requests/update_s
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -73,10 +74,12 @@ class FetchAssessmentResponsesByToolAction extends ReduxAction<AppState> {
         ScreeningToolsState.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
-
+    final List<ToolAssessmentResponse> toolAssessmentResponses =
+        screeningToolsState.toolAssessmentResponses ??
+            <ToolAssessmentResponse>[];
     dispatch(
       UpdateScreeningToolsStateAction(
-        toolAssessmentResponses: screeningToolsState.toolAssessmentResponses,
+        toolAssessmentResponses: toolAssessmentResponses,
       ),
     );
 

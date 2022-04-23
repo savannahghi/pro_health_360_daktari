@@ -178,6 +178,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                                         ?.toolAssessmentRequestResponse
                                         ?.serviceRequestID ??
                                     '',
+                                screeningToolsType: toolsType,
                                 onSuccess: () {
                                   showTextSnackbar(
                                     ScaffoldMessenger.of(context),

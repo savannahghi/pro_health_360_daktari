@@ -703,6 +703,15 @@ String getAssessmentScorePageTitle({
   }
 }
 
+String getAssessmentScoreNoDatBodyText({
+  required ScreeningToolsType screeningToolsType,
+}) {
+  return 'No Worries. ${getAssessmentScorePageTitle(screeningToolsType: screeningToolsType)} will show up here once clients have answered them';
+}
+
+String screeningToolsNoDatBodyText =
+    'No Worries. Screening tools will show up here once clients have answered them';
+
 String getAssessmentScoreName({
   required ScreeningToolsType screeningToolsType,
 }) {

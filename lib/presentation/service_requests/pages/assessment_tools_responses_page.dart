@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_assessment_responses_by_tool_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_available_facility_screening_tools_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
@@ -73,15 +74,16 @@ class _AssessmentToolResponsesPageState
                       height: 150,
                     ),
                     smallVerticalSizedBox,
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        assessmentToolsResponsesPageDescription,
-                        style: normalSize14Text(
-                          AppColors.greyTextColor.withOpacity(0.5),
+                    if (responses.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          assessmentToolsResponsesPageDescription,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor.withOpacity(0.5),
+                          ),
                         ),
                       ),
-                    ),
                     if (vm.wait.isWaitingFor(
                       fetchAssessmentResponsesByToolFlag,
                     )) ...<Widget>{
@@ -91,13 +93,43 @@ class _AssessmentToolResponsesPageState
                         ),
                         child: PlatformLoader(),
                       )
-                    } else
+                    } else if (responses.isNotEmpty)
                       ...List<Widget>.generate(responses.length, (int index) {
                         return AssessmentRequestItemWidget(
                           screeningQuestionsList: responses[index],
                           toolsType: widget.screeningToolsType,
                         );
                       })
+                    else
+                      GenericErrorWidget(
+                        type: GenericNoDataTypes.noData,
+                        actionKey: helpNoDataWidgetKey,
+                        actionText: thanksText,
+                        recoverCallback: () {
+                          StoreProvider.dispatch<AppState>(
+                            context,
+                            FetchAvailableFacilityScreeningToolsAction(
+                              client: AppWrapperBase.of(context)!.graphQLClient,
+                            ),
+                          );
+                          Navigator.of(context).pop();
+                        },
+                        messageTitle: getNoDataTile(
+                          getAssessmentScorePageTitle(
+                            screeningToolsType: widget.screeningToolsType,
+                          ).toLowerCase(),
+                        ),
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: getAssessmentScoreNoDatBodyText(
+                              screeningToolsType: widget.screeningToolsType,
+                            ),
+                            style: normalSize16Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                        ],
+                      )
                   } else ...<Widget>{
                     GenericErrorWidget(
                       messageTitle: genericErrorOccurred,

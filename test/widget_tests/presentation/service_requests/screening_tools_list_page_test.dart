@@ -175,5 +175,37 @@ void main() {
         expect(genericNoDataButton, findsOneWidget);
       },
     );
+    testWidgets(
+      'should show zero state for empty responses',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+               'getAvailableFacilityScreeningTools': <dynamic>[]
+              }
+            }),
+            200,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortGraphQlClient,
+          widget: const ScreeningToolsListPage(),
+        );
+        await tester.pumpAndSettle();
+        final Finder helpNoDataWidget = find.byType(MyAfyaHubPrimaryButton);
+
+        expect(helpNoDataWidget, findsOneWidget);
+        await tester.tap(helpNoDataWidget);
+        await tester.pumpAndSettle();
+        expect(helpNoDataWidget, findsNothing);
+      },
+    );
   });
 }

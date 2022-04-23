@@ -5,19 +5,24 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_assessment_responses_by_tool_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_available_facility_screening_tools_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String serviceRequestId;
+  final ScreeningToolsType screeningToolsType;
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
 
   ResolveScreeningToolServiceRequestAction({
     required this.serviceRequestId,
     required this.client,
+    required this.screeningToolsType,
     this.onSuccess,
     this.onFailure,
   });
@@ -74,24 +79,25 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
     final bool? isResolved = payLoad['data']['resolveServiceRequest'] as bool?;
 
     if (isResolved ?? false) {
-      final List<ToolAssessmentResponse>? toolAssessmentResponses = state
-          .serviceRequestState?.screeningToolsState?.toolAssessmentResponses;
-
-      if (toolAssessmentResponses?.isNotEmpty ?? false) {
-        toolAssessmentResponses!.removeWhere(
-          (ToolAssessmentResponse request) =>
-              request.toolAssessmentRequestResponse?.serviceRequestID ==
-              serviceRequestId,
-        );
-      }
-
-      onSuccess?.call();
-      return state.copyWith(
-        serviceRequestState: state.serviceRequestState?.copyWith(
-          screeningToolsState: state.serviceRequestState?.screeningToolsState
-              ?.copyWith(toolAssessmentResponses: toolAssessmentResponses),
+      dispatch(
+        FetchAvailableFacilityScreeningToolsAction(
+          client: client,
         ),
       );
+      dispatch(
+        FetchAssessmentResponsesByToolAction(
+          client: client,
+          toolsType: screeningToolsType,
+        ),
+      );
+      dispatch(
+        FetchServiceRequestsCountAction(
+          client: client,
+        ),
+      );
+
+      onSuccess?.call();
+      return state;
     }
 
     onFailure?.call();

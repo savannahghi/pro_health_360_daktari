@@ -62,14 +62,15 @@ class _ScreeningToolsListPageState extends State<ScreeningToolsListPage> {
                       height: 150,
                     ),
                     smallVerticalSizedBox,
-                    Center(
-                      child: Text(
-                        screeningToolsPageLongDescription,
-                        style: normalSize14Text(
-                          AppColors.greyTextColor.withOpacity(0.5),
+                    if (toolTypes.isNotEmpty)
+                      Center(
+                        child: Text(
+                          screeningToolsPageLongDescription,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor.withOpacity(0.5),
+                          ),
                         ),
                       ),
-                    ),
                     if (vm.wait.isWaitingFor(
                       fetchAvailableScreeningToolsFlag,
                     )) ...<Widget>{
@@ -79,7 +80,27 @@ class _ScreeningToolsListPageState extends State<ScreeningToolsListPage> {
                         ),
                         child: PlatformLoader(),
                       )
-                    } else
+                    } else if (toolTypes.isEmpty)
+                      GenericErrorWidget(
+                        type: GenericNoDataTypes.noData,
+                        actionKey: helpNoDataWidgetKey,
+                        actionText: thanksText,
+                        recoverCallback: () {
+                          Navigator.of(context).pop();
+                        },
+                        messageTitle: getNoDataTile(
+                          screeningToolsTitle.toLowerCase(),
+                        ),
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: screeningToolsNoDatBodyText,
+                            style: normalSize16Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                        ],
+                      )
+                    else
                       ...List<Widget>.generate(toolTypes.length, (int index) {
                         final ScreeningToolsType currentToolType =
                             toolTypes[index].toolType!;
