@@ -107,7 +107,7 @@ void main() {
       },
     );
     testWidgets(
-      'should render correctly for empty responses',
+      'should show zero state for empty responses',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
             MockShortGraphQlClient.withResponse(
@@ -131,11 +131,14 @@ void main() {
             screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
           ),
         );
-        final Finder responseItem = find.byType(AssessmentRequestItemWidget);
+        await tester.pumpAndSettle();
+        final Finder helpNoDataWidget = find.byType(MyAfyaHubPrimaryButton);
 
-        expect(responseItem, findsNothing);
+        expect(helpNoDataWidget, findsOneWidget);
+        await tester.tap(helpNoDataWidget);
+        await tester.pumpAndSettle();
+        expect(helpNoDataWidget, findsNothing);
       },
     );
-    
   });
 }

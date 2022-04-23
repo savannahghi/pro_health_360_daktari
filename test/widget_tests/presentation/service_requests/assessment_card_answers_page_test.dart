@@ -225,6 +225,8 @@ void main() {
                 ResolveScreeningToolServiceRequestAction(
                   client: AppWrapperBase.of(context)!.graphQLClient,
                   serviceRequestId: 'test',
+                  screeningToolsType:
+                      ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                   onFailure: () => testString = 'error',
                 ),
               ),

@@ -10,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/service_requests/update_s
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
+import 'package:mycarehubpro/domain/core/entities/service_requests/tool_type.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchAvailableFacilityScreeningToolsAction extends ReduxAction<AppState> {
@@ -70,9 +71,12 @@ class FetchAvailableFacilityScreeningToolsAction extends ReduxAction<AppState> {
       payLoad['data'] as Map<String, dynamic>,
     );
 
+    final List<ToolType> availableTools =
+        screeningToolsState.availableTools ?? <ToolType>[];
+
     dispatch(
       UpdateScreeningToolsStateAction(
-        availableTools: screeningToolsState.availableTools,
+        availableTools: availableTools,
       ),
     );
 
