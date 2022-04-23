@@ -108,7 +108,8 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                         ),
                         TextSpan(
                           text: formatDate(
-                              assessmentResponse.date?? '',),
+                            assessmentResponse.date ?? '',
+                          ),
                           style: veryBoldSize14Text(AppColors.greyTextColor),
                         ),
                       ],
@@ -125,7 +126,8 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                     description: '${getAssessmentScorePageTitle(
                       screeningToolsType: toolsType,
                     )} ${assessmentCardString.toLowerCase()}',
-                    questionsResponses: toolResponse?.questionsResponses,
+                    questionsResponses: toolResponse
+                        ?.toolAssessmentRequestResponse?.questionsResponses,
                     isLoading:
                         vm.wait.isWaitingFor(fetchScreeningToolResponsesFlag),
                   ),
@@ -172,8 +174,10 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                               ResolveScreeningToolServiceRequestAction(
                                 client:
                                     AppWrapperBase.of(context)!.graphQLClient,
-                                serviceRequestId:
-                                    toolResponse?.serviceRequestID ?? '',
+                                serviceRequestId: toolResponse
+                                        ?.toolAssessmentRequestResponse
+                                        ?.serviceRequestID ??
+                                    '',
                                 onSuccess: () {
                                   showTextSnackbar(
                                     ScaffoldMessenger.of(context),

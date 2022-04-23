@@ -66,20 +66,20 @@ class FetchScreeningToolResponsesAction extends ReduxAction<AppState> {
       payLoad['data'] as Map<String, dynamic>,
     );
 
-    if (loadedAssessmentResponses.questionsResponses?.isNotEmpty ?? false) {
+    if (loadedAssessmentResponses
+            .toolAssessmentRequestResponse?.questionsResponses?.isNotEmpty ??
+        false) {
       final List<ToolAssessmentResponse>? toolAssessmentResponses = state
           .serviceRequestState?.screeningToolsState?.toolAssessmentResponses;
 
       if (toolAssessmentResponses?.isNotEmpty ?? false) {
         for (int i = 0; i < toolAssessmentResponses!.length; i++) {
           if (toolAssessmentResponses[i].clientID == clientID) {
-            toolAssessmentResponses[i] = toolAssessmentResponses[i]
-                .copyWith
-                .call(
-                  serviceRequestID: loadedAssessmentResponses.serviceRequestID,
-                  questionsResponses:
-                      loadedAssessmentResponses.questionsResponses,
-                );
+            toolAssessmentResponses[i] =
+                toolAssessmentResponses[i].copyWith.call(
+                      toolAssessmentRequestResponse: loadedAssessmentResponses
+                          .toolAssessmentRequestResponse,
+                    );
             break;
           }
         }

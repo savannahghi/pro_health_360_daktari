@@ -10,9 +10,9 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_screening_tool_service_request_action.dart';
 import 'package:mycarehubpro/application/redux/actions/service_requests/update_screening_tools_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/assessment_question_response.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:mycarehubpro/application/redux/states/service_requests/tool_service_request_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 
@@ -39,7 +39,7 @@ void main() {
           payload: <String, dynamic>{
             'toolType': ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
             'assessmentResponse': ToolAssessmentResponse.fromJson(
-              mockAssessmentResponsesByToolType,
+              mockToolAssessmentResponses,
             ),
           },
         ),
@@ -76,9 +76,8 @@ void main() {
             'assessmentResponse': ToolAssessmentResponse.fromJson(
               mockAssessmentResponsesByToolType,
             ).copyWith(
-              questionsResponses: <AssessmentQuestionResponse>[
-                AssessmentQuestionResponse.initial()
-              ],
+              toolAssessmentRequestResponse:
+                  ToolAssessmentRequestResponse.initial(),
             )
           },
         ),
@@ -123,8 +122,12 @@ void main() {
       store.dispatch(
         UpdateScreeningToolsStateAction(
           toolAssessmentResponses:
-              ScreeningToolsState.fromJson(mockToolAssessmentResponses)
-                  .toolAssessmentResponses,
+              ScreeningToolsState.fromJson(<String, dynamic>{
+            'getAssessmentResponsesByToolType': <dynamic>[
+              mockAssessmentResponsesByToolType,
+              mockAssessmentResponsesByToolType
+            ]
+          }).toolAssessmentResponses,
         ),
       );
       await buildTestWidget(
@@ -159,14 +162,17 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
+              'getScreeningToolServiceRequestResponses': <String, dynamic>{
+                'serviceRequestID': 'test',
+                'screeningToolResponses': <dynamic>[
+                  <String, dynamic>{
+                    'toolIndex': 0,
+                    'tool': 'Have you experienced a chough for any duration?',
+                    'response': 'Yes',
+                  },
+                ]
+              },
               'resolveServiceRequest': false,
-              'getScreeningToolServiceRequestResponses': <dynamic>[
-                <String, dynamic>{
-                  'toolIndex': 0,
-                  'tool': 'Have you experienced a chough for any duration?',
-                  'response': 'Yes',
-                }
-              ],
             }
           }),
           201,

@@ -1,4 +1,3 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'assessment_question_response.freezed.dart';
@@ -14,10 +13,4 @@ class AssessmentQuestionResponse with _$AssessmentQuestionResponse {
 
   factory AssessmentQuestionResponse.fromJson(Map<String, dynamic> json) =>
       _$AssessmentQuestionResponseFromJson(json);
-
-  factory AssessmentQuestionResponse.initial() => AssessmentQuestionResponse(
-        index: 0,
-        tool: UNKNOWN,
-        response: UNKNOWN,
-      );
 }

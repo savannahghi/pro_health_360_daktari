@@ -409,14 +409,16 @@ final Map<String, dynamic> mockAssessmentResponsesByToolType =
   'clientName': 'Byron Kimani',
   'dateAnswered': '2022-02-18T12:54:53Z',
   'clientID': '58074133-2d76-43ac-b233-3f33504a0bd8',
-  'serviceRequestID': 'test',
 };
 
 final Map<String, dynamic> mockToolAssessmentResponses = <String, dynamic>{
-  'getAssessmentResponsesByToolType': <dynamic>[
-    mockAssessmentResponsesByToolType,
-    mockAssessmentResponsesByToolType,
-  ]
+  'getScreeningToolServiceRequestResponses': <String, dynamic>{
+    'serviceRequestID': 'test',
+    'getAssessmentResponsesByToolType': <dynamic>[
+      mockAssessmentResponsesByToolType,
+      mockAssessmentResponsesByToolType,
+    ]
+  }
 };
 
 final Map<String, dynamic> mockPendingServiceRequestCount = <String, dynamic>{
@@ -1077,7 +1079,12 @@ class MockTestGraphQlClient extends IGraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{
-            'data': mockToolAssessmentResponses,
+            'data': <String, dynamic>{
+              'getAssessmentResponsesByToolType': <dynamic>[
+                mockAssessmentResponsesByToolType,
+                mockAssessmentResponsesByToolType
+              ]
+            },
           }),
           200,
         ),
@@ -1100,29 +1107,31 @@ class MockTestGraphQlClient extends IGraphQlClient {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'serviceRequestID': '980ef678-a163-4fc4-babd-f6307244d8e0',
-              'getScreeningToolServiceRequestResponses': <dynamic>[
-                <String, dynamic>{
-                  'toolIndex': 0,
-                  'tool': 'Have you experienced a chough for any duration?',
-                  'response': 'Yes',
-                },
-                <String, dynamic>{
-                  'toolIndex': 1,
-                  'tool': 'Do you have a fever?',
-                  'response': 'Yes',
-                },
-                <String, dynamic>{
-                  'toolIndex': 2,
-                  'tool': 'Have you Noticed any weight loss?',
-                  'response': 'Yes',
-                },
-                <String, dynamic>{
-                  'toolIndex': 3,
-                  'tool': 'Do you experience night sweats?',
-                  'response': 'Yes',
-                }
-              ]
+              'getScreeningToolServiceRequestResponses': <String, dynamic>{
+                'serviceRequestID': '980ef678-a163-4fc4-babd-f6307244d8e0',
+                'screeningToolResponses': <dynamic>[
+                  <String, dynamic>{
+                    'toolIndex': 0,
+                    'tool': 'Have you experienced a chough for any duration?',
+                    'response': 'Yes',
+                  },
+                  <String, dynamic>{
+                    'toolIndex': 1,
+                    'tool': 'Do you have a fever?',
+                    'response': 'Yes',
+                  },
+                  <String, dynamic>{
+                    'toolIndex': 2,
+                    'tool': 'Have you Noticed any weight loss?',
+                    'response': 'Yes',
+                  },
+                  <String, dynamic>{
+                    'toolIndex': 3,
+                    'tool': 'Do you experience night sweats?',
+                    'response': 'Yes',
+                  }
+                ]
+              },
             }
           }),
           200,
