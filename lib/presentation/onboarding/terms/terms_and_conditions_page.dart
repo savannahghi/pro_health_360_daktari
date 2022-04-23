@@ -13,6 +13,7 @@ import 'package:mycarehubpro/application/redux/view_models/terms/terms_view_mode
 import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:unicons/unicons.dart';
 
@@ -53,148 +54,151 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                   termsObject?.text != UNKNOWN &&
                   isAgreed;
 
-              if (vm.error != null && vm.error != UNKNOWN) {
-                return Container(
-                  height: 200,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(errorDisplayImgUrl),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(
-                      vm.error!,
-                      style: boldSize16Text(whiteColor),
-                      textDirection: TextDirection.ltr,
-                    ),
-                  ),
-                );
-              }
-
               return Column(
                 children: <Widget>[
-                  // Terms and Conditions Card
-                  InformationListCard(
-                    leadingIcon: const Center(
-                      child: Icon(
-                        UniconsLine.file_lock_alt,
-                        size: 32,
-                        color: AppColors.secondaryColor,
+                  if (vm.error != null && vm.error != UNKNOWN)
+                    GenericErrorWidget(
+                      padding: EdgeInsets.zero,
+                      headerIconSvgUrl: acceptTermsImageSvgPath,
+                      messageTitle: noTermsAvailableString,
+                      actionKey: helpNoDataWidgetKey,
+                      recoverCallback: () => StoreProvider.dispatch<AppState>(
+                        context,
+                        GetTermsAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                        ),
+                      ),
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: acceptTermsErrorString,
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ],
+                    )
+                  else ...<Widget>{
+                    // Terms and Conditions Card
+                    InformationListCard(
+                      leadingIcon: const Center(
+                        child: Icon(
+                          UniconsLine.file_lock_alt,
+                          size: 32,
+                          color: AppColors.secondaryColor,
+                        ),
+                      ),
+                      title: Text(
+                        portalTermsText,
+                        style: normalSize16Text(
+                          Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      body: Text(
+                        readAndAcceptText,
+                        style: normalSize14Text(Colors.grey),
                       ),
                     ),
-                    title: Text(
-                      portalTermsText,
-                      style: normalSize16Text(
-                        Theme.of(context).primaryColor,
-                      ),
-                    ),
-                    body: Text(
-                      readAndAcceptText,
-                      style: normalSize14Text(Colors.grey),
-                    ),
-                  ),
 
-                  const SizedBox(height: 8),
+                    const SizedBox(height: 8),
 
-                  // Terms and Conditions scrollable view
-                  Expanded(
-                    child: Scrollbar(
-                      isAlwaysShown: true,
-                      thickness: 10.0,
-                      radius: const Radius.circular(10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: vm.wait.isWaitingFor(getTermsFlag)
-                                  ? Container(
-                                      height: 300,
-                                      padding: const EdgeInsets.all(20),
-                                      child: const PlatformLoader(),
-                                    )
-                                  : SizedBox(
-                                      width: double.infinity,
-                                      child: Html(
-                                        data: vm.termsAndConditions?.text,
+                    // Terms and Conditions scrollable view
+                    Expanded(
+                      child: Scrollbar(
+                        isAlwaysShown: true,
+                        thickness: 10.0,
+                        radius: const Radius.circular(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: SingleChildScrollView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                ),
+                                child: vm.wait.isWaitingFor(getTermsFlag)
+                                    ? Container(
+                                        height: 300,
+                                        padding: const EdgeInsets.all(20),
+                                        child: const PlatformLoader(),
+                                      )
+                                    : SizedBox(
+                                        width: double.infinity,
+                                        child: Html(
+                                          data: vm.termsAndConditions?.text,
+                                        ),
                                       ),
-                                    ),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
 
-                  // Accepts terms check box
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: CheckBoxComponent(
-                      text: acceptTermsText,
-                      value: isAgreed,
-                      color: AppColors.primaryColor,
-                      onChanged: (bool? value) async {
-                        setState(() {
-                          isAgreed = value!;
-                        });
-                        if (vm.termsAndConditions?.text != UNKNOWN) {
+                    // Accepts terms check box
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: CheckBoxComponent(
+                        text: acceptTermsText,
+                        value: isAgreed,
+                        color: AppColors.primaryColor,
+                        onChanged: (bool? value) async {
                           setState(() {
                             isAgreed = value!;
                           });
-                        }
-                      },
+                          if (vm.termsAndConditions?.text != UNKNOWN) {
+                            setState(() {
+                              isAgreed = value!;
+                            });
+                          }
+                        },
+                      ),
                     ),
-                  ),
 
-                  smallVerticalSizedBox,
+                    smallVerticalSizedBox,
 
-                  // Continue button
-                  SizedBox(
-                    height: 48,
-                    width: double.infinity,
-                    child: vm.wait.isWaitingFor(acceptTermsFlag)
-                        ? const PlatformLoader(
-                            color: AppColors.secondaryColor,
-                          )
-                        : MyAfyaHubPrimaryButton(
-                            text: continueText,
-                            borderColor: userAccepted
-                                ? AppColors.primaryColor
-                                : Colors.grey,
-                            buttonColor: userAccepted
-                                ? AppColors.primaryColor
-                                : Colors.grey,
-                            onPressed: !isAgreed
-                                ? null
-                                : () {
-                                    StoreProvider.dispatch(
-                                      context,
-                                      UpdateUserProfileAction(
-                                        termsAccepted: true,
-                                      ),
-                                    );
+                    // Continue button
+                    SizedBox(
+                      height: 48,
+                      width: double.infinity,
+                      child: vm.wait.isWaitingFor(acceptTermsFlag)
+                          ? const PlatformLoader(
+                              color: AppColors.secondaryColor,
+                            )
+                          : MyAfyaHubPrimaryButton(
+                              text: continueText,
+                              borderColor: userAccepted
+                                  ? AppColors.primaryColor
+                                  : Colors.grey,
+                              buttonColor: userAccepted
+                                  ? AppColors.primaryColor
+                                  : Colors.grey,
+                              onPressed: !isAgreed
+                                  ? null
+                                  : () {
+                                      StoreProvider.dispatch(
+                                        context,
+                                        UpdateUserProfileAction(
+                                          termsAccepted: true,
+                                        ),
+                                      );
 
-                                    StoreProvider.dispatch<AppState>(
-                                      context,
-                                      // Accept terms and conditions
-                                      AcceptTermAction(
-                                        client: AppWrapperBase.of(context)!
-                                            .graphQLClient,
-                                      ),
-                                    );
-                                  },
-                          ),
-                  ),
+                                      StoreProvider.dispatch<AppState>(
+                                        context,
+                                        // Accept terms and conditions
+                                        AcceptTermAction(
+                                          client: AppWrapperBase.of(context)!
+                                              .graphQLClient,
+                                        ),
+                                      );
+                                    },
+                            ),
+                    ),
+                  }
                 ],
               );
             },
