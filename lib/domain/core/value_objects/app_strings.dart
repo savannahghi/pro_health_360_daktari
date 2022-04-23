@@ -320,9 +320,11 @@ const String somethingWentWrongText =
 
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';
+const String noTermsAvailableString = 'No terms available';
 const String readAndAcceptText =
     'Please review the terms of service below and accept them';
 const String acceptTermsText = 'I agree with the terms and conditions';
+const String acceptTermsErrorString = 'Sorry, we were unable to load your terms and conditions at the moment. Tap the button below to fetch them again';
 
 const String closeString = 'Close';
 

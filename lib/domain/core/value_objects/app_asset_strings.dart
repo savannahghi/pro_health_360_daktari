@@ -141,3 +141,5 @@ const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
 
 // security questions
 const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';
+
+const String acceptTermsImageSvgPath = 'assets/images/accept_terms_icon.svg';

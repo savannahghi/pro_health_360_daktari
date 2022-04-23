@@ -77,7 +77,12 @@ void main() {
         widget: const TermsAndConditionsPage(),
       );
 
-      expect(find.text(somethingWentWrongText), findsOneWidget);
+      final Finder retryButton = find.byType(MyAfyaHubPrimaryButton);
+
+      expect(retryButton, findsOneWidget);
+      await tester.tap(retryButton);
+      await tester.pumpAndSettle();
+      expect(retryButton, findsOneWidget);
     });
   });
 }
