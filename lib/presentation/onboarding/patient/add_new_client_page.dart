@@ -22,14 +22,14 @@ import 'package:mycarehubpro/presentation/onboarding/patient/widgets/facility_dr
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:shared_themes/spaces.dart';
 
-class RegisterClientPage extends StatefulWidget {
-  const RegisterClientPage({Key? key}) : super(key: key);
+class AddNewClientPage extends StatefulWidget {
+  const AddNewClientPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterClientPage> createState() => _RegisterClientPageState();
+  State<AddNewClientPage> createState() => _AddNewClientPageState();
 }
 
-class _RegisterClientPageState extends State<RegisterClientPage> {
+class _AddNewClientPageState extends State<AddNewClientPage> {
   final RegisterClientFormManager _formManager = RegisterClientFormManager();
   final TextEditingController dobTextController = TextEditingController();
   final TextEditingController enrollmentDateTextController =
@@ -49,13 +49,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
   void initState() {
     super.initState();
     _formManager.inGender.add(Gender.other);
-
-    final Map<ClientType, bool> initialClientTypes =
-        Map<ClientType, bool>.fromIterable(
-      ClientType.values,
-      value: (_) => false,
-    );
-    _formManager.inClientTypes.add(initialClientTypes);
+    _formManager.inClientType.add(ClientType.PMTCT);
   }
 
   @override
@@ -71,7 +65,6 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
           padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SvgPicture.asset(
                   addNewUserIconSvg,
@@ -363,39 +356,48 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                         ],
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    clientTypeLabel,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.greyTextColor,
-                    ),
-                  ),
-                ),
-                StreamBuilder<Map<ClientType, bool>>(
-                  stream: _formManager.clientTypes,
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<Map<ClientType, bool>> snapshot,
-                  ) {
-                    final Map<ClientType, bool> clientTypes =
-                        snapshot.data ?? <ClientType, bool>{};
-
-                    return GridView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1 / .4,
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: Column(
+                        children: <Widget>[
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              clientTypeLabel,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.greyTextColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          StreamBuilder<ClientType>(
+                            stream: _formManager.clientType,
+                            builder: (
+                              BuildContext context,
+                              AsyncSnapshot<ClientType> snapshot,
+                            ) {
+                              final ClientType? data = snapshot.data;
+                              return SelectOptionField(
+                                decoration: dropdownDecoration,
+                                dropDownInputKey: clientTypeField,
+                                value: data != null
+                                    ? describeEnum(data)
+                                    : describeEnum(ClientType.PMTCT),
+                                options: getClientTypeList(),
+                                onChanged: (String? value) {
+                                  if (value != null) {
+                                    _formManager.inClientType
+                                        .add(clientTypeFromJson(value));
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                      children: getCheckBoxes(clientTypes),
-                    );
-                  },
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 28),
                 Row(
@@ -498,27 +500,14 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
     );
   }
 
-  List<Widget> getCheckBoxes(Map<ClientType, bool> clientTypes) {
-    final List<Widget> result = <Widget>[];
-    final Map<ClientType, bool> clientTypesCopy = clientTypes;
+  List<String> getClientTypeList() {
+    final List<String> result = <String>[];
 
-    clientTypes.forEach((ClientType key, bool value) {
-      result.add(
-        CheckboxListTile(
-          key: ValueKey<String>(key.name),
-          activeColor: AppColors.primaryColor,
-          title: Text(
-            key.name.replaceAll('_', ' '),
-            style: const TextStyle(color: AppColors.grey50),
-          ),
-          value: value,
-          onChanged: (_) {
-            clientTypesCopy[key] = !value;
-            _formManager.inClientTypes.add(clientTypesCopy);
-          },
-        ),
-      );
-    });
+    for (final ClientType clientType in ClientType.values) {
+      if (clientType != ClientType.YOUTH) {
+        result.add(describeEnum(clientType));
+      }
+    }
 
     return result;
   }

@@ -24,7 +24,7 @@ import 'package:mycarehubpro/presentation/onboarding/login/pages/login_counter_p
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pending_pin_request_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
@@ -125,9 +125,9 @@ class RouteGenerator {
           builder: (_) => ForgotPinPage(),
         );
 
-      case AppRoutes.registerClientPage:
-        return MaterialPageRoute<RegisterClientPage>(
-          builder: (_) => const RegisterClientPage(),
+      case AppRoutes.addNewPatientPage:
+        return MaterialPageRoute<AddNewClientPage>(
+          builder: (_) => const AddNewClientPage(),
         );
 
       case AppRoutes.addNewStaffPage:

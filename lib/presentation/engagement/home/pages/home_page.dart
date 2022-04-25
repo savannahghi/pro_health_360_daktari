@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                         iconUrl: addNewStaffImageSvg,
                         onTap: () {
                           Navigator.of(context)
-                              .pushNamed(AppRoutes.registerClientPage);
+                              .pushNamed(AppRoutes.addNewPatientPage);
                         },
                       ),
                       ActionCard(

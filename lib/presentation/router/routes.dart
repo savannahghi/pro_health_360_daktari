@@ -23,7 +23,7 @@ class AppRoutes {
   static const String pinResetRequestsPage = '/pinResetRequestsPage';
   static const String forgotPinPage = '/forgotPinPage';
 
-  static const String registerClientPage = '/registerClientPage';
+  static const String addNewPatientPage = '/addNewPatientPage';
 
   static const String addNewStaffPage = '/addNewStaffPage';
 
@@ -92,7 +92,8 @@ class AppRoutes {
 
   static const String redFlagActionsPage = '/redFlagActionsPage';
   static const String screeningToolsListPage = '/screeningToolsListPage';
-  static const String assessmentCardAnswersPage = 'assessmentCardAnswersPage';
+  static const String assessmentCardAnswersPage =
+      'assessmentCardAnswersPage';
 
   static const String assessmentToolResponsesPage =
       '/assessmentToolResponsesPage';
