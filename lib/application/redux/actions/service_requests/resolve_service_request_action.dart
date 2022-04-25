@@ -46,7 +46,7 @@ class ResolveServiceRequestAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String staffId = state.staffState?.user?.userId ?? '';
+    final String staffId = state.staffState?.id ?? '';
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'staffID': staffId,
