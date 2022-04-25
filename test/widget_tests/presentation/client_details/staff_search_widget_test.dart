@@ -37,7 +37,7 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(SearchDetailsInformationWidget), findsWidgets);
-      expect(find.text(myCareHubReInviteText), findsOneWidget);
+      expect(find.text(myCareHubInviteText), findsOneWidget);
     });
 
     testWidgets('handle unauthorized person successfully',

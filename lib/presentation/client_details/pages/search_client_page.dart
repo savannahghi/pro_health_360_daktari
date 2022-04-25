@@ -145,7 +145,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
                             padding: EdgeInsets.zero,
                             recoverCallback: () {
                               Navigator.of(context)
-                                  .pushNamed(AppRoutes.registerClientPage);
+                                  .pushNamed(AppRoutes.addNewPatientPage);
                             },
                             actionText: registerClientString,
                             messageTitle: noClientFoundString,

@@ -11,7 +11,7 @@ import 'package:mycarehubpro/application/redux/actions/update_connectivity_actio
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
 
 import '../../../mocks/mocks.dart';
@@ -91,7 +91,7 @@ void main() {
 
         await tester.tap(genericNoDataButton);
         await tester.pumpAndSettle();
-        expect(find.byType(RegisterClientPage), findsOneWidget);
+        expect(find.byType(AddNewClientPage), findsOneWidget);
       },
     );
 

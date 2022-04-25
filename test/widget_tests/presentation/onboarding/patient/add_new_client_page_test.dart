@@ -5,10 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/add_new_client_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -29,7 +28,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
         graphQlClient: MockTestGraphQlClient(),
       );
       await tester.pumpAndSettle();
@@ -95,10 +94,11 @@ void main() {
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
 
-      final Finder clientTypeFinder =
-          find.byKey(ValueKey<String>(ClientType.PMTCT.name));
+      final Finder clientTypeFinder = find.byKey(clientTypeField);
       expect(clientTypeFinder, findsOneWidget);
       await tester.tap(clientTypeFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('PMTCT').last);
       await tester.pumpAndSettle();
 
       final Finder appInviteCheckBox = find.byKey(myAfyaHubInviteKey);
@@ -117,9 +117,8 @@ void main() {
       await tester.ensureVisible(registerBtnFinder);
       await tester.tap(registerBtnFinder);
 
-      // TODO: Wait for API
-      // await tester.pump(const Duration(seconds: 2));
-      // expect(find.text(registerClientSuccess), findsOneWidget);
+      await tester.pump(const Duration(seconds: 2));
+      expect(find.text(registerClientSuccess), findsOneWidget);
     });
 
     testWidgets('register button should show error if no connection',
@@ -127,7 +126,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
         graphQlClient: MockTestGraphQlClient(),
       );
       await tester.pumpAndSettle();
@@ -193,10 +192,11 @@ void main() {
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
 
-      final Finder clientTypeFinder =
-          find.byKey(ValueKey<String>(ClientType.PMTCT.name));
+      final Finder clientTypeFinder = find.byKey(clientTypeField);
       expect(clientTypeFinder, findsOneWidget);
       await tester.tap(clientTypeFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('PMTCT').last);
       await tester.pumpAndSettle();
 
       final Finder appInviteCheckBox = find.byKey(myAfyaHubInviteKey);
@@ -227,7 +227,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -247,7 +247,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -266,7 +266,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 
@@ -285,7 +285,7 @@ void main() {
       await buildTestWidget(
         store: store,
         tester: tester,
-        widget: const RegisterClientPage(),
+        widget: const AddNewClientPage(),
       );
       await tester.pumpAndSettle();
 

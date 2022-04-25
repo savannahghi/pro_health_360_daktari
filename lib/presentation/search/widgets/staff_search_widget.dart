@@ -84,7 +84,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                           ),
                           smallVerticalSizedBox,
                           Text(
-                            '1. $myCareHubReInviteText',
+                            '1. $myCareHubInviteText',
                             style: boldSize16Text(AppColors.greyTextColor),
                           ),
                           smallVerticalSizedBox,
