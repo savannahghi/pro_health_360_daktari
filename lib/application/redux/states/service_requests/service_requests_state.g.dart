@@ -15,6 +15,10 @@ _$_ServiceRequestState _$$_ServiceRequestStateFromJson(
       staffServiceRequests: (json['staffServiceRequests'] as List<dynamic>?)
           ?.map((e) => ServiceRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
+      resolvedServiceRequests:
+          (json['resolvedServiceRequests'] as List<dynamic>?)
+              ?.map((e) => ServiceRequest.fromJson(e as Map<String, dynamic>))
+              .toList(),
       pendingServiceRequestsCount: json['pendingServiceRequestsCount'] == null
           ? null
           : PendingServiceRequestCount.fromJson(
@@ -32,6 +36,7 @@ Map<String, dynamic> _$$_ServiceRequestStateToJson(
     <String, dynamic>{
       'clientServiceRequests': instance.clientServiceRequests,
       'staffServiceRequests': instance.staffServiceRequests,
+      'resolvedServiceRequests': instance.resolvedServiceRequests,
       'pendingServiceRequestsCount': instance.pendingServiceRequestsCount,
       'screeningToolsState': instance.screeningToolsState,
       'errorFetchingPendingServiceRequests':

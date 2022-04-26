@@ -37,7 +37,7 @@ void main() {
       final Finder redFlagItem = find.byType(RedFlagListItem);
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(redFlagItem, findsOneWidget);
+      expect(redFlagItem, findsNWidgets(5));
     });
 
     testWidgets('Routes to RedFlagActionsPage correctly',

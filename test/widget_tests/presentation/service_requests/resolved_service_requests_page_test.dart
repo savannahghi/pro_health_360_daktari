@@ -11,8 +11,8 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/resolved_service_request_list_item.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
@@ -31,10 +31,10 @@ void main() {
         widget: const ResolvedServiceRequestsPage(),
       );
       await tester.pumpAndSettle();
-      final Finder redFlagItem = find.byType(RedFlagListItem);
+      final Finder redFlagItem = find.byType(ResolvedServiceRequestListItem);
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(redFlagItem, findsOneWidget);
+      expect(redFlagItem, findsNWidgets(5));
     });
     testWidgets(
       'should show an error widget when fetching service requests',

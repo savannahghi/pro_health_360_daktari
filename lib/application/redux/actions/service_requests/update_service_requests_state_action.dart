@@ -10,11 +10,13 @@ class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
     this.errorFetchingPendingServiceRequests,
     this.staffServiceRequests,
     this.pendingServiceRequestsCount,
+    this.resolvedServiceRequests,
   });
 
   final List<ServiceRequest>? clientServiceRequests;
   final bool? errorFetchingPendingServiceRequests;
   final List<ServiceRequest>? staffServiceRequests;
+  final List<ServiceRequest>? resolvedServiceRequests;
   final PendingServiceRequestCount? pendingServiceRequestsCount;
 
   @override
@@ -25,6 +27,8 @@ class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
           state.serviceRequestState?.clientServiceRequests,
       staffServiceRequests: staffServiceRequests ??
           state.serviceRequestState?.staffServiceRequests,
+      resolvedServiceRequests: resolvedServiceRequests ??
+          state.serviceRequestState?.resolvedServiceRequests,
       errorFetchingPendingServiceRequests:
           errorFetchingPendingServiceRequests ??
               state.serviceRequestState?.errorFetchingPendingServiceRequests,

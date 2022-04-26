@@ -16,6 +16,9 @@ class ServiceRequestState with _$ServiceRequestState {
     // Staff service requests
     List<ServiceRequest>? staffServiceRequests,
 
+    // Resolved service requests
+    List<ServiceRequest>? resolvedServiceRequests,
+
     // Service requests count
     PendingServiceRequestCount? pendingServiceRequestsCount,
 
@@ -31,8 +34,8 @@ class ServiceRequestState with _$ServiceRequestState {
   factory ServiceRequestState.initial() => ServiceRequestState(
         clientServiceRequests: <ServiceRequest>[],
         staffServiceRequests: <ServiceRequest>[],
+        resolvedServiceRequests: <ServiceRequest>[],
         pendingServiceRequestsCount: PendingServiceRequestCount.initial(),
-
         screeningToolsState: ScreeningToolsState.initial(),
         errorFetchingPendingServiceRequests: false,
       );

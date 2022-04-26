@@ -10,6 +10,8 @@ class ServiceRequestsViewModel extends Vm {
 
   final List<ServiceRequest>? staffServiceRequests;
 
+  final List<ServiceRequest>? resolvedServiceRequests;
+
   final PendingServiceRequestCount? pendingServiceRequestCount;
 
   final ScreeningToolsState? screeningToolsState;
@@ -19,6 +21,7 @@ class ServiceRequestsViewModel extends Vm {
     required this.wait,
     this.clientServiceRequests,
     this.staffServiceRequests,
+    this.resolvedServiceRequests,
     this.pendingServiceRequestCount,
     this.screeningToolsState,
     this.errorFetchingServiceRequests,
@@ -27,6 +30,7 @@ class ServiceRequestsViewModel extends Vm {
             wait,
             clientServiceRequests,
             staffServiceRequests,
+            resolvedServiceRequests,
             pendingServiceRequestCount,
             screeningToolsState,
             errorFetchingServiceRequests,
@@ -40,6 +44,8 @@ class ServiceRequestsViewModel extends Vm {
           store.state.serviceRequestState?.clientServiceRequests,
       staffServiceRequests:
           store.state.serviceRequestState?.staffServiceRequests,
+      resolvedServiceRequests:
+          store.state.serviceRequestState?.resolvedServiceRequests,
       pendingServiceRequestCount:
           store.state.serviceRequestState?.pendingServiceRequestsCount,
       screeningToolsState: store.state.serviceRequestState?.screeningToolsState,

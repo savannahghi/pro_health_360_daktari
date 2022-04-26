@@ -25,12 +25,14 @@ class _$ServiceRequestStateTearOff {
   _ServiceRequestState call(
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
+      List<ServiceRequest>? resolvedServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
       ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests}) {
     return _ServiceRequestState(
       clientServiceRequests: clientServiceRequests,
       staffServiceRequests: staffServiceRequests,
+      resolvedServiceRequests: resolvedServiceRequests,
       pendingServiceRequestsCount: pendingServiceRequestsCount,
       screeningToolsState: screeningToolsState,
       errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests,
@@ -51,6 +53,8 @@ mixin _$ServiceRequestState {
   List<ServiceRequest>? get clientServiceRequests =>
       throw _privateConstructorUsedError; // Staff service requests
   List<ServiceRequest>? get staffServiceRequests =>
+      throw _privateConstructorUsedError; // Resolved service requests
+  List<ServiceRequest>? get resolvedServiceRequests =>
       throw _privateConstructorUsedError; // Service requests count
   PendingServiceRequestCount? get pendingServiceRequestsCount =>
       throw _privateConstructorUsedError; // Screening tools
@@ -75,6 +79,7 @@ abstract class $ServiceRequestStateCopyWith<$Res> {
   $Res call(
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
+      List<ServiceRequest>? resolvedServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
       ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests});
@@ -96,6 +101,7 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
   $Res call({
     Object? clientServiceRequests = freezed,
     Object? staffServiceRequests = freezed,
+    Object? resolvedServiceRequests = freezed,
     Object? pendingServiceRequestsCount = freezed,
     Object? screeningToolsState = freezed,
     Object? errorFetchingPendingServiceRequests = freezed,
@@ -108,6 +114,10 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
       staffServiceRequests: staffServiceRequests == freezed
           ? _value.staffServiceRequests
           : staffServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      resolvedServiceRequests: resolvedServiceRequests == freezed
+          ? _value.resolvedServiceRequests
+          : resolvedServiceRequests // ignore: cast_nullable_to_non_nullable
               as List<ServiceRequest>?,
       pendingServiceRequestsCount: pendingServiceRequestsCount == freezed
           ? _value.pendingServiceRequestsCount
@@ -160,6 +170,7 @@ abstract class _$ServiceRequestStateCopyWith<$Res>
   $Res call(
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
+      List<ServiceRequest>? resolvedServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
       ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests});
@@ -185,6 +196,7 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
   $Res call({
     Object? clientServiceRequests = freezed,
     Object? staffServiceRequests = freezed,
+    Object? resolvedServiceRequests = freezed,
     Object? pendingServiceRequestsCount = freezed,
     Object? screeningToolsState = freezed,
     Object? errorFetchingPendingServiceRequests = freezed,
@@ -197,6 +209,10 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
       staffServiceRequests: staffServiceRequests == freezed
           ? _value.staffServiceRequests
           : staffServiceRequests // ignore: cast_nullable_to_non_nullable
+              as List<ServiceRequest>?,
+      resolvedServiceRequests: resolvedServiceRequests == freezed
+          ? _value.resolvedServiceRequests
+          : resolvedServiceRequests // ignore: cast_nullable_to_non_nullable
               as List<ServiceRequest>?,
       pendingServiceRequestsCount: pendingServiceRequestsCount == freezed
           ? _value.pendingServiceRequestsCount
@@ -221,6 +237,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   _$_ServiceRequestState(
       {this.clientServiceRequests,
       this.staffServiceRequests,
+      this.resolvedServiceRequests,
       this.pendingServiceRequestsCount,
       this.screeningToolsState,
       this.errorFetchingPendingServiceRequests});
@@ -232,6 +249,8 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   final List<ServiceRequest>? clientServiceRequests;
   @override // Staff service requests
   final List<ServiceRequest>? staffServiceRequests;
+  @override // Resolved service requests
+  final List<ServiceRequest>? resolvedServiceRequests;
   @override // Service requests count
   final PendingServiceRequestCount? pendingServiceRequestsCount;
   @override // Screening tools
@@ -243,7 +262,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
   @override
   String toString() {
-    return 'ServiceRequestState(clientServiceRequests: $clientServiceRequests, staffServiceRequests: $staffServiceRequests, pendingServiceRequestsCount: $pendingServiceRequestsCount, screeningToolsState: $screeningToolsState, errorFetchingPendingServiceRequests: $errorFetchingPendingServiceRequests)';
+    return 'ServiceRequestState(clientServiceRequests: $clientServiceRequests, staffServiceRequests: $staffServiceRequests, resolvedServiceRequests: $resolvedServiceRequests, pendingServiceRequestsCount: $pendingServiceRequestsCount, screeningToolsState: $screeningToolsState, errorFetchingPendingServiceRequests: $errorFetchingPendingServiceRequests)';
   }
 
   @override
@@ -255,6 +274,8 @@ class _$_ServiceRequestState implements _ServiceRequestState {
                 .equals(other.clientServiceRequests, clientServiceRequests) &&
             const DeepCollectionEquality()
                 .equals(other.staffServiceRequests, staffServiceRequests) &&
+            const DeepCollectionEquality().equals(
+                other.resolvedServiceRequests, resolvedServiceRequests) &&
             const DeepCollectionEquality().equals(
                 other.pendingServiceRequestsCount,
                 pendingServiceRequestsCount) &&
@@ -270,6 +291,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
       runtimeType,
       const DeepCollectionEquality().hash(clientServiceRequests),
       const DeepCollectionEquality().hash(staffServiceRequests),
+      const DeepCollectionEquality().hash(resolvedServiceRequests),
       const DeepCollectionEquality().hash(pendingServiceRequestsCount),
       const DeepCollectionEquality().hash(screeningToolsState),
       const DeepCollectionEquality().hash(errorFetchingPendingServiceRequests));
@@ -290,6 +312,7 @@ abstract class _ServiceRequestState implements ServiceRequestState {
   factory _ServiceRequestState(
       {List<ServiceRequest>? clientServiceRequests,
       List<ServiceRequest>? staffServiceRequests,
+      List<ServiceRequest>? resolvedServiceRequests,
       PendingServiceRequestCount? pendingServiceRequestsCount,
       ScreeningToolsState? screeningToolsState,
       bool? errorFetchingPendingServiceRequests}) = _$_ServiceRequestState;
@@ -301,6 +324,8 @@ abstract class _ServiceRequestState implements ServiceRequestState {
   List<ServiceRequest>? get clientServiceRequests;
   @override // Staff service requests
   List<ServiceRequest>? get staffServiceRequests;
+  @override // Resolved service requests
+  List<ServiceRequest>? get resolvedServiceRequests;
   @override // Service requests count
   PendingServiceRequestCount? get pendingServiceRequestsCount;
   @override // Screening tools
