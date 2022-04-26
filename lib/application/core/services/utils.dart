@@ -11,103 +11,13 @@ import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:mycarehubpro/domain/core/entities/red_flag_item.dart';
-import 'package:mycarehubpro/domain/core/entities/user_profile_item_obj.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/client_details/widgets/add_profile_entry_row_item.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-
-final List<RedFlagItem> reFlagItems = <RedFlagItem>[
-  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling suicidal'),
-  RedFlagItem(clientName: 'Kevin', feelingDescription: 'Feeling depressed'),
-  RedFlagItem(clientName: 'John', feelingDescription: 'Feeling Hopeless'),
-];
-
-final List<UserProfileItemObj> clientProfileItems = <UserProfileItemObj>[
-  UserProfileItemObj(
-    iconAssetPath: clientProfileIcon,
-    route: AppRoutes.surveysPage,
-    title: 'Relations',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: teleConsultNotificationIcon,
-    route: AppRoutes.surveysPage,
-    title: 'Medical data',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: clinicIcon,
-    route: AppRoutes.surveysPage,
-    title: 'Clinic information',
-  ),
-];
-
-Future<void> addNewProfileEntryBottomSheet(BuildContext context) {
-  return showModalBottomSheet<void>(
-    backgroundColor: Colors.transparent,
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        height: 340,
-        margin: const EdgeInsets.symmetric(
-          horizontal: 10.0,
-        ),
-        padding: const EdgeInsets.all(
-          20.0,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(2.0),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                const AddProfileEntryRowItem(
-                  leadingText: 'Weight',
-                  trailingText: 'BMI',
-                ),
-                smallVerticalSizedBox,
-                const AddProfileEntryRowItem(
-                  leadingText: 'VL',
-                  trailingText: 'CD4',
-                ),
-                smallVerticalSizedBox,
-                const AddProfileEntryRowItem(
-                  leadingText: 'Regimen Type',
-                  trailingText: 'Regimen',
-                ),
-                smallVerticalSizedBox,
-                const AddProfileEntryRowItem(
-                  leadingText: 'TPT Status',
-                  trailingText: 'Next Appointment',
-                ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: addButtonKey,
-                  onPressed: () => Navigator.of(context).pop(),
-                  buttonColor: Theme.of(context).colorScheme.secondary,
-                  text: 'Add',
-                  textStyle: boldSize14Text(Colors.white),
-                ),
-              ),
-            )
-          ],
-        ),
-      );
-    },
-  );
-}
 
 Gender genderFromJson(String? genderString) {
   if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
@@ -536,5 +446,20 @@ MoodItemData getMoodColor(String? mood) {
       );
     default:
       return MoodItemData.initial();
+  }
+}
+
+String getServiceRequestName(ServiceRequestType? requestType) {
+  switch (requestType) {
+    case ServiceRequestType.PIN_RESET:
+      return 'PIN Reset';
+    case ServiceRequestType.RED_FLAG:
+      return 'Red Flag';
+    case ServiceRequestType.STAFF_PIN_RESET:
+      return 'Staff PIN Reset';
+    case ServiceRequestType.SCREENING_TOOLS_RED_FLAG:
+      return 'Screening Tool';
+    default:
+      return UNKNOWN;
   }
 }

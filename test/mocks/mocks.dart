@@ -428,7 +428,6 @@ final Map<String, dynamic> mockPendingServiceRequestCount = <String, dynamic>{
         'requestsTypeCount': <Map<String, dynamic>>[
           <String, dynamic>{'requestType': 'RED_FLAG', 'total': 2},
           <String, dynamic>{'requestType': 'PIN_RESET', 'total': 2},
-          <String, dynamic>{'requestType': 'PROFILE_UPDATE', 'total': 2},
           <String, dynamic>{
             'requestType': 'SCREENING_TOOLS_RED_FLAG',
             'total': 2
@@ -1335,6 +1334,81 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
       'ResolvedBy': 'test',
       'ResolvedByName': 'test',
       'CreatedAt': '2022-02-09T08:40:46Z'
+    },
+     <String, dynamic>{
+      'ID': 'test',
+      'RequestType': 'STAFF_PIN_RESET',
+      'Request': 'I have not been myself lately',
+      'ClientID': 'test',
+      'FacilityID': 'test',
+      'ClientName': 'Calvin Ojiambo',
+      'ClientContact': '+254712345678',
+      'StaffName': 'Calvin Ojiambo',
+      'StaffContact': '+254712345678',
+      'ResolvedAt': '2022-02-09T08:40:46Z',
+      'ResolvedBy': 'test',
+      'ResolvedByName': 'test',
+      'CreatedAt': '2022-02-09T08:40:46Z',
+      'Meta': <String, dynamic>{
+        'ccc_number': '1234567890',
+        'is_ccc_number_valid': true
+      }
+    },
+    <String, dynamic>{
+      'ID': 'test',
+      'RequestType': 'PIN_RESET',
+      'Request': 'I am feeling very bad',
+      'ClientID': 'test',
+      'FacilityID': 'test',
+      'ClientName': 'Jenny McLaren',
+      'ClientContact': '+254712345678',
+      'StaffName': 'Jenny McLaren',
+      'StaffContact': '+254712345678',
+      'ResolvedAt': 'test',
+      'ResolvedBy': 'test',
+      'ResolvedByName': 'test',
+      'CreatedAt': '2022-02-09T08:40:46Z',
+      'Meta': <String, dynamic>{
+        'ccc_number': '1234567890',
+        'is_ccc_number_valid': false
+      }
+    },
+     <String, dynamic>{
+      'ID': 'test',
+      'RequestType': 'SCREENING_TOOLS_RED_FLAG',
+      'Request': 'I have not been myself lately',
+      'ClientID': 'test',
+      'FacilityID': 'test',
+      'ClientName': 'Calvin Ojiambo',
+      'ClientContact': '+254712345678',
+      'StaffName': 'Calvin Ojiambo',
+      'StaffContact': '+254712345678',
+      'ResolvedAt': '2022-02-09T08:40:46Z',
+      'ResolvedBy': 'test',
+      'ResolvedByName': 'test',
+      'CreatedAt': '2022-02-09T08:40:46Z',
+      'Meta': <String, dynamic>{
+        'ccc_number': '1234567890',
+        'is_ccc_number_valid': true
+      }
+    },
+     <String, dynamic>{
+      'ID': 'test',
+      'Request': 'I have not been myself lately',
+      'ClientID': 'test',
+      'FacilityID': 'test',
+      'ClientName': 'Calvin Ojiambo',
+      'ClientContact': '+254712345678',
+      'StaffName': 'Calvin Ojiambo',
+      'StaffContact': '+254712345678',
+      'ResolvedAt': '2022-02-09T08:40:46Z',
+      'ResolvedBy': 'test',
+      'ResolvedByName': 'test',
+      'CreatedAt': '2022-02-09T08:40:46Z',
+      'Meta': <String, dynamic>{
+        'ccc_number': '1234567890',
+        'is_ccc_number_valid': true
+      }
     },
   ]
 };

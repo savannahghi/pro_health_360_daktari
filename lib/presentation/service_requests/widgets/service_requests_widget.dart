@@ -82,10 +82,7 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
       ServiceRequestType.PIN_RESET,
     );
 
-    final int profileUpdateCount = _getServiceRequestTypeCount(
-      clientServiceRequestsCount,
-      ServiceRequestType.PROFILE_UPDATE,
-    );
+   
 
     final int staffPINResetCount = _getServiceRequestTypeCount(
       staffServiceRequestsCount,
@@ -94,7 +91,6 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
 
     final int totalCount = redFlagCount +
         pinResetCount +
-        profileUpdateCount +
         staffPINResetCount +
         screeningToolsCount;
 
@@ -194,20 +190,6 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
                             onTap: () => Navigator.pushNamed(
                               context,
                               AppRoutes.staffPinResetRequestsPage,
-                            ),
-                          ),
-                        // SCREENING TOOLS
-                        if (profileUpdateCount > 0)
-                          ActionCard(
-                            key: profileUpdateActionCardKey,
-                            count: profileUpdateCount,
-                            iconUrl: profileUpdateImageSvgPath,
-                            title: profileUpdateString,
-                            backgroundColor:
-                                Theme.of(context).primaryColor.withOpacity(0.2),
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profileUpdateRequestsPage,
                             ),
                           ),
                       ],

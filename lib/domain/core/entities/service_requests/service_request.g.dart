@@ -50,7 +50,6 @@ Map<String, dynamic> _$$_ServiceRequestToJson(_$_ServiceRequest instance) =>
 const _$ServiceRequestTypeEnumMap = {
   ServiceRequestType.RED_FLAG: 'RED_FLAG',
   ServiceRequestType.PIN_RESET: 'PIN_RESET',
-  ServiceRequestType.PROFILE_UPDATE: 'PROFILE_UPDATE',
   ServiceRequestType.STAFF_PIN_RESET: 'STAFF_PIN_RESET',
   ServiceRequestType.SCREENING_TOOLS_RED_FLAG: 'SCREENING_TOOLS_RED_FLAG',
   ServiceRequestType.UNKNOWN: 'UNKNOWN',

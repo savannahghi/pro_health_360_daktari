@@ -119,29 +119,6 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagsPage), findsNothing);
     });
-
-    testWidgets('profile updates ActionCard is tappable',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        graphQlClient: MockTestGraphQlClient(),
-        store: store,
-        widget: const ServiceRequestsPage(),
-      );
-
-      await tester.pumpAndSettle();
-
-      final Finder profileUpdateActionCard =
-          find.byKey(profileUpdateActionCardKey);
-      await tester.scrollUntilVisible(profileUpdateActionCard, 500);
-      await tester.pumpAndSettle();
-      expect(profileUpdateActionCard, findsOneWidget);
-
-      await tester.tap(profileUpdateActionCard);
-      await tester.pumpAndSettle();
-      expect(profileUpdateActionCard, findsNothing);
-    });
-
     testWidgets(
         'should navigate to client service requests page when the '
         'staff PIN resets card is tapped', (WidgetTester tester) async {

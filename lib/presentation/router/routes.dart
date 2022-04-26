@@ -47,7 +47,6 @@ class AppRoutes {
   static const String surveysPage = '/surveys';
   static const String searchPage = '/searchPage';
   static const String communityChatScreen = '/communityChatScreen';
-  static const String clientHealthPage = '/clientHealthPage';
   static const String phoneSignUpRoute = '/phoneSignUp';
   static const String recoverPinRoute = '/recoverPin';
   static const String setNicknamePage = '/setNicknamePage';

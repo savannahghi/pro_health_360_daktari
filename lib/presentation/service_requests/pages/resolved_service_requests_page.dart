@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_service_requests_action.dart';
+import 'package:mycarehubpro/application/redux/actions/service_requests/fetch_resolved_service_requests_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/service_requests/service_requests_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list_item.dart';
+import 'package:mycarehubpro/presentation/service_requests/widgets/resolved_service_request_list_item.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ResolvedServiceRequestsPage extends StatefulWidget {
   const ResolvedServiceRequestsPage({Key? key}) : super(key: key);
@@ -33,9 +33,8 @@ class _ResolvedServiceRequestsPageState
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
-        FetchServiceRequestsAction(
+        FetchResolvedServiceRequestsAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          serviceRequestStatus: RequestStatus.RESOLVED,
           flavour: Flavour.consumer,
         ),
       );
@@ -47,7 +46,7 @@ class _ResolvedServiceRequestsPageState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
-        title: resolvedRequestsString,
+        title: resolvedServiceRequestsString,
         showNotificationIcon: true,
       ),
       body: Padding(
@@ -59,6 +58,23 @@ class _ResolvedServiceRequestsPageState
               ServiceRequestsViewModel.fromStore(store),
           builder: (BuildContext context, ServiceRequestsViewModel vm) {
             final bool error = vm.errorFetchingServiceRequests ?? false;
+            final List<Widget> resolvedRequestsWidgetList = <Widget>[];
+            final List<ServiceRequest>? serviceRequests =
+                vm.resolvedServiceRequests;
+            if (serviceRequests?.isNotEmpty ?? false) {
+              serviceRequests!
+                  .map(
+                    (ServiceRequest request) => resolvedRequestsWidgetList.add(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: ResolvedServiceRequestListItem(
+                          serviceRequest: request,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList();
+            }
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -82,8 +98,7 @@ class _ResolvedServiceRequestsPageState
                         ),
                         child: PlatformLoader(),
                       )
-                    } else if (vm.clientServiceRequests?.isEmpty ??
-                        true) ...<Widget>{
+                    } else if (resolvedRequestsWidgetList.isEmpty) ...<Widget>{
                       GenericErrorWidget(
                         actionKey: helpNoDataWidgetKey,
                         actionText: actionTextGenericNoData,
@@ -93,8 +108,9 @@ class _ResolvedServiceRequestsPageState
                             Navigator.of(context).pop();
                           }
                         },
-                        messageTitle:
-                            getNoDataTile(serviceRequestsText.toLowerCase()),
+                        messageTitle: getNoDataTile(
+                          resolvedServiceRequestsString.toLowerCase(),
+                        ),
                         messageBody: <TextSpan>[
                           TextSpan(
                             text: resolvedServiceRequestsNoDataBodyString,
@@ -104,32 +120,24 @@ class _ResolvedServiceRequestsPageState
                           ),
                         ],
                       )
-                    } else
-                      ...List<Widget>.generate(
-                        vm.clientServiceRequests?.length ?? 0,
-                        (int index) {
-                          final List<ServiceRequest>? entries =
-                              vm.clientServiceRequests;
-
-                          return Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: RedFlagListItem(
-                              isResolved: true,
-                              serviceRequest: entries?.elementAt(index),
-                            ),
-                          );
-                        },
+                    } else ...<Widget>{
+                      mediumVerticalSizedBox,
+                      const Text(
+                        resolvedServiceRequestsBodyString,
+                        style: TextStyle(color: AppColors.grey50),
+                        textAlign: TextAlign.center,
                       ),
+                      size15VerticalSizedBox,
+                      ...resolvedRequestsWidgetList,
+                    }
                   } else ...<Widget>{
                     GenericErrorWidget(
                       actionKey: helpNoDataWidgetKey,
                       recoverCallback: () async {
                         StoreProvider.dispatch<AppState>(
                           context,
-                          FetchServiceRequestsAction(
+                          FetchResolvedServiceRequestsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
-                            serviceRequestStatus: RequestStatus.RESOLVED,
                             flavour: Flavour.consumer,
                           ),
                         );

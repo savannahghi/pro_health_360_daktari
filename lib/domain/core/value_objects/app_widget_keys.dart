@@ -150,6 +150,5 @@ const Key redFlagActionCardKey = Key('red_flag_action_card_key');
 const Key screeningToolsActionCardKey = Key('screening_tools_action_card_key');
 const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
-const Key profileUpdateActionCardKey = Key('profile_update_action_card_key');
 
 const Key resolveRequestButtonKey = Key('resolve_request_button_key');

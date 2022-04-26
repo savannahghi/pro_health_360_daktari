@@ -265,13 +265,6 @@ const String userInitialsStrings = 'WJ';
 const String userCCCNumberString = '12345678';
 const String ageExampleString = '18';
 const String homeExampleString = 'Karen';
-String formatCCCNumber(String cccNumber) {
-  return 'CCC No: $cccNumber';
-}
-
-String formatAge(String age) {
-  return 'Age: $age yrs';
-}
 
 const String noAccount =
     'No account with that phone number. Use the number you registered with or ';
@@ -382,6 +375,8 @@ String getNoDataTile(String? message) {
 // User profile items
 const String helpContactAdminString = 'Help/Contact Admin';
 const String resolvedRequestsString = 'Resolved Requests';
+const String resolvedServiceRequestsString = 'Resolved service requests';
+const String resolvedServiceRequestsBodyString = 'Service requests that have already been handled';
 const String faqsString = 'FAQs';
 const String settingsString = 'Settings';
 const String genericVerifyPhoneNumber = 'Verify Phone number';

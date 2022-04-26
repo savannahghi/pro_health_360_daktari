@@ -5,7 +5,6 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
-import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
@@ -44,7 +43,6 @@ import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.d
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
@@ -192,19 +190,9 @@ class RouteGenerator {
           builder: (_) => const RedFlagsPage(),
         );
 
-      case AppRoutes.profileUpdateRequestsPage:
-        return MaterialPageRoute<ProfileUpdateRequestsPage>(
-          builder: (_) => ProfileUpdateRequestsPage(),
-        );
-
       case AppRoutes.searchPage:
         return MaterialPageRoute<SearchPage>(
           builder: (_) => const SearchPage(),
-        );
-
-      case AppRoutes.clientHealthPage:
-        return MaterialPageRoute<ClientHealthPage>(
-          builder: (_) => ClientHealthPage(),
         );
 
       case AppRoutes.contactAdminPage:

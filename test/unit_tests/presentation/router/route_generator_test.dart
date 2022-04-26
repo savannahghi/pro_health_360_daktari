@@ -8,7 +8,6 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
-import 'package:mycarehubpro/presentation/client_details/pages/client_health_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
@@ -42,7 +41,6 @@ import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.d
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/profile_update_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
@@ -235,17 +233,6 @@ void main() {
     expect(route?.builder(context), isA<VerifyPhonePage>());
   });
 
-  test('Test router returns ProfileUpdateRequestsPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.profileUpdateRequestsPage);
-
-    final MaterialPageRoute<ProfileUpdateRequestsPage>? route =
-        routeGenerator(settings)
-            as MaterialPageRoute<ProfileUpdateRequestsPage>?;
-    expect(route, isA<MaterialPageRoute<ProfileUpdateRequestsPage>>());
-    expect(route?.builder(context), isA<ProfileUpdateRequestsPage>());
-  });
-
   test('Test router returns SearchPage', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.searchPage);
 
@@ -254,17 +241,6 @@ void main() {
     expect(route, isA<MaterialPageRoute<SearchPage>>());
     expect(route?.builder(context), isA<SearchPage>());
   });
-
-  test('Test router returns ClientHealthPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.clientHealthPage);
-
-    final MaterialPageRoute<ClientHealthPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<ClientHealthPage>?;
-    expect(route, isA<MaterialPageRoute<ClientHealthPage>>());
-    expect(route?.builder(context), isA<ClientHealthPage>());
-  });
-
   test('Test router returns TermsAndConditionsPage', () {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.termsAndConditions);

@@ -127,34 +127,6 @@ final AppSetupData prodAppSetupData = AppSetupData(
   ),
 );
 
-/// Triggers Navigation event by sending a log to firebase
-///
-/// @params
-/// - String `route` (determines the route to push to after sending log)
-/// - bool `shouldReplace` (is used as a flag for navigation events that replace previous routes)
-/// - BuildContext `context`
-Future<void> triggerNavigationEvent({
-  required BuildContext context,
-  required String route,
-  String? event,
-  bool shouldReplace = false,
-  Object? args,
-  bool shouldRemoveUntil = false,
-}) async {
-  /// Navigation Function
-  if (shouldReplace) {
-    await Navigator.of(context).pushReplacementNamed(route, arguments: args);
-  } else if (shouldRemoveUntil) {
-    await Navigator.of(context).pushNamedAndRemoveUntil(
-      route,
-      ModalRoute.withName(route),
-      arguments: args,
-    );
-  } else {
-    await Navigator.of(context).pushNamed(route, arguments: args);
-  }
-}
-
 /// Used to capture User Exceptions and logged to AfyaMoja Sentry
 ///
 /// These include exceptions like: `'Error while fetching user feed'`
