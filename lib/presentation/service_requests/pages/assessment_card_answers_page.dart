@@ -63,6 +63,12 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
         widget.payload['assessmentResponse'] as ToolAssessmentResponse;
     final ScreeningToolsType toolsType =
         widget.payload['toolType'] as ScreeningToolsType;
+    final String staffFirstName =
+        StoreProvider.state<AppState>(context)?.staffState?.user?.firstName ??
+            '';
+    final String staffLastName =
+        StoreProvider.state<AppState>(context)?.staffState?.user?.lastName ??
+            '';
     return Scaffold(
       appBar: const CustomAppBar(title: assessmentCardTitle),
       body: Padding(
@@ -134,10 +140,12 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                   mediumVerticalSizedBox,
                   ReachOutWidget(
                     platform: _platform,
-                    phoneNumber: '',
-                    clientName: '',
-                    staffFirstName: '',
-                    staffLastName: '',
+                    phoneNumber: toolResponse
+                            ?.toolAssessmentRequestResponse?.phoneNumber ??
+                        '',
+                    clientName: assessmentResponse.name ?? '',
+                    staffFirstName: staffFirstName,
+                    staffLastName: staffLastName,
                   ),
                   mediumVerticalSizedBox,
                   Text(

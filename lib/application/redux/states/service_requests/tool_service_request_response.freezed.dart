@@ -26,10 +26,13 @@ class _$ToolAssessmentRequestResponseTearOff {
   _ToolAssessmentRequestResponse call(
       {@JsonKey(name: 'serviceRequestID')
           String? serviceRequestID,
+      @JsonKey(name: 'clientContact')
+          String? phoneNumber,
       @JsonKey(name: 'screeningToolResponses')
           List<AssessmentQuestionResponse>? questionsResponses}) {
     return _ToolAssessmentRequestResponse(
       serviceRequestID: serviceRequestID,
+      phoneNumber: phoneNumber,
       questionsResponses: questionsResponses,
     );
   }
@@ -46,6 +49,8 @@ const $ToolAssessmentRequestResponse = _$ToolAssessmentRequestResponseTearOff();
 mixin _$ToolAssessmentRequestResponse {
   @JsonKey(name: 'serviceRequestID')
   String? get serviceRequestID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientContact')
+  String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'screeningToolResponses')
   List<AssessmentQuestionResponse>? get questionsResponses =>
       throw _privateConstructorUsedError;
@@ -65,6 +70,8 @@ abstract class $ToolAssessmentRequestResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'serviceRequestID')
           String? serviceRequestID,
+      @JsonKey(name: 'clientContact')
+          String? phoneNumber,
       @JsonKey(name: 'screeningToolResponses')
           List<AssessmentQuestionResponse>? questionsResponses});
 }
@@ -81,12 +88,17 @@ class _$ToolAssessmentRequestResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? serviceRequestID = freezed,
+    Object? phoneNumber = freezed,
     Object? questionsResponses = freezed,
   }) {
     return _then(_value.copyWith(
       serviceRequestID: serviceRequestID == freezed
           ? _value.serviceRequestID
           : serviceRequestID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       questionsResponses: questionsResponses == freezed
           ? _value.questionsResponses
@@ -107,6 +119,8 @@ abstract class _$ToolAssessmentRequestResponseCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'serviceRequestID')
           String? serviceRequestID,
+      @JsonKey(name: 'clientContact')
+          String? phoneNumber,
       @JsonKey(name: 'screeningToolResponses')
           List<AssessmentQuestionResponse>? questionsResponses});
 }
@@ -127,12 +141,17 @@ class __$ToolAssessmentRequestResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? serviceRequestID = freezed,
+    Object? phoneNumber = freezed,
     Object? questionsResponses = freezed,
   }) {
     return _then(_ToolAssessmentRequestResponse(
       serviceRequestID: serviceRequestID == freezed
           ? _value.serviceRequestID
           : serviceRequestID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       questionsResponses: questionsResponses == freezed
           ? _value.questionsResponses
@@ -148,6 +167,7 @@ class _$_ToolAssessmentRequestResponse
     implements _ToolAssessmentRequestResponse {
   _$_ToolAssessmentRequestResponse(
       {@JsonKey(name: 'serviceRequestID') this.serviceRequestID,
+      @JsonKey(name: 'clientContact') this.phoneNumber,
       @JsonKey(name: 'screeningToolResponses') this.questionsResponses});
 
   factory _$_ToolAssessmentRequestResponse.fromJson(
@@ -158,12 +178,15 @@ class _$_ToolAssessmentRequestResponse
   @JsonKey(name: 'serviceRequestID')
   final String? serviceRequestID;
   @override
+  @JsonKey(name: 'clientContact')
+  final String? phoneNumber;
+  @override
   @JsonKey(name: 'screeningToolResponses')
   final List<AssessmentQuestionResponse>? questionsResponses;
 
   @override
   String toString() {
-    return 'ToolAssessmentRequestResponse(serviceRequestID: $serviceRequestID, questionsResponses: $questionsResponses)';
+    return 'ToolAssessmentRequestResponse(serviceRequestID: $serviceRequestID, phoneNumber: $phoneNumber, questionsResponses: $questionsResponses)';
   }
 
   @override
@@ -174,6 +197,8 @@ class _$_ToolAssessmentRequestResponse
             const DeepCollectionEquality()
                 .equals(other.serviceRequestID, serviceRequestID) &&
             const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality()
                 .equals(other.questionsResponses, questionsResponses));
   }
 
@@ -181,6 +206,7 @@ class _$_ToolAssessmentRequestResponse
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(serviceRequestID),
+      const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(questionsResponses));
 
   @JsonKey(ignore: true)
@@ -200,6 +226,8 @@ abstract class _ToolAssessmentRequestResponse
   factory _ToolAssessmentRequestResponse(
           {@JsonKey(name: 'serviceRequestID')
               String? serviceRequestID,
+          @JsonKey(name: 'clientContact')
+              String? phoneNumber,
           @JsonKey(name: 'screeningToolResponses')
               List<AssessmentQuestionResponse>? questionsResponses}) =
       _$_ToolAssessmentRequestResponse;
@@ -210,6 +238,9 @@ abstract class _ToolAssessmentRequestResponse
   @override
   @JsonKey(name: 'serviceRequestID')
   String? get serviceRequestID;
+  @override
+  @JsonKey(name: 'clientContact')
+  String? get phoneNumber;
   @override
   @JsonKey(name: 'screeningToolResponses')
   List<AssessmentQuestionResponse>? get questionsResponses;

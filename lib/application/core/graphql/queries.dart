@@ -260,10 +260,11 @@ query getScreeningToolServiceRequestResponses($clientID: String!, $toolType: Scr
     clientID: $clientID,
     toolType: $toolType
   ) {
-  serviceRequestID
-    screeningToolResponses{
-      tool
+    serviceRequestID
+    clientContact
+    screeningToolResponses {
       toolIndex
+      tool
       response
     }
   }

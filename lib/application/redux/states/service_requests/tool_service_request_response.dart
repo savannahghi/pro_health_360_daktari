@@ -9,6 +9,7 @@ part 'tool_service_request_response.g.dart';
 class ToolAssessmentRequestResponse with _$ToolAssessmentRequestResponse {
   factory ToolAssessmentRequestResponse({
     @JsonKey(name: 'serviceRequestID') String? serviceRequestID,
+    @JsonKey(name: 'clientContact') String? phoneNumber,
     @JsonKey(name: 'screeningToolResponses')
         List<AssessmentQuestionResponse>? questionsResponses,
   }) = _ToolAssessmentRequestResponse;
@@ -19,6 +20,7 @@ class ToolAssessmentRequestResponse with _$ToolAssessmentRequestResponse {
   factory ToolAssessmentRequestResponse.initial() =>
       ToolAssessmentRequestResponse(
         serviceRequestID: UNKNOWN,
+        phoneNumber: UNKNOWN,
         questionsResponses: <AssessmentQuestionResponse>[],
       );
 }

@@ -10,6 +10,7 @@ _$_ToolAssessmentRequestResponse _$$_ToolAssessmentRequestResponseFromJson(
         Map<String, dynamic> json) =>
     _$_ToolAssessmentRequestResponse(
       serviceRequestID: json['serviceRequestID'] as String?,
+      phoneNumber: json['clientContact'] as String?,
       questionsResponses: (json['screeningToolResponses'] as List<dynamic>?)
           ?.map((e) =>
               AssessmentQuestionResponse.fromJson(e as Map<String, dynamic>))
@@ -20,5 +21,6 @@ Map<String, dynamic> _$$_ToolAssessmentRequestResponseToJson(
         _$_ToolAssessmentRequestResponse instance) =>
     <String, dynamic>{
       'serviceRequestID': instance.serviceRequestID,
+      'clientContact': instance.phoneNumber,
       'screeningToolResponses': instance.questionsResponses,
     };
