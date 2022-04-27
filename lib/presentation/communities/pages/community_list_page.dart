@@ -59,6 +59,16 @@ class _CommunityListPageState extends State<CommunityListPage> {
             return const PlatformLoader();
           }
 
+          final stream.Filter channelsFilter = stream.Filter.or(
+            <stream.Filter>[
+              stream.Filter.equal('invite', 'accepted'),
+              stream.Filter.in_(
+                'members',
+                <String>[stream.StreamChat.of(context).currentUser?.id ?? ''],
+              ),
+            ],
+          );
+
           return stream.StreamChat(
             client: stream.StreamChat.of(context).client,
             child: stream.ChannelsBloc(
@@ -78,10 +88,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
                     },
                   );
                 },
-                filter: stream.Filter.in_(
-                  'members',
-                  <String>[stream.StreamChat.of(context).currentUser?.id ?? ''],
-                ),
+                filter: channelsFilter,
                 channelPreviewBuilder: channelPreviewBuilder,
                 sort: const <stream.SortOption<stream.ChannelModel>>[
                   stream.SortOption<stream.ChannelModel>('last_message_at')
