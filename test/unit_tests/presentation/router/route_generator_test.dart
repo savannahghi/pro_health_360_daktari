@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 // Package imports:
@@ -43,6 +44,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tool
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
@@ -313,6 +315,19 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsPage>>());
     expect(route?.builder(context), isA<ResolvedServiceRequestsPage>());
+  });
+
+  test('Test router returns ResolvedServiceRequestsListPage', () {
+    const RouteSettings settings = RouteSettings(
+        name: AppRoutes.resolvedServiceRequestsListPage,
+        arguments: Flavour.consumer,);
+
+    final MaterialPageRoute<ResolvedServiceRequestsListPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<ResolvedServiceRequestsListPage>?;
+
+    expect(route, isA<MaterialPageRoute<ResolvedServiceRequestsListPage>>());
+    expect(route?.builder(context), isA<ResolvedServiceRequestsListPage>());
   });
 
   test('Test router returns SearchClientPage', () {

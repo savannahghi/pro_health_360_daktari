@@ -10,6 +10,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
@@ -124,14 +125,13 @@ void main() {
           },
         ),
       );
-      final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
-      await tester.pumpAndSettle();
+      final Finder appBarBackButton = find.byKey(appBarBackButtonKey);
 
       await tester.tap(find.text(resolvedRequestsString));
-      await tester.pumpAndSettle(const Duration(seconds: 1));
-      expect(genericNoDataButton, findsOneWidget);
+      await tester.pumpAndSettle();
+      expect(find.byType(ActionCard), findsNWidgets(2));
 
-      await tester.tap(genericNoDataButton);
+      await tester.tap(appBarBackButton);
       await tester.pumpAndSettle();
       expect(find.byType(UserProfilePage), findsOneWidget);
     });

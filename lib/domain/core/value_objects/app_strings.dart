@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
@@ -163,6 +164,7 @@ const String resolvedServiceRequestString = 'Resolved service requests';
 const String resolvedString = 'Resolved';
 const String spacedByString = ' by ';
 const String spacedOnString = ' on ';
+const String staffString = 'Staff';
 
 // Surveys
 const String createSurveyString = 'Create Survey';
@@ -316,7 +318,8 @@ const String noTermsAvailableString = 'No terms available';
 const String readAndAcceptText =
     'Please review the terms of service below and accept them';
 const String acceptTermsText = 'I agree with the terms and conditions';
-const String acceptTermsErrorString = 'Sorry, we were unable to load your terms and conditions at the moment. Tap the button below to fetch them again';
+const String acceptTermsErrorString =
+    'Sorry, we were unable to load your terms and conditions at the moment. Tap the button below to fetch them again';
 
 const String closeString = 'Close';
 
@@ -376,7 +379,16 @@ String getNoDataTile(String? message) {
 const String helpContactAdminString = 'Help/Contact Admin';
 const String resolvedRequestsString = 'Resolved Requests';
 const String resolvedServiceRequestsString = 'Resolved service requests';
-const String resolvedServiceRequestsBodyString = 'Service requests that have already been handled';
+String getResolvedServiceRequestsListTitle(Flavour flavour) {
+  return 'Resolved ${flavour == Flavour.consumer ? 'client' : 'staff'} service requests';
+}
+
+String getResolvedServiceRequestsListBodyString(Flavour flavour) {
+  return '${flavour == Flavour.consumer ? 'Client' : 'Staff'} service requests that have already been handled';
+}
+
+const String resolvedServiceRequestsBodyString =
+    'Select the type of service requests you want to view';
 const String faqsString = 'FAQs';
 const String settingsString = 'Settings';
 const String genericVerifyPhoneNumber = 'Verify Phone number';
