@@ -68,6 +68,19 @@ String roleToString(String role) {
   return capitalizeFirst(role.split('_').join(' '));
 }
 
+String getNotificationIcon(NotificationType type) {
+  switch (type) {
+    case NotificationType.APPOINTMENT:
+      return appointmentIcon;
+    case NotificationType.COMMUNITIES:
+      return communityIconSvgPath;
+    case NotificationType.SERVICE_REQUEST:
+      return clientProfileIcon;
+    case NotificationType.UNKNOWN:
+      return notificationIconSvgPath;
+  }
+}
+
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
 OnboardingPathInfo getOnboardingPath({required AppState state}) {

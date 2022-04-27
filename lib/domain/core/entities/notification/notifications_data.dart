@@ -1,6 +1,6 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 
 part 'notifications_data.freezed.dart';
 part 'notifications_data.g.dart';

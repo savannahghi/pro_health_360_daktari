@@ -255,10 +255,9 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'title': 'title',
   'body':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-  'type': 'some_type',
+  'type': 'APPOINTMENT',
   'isRead': false,
-  'icon': mockIconDetails,
-  'date': 'July 21 2021',
+  'createdAt': 'July 21 2021',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
 };
@@ -270,11 +269,21 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
       <String, dynamic>{
         'id': 'some-id',
         'title': 'title',
+        'type': 'SERVICE_REQUEST',
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-        'type': 'some_type',
         'isRead': false,
-        'date': 'July 21 2021',
+        'createdAt': 'July 21 2021',
+        'actions': <dynamic>[mockNotificationActions],
+        'status': 'Missed'
+      },
+      <String, dynamic>{
+        'id': 'some-id',
+        'title': 'title',
+        'body':
+            'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+        'isRead': false,
+        'createdAt': 'July 21 2021',
         'actions': <dynamic>[mockNotificationActions],
         'status': 'Missed'
       },
@@ -1335,7 +1344,7 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
       'ResolvedByName': 'test',
       'CreatedAt': '2022-02-09T08:40:46Z'
     },
-     <String, dynamic>{
+    <String, dynamic>{
       'ID': 'test',
       'RequestType': 'STAFF_PIN_RESET',
       'Request': 'I have not been myself lately',
@@ -1373,7 +1382,7 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
         'is_ccc_number_valid': false
       }
     },
-     <String, dynamic>{
+    <String, dynamic>{
       'ID': 'test',
       'RequestType': 'SCREENING_TOOLS_RED_FLAG',
       'Request': 'I have not been myself lately',
@@ -1392,7 +1401,7 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
         'is_ccc_number_valid': true
       }
     },
-     <String, dynamic>{
+    <String, dynamic>{
       'ID': 'test',
       'Request': 'I have not been myself lately',
       'ClientID': 'test',

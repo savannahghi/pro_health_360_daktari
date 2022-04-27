@@ -5,7 +5,6 @@ import 'package:mycarehubpro/application/redux/states/communities_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:mycarehubpro/domain/core/entities/notification/notification_details.dart';
 
 part 'staff_state.freezed.dart';
 part 'staff_state.g.dart';

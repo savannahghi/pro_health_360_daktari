@@ -33,7 +33,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(NotificationListItem), findsNWidgets(2));
+      expect(find.byType(NotificationListItem), findsNWidgets(3));
     });
 
     testWidgets(
