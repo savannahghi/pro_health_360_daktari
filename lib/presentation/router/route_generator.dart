@@ -45,6 +45,7 @@ import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tool
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
+import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/resolved_service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
@@ -292,6 +293,13 @@ class RouteGenerator {
         return MaterialPageRoute<AssessmentCardAnswersPage>(
           builder: (_) => AssessmentCardAnswersPage(
             payload: args as Map<String, dynamic>,
+          ),
+        );
+
+      case AppRoutes.resolvedServiceRequestsListPage:
+        return MaterialPageRoute<ResolvedServiceRequestsListPage>(
+          builder: (_) => ResolvedServiceRequestsListPage(
+            flavour: args as Flavour,
           ),
         );
 

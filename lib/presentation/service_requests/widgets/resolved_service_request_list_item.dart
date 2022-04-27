@@ -16,8 +16,10 @@ import 'package:shared_themes/spaces.dart';
 class ResolvedServiceRequestListItem extends StatelessWidget {
   const ResolvedServiceRequestListItem({
     this.serviceRequest,
+    required this.flavour,
   });
   final ServiceRequest? serviceRequest;
+  final Flavour flavour;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +49,16 @@ class ResolvedServiceRequestListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          serviceRequest?.clientName ?? '',
+                          flavour == Flavour.consumer
+                              ? serviceRequest?.clientName ?? ''
+                              : serviceRequest?.staffName ?? '',
                           style: veryBoldSize16Text(AppColors.greyTextColor),
                         ),
                         verySmallVerticalSizedBox,
                         Text(
-                          serviceRequest?.clientPhoneNumber ?? '',
+                          flavour == Flavour.consumer
+                              ? serviceRequest?.clientPhoneNumber ?? ''
+                              : serviceRequest?.staffPhoneNumber ?? '',
                           style: normalSize13Text(
                             AppColors.greyTextColor.withOpacity(0.5),
                           ),
