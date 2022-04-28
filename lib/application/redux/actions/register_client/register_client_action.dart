@@ -56,6 +56,8 @@ class RegisterClientAction extends ReduxAction<AppState> {
       if (errors != null) {
         if (errors == cccExists) {
           throw UserException(capitalizeFirst(clientCccExists));
+        } else if (errors.contains(contactExists)) {
+          throw const UserException(clientPhoneExists);
         }
 
         Sentry.captureException(UserException(errors));
