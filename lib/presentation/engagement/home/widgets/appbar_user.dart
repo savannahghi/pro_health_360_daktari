@@ -17,7 +17,7 @@ class AppbarUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
         key: appBarUserKey,
         onTap: () {
