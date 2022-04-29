@@ -723,6 +723,17 @@ class MockTestGraphQlClient extends IGraphQlClient {
       );
     }
 
+    if (queryString.contains(recordSecurityQuestionResponsesMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': mockRecordSecurityQuestionResponseData,
+          }),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(setUserPINMutation)) {
       return Future<http.Response>.value(
         http.Response(
