@@ -145,13 +145,6 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                                   );
                                 }
                               }
-
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                RecordSecurityQuestionResponsesAction(
-                                  context: context,
-                                ),
-                              );
                             } else {
                               ScaffoldMessenger.of(context)
                                 ..hideCurrentSnackBar()
