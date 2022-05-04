@@ -96,3 +96,5 @@ extension ScreeningToolsTypeExtension on ScreeningToolsType {
     return describeEnum(this);
   }
 }
+
+enum StreamUserType { STAFF, CLIENT }

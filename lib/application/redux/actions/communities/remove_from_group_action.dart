@@ -64,10 +64,7 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('removing user from group'));
       }
 
-      if (body['data'] != null &&
-          body['data']['removeMembersFromCommunity'] != null &&
-          body['data']['removeMembersFromCommunity'] is bool &&
-          body['data']['removeMembersFromCommunity'] == true) {
+      if (body['data']['removeMembersFromCommunity'] == true) {
         onSuccess?.call();
       } else {
         onFailure?.call();

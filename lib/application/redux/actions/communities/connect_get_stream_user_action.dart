@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/communities/stream_token_provider.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
@@ -52,12 +54,17 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
 
       final String? name = state.staffState?.user?.name;
       final String? username = state.staffState?.user?.username;
+      final String? userId = state.staffState?.user?.userId;
 
       await streamClient.connectUserWithProvider(
         stream.User(
           id: staffId,
           name: name,
-          extraData: <String, dynamic>{'username': username},
+          extraData: <String, dynamic>{
+            'username': username,
+            'userType': describeEnum(StreamUserType.STAFF),
+            'userID': userId,
+          },
         ),
         streamTokenProvider.tokenProvider,
       );

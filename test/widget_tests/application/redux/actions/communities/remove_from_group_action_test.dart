@@ -56,6 +56,7 @@ void main() {
         'help center.',
       );
     });
+
     test('should throw error if response has error', () async {
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -94,6 +95,66 @@ void main() {
         (info.error! as UserException).msg,
         getErrorMessage('removing user from group'),
       );
+    });
+
+    test('should call on success if successful', () async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'removeMembersFromCommunity': true}
+          }),
+          200,
+        ),
+      );
+
+      int called = 0;
+      storeTester.dispatch(
+        RemoveFromGroupAction(
+          client: client,
+          onSuccess: () => called++,
+          communityID: '',
+          memberID: '',
+          onFailure: () {},
+        ),
+      );
+
+      expect(called, 0);
+
+      await storeTester.waitUntil(RemoveFromGroupAction);
+
+      expect(called, 1);
+    });
+
+    test('should call on failure if false', () async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'removeMembersFromCommunity': false}
+          }),
+          200,
+        ),
+      );
+
+      int called = 0;
+      storeTester.dispatch(
+        RemoveFromGroupAction(
+          client: client,
+          onSuccess: () {},
+          communityID: '',
+          memberID: '',
+          onFailure: () => called++,
+        ),
+      );
+
+      expect(called, 0);
+
+      await storeTester.waitUntil(RemoveFromGroupAction);
+
+      expect(called, 1);
     });
   });
 }

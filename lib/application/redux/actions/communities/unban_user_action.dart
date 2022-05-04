@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class UnBanUserAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
@@ -42,6 +43,7 @@ class UnBanUserAction extends ReduxAction<AppState> {
       'memberID': memberID,
       'communityID': communityID ?? '',
     };
+
     final Response response = await client.query(
       unBanUserMutation,
       variables,
@@ -56,14 +58,19 @@ class UnBanUserAction extends ReduxAction<AppState> {
 
       return null;
     }
-    final bool? unBanUserStatus = payLoad['data']['unBanUser'] as bool?;
 
-    if (unBanUserStatus ?? false) {
+    if (payLoad['data']['unBanUser'] == true) {
       onSuccess?.call();
       return state;
     } else {
       onError?.call();
     }
     return null;
+  }
+
+  @override
+  Object? wrapError(dynamic error) {
+    Sentry.captureException(error);
+    return UserException(getErrorMessage());
   }
 }
