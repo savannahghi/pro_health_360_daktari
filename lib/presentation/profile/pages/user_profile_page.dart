@@ -48,6 +48,8 @@ class UserProfilePage extends StatelessWidget {
                     phoneNumber:
                         staffState?.user?.primaryContact?.value ?? UNKNOWN,
                     profession: profession,
+                    defaultHospitalName:
+                        staffState?.defaultFacilityName ?? UNKNOWN,
                   ),
                   mediumVerticalSizedBox,
                   UserProfileItem(

@@ -29,6 +29,7 @@ class _$StaffStateTearOff {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
@@ -40,6 +41,7 @@ class _$StaffStateTearOff {
       staffNumber: staffNumber,
       facilities: facilities,
       defaultFacility: defaultFacility,
+      defaultFacilityName: defaultFacilityName,
       user: user,
       communitiesState: communitiesState,
       clientSharedDiaryEntries: clientSharedDiaryEntries,
@@ -69,6 +71,8 @@ mixin _$StaffState {
   List<Facility>? get facilities => throw _privateConstructorUsedError;
   @JsonKey(name: 'default_facility')
   String? get defaultFacility => throw _privateConstructorUsedError;
+  @JsonKey(name: 'defaultFacilityName')
+  String? get defaultFacilityName => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError; // invited communities
   CommunitiesState? get communitiesState =>
@@ -96,6 +100,7 @@ abstract class $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
@@ -121,6 +126,7 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
     Object? staffNumber = freezed,
     Object? facilities = freezed,
     Object? defaultFacility = freezed,
+    Object? defaultFacilityName = freezed,
     Object? user = freezed,
     Object? communitiesState = freezed,
     Object? clientSharedDiaryEntries = freezed,
@@ -150,6 +156,10 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
       defaultFacility: defaultFacility == freezed
           ? _value.defaultFacility
           : defaultFacility // ignore: cast_nullable_to_non_nullable
+              as String?,
+      defaultFacilityName: defaultFacilityName == freezed
+          ? _value.defaultFacilityName
+          : defaultFacilityName // ignore: cast_nullable_to_non_nullable
               as String?,
       user: user == freezed
           ? _value.user
@@ -206,6 +216,7 @@ abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
@@ -235,6 +246,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
     Object? staffNumber = freezed,
     Object? facilities = freezed,
     Object? defaultFacility = freezed,
+    Object? defaultFacilityName = freezed,
     Object? user = freezed,
     Object? communitiesState = freezed,
     Object? clientSharedDiaryEntries = freezed,
@@ -264,6 +276,10 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
       defaultFacility: defaultFacility == freezed
           ? _value.defaultFacility
           : defaultFacility // ignore: cast_nullable_to_non_nullable
+              as String?,
+      defaultFacilityName: defaultFacilityName == freezed
+          ? _value.defaultFacilityName
+          : defaultFacilityName // ignore: cast_nullable_to_non_nullable
               as String?,
       user: user == freezed
           ? _value.user
@@ -295,6 +311,7 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'staff_number') this.staffNumber,
       @JsonKey(name: 'facilities') this.facilities,
       @JsonKey(name: 'default_facility') this.defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') this.defaultFacilityName,
       @JsonKey(name: 'user') this.user,
       this.communitiesState,
       this.clientSharedDiaryEntries,
@@ -322,6 +339,9 @@ class _$_StaffState implements _StaffState {
   @JsonKey(name: 'default_facility')
   final String? defaultFacility;
   @override
+  @JsonKey(name: 'defaultFacilityName')
+  final String? defaultFacilityName;
+  @override
   @JsonKey(name: 'user')
   final User? user;
   @override // invited communities
@@ -333,7 +353,7 @@ class _$_StaffState implements _StaffState {
 
   @override
   String toString() {
-    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, user: $user, communitiesState: $communitiesState, clientSharedDiaryEntries: $clientSharedDiaryEntries, notifications: $notifications)';
+    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, defaultFacilityName: $defaultFacilityName, user: $user, communitiesState: $communitiesState, clientSharedDiaryEntries: $clientSharedDiaryEntries, notifications: $notifications)';
   }
 
   @override
@@ -350,6 +370,8 @@ class _$_StaffState implements _StaffState {
                 .equals(other.facilities, facilities) &&
             const DeepCollectionEquality()
                 .equals(other.defaultFacility, defaultFacility) &&
+            const DeepCollectionEquality()
+                .equals(other.defaultFacilityName, defaultFacilityName) &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
                 .equals(other.communitiesState, communitiesState) &&
@@ -368,6 +390,7 @@ class _$_StaffState implements _StaffState {
       const DeepCollectionEquality().hash(staffNumber),
       const DeepCollectionEquality().hash(facilities),
       const DeepCollectionEquality().hash(defaultFacility),
+      const DeepCollectionEquality().hash(defaultFacilityName),
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(communitiesState),
       const DeepCollectionEquality().hash(clientSharedDiaryEntries),
@@ -392,6 +415,7 @@ abstract class _StaffState implements StaffState {
       @JsonKey(name: 'staff_number') String? staffNumber,
       @JsonKey(name: 'facilities') List<Facility>? facilities,
       @JsonKey(name: 'default_facility') String? defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
@@ -418,6 +442,9 @@ abstract class _StaffState implements StaffState {
   @override
   @JsonKey(name: 'default_facility')
   String? get defaultFacility;
+  @override
+  @JsonKey(name: 'defaultFacilityName')
+  String? get defaultFacilityName;
   @override
   @JsonKey(name: 'user')
   User? get user;

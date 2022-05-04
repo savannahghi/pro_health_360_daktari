@@ -16,6 +16,7 @@ _$_StaffState _$$_StaffStateFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
           .toList(),
       defaultFacility: json['default_facility'] as String?,
+      defaultFacilityName: json['defaultFacilityName'] as String?,
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
@@ -44,6 +45,7 @@ Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
       'staff_number': instance.staffNumber,
       'facilities': instance.facilities,
       'default_facility': instance.defaultFacility,
+      'defaultFacilityName': instance.defaultFacilityName,
       'user': instance.user,
       'communitiesState': instance.communitiesState,
       'clientSharedDiaryEntries': instance.clientSharedDiaryEntries,

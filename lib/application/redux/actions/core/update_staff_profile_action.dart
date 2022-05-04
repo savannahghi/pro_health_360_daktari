@@ -15,17 +15,19 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
     this.defaultFacility,
     this.facilities,
     this.healthDiaryEntries,
+    this.defaultFacilityName,
     this.notifications,
   });
 
-  final String? id;
-  final String? userId;
   final bool? active;
-  final String? staffNumber;
-  final List<Facility>? facilities;
   final String? defaultFacility;
+  final String? defaultFacilityName;
+  final List<Facility>? facilities;
   final List<HealthDiaryEntry?>? healthDiaryEntries;
+  final String? id;
   final List<NotificationDetails?>? notifications;
+  final String? staffNumber;
+  final String? userId;
 
   @override
   AppState reduce() {
@@ -41,6 +43,8 @@ class UpdateStaffProfileAction extends ReduxAction<AppState> {
         clientSharedDiaryEntries: this.healthDiaryEntries ??
             state.staffState?.clientSharedDiaryEntries,
         notifications: this.notifications ?? state.staffState?.notifications,
+        defaultFacilityName:
+            this.defaultFacilityName ?? state.staffState?.defaultFacilityName,
       ),
     );
 
