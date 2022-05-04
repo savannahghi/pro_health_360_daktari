@@ -144,6 +144,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           defaultFacility:
               loginResponse.userResponse?.staffState?.defaultFacility,
           facilities: loginResponse.userResponse?.staffState?.facilities,
+          defaultFacilityName:
+              loginResponse.userResponse?.staffState?.defaultFacilityName,
         ),
       );
 
