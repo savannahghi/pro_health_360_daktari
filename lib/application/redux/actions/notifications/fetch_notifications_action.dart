@@ -21,6 +21,7 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
+    dispatch(UpdateStaffProfileAction(notifications: <NotificationDetails>[]));
     dispatch(WaitAction<AppState>.add(fetchNotificationsFlag));
   }
 

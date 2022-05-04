@@ -79,8 +79,11 @@ class NotificationsPage extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         final String description =
                             notifications.elementAt(index)?.body ?? '';
-                        final String date =
+                        final String createdAt =
                             notifications.elementAt(index)?.createdAt ?? '';
+                        final String formattedDate = createdAt.isNotEmpty
+                            ? formatDate(createdAt, showTime: true)
+                            : '';
                         final IconDetails icon = IconDetails(
                           iconUrlSvgPath: getNotificationIcon(
                             notifications.elementAt(index)?.type ??
@@ -101,7 +104,7 @@ class NotificationsPage extends StatelessWidget {
                             status: status,
                             description: description,
                             descriptionColor: AppColors.buttonAltColor,
-                            date: date,
+                            date: formattedDate,
                           ),
                         );
                       },
