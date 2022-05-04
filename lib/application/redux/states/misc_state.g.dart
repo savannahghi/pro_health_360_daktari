@@ -23,6 +23,7 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
           ? null
           : SearchUserResponseState.fromJson(
               json['searchUserResponseState'] as Map<String, dynamic>),
+      inactiveTime: json['inactiveTime'] as String?,
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -33,4 +34,5 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'communityMembers': instance.communityMembers,
       'groupState': instance.groupState,
       'searchUserResponseState': instance.searchUserResponseState,
+      'inactiveTime': instance.inactiveTime,
     };

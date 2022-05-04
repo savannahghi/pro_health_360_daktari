@@ -14,11 +14,13 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
   final String? initialRoute;
   final String? error;
   final List<Member>? communityMembers;
+  final String? inactiveTime;
 
   BatchUpdateMiscStateAction({
     this.initialRoute,
     this.error,
     this.communityMembers,
+    this.inactiveTime,
   });
 
   @override
@@ -28,6 +30,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
         error: error ?? state.miscState?.error,
         initialRoute: initialRoute ?? state.miscState?.initialRoute,
         communityMembers: communityMembers,
+        inactiveTime: inactiveTime ?? state.miscState?.inactiveTime,
       ),
     );
 

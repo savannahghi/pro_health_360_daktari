@@ -28,7 +28,8 @@ class _$MiscStateTearOff {
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
       GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState}) {
+      SearchUserResponseState? searchUserResponseState,
+      String? inactiveTime}) {
     return _MiscState(
       initialRoute: initialRoute,
       error: error,
@@ -36,6 +37,7 @@ class _$MiscStateTearOff {
       communityMembers: communityMembers,
       groupState: groupState,
       searchUserResponseState: searchUserResponseState,
+      inactiveTime: inactiveTime,
     );
   }
 
@@ -57,6 +59,7 @@ mixin _$MiscState {
   GroupState? get groupState => throw _privateConstructorUsedError;
   SearchUserResponseState? get searchUserResponseState =>
       throw _privateConstructorUsedError;
+  String? get inactiveTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +77,8 @@ abstract class $MiscStateCopyWith<$Res> {
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
       GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState});
+      SearchUserResponseState? searchUserResponseState,
+      String? inactiveTime});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
@@ -97,6 +101,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? communityMembers = freezed,
     Object? groupState = freezed,
     Object? searchUserResponseState = freezed,
+    Object? inactiveTime = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -123,6 +128,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.searchUserResponseState
           : searchUserResponseState // ignore: cast_nullable_to_non_nullable
               as SearchUserResponseState?,
+      inactiveTime: inactiveTime == freezed
+          ? _value.inactiveTime
+          : inactiveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -174,7 +183,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
       GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState});
+      SearchUserResponseState? searchUserResponseState,
+      String? inactiveTime});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
@@ -201,6 +211,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? communityMembers = freezed,
     Object? groupState = freezed,
     Object? searchUserResponseState = freezed,
+    Object? inactiveTime = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -227,6 +238,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.searchUserResponseState
           : searchUserResponseState // ignore: cast_nullable_to_non_nullable
               as SearchUserResponseState?,
+      inactiveTime: inactiveTime == freezed
+          ? _value.inactiveTime
+          : inactiveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -240,7 +255,8 @@ class _$_MiscState implements _MiscState {
       this.profileFAQsContentState,
       this.communityMembers,
       this.groupState,
-      this.searchUserResponseState});
+      this.searchUserResponseState,
+      this.inactiveTime});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -257,10 +273,12 @@ class _$_MiscState implements _MiscState {
   final GroupState? groupState;
   @override
   final SearchUserResponseState? searchUserResponseState;
+  @override
+  final String? inactiveTime;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState, searchUserResponseState: $searchUserResponseState)';
+    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState, searchUserResponseState: $searchUserResponseState, inactiveTime: $inactiveTime)';
   }
 
   @override
@@ -278,7 +296,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.groupState, groupState) &&
             const DeepCollectionEquality().equals(
-                other.searchUserResponseState, searchUserResponseState));
+                other.searchUserResponseState, searchUserResponseState) &&
+            const DeepCollectionEquality()
+                .equals(other.inactiveTime, inactiveTime));
   }
 
   @override
@@ -289,7 +309,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(profileFAQsContentState),
       const DeepCollectionEquality().hash(communityMembers),
       const DeepCollectionEquality().hash(groupState),
-      const DeepCollectionEquality().hash(searchUserResponseState));
+      const DeepCollectionEquality().hash(searchUserResponseState),
+      const DeepCollectionEquality().hash(inactiveTime));
 
   @JsonKey(ignore: true)
   @override
@@ -309,7 +330,8 @@ abstract class _MiscState implements MiscState {
       FAQsContentState? profileFAQsContentState,
       List<Member>? communityMembers,
       GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState}) = _$_MiscState;
+      SearchUserResponseState? searchUserResponseState,
+      String? inactiveTime}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -326,6 +348,8 @@ abstract class _MiscState implements MiscState {
   GroupState? get groupState;
   @override
   SearchUserResponseState? get searchUserResponseState;
+  @override
+  String? get inactiveTime;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

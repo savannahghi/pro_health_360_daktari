@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
@@ -9,8 +10,13 @@ import 'package:mycarehubpro/presentation/resume_with_pin/resume_pin_view_model.
 class ResumePinFactory extends VmFactory<AppState, ResumePinConnector> {
   final IGraphQlClient client;
   final String endpoint;
+  final VoidCallback? successCallback;
 
-  ResumePinFactory({required this.client, required this.endpoint});
+  ResumePinFactory({
+    required this.successCallback,
+    required this.client,
+    required this.endpoint,
+  });
 
   @override
   ResumePinViewModel fromStore() {
@@ -26,6 +32,7 @@ class ResumePinFactory extends VmFactory<AppState, ResumePinConnector> {
             pin: value,
             httpClient: client,
             endpoint: endpoint,
+            successCallback: successCallback,
           ),
         );
       },

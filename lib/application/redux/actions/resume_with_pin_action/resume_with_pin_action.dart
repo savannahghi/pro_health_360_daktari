@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -19,12 +17,14 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
     required this.endpoint,
     required this.pin,
     this.wrongPinCallback,
+    this.successCallback,
   });
 
   final String endpoint;
   final IGraphQlClient httpClient;
   final String pin;
   final VoidCallback? wrongPinCallback;
+  final VoidCallback? successCallback;
 
   @override
   void after() {
@@ -81,13 +81,7 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
 
       if (body['data']?['verifyPIN'] != null) {
         final bool pinVerified = body['data']['verifyPIN'] as bool;
-        if (pinVerified) {
-          final OnboardingPathInfo navConfig = getOnboardingPath(state: state);
-
-          dispatch(
-            NavigateAction<AppState>.pushReplacementNamed(navConfig.nextRoute),
-          );
-        }
+        if (pinVerified) successCallback?.call();
       }
     } else {
       Sentry.captureException(

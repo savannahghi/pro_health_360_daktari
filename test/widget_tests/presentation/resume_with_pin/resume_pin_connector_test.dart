@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
@@ -12,6 +13,7 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
 import 'package:mycarehubpro/presentation/resume_with_pin/resume_pin_connector.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -82,6 +84,49 @@ void main() {
       await tester.pump();
 
       expect(find.byType(PhoneLoginPage), findsOneWidget);
+    });
+    testWidgets('pops resume with PIN page', (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          jsonEncode(
+            <String, dynamic>{
+              'data': <String, bool>{'verifyPIN': true}
+            },
+          ),
+          200,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return RawMaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.resumeWithPin,
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      final Finder pinInputField = find.byKey(const Key('pin_input_field'));
+
+      await tester.tap(find.byType(RawMaterialButton));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(pinInputField, '0000');
+      await tester.pumpAndSettle();
+
+      expect(find.byType(RawMaterialButton), findsOneWidget);
+      expect(pinInputField, findsNothing);
     });
 
     testWidgets('provides correct logout functionality',

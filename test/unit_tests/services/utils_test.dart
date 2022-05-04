@@ -14,7 +14,12 @@ import 'package:mycarehubpro/application/redux/actions/core/update_credentials_a
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/misc_state.dart';
+import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/infrastructure/endpoints.dart';
@@ -441,5 +446,32 @@ void main() {
     expect(getMoodColor('Very Sad').color, AppColors.verySadColor);
     expect(getMoodColor('Other').color, AppColors.secondaryColor);
     expect(getMoodColor(null).color, AppColors.secondaryColor);
+  });
+  test('resumeWithPIN returns the correct value', () {
+     expect(
+      resumeWithPIN(
+        AppState.initial().copyWith(
+          credentials: AuthCredentials.initial().copyWith(isSignedIn: true),
+          onboardingState: OnboardingState.initial().copyWith(
+            isPhoneVerified: true,
+            hasSetSecurityQuestions: true,
+            hasVerifiedSecurityQuestions: true,
+            hasSetNickName: true,
+            hasSetPin: true,
+            hasAcceptedTerms: true,
+          ),
+          miscState: MiscState.initial().copyWith(
+            inactiveTime:
+                DateTime.now().subtract(const Duration(minutes: 10)).toString(),
+          ),
+          staffState: StaffState.initial().copyWith(user: User(termsAccepted: true)),
+        ),
+      ),
+      true,
+    );
+    expect(resumeWithPIN(null), false);
+    expect(resumeWithPIN(AppState.initial()), false);
+    expect(resumeWithPIN(AppState.initial()), false);
+   
   });
 }

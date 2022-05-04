@@ -10,7 +10,6 @@ import 'package:mycarehubpro/application/redux/actions/resume_with_pin_action/re
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/infrastructure/endpoints.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
 import '../../../../../mocks/mocks.dart';
 
 @GenerateMocks(<Type>[IGraphQlClient])
@@ -95,38 +94,6 @@ void main() {
           await storeTester.waitUntil(ResumeWithPinAction);
 
       expect(info.errors.removeFirst().msg, getErrorMessage());
-    });
-
-    test('should handle correct pin', () async {
-      storeTester.dispatch(
-        ResumeWithPinAction(
-          httpClient: MockShortGraphQlClient.withResponse(
-            'idToken',
-            'endpoint',
-            Response(
-              jsonEncode(
-                <String, dynamic>{
-                  'data': <String, bool>{'verifyPIN': true}
-                },
-              ),
-              200,
-            ),
-          ),
-          endpoint: kTestVerifyPhoneEndpoint,
-          pin: '0000',
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(NavigateAction);
-
-      final NavigateAction<AppState>? actionDispatched =
-          info.action as NavigateAction<AppState>?;
-
-      final NavigatorDetails_PushReplacementNamed? navDetails =
-          actionDispatched?.details as NavigatorDetails_PushReplacementNamed?;
-
-      expect(navDetails?.routeName, AppRoutes.loginPage);
     });
 
     test('should handle other error response', () async {
