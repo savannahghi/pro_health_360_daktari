@@ -207,6 +207,11 @@ query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
         name
         username
       }
+       attachments{
+        type
+        title
+        image_url
+      }
     }
   }
 }
