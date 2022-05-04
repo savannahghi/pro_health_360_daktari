@@ -23,13 +23,17 @@ class UserDetailsCard extends StatelessWidget {
     required this.phoneNumber,
     required this.gender,
     required this.licenseNumber,
+    required this.defaultHospitalName,
   });
-  final String profession;
-  final String name;
+
   final String clinicName;
-  final String phoneNumber;
   final Gender gender;
   final String licenseNumber;
+  final String name;
+  final String phoneNumber;
+  final String profession;
+  final String defaultHospitalName;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,12 +59,10 @@ class UserDetailsCard extends StatelessWidget {
                   style: boldSize16Text(Colors.white),
                 ),
                 smallVerticalSizedBox,
-
-                /// (Paul) restore when backend returns default facility name
-                // Text(
-                //   clinicName,
-                //   style: lightSize16Text(Colors.white),
-                // ),
+                Text(
+                  defaultHospitalName,
+                  style: lightSize16Text(Colors.white),
+                ),
                 largeVerticalSizedBox,
                 Row(
                   children: <Widget>[

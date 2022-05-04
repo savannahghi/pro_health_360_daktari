@@ -18,6 +18,7 @@ class StaffState with _$StaffState {
     @JsonKey(name: 'staff_number') String? staffNumber,
     @JsonKey(name: 'facilities') List<Facility>? facilities,
     @JsonKey(name: 'default_facility') String? defaultFacility,
+    @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
     @JsonKey(name: 'user') User? user,
 
     // invited communities
