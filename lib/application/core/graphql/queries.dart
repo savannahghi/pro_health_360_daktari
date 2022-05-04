@@ -288,6 +288,7 @@ query listNotifications(
       body
       type
       isRead
+      createdAt
     }
   }
 }
