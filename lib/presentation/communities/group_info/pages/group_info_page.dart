@@ -17,7 +17,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/communities/flagged_messages/pages/flagged_messages_page.dart';
-import 'package:mycarehubpro/presentation/communities/group_info/widgets/group_member_item.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/group_member_connector.dart';
 import 'package:mycarehubpro/presentation/communities/view_models/groups_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
@@ -134,7 +134,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                 final GroupMember currentMember =
                                     groupMembers.elementAt(index)!;
 
-                                final String name =
+                                final String userName =
                                     currentMember.memberDetails?.username ?? '';
                                 final String id =
                                     currentMember.memberDetails?.id ?? '';
@@ -146,15 +146,21 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                         .memberDetails?.banStatus?.value ??
                                     false;
 
-                                return GroupMemberItem(
+                                return GroupMemberConnector(
                                   itemKey: ValueKey<int>(index),
-                                  userName: name,
+                                  userName: userName,
                                   memberID: id,
                                   communityId: channel.id!,
                                   communityName: channelName,
                                   isModerator: isModerator,
                                   canModerate: canModerate,
                                   isBanned: isBanned,
+                                  onError: (String errorMessage) {
+                                    showTextSnackbar(
+                                      ScaffoldMessenger.of(context),
+                                      content: errorMessage,
+                                    );
+                                  },
                                 );
                               },
                             ),

@@ -50,7 +50,9 @@ class FetchMembersAction extends ReduxAction<AppState> {
     };
 
     if (isSearching) {
-      filter.addAll(<String, dynamic>{'name': memberSearchName});
+      filter.addAll(<String, dynamic>{
+        'username': <String, dynamic>{'autocomplete': memberSearchName}
+      });
     }
 
     final Map<String, dynamic> variables = <String, dynamic>{

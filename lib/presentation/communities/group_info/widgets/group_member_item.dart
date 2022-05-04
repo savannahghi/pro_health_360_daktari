@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/communities/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
 import 'group_member_badge.dart';
@@ -17,6 +16,7 @@ class GroupMemberItem extends StatelessWidget {
     this.canModerate = false,
     this.isBanned = false,
     this.itemKey,
+    this.onTap,
   });
 
   final String userName;
@@ -27,28 +27,14 @@ class GroupMemberItem extends StatelessWidget {
   final bool canModerate;
   final bool isBanned;
   final Key? itemKey;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       key: itemKey,
       behavior: HitTestBehavior.opaque,
-      onTap: () {
-        if (canModerate) {
-          showDialog(
-            context: context,
-            builder: (_) {
-              return MemberListActionsDialog(
-                memberID: memberID,
-                communityId: communityId,
-                communityName: communityName,
-                memberName: name,
-                isBanned: isBanned,
-              );
-            },
-          );
-        }
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Row(
