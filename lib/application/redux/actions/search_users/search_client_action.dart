@@ -10,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/search_users/update_searc
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/searched_clients.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SearchClientAction extends ReduxAction<AppState> {
@@ -58,9 +59,7 @@ class SearchClientAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
 
         throw UserException(getErrorMessage('fetching clients'));
       }
@@ -83,9 +82,27 @@ class SearchClientAction extends ReduxAction<AppState> {
         ),
       );
     } else {
+      Sentry.captureException(
+        somethingWentWrongText,
+        hint: <String, dynamic>{
+          'query': searchClientQuery,
+          'variables': variables,
+          'response': response
+        },
+      );
       throw UserException(processedResponse.message);
     }
 
     return null;
+  }
+
+  @override
+  Object? wrapError(dynamic error) {
+    if (error.runtimeType == UserException) {
+      return error;
+    }
+
+    Sentry.captureException(error);
+    return UserException(getErrorMessage());
   }
 }
