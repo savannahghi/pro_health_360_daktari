@@ -34,6 +34,7 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
         client: client,
         memberID: dumbWidget.memberID,
         communityID: dumbWidget.communityId,
+        isModerator: dumbWidget.isModerator,
         onFailure: () {
           dumbWidget.onError?.call('${dumbWidget.userName} $unableToRemove');
           dispatch(NavigateAction<AppState>.pop());

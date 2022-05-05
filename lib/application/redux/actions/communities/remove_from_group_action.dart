@@ -17,6 +17,7 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
     required this.client,
     required this.onSuccess,
     required this.onFailure,
+    required this.isModerator,
   });
 
   final String communityID;
@@ -24,6 +25,7 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
+  final bool isModerator;
 
   @override
   void after() {
@@ -39,38 +41,43 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> variables = <String, dynamic>{
-      'communityID': communityID,
-      'memberIDs': <String>[memberID],
-    };
-
-    final Response response =
-        await client.query(removeFromGroupMutation, variables);
-
-    final ProcessedResponse processedResponse = processHttpResponse(response);
-
-    if (processedResponse.ok) {
-      final Map<String, dynamic> body = client.toMap(response);
-
-      client.close();
-
-      final String? errors = client.parseError(body);
-
-      if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
-
-        throw UserException(getErrorMessage('removing user from group'));
-      }
-
-      if (body['data']['removeMembersFromCommunity'] == true) {
-        onSuccess?.call();
-      } else {
-        onFailure?.call();
-      }
+    final String userMemberID = state.staffState?.id ?? '';
+    if (memberID == userMemberID || isModerator) {
+      onFailure?.call();
     } else {
-      throw UserException(processedResponse.message);
+      final Map<String, dynamic> variables = <String, dynamic>{
+        'communityID': communityID,
+        'memberIDs': <String>[memberID],
+      };
+
+      final Response response =
+          await client.query(removeFromGroupMutation, variables);
+
+      final ProcessedResponse processedResponse = processHttpResponse(response);
+
+      if (processedResponse.ok) {
+        final Map<String, dynamic> body = client.toMap(response);
+
+        client.close();
+
+        final String? errors = client.parseError(body);
+
+        if (errors != null) {
+          Sentry.captureException(
+            UserException(errors),
+          );
+
+          throw UserException(getErrorMessage('removing user from group'));
+        }
+
+        if (body['data']['removeMembersFromCommunity'] == true) {
+          onSuccess?.call();
+        } else {
+          onFailure?.call();
+        }
+      } else {
+        throw UserException(processedResponse.message);
+      }
     }
   }
 }

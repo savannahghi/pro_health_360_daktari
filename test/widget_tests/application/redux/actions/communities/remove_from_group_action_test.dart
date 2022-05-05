@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -44,6 +45,7 @@ void main() {
           communityID: '',
           memberID: '',
           onFailure: () {},
+          isModerator: false,
         ),
       );
 
@@ -80,6 +82,7 @@ void main() {
           communityID: '',
           memberID: '',
           onFailure: () {},
+          isModerator: false,
         ),
       );
 
@@ -95,6 +98,30 @@ void main() {
         (info.error! as UserException).msg,
         getErrorMessage('removing user from group'),
       );
+    });
+
+    test(
+        'should call on failure when trying to remove a moderator from a group',
+        () async {
+      int called = 0;
+      storeTester.dispatch(
+        RemoveFromGroupAction(
+          client: MockTestGraphQlClient(),
+          onSuccess: () {},
+          communityID: '',
+          memberID: '',
+          onFailure: () {
+            called++;
+          },
+          isModerator: true,
+        ),
+      );
+
+      expect(called, 0);
+
+      await storeTester.waitUntil(RemoveFromGroupAction);
+
+      expect(called, 1);
     });
 
     test('should call on success if successful', () async {
@@ -117,6 +144,7 @@ void main() {
           communityID: '',
           memberID: '',
           onFailure: () {},
+          isModerator: false,
         ),
       );
 
@@ -147,6 +175,7 @@ void main() {
           communityID: '',
           memberID: '',
           onFailure: () => called++,
+          isModerator: false,
         ),
       );
 
