@@ -6,6 +6,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
@@ -83,7 +84,9 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         final bool pinVerified = body['data']['verifyPIN'] as bool;
         if (pinVerified) {
           final OnboardingPathInfo navConfig = getOnboardingPath(state: state);
-
+          dispatch(
+            BatchUpdateMiscStateAction(resumeWithPin: false),
+          );
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(navConfig.nextRoute),
           );

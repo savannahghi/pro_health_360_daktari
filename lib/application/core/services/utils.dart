@@ -477,3 +477,17 @@ String getServiceRequestName(ServiceRequestType? requestType) {
       return UNKNOWN;
   }
 }
+
+bool resumeWithPIN(AppState? appState) {
+  final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+
+  final String inactiveTime = appState?.miscState?.inactiveTime ?? UNKNOWN;
+  final int timeDifference = inactiveTime == UNKNOWN
+      ? 0
+      : DateTime.now().difference(DateTime.parse(inactiveTime)).inMinutes;
+  final OnboardingPathInfo navConfig =
+      getOnboardingPath(state: appState ?? AppState.initial());
+  return isSignedIn &&
+      navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0 &&
+      timeDifference > 2;
+}
