@@ -108,7 +108,6 @@ const String doItLater = 'Do it later';
 // User Profile
 const String correctionRequestString = 'Request for correction';
 const String myProfileString = 'My Profile';
-const String name = 'Dr. Afya Njema';
 const String profession = 'Doctor';
 const String clinicName = 'myCareHub Medical Center';
 const String dummyPhoneNumber = '0712345678';

@@ -35,11 +35,12 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
         memberID: dumbWidget.memberID,
         communityID: dumbWidget.communityId,
         onFailure: () {
-          dumbWidget.onError?.call('$name $unableToRemove');
+          dumbWidget.onError?.call('${dumbWidget.userName} $unableToRemove');
           dispatch(NavigateAction<AppState>.pop());
         },
         onSuccess: () {
-          dumbWidget.onSuccess?.call('$name $removedFromGroup');
+          dumbWidget.onSuccess
+              ?.call('${dumbWidget.userName} $removedFromGroup');
 
           refreshGroupMembers();
 
