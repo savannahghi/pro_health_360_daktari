@@ -257,7 +257,7 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
   'type': 'APPOINTMENT',
   'isRead': false,
-  'createdAt': 'July 21 2021',
+  'createdAt': '2022-04-28T07:00:20Z',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
 };
@@ -273,7 +273,7 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
         'isRead': false,
-        'createdAt': 'July 21 2021',
+        'createdAt': '2022-04-28T07:00:20Z',
         'actions': <dynamic>[mockNotificationActions],
         'status': 'Missed'
       },
@@ -283,7 +283,7 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
         'isRead': false,
-        'createdAt': 'July 21 2021',
+        'createdAt': '2022-04-28T07:00:20Z',
         'actions': <dynamic>[mockNotificationActions],
         'status': 'Missed'
       },
