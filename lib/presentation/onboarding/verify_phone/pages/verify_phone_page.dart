@@ -19,7 +19,7 @@ class VerifyPhonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, VerifyPhoneViewModel>(
+  return StoreConnector<AppState, VerifyPhoneViewModel>(
       converter: (Store<AppState> store) {
         return VerifyPhoneViewModel.fromStore(store);
       },

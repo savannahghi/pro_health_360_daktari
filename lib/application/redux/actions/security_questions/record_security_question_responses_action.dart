@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -9,13 +8,13 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart' as utils;
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
@@ -64,24 +63,28 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
     final Map<String, dynamic> body = client.toMap(result);
     client.close();
 
-    final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
-
-    if (client.parseError(body) != null || responseMap['errors'] != null) {
+    if (client.parseError(body) != null) {
       throw MyAfyaException(
         cause: recordSecurityQuestionsFlag,
         message: somethingWentWrongText,
       );
     }
 
-    dispatch(UpdateOnboardingStateAction(hasSetSecurityQuestions: true));
-
-    final String route = utils.getOnboardingPath(state: state).nextRoute;
-
-    Navigator.pushReplacementNamed(
-      context,
-      route,
+    final RecordSecurityQuestionResponsesData responseMap =
+        RecordSecurityQuestionResponsesData.fromJson(
+      body['data'] as Map<String, dynamic>,
     );
+
+    if (responseMap.recordSecurityQuestionResponses.isNotEmpty) {
+      dispatch(UpdateOnboardingStateAction(hasSetSecurityQuestions: true));
+
+      final String route = utils.getOnboardingPath(state: state).nextRoute;
+
+      Navigator.pushReplacementNamed(
+        context,
+        route,
+      );
+    }
 
     return state;
   }
