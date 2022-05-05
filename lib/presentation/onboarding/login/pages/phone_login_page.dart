@@ -83,6 +83,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                     ),
                     smallVerticalSizedBox,
                     largeVerticalSizedBox,
+
                     /// Phone number input
                     Align(
                       alignment: Alignment.topLeft,
@@ -184,8 +185,9 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                         formKey: _formKey,
                         phone: phoneNumber,
                       ),
-                      veryLargeVerticalSizedBox,
                     ],
+
+                    veryLargeVerticalSizedBox,
                   ],
                 ),
               ),

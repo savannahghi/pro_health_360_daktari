@@ -489,5 +489,5 @@ bool resumeWithPIN(AppState? appState) {
       getOnboardingPath(state: appState ?? AppState.initial());
   return isSignedIn &&
       navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0 &&
-      timeDifference > 2;
+      timeDifference > 1;
 }
