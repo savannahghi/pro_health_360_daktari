@@ -40,8 +40,7 @@ void main() {
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
           'getSecurityQuestions': securityQuestionsMock,
-          'recordSecurityQuestionResponses':
-              mockRecordSecurityQuestionResponseData,
+          'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock,
           'verifySecurityQuestionResponses': true,
           'getUserRespondedSecurityQuestions': <dynamic>[
             mockSecurityQuestion,
@@ -210,6 +209,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
           ],
+          currentOnboardingStage: CurrentOnboardingStage.Login,
         ),
       );
       await buildTestWidget(
