@@ -1,11 +1,10 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/presentation/communities/group_info/widgets/action_view_model_factory.dart';
-import 'package:mycarehubpro/presentation/communities/group_info/widgets/group_member_item.dart';
-import 'package:mycarehubpro/presentation/communities/group_info/widgets/member_list_actions_dialog.dart';
 import 'package:mycarehubpro/presentation/communities/group_info/widgets/moderation_actions_view_model.dart';
 
 class GroupMemberConnector extends StatelessWidget {

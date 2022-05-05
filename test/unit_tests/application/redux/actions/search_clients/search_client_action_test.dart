@@ -2,15 +2,20 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/search_client_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
 
 import '../../../../../mocks/mocks.dart';
+import 'search_client_action_test.mocks.dart';
 
+@GenerateMocks(<Type>[IGraphQlClient])
 void main() {
   group('SearchClientAction', () {
     late StoreTester<AppState> storeTester;
@@ -83,6 +88,29 @@ void main() {
       expect(
         (info.error! as UserException).msg,
         getErrorMessage('fetching clients'),
+      );
+    });
+
+    test('should handle unexpected error', () async {
+      final MockIGraphQlClient client = MockIGraphQlClient();
+
+      when(
+        client.query(any, any),
+      ).thenThrow(MyAfyaException(cause: 'cause', message: 'message'));
+
+      storeTester.dispatch(
+        SearchClientAction(
+          client: client,
+          cccNumber: '',
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(SearchClientAction);
+
+      expect(
+        info.errors.removeFirst(),
+        UserException(getErrorMessage()),
       );
     });
   });
