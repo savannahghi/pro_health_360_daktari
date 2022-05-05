@@ -17,6 +17,8 @@ class MiscState with _$MiscState {
     List<Member>? communityMembers,
     GroupState? groupState,
     SearchUserResponseState? searchUserResponseState,
+    String? inactiveTime,
+    bool? resumeWithPin,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -28,5 +30,7 @@ class MiscState with _$MiscState {
         communityMembers: <Member>[],
         groupState: GroupState.initial(),
         searchUserResponseState: SearchUserResponseState.initial(),
+        inactiveTime: UNKNOWN,
+        resumeWithPin: false,
       );
 }
