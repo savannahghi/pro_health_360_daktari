@@ -13,6 +13,7 @@ import 'package:mycarehubpro/presentation/communities/community_list_view_model.
 import 'package:mycarehubpro/presentation/communities/community_utils.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListPage extends StatefulWidget {
@@ -100,7 +101,9 @@ class _CommunityListPageState extends State<CommunityListPage> {
           );
         },
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        bottomNavIndex: BottomNavIndex.communities.index,
+      ),
     );
   }
 }

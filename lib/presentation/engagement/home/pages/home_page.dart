@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
+import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
@@ -135,7 +136,9 @@ class HomePage extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        bottomNavIndex: BottomNavIndex.home.index,
+      ),
     );
   }
 }

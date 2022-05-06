@@ -28,7 +28,9 @@ void main() {
           builder: (BuildContext context) {
             return Scaffold(
               body: Container(),
-              bottomNavigationBar: const BottomNavBar(),
+              bottomNavigationBar: const BottomNavBar(
+                bottomNavIndex: 0,
+              ),
             );
           },
         ),
