@@ -471,7 +471,6 @@ void main() {
       ),
       true,
     );
-    expect(resumeWithPIN(null), false);
     expect(resumeWithPIN(AppState.initial()), false);
     expect(resumeWithPIN(AppState.initial()), false);
   });

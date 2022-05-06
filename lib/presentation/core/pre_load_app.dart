@@ -80,17 +80,16 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
       );
     }
 
-    if (state == AppLifecycleState.resumed) {
-      if (resumeWithPIN(appState)) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          BatchUpdateMiscStateAction(resumeWithPin: true),
-        );
-        Navigator.pushReplacementNamed(
-          globalAppNavigatorKey.currentContext!,
-          AppRoutes.resumeWithPin,
-        );
-      }
+    if (state == AppLifecycleState.resumed &&
+        resumeWithPIN(appState ?? AppState.initial())) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        BatchUpdateMiscStateAction(resumeWithPin: true),
+      );
+      Navigator.pushReplacementNamed(
+        globalAppNavigatorKey.currentContext!,
+        AppRoutes.resumeWithPin,
+      );
     }
   }
 
