@@ -113,7 +113,9 @@ class NotificationsPage extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        bottomNavIndex: BottomNavIndex.notifications.index,
+      ),
     );
   }
 }
