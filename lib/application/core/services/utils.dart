@@ -478,15 +478,15 @@ String getServiceRequestName(ServiceRequestType? requestType) {
   }
 }
 
-bool resumeWithPIN(AppState? appState) {
-  final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+bool resumeWithPIN(AppState appState) {
+  final bool isSignedIn = appState.credentials?.isSignedIn ?? false;
 
-  final String inactiveTime = appState?.miscState?.inactiveTime ?? UNKNOWN;
+  final String inactiveTime = appState.miscState?.inactiveTime ?? UNKNOWN;
   final int timeDifference = inactiveTime == UNKNOWN
       ? 0
       : DateTime.now().difference(DateTime.parse(inactiveTime)).inMinutes;
   final OnboardingPathInfo navConfig =
-      getOnboardingPath(state: appState ?? AppState.initial());
+      getOnboardingPath(state: appState);
   return isSignedIn &&
       navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0 &&
       timeDifference > 1;
