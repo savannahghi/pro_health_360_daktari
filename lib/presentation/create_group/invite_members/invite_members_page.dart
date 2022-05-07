@@ -27,28 +27,10 @@ class InviteMembersPage extends StatefulWidget {
 }
 
 class _InviteMembersPageState extends State<InviteMembersPage> {
-  final TextEditingController searchController = TextEditingController();
   List<String> inviteMemberIds = <String>[];
   bool isSearching = false;
   String memberSearchName = '';
-
-  @override
-  void initState() {
-    super.initState();
-    searchController.addListener(() async {
-      if (searchController.text.isEmpty) {
-        setState(() {
-          isSearching = false;
-          memberSearchName = '';
-        });
-      } else {
-        setState(() {
-          isSearching = true;
-          memberSearchName = searchController.text;
-        });
-      }
-    });
-  }
+  final TextEditingController searchController = TextEditingController();
 
   @override
   void didChangeDependencies() {
@@ -67,6 +49,24 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() async {
+      if (searchController.text.isEmpty) {
+        setState(() {
+          isSearching = false;
+          memberSearchName = '';
+        });
+      } else {
+        setState(() {
+          isSearching = true;
+          memberSearchName = searchController.text;
+        });
+      }
+    });
   }
 
   @override
@@ -183,10 +183,14 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                               final String memberUserId =
                                   communityMembers[index].id?.trim() ?? '';
 
+                              final String userType =
+                                  communityMembers[index].userType ?? UNKNOWN;
+
                               return MemberListItem(
                                 username: memberName.trim().isEmpty
                                     ? UNKNOWN
                                     : memberName,
+                                userType: userType,
                                 onClicked: (bool value) {
                                   if (value) {
                                     if (memberUserId.isNotEmpty) {
