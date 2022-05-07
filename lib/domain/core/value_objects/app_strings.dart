@@ -457,6 +457,7 @@ const String couldNotFindAMemberText =
     'It seems like we could not find a member by the name ';
 const String confirmTheNamesAreCorrectText =
     '. Confirm that the names are correct before searching again, or use different names';
+const String staffMemberText = 'Staff member';
 
 // group info
 const String groupInfoText = 'Group Info';

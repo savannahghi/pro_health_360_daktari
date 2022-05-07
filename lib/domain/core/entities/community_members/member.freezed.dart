@@ -29,6 +29,8 @@ class _$MemberTearOff {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
+      @JsonKey(name: 'userType')
+          String? userType,
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -39,6 +41,7 @@ class _$MemberTearOff {
       id: id,
       userID: userID,
       role: role,
+      userType: userType,
       username: username,
       gender: gender,
       banStatus: banStatus,
@@ -61,6 +64,8 @@ mixin _$Member {
   String? get userID => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userType')
+  String? get userType => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -84,6 +89,8 @@ abstract class $MemberCopyWith<$Res> {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
+      @JsonKey(name: 'userType')
+          String? userType,
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -107,6 +114,7 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
     Object? id = freezed,
     Object? userID = freezed,
     Object? role = freezed,
+    Object? userType = freezed,
     Object? username = freezed,
     Object? gender = freezed,
     Object? banStatus = freezed,
@@ -123,6 +131,10 @@ class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userType: userType == freezed
+          ? _value.userType
+          : userType // ignore: cast_nullable_to_non_nullable
               as String?,
       username: username == freezed
           ? _value.username
@@ -163,6 +175,8 @@ abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
+      @JsonKey(name: 'userType')
+          String? userType,
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -188,6 +202,7 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
     Object? id = freezed,
     Object? userID = freezed,
     Object? role = freezed,
+    Object? userType = freezed,
     Object? username = freezed,
     Object? gender = freezed,
     Object? banStatus = freezed,
@@ -204,6 +219,10 @@ class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userType: userType == freezed
+          ? _value.userType
+          : userType // ignore: cast_nullable_to_non_nullable
               as String?,
       username: username == freezed
           ? _value.username
@@ -231,6 +250,8 @@ class _$_Member implements _Member {
           this.userID,
       @JsonKey(name: 'role')
           this.role,
+      @JsonKey(name: 'userType')
+          this.userType,
       @JsonKey(name: 'username')
           this.username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -251,6 +272,9 @@ class _$_Member implements _Member {
   @JsonKey(name: 'role')
   final String? role;
   @override
+  @JsonKey(name: 'userType')
+  final String? userType;
+  @override
   @JsonKey(name: 'username')
   final String? username;
   @override
@@ -262,7 +286,7 @@ class _$_Member implements _Member {
 
   @override
   String toString() {
-    return 'Member(id: $id, userID: $userID, role: $role, username: $username, gender: $gender, banStatus: $banStatus)';
+    return 'Member(id: $id, userID: $userID, role: $role, userType: $userType, username: $username, gender: $gender, banStatus: $banStatus)';
   }
 
   @override
@@ -273,6 +297,7 @@ class _$_Member implements _Member {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userID, userID) &&
             const DeepCollectionEquality().equals(other.role, role) &&
+            const DeepCollectionEquality().equals(other.userType, userType) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
             const DeepCollectionEquality().equals(other.banStatus, banStatus));
@@ -284,6 +309,7 @@ class _$_Member implements _Member {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userID),
       const DeepCollectionEquality().hash(role),
+      const DeepCollectionEquality().hash(userType),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(gender),
       const DeepCollectionEquality().hash(banStatus));
@@ -307,6 +333,8 @@ abstract class _Member implements Member {
           String? userID,
       @JsonKey(name: 'role')
           String? role,
+      @JsonKey(name: 'userType')
+          String? userType,
       @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -325,6 +353,9 @@ abstract class _Member implements Member {
   @override
   @JsonKey(name: 'role')
   String? get role;
+  @override
+  @JsonKey(name: 'userType')
+  String? get userType;
   @override
   @JsonKey(name: 'username')
   String? get username;

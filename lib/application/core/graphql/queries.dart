@@ -103,6 +103,7 @@ query listMembers($input: QueryOption){
     id
     userID
     role
+    userType
     username
   }
 }
