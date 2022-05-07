@@ -7,14 +7,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_send_configuration_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_sender_list_page.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
 
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
-  group('Surveys Page', () {
+  group('Surveys Sender List Page', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -29,18 +29,18 @@ void main() {
           builder: (BuildContext context) {
             return StoreProvider<AppState>(
               store: store,
-              child: const SurveysPage(),
+              child: const SurveysSenderListPage(),
             );
           },
         ),
       );
 
-      expect(find.text(surveysInvitedToString), findsOneWidget);
+      expect(find.text(surveySenderListDescriptionString), findsOneWidget);
       expect(find.byType(SurveysCard), findsNWidgets(2));
     });
 
     testWidgets(
-        'Mental health survey button pressed navigates Surveys Sender List Page ',
+        'Tapping on Send To Clients card navigates to Surveys Send Configurations Page',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -49,24 +49,22 @@ void main() {
           builder: (BuildContext context) {
             return StoreProvider<AppState>(
               store: store,
-              child: const SurveysPage(),
+              child: const SurveysSenderListPage(),
             );
           },
         ),
       );
 
-      final Finder mentalHealthSurveyFinder =
-          find.byKey(mentalHealthSurveyButtonKey);
+      final Finder sendToClientsFinder = find.text(sendToClientsString);
 
-      await tester.ensureVisible(mentalHealthSurveyFinder);
+      await tester.ensureVisible(sendToClientsFinder);
       await tester.pumpAndSettle();
-      await tester.tap(mentalHealthSurveyFinder);
+      await tester.tap(sendToClientsFinder);
       await tester.pumpAndSettle();
-      expect(find.byType(SurveysSenderListPage), findsOneWidget);
+      expect(find.byType(SurveysSendConfigurationsPage), findsOneWidget);
     });
 
-    testWidgets(
-        'Usability survey button pressed navigates Surveys Sender List Page ',
+    testWidgets('Send to all staff pressed displays a snackbar',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -75,19 +73,19 @@ void main() {
           builder: (BuildContext context) {
             return StoreProvider<AppState>(
               store: store,
-              child: const SurveysPage(),
+              child: const SurveysSenderListPage(),
             );
           },
         ),
       );
 
-      final Finder usabilitySurveyFinder = find.byKey(usabilitySurveyButtonKey);
+      final Finder sendToAllFinder = find.byKey(sendToAllButtonKey);
 
-      await tester.ensureVisible(usabilitySurveyFinder);
+      await tester.ensureVisible(sendToAllFinder);
       await tester.pumpAndSettle();
-      await tester.tap(usabilitySurveyFinder);
+      await tester.tap(sendToAllFinder);
       await tester.pumpAndSettle();
-      expect(find.byType(SurveysSenderListPage), findsOneWidget);
+      expect(find.byType(SnackBar), findsOneWidget);
     });
   });
 }

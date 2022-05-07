@@ -49,7 +49,10 @@ import 'package:mycarehubpro/presentation/service_requests/pages/resolved_servic
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/successful_survey_submission.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_send_configuration_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_sender_list_page.dart';
 
 import '../../../mocks/mocks.dart';
 
@@ -243,6 +246,39 @@ void main() {
     expect(route, isA<MaterialPageRoute<SearchPage>>());
     expect(route?.builder(context), isA<SearchPage>());
   });
+
+  test('Test router returns SurveysSenderListPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.surveysSenderListPage);
+
+    final MaterialPageRoute<SurveysSenderListPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SurveysSenderListPage>?;
+    expect(route, isA<MaterialPageRoute<SurveysSenderListPage>>());
+    expect(route?.builder(context), isA<SurveysSenderListPage>());
+  });
+
+  test('Test router returns SurveysSendConfigurationsPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.surveysSendConfigurationsPage);
+
+    final MaterialPageRoute<SurveysSendConfigurationsPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SurveysSendConfigurationsPage>?;
+    expect(route, isA<MaterialPageRoute<SurveysSendConfigurationsPage>>());
+    expect(route?.builder(context), isA<SurveysSendConfigurationsPage>());
+  });
+
+  test('Test router returns SuccessfulSurveySubmission', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.successfulSurveySubmission);
+
+    final MaterialPageRoute<SuccessfulSurveySubmission>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulSurveySubmission>?;
+    expect(route, isA<MaterialPageRoute<SuccessfulSurveySubmission>>());
+    expect(route?.builder(context), isA<SuccessfulSurveySubmission>());
+  });
+
   test('Test router returns TermsAndConditionsPage', () {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.termsAndConditions);
@@ -319,8 +355,9 @@ void main() {
 
   test('Test router returns ResolvedServiceRequestsListPage', () {
     const RouteSettings settings = RouteSettings(
-        name: AppRoutes.resolvedServiceRequestsListPage,
-        arguments: Flavour.consumer,);
+      name: AppRoutes.resolvedServiceRequestsListPage,
+      arguments: Flavour.consumer,
+    );
 
     final MaterialPageRoute<ResolvedServiceRequestsListPage>? route =
         routeGenerator(settings)

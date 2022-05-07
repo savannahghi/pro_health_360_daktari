@@ -116,6 +116,11 @@ const String searchSvgPath = 'assets/images/search.svg';
 const String clientSearchSvgPath = 'assets/images/client_search.svg';
 const String staffSearchSvgPath = 'assets/images/staff_search.svg';
 
+// surveys
+const String surveysSvgPath = 'assets/images/surveys_image.svg';
+const String surveysImagePath = 'assets/images/surveys.svg';
+const String hotBeverageImagePath = 'assets/images/hot_beverage_image.svg';
+
 const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
 
 const String pinExpiredImage = 'assets/images/pin_expired.svg';

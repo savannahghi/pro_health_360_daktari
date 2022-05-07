@@ -348,6 +348,11 @@ Map<String, dynamic> mockRegisterPayload = <String, dynamic>{
   'counselled': true
 };
 
+Map<String, dynamic> mockClientConfigurationPayload = <String, dynamic>{
+  'clientType': 'PMTCT',
+  'ageGroup': '14 - 16 yrs',
+};
+
 Map<String, dynamic> mockListFacilities = <String, dynamic>{
   'Facilities': <dynamic>[
     mockFacility,

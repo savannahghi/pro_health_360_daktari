@@ -4,6 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -18,7 +19,7 @@ import 'package:mycarehubpro/presentation/onboarding/patient/register_client_pag
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
-import 'package:http/http.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';
@@ -165,6 +166,22 @@ void main() {
       await tester.tap(searchActionCardFinder);
       await tester.pumpAndSettle();
       expect(find.byType(SearchPage), findsWidgets);
+    });
+
+    testWidgets('navigates to surveys page', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: const HomePage(),
+      );
+
+      final Finder surveysActionCardFinder = find.byKey(surveysCardKey);
+
+      await tester.ensureVisible(surveysActionCardFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(surveysActionCardFinder);
+      await tester.pumpAndSettle();
+      expect(find.byType(SurveysPage), findsWidgets);
     });
   });
 }

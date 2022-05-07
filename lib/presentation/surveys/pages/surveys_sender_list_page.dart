@@ -14,8 +14,8 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
 import 'package:shared_themes/spaces.dart';
 
-class SurveysPage extends StatelessWidget {
-  const SurveysPage();
+class SurveysSenderListPage extends StatelessWidget {
+  const SurveysSenderListPage();
 
   @override
   Widget build(BuildContext context) {
@@ -38,26 +38,27 @@ class SurveysPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  surveysInvitedToString,
+                  surveySenderListDescriptionString,
                   textAlign: TextAlign.center,
                   style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ),
               mediumVerticalSizedBox,
               SurveysCard(
-                title: mentalHealthSurveyString,
-                message: surveyDescriptionString,
-                buttonKey: mentalHealthSurveyButtonKey,
-                onPressButton: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.surveysSenderListPage),
+                title: clients,
+                message: sendToClientsString,
+                onTapCard: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.surveysSendConfigurationsPage),
               ),
               mediumVerticalSizedBox,
               SurveysCard(
-                title: usabilitySurveyString,
-                message: surveyDescriptionString,
-                buttonKey: usabilitySurveyButtonKey,
-                onPressButton: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.surveysSenderListPage),
+                title: staffMembers,
+                message: sendToAllStaffMembersString,
+                buttonKey: sendToAllButtonKey,
+                buttonText: sendToAllStaffString,
+                onPressButton: () => ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text(comingSoonText)),
+                ),
               ),
             ],
           ),
