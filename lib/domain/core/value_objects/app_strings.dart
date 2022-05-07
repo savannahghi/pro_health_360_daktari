@@ -179,6 +179,34 @@ const String ageString = 'Age';
 const String locationString = 'Location';
 const String clinicString = 'Clinic';
 const String confirmString = 'Confirm';
+const String surveysInvitedToString =
+    'Surveys you have been invited to respond to';
+const String sendOutString = 'Send Out';
+const String mentalHealthSurveyString = 'Mental health survey';
+const String usabilitySurveyString = 'Usability survey';
+const String surveyDescriptionString =
+    'A simple Yes or No question set about your mental health';
+const String surveySenderListDescriptionString =
+    'Please select where you want to send the survey';
+const String sendToAllClientsString = 'Send to all clients';
+const String sendToAllStaffString = 'Send to all Staff';
+const String sendToClientsString =
+    'Tap to tailor your survey before sending it to clients. You will be able to choose from a set of configurations ';
+const String sendToAllStaffMembersString =
+    'Tap to send your survey to all the staff members in your facility';
+const String setClientConfigurationsString =
+    'Set the configurations for your survey before sending it. Your survey will be sent out to clients that meet the criteria you have selected above';
+const String allClientsString = 'All clients';
+const String tapToSendToAllClientsString =
+    'Tap the button below if you wish to send your survey to all clients on myCareHub';
+const String clientTypeText = 'Client Type';
+const String ageGroupText = 'Age Group';
+const String sendSurveyText = 'Send Survey';
+const String surveySentText = 'Survey sent';
+const String surveySentDescriptionText =
+    'Your survey has been sent to the clients you selected. They will receive notification prompts to fill in the surveys.';
+const String takeACupOfCoffeeText =
+    ' Take a cup of coffee as we prepare your responses';
 
 // Notifications
 const String notificationsText = 'Notifications';

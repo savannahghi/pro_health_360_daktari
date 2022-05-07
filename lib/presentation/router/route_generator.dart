@@ -51,7 +51,10 @@ import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/successful_survey_submission.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_send_configuration_page.dart';
+import 'package:mycarehubpro/presentation/surveys/pages/surveys_sender_list_page.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -142,6 +145,21 @@ class RouteGenerator {
       case AppRoutes.surveysPage:
         return MaterialPageRoute<SurveysPage>(
           builder: (_) => const SurveysPage(),
+        );
+
+      case AppRoutes.surveysSenderListPage:
+        return MaterialPageRoute<SurveysSenderListPage>(
+          builder: (_) => const SurveysSenderListPage(),
+        );
+
+      case AppRoutes.surveysSendConfigurationsPage:
+        return MaterialPageRoute<SurveysSendConfigurationsPage>(
+          builder: (_) => const SurveysSendConfigurationsPage(),
+        );
+
+      case AppRoutes.successfulSurveySubmission:
+        return MaterialPageRoute<SuccessfulSurveySubmission>(
+          builder: (_) => const SuccessfulSurveySubmission(),
         );
 
       case AppRoutes.verifyPhonePage:

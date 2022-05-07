@@ -29,7 +29,8 @@ class AppRoutes {
 
 // Service requests
   static const String serviceRequestsPage = '/ServiceRequestsPage';
-  static const String resolvedServiceRequestsListPage = '/resolvedServiceRequestsListPage';
+  static const String resolvedServiceRequestsListPage =
+      '/resolvedServiceRequestsListPage';
 
   static const String redFlagsPage = '/redFlagsPage';
 
@@ -45,6 +46,12 @@ class AppRoutes {
   static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
 
   static const String surveysPage = '/surveys';
+  static const String surveysSenderListPage = '/surveysSenderListPage';
+  static const String surveysSendConfigurationsPage =
+      '/surveysSendConfigurationsPage';
+  static const String successfulSurveySubmission =
+      '/successfulSurveySubmission';
+
   static const String searchPage = '/searchPage';
   static const String communityChatScreen = '/communityChatScreen';
   static const String phoneSignUpRoute = '/phoneSignUp';

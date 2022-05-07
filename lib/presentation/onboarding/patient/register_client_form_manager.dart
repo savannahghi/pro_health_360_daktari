@@ -37,6 +37,7 @@ class RegisterClientFormManager with Validator {
   Sink<String> get inCccNumber => _cccNumber.sink;
 
   final BehaviorSubject<Map<ClientType, bool>> _clientTypes =
+  
       BehaviorSubject<Map<ClientType, bool>>();
   Stream<Map<ClientType, bool>> get clientTypes => _clientTypes.stream;
   Sink<Map<ClientType, bool>> get inClientTypes => _clientTypes.sink;

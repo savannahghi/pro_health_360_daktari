@@ -118,6 +118,15 @@ class HomePage extends StatelessWidget {
                           Navigator.of(context).pushNamed(AppRoutes.searchPage);
                         },
                       ),
+                      ActionCard(
+                        key: surveysCardKey,
+                        title: surveysString,
+                        iconUrl: surveysSvgPath,
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.surveysPage);
+                        },
+                      ),
                     ],
                   ),
                 ),

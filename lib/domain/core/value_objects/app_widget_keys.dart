@@ -46,6 +46,10 @@ const Key ageSelectOptionFieldKey = Key('age_select_option_field');
 const Key locationSelectOptionFieldKey = Key('location_select_option_field');
 const Key clinicSelectOptionFieldKey = Key('clinic_select_option_field');
 const Key selectOptionFieldKey = Key('select_option_field');
+const Key mentalHealthSurveyButtonKey = Key('mental_health_survey_button_key');
+const Key usabilitySurveyButtonKey = Key('usability_survey_button_key');
+const Key sendToAllButtonKey = Key('send_to_all_button_key');
+const Key sendSurveyButtonKey = Key('send_survey_button_key');
 
 // add new patient page
 const Key myAfyaHubInviteKey = Key('appAccessKey');
@@ -147,8 +151,10 @@ const Key changeMyPinButtonKey = Key('change_my_pin');
 
 // Service request list page keys
 const Key redFlagActionCardKey = Key('red_flag_action_card_key');
-const Key resolvedClientRequestsActionCardKey = Key('resolved_client_requests_action_card_key');
-const Key resolvedStaffRequestsActionCardKey = Key('resolved_staff_requests_action_card_key');
+const Key resolvedClientRequestsActionCardKey =
+    Key('resolved_client_requests_action_card_key');
+const Key resolvedStaffRequestsActionCardKey =
+    Key('resolved_staff_requests_action_card_key');
 const Key screeningToolsActionCardKey = Key('screening_tools_action_card_key');
 const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
