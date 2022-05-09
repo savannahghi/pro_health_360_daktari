@@ -1,7 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 part 'register_staff_payload.freezed.dart';
 part 'register_staff_payload.g.dart';

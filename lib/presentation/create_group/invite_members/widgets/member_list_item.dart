@@ -68,13 +68,15 @@ class _MemberListItemState extends State<MemberListItem> {
                   children: <Widget>[
                     Text(
                       widget.username,
-                      style: boldSize12Text(),
+                      style: boldSize14Text().copyWith(),
                     ),
                     if (widget.userType == 'STAFF')
                       Text(
                         staffMemberText,
-                        style:
-                            normalSize10Text().copyWith(color: greyTextColor),
+                        style: boldSize12Text().copyWith(
+                          color: greyTextColor.withOpacity(0.6),
+                          fontSize: 10,
+                        ),
                       ),
                   ],
                 ),
