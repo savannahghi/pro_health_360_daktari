@@ -125,6 +125,7 @@ query listCommunityMembers($communityID: ID!){
         extraData
       }
       isModerator
+      userType
   }
 }
 ''';

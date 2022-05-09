@@ -13,6 +13,7 @@ class GroupMemberConnector extends StatelessWidget {
     required this.memberID,
     required this.communityId,
     required this.communityName,
+    required this.userType,
     this.isModerator = false,
     this.canModerate = false,
     this.isBanned = false,
@@ -29,6 +30,7 @@ class GroupMemberConnector extends StatelessWidget {
   final bool isModerator;
   final bool canModerate;
   final bool isBanned;
+  final String userType;
   final void Function(String)? onError;
   final void Function(String?)? onSuccess;
 
@@ -43,6 +45,7 @@ class GroupMemberConnector extends StatelessWidget {
       isModerator: isModerator,
       canModerate: canModerate,
       isBanned: isBanned,
+      userType: userType,
       onTap: () {
         if (canModerate) showModerationDialog(context);
       },

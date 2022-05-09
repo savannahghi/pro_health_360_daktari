@@ -9,7 +9,6 @@ import 'package:mycarehubpro/application/redux/actions/invite_members/fetch_memb
 import 'package:mycarehubpro/application/redux/actions/invite_members/invite_members_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/invite_members/invite_members_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/member.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';

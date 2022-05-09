@@ -48,19 +48,6 @@ extension RequestStatusEx on RequestStatus {
   }
 }
 
-enum RoleValue {
-  SYSTEM_ADMINISTRATOR,
-  COMMUNITY_MANAGEMENT,
-  CONTENT_MANAGEMENT,
-  CLIENT_MANAGEMENT,
-}
-
-extension RoleName on RoleValue {
-  String get name {
-    return describeEnum(this).split('_').join(' ');
-  }
-}
-
 enum PinResetState { APPROVED, REJECTED }
 
 extension PinResetStateExtension on PinResetState {

@@ -10,10 +10,8 @@ import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles
 import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';

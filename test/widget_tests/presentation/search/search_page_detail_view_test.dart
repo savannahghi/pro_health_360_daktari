@@ -8,11 +8,9 @@ import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/update_search_user_response_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/user_data.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
@@ -522,7 +520,7 @@ void main() {
         );
         expect(find.byType(SnackBar), findsOneWidget);
       });
-      
+
       testWidgets('renders loading indicator correctly',
           (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =

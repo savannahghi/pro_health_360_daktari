@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -18,19 +17,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-
-Gender genderFromJson(String? genderString) {
-  if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
-    return Gender.unknown;
-  }
-  return Gender.values.where((Gender gender) {
-    return gender.name.toLowerCase() == genderString.toLowerCase();
-  }).first;
-}
-
-String genderToJson(Gender? gender) {
-  return gender?.name ?? Gender.unknown.name;
-}
 
 ClientType clientTypeFromJson(String? clientString) {
   if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {
@@ -48,19 +34,6 @@ String dobToJson(DateTime? dateTime) {
   }
 
   return DateFormat('yyyy-MM-dd').format(DateUtils.dateOnly(DateTime.now()));
-}
-
-RoleValue roleValueFromJson(String? roleString) {
-  if (roleString == null || roleString.isEmpty || roleString == UNKNOWN) {
-    return RoleValue.CONTENT_MANAGEMENT;
-  }
-
-  return RoleValue.values.firstWhere((RoleValue role) {
-    return describeEnum(role)
-            .toLowerCase()
-            .compareTo(roleString.toLowerCase()) ==
-        0;
-  });
 }
 
 // converts role sting from 'CLIENT_MANAGEMENT' to 'Client management'
@@ -417,16 +390,6 @@ Widget humanizeDate({
   return const SizedBox();
 }
 
-String formatDate(String date, {bool showTime = false}) {
-  final DateTime parsedDate =
-      DateTime.tryParse(date)?.toLocal() ?? DateTime.now();
-  final String postDayTime = DateFormat.jm().format(parsedDate);
-  final String postDay = DateFormat.d().format(parsedDate);
-  final String postMonth = DateFormat.MMMM().format(parsedDate);
-  final String postYear = DateFormat.y().format(parsedDate);
-  return '$postDay $postMonth, $postYear${showTime ? ' at $postDayTime' : ''}';
-}
-
 MoodItemData getMoodColor(String? mood) {
   if (mood == null) {
     return MoodItemData.initial();
@@ -485,8 +448,7 @@ bool resumeWithPIN(AppState appState) {
   final int timeDifference = inactiveTime == UNKNOWN
       ? 0
       : DateTime.now().difference(DateTime.parse(inactiveTime)).inMinutes;
-  final OnboardingPathInfo navConfig =
-      getOnboardingPath(state: appState);
+  final OnboardingPathInfo navConfig = getOnboardingPath(state: appState);
   return isSignedIn &&
       navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0 &&
       timeDifference > 1;

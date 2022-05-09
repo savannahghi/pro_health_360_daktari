@@ -1,6 +1,6 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
 
 part 'groups_state.freezed.dart';
 part 'groups_state.g.dart';

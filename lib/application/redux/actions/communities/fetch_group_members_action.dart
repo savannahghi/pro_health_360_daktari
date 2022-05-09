@@ -9,7 +9,6 @@ import 'package:mycarehubpro/application/redux/actions/communities/update_group_
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/groups_state.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
