@@ -1,9 +1,12 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/set_push_token/set_push_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/staff_state_view_model.dart';
 // Project imports:
@@ -17,8 +20,25 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void didChangeDependencies() {
+    StoreProvider.dispatch(
+      context,
+      SetPushToken(
+        firebaseMessaging: FirebaseMessaging.instance,
+        client: AppWrapperBase.of(context)!.graphQLClient,
+      ),
+    );
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

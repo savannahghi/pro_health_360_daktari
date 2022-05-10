@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -16,14 +17,16 @@ void main() {
   group('SetNicknamePage', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
 
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
+      setupFirebaseMessagingMocks();
+      await Firebase.initializeApp();
     });
 
-    testWidgets('should navigate after inputing nickname',
+    testWidgets('should navigate after inputting nickname',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
