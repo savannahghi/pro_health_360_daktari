@@ -18,6 +18,8 @@ dependencies:
   cupertino_icons: ^1.0.3
   debug_logger: ^0.0.23
   dotted_decoration: ^2.0.0
+  firebase_core: ^1.12.0
+  firebase_messaging: ^11.2.7
   flutter:
     sdk: flutter
   flutter_config: ^2.0.0
@@ -42,6 +44,9 @@ dependencies:
   stream_chat_flutter: ^3.4.0
   unicons: ^2.0.1
   url_launcher: ^6.0.18
+
+dependency_overrides:
+  firebase_messaging_platform_interface: 3.1.6
 
 dev_dependencies:
   build_runner: ^2.1.7
