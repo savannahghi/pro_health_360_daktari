@@ -7,6 +7,7 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/set_push_token/set_push_token_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
@@ -20,6 +21,8 @@ import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -63,6 +66,14 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
       context,
       CheckAndUpdateConnectivityAction(
         connectivityChecker: connectivityChecker,
+      ),
+    );
+
+    StoreProvider.dispatch(
+      context,
+      SetPushToken(
+        firebaseMessaging: FirebaseMessaging.instance,
+        client: AppWrapperBase.of(context)!.graphQLClient,
       ),
     );
   }

@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,6 +20,8 @@ import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 // Project imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -1884,3 +1889,203 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
     'sharedAt': '2021-11-30T16:17:53Z'
   },
 ];
+
+final MockFirebaseMessaging kMockMessagingPlatform = MockFirebaseMessaging();
+
+void setupFirebaseMessagingMocks() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  MethodChannelFirebase.channel
+      .setMockMethodCallHandler((MethodCall call) async {
+    if (call.method == 'Firebase#initializeCore') {
+      return <Map<String, dynamic>>[
+        <String, dynamic>{
+          'name': defaultFirebaseAppName,
+          'options': <String, dynamic>{
+            'apiKey': '123',
+            'appId': '123',
+            'messagingSenderId': '123',
+            'projectId': '123',
+          },
+          'pluginConstants': <String, dynamic>{},
+        }
+      ];
+    }
+
+    if (call.method == 'Firebase#initializeApp') {
+      return <String, dynamic>{
+        'name': call.arguments['appName'],
+        'options': call.arguments['options'],
+        'pluginConstants': <String, dynamic>{},
+      };
+    }
+
+    return null;
+  });
+
+  // // Mock Platform Interface Methods
+  // // ignore: invalid_use_of_protected_member
+  when(kMockMessagingPlatform.delegateFor(app: anyNamed('app')))
+      .thenReturn(kMockMessagingPlatform);
+  // ignore: invalid_use_of_protected_member
+  when(
+    kMockMessagingPlatform.setInitialValues(
+      isAutoInitEnabled: anyNamed('isAutoInitEnabled'),
+    ),
+  ).thenReturn(kMockMessagingPlatform);
+}
+
+Future<T> neverEndingFuture<T>() async {
+  // ignore: literal_only_boolean_expressions
+  while (true) {
+    await Future<T>.delayed(const Duration(minutes: 5));
+  }
+}
+
+class MockFirebaseMessaging extends Mock
+    with MockPlatformInterfaceMixin
+    implements FirebaseMessagingPlatform {
+  MockFirebaseMessaging() {
+    TestFirebaseMessagingPlatform();
+  }
+
+  @override
+  bool get isAutoInitEnabled {
+    return super.noSuchMethod(
+      Invocation.getter(#isAutoInitEnabled),
+      returnValue: true,
+      returnValueForMissingStub: true,
+    ) as bool;
+  }
+
+  @override
+  FirebaseMessagingPlatform delegateFor({FirebaseApp? app}) {
+    return super.noSuchMethod(
+      Invocation.method(
+        #delegateFor,
+        <Object?>[],
+        <Symbol, Object?>{#app: app},
+      ),
+      returnValue: TestFirebaseMessagingPlatform(),
+      returnValueForMissingStub: TestFirebaseMessagingPlatform(),
+    ) as FirebaseMessagingPlatform;
+  }
+
+  @override
+  FirebaseMessagingPlatform setInitialValues({bool? isAutoInitEnabled}) {
+    return super.noSuchMethod(
+      Invocation.method(
+        #setInitialValues,
+        <Object?>[],
+        <Symbol, Object?>{#isAutoInitEnabled: isAutoInitEnabled},
+      ),
+      returnValue: TestFirebaseMessagingPlatform(),
+      returnValueForMissingStub: TestFirebaseMessagingPlatform(),
+    ) as FirebaseMessagingPlatform;
+  }
+
+  @override
+  Future<RemoteMessage?> getInitialMessage() {
+    return super.noSuchMethod(
+      Invocation.method(#getInitialMessage, <Object?>[]),
+      returnValue: neverEndingFuture<RemoteMessage>(),
+      returnValueForMissingStub: neverEndingFuture<RemoteMessage>(),
+    ) as Future<RemoteMessage?>;
+  }
+
+  @override
+  Future<void> deleteToken() {
+    return super.noSuchMethod(
+      Invocation.method(#deleteToken, <Object?>[]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+
+  @override
+  Future<String?> getAPNSToken() {
+    return super.noSuchMethod(
+      Invocation.method(#getAPNSToken, <Object?>[]),
+      returnValue: Future<String>.value(''),
+      returnValueForMissingStub: Future<String>.value(''),
+    ) as Future<String?>;
+  }
+
+  @override
+  Future<String> getToken({String? vapidKey}) {
+    return super.noSuchMethod(
+      Invocation.method(
+        #getToken,
+        <Object?>[],
+        <Symbol, Object?>{#vapidKey: vapidKey},
+      ),
+      returnValue: Future<String>.value(''),
+      returnValueForMissingStub: Future<String>.value(''),
+    ) as Future<String>;
+  }
+
+  @override
+  Future<void> setAutoInitEnabled(bool? enabled) {
+    return super.noSuchMethod(
+      Invocation.method(#setAutoInitEnabled, <Object?>[enabled]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+
+  @override
+  Stream<String> get onTokenRefresh {
+    return super.noSuchMethod(
+      Invocation.getter(#onTokenRefresh),
+      returnValue: const Stream<String>.empty(),
+      returnValueForMissingStub: const Stream<String>.empty(),
+    ) as Stream<String>;
+  }
+
+  @override
+  Future<NotificationSettings> requestPermission({
+    bool? alert = true,
+    bool? announcement = false,
+    bool? badge = true,
+    bool? carPlay = false,
+    bool? criticalAlert = false,
+    bool? provisional = false,
+    bool? sound = true,
+  }) {
+    return super.noSuchMethod(
+      Invocation.method(#requestPermission, <Object?>[], <Symbol, Object?>{
+        #alert: alert,
+        #announcement: announcement,
+        #badge: badge,
+        #carPlay: carPlay,
+        #criticalAlert: criticalAlert,
+        #provisional: provisional,
+        #sound: sound
+      }),
+      returnValue: neverEndingFuture<NotificationSettings>(),
+      returnValueForMissingStub: neverEndingFuture<NotificationSettings>(),
+    ) as Future<NotificationSettings>;
+  }
+
+  @override
+  Future<void> subscribeToTopic(String? topic) {
+    return super.noSuchMethod(
+      Invocation.method(#subscribeToTopic, <Object?>[topic]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+
+  @override
+  Future<void> unsubscribeFromTopic(String? topic) {
+    return super.noSuchMethod(
+      Invocation.method(#unsubscribeFromTopic, <Object?>[topic]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+}
+
+class TestFirebaseMessagingPlatform extends FirebaseMessagingPlatform {
+  TestFirebaseMessagingPlatform() : super();
+}
