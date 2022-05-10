@@ -29,15 +29,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void didChangeDependencies() {
-    StoreProvider.dispatch(
-      context,
-      SetPushToken(
-        firebaseMessaging: FirebaseMessaging.instance,
-        client: AppWrapperBase.of(context)!.graphQLClient,
-      ),
-    );
-    super.didChangeDependencies();
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+      StoreProvider.dispatch(
+        context,
+        SetPushToken(
+          firebaseMessaging: FirebaseMessaging.instance,
+          client: AppWrapperBase.of(context)!.graphQLClient,
+        ),
+      );
+    });
+
+    super.initState();
   }
 
   @override
