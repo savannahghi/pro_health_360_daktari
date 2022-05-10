@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +22,6 @@ import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 // Project imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -1087,6 +1087,17 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+
+    if (queryString.contains(listSurveysQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': surveysMock,
+          }),
+          200,
+        ),
+      );
+    }
     if (queryString.contains(getAvailableFacilityScreeningToolsQuery)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1459,6 +1470,18 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
       },
       'isModerator': true,
     },
+  ],
+};
+
+final Map<String, dynamic> mockSurvey = <String, dynamic>{
+  'projectId': 2,
+  'name': 'project-name',
+};
+
+final Map<String, dynamic> surveysMock = <String, dynamic>{
+  'listSurveys': <dynamic>[
+    mockSurvey,
+    mockSurvey,
   ],
 };
 
