@@ -56,7 +56,7 @@ void main() {
 
       final TestInfo<AppState> info = await storeTester.waitUntil(SetPushToken);
 
-      expect(info.dispatchCount, 1);
+      expect(info.dispatchCount, 2);
     });
 
     test('should handle unexpected error', () async {
