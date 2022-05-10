@@ -22,8 +22,10 @@ SurveyState _$SurveyStateFromJson(Map<String, dynamic> json) {
 class _$SurveyStateTearOff {
   const _$SurveyStateTearOff();
 
-  _SurveyState call() {
-    return _SurveyState();
+  _SurveyState call({List<Survey?>? surveys}) {
+    return _SurveyState(
+      surveys: surveys,
+    );
   }
 
   SurveyState fromJson(Map<String, Object?> json) {
@@ -36,7 +38,12 @@ const $SurveyState = _$SurveyStateTearOff();
 
 /// @nodoc
 mixin _$SurveyState {
+  List<Survey?>? get surveys => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SurveyStateCopyWith<SurveyState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -44,6 +51,7 @@ abstract class $SurveyStateCopyWith<$Res> {
   factory $SurveyStateCopyWith(
           SurveyState value, $Res Function(SurveyState) then) =
       _$SurveyStateCopyWithImpl<$Res>;
+  $Res call({List<Survey?>? surveys});
 }
 
 /// @nodoc
@@ -53,13 +61,28 @@ class _$SurveyStateCopyWithImpl<$Res> implements $SurveyStateCopyWith<$Res> {
   final SurveyState _value;
   // ignore: unused_field
   final $Res Function(SurveyState) _then;
+
+  @override
+  $Res call({
+    Object? surveys = freezed,
+  }) {
+    return _then(_value.copyWith(
+      surveys: surveys == freezed
+          ? _value.surveys
+          : surveys // ignore: cast_nullable_to_non_nullable
+              as List<Survey?>?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$SurveyStateCopyWith<$Res> {
+abstract class _$SurveyStateCopyWith<$Res>
+    implements $SurveyStateCopyWith<$Res> {
   factory _$SurveyStateCopyWith(
           _SurveyState value, $Res Function(_SurveyState) then) =
       __$SurveyStateCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Survey?>? surveys});
 }
 
 /// @nodoc
@@ -71,29 +94,52 @@ class __$SurveyStateCopyWithImpl<$Res> extends _$SurveyStateCopyWithImpl<$Res>
 
   @override
   _SurveyState get _value => super._value as _SurveyState;
+
+  @override
+  $Res call({
+    Object? surveys = freezed,
+  }) {
+    return _then(_SurveyState(
+      surveys: surveys == freezed
+          ? _value.surveys
+          : surveys // ignore: cast_nullable_to_non_nullable
+              as List<Survey?>?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_SurveyState implements _SurveyState {
-  _$_SurveyState();
+  _$_SurveyState({this.surveys});
 
   factory _$_SurveyState.fromJson(Map<String, dynamic> json) =>
       _$$_SurveyStateFromJson(json);
 
   @override
+  final List<Survey?>? surveys;
+
+  @override
   String toString() {
-    return 'SurveyState()';
+    return 'SurveyState(surveys: $surveys)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SurveyState);
+        (other.runtimeType == runtimeType &&
+            other is _SurveyState &&
+            const DeepCollectionEquality().equals(other.surveys, surveys));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(surveys));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SurveyStateCopyWith<_SurveyState> get copyWith =>
+      __$SurveyStateCopyWithImpl<_SurveyState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -102,8 +148,15 @@ class _$_SurveyState implements _SurveyState {
 }
 
 abstract class _SurveyState implements SurveyState {
-  factory _SurveyState() = _$_SurveyState;
+  factory _SurveyState({List<Survey?>? surveys}) = _$_SurveyState;
 
   factory _SurveyState.fromJson(Map<String, dynamic> json) =
       _$_SurveyState.fromJson;
+
+  @override
+  List<Survey?>? get surveys;
+  @override
+  @JsonKey(ignore: true)
+  _$SurveyStateCopyWith<_SurveyState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

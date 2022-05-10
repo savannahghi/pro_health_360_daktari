@@ -300,3 +300,12 @@ query listNotifications(
   }
 }
 ''';
+
+const String listSurveysQuery = r'''
+query listSurveys($projectID: Int!) {
+  listSurveys(projectID: $projectID) {
+    projectId
+    name
+  }
+}
+''';
