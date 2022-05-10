@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -104,6 +105,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
     return const UnrecoverableErrorWidget();
   };
 
+  await Firebase.initializeApp();
   runZonedGuarded(
     () async {
       await SentryFlutter.init(

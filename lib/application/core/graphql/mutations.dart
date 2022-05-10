@@ -185,3 +185,9 @@ mutation resolveServiceRequest($staffID: String!, $requestID: String!){
   resolveServiceRequest(staffID: $staffID, requestID: $requestID)
 }
 ''';
+
+const String setPushTokenMutation = r'''
+mutation setPushToken($token: String!){
+  setPushToken(token: $token)
+}
+''';
