@@ -10,10 +10,7 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
-import 'package:mycarehubpro/domain/core/entities/core/role.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/communities/flagged_messages/pages/flagged_messages_page.dart';
@@ -143,8 +140,11 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                     currentMember.isModerator;
 
                                 final bool isBanned = currentMember
-                                        .memberDetails?.banStatus?.value ??
+                                        .memberDetails?.extraData?.isBanned ??
                                     false;
+
+                                final String userType =
+                                    currentMember.userType ?? '';
 
                                 return GroupMemberConnector(
                                   itemKey: ValueKey<int>(index),
@@ -152,6 +152,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   memberID: id,
                                   communityId: channel.id!,
                                   communityName: channelName,
+                                  userType: userType,
                                   isModerator: isModerator,
                                   canModerate: canModerate,
                                   isBanned: isBanned,

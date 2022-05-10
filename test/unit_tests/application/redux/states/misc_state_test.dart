@@ -4,8 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:mycarehubpro/application/redux/states/misc_state.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/group_member.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/member.dart';
 import '../../../../mocks/mocks.dart';
 
 void main() {

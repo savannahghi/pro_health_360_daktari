@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../mocks/mocks.dart';
 
