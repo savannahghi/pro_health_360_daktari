@@ -14,6 +14,7 @@ _$_AuthCredentials _$$_AuthCredentialsFromJson(Map<String, dynamic> json) =>
       tokenExpiryTimestamp: json['tokenExpiryTimestamp'] as String?,
       isSignedIn: json['isSignedIn'] as bool?,
       signedInTime: json['signedInTime'] as String?,
+      pushToken: json['pushToken'] as String?,
     );
 
 Map<String, dynamic> _$$_AuthCredentialsToJson(_$_AuthCredentials instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_AuthCredentialsToJson(_$_AuthCredentials instance) =>
       'tokenExpiryTimestamp': instance.tokenExpiryTimestamp,
       'isSignedIn': instance.isSignedIn,
       'signedInTime': instance.signedInTime,
+      'pushToken': instance.pushToken,
     };

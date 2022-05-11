@@ -28,7 +28,8 @@ class _$AuthCredentialsTearOff {
       @JsonKey(name: 'refreshToken') String? refreshToken,
       @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
-      String? signedInTime}) {
+      String? signedInTime,
+      String? pushToken}) {
     return _AuthCredentials(
       idToken: idToken,
       expiresIn: expiresIn,
@@ -36,6 +37,7 @@ class _$AuthCredentialsTearOff {
       tokenExpiryTimestamp: tokenExpiryTimestamp,
       isSignedIn: isSignedIn,
       signedInTime: signedInTime,
+      pushToken: pushToken,
     );
   }
 
@@ -60,6 +62,7 @@ mixin _$AuthCredentials {
       throw _privateConstructorUsedError; // Other supporting fields that are not returned by the backend
   bool? get isSignedIn => throw _privateConstructorUsedError;
   String? get signedInTime => throw _privateConstructorUsedError;
+  String? get pushToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,7 +81,8 @@ abstract class $AuthCredentialsCopyWith<$Res> {
       @JsonKey(name: 'refreshToken') String? refreshToken,
       @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
-      String? signedInTime});
+      String? signedInTime,
+      String? pushToken});
 }
 
 /// @nodoc
@@ -98,6 +102,7 @@ class _$AuthCredentialsCopyWithImpl<$Res>
     Object? tokenExpiryTimestamp = freezed,
     Object? isSignedIn = freezed,
     Object? signedInTime = freezed,
+    Object? pushToken = freezed,
   }) {
     return _then(_value.copyWith(
       idToken: idToken == freezed
@@ -124,6 +129,10 @@ class _$AuthCredentialsCopyWithImpl<$Res>
           ? _value.signedInTime
           : signedInTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pushToken: pushToken == freezed
+          ? _value.pushToken
+          : pushToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -141,7 +150,8 @@ abstract class _$AuthCredentialsCopyWith<$Res>
       @JsonKey(name: 'refreshToken') String? refreshToken,
       @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
-      String? signedInTime});
+      String? signedInTime,
+      String? pushToken});
 }
 
 /// @nodoc
@@ -163,6 +173,7 @@ class __$AuthCredentialsCopyWithImpl<$Res>
     Object? tokenExpiryTimestamp = freezed,
     Object? isSignedIn = freezed,
     Object? signedInTime = freezed,
+    Object? pushToken = freezed,
   }) {
     return _then(_AuthCredentials(
       idToken: idToken == freezed
@@ -189,6 +200,10 @@ class __$AuthCredentialsCopyWithImpl<$Res>
           ? _value.signedInTime
           : signedInTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pushToken: pushToken == freezed
+          ? _value.pushToken
+          : pushToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -202,7 +217,8 @@ class _$_AuthCredentials implements _AuthCredentials {
       @JsonKey(name: 'refreshToken') this.refreshToken,
       @JsonKey(name: 'tokenExpiryTimestamp') this.tokenExpiryTimestamp,
       this.isSignedIn,
-      this.signedInTime});
+      this.signedInTime,
+      this.pushToken});
 
   factory _$_AuthCredentials.fromJson(Map<String, dynamic> json) =>
       _$$_AuthCredentialsFromJson(json);
@@ -223,10 +239,12 @@ class _$_AuthCredentials implements _AuthCredentials {
   final bool? isSignedIn;
   @override
   final String? signedInTime;
+  @override
+  final String? pushToken;
 
   @override
   String toString() {
-    return 'AuthCredentials(idToken: $idToken, expiresIn: $expiresIn, refreshToken: $refreshToken, tokenExpiryTimestamp: $tokenExpiryTimestamp, isSignedIn: $isSignedIn, signedInTime: $signedInTime)';
+    return 'AuthCredentials(idToken: $idToken, expiresIn: $expiresIn, refreshToken: $refreshToken, tokenExpiryTimestamp: $tokenExpiryTimestamp, isSignedIn: $isSignedIn, signedInTime: $signedInTime, pushToken: $pushToken)';
   }
 
   @override
@@ -243,7 +261,8 @@ class _$_AuthCredentials implements _AuthCredentials {
             const DeepCollectionEquality()
                 .equals(other.isSignedIn, isSignedIn) &&
             const DeepCollectionEquality()
-                .equals(other.signedInTime, signedInTime));
+                .equals(other.signedInTime, signedInTime) &&
+            const DeepCollectionEquality().equals(other.pushToken, pushToken));
   }
 
   @override
@@ -254,7 +273,8 @@ class _$_AuthCredentials implements _AuthCredentials {
       const DeepCollectionEquality().hash(refreshToken),
       const DeepCollectionEquality().hash(tokenExpiryTimestamp),
       const DeepCollectionEquality().hash(isSignedIn),
-      const DeepCollectionEquality().hash(signedInTime));
+      const DeepCollectionEquality().hash(signedInTime),
+      const DeepCollectionEquality().hash(pushToken));
 
   @JsonKey(ignore: true)
   @override
@@ -274,7 +294,8 @@ abstract class _AuthCredentials implements AuthCredentials {
       @JsonKey(name: 'refreshToken') String? refreshToken,
       @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
-      String? signedInTime}) = _$_AuthCredentials;
+      String? signedInTime,
+      String? pushToken}) = _$_AuthCredentials;
 
   factory _AuthCredentials.fromJson(Map<String, dynamic> json) =
       _$_AuthCredentials.fromJson;
@@ -295,6 +316,8 @@ abstract class _AuthCredentials implements AuthCredentials {
   bool? get isSignedIn;
   @override
   String? get signedInTime;
+  @override
+  String? get pushToken;
   @override
   @JsonKey(ignore: true)
   _$AuthCredentialsCopyWith<_AuthCredentials> get copyWith =>
