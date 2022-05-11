@@ -28,6 +28,7 @@ class _SurveysSendConfigurationsPageState
     extends State<SurveysSendConfigurationsPage> {
   final ClientConfigurationFormManager _formManager =
       ClientConfigurationFormManager();
+  bool genderAllValue = false;
 
   @override
   void initState() {
@@ -43,8 +44,18 @@ class _SurveysSendConfigurationsPageState
       ageGroups,
       value: (_) => false,
     );
+
+    final Map<Gender, bool> initialGenders = Map<Gender, bool>.fromIterable(
+      Gender.values,
+      value: (_) => false,
+    );
+
+    initialGenders
+        .removeWhere((Gender key, bool value) => key == Gender.unknown);
+
     _formManager.inClientTypes.add(initialClientTypes);
     _formManager.inAgeGroups.add(initialAgeGroups);
+    _formManager.inGender.add(initialGenders);
   }
 
   @override
@@ -112,7 +123,7 @@ class _SurveysSendConfigurationsPageState
                   );
                 },
               ),
-              mediumHorizontalSizedBox,
+              mediumVerticalSizedBox,
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
@@ -144,7 +155,39 @@ class _SurveysSendConfigurationsPageState
                   );
                 },
               ),
-              mediumHorizontalSizedBox,
+              mediumVerticalSizedBox,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    genderText,
+                    style: veryBoldSize16Text(AppColors.lightBlackTextColor),
+                  ),
+                ),
+              ),
+              StreamBuilder<Map<Gender, bool>>(
+                stream: _formManager.gender,
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot<Map<Gender, bool>> snapshot,
+                ) {
+                  final Map<Gender, bool> genders =
+                      snapshot.data ?? <Gender, bool>{};
+
+                  return GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / .4,
+                    ),
+                    children: getGenderCheckBoxes(genders),
+                  );
+                },
+              ),
+              mediumVerticalSizedBox,
               SizedBox(
                 width: double.infinity,
                 child: StreamBuilder<bool>(
@@ -156,17 +199,20 @@ class _SurveysSendConfigurationsPageState
                     final bool hasData =
                         snapshot.hasData && snapshot.data != null;
 
-                    return MyAfyaHubPrimaryButton(
-                      buttonKey: sendSurveyButtonKey,
-                      text: sendSurveyText,
-                      onPressed: hasData && snapshot.data!
-                          ? () => _processAndNavigate()
-                          : null,
+                    return SizedBox(
+                      height: 48,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: sendSurveyButtonKey,
+                        text: sendSurveyText,
+                        onPressed: hasData && snapshot.data!
+                            ? () => _processAndNavigate()
+                            : null,
+                      ),
                     );
                   },
                 ),
               ),
-              largeHorizontalSizedBox,
+              largeVerticalSizedBox,
             ],
           ),
         ),
@@ -224,6 +270,58 @@ class _SurveysSendConfigurationsPageState
           onChanged: (_) {
             ageGroupsCopy[key] = !value;
             _formManager.inAgeGroups.add(ageGroupsCopy);
+          },
+        ),
+      );
+    });
+
+    return result;
+  }
+
+  List<Widget> getGenderCheckBoxes(Map<Gender, bool> genders) {
+    final List<Widget> result = <Widget>[];
+    final Map<Gender, bool> gendersCopy = genders;
+
+    result.add(
+      CheckboxListTile(
+        key: const ValueKey<String>(allText),
+        activeColor: AppColors.primaryColor,
+        title: const Text(
+          allText,
+          style: TextStyle(color: AppColors.grey50),
+        ),
+        value: genderAllValue,
+        onChanged: (_) {
+          setState(() {
+            genderAllValue = !genderAllValue;
+          });
+          if (genderAllValue) {
+            gendersCopy.forEach((Gender key, bool value) {
+              gendersCopy[key] = true;
+            });
+          } else {
+            gendersCopy.forEach((Gender key, bool value) {
+              gendersCopy[key] = false;
+            });
+          }
+          _formManager.inGender.add(gendersCopy);
+        },
+      ),
+    );
+
+    gendersCopy.forEach((Gender key, bool value) {
+      result.add(
+        CheckboxListTile(
+          key: ValueKey<String>(key.name),
+          activeColor: AppColors.primaryColor,
+          title: Text(
+            key.name.toUpperCase(),
+            style: const TextStyle(color: AppColors.grey50),
+          ),
+          value: value,
+          onChanged: (_) {
+            gendersCopy[key] = !value;
+            _formManager.inGender.add(gendersCopy);
           },
         ),
       );

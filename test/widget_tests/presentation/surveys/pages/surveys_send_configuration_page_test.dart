@@ -1,5 +1,6 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -58,6 +59,23 @@ void main() {
       await tester.ensureVisible(ageGroupFinder);
       expect(ageGroupFinder, findsOneWidget);
       await tester.tap(ageGroupFinder);
+      await tester.pumpAndSettle();
+
+      final Finder allGenderFinder =
+          find.byKey(const ValueKey<String>(allText));
+      await tester.ensureVisible(allGenderFinder);
+      expect(allGenderFinder, findsOneWidget);
+      await tester.tap(allGenderFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(allGenderFinder);
+      await tester.pumpAndSettle();
+
+      final Finder maleGenderFinder =
+          find.text(Gender.female.name.toUpperCase());
+      await tester.ensureVisible(maleGenderFinder);
+      expect(maleGenderFinder, findsOneWidget);
+      await tester.tap(maleGenderFinder);
       await tester.pumpAndSettle();
 
       final Finder submitSurveyFinder = find.byKey(sendSurveyButtonKey);
