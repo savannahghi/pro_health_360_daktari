@@ -201,6 +201,8 @@ const String tapToSendToAllClientsString =
     'Tap the button below if you wish to send your survey to all clients on myCareHub';
 const String clientTypeText = 'Client Type';
 const String ageGroupText = 'Age Group';
+const String genderText = 'Gender';
+const String allText = 'ALL';
 const String sendSurveyText = 'Send Survey';
 const String surveySentText = 'Survey sent';
 const String surveySentDescriptionText =

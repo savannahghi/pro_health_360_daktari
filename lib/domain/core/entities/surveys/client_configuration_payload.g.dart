@@ -15,6 +15,9 @@ _$_ClientConfigurationPayload _$$_ClientConfigurationPayloadFromJson(
       ageGroups: (json['ageGroups'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      gender: (json['gender'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$GenderEnumMap, e))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ClientConfigurationPayloadToJson(
@@ -23,6 +26,7 @@ Map<String, dynamic> _$$_ClientConfigurationPayloadToJson(
       'clientTypes':
           instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]).toList(),
       'ageGroups': instance.ageGroups,
+      'gender': instance.gender?.map((e) => _$GenderEnumMap[e]).toList(),
     };
 
 const _$ClientTypeEnumMap = {
@@ -35,4 +39,11 @@ const _$ClientTypeEnumMap = {
   ClientType.HIGH_RISK: 'HIGH_RISK',
   ClientType.SPOUSES: 'SPOUSES',
   ClientType.YOUTH: 'YOUTH',
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'male',
+  Gender.female: 'female',
+  Gender.other: 'other',
+  Gender.unknown: 'unknown',
 };
