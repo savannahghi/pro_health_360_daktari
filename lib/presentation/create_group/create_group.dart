@@ -10,13 +10,14 @@ import 'package:mycarehubpro/application/redux/actions/create_group/create_group
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/create_group/create_group_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/core/widgets/age_group_slider.dart';
 import 'package:mycarehubpro/presentation/create_group/create_group_form_manager.dart';
-import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -183,34 +184,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             builder: (_, AsyncSnapshot<RangeValues> snapshot) {
                               final RangeValues? data = snapshot.data;
 
-                              final String lowerAge = data?.start.toString() ??
-                                  minimumAge.toString();
-
-                              final String higherAge =
-                                  data?.end.toString() ?? maximumAge.toString();
-
-                              return Row(
-                                children: <Widget>[
-                                  Text(lowerAge),
-                                  Expanded(
-                                    child: RangeSlider(
-                                      key: ageRangeSlider,
-                                      values: data ??
-                                          const RangeValues(
-                                            minimumAge,
-                                            maximumAge,
-                                          ),
-                                      min: minimumAge,
-                                      max: maximumAge,
-                                      divisions: 11,
-                                      labels: RangeLabels(lowerAge, higherAge),
-                                      onChanged: (RangeValues values) {
-                                        _formManager.inAgeRange.add(values);
-                                      },
-                                    ),
-                                  ),
-                                  Text(higherAge)
-                                ],
+                              return AgeGroupSlider(
+                                data: data,
+                                onChanged: (RangeValues values) {
+                                  _formManager.inAgeRange.add(values);
+                                },
                               );
                             },
                           ),

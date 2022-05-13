@@ -191,3 +191,18 @@ mutation setPushToken($token: String!){
   setPushToken(token: $token)
 }
 ''';
+
+const String sendClientSurveyLinksMutation = r'''
+mutation sendClientSurveyLinks(
+  $facilityID: String!, 
+  $formID: String!, 
+  $projectID: Int!, 
+  $filterParams: FilterParams ){
+  sendClientSurveyLinks(
+    facilityID: $facilityID,
+    formID: $formID,
+    projectID: $projectID,
+    filterParams: $filterParams
+    )
+}
+''';

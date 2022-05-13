@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/core/widgets/age_group_slider.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/client_configuration_form_manager.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
@@ -40,11 +41,6 @@ class _SurveysSendConfigurationsPageState
       value: (_) => false,
     );
 
-    final Map<String, bool> initialAgeGroups = Map<String, bool>.fromIterable(
-      ageGroups,
-      value: (_) => false,
-    );
-
     final Map<Gender, bool> initialGenders = Map<Gender, bool>.fromIterable(
       Gender.values,
       value: (_) => false,
@@ -54,7 +50,6 @@ class _SurveysSendConfigurationsPageState
         .removeWhere((Gender key, bool value) => key == Gender.unknown);
 
     _formManager.inClientTypes.add(initialClientTypes);
-    _formManager.inAgeGroups.add(initialAgeGroups);
     _formManager.inGender.add(initialGenders);
   }
 
@@ -134,26 +129,24 @@ class _SurveysSendConfigurationsPageState
                   ),
                 ),
               ),
-              StreamBuilder<Map<String, bool>>(
-                stream: _formManager.ageGroups,
-                builder: (
-                  BuildContext context,
-                  AsyncSnapshot<Map<String, bool>> snapshot,
-                ) {
-                  final Map<String, bool> ageGroups =
-                      snapshot.data ?? <String, bool>{};
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: StreamBuilder<RangeValues>(
+                    stream: _formManager.ageRange,
+                    builder: (_, AsyncSnapshot<RangeValues> snapshot) {
+                      final RangeValues? data = snapshot.data;
 
-                  return GridView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1 / .4,
-                    ),
-                    children: getAgeGroupCheckBoxes(ageGroups),
-                  );
-                },
+                      return AgeGroupSlider(
+                        data: data,
+                        onChanged: (RangeValues values) {
+                          _formManager.inAgeRange.add(values);
+                        },
+                      );
+                    },
+                  ),
+                ),
               ),
               mediumVerticalSizedBox,
               Align(
@@ -252,31 +245,6 @@ class _SurveysSendConfigurationsPageState
     '20 - 22 yrs',
     '22 - 24 yrs'
   ];
-
-  List<Widget> getAgeGroupCheckBoxes(Map<String, bool> ageGroups) {
-    final List<Widget> result = <Widget>[];
-    final Map<String, bool> ageGroupsCopy = ageGroups;
-
-    ageGroups.forEach((String key, bool value) {
-      result.add(
-        CheckboxListTile(
-          key: ValueKey<String>(key),
-          activeColor: AppColors.primaryColor,
-          title: Text(
-            key,
-            style: const TextStyle(color: AppColors.grey50),
-          ),
-          value: value,
-          onChanged: (_) {
-            ageGroupsCopy[key] = !value;
-            _formManager.inAgeGroups.add(ageGroupsCopy);
-          },
-        ),
-      );
-    });
-
-    return result;
-  }
 
   List<Widget> getGenderCheckBoxes(Map<Gender, bool> genders) {
     final List<Widget> result = <Widget>[];
