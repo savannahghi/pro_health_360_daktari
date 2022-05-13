@@ -25,11 +25,11 @@ class _$ClientConfigurationPayloadTearOff {
 
   _ClientConfigurationPayload call(
       {@JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'ageGroups') List<String>? ageGroups,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
       @JsonKey(name: 'gender') List<Gender>? gender}) {
     return _ClientConfigurationPayload(
       clientTypes: clientTypes,
-      ageGroups: ageGroups,
+      ageRange: ageRange,
       gender: gender,
     );
   }
@@ -46,8 +46,8 @@ const $ClientConfigurationPayload = _$ClientConfigurationPayloadTearOff();
 mixin _$ClientConfigurationPayload {
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ageGroups')
-  List<String>? get ageGroups => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ageRange')
+  AgeRange? get ageRange => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
   List<Gender>? get gender => throw _privateConstructorUsedError;
 
@@ -64,8 +64,10 @@ abstract class $ClientConfigurationPayloadCopyWith<$Res> {
       _$ClientConfigurationPayloadCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'ageGroups') List<String>? ageGroups,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
       @JsonKey(name: 'gender') List<Gender>? gender});
+
+  $AgeRangeCopyWith<$Res>? get ageRange;
 }
 
 /// @nodoc
@@ -80,7 +82,7 @@ class _$ClientConfigurationPayloadCopyWithImpl<$Res>
   @override
   $Res call({
     Object? clientTypes = freezed,
-    Object? ageGroups = freezed,
+    Object? ageRange = freezed,
     Object? gender = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,15 +90,26 @@ class _$ClientConfigurationPayloadCopyWithImpl<$Res>
           ? _value.clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      ageGroups: ageGroups == freezed
-          ? _value.ageGroups
-          : ageGroups // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      ageRange: ageRange == freezed
+          ? _value.ageRange
+          : ageRange // ignore: cast_nullable_to_non_nullable
+              as AgeRange?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as List<Gender>?,
     ));
+  }
+
+  @override
+  $AgeRangeCopyWith<$Res>? get ageRange {
+    if (_value.ageRange == null) {
+      return null;
+    }
+
+    return $AgeRangeCopyWith<$Res>(_value.ageRange!, (value) {
+      return _then(_value.copyWith(ageRange: value));
+    });
   }
 }
 
@@ -110,8 +123,11 @@ abstract class _$ClientConfigurationPayloadCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'ageGroups') List<String>? ageGroups,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
       @JsonKey(name: 'gender') List<Gender>? gender});
+
+  @override
+  $AgeRangeCopyWith<$Res>? get ageRange;
 }
 
 /// @nodoc
@@ -129,7 +145,7 @@ class __$ClientConfigurationPayloadCopyWithImpl<$Res>
   @override
   $Res call({
     Object? clientTypes = freezed,
-    Object? ageGroups = freezed,
+    Object? ageRange = freezed,
     Object? gender = freezed,
   }) {
     return _then(_ClientConfigurationPayload(
@@ -137,10 +153,10 @@ class __$ClientConfigurationPayloadCopyWithImpl<$Res>
           ? _value.clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      ageGroups: ageGroups == freezed
-          ? _value.ageGroups
-          : ageGroups // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      ageRange: ageRange == freezed
+          ? _value.ageRange
+          : ageRange // ignore: cast_nullable_to_non_nullable
+              as AgeRange?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -154,7 +170,7 @@ class __$ClientConfigurationPayloadCopyWithImpl<$Res>
 class _$_ClientConfigurationPayload implements _ClientConfigurationPayload {
   _$_ClientConfigurationPayload(
       {@JsonKey(name: 'clientTypes') this.clientTypes,
-      @JsonKey(name: 'ageGroups') this.ageGroups,
+      @JsonKey(name: 'ageRange') this.ageRange,
       @JsonKey(name: 'gender') this.gender});
 
   factory _$_ClientConfigurationPayload.fromJson(Map<String, dynamic> json) =>
@@ -164,15 +180,15 @@ class _$_ClientConfigurationPayload implements _ClientConfigurationPayload {
   @JsonKey(name: 'clientTypes')
   final List<ClientType>? clientTypes;
   @override
-  @JsonKey(name: 'ageGroups')
-  final List<String>? ageGroups;
+  @JsonKey(name: 'ageRange')
+  final AgeRange? ageRange;
   @override
   @JsonKey(name: 'gender')
   final List<Gender>? gender;
 
   @override
   String toString() {
-    return 'ClientConfigurationPayload(clientTypes: $clientTypes, ageGroups: $ageGroups, gender: $gender)';
+    return 'ClientConfigurationPayload(clientTypes: $clientTypes, ageRange: $ageRange, gender: $gender)';
   }
 
   @override
@@ -182,7 +198,7 @@ class _$_ClientConfigurationPayload implements _ClientConfigurationPayload {
             other is _ClientConfigurationPayload &&
             const DeepCollectionEquality()
                 .equals(other.clientTypes, clientTypes) &&
-            const DeepCollectionEquality().equals(other.ageGroups, ageGroups) &&
+            const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
             const DeepCollectionEquality().equals(other.gender, gender));
   }
 
@@ -190,7 +206,7 @@ class _$_ClientConfigurationPayload implements _ClientConfigurationPayload {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(clientTypes),
-      const DeepCollectionEquality().hash(ageGroups),
+      const DeepCollectionEquality().hash(ageRange),
       const DeepCollectionEquality().hash(gender));
 
   @JsonKey(ignore: true)
@@ -209,7 +225,7 @@ abstract class _ClientConfigurationPayload
     implements ClientConfigurationPayload {
   factory _ClientConfigurationPayload(
           {@JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-          @JsonKey(name: 'ageGroups') List<String>? ageGroups,
+          @JsonKey(name: 'ageRange') AgeRange? ageRange,
           @JsonKey(name: 'gender') List<Gender>? gender}) =
       _$_ClientConfigurationPayload;
 
@@ -220,8 +236,8 @@ abstract class _ClientConfigurationPayload
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes;
   @override
-  @JsonKey(name: 'ageGroups')
-  List<String>? get ageGroups;
+  @JsonKey(name: 'ageRange')
+  AgeRange? get ageRange;
   @override
   @JsonKey(name: 'gender')
   List<Gender>? get gender;

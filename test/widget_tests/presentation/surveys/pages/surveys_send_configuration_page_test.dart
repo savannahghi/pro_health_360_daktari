@@ -54,11 +54,13 @@ void main() {
       await tester.tap(clientTypeFinder);
       await tester.pumpAndSettle();
 
-      final Finder ageGroupFinder =
-          find.byKey(const ValueKey<String>('14 - 16 yrs'));
-      await tester.ensureVisible(ageGroupFinder);
-      expect(ageGroupFinder, findsOneWidget);
-      await tester.tap(ageGroupFinder);
+      final Finder ageRangeSliderFinder = find.byKey(ageRangeSlider);
+      final RangeSlider rangeSlider =
+          ageRangeSliderFinder.evaluate().first.widget as RangeSlider;
+
+      rangeSlider.onChanged?.call(const RangeValues(16, 25));
+      await tester.ensureVisible(ageRangeSliderFinder);
+      await tester.tap(ageRangeSliderFinder);
       await tester.pumpAndSettle();
 
       final Finder allGenderFinder =
