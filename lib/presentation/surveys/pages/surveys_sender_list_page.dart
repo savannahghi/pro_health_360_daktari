@@ -47,18 +47,10 @@ class SurveysSenderListPage extends StatelessWidget {
               SurveysCard(
                 title: clients,
                 message: sendToClientsString,
-                onTapCard: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.surveysSendConfigurationsPage),
-              ),
-              mediumVerticalSizedBox,
-              SurveysCard(
-                title: staffMembers,
-                message: sendToAllStaffMembersString,
                 buttonKey: sendToAllButtonKey,
-                buttonText: sendToAllStaffString,
-                onPressButton: () => ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text(comingSoonText)),
-                ),
+                buttonText: sendToAllClientsString,
+                onPressButton: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.surveysSendConfigurationsPage),
               ),
             ],
           ),
