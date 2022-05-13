@@ -26,6 +26,7 @@ class _$MiscStateTearOff {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
+      ListContentCategory? categoriesList,
       List<Member>? communityMembers,
       GroupState? groupState,
       SearchUserResponseState? searchUserResponseState,
@@ -35,6 +36,7 @@ class _$MiscStateTearOff {
       initialRoute: initialRoute,
       error: error,
       profileFAQsContentState: profileFAQsContentState,
+      categoriesList: categoriesList,
       communityMembers: communityMembers,
       groupState: groupState,
       searchUserResponseState: searchUserResponseState,
@@ -57,6 +59,7 @@ mixin _$MiscState {
   String? get error => throw _privateConstructorUsedError;
   FAQsContentState? get profileFAQsContentState =>
       throw _privateConstructorUsedError;
+  ListContentCategory? get categoriesList => throw _privateConstructorUsedError;
   List<Member>? get communityMembers => throw _privateConstructorUsedError;
   GroupState? get groupState => throw _privateConstructorUsedError;
   SearchUserResponseState? get searchUserResponseState =>
@@ -78,6 +81,7 @@ abstract class $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
+      ListContentCategory? categoriesList,
       List<Member>? communityMembers,
       GroupState? groupState,
       SearchUserResponseState? searchUserResponseState,
@@ -85,6 +89,7 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? resumeWithPin});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  $ListContentCategoryCopyWith<$Res>? get categoriesList;
   $GroupStateCopyWith<$Res>? get groupState;
   $SearchUserResponseStateCopyWith<$Res>? get searchUserResponseState;
 }
@@ -102,6 +107,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? initialRoute = freezed,
     Object? error = freezed,
     Object? profileFAQsContentState = freezed,
+    Object? categoriesList = freezed,
     Object? communityMembers = freezed,
     Object? groupState = freezed,
     Object? searchUserResponseState = freezed,
@@ -121,6 +127,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
+      categoriesList: categoriesList == freezed
+          ? _value.categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as ListContentCategory?,
       communityMembers: communityMembers == freezed
           ? _value.communityMembers
           : communityMembers // ignore: cast_nullable_to_non_nullable
@@ -153,6 +163,17 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     return $FAQsContentStateCopyWith<$Res>(_value.profileFAQsContentState!,
         (value) {
       return _then(_value.copyWith(profileFAQsContentState: value));
+    });
+  }
+
+  @override
+  $ListContentCategoryCopyWith<$Res>? get categoriesList {
+    if (_value.categoriesList == null) {
+      return null;
+    }
+
+    return $ListContentCategoryCopyWith<$Res>(_value.categoriesList!, (value) {
+      return _then(_value.copyWith(categoriesList: value));
     });
   }
 
@@ -190,6 +211,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
+      ListContentCategory? categoriesList,
       List<Member>? communityMembers,
       GroupState? groupState,
       SearchUserResponseState? searchUserResponseState,
@@ -198,6 +220,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  @override
+  $ListContentCategoryCopyWith<$Res>? get categoriesList;
   @override
   $GroupStateCopyWith<$Res>? get groupState;
   @override
@@ -218,6 +242,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? initialRoute = freezed,
     Object? error = freezed,
     Object? profileFAQsContentState = freezed,
+    Object? categoriesList = freezed,
     Object? communityMembers = freezed,
     Object? groupState = freezed,
     Object? searchUserResponseState = freezed,
@@ -237,6 +262,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
+      categoriesList: categoriesList == freezed
+          ? _value.categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as ListContentCategory?,
       communityMembers: communityMembers == freezed
           ? _value.communityMembers
           : communityMembers // ignore: cast_nullable_to_non_nullable
@@ -268,6 +297,7 @@ class _$_MiscState implements _MiscState {
       {this.initialRoute,
       this.error,
       this.profileFAQsContentState,
+      this.categoriesList,
       this.communityMembers,
       this.groupState,
       this.searchUserResponseState,
@@ -284,6 +314,8 @@ class _$_MiscState implements _MiscState {
   @override
   final FAQsContentState? profileFAQsContentState;
   @override
+  final ListContentCategory? categoriesList;
+  @override
   final List<Member>? communityMembers;
   @override
   final GroupState? groupState;
@@ -296,7 +328,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, communityMembers: $communityMembers, groupState: $groupState, searchUserResponseState: $searchUserResponseState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin)';
+    return 'MiscState(initialRoute: $initialRoute, error: $error, profileFAQsContentState: $profileFAQsContentState, categoriesList: $categoriesList, communityMembers: $communityMembers, groupState: $groupState, searchUserResponseState: $searchUserResponseState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin)';
   }
 
   @override
@@ -309,6 +341,8 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality().equals(
                 other.profileFAQsContentState, profileFAQsContentState) &&
+            const DeepCollectionEquality()
+                .equals(other.categoriesList, categoriesList) &&
             const DeepCollectionEquality()
                 .equals(other.communityMembers, communityMembers) &&
             const DeepCollectionEquality()
@@ -327,6 +361,7 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(initialRoute),
       const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(profileFAQsContentState),
+      const DeepCollectionEquality().hash(categoriesList),
       const DeepCollectionEquality().hash(communityMembers),
       const DeepCollectionEquality().hash(groupState),
       const DeepCollectionEquality().hash(searchUserResponseState),
@@ -349,6 +384,7 @@ abstract class _MiscState implements MiscState {
       {String? initialRoute,
       String? error,
       FAQsContentState? profileFAQsContentState,
+      ListContentCategory? categoriesList,
       List<Member>? communityMembers,
       GroupState? groupState,
       SearchUserResponseState? searchUserResponseState,
@@ -364,6 +400,8 @@ abstract class _MiscState implements MiscState {
   String? get error;
   @override
   FAQsContentState? get profileFAQsContentState;
+  @override
+  ListContentCategory? get categoriesList;
   @override
   List<Member>? get communityMembers;
   @override

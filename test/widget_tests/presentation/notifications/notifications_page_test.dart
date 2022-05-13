@@ -1,7 +1,7 @@
 // Package imports:
 import 'dart:convert';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +10,7 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/notifications/notification_list_item.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 
 import '../../../mocks/mocks.dart';
@@ -21,6 +22,7 @@ void main() {
 
     setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+
       setupFirebaseMessagingMocks();
       await Firebase.initializeApp();
     });
@@ -36,7 +38,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(NotificationListItem), findsNWidgets(3));
+      expect(find.byType(NotificationListItem), findsNWidgets(2));
     });
 
     testWidgets(
@@ -66,7 +68,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(GenericErrorWidget), findsOneWidget);
+      expect(find.byType(core.GenericErrorWidget), findsOneWidget);
 
       await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
       await tester.tap(find.byKey(helpNoDataWidgetKey));
@@ -86,7 +88,7 @@ void main() {
         widget: NotificationsPage(),
       );
 
-      expect(find.byType(PlatformLoader), findsOneWidget);
+      expect(find.byType(core.PlatformLoader), findsOneWidget);
     });
   });
 }

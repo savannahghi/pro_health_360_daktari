@@ -75,7 +75,7 @@ class UserProfilePage extends StatelessWidget {
                   ),
                   UserProfileItem(
                     iconPath: faqsIconSvgPath,
-                    title: faqsString,
+                    title: faqsText,
                     itemBackgroundColor: AppColors.profileListCardColor,
                     onTap: () =>
                         Navigator.pushNamed(context, AppRoutes.profileFaqsPage),

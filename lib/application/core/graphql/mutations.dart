@@ -206,3 +206,9 @@ mutation sendClientSurveyLinks(
     )
 }
 ''';
+
+const String readNotificationsMutation = r'''
+mutation readNotifications($ids: [ID!]!){
+  readNotifications(ids: $ids)
+}
+''';

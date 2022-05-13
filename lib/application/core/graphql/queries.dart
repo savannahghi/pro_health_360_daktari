@@ -84,19 +84,6 @@ query getPendingServiceRequestsCount($facilityID: String!){
 }
 ''';
 
-const String getFAQContentQuery = r'''
-query getFAQContent($flavour: Flavour!, $limit: Int!){
-  getFAQContent(flavour: $flavour, limit: $limit ){
-    ID
-    Active
-    Title
-    Description
-    Body
-    Flavour
-  }
-}
-''';
-
 const String listMembersQuery = r'''
 query listMembers($input: QueryOption){
   listMembers(input: $input){
@@ -306,6 +293,85 @@ query listSurveys($projectID: Int!) {
   listSurveys(projectID: $projectID) {
     projectId
     name
+  }
+}
+''';
+
+const String getCategoriesQuery = '''
+query listContentCategories{
+  listContentCategories{
+   id
+   name
+   iconUrl
+  }
+}
+''';
+
+
+const String getContentQuery = r'''
+query getContent($categoryID: Int, $Limit: String!){
+  getContent(categoryID: $categoryID, Limit: $Limit) {
+    meta{
+      totalCount
+    }
+    items {
+      ID
+      title
+      date
+      intro
+      authorName
+      tagNames
+      meta{
+        contentType
+        slug
+        showInMenus
+        seoTitle
+        searchDescription
+        firstPublishedAt
+        locale
+      }
+      itemType
+      timeEstimateSeconds
+      body
+      heroImageRendition{
+        url
+        width
+        height
+        alt
+      }
+      documents {
+        ID
+        Document {
+          ID
+          title
+          meta {
+            documentDetailUrl
+            documentDownloadUrl
+          }
+        }
+      }
+      featuredMedia{
+        ID
+        url
+        title
+        type
+        duration
+        width
+        height
+        thumbnail
+        duration
+      }
+      galleryImages{
+        ID
+        image{
+          ID
+          title
+          meta{
+            imageDownloadUrl
+          }
+        }
+      }
+    }
   }
 }
 ''';

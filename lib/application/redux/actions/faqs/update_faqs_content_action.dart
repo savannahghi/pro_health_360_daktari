@@ -1,17 +1,24 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/misc_state.dart';
 
 class UpdateFAQsContentAction extends ReduxAction<AppState> {
   UpdateFAQsContentAction({
     this.profileFAQs,
     this.errorFetchingFAQs,
     this.timeoutFetchingFAQs,
+    this.errorFetchingContentCategories,
+    this.timeoutFetchingContentCategories,
+    this.contentCategories,
   });
 
-  final List<FAQContent?>? profileFAQs;
+  final List<Content?>? profileFAQs;
   final bool? errorFetchingFAQs;
   final bool? timeoutFetchingFAQs;
+  final List<ContentCategory?>? contentCategories;
+  final bool? errorFetchingContentCategories;
+  final bool? timeoutFetchingContentCategories;
 
   @override
   AppState reduce() {
@@ -24,11 +31,19 @@ class UpdateFAQsContentAction extends ReduxAction<AppState> {
       timeoutFetchingFAQs: timeoutFetchingFAQs ??
           state.miscState?.profileFAQsContentState?.timeoutFetchingFAQs,
     );
-
-    return state.copyWith(
-      miscState: state.miscState?.copyWith(
-        profileFAQsContentState: newFAQsContentState,
+    final MiscState? miscState = state.miscState?.copyWith(
+      categoriesList: state.miscState?.categoriesList?.copyWith(
+        errorFetchingContentCategories: errorFetchingContentCategories ??
+            state.miscState?.categoriesList?.errorFetchingContentCategories,
+        timeoutFetchingContentCategories: timeoutFetchingContentCategories ??
+            state.miscState?.categoriesList?.timeoutFetchingContentCategories,
+        contentCategories: contentCategories ??
+            state.miscState?.categoriesList?.contentCategories,
       ),
+      profileFAQsContentState: newFAQsContentState,
+    );
+    return state.copyWith(
+      miscState: miscState,
     );
   }
 }

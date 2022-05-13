@@ -424,12 +424,16 @@ String getResolvedServiceRequestsListBodyString(Flavour flavour) {
 
 const String resolvedServiceRequestsBodyString =
     'Select the type of service requests you want to view';
-const String faqsString = 'FAQs';
+
 const String settingsString = 'Settings';
 const String genericVerifyPhoneNumber = 'Verify Phone number';
-const String noFAQsTitle = 'No FAQs are available';
+
+// profile FAQs
+const String faqsText = 'FAQs';
+const String noFAQsTitle = 'No FAQs available';
 const String noFAQsDescription =
     'No worries though, check back in later and we will have them ready for you';
+const String fetchingFAQsSting = 'fetching FAQs';
 
 // contact admin
 const String contactAdmin = 'Contact Admin';
@@ -797,3 +801,9 @@ const String happyString = 'Happy';
 const String neutralString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
+
+const String pdfText = 'PDF';
+const String newText = 'New';
+
+const String galleryImagesTitle = 'Gallery Images';
+const String datePublishedString = 'Published on ';

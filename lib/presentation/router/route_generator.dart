@@ -30,7 +30,9 @@ import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_p
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/pages/faq_detail_view_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/content_details_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/document_content_widget.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/gallery_images_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
@@ -219,9 +221,9 @@ class RouteGenerator {
           builder: (_) => const ContactAdminPage(),
         );
 
-      case AppRoutes.faqDetailViewPage:
-        return MaterialPageRoute<FAQDetailViewPage>(
-          builder: (_) => FAQDetailViewPage(payload: args as FAQContent),
+      case AppRoutes.contentDetailsPage:
+        return MaterialPageRoute<ContentDetailPage>(
+          builder: (_) => ContentDetailPage(payload: args as ContentDetails),
         );
 
       case AppRoutes.profileFaqsPage:
@@ -318,6 +320,23 @@ class RouteGenerator {
         return MaterialPageRoute<ResolvedServiceRequestsListPage>(
           builder: (_) => ResolvedServiceRequestsListPage(
             flavour: args as Flavour,
+          ),
+        );
+
+      case AppRoutes.viewDocumentPage:
+        final String pdfTitle = args['pdfTitle'] as String;
+        final String pdfUrl = args['pdfUrl'] as String;
+
+        return MaterialPageRoute<DocumentContentPage>(
+          builder: (_) => DocumentContentPage(
+            pdfTitle: pdfTitle,
+            pdfUrl: pdfUrl,
+          ),
+        );
+      case AppRoutes.galleryImagesPage:
+        return MaterialPageRoute<ContentDetailPage>(
+          builder: (_) => GalleryImagesPage(
+            images: args as List<GalleryImage>,
           ),
         );
 

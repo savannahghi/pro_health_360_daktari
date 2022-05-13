@@ -144,7 +144,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                     false;
 
                                 final String userType =
-                                    currentMember.userType ?? '';
+                                    currentMember.userType?.name ?? '';
 
                                 return GroupMemberConnector(
                                   itemKey: ValueKey<int>(index),

@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:mycarehubpro/application/core/services/video_player_initializer.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -17,6 +19,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
+import 'package:video_player/video_player.dart';
 
 ClientType clientTypeFromJson(String? clientString) {
   if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {
@@ -41,18 +44,6 @@ String roleToString(String role) {
   return capitalizeFirst(role.split('_').join(' '));
 }
 
-String getNotificationIcon(NotificationType type) {
-  switch (type) {
-    case NotificationType.APPOINTMENT:
-      return appointmentIcon;
-    case NotificationType.COMMUNITIES:
-      return communityIconSvgPath;
-    case NotificationType.SERVICE_REQUEST:
-      return clientProfileIcon;
-    case NotificationType.UNKNOWN:
-      return notificationIconSvgPath;
-  }
-}
 
 /// checks where user has reached in their onboarding and returns the
 /// appropriate route
@@ -452,4 +443,30 @@ bool resumeWithPIN(AppState appState) {
   return isSignedIn &&
       navConfig.nextRoute.compareTo(AppRoutes.homePage) == 0 &&
       timeDifference > 1;
+}
+
+Future<ChewieController> initializeChewieController({
+  required String dataSource,
+}) {
+  return VideoPlayerInitializer().initializePlayer(
+    videoPlayerController: VideoPlayerController.network(dataSource),
+    autoPlay: false,
+  );
+}
+
+NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.COMMUNITIES:
+      return NotificationActionInfo(
+        actionTitle: 'View Communities',
+        route: AppRoutes.communityPage,
+      );
+    case NotificationType.SERVICE_REQUEST:
+      return NotificationActionInfo(
+        actionTitle: 'View Service requests',
+        route: AppRoutes.serviceRequestsPage,
+      );
+    default:
+      return NotificationActionInfo(actionTitle: null, route: null);
+  }
 }

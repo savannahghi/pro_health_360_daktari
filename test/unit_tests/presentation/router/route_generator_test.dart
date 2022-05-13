@@ -31,6 +31,7 @@ import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_p
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/document_content_widget.dart';
 import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
 import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
@@ -532,5 +533,20 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
     expect(route?.builder(context), isA<ResumePinConnector>());
+  });
+  test('Test router returns  Document page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.viewDocumentPage,
+      arguments: <String, dynamic>{
+        'pdfUrl': 'http://www.africau.edu/images/default/sample.pdf',
+        'pdfTitle': 'Sample PDF',
+      },
+    );
+
+    final MaterialPageRoute<DocumentContentPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<DocumentContentPage>?;
+
+    expect(route, isA<MaterialPageRoute<DocumentContentPage>>());
+    expect(route?.builder(context), isA<DocumentContentPage>());
   });
 }

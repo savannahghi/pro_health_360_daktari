@@ -6,33 +6,33 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
+import 'package:mycarehubpro/application/redux/actions/faqs/fetch_content_categories_action.dart';
 import 'package:mycarehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-// Project imports:
 
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
-    required this.context,
-    this.limit = 10,
+    required this.client,
   });
 
-  final BuildContext context;
-  final int limit;
+  final IGraphQlClient client;
 
   @override
   void before() {
     dispatch(WaitAction<AppState>.add(getFAQsFlag));
+    dispatch(
+      UpdateFAQsContentAction(
+        errorFetchingFAQs: false,
+        timeoutFetchingFAQs: false,
+      ),
+    );
+    dispatch(FetchContentCategoriesAction(client: client));
     super.before();
   }
 
@@ -44,46 +44,59 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final int? faqCategoryId =
+        state.miscState?.categoriesList?.contentCategories
+            ?.firstWhere(
+              (ContentCategory? contentCategory) =>
+                  contentCategory?.name == 'pro-faqs',
+              orElse: () => ContentCategory.initial().copyWith(id: -1),
+            )
+            ?.id;
 
-    final http.Response result =
-        await _client.query(getFAQContentQuery, <String, dynamic>{
-      'flavour': Flavour.pro.name,
-      'limit': limit,
-    });
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'categoryID': faqCategoryId,
+      'Limit': '20',
+    };
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final http.Response result = await client.query(
+      getContentQuery,
+      variables,
+    );
 
-    final String? errors = _client.parseError(body);
+    final Map<String, dynamic> body = client.toMap(result);
 
-    if (errors != null) {
-      Sentry.captureException(
-        UserException(errors),
-      );
+    final String? error = parseError(body);
 
-      throw const UserException(somethingWentWrongText);
+    if (error != null) {
+      if (error == 'timeout') {
+        dispatch(UpdateFAQsContentAction(timeoutFetchingFAQs: true));
+        return null;
+      }
+
+      dispatch(UpdateFAQsContentAction(errorFetchingFAQs: true));
+      return null;
     }
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    final FAQContentResponse profileFAQsData = FAQContentResponse.fromJson(
+    final FeedContent profileFAQsData = FeedContent.fromJson(
       responseMap['data'] as Map<String, dynamic>,
     );
 
-    if (profileFAQsData.profileFAQsContent != null) {
-      final List<FAQContent>? items = profileFAQsData.profileFAQsContent;
+    if (profileFAQsData.feedContent != null) {
+      final List<Content>? items = profileFAQsData.feedContent?.items;
 
       if (items != null && items.isNotEmpty) {
         dispatch(
           UpdateFAQsContentAction(
-            profileFAQs: profileFAQsData.profileFAQsContent,
+            profileFAQs: items,
           ),
         );
       } else {
         dispatch(
           UpdateFAQsContentAction(
-            profileFAQs: <FAQContent>[],
+            profileFAQs: <Content>[],
             errorFetchingFAQs: false,
             timeoutFetchingFAQs: false,
           ),

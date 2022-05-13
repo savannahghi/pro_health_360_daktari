@@ -109,7 +109,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(faqsString));
+      await tester.tap(find.text(faqsText));
       await tester.pumpAndSettle(const Duration(seconds: 1));
       expect(find.byType(ProfileFaqsPage), findsWidgets);
     });

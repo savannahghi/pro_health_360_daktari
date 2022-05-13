@@ -4,7 +4,6 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/core/bottom_nav_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -18,6 +17,9 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
+import 'package:mycarehubpro/presentation/notifications/notification_list_item.dart'
+    as pro;
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class NotificationsPage extends StatelessWidget {
   @override
@@ -60,7 +62,7 @@ class NotificationsPage extends StatelessWidget {
                         );
                         Navigator.pushReplacementNamed(
                           context,
-                          bottomNavItems[0].onTapRoute,
+                          AppRoutes.homePage,
                         );
                       },
                       headerIconSvgUrl: noNotificationsImageSvgPath,
@@ -77,35 +79,11 @@ class NotificationsPage extends StatelessWidget {
                   : ListView.builder(
                       itemCount: notifications.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final String description =
-                            notifications.elementAt(index)?.body ?? '';
-                        final String createdAt =
-                            notifications.elementAt(index)?.createdAt ?? '';
-                        final String formattedDate = createdAt.isNotEmpty
-                            ? formatDate(createdAt, showTime: true)
-                            : '';
-                        final IconDetails icon = IconDetails(
-                          iconUrlSvgPath: getNotificationIcon(
-                            notifications.elementAt(index)?.type ??
-                                NotificationType.UNKNOWN,
-                          ),
-                        );
+                        final NotificationDetails? currentNotificationDetails =
+                            notifications.elementAt(index);
 
-                        final List<NotificationActions>? actions =
-                            notifications.elementAt(index)?.actions;
-                        final String? status =
-                            notifications.elementAt(index)?.status;
-
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: NotificationListItem(
-                            icon: icon,
-                            actions: actions,
-                            status: status,
-                            description: description,
-                            descriptionColor: AppColors.buttonAltColor,
-                            date: formattedDate,
-                          ),
+                        return pro.NotificationListItem(
+                          notificationDetails: currentNotificationDetails,
                         );
                       },
                     ),
