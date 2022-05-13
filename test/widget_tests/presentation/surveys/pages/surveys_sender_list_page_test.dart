@@ -36,35 +36,11 @@ void main() {
       );
 
       expect(find.text(surveySenderListDescriptionString), findsOneWidget);
-      expect(find.byType(SurveysCard), findsNWidgets(2));
+      expect(find.byType(SurveysCard), findsOneWidget);
     });
 
     testWidgets(
         'Tapping on Send To Clients card navigates to Surveys Send Configurations Page',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const SurveysSenderListPage(),
-            );
-          },
-        ),
-      );
-
-      final Finder sendToClientsFinder = find.text(sendToClientsString);
-
-      await tester.ensureVisible(sendToClientsFinder);
-      await tester.pumpAndSettle();
-      await tester.tap(sendToClientsFinder);
-      await tester.pumpAndSettle();
-      expect(find.byType(SurveysSendConfigurationsPage), findsOneWidget);
-    });
-
-    testWidgets('Send to all staff pressed displays a snackbar',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -85,7 +61,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(sendToAllFinder);
       await tester.pumpAndSettle();
-      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.byType(SurveysSendConfigurationsPage), findsOneWidget);
     });
   });
 }
