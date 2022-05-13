@@ -133,12 +133,6 @@ jobs:
       - run:
           name: "Build and publish to play store alpha track"
           command: |
-            echo "Building and releasing QA build to Firebase App Tester"
-            flutter build apk --release --target=$HOME/project/lib/bin/main_demo.dart --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha 
-            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
-            firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "external-testers, internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/demo-release-notes.txt
-            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha has been deployed successfully to Firebase app tester"
-
             echo "Building and releasing app bundle to Google Play Store Alpha track"
             flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha \
             --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_demo.dart \
@@ -148,9 +142,9 @@ jobs:
             unzip -x fls-android.zip -d $HOME/fls/
             export PATH=PATH="$PATH:/$HOME/fls/"
             BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/bundle/release/app-release.aab
-            echo $GPLAY_PUBLISHER_ACCOUNT > pub_service.json
-            fls-android track --build-number=$CIRCLE_BUILD_NUM --package-name=$PACKAGE_NAME --bundle-path=$BUNDLE_FILE_PATH --track-name=alpha --service-account-path=$HOME/project/pub_service.json --release-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha
             echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha has been deployed successfully"
+      - store_artifacts:
+          path: $HOME/project/build/app/outputs/bundle/
 
   deploy_to_play_store_beta:
     resource_class: xlarge
@@ -212,31 +206,32 @@ workflows:
   version: 2
   test_and_deploy:
    jobs:
-     - run_tests_and_generate_coverage
+    #  - run_tests_and_generate_coverage
      - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
                - develop
      - deploy_to_play_store_alpha:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
                - alpha
+               - extract-bundle
      - deploy_to_play_store_beta:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
                - beta
      - deploy_to_play_store_prod:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
