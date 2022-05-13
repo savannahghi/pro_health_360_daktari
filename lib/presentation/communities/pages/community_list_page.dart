@@ -60,7 +60,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
             return const PlatformLoader();
           }
 
-          final stream.Filter channelsFilter = stream.Filter.or(
+          final stream.Filter channelsFilter = stream.Filter.and(
             <stream.Filter>[
               stream.Filter.equal('invite', 'accepted'),
               stream.Filter.in_(
