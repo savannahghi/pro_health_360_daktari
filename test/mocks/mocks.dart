@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
+import 'package:video_player/video_player.dart' as video;
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -256,17 +257,14 @@ Map<String, dynamic> mockNotificationActions = <String, dynamic>{
 };
 
 Map<String, dynamic> mockNotification = <String, dynamic>{
-  'id': 'some-id',
-  'title': 'title',
-  'body':
+  'description':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-  'type': 'APPOINTMENT',
-  'isRead': false,
   'createdAt': '2022-04-28T07:00:20Z',
+  'type': 'APPOINTMENT',
   'actions': <dynamic>[mockNotificationActions],
-  'status': 'Missed'
+  'status': 'Missed',
+  'id': 'some-id',
 };
-
 Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
   'fetchNotifications': <String, dynamic>{
     'notifications': <dynamic>[
@@ -275,16 +273,6 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'id': 'some-id',
         'title': 'title',
         'type': 'SERVICE_REQUEST',
-        'body':
-            'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-        'isRead': false,
-        'createdAt': '2022-04-28T07:00:20Z',
-        'actions': <dynamic>[mockNotificationActions],
-        'status': 'Missed'
-      },
-      <String, dynamic>{
-        'id': 'some-id',
-        'title': 'title',
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
         'isRead': false,
@@ -394,7 +382,7 @@ final Map<String, dynamic> mockAuthLoginResponse = <String, dynamic>{
     'secondaryEmailAddresses': null,
     'terms_accepted': true,
     'suspended': false,
-    'photoUploadID': UNKNOWN,
+    'photoUploadID': core.UNKNOWN,
     'userBioData': <String, String>{
       'firstName': 'BeWell',
       'lastName': 'Test',
@@ -480,7 +468,7 @@ final Map<String, dynamic> mockChangePinAuthLoginResponse = <String, dynamic>{
     'secondaryEmailAddresses': null,
     'terms_accepted': true,
     'suspended': false,
-    'photoUploadID': UNKNOWN,
+    'photoUploadID': core.UNKNOWN,
     'userBioData': <String, String>{
       'firstName': 'BeWell',
       'lastName': 'Test',
@@ -1142,6 +1130,21 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(readNotificationsMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'readNotifications': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(getScreeningToolServiceRequestResponsesQuery)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1253,7 +1256,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'lastName': 'UNKNOWN',
   'name': 'UNKNOWN',
   'userType': 'UNKNOWN',
-  'gender': Gender.unknown.name,
+  'gender': core.Gender.unknown.name,
   'active': false,
   'primaryContact': <String, dynamic>{
     'ID': 'UNKNOWN',
@@ -1283,7 +1286,7 @@ final Map<String, dynamic> mockLoginUser = <String, dynamic>{
   'lastName': 'Doe',
   'name': 'John Doe',
   'userType': 'UNKNOWN',
-  'gender': Gender.unknown.name,
+  'gender': core.Gender.unknown.name,
   'active': false,
   'primaryContact': <String, dynamic>{
     'contactType': 'PHONE',
@@ -1458,11 +1461,11 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
   'listCommunityMembers': <dynamic>[
     <String, dynamic>{
       'user': <String, dynamic>{
-        'id': UNKNOWN,
-        'userID': UNKNOWN,
-        'name': UNKNOWN,
-        'role': UNKNOWN,
-        'username': UNKNOWN,
+        'id': core.UNKNOWN,
+        'userID': core.UNKNOWN,
+        'name': core.UNKNOWN,
+        'role': core.UNKNOWN,
+        'username': core.UNKNOWN,
         'gender': 'unknown',
         'extraData': <String, dynamic>{
           'bannedInCommunity': false,
@@ -1560,21 +1563,21 @@ final Map<String, dynamic> mockMiscState = <String, dynamic>{
 final Map<String, dynamic> mockSearchUserResponseState = <String, dynamic>{
   'searchUserResponses': <dynamic>[],
   'selectedSearchUserResponse': <String, dynamic>{
-    'ID': UNKNOWN,
-    'CCCNumber': UNKNOWN,
-    'StaffNumber': UNKNOWN,
+    'ID': core.UNKNOWN,
+    'CCCNumber': core.UNKNOWN,
+    'StaffNumber': core.UNKNOWN,
     'Active': true,
     'rolesList': <String, dynamic>{'getUserRoles': <dynamic>[]},
     'User': <String, dynamic>{
-      'ID': UNKNOWN,
-      'Username': UNKNOWN,
+      'ID': core.UNKNOWN,
+      'Username': core.UNKNOWN,
       'TermsAccepted': false,
       'Active': false,
       'Contacts': <String, dynamic>{
-        'ID': UNKNOWN,
+        'ID': core.UNKNOWN,
         'Active': false,
         'ContactType': 'PHONE',
-        'ContactValue': UNKNOWN,
+        'ContactValue': core.UNKNOWN,
         'OptedIn': false
       },
     }
@@ -1681,7 +1684,7 @@ final Map<String, dynamic> pinChangeRequiredMock = <String, dynamic>{
         'lastName': 'Doe',
         'name': 'John Doe',
         'userType': 'UNKNOWN',
-        'gender': Gender.unknown.name,
+        'gender': core.Gender.unknown.name,
         'active': false,
         'primaryContact': <String, dynamic>{
           'contactType': 'PHONE',
@@ -1718,21 +1721,21 @@ final List<dynamic> securityQuestionsMock = <dynamic>[
     'SecurityQuestionID': 'id1',
     'QuestionStem': 'What are the last 4 digits of your CCC number?',
     'Description': 'Please provide the last 4 digits of your clinic number',
-    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id2',
     'QuestionStem': 'Which month did you start your treatment?',
     'Description': 'Enter the month you started your treatment',
-    'ResponseType': SecurityQuestionResponseType.DATE.name,
+    'ResponseType': core.SecurityQuestionResponseType.DATE.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id3',
     'QuestionStem': 'Which county is your clinic located?',
     'Description': 'nter the name of the county in small letters',
-    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
 ];
@@ -1756,15 +1759,6 @@ final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
   },
 ];
 
-Map<String, dynamic> mockFAQContent = <String, dynamic>{
-  'ID': 'id',
-  'Active': true,
-  'Title': 'title',
-  'Body': 'body',
-  'Description': 'description',
-  'Flavour': Flavour.consumer.name,
-};
-
 final List<dynamic> listMembersMock = <dynamic>[
   <String, dynamic>{
     'id': 'id1',
@@ -1772,7 +1766,7 @@ final List<dynamic> listMembersMock = <dynamic>[
     'role': 'user',
     'userType': 'CLIENT',
     'username': 'Sam',
-    'gender': Gender.male.name,
+    'gender': core.Gender.male.name,
   },
   <String, dynamic>{
     'id': 'id1',
@@ -1780,7 +1774,7 @@ final List<dynamic> listMembersMock = <dynamic>[
     'role': 'user',
     'userType': 'STAFF',
     'username': 'Jane',
-    'gender': Gender.male.name,
+    'gender': core.Gender.male.name,
   },
   <String, dynamic>{
     'id': 'id1',
@@ -1788,7 +1782,7 @@ final List<dynamic> listMembersMock = <dynamic>[
     'role': 'user',
     'userType': 'STAFF',
     'username': 'Julian',
-    'gender': Gender.male.name,
+    'gender': core.Gender.male.name,
   },
 ];
 
@@ -1849,21 +1843,21 @@ final Map<String, dynamic> groupInfoPagePayloadMock = <String, dynamic>{
 final Map<String, dynamic> mockInvitedCommunities = <String, dynamic>{
   'invitedCommunities': <dynamic>[
     <String, dynamic>{
-      'id': UNKNOWN,
-      'name': UNKNOWN,
+      'id': core.UNKNOWN,
+      'name': core.UNKNOWN,
       'memberCount': 0,
-      'description': UNKNOWN,
-      'createdBy': UNKNOWN,
+      'description': core.UNKNOWN,
+      'createdBy': core.UNKNOWN,
     },
   ]
 };
 
 final Map<String, dynamic> mockCommunity = <String, dynamic>{
-  'id': UNKNOWN,
-  'name': UNKNOWN,
+  'id': core.UNKNOWN,
+  'name': core.UNKNOWN,
   'memberCount': 0,
-  'description': UNKNOWN,
-  'createdBy': UNKNOWN,
+  'description': core.UNKNOWN,
+  'createdBy': core.UNKNOWN,
 };
 
 final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
@@ -2112,3 +2106,379 @@ class MockFirebaseMessaging extends Mock
 class TestFirebaseMessagingPlatform extends FirebaseMessagingPlatform {
   TestFirebaseMessagingPlatform() : super();
 }
+
+Future<video.ClosedCaptionFile> _loadClosedCaption() async =>
+    _FakeClosedCaptionFile();
+
+class _FakeClosedCaptionFile extends video.ClosedCaptionFile {
+  @override
+  List<video.Caption> get captions {
+    return <video.Caption>[
+      const video.Caption(
+        text: 'one',
+        number: 0,
+        start: Duration(milliseconds: 100),
+        end: Duration(milliseconds: 200),
+      ),
+      const video.Caption(
+        text: 'two',
+        number: 1,
+        start: Duration(milliseconds: 300),
+        end: Duration(milliseconds: 400),
+      ),
+    ];
+  }
+}
+
+class MockVideoPlayerController extends ValueNotifier<video.VideoPlayerValue>
+    implements video.VideoPlayerController {
+  MockVideoPlayerController()
+      : super(video.VideoPlayerValue(duration: Duration.zero));
+
+  @override
+  Future<void> dispose() async {
+    super.dispose();
+  }
+
+  @override
+  int textureId = video.VideoPlayerController.kUninitializedTextureId;
+
+  @override
+  String get dataSource => '';
+
+  @override
+  Map<String, String> get httpHeaders => <String, String>{};
+
+  @override
+  video.DataSourceType get dataSourceType => video.DataSourceType.file;
+
+  @override
+  String get package => '';
+
+  @override
+  Future<Duration> get position async => value.position;
+
+  @override
+  Future<void> seekTo(Duration moment) async {}
+
+  @override
+  Future<void> setVolume(double volume) async {}
+
+  @override
+  Future<void> setPlaybackSpeed(double speed) async {}
+
+  @override
+  Future<void> initialize() async {}
+
+  @override
+  Future<void> pause() async {}
+
+  @override
+  Future<void> play() async {}
+
+  @override
+  Future<void> setLooping(bool looping) async {}
+
+  @override
+  video.VideoFormat? get formatHint => null;
+
+  @override
+  Future<video.ClosedCaptionFile> get closedCaptionFile => _loadClosedCaption();
+
+  @override
+  video.VideoPlayerOptions? get videoPlayerOptions => null;
+
+  @override
+  void setCaptionOffset(Duration offset) {}
+}
+
+final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'ID': 1,
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'ARTICLE',
+    'timeEstimateSeconds': 180,
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
+    'documents': <dynamic>[],
+    'isNew': true,
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 7,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
+        'title': 'Background',
+        'type': 'audio',
+        'width': 0,
+        'duration': 6,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ]
+  },
+  <String, dynamic>{
+    'ID': 12,
+    'title': 'Test article',
+    'date': '2022-01-06',
+    'intro': 'This is a test article',
+    'authorName': 'John Ngugi',
+    'tagNames': <String>['test'],
+    'meta': <String, dynamic>{
+      'contentType': 'content.ContentItem',
+      'contentHTMLURL':
+          'http://mycarehub-stage.savannahghi.org/health-education/test-article/',
+      'slug': 'test-article',
+      'showInMenus': false,
+      'seoTitle': '',
+      'searchDescription': '',
+      'firstPublishedAt': '2022-01-06T09:18:42.024393+03:00',
+      'locale': 'en'
+    },
+    'itemType': 'AUDIO_VIDEO',
+    'timeEstimateSeconds': 6,
+    'body': '<p data-block-key="9gd2w">Test article</p>',
+    'heroImage': <String, dynamic>{'ID': 10, 'title': 'sunbeds3'},
+    'heroImageRendition': <String, dynamic>{
+      'url':
+          'https://storage.googleapis.com/mycarehub-test/media/images/sunbeds3_VNXQPgI.2e16d0ba.fill-800x1200.jpegquality-60.jpg',
+      'width': 800,
+      'height': 1200,
+      'alt': 'sunbeds3'
+    },
+    'likeCount': 6,
+    'bookmarkCount': 2,
+    'viewCount': 0,
+    'shareCount': 1,
+    'author': <String, dynamic>{'ID': 'cd92a709-c397-4b04-a963-709eb7e08486'},
+    'categoryDetails': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 6,
+        'categoryName': 'recommended',
+        'categoryIcon': ''
+      }
+    ],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 2,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music_ppKS2s4.aac',
+        'title': 'soft_piano_music',
+        'type': 'audio',
+        'duration': 141,
+        'width': 0,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ],
+    'galleryImages': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 1,
+        'image': <String, dynamic>{
+          'ID': 8,
+          'title': 'Contrail',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/jake-nackos-zAeD6Gug2PY-unsplash_IXYJr4K.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 2,
+        'image': <String, dynamic>{
+          'ID': 7,
+          'title': 'Plane_with_background',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/vino-li-kpcJgsvpY3Q-unsplash_9w4CILs.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 3,
+        'image': <String, dynamic>{
+          'ID': 9,
+          'title': 'sunbeds3',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/valentin-b-kremer-icXbm3QDw2w-unsplash_YNcTzbk.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 4,
+        'image': <String, dynamic>{
+          'ID': 11,
+          'title': 'syringe',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/mika-baumeister-fPE_qTJu3Ws-unsplash_4NqBMVN.jpg'
+          }
+        }
+      }
+    ],
+  },
+];
+final core.Content mockContent = core.Content.fromJson(contentMock.first);
+
+final Map<String, dynamic> documentContentMock = <String, dynamic>{
+  'ID': 16,
+  'title': 'Test Document',
+  'date': '2022-01-13',
+  'intro': 'This is a test document',
+  'authorName': 'Test',
+  'tagNames': <String>['test'],
+  'meta': <String, dynamic>{
+    'contentType': 'content.ContentItem',
+    'contentHTMLURL': 'http://test-document/',
+    'slug': 'test-document',
+    'showInMenus': false,
+    'seoTitle': '',
+    'searchDescription': '',
+    'firstPublishedAt': '2022-01-13T11:36:56.749531+03:00',
+    'locale': 'en'
+  },
+  'itemType': 'PDF_DOCUMENT',
+  'timeEstimateSeconds': 10,
+  'body': '''
+<p data-block-key="sg8u8">Test document</p>''',
+  'heroImage': <String, dynamic>{'ID': 14, 'title': 'document'},
+  'heroImageRendition': <String, dynamic>{
+    'url': 'https://test.jpg',
+    'width': 720,
+    'height': 1080,
+    'alt': 'document'
+  },
+  'likeCount': 0,
+  'bookmarkCount': 0,
+  'viewCount': 0,
+  'shareCount': 0,
+  'author': <String, dynamic>{'ID': 'test-id-001'},
+  'documents': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'ID': 10001,
+      'Document': <String, dynamic>{
+        'ID': 10001,
+        'title': 'myCareHub Requirements',
+        'meta': <String, dynamic>{
+          'documentDetailUrl':
+              'http://www.africau.edu/images/default/sample.pdf',
+          'documentDownloadUrl':
+              'http://www.africau.edu/images/default/sample.pdf'
+        }
+      }
+    }
+  ],
+  'categoryDetails': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'ID': 6,
+      'categoryName': 'recommended',
+      'categoryIcon': 'https://test.png'
+    }
+  ],
+};
+
+final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'id': 2,
+    'name': 'recommended',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 1,
+    'name': 'welcome',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 3,
+    'name': 'exercise',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 4,
+    'name': 'diet',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 10002,
+    'name': 'pro-faqs',
+    'iconUrl': 'test-image.png',
+  }
+];
+
+final core.Content mockVideoContent =
+    core.Content.fromJson(videoContentMock.first);
+
+final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'ID': 1,
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'AUDIO_VIDEO',
+    'timeEstimateSeconds': 180,
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
+    'documents': <dynamic>[],
+    'isNew': true,
+    'featuredMedia': <dynamic>[
+      <String, dynamic>{
+        'ID': 1,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/production_ID_4473012.mp4',
+        'title': 'Awesome diet video',
+        'type': 'video',
+        'duration': 165,
+        'width': 100,
+        'height': 0,
+        'thumbnail':
+            'https://storage.googleapis.com/mycarehub-test/media/media_thumbnails/vitalii-pavlyshynets-kcRFW-Hje8Y-unsplash_1.jpg',
+      }
+    ],
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+  },
+];
+
+final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
+  'id': 2,
+  'image': <String, dynamic>{
+    'title': 'mockImage',
+    'meta': <String, String>{'imageDownloadUrl': 'testImage'}
+  }
+};

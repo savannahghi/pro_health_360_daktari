@@ -1,8 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/faqs/fetch_faqs_content_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -11,8 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/widgets/faq_item.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/widgets/content_item.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -26,104 +25,135 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      final FAQsContentState? state = StoreProvider.state<AppState>(context)
-          ?.miscState
-          ?.profileFAQsContentState;
-
-      if (state?.profileFAQs?.isEmpty ?? true) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          // retrieve the FAQS
-          FetchFAQSContentAction(
-            context: context,
-          ),
-        );
-      }
+      StoreProvider.dispatch<AppState>(
+        context,
+        // retrieve the FAQS
+        FetchFAQSContentAction(
+          client: AppWrapperBase.of(context)!.graphQLClient,
+        ),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: faqsString,
-        showNotificationIcon: true,
-      ),
+      appBar: const CustomAppBar(title: faqsText),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: StoreConnector<AppState, FAQsContentViewModel>(
-        converter: (Store<AppState> store) =>
-            FAQsContentViewModel.fromStore(store.state),
-        builder: (BuildContext context, FAQsContentViewModel vm) {
-          if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
-            return Container(
-              height: 300,
-              padding: const EdgeInsets.all(20),
-              child: const PlatformLoader(),
-            );
-          } else {
-            final List<FAQContent?>? faqsContent = vm.faqItems;
+      body: SizedBox(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.zero,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  StoreConnector<AppState, FAQsContentViewModel>(
+                    converter: (Store<AppState> store) =>
+                        FAQsContentViewModel.fromStore(store.state),
+                    builder: (BuildContext context, FAQsContentViewModel vm) {
+                      if ((vm.wait?.isWaitingFor(getFAQsFlag) ?? false) ||
+                          (vm.wait?.isWaitingFor(fetchContentCategoriesFlag) ??
+                              false)) {
+                        return Container(
+                          height: 300,
+                          padding: const EdgeInsets.all(20),
+                          child: const PlatformLoader(),
+                        );
+                      } else if (vm.timeoutFetchingFAQs! ||
+                          vm.timeoutFetchingContentCategories!) {
+                        return GenericErrorWidget(
+                          actionKey: helpNoDataWidgetKey,
+                          recoverCallback: () async {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              FetchFAQSContentAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                              ),
+                            );
+                          },
+                          messageTitle: '',
+                          messageBody: <TextSpan>[
+                            TextSpan(text: getErrorMessage(fetchingFAQsSting))
+                          ],
+                        );
+                      } else if (vm.errorFetchingFAQs! ||
+                          vm.errorFetchingContentCategories!) {
+                        return GenericErrorWidget(
+                          actionKey: helpNoDataWidgetKey,
+                          recoverCallback: () async {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              FetchFAQSContentAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                              ),
+                            );
+                          },
+                          messageTitle: '',
+                          messageBody: <TextSpan>[
+                            TextSpan(text: getErrorMessage(fetchingFAQsSting))
+                          ],
+                        );
+                      } else {
+                        final List<Content?>? faqsContent = vm.faqItems;
 
-            if ((faqsContent?.isNotEmpty ?? false) && (faqsContent != null)) {
-              return SizedBox(
-                child: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListView.builder(
+                        if ((faqsContent?.isNotEmpty ?? false) &&
+                            (faqsContent != null)) {
+                          return ListView.builder(
                             shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
                             itemCount: faqsContent.length,
-                            itemBuilder: (_, int index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.faqDetailViewPage,
-                                    arguments: faqsContent[index],
-                                  );
-                                },
-                                child: FAQItem(
-                                  faqContent: FAQContent(
-                                    title: faqsContent[index]?.title ?? UNKNOWN,
-                                    body: loremIpsumText,
+                            itemBuilder: (BuildContext context, int index) {
+                              final Content currentSavedItem =
+                                  faqsContent.elementAt(index)!;
+
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  top: index == 0 ? 15 : 7.5,
+                                ),
+                                child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.38,
+                                  child: ContentItem(
+                                    contentDetails: currentSavedItem,
+                                    contentDisplayedType:
+                                        ContentDisplayedType.BOOKMARK,
                                   ),
                                 ),
                               );
                             },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            } else if (faqsContent != null) {
-              return GenericErrorWidget(
-                actionKey: helpNoDataWidgetKey,
-                headerIconSvgUrl: noDataImageSvgPath,
-                recoverCallback: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    FetchFAQSContentAction(context: context),
-                  );
-                },
-                messageTitle: noFAQsTitle,
-                messageBody: <TextSpan>[
-                  TextSpan(
-                    text: noFAQsDescription,
-                    style: normalSize16Text(
-                      AppColors.greyTextColor,
-                    ),
+                          );
+                        } else if (faqsContent != null) {
+                          return GenericErrorWidget(
+                            actionKey: helpNoDataWidgetKey,
+                            type: GenericNoDataTypes.noData,
+                            headerIconSvgUrl: contentZeroStateImageUrl,
+                            recoverCallback: () async {
+                              StoreProvider.dispatch<AppState>(
+                                context,
+                                FetchFAQSContentAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                ),
+                              );
+                            },
+                            messageTitle: noFAQsTitle,
+                            messageBody: const <TextSpan>[
+                              TextSpan(text: noFAQsDescription)
+                            ],
+                          );
+                        }
+                      }
+                      return const SizedBox();
+                    },
                   ),
                 ],
-              );
-            }
-          }
-          return const SizedBox();
-        },
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

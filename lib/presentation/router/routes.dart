@@ -60,7 +60,7 @@ class AppRoutes {
   static const String contactAdminPage = '/contactAdminPage';
 
   // Profile Faqs Page
-  static const String faqDetailViewPage = '/faqDetailViewPage';
+  static const String contentDetailsPage = '/contentDetailsPage';
 
   // Profile Faqs Page
   static const String profileFaqsPage = '/profileFaqsPage';
@@ -105,4 +105,8 @@ class AppRoutes {
 
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';
+
+  //Documents Page
+  static const String viewDocumentPage = '/viewDocumentPage';
+  static const String galleryImagesPage = '/galleryImagesPage';
 }

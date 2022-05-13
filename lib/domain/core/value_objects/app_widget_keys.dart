@@ -160,3 +160,16 @@ const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
 
 const Key resolveRequestButtonKey = Key('resolve_request_button_key');
+
+// profile FAQs
+const Key faqItemKey = Key('faq_item_key');
+
+const Key faqHeroImagePlaceHolder = Key('faq_hero_image_place_holder');
+
+const Key videoPlayIconKey = Key('video_play_icon_key');
+const String playIcon = 'assets/icons/playIcon.svg';
+
+const Key galleryImagePageKey = Key('gallery_image_page_key');
+const Key cancelButtonKey = Key('cancel_button');
+
+const Key notificationItemActionKey = Key('notification_item_action_key');

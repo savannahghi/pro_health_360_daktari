@@ -86,6 +86,7 @@ class AppColors {
   static const Color greenHappyColor = Color(0xFF00BE33);
   static const Color mehMoodColor = Color(0xFF857C00);
   static const Color verySadColor = Color(0xffFF642A);
+  static const Color readTimeBackgroundColor = Color(0xff4c4c4c);
 }
 
 class ThemeColors {
