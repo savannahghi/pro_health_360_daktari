@@ -7,6 +7,7 @@ import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
 import 'package:mycarehubpro/application/redux/actions/complete_onboarding_tour.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -14,7 +15,6 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [SetNicknameAction] is a Redux Action whose job is to update a users
@@ -72,8 +72,11 @@ class SetNicknameAction extends ReduxAction<AppState> {
     if (errors != null) {
       onError?.call();
       Sentry.captureException(UserException(errors));
-
-      throw const UserException(somethingWentWrongText);
+      if (errors.contains('71')) {
+        throw const UserException(usernameTakenText);
+      } else {
+        throw const UserException(somethingWentWrongText);
+      }
     }
 
     if (responseMap['data']['setNickName'] != null &&
