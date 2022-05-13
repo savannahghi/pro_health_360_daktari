@@ -372,6 +372,7 @@ const String nickNameString = 'Nickname';
 const String nameInputValidateString = 'Kindly input a nickname';
 const String nicknameSuccessString = 'Nickname created successfully';
 const String logoutButtonText = 'Logout';
+const String usernameTakenText = 'Username has already been taken.';
 
 final String copyrightString =
     'Copyright ©️ ${returnCurrentYear()} myCareHub Professional';
