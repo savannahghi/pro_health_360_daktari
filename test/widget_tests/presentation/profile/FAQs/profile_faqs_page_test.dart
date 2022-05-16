@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,11 +12,11 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/content_details_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/gallery_images_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/widgets/content_item.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -104,7 +105,41 @@ void main() {
 
       expect(find.byType(PlatformLoader), findsOneWidget);
     });
+    testWidgets('navigates to the detail view of a feed item and document page',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[documentContentMock]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockSILGraphQlClient,
+          widget: const ProfileFaqsPage(),
+        );
 
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentItem), findsOneWidget);
+
+        await tester.tap(find.byType(ContentItem));
+      });
+    });
     testWidgets('should display zero state widget',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -212,7 +247,49 @@ void main() {
         expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
+ testWidgets('if gallery images are more than 3 should navigate to gallery ',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[contentMock.last]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockSILGraphQlClient,
+          widget: const ProfileFaqsPage(),
+        );
 
+        await tester.pumpAndSettle();
+
+        final Finder contentItem = find.byType(ContentItem);
+        expect(find.byType(ContentItem), findsOneWidget);
+
+        await tester.tap(contentItem);
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentDetailPage), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('gallery_image_page_key')));
+        await tester.pumpAndSettle();
+        expect(find.byType(GalleryImagesPage), findsOneWidget);
+      });
+    });
     testWidgets(
         'shows a generic no data widget while fetching the FAQs '
         'and there is no id', (WidgetTester tester) async {
@@ -267,11 +344,10 @@ void main() {
         );
 
         await tester.pumpAndSettle();
+        final Finder contentItems = find.byType(ContentItem);
+        expect(contentItems, findsNWidgets(2));
 
-        expect(find.byType(ContentItem), findsNWidgets(2));
-        expect(find.byKey(faqItemKey), findsNWidgets(2));
-
-        await tester.tap(find.byKey(faqItemKey).first);
+        await tester.tap(contentItems.first);
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
@@ -282,7 +358,7 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(cancelButton);
         await tester.pumpAndSettle();
-        expect(find.byType(ContentItem), findsNWidgets(2));
+        expect(contentItems, findsNWidgets(2));
       });
     });
   });

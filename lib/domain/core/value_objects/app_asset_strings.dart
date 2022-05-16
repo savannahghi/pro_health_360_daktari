@@ -149,15 +149,4 @@ const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';
 
 const String acceptTermsImageSvgPath = 'assets/images/accept_terms_icon.svg';
 
-const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
-const String contentIconSvgPath = 'assets/icons/content_icon.svg';
-
-//pdf icon
-const String pdfIconSvg = 'assets/icons/pdf_icon.svg';
-
 const String contentZeroStateImageUrl = 'assets/images/no_content_image.svg';
-
-const String profileImage = 'assets/images/profile_image.png';
-const String whiteCloseIconSvgPath = 'assets/icons/white_close_icon.svg';
-const String contentImagePlaceHolderSvgPath =
-    'assets/images/content_image_placeholder.png';
