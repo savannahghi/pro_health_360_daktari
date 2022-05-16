@@ -60,7 +60,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
             return const PlatformLoader();
           }
 
-          final stream.Filter channelsFilter = stream.Filter.and(
+          final stream.Filter channelsFilter = stream.Filter.or(
             <stream.Filter>[
               stream.Filter.equal('invite', 'accepted'),
               stream.Filter.in_(
@@ -85,7 +85,7 @@ class _CommunityListPageState extends State<CommunityListPage> {
                     ],
                     headerIconSvgUrl: emptyChatsSvg,
                     recoverCallback: () {
-                      channelListController.loadData!();
+                      channelListController.loadData?.call();
                     },
                   );
                 },
