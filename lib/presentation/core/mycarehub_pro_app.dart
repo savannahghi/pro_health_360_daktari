@@ -27,9 +27,9 @@ class MyCareHubProApp extends StatelessWidget {
   }) : super(key: key);
 
   final AppSetupData appSetupData;
+  final ConnectivityChecker connectivityChecker;
   final Store<AppState> store;
   final StreamChatClient streamClient;
-  final ConnectivityChecker connectivityChecker;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,15 @@ class MyCareHubProApp extends StatelessWidget {
           vm: () => AppEntryPointViewModelFactory(),
           builder: (BuildContext context, AppEntryPointViewModel vm) {
             final String idToken = vm.idToken ?? '';
+
             final String graphqlEndpoint =
                 appSetupData.customContext!.graphqlEndpoint;
+
             final String refreshTokenEndpoint =
                 appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
             final String userID = vm.userId ?? '';
+
             return AppWrapper(
               appContexts: appSetupData.appContexts,
               appName: appName,
