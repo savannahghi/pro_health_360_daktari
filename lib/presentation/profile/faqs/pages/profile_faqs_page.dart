@@ -11,7 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/widgets/content_item.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -120,6 +120,30 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                                     contentDetails: currentSavedItem,
                                     contentDisplayedType:
                                         ContentDisplayedType.BOOKMARK,
+                                        showReactions: false,
+                                    onTapPdfCallback: () =>
+                                        Navigator.of(context).pushNamed(
+                                      AppRoutes.viewDocumentPage,
+                                      arguments: <String, dynamic>{
+                                        'pdfTitle': currentSavedItem.documents!
+                                            .first.documentData!.title,
+                                        'pdfUrl': currentSavedItem
+                                            .documents!
+                                            .first
+                                            .documentData!
+                                            .documentMetaData!
+                                            .documentDownloadUrl,
+                                      },
+                                    ),
+                                    onTapCallback: () =>
+                                        Navigator.of(context).pushNamed(
+                                      AppRoutes.contentDetailsPage,
+                                      arguments: ContentDetails(
+                                        content: currentSavedItem,
+                                        contentDisplayedType:
+                                            ContentDisplayedType.BOOKMARK,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               );

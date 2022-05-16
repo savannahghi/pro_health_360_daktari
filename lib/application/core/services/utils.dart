@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:mycarehubpro/application/core/services/video_player_initializer.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -19,7 +17,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:video_player/video_player.dart';
 
 ClientType clientTypeFromJson(String? clientString) {
   if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {
@@ -352,35 +349,6 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
   apiFieldValue: 'caregiverType',
 );
 
-// Parses date then converts it to the format 18 May 2021 at 12:00 AM
-Widget humanizeDate({
-  required TextStyle dateTextStyle,
-  required String loadedDate,
-  bool showTime = false,
-  bool showYear = true,
-}) {
-  if (loadedDate != UNKNOWN && loadedDate.isNotEmpty) {
-    final DateTime parsedDate =
-        DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
-
-    final String postDayTime = DateFormat.jm().format(parsedDate);
-    final String postDay = DateFormat.d().format(parsedDate);
-    final String postMonth = DateFormat.MMM().format(parsedDate);
-    final String postYear = DateFormat.y().format(parsedDate);
-
-    return Row(
-      children: <Widget>[
-        Text(
-          '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
-          style: dateTextStyle,
-        ),
-      ],
-    );
-  }
-
-  return const SizedBox();
-}
-
 MoodItemData getMoodColor(String? mood) {
   if (mood == null) {
     return MoodItemData.initial();
@@ -445,14 +413,6 @@ bool resumeWithPIN(AppState appState) {
       timeDifference > 1;
 }
 
-Future<ChewieController> initializeChewieController({
-  required String dataSource,
-}) {
-  return VideoPlayerInitializer().initializePlayer(
-    videoPlayerController: VideoPlayerController.network(dataSource),
-    autoPlay: false,
-  );
-}
 
 NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
   switch (notificationType) {

@@ -802,8 +802,6 @@ const String neutralString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
 
-const String pdfText = 'PDF';
 const String newText = 'New';
 
 const String galleryImagesTitle = 'Gallery Images';
-const String datePublishedString = 'Published on ';

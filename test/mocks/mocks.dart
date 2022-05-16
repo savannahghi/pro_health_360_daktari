@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
-import 'package:video_player/video_player.dart' as video;
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -2107,91 +2106,6 @@ class TestFirebaseMessagingPlatform extends FirebaseMessagingPlatform {
   TestFirebaseMessagingPlatform() : super();
 }
 
-Future<video.ClosedCaptionFile> _loadClosedCaption() async =>
-    _FakeClosedCaptionFile();
-
-class _FakeClosedCaptionFile extends video.ClosedCaptionFile {
-  @override
-  List<video.Caption> get captions {
-    return <video.Caption>[
-      const video.Caption(
-        text: 'one',
-        number: 0,
-        start: Duration(milliseconds: 100),
-        end: Duration(milliseconds: 200),
-      ),
-      const video.Caption(
-        text: 'two',
-        number: 1,
-        start: Duration(milliseconds: 300),
-        end: Duration(milliseconds: 400),
-      ),
-    ];
-  }
-}
-
-class MockVideoPlayerController extends ValueNotifier<video.VideoPlayerValue>
-    implements video.VideoPlayerController {
-  MockVideoPlayerController()
-      : super(video.VideoPlayerValue(duration: Duration.zero));
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
-  }
-
-  @override
-  int textureId = video.VideoPlayerController.kUninitializedTextureId;
-
-  @override
-  String get dataSource => '';
-
-  @override
-  Map<String, String> get httpHeaders => <String, String>{};
-
-  @override
-  video.DataSourceType get dataSourceType => video.DataSourceType.file;
-
-  @override
-  String get package => '';
-
-  @override
-  Future<Duration> get position async => value.position;
-
-  @override
-  Future<void> seekTo(Duration moment) async {}
-
-  @override
-  Future<void> setVolume(double volume) async {}
-
-  @override
-  Future<void> setPlaybackSpeed(double speed) async {}
-
-  @override
-  Future<void> initialize() async {}
-
-  @override
-  Future<void> pause() async {}
-
-  @override
-  Future<void> play() async {}
-
-  @override
-  Future<void> setLooping(bool looping) async {}
-
-  @override
-  video.VideoFormat? get formatHint => null;
-
-  @override
-  Future<video.ClosedCaptionFile> get closedCaptionFile => _loadClosedCaption();
-
-  @override
-  video.VideoPlayerOptions? get videoPlayerOptions => null;
-
-  @override
-  void setCaptionOffset(Duration offset) {}
-}
-
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'ID': 1,
@@ -2337,8 +2251,57 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
       }
     ],
   },
+  <String, dynamic>{
+    'ID': 1,
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'ARTICLE',
+    'timeEstimateSeconds': 180,
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
+    'documents': <dynamic>[],
+    'isNew': true,
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 7,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
+        'title': 'Background',
+        'type': 'audio',
+        'width': 0,
+        'duration': 6,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ],
+    'galleryImages': <Map<String, dynamic>>[
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+    ],
+  },
 ];
-final core.Content mockContent = core.Content.fromJson(contentMock.first);
 
 final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'ID': 16,
