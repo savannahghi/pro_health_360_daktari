@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,6 +12,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_request_item_widget.dart';
@@ -118,7 +120,7 @@ void main() {
       expect(find.byType(AssessmentCardAnswersPage), findsOneWidget);
     });
 
-      testWidgets('should show a loading indicator when fetching screening tools',
+    testWidgets('should show a loading indicator when fetching screening tools',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -131,17 +133,18 @@ void main() {
           201,
         ),
       );
-      store.dispatch(WaitAction<AppState>.add(fetchAvailableScreeningToolsFlag));
+      store
+          .dispatch(WaitAction<AppState>.add(fetchAvailableScreeningToolsFlag));
       await buildTestWidget(
         tester: tester,
         store: store,
         graphQlClient: mockShortGraphQlClient,
-        widget:  const ScreeningToolsListPage(),
+        widget: const ScreeningToolsListPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
     });
-      testWidgets(
+    testWidgets(
       'should show an error widget when fetching screening tools',
       (WidgetTester tester) async {
         final MockShortGraphQlClient mockShortGraphQlClient =
@@ -185,20 +188,31 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-               'getAvailableFacilityScreeningTools': <dynamic>[]
+                'getAvailableFacilityScreeningTools': <dynamic>[]
               }
             }),
             200,
           ),
         );
-
         await buildTestWidget(
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: const ScreeningToolsListPage(),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return MaterialButton(
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  AppRoutes.screeningToolsListPage,
+                ),
+              );
+            },
+          ),
         );
         await tester.pumpAndSettle();
+        await tester.tap(find.byType(MaterialButton));
+        await tester.pumpAndSettle();
+
         final Finder helpNoDataWidget = find.byType(MyAfyaHubPrimaryButton);
 
         expect(helpNoDataWidget, findsOneWidget);

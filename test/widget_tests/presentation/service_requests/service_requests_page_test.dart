@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,6 +13,8 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/pin_reset_requests_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/red_flags_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/screening_tools_list_page.dart';
@@ -24,10 +28,12 @@ void main() {
   group('ServiceRequestsPage', () {
     late Store<AppState> store;
 
-    setUp(() {
+   setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
-    });
 
+      setupFirebaseMessagingMocks();
+      await Firebase.initializeApp();
+    });
     testWidgets('should show red flags requests', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -105,19 +111,55 @@ void main() {
           201,
         ),
       );
-
       await buildTestWidget(
         tester: tester,
-        graphQlClient: mockShortGraphQlClient,
         store: store,
-        widget: const ServiceRequestsPage(),
+        graphQlClient: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MaterialButton(
+              onPressed: () => Navigator.pushNamed(
+                context,
+                AppRoutes.serviceRequestsPage,
+              ),
+            );
+          },
+        ),
       );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(MaterialButton));
       await tester.pumpAndSettle();
 
       expect(find.text(actionTextGenericNoData), findsOneWidget);
       await tester.tap(find.text(actionTextGenericNoData));
       await tester.pumpAndSettle();
       expect(find.byType(RedFlagsPage), findsNothing);
+    });
+    testWidgets('genericNoData widget is tappable and routes to HomePage',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getServiceRequests': <dynamic>[]}
+          }),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: const ServiceRequestsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text(actionTextGenericNoData), findsOneWidget);
+      await tester.tap(find.byKey(helpNoDataWidgetKey));
+      await tester.pumpAndSettle();
+      expect(find.byType(HomePage), findsOneWidget);
     });
     testWidgets(
         'should navigate to client service requests page when the '

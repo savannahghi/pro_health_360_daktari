@@ -86,7 +86,9 @@ class _ScreeningToolsListPageState extends State<ScreeningToolsListPage> {
                         actionKey: helpNoDataWidgetKey,
                         actionText: thanksText,
                         recoverCallback: () {
-                          Navigator.of(context).pop();
+                          if (Navigator.canPop(context)) {
+                            Navigator.of(context).pop();
+                          }
                         },
                         messageTitle: getNoDataTile(
                           screeningToolsTitle.toLowerCase(),

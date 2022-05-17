@@ -102,52 +102,67 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
 
                         if ((faqsContent?.isNotEmpty ?? false) &&
                             (faqsContent != null)) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: faqsContent.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final Content currentSavedItem =
-                                  faqsContent.elementAt(index)!;
-
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                  top: index == 0 ? 15 : 7.5,
-                                ),
-                                child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.38,
-                                  child: ContentItem(
-                                    contentDetails: currentSavedItem,
-                                    contentDisplayedType:
-                                        ContentDisplayedType.BOOKMARK,
-                                        showReactions: false,
-                                    onTapPdfCallback: () =>
-                                        Navigator.of(context).pushNamed(
-                                      AppRoutes.viewDocumentPage,
-                                      arguments: <String, dynamic>{
-                                        'pdfTitle': currentSavedItem.documents!
-                                            .first.documentData!.title,
-                                        'pdfUrl': currentSavedItem
-                                            .documents!
-                                            .first
-                                            .documentData!
-                                            .documentMetaData!
-                                            .documentDownloadUrl,
-                                      },
-                                    ),
-                                    onTapCallback: () =>
-                                        Navigator.of(context).pushNamed(
-                                      AppRoutes.contentDetailsPage,
-                                      arguments: ContentDetails(
-                                        content: currentSavedItem,
-                                        contentDisplayedType:
-                                            ContentDisplayedType.BOOKMARK,
-                                      ),
-                                    ),
-                                  ),
+                          return RefreshIndicator(
+                            onRefresh: () async {
+                              StoreProvider.dispatch<AppState>(
+                                context,
+                                // retrieve the FAQS
+                                FetchFAQSContentAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
                                 ),
                               );
                             },
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: faqsContent.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final Content currentSavedItem =
+                                    faqsContent.elementAt(index)!;
+
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    top: index == 0 ? 15 : 7.5,
+                                  ),
+                                  child: SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.38,
+                                    child: ContentItem(
+                                      contentDetails: currentSavedItem,
+                                      contentDisplayedType:
+                                          ContentDisplayedType.BOOKMARK,
+                                      showReactions: false,
+                                      onTapPdfCallback: () =>
+                                          Navigator.of(context).pushNamed(
+                                        AppRoutes.viewDocumentPage,
+                                        arguments: <String, dynamic>{
+                                          'pdfTitle': currentSavedItem
+                                              .documents!
+                                              .first
+                                              .documentData!
+                                              .title,
+                                          'pdfUrl': currentSavedItem
+                                              .documents!
+                                              .first
+                                              .documentData!
+                                              .documentMetaData!
+                                              .documentDownloadUrl,
+                                        },
+                                      ),
+                                      onTapCallback: () =>
+                                          Navigator.of(context).pushNamed(
+                                        AppRoutes.contentDetailsPage,
+                                        arguments: ContentDetails(
+                                          content: currentSavedItem,
+                                          contentDisplayedType:
+                                              ContentDisplayedType.BOOKMARK,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           );
                         } else if (faqsContent != null) {
                           return GenericErrorWidget(

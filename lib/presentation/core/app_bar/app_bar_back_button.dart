@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
 class AppBarBackButton extends StatelessWidget {
   const AppBarBackButton({this.color = Colors.black});
@@ -21,6 +22,8 @@ class AppBarBackButton extends StatelessWidget {
         onTap: () async {
           if (Navigator.canPop(context)) {
             Navigator.of(context).pop();
+          } else {
+            Navigator.pushReplacementNamed(context, AppRoutes.homePage);
           }
         },
         child: Padding(

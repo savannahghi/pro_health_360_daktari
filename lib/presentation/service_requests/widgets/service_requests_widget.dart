@@ -82,17 +82,13 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
       ServiceRequestType.PIN_RESET,
     );
 
-   
-
     final int staffPINResetCount = _getServiceRequestTypeCount(
       staffServiceRequestsCount,
       ServiceRequestType.STAFF_PIN_RESET,
     );
 
-    final int totalCount = redFlagCount +
-        pinResetCount +
-        staffPINResetCount +
-        screeningToolsCount;
+    final int totalCount =
+        redFlagCount + pinResetCount + staffPINResetCount + screeningToolsCount;
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -203,7 +199,11 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
                 actionText: actionTextGenericNoData,
                 type: GenericNoDataTypes.noData,
                 recoverCallback: () {
-                  Navigator.of(context).pop();
+                  if (Navigator.canPop(context)) {
+                    Navigator.of(context).pop();
+                  } else {
+                    Navigator.pushReplacementNamed(context, AppRoutes.homePage);
+                  }
                 },
                 messageTitle: getNoDataTile('Service requests'),
                 messageBody: <TextSpan>[
