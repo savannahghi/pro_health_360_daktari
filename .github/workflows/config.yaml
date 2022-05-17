@@ -60,7 +60,7 @@ jobs:
     name: Publish myCareHub Professional Prod binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
