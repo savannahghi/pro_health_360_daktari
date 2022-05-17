@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -38,7 +39,18 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(NotificationListItem), findsNWidgets(2));
+      final Finder notificationActionItem =
+          find.byKey(notificationItemActionKey);
+      expect(notificationActionItem, findsOneWidget);
+
+      await tester.tap(notificationActionItem);
+      await tester.pumpAndSettle();
+      expect(notificationActionItem, findsNothing);
+
+      await tester.tap(find.byKey(appBarBackButtonKey));
+
+      await tester.pumpAndSettle();
+      expect(find.byType(HomePage), findsOneWidget);
     });
 
     testWidgets(
@@ -75,6 +87,29 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(HomePage), findsOneWidget);
+    });
+    testWidgets('should refresh notifications correctly',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: NotificationsPage(),
+      );
+      final Finder notificationListItem = find.byType(NotificationListItem);
+      await tester.pumpAndSettle();
+
+      expect(notificationListItem, findsNWidgets(2));
+
+      await tester.fling(
+        notificationListItem.first,
+        const Offset(0.0, 300.0),
+        1000.0,
+      );
+      await tester.pumpAndSettle();
+      expect(notificationListItem, findsNWidgets(2));
     });
 
     testWidgets('Shows loading indicator when fetching client',

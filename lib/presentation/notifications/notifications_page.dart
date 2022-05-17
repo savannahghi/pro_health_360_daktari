@@ -29,7 +29,7 @@ class NotificationsPage extends StatelessWidget {
         title: notificationsText,
         showBackButton: false,
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       body: StoreConnector<AppState, NotificationsViewModel>(
         onInit: (Store<AppState> store) {
           store.dispatch(
@@ -76,16 +76,27 @@ class NotificationsPage extends StatelessWidget {
                         ),
                       ],
                     )
-                  : ListView.builder(
-                      itemCount: notifications.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final NotificationDetails? currentNotificationDetails =
-                            notifications.elementAt(index);
-
-                        return pro.NotificationListItem(
-                          notificationDetails: currentNotificationDetails,
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          FetchNotificationsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                          ),
                         );
                       },
+                      child: ListView.builder(
+                        itemCount: notifications.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final NotificationDetails?
+                              currentNotificationDetails =
+                              notifications.elementAt(index);
+
+                          return pro.NotificationListItem(
+                            notificationDetails: currentNotificationDetails,
+                          );
+                        },
+                      ),
                     ),
             );
           }

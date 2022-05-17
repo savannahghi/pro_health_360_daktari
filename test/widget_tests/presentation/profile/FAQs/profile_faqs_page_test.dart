@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -140,6 +140,33 @@ void main() {
         await tester.tap(find.byType(ContentItem));
       });
     });
+    testWidgets('should refresh FAQs correctly',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortSILGraphQlClient,
+          widget: const ProfileFaqsPage(),
+        );
+        final Finder contentItem = find.byType(ContentItem);
+        await tester.pumpAndSettle();
+
+        expect(contentItem, findsNWidgets(2));
+
+        await tester.fling(
+          contentItem.first,
+          const Offset(0.0, 300.0),
+          1000.0,
+        );
+        await tester.pumpAndSettle();
+        expect(contentItem, findsNWidgets(2));
+      });
+    });
+
     testWidgets('should display zero state widget',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -247,7 +274,49 @@ void main() {
         expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
- testWidgets('if gallery images are more than 3 should navigate to gallery ',
+
+    testWidgets(
+        'shows a generic no data widget while fetching the FAQs '
+        'and there is no id', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      store.dispatch(
+        UpdateFAQsContentAction(
+          contentCategories: <ContentCategory>[
+            ContentCategory(id: 0, name: 'test', icon: 'test')
+          ],
+        ),
+      );
+      mockNetworkImages(() async {
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'no data'}),
+            201,
+          ),
+        );
+
+        store.dispatch(UpdateFAQsContentAction(errorFetchingFAQs: true));
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: client,
+          widget: const ProfileFaqsPage(),
+        );
+
+        await tester.pump();
+
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
+      });
+    });
+    testWidgets('if gallery images are more than 3 should navigate to gallery ',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -290,47 +359,6 @@ void main() {
         expect(find.byType(GalleryImagesPage), findsOneWidget);
       });
     });
-    testWidgets(
-        'shows a generic no data widget while fetching the FAQs '
-        'and there is no id', (WidgetTester tester) async {
-      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
-      tester.binding.window.devicePixelRatioTestValue = 1;
-      store.dispatch(
-        UpdateFAQsContentAction(
-          contentCategories: <ContentCategory>[
-            ContentCategory(id: 0, name: 'test', icon: 'test')
-          ],
-        ),
-      );
-      mockNetworkImages(() async {
-        final MockShortGraphQlClient client =
-            MockShortGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{'error': 'no data'}),
-            201,
-          ),
-        );
-
-        store.dispatch(UpdateFAQsContentAction(errorFetchingFAQs: true));
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          graphQlClient: client,
-          widget: const ProfileFaqsPage(),
-        );
-
-        await tester.pump();
-
-        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
-        await tester.tap(find.byKey(helpNoDataWidgetKey));
-        await tester.pumpAndSettle();
-
-        expect(find.byType(GenericErrorWidget), findsOneWidget);
-      });
-    });
     testWidgets('navigates to the detail view of a feed item',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -344,10 +372,11 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        final Finder contentItems = find.byType(ContentItem);
-        expect(contentItems, findsNWidgets(2));
+        final Finder contentItem = find.byType(ContentItem);
 
-        await tester.tap(contentItems.first);
+        expect(contentItem, findsNWidgets(2));
+
+        await tester.tap(contentItem.first);
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
@@ -358,7 +387,7 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(cancelButton);
         await tester.pumpAndSettle();
-        expect(contentItems, findsNWidgets(2));
+        expect(contentItem, findsNWidgets(2));
       });
     });
   });

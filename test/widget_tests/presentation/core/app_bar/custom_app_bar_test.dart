@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,13 +11,18 @@ import 'package:mycarehubpro/presentation/core/app_bar/app_bar_back_button.dart'
 import 'package:mycarehubpro/presentation/core/app_bar/app_bar_more_button.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 
+import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
   group('CustomAppBar', () {
     const String title = 'Conversation';
-
+    setUp(() async {
+      setupFirebaseMessagingMocks();
+      await Firebase.initializeApp();
+    });
     testWidgets('should render correctly with default values',
         (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -36,15 +42,15 @@ void main() {
 
     testWidgets('should render correctly with showMoreButton set to true',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            appBar: const CustomAppBar(
-              title: title,
-              showMoreButton: true,
-            ),
-            body: Container(),
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: Scaffold(
+          appBar: const CustomAppBar(
+            title: title,
+            showMoreButton: true,
           ),
+          body: Container(),
         ),
       );
       final Finder backButton = find.byKey(appBarBackButtonKey);
@@ -57,6 +63,31 @@ void main() {
       await tester.ensureVisible(backButton);
       await tester.tap(backButton);
       await tester.pumpAndSettle();
+    });
+    testWidgets('should pop current page if there is an underlying widget',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MaterialButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, AppRoutes.serviceRequestsPage),
+            );
+          },
+        ),
+      );
+      final Finder backButton = find.byKey(appBarBackButtonKey);
+      await tester.tap(find.byType(MaterialButton));
+      await tester.pumpAndSettle();
+
+      expect(backButton, findsOneWidget);
+      expect(find.byType(MaterialButton), findsNothing);
+      await tester.ensureVisible(backButton);
+      await tester.tap(backButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(MaterialButton), findsOneWidget);
     });
 
     testWidgets('notifications icon navigates to notifications page',

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -10,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 // Project imports:
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_tools_responses_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/assessment_card_answers_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_request_item_widget.dart';
@@ -127,11 +129,22 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: const AssessmentToolResponsesPage(
-            screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return MaterialButton(
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  AppRoutes.assessmentToolResponsesPage,
+                  arguments: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+                ),
+              );
+            },
           ),
         );
         await tester.pumpAndSettle();
+        await tester.tap(find.byType(MaterialButton));
+        await tester.pumpAndSettle();
+
         final Finder helpNoDataWidget = find.byType(MyAfyaHubPrimaryButton);
 
         expect(helpNoDataWidget, findsOneWidget);

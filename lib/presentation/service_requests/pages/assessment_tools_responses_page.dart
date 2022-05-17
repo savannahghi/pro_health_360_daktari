@@ -112,7 +112,9 @@ class _AssessmentToolResponsesPageState
                               client: AppWrapperBase.of(context)!.graphQLClient,
                             ),
                           );
-                          Navigator.of(context).pop();
+                          if (Navigator.canPop(context)) {
+                            Navigator.of(context).pop();
+                          }
                         },
                         messageTitle: getNoDataTile(
                           getAssessmentScorePageTitle(
