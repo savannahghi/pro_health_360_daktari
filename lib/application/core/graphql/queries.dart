@@ -289,9 +289,10 @@ query listNotifications(
 ''';
 
 const String listSurveysQuery = r'''
-query listSurveys($projectID: Int!) {
+query listSurveys($projectID: Int!){
   listSurveys(projectID: $projectID) {
     projectId
+    xmlFormId
     name
   }
 }

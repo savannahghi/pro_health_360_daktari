@@ -24,9 +24,11 @@ class _$SurveyTearOff {
 
   _Survey call(
       {@JsonKey(name: 'projectId') int? projectId,
+      @JsonKey(name: 'xmlFormId') String? xmlFormId,
       @JsonKey(name: 'name') String? name}) {
     return _Survey(
       projectId: projectId,
+      xmlFormId: xmlFormId,
       name: name,
     );
   }
@@ -43,6 +45,8 @@ const $Survey = _$SurveyTearOff();
 mixin _$Survey {
   @JsonKey(name: 'projectId')
   int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'xmlFormId')
+  String? get xmlFormId => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
@@ -57,6 +61,7 @@ abstract class $SurveyCopyWith<$Res> {
       _$SurveyCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'projectId') int? projectId,
+      @JsonKey(name: 'xmlFormId') String? xmlFormId,
       @JsonKey(name: 'name') String? name});
 }
 
@@ -71,6 +76,7 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
   @override
   $Res call({
     Object? projectId = freezed,
+    Object? xmlFormId = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
@@ -78,6 +84,10 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      xmlFormId: xmlFormId == freezed
+          ? _value.xmlFormId
+          : xmlFormId // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -93,6 +103,7 @@ abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'projectId') int? projectId,
+      @JsonKey(name: 'xmlFormId') String? xmlFormId,
       @JsonKey(name: 'name') String? name});
 }
 
@@ -108,6 +119,7 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projectId = freezed,
+    Object? xmlFormId = freezed,
     Object? name = freezed,
   }) {
     return _then(_Survey(
@@ -115,6 +127,10 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      xmlFormId: xmlFormId == freezed
+          ? _value.xmlFormId
+          : xmlFormId // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -128,6 +144,7 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
 class _$_Survey implements _Survey {
   _$_Survey(
       {@JsonKey(name: 'projectId') this.projectId,
+      @JsonKey(name: 'xmlFormId') this.xmlFormId,
       @JsonKey(name: 'name') this.name});
 
   factory _$_Survey.fromJson(Map<String, dynamic> json) =>
@@ -137,12 +154,15 @@ class _$_Survey implements _Survey {
   @JsonKey(name: 'projectId')
   final int? projectId;
   @override
+  @JsonKey(name: 'xmlFormId')
+  final String? xmlFormId;
+  @override
   @JsonKey(name: 'name')
   final String? name;
 
   @override
   String toString() {
-    return 'Survey(projectId: $projectId, name: $name)';
+    return 'Survey(projectId: $projectId, xmlFormId: $xmlFormId, name: $name)';
   }
 
   @override
@@ -151,6 +171,7 @@ class _$_Survey implements _Survey {
         (other.runtimeType == runtimeType &&
             other is _Survey &&
             const DeepCollectionEquality().equals(other.projectId, projectId) &&
+            const DeepCollectionEquality().equals(other.xmlFormId, xmlFormId) &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -158,6 +179,7 @@ class _$_Survey implements _Survey {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(projectId),
+      const DeepCollectionEquality().hash(xmlFormId),
       const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
@@ -174,6 +196,7 @@ class _$_Survey implements _Survey {
 abstract class _Survey implements Survey {
   factory _Survey(
       {@JsonKey(name: 'projectId') int? projectId,
+      @JsonKey(name: 'xmlFormId') String? xmlFormId,
       @JsonKey(name: 'name') String? name}) = _$_Survey;
 
   factory _Survey.fromJson(Map<String, dynamic> json) = _$_Survey.fromJson;
@@ -181,6 +204,9 @@ abstract class _Survey implements Survey {
   @override
   @JsonKey(name: 'projectId')
   int? get projectId;
+  @override
+  @JsonKey(name: 'xmlFormId')
+  String? get xmlFormId;
   @override
   @JsonKey(name: 'name')
   String? get name;

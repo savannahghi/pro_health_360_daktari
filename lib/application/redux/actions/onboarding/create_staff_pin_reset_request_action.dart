@@ -73,10 +73,8 @@ class CreateStaffPINResetRequestAction extends ReduxAction<AppState> {
 
     final String? error = parseError(payLoad);
 
-    if (error != null) {
-      onError?.call();
-      Sentry.captureException(error, hint: 'PIN service request failed');
-    }
+    onError?.call();
+    Sentry.captureException(error, hint: 'PIN service request failed');
 
     return null;
   }
