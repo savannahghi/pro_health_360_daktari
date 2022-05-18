@@ -1143,6 +1143,20 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(sendClientSurveyLinksMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'sendClientSurveyLinks': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     if (queryString.contains(getScreeningToolServiceRequestResponsesQuery)) {
       return Future<http.Response>.value(

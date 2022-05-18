@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -15,7 +16,9 @@ import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SurveysSenderListPage extends StatelessWidget {
-  const SurveysSenderListPage();
+  const SurveysSenderListPage({required this.survey});
+
+  final Survey survey;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +49,13 @@ class SurveysSenderListPage extends StatelessWidget {
               mediumVerticalSizedBox,
               SurveysCard(
                 title: clients,
-                message: sendToClientsString,
+                message: sendToClientsDescriptionString,
                 buttonKey: sendToAllButtonKey,
-                buttonText: sendToAllClientsString,
-                onPressButton: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.surveysSendConfigurationsPage),
+                buttonText: sendToClientsString,
+                onPressButton: () => Navigator.of(context).pushNamed(
+                  AppRoutes.surveysSendConfigurationsPage,
+                  arguments: survey,
+                ),
               ),
             ],
           ),

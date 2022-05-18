@@ -1,11 +1,16 @@
 // Flutter imports:
 // Package imports:
+import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 // Project imports:
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -13,6 +18,7 @@ import 'package:mycarehubpro/presentation/surveys/pages/successful_survey_submis
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_send_configuration_page.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
 
+import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
@@ -27,13 +33,9 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return StoreProvider<AppState>(
-              store: store,
-              child: const SurveysSendConfigurationsPage(),
-            );
-          },
+        graphQlClient: MockTestGraphQlClient(),
+        widget: SurveysSendConfigurationsPage(
+          survey: Survey.initial(),
         ),
       );
 
@@ -87,5 +89,127 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(SuccessfulSurveySubmission), findsOneWidget);
     });
+    testWidgets('send to all clients works correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: SurveysSendConfigurationsPage(
+          survey: Survey.initial(),
+        ),
+      );
+      final Finder mentalHealthSurveyButton =
+          find.byKey(mentalHealthSurveyButtonKey);
+      expect(mentalHealthSurveyButton, findsOneWidget);
+
+      await tester.tap(mentalHealthSurveyButton);
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SuccessfulSurveySubmission), findsOneWidget);
+    });
+    testWidgets(
+        'should show a loading indicator when sending survey links',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        ),
+      );
+      store.dispatch(
+        WaitAction<AppState>.add(sendSurveysFlag),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: mockShortGraphQlClient,
+        widget: SurveysSendConfigurationsPage(
+          survey: Survey.initial(),
+        ),
+      );
+
+      expect(find.byType(PlatformLoader), findsNWidgets(2));
+    });
+    testWidgets(
+      'should show an error snackbar when sending links to all clients',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'some error occurred'}),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortGraphQlClient,
+          widget: SurveysSendConfigurationsPage(
+            survey: Survey.initial(),
+          ),
+        );
+
+        final Finder mentalHealthSurveyButton =
+            find.byKey(mentalHealthSurveyButtonKey);
+        expect(mentalHealthSurveyButton, findsOneWidget);
+
+        await tester.tap(mentalHealthSurveyButton);
+
+        await tester.pumpAndSettle();
+        expect(find.byType(SnackBar), findsOneWidget);
+      },
+    );
+    testWidgets(
+      'should show an error snackbar when sending links to specific clients',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(
+              <String, dynamic>{
+                'data': <String, dynamic>{
+                  'sendClientSurveyLinks': false,
+                }
+              },
+            ),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockShortGraphQlClient,
+          widget: SurveysSendConfigurationsPage(
+            survey: Survey.initial(),
+          ),
+        );
+
+        await tester.fling(
+          find.byType(SurveysCard).first,
+          const Offset(0.0, 300.0),
+          1000.0,
+        );
+        await tester.pumpAndSettle();
+        final Finder submitSurveyFinder = find.byKey(sendSurveyButtonKey);
+        await tester.ensureVisible(submitSurveyFinder);
+        await tester.tap(submitSurveyFinder);
+
+        await tester.pumpAndSettle();
+        expect(find.byType(SnackBar), findsOneWidget);
+        expect(find.text(getErrorMessage('sending surveys')), findsOneWidget);
+      },
+    );
   });
 }

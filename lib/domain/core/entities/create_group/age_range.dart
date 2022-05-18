@@ -6,8 +6,8 @@ part 'age_range.g.dart';
 @freezed
 class AgeRange with _$AgeRange {
   factory AgeRange({
-    @JsonKey(toJson: doubleToInt) required double lowerBound,
-    @JsonKey(toJson: doubleToInt) required double upperBound,
+    @JsonKey(name: 'lowerBound',toJson: doubleToInt) required double lowerBound,
+    @JsonKey(name: 'upperBound',toJson: doubleToInt) required double upperBound,
   }) = _AgeRange;
 
   factory AgeRange.fromJson(Map<String, dynamic> json) =>

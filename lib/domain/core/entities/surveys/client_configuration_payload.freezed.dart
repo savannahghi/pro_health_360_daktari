@@ -166,7 +166,8 @@ class __$ClientConfigurationPayloadCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_ClientConfigurationPayload implements _ClientConfigurationPayload {
   _$_ClientConfigurationPayload(
       {@JsonKey(name: 'clientTypes') this.clientTypes,
