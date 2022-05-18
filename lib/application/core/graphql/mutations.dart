@@ -197,7 +197,7 @@ mutation sendClientSurveyLinks(
   $facilityID: String!, 
   $formID: String!, 
   $projectID: Int!, 
-  $filterParams: FilterParams ){
+  $filterParams: ClientFilterParamsInput ){
   sendClientSurveyLinks(
     facilityID: $facilityID,
     formID: $formID,

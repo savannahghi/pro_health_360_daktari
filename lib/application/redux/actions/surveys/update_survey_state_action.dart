@@ -6,12 +6,20 @@ import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 class UpdateSurveyStateAction extends ReduxAction<AppState> {
   final List<Survey?>? surveys;
 
-  UpdateSurveyStateAction({this.surveys});
+  final bool? errorFetchingSurveys;
+
+  UpdateSurveyStateAction({
+    this.surveys,
+    this.errorFetchingSurveys,
+  });
 
   @override
   AppState reduce() {
-    final SurveyState? surveyState =
-        state.surveyState?.copyWith(surveys: surveys);
+    final SurveyState? surveyState = state.surveyState?.copyWith(
+      surveys: surveys ?? state.surveyState?.surveys,
+      errorFetchingSurveys:
+          errorFetchingSurveys ?? state.surveyState?.errorFetchingSurveys,
+    );
 
     final AppState newState = state.copyWith(
       surveyState: surveyState,

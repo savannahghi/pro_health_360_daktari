@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/surveys/fetch_surveys_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/surveys/surveys_view_model.dart';
@@ -42,39 +43,101 @@ class SurveysPage extends StatelessWidget {
         converter: (Store<AppState> store) => SurveysViewModel.fromStore(store),
         builder: (BuildContext context, SurveysViewModel vm) {
           final List<Survey?> surveys = vm.surveys ?? <Survey>[];
+          final bool isLoading =
+              vm.wait?.isWaitingFor(fetchSurveysFlag) ?? false;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  SvgPicture.asset(
-                    surveysImagePath,
-                  ),
-                  mediumVerticalSizedBox,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      surveysInvitedToString,
-                      textAlign: TextAlign.center,
-                      style: normalSize14Text(AppColors.greyTextColor),
+                  if (vm.errorFetchingSurveys ?? false)
+                    GenericErrorWidget(
+                      actionKey: helpNoDataWidgetKey,
+                      recoverCallback: () => StoreProvider.dispatch<AppState>(
+                        context,
+                        FetchSurveysAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                        ),
+                      ),
+                      messageTitle: '',
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: getErrorMessage(fetchingSurveysString),
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ],
+                    )
+                  else ...<Widget>{
+                    SvgPicture.asset(
+                      surveysImagePath,
                     ),
-                  ),
-                  mediumVerticalSizedBox,
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: surveys.length,
-                    itemBuilder: (_, int index) {
-                      final String surveyTitle = surveys[index]?.name ?? '';
-                      return SurveysCard(
-                        title: surveyTitle,
-                        buttonKey: mentalHealthSurveyButtonKey,
-                        onPressButton: () => Navigator.of(context)
-                            .pushNamed(AppRoutes.surveysSenderListPage),
-                      );
-                    },
-                  ),
+                    mediumVerticalSizedBox,
+                    if (isLoading)
+                      const Padding(
+                        padding: EdgeInsets.only(top: 30.0),
+                        child: PlatformLoader(),
+                      )
+                    else ...<Widget>{
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          surveysInvitedToString,
+                          textAlign: TextAlign.center,
+                          style: normalSize14Text(AppColors.greyTextColor),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (surveys.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: surveys.length,
+                          itemBuilder: (_, int index) {
+                            final String surveyTitle =
+                                surveys[index]?.name ?? '';
+                            return SurveysCard(
+                              title: surveyTitle,
+                              buttonKey: mentalHealthSurveyButtonKey,
+                              onPressButton: () =>
+                                  Navigator.of(context).pushNamed(
+                                AppRoutes.surveysSenderListPage,
+                                arguments: surveys[index],
+                              ),
+                            );
+                          },
+                        )
+                      else
+                        GenericErrorWidget(
+                          actionKey: helpNoDataWidgetKey,
+                          type: GenericNoDataTypes.noData,
+                          messageTitle: noSurveysTitle,
+                          messageBody: <TextSpan>[
+                            TextSpan(
+                              text: noSurveysDescription,
+                              style: normalSize16Text(
+                                AppColors.greyTextColor,
+                              ),
+                            ),
+                          ],
+                          recoverCallback: () {
+                            if (Navigator.canPop(context)) {
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.homePage,
+                              );
+                            }
+                          },
+                          actionText: thanksText,
+                        )
+                    }
+                  }
                 ],
               ),
             ),

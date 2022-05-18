@@ -22,9 +22,12 @@ SurveyState _$SurveyStateFromJson(Map<String, dynamic> json) {
 class _$SurveyStateTearOff {
   const _$SurveyStateTearOff();
 
-  _SurveyState call({List<Survey?>? surveys}) {
+  _SurveyState call(
+      {@JsonKey(name: 'listSurveys') List<Survey?>? surveys,
+      bool? errorFetchingSurveys}) {
     return _SurveyState(
       surveys: surveys,
+      errorFetchingSurveys: errorFetchingSurveys,
     );
   }
 
@@ -38,7 +41,9 @@ const $SurveyState = _$SurveyStateTearOff();
 
 /// @nodoc
 mixin _$SurveyState {
+  @JsonKey(name: 'listSurveys')
   List<Survey?>? get surveys => throw _privateConstructorUsedError;
+  bool? get errorFetchingSurveys => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +56,9 @@ abstract class $SurveyStateCopyWith<$Res> {
   factory $SurveyStateCopyWith(
           SurveyState value, $Res Function(SurveyState) then) =
       _$SurveyStateCopyWithImpl<$Res>;
-  $Res call({List<Survey?>? surveys});
+  $Res call(
+      {@JsonKey(name: 'listSurveys') List<Survey?>? surveys,
+      bool? errorFetchingSurveys});
 }
 
 /// @nodoc
@@ -65,12 +72,17 @@ class _$SurveyStateCopyWithImpl<$Res> implements $SurveyStateCopyWith<$Res> {
   @override
   $Res call({
     Object? surveys = freezed,
+    Object? errorFetchingSurveys = freezed,
   }) {
     return _then(_value.copyWith(
       surveys: surveys == freezed
           ? _value.surveys
           : surveys // ignore: cast_nullable_to_non_nullable
               as List<Survey?>?,
+      errorFetchingSurveys: errorFetchingSurveys == freezed
+          ? _value.errorFetchingSurveys
+          : errorFetchingSurveys // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -82,7 +94,9 @@ abstract class _$SurveyStateCopyWith<$Res>
           _SurveyState value, $Res Function(_SurveyState) then) =
       __$SurveyStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Survey?>? surveys});
+  $Res call(
+      {@JsonKey(name: 'listSurveys') List<Survey?>? surveys,
+      bool? errorFetchingSurveys});
 }
 
 /// @nodoc
@@ -98,12 +112,17 @@ class __$SurveyStateCopyWithImpl<$Res> extends _$SurveyStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? surveys = freezed,
+    Object? errorFetchingSurveys = freezed,
   }) {
     return _then(_SurveyState(
       surveys: surveys == freezed
           ? _value.surveys
           : surveys // ignore: cast_nullable_to_non_nullable
               as List<Survey?>?,
+      errorFetchingSurveys: errorFetchingSurveys == freezed
+          ? _value.errorFetchingSurveys
+          : errorFetchingSurveys // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -111,17 +130,21 @@ class __$SurveyStateCopyWithImpl<$Res> extends _$SurveyStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SurveyState implements _SurveyState {
-  _$_SurveyState({this.surveys});
+  _$_SurveyState(
+      {@JsonKey(name: 'listSurveys') this.surveys, this.errorFetchingSurveys});
 
   factory _$_SurveyState.fromJson(Map<String, dynamic> json) =>
       _$$_SurveyStateFromJson(json);
 
   @override
+  @JsonKey(name: 'listSurveys')
   final List<Survey?>? surveys;
+  @override
+  final bool? errorFetchingSurveys;
 
   @override
   String toString() {
-    return 'SurveyState(surveys: $surveys)';
+    return 'SurveyState(surveys: $surveys, errorFetchingSurveys: $errorFetchingSurveys)';
   }
 
   @override
@@ -129,12 +152,16 @@ class _$_SurveyState implements _SurveyState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SurveyState &&
-            const DeepCollectionEquality().equals(other.surveys, surveys));
+            const DeepCollectionEquality().equals(other.surveys, surveys) &&
+            const DeepCollectionEquality()
+                .equals(other.errorFetchingSurveys, errorFetchingSurveys));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(surveys));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(surveys),
+      const DeepCollectionEquality().hash(errorFetchingSurveys));
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +175,18 @@ class _$_SurveyState implements _SurveyState {
 }
 
 abstract class _SurveyState implements SurveyState {
-  factory _SurveyState({List<Survey?>? surveys}) = _$_SurveyState;
+  factory _SurveyState(
+      {@JsonKey(name: 'listSurveys') List<Survey?>? surveys,
+      bool? errorFetchingSurveys}) = _$_SurveyState;
 
   factory _SurveyState.fromJson(Map<String, dynamic> json) =
       _$_SurveyState.fromJson;
 
   @override
+  @JsonKey(name: 'listSurveys')
   List<Survey?>? get surveys;
+  @override
+  bool? get errorFetchingSurveys;
   @override
   @JsonKey(ignore: true)
   _$SurveyStateCopyWith<_SurveyState> get copyWith =>

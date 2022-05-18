@@ -8,6 +8,7 @@ part 'survey.g.dart';
 class Survey with _$Survey {
   factory Survey({
     @JsonKey(name: 'projectId') int? projectId,
+    @JsonKey(name: 'xmlFormId') String? xmlFormId,
     @JsonKey(name: 'name') String? name,
   }) = _Survey;
 
@@ -16,5 +17,6 @@ class Survey with _$Survey {
   factory Survey.initial() => Survey(
         projectId: 0,
         name: UNKNOWN,
+        xmlFormId: UNKNOWN,
       );
 }

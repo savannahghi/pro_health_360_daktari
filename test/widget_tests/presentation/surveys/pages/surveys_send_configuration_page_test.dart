@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -31,7 +32,7 @@ void main() {
           builder: (BuildContext context) {
             return StoreProvider<AppState>(
               store: store,
-              child: const SurveysSendConfigurationsPage(),
+              child:  SurveysSendConfigurationsPage(survey: Survey.initial(),),
             );
           },
         ),

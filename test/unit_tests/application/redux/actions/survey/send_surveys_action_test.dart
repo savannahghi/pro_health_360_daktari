@@ -9,9 +9,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mycarehubpro/application/redux/actions/surveys/send_surveys_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/create_group/age_range.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/client_configuration_payload.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../mocks/mocks.dart';
 import 'send_surveys_action_test.mocks.dart';
@@ -45,13 +42,10 @@ void main() {
       storeTester.dispatch(
         SendSurveysAction(
           client: client,
-          clientConfigurationPayload: ClientConfigurationPayload(
-            clientTypes: <ClientType>[ClientType.PMTCT],
-            ageRange: AgeRange(lowerBound: 14.0, upperBound: 25.0),
-            gender: <Gender>[Gender.male],
-          ),
           onSuccess: () => success++,
+          variables: <String, dynamic>{},
         ),
+        
       );
 
       final TestInfo<AppState> info =
@@ -77,7 +71,7 @@ void main() {
         SendSurveysAction(
           client: client,
           onError: (_) => errors++,
-          clientConfigurationPayload: ClientConfigurationPayload(),
+          variables: <String, dynamic>{},
         ),
       );
 
@@ -98,7 +92,7 @@ void main() {
       storeTester.dispatch(
         SendSurveysAction(
           client: client,
-          clientConfigurationPayload: ClientConfigurationPayload(),
+          variables: <String, dynamic>{},
         ),
       );
 
