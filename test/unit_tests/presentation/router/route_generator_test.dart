@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -249,8 +250,10 @@ void main() {
   });
 
   test('Test router returns SurveysSenderListPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.surveysSenderListPage);
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.surveysSenderListPage,
+      arguments: Survey.initial(),
+    );
 
     final MaterialPageRoute<SurveysSenderListPage>? route =
         routeGenerator(settings) as MaterialPageRoute<SurveysSenderListPage>?;
@@ -259,8 +262,10 @@ void main() {
   });
 
   test('Test router returns SurveysSendConfigurationsPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.surveysSendConfigurationsPage);
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.surveysSendConfigurationsPage,
+      arguments: Survey.initial(),
+    );
 
     final MaterialPageRoute<SurveysSendConfigurationsPage>? route =
         routeGenerator(settings)

@@ -23,8 +23,10 @@ class _$AgeRangeTearOff {
   const _$AgeRangeTearOff();
 
   _AgeRange call(
-      {@JsonKey(toJson: doubleToInt) required double lowerBound,
-      @JsonKey(toJson: doubleToInt) required double upperBound}) {
+      {@JsonKey(name: 'lowerBound', toJson: doubleToInt)
+          required double lowerBound,
+      @JsonKey(name: 'upperBound', toJson: doubleToInt)
+          required double upperBound}) {
     return _AgeRange(
       lowerBound: lowerBound,
       upperBound: upperBound,
@@ -41,9 +43,9 @@ const $AgeRange = _$AgeRangeTearOff();
 
 /// @nodoc
 mixin _$AgeRange {
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'lowerBound', toJson: doubleToInt)
   double get lowerBound => throw _privateConstructorUsedError;
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'upperBound', toJson: doubleToInt)
   double get upperBound => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,8 +59,8 @@ abstract class $AgeRangeCopyWith<$Res> {
   factory $AgeRangeCopyWith(AgeRange value, $Res Function(AgeRange) then) =
       _$AgeRangeCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(toJson: doubleToInt) double lowerBound,
-      @JsonKey(toJson: doubleToInt) double upperBound});
+      {@JsonKey(name: 'lowerBound', toJson: doubleToInt) double lowerBound,
+      @JsonKey(name: 'upperBound', toJson: doubleToInt) double upperBound});
 }
 
 /// @nodoc
@@ -93,8 +95,8 @@ abstract class _$AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
       __$AgeRangeCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(toJson: doubleToInt) double lowerBound,
-      @JsonKey(toJson: doubleToInt) double upperBound});
+      {@JsonKey(name: 'lowerBound', toJson: doubleToInt) double lowerBound,
+      @JsonKey(name: 'upperBound', toJson: doubleToInt) double upperBound});
 }
 
 /// @nodoc
@@ -128,17 +130,19 @@ class __$AgeRangeCopyWithImpl<$Res> extends _$AgeRangeCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AgeRange implements _AgeRange {
   _$_AgeRange(
-      {@JsonKey(toJson: doubleToInt) required this.lowerBound,
-      @JsonKey(toJson: doubleToInt) required this.upperBound});
+      {@JsonKey(name: 'lowerBound', toJson: doubleToInt)
+          required this.lowerBound,
+      @JsonKey(name: 'upperBound', toJson: doubleToInt)
+          required this.upperBound});
 
   factory _$_AgeRange.fromJson(Map<String, dynamic> json) =>
       _$$_AgeRangeFromJson(json);
 
   @override
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'lowerBound', toJson: doubleToInt)
   final double lowerBound;
   @override
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'upperBound', toJson: doubleToInt)
   final double upperBound;
 
   @override
@@ -176,16 +180,18 @@ class _$_AgeRange implements _AgeRange {
 
 abstract class _AgeRange implements AgeRange {
   factory _AgeRange(
-      {@JsonKey(toJson: doubleToInt) required double lowerBound,
-      @JsonKey(toJson: doubleToInt) required double upperBound}) = _$_AgeRange;
+      {@JsonKey(name: 'lowerBound', toJson: doubleToInt)
+          required double lowerBound,
+      @JsonKey(name: 'upperBound', toJson: doubleToInt)
+          required double upperBound}) = _$_AgeRange;
 
   factory _AgeRange.fromJson(Map<String, dynamic> json) = _$_AgeRange.fromJson;
 
   @override
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'lowerBound', toJson: doubleToInt)
   double get lowerBound;
   @override
-  @JsonKey(toJson: doubleToInt)
+  @JsonKey(name: 'upperBound', toJson: doubleToInt)
   double get upperBound;
   @override
   @JsonKey(ignore: true)

@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_ClientConfigurationPayloadToJson(
     <String, dynamic>{
       'clientTypes':
           instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]).toList(),
-      'ageRange': instance.ageRange,
+      'ageRange': instance.ageRange?.toJson(),
       'gender': instance.gender?.map((e) => _$GenderEnumMap[e]).toList(),
     };
 

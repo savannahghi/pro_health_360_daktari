@@ -70,7 +70,7 @@ class SurveysPage extends StatelessWidget {
                         ),
                       ],
                     )
-                  else if (isLoading || surveys.isNotEmpty) ...<Widget>{
+                  else ...<Widget>{
                     SvgPicture.asset(
                       surveysImagePath,
                     ),
@@ -89,48 +89,55 @@ class SurveysPage extends StatelessWidget {
                           style: normalSize14Text(AppColors.greyTextColor),
                         ),
                       ),
-                      mediumVerticalSizedBox,
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: surveys.length,
-                        itemBuilder: (_, int index) {
-                          final String surveyTitle = surveys[index]?.name ?? '';
-                          return SurveysCard(
-                            title: surveyTitle,
-                            buttonKey: mentalHealthSurveyButtonKey,
-                            onPressButton: () => Navigator.of(context)
-                                .pushNamed(AppRoutes.surveysSenderListPage),
-                          );
-                        },
+                      const SizedBox(
+                        height: 20,
                       ),
+                      if (surveys.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: surveys.length,
+                          itemBuilder: (_, int index) {
+                            final String surveyTitle =
+                                surveys[index]?.name ?? '';
+                            return SurveysCard(
+                              title: surveyTitle,
+                              buttonKey: mentalHealthSurveyButtonKey,
+                              onPressButton: () =>
+                                  Navigator.of(context).pushNamed(
+                                AppRoutes.surveysSenderListPage,
+                                arguments: surveys[index],
+                              ),
+                            );
+                          },
+                        )
+                      else
+                        GenericErrorWidget(
+                          actionKey: helpNoDataWidgetKey,
+                          type: GenericNoDataTypes.noData,
+                          messageTitle: noSurveysTitle,
+                          messageBody: <TextSpan>[
+                            TextSpan(
+                              text: noSurveysDescription,
+                              style: normalSize16Text(
+                                AppColors.greyTextColor,
+                              ),
+                            ),
+                          ],
+                          recoverCallback: () {
+                            if (Navigator.canPop(context)) {
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.homePage,
+                              );
+                            }
+                          },
+                          actionText: thanksText,
+                        )
                     }
-                  } else
-                    GenericErrorWidget(
-                      actionKey: helpNoDataWidgetKey,
-                      type: GenericNoDataTypes.noData,
-                      headerIconSvgUrl: surveysImagePath,
-                      messageTitle: noSurveysTitle,
-                      messageBody: <TextSpan>[
-                        TextSpan(
-                          text: noSurveysDescription,
-                          style: normalSize16Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                      ],
-                      recoverCallback: () {
-                        if (Navigator.canPop(context)) {
-                          Navigator.pop(context);
-                        } else {
-                          Navigator.pushReplacementNamed(
-                            context,
-                            AppRoutes.homePage,
-                          );
-                        }
-                      },
-                      actionText: thanksText,
-                    )
+                  }
                 ],
               ),
             ),

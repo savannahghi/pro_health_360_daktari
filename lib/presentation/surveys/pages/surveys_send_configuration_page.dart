@@ -1,11 +1,18 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:mycarehubpro/application/redux/actions/surveys/send_surveys_action.dart';
+import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
@@ -15,10 +22,14 @@ import 'package:mycarehubpro/presentation/core/widgets/age_group_slider.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/client_configuration_form_manager.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
-class SurveysSendConfigurationsPage extends StatefulWidget {
-  const SurveysSendConfigurationsPage();
+class  SurveysSendConfigurationsPage extends StatefulWidget {
+  const SurveysSendConfigurationsPage({required this.survey});
+
+  final Survey survey;
 
   @override
   State<SurveysSendConfigurationsPage> createState() =>
@@ -80,11 +91,62 @@ class _SurveysSendConfigurationsPageState
                 ),
               ),
               mediumVerticalSizedBox,
-              const SurveysCard(
-                title: allClientsString,
-                message: tapToSendToAllClientsString,
-                buttonKey: mentalHealthSurveyButtonKey,
-                buttonText: sendToAllClientsString,
+              StoreConnector<AppState, AppStateViewModel>(
+                converter: (Store<AppState> store) =>
+                    AppStateViewModel.fromStore(store),
+                builder: (BuildContext context, AppStateViewModel vm) {
+                  return SurveysCard(
+                    title: allClientsString,
+                    message: tapToSendToAllClientsString,
+                    isLoading:
+                        vm.state.wait?.isWaitingFor(sendSurveysFlag) ?? false,
+                    buttonKey: mentalHealthSurveyButtonKey,
+                    buttonText: sendToAllClientsString,
+                    onPressButton: () {
+                      final String facilityID =
+                          StoreProvider.state<AppState>(context)
+                                  ?.staffState
+                                  ?.defaultFacility ??
+                              '';
+                      StoreProvider.dispatch(
+                        context,
+                        SendSurveysAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          onSuccess: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.successfulSurveySubmission,
+                            );
+                          },
+                          onError: (String? message) {
+                            if (message?.isNotEmpty ?? false) {
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(
+                                  SnackBar(
+                                    content: Text(message!),
+                                    duration: const Duration(
+                                      seconds: kShortSnackBarDuration,
+                                    ),
+                                    action: dismissSnackBar(
+                                      closeString,
+                                      white,
+                                      context,
+                                    ),
+                                  ),
+                                );
+                            }
+                          },
+                          variables: <String, dynamic>{
+                            'facilityID': facilityID,
+                            'formID': widget.survey.xmlFormId,
+                            'projectID': widget.survey.projectId,
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
               mediumVerticalSizedBox,
               Align(
@@ -194,12 +256,21 @@ class _SurveysSendConfigurationsPageState
 
                     return SizedBox(
                       height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: sendSurveyButtonKey,
-                        text: sendSurveyText,
-                        onPressed: hasData && snapshot.data!
-                            ? () => _processAndNavigate()
-                            : null,
+                      child: StoreConnector<AppState, AppStateViewModel>(
+                        converter: (Store<AppState> store) =>
+                            AppStateViewModel.fromStore(store),
+                        builder: (BuildContext context, AppStateViewModel vm) {
+                          return vm.state.wait?.isWaitingFor(sendSurveysFlag) ??
+                                  false
+                              ? const PlatformLoader()
+                              : MyAfyaHubPrimaryButton(
+                                  buttonKey: sendSurveyButtonKey,
+                                  text: sendSurveyText,
+                                  onPressed: hasData && snapshot.data!
+                                      ? () => _processAndNavigate()
+                                      : null,
+                                );
+                        },
                       ),
                     );
                   },
@@ -299,11 +370,45 @@ class _SurveysSendConfigurationsPageState
   }
 
   void _processAndNavigate() {
-    _formManager.submit();
-
-    Navigator.pushNamed(
+    final String facilityID =
+        StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
+            '';
+    StoreProvider.dispatch(
       context,
-      AppRoutes.successfulSurveySubmission,
+      SendSurveysAction(
+        client: AppWrapperBase.of(context)!.graphQLClient,
+        onSuccess: () {
+          Navigator.pushReplacementNamed(
+            context,
+            AppRoutes.successfulSurveySubmission,
+          );
+        },
+        onError: (String? message) {
+          if (message?.isNotEmpty ?? false) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(message!),
+                  duration: const Duration(
+                    seconds: kShortSnackBarDuration,
+                  ),
+                  action: dismissSnackBar(
+                    closeString,
+                    white,
+                    context,
+                  ),
+                ),
+              );
+          }
+        },
+        variables: <String, dynamic>{
+          'facilityID': facilityID,
+          'formID': widget.survey.xmlFormId,
+          'projectID': widget.survey.projectId,
+          'filterParams': _formManager.submit().toJson()
+        },
+      ),
     );
   }
 }

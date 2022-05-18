@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
@@ -151,12 +152,12 @@ class RouteGenerator {
 
       case AppRoutes.surveysSenderListPage:
         return MaterialPageRoute<SurveysSenderListPage>(
-          builder: (_) => const SurveysSenderListPage(),
+          builder: (_) => SurveysSenderListPage(survey: args as Survey,),
         );
 
       case AppRoutes.surveysSendConfigurationsPage:
         return MaterialPageRoute<SurveysSendConfigurationsPage>(
-          builder: (_) => const SurveysSendConfigurationsPage(),
+          builder: (_) => SurveysSendConfigurationsPage(survey: args as Survey),
         );
 
       case AppRoutes.successfulSurveySubmission:

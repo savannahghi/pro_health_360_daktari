@@ -11,6 +11,7 @@ class SurveysCard extends StatelessWidget {
     required this.title,
     this.message,
     this.showButton = true,
+    this.isLoading = false,
     this.buttonKey,
     this.buttonText = sendOutString,
     this.onTapCard,
@@ -21,6 +22,7 @@ class SurveysCard extends StatelessWidget {
   final Key? buttonKey;
   final String? buttonText;
   final bool? showButton;
+  final bool isLoading;
   final VoidCallback? onTapCard;
   final void Function()? onPressButton;
 
@@ -58,11 +60,13 @@ class SurveysCard extends StatelessWidget {
                 if (buttonKey != null)
                   SizedBox(
                     width: double.infinity,
-                    child: MyAfyaHubPrimaryButton(
-                      buttonKey: buttonKey,
-                      text: buttonText,
-                      onPressed: onPressButton,
-                    ),
+                    child: isLoading
+                        ? const PlatformLoader()
+                        : MyAfyaHubPrimaryButton(
+                            buttonKey: buttonKey,
+                            text: buttonText,
+                            onPressed: onPressButton,
+                          ),
                   )
               ],
             ),

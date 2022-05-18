@@ -8,6 +8,7 @@ part 'client_configuration_payload.g.dart';
 
 @freezed
 class ClientConfigurationPayload with _$ClientConfigurationPayload {
+  @JsonSerializable(explicitToJson: true)
   factory ClientConfigurationPayload({
     @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
     @JsonKey(name: 'ageRange') AgeRange? ageRange,

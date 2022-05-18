@@ -194,8 +194,9 @@ const String surveyDescriptionString =
 const String surveySenderListDescriptionString =
     'Please select where you want to send the survey';
 const String sendToAllClientsString = 'Send to all clients';
+const String sendToClientsString = 'Send to clients';
 const String sendToAllStaffString = 'Send to all Staff';
-const String sendToClientsString =
+const String sendToClientsDescriptionString =
     'Tap to tailor your survey before sending it to clients. You will be able to choose from a set of configurations ';
 const String sendToAllStaffMembersString =
     'Tap to send your survey to all the staff members in your facility';
