@@ -47,32 +47,7 @@ void main() {
       expect(info.state.surveyState?.surveys?.length, 2);
     });
 
-    test('should handle api error', () async {
-      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-        '',
-        '',
-        Response(
-          jsonEncode(<String, dynamic>{'error': 'error'}),
-          200,
-        ),
-      );
-
-      int errors = 0;
-
-      storeTester.dispatch(
-        FetchSurveysAction(
-          client: client,
-          onError: (_) => errors++,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(FetchSurveysAction);
-
-      expect(info.state.surveyState?.surveys?.length, 0);
-      expect(errors, 1);
-    });
-
+  
     test('should handle exception', () async {
       final MockIGraphQlClient client = MockIGraphQlClient();
 

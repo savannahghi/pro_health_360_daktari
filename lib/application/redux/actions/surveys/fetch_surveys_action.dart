@@ -8,23 +8,23 @@ import 'package:mycarehubpro/application/core/graphql/queries.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/surveys/update_survey_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/application/redux/states/survey_state.dart';
 import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/surveys_response.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchSurveysAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final void Function(String?)? onError;
 
   FetchSurveysAction({
     required this.client,
-    this.onError,
   });
 
   @override
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(fetchSurveysFlag));
+
+    dispatch(UpdateSurveyStateAction(errorFetchingSurveys: false));
   }
 
   @override
@@ -48,7 +48,6 @@ class FetchSurveysAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      onError?.call(error);
       Sentry.captureException(
         error,
         hint: <String, dynamic>{
@@ -57,14 +56,14 @@ class FetchSurveysAction extends ReduxAction<AppState> {
           'response': response.body,
         },
       );
-      dispatch(UpdateSurveyStateAction(surveys: <Survey>[]));
+      dispatch(UpdateSurveyStateAction(errorFetchingSurveys: true));
       return state;
     }
 
-    final SurveysResponse surveysResponse = SurveysResponse.fromJson(
+    final SurveyState surveyState = SurveyState.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
-    final List<Survey?>? surveys = surveysResponse.surveys;
+    final List<Survey?>? surveys = surveyState.surveys;
 
     dispatch(UpdateSurveyStateAction(surveys: surveys));
 

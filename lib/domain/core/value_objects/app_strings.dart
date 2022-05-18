@@ -182,6 +182,11 @@ const String confirmString = 'Confirm';
 const String surveysInvitedToString =
     'Surveys you have been invited to respond to';
 const String sendOutString = 'Send Out';
+const String fetchingSurveysString = 'fetching surveys';
+
+const String noSurveysTitle = 'No Surveys available';
+const String noSurveysDescription =
+    'No worries though, check back in later and we will have them ready for you';
 const String mentalHealthSurveyString = 'Mental health survey';
 const String usabilitySurveyString = 'Usability survey';
 const String surveyDescriptionString =
