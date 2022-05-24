@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+
 class ContentDetailPage extends StatelessWidget {
   const ContentDetailPage({Key? key, required this.payload}) : super(key: key);
   final ContentDetails payload;
@@ -20,6 +21,7 @@ class ContentDetailPage extends StatelessWidget {
           );
         }
       },
+      onCloseCallback: () => Navigator.of(context).pop(),
     );
   }
 }

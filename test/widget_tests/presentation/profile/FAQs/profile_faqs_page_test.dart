@@ -6,6 +6,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
+
 import 'package:mycarehubpro/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -14,9 +18,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/content_details_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/gallery_images_page.dart';
 import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -140,8 +141,7 @@ void main() {
         await tester.tap(find.byType(ContentItem));
       });
     });
-    testWidgets('should refresh FAQs correctly',
-        (WidgetTester tester) async {
+    testWidgets('should refresh FAQs correctly', (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
 

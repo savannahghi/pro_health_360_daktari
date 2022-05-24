@@ -52,6 +52,7 @@ class UserProfilePage extends StatelessWidget {
                         staffState?.defaultFacilityName ?? UNKNOWN,
                   ),
                   mediumVerticalSizedBox,
+                  // conversation invites
                   UserProfileItem(
                     iconPath: communityIconSvgPath,
                     title: conversationsInvitesTitle,
@@ -59,6 +60,7 @@ class UserProfilePage extends StatelessWidget {
                     onTap: () => Navigator.of(context)
                         .pushNamed(AppRoutes.groupInvitesPage),
                   ),
+                  // contact admin
                   UserProfileItem(
                     iconPath: helpCircleIcon,
                     title: helpContactAdminString,
@@ -66,6 +68,7 @@ class UserProfilePage extends StatelessWidget {
                     onTap: () => Navigator.of(context)
                         .pushNamed(AppRoutes.contactAdminPage),
                   ),
+                  // resolved requests
                   UserProfileItem(
                     iconPath: feedbackIconSvgPath,
                     title: resolvedRequestsString,
@@ -73,6 +76,7 @@ class UserProfilePage extends StatelessWidget {
                     onTap: () => Navigator.of(context)
                         .pushNamed(AppRoutes.resolvedServiceRequestsPage),
                   ),
+                  // faqs
                   UserProfileItem(
                     iconPath: faqsIconSvgPath,
                     title: faqsText,
@@ -80,6 +84,7 @@ class UserProfilePage extends StatelessWidget {
                     onTap: () =>
                         Navigator.pushNamed(context, AppRoutes.profileFaqsPage),
                   ),
+                  // settings
                   UserProfileItem(
                     iconPath: settingsIconSvgPath,
                     title: settingsString,
@@ -88,12 +93,14 @@ class UserProfilePage extends StatelessWidget {
                         Navigator.pushNamed(context, AppRoutes.settingsPage),
                   ),
                   mediumVerticalSizedBox,
+                  // logout button
                   const SizedBox(
                     width: double.infinity,
                     height: 56,
                     child: LogoutButton(),
                   ),
                   mediumVerticalSizedBox,
+
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
