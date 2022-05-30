@@ -41,9 +41,29 @@ class PreLoadApp extends StatefulWidget {
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    final AppState? appState = StoreProvider.state<AppState>(context);
+    final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
+    if (state == AppLifecycleState.inactive && !resumeWithPin) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        BatchUpdateMiscStateAction(inactiveTime: DateTime.now().toString()),
+      );
+    }
+
+    if (state == AppLifecycleState.resumed &&
+        resumeWithPIN(appState ?? AppState.initial())) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        BatchUpdateMiscStateAction(resumeWithPin: true),
+      );
+      Navigator.pushReplacementNamed(
+        globalAppNavigatorKey.currentContext!,
+        AppRoutes.resumeWithPin,
+      );
+    }
   }
 
   @override
@@ -79,35 +99,15 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    final AppState? appState = StoreProvider.state<AppState>(context);
-    final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
-    if (state == AppLifecycleState.inactive && !resumeWithPin) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        BatchUpdateMiscStateAction(inactiveTime: DateTime.now().toString()),
-      );
-    }
-
-    if (state == AppLifecycleState.resumed &&
-        resumeWithPIN(appState ?? AppState.initial())) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        BatchUpdateMiscStateAction(resumeWithPin: true),
-      );
-      Navigator.pushReplacementNamed(
-        globalAppNavigatorKey.currentContext!,
-        AppRoutes.resumeWithPin,
-      );
-    }
-  }
-
-  @override
   void dispose() {
     WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
