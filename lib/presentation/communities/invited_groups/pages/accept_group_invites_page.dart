@@ -121,7 +121,7 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                               ..showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                    invitationAcceptedSuccessfully,
+                                    invitationDeclinedSuccessfully,
                                   ),
                                 ),
                               );

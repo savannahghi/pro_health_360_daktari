@@ -50,6 +50,7 @@ class UserProfilePage extends StatelessWidget {
                     profession: profession,
                     defaultHospitalName:
                         staffState?.defaultFacilityName ?? UNKNOWN,
+                    nickName: staffState?.user?.username ?? UNKNOWN,
                   ),
                   mediumVerticalSizedBox,
                   // conversation invites
