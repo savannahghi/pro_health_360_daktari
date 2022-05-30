@@ -24,6 +24,7 @@ class UserDetailsCard extends StatelessWidget {
     required this.gender,
     required this.licenseNumber,
     required this.defaultHospitalName,
+    required this.nickName,
   });
 
   final String clinicName;
@@ -33,6 +34,7 @@ class UserDetailsCard extends StatelessWidget {
   final String phoneNumber;
   final String profession;
   final String defaultHospitalName;
+  final String nickName;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,11 @@ class UserDetailsCard extends StatelessWidget {
                 Text(
                   name,
                   style: veryBoldSize16Text(Colors.white),
+                ),
+                smallVerticalSizedBox,
+                Text(
+                  'Nickname: $nickName',
+                  style: boldSize16Text(Colors.white),
                 ),
                 smallVerticalSizedBox,
                 Text(

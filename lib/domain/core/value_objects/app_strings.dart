@@ -69,6 +69,8 @@ const String noInvitesDescription =
     'There seems to be no group invites for you at the moment. We will notify you the moment you get more invites. Enjoy your day!';
 const String invitationAcceptedSuccessfully =
     'Invitation accepted successfully';
+const String invitationDeclinedSuccessfully =
+    'Invitation declined successfully';
 const String communitiesRejectionSuccessful = 'Invite rejection successful';
 String groupInviteDescription(String groupName) =>
     'You have been invited to join the $groupName group. Tap the options below to accept or decline the group invite';
