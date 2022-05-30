@@ -109,4 +109,6 @@ class AppRoutes {
   //Documents Page
   static const String viewDocumentPage = '/viewDocumentPage';
   static const String galleryImagesPage = '/galleryImagesPage';
+
+  static const String editGroupInfoPage = '/editGroupInfoPage';
 }

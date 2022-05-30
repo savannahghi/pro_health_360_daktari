@@ -813,3 +813,17 @@ const String verySadString = 'Very Sad';
 const String newText = 'New';
 
 const String galleryImagesTitle = 'Gallery Images';
+
+const String noTitleText = 'No title';
+
+const String deleteGroupWarning =
+    'Deleting the group will remove all members from this '
+    'group and all messages will be deleted. You will need'
+    ' to confirm this action before deletion';
+
+const String getEditTitle = 'Edit group info';
+
+const String emptyFieldErrorText = 'Please enter some text';
+const String nameOfGroupText = 'Name of the group';
+const String describeGroupText = 'Describe the group';
+const String deleteGroupText = 'Delete group';

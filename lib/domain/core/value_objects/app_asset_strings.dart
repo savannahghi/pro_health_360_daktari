@@ -150,3 +150,5 @@ const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';
 const String acceptTermsImageSvgPath = 'assets/images/accept_terms_icon.svg';
 
 const String contentZeroStateImageUrl = 'assets/images/no_content_image.svg';
+
+const String pencilIconUrl = 'assets/icons/pencil.svg';

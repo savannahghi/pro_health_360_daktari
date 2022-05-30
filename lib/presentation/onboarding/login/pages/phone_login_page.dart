@@ -25,11 +25,8 @@ class PhoneLoginPage extends StatefulWidget {
 
 class _PhoneLoginPageState extends State<PhoneLoginPage> {
   String? phoneNumber;
-  final TextEditingController phoneNumberInputController =
-      TextEditingController();
 
   String? pin;
-  TextEditingController pinController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -40,13 +37,6 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
       StoreProvider.dispatch(context, ResetOnboardingStateAction());
     }
     super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    pinController.dispose();
-    phoneNumberInputController.dispose();
-    super.dispose();
   }
 
   @override

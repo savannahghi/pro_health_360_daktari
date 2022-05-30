@@ -28,8 +28,6 @@ class CreateNewPINPage extends StatefulWidget {
 }
 
 class _CreateNewPINPageState extends State<CreateNewPINPage> {
-  TextEditingController pinController = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String confirmPin = '';
   String pin = '';

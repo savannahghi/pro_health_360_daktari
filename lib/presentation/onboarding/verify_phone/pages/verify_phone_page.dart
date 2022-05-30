@@ -13,13 +13,11 @@ import 'package:mycarehubpro/presentation/onboarding/verify_phone/widgets/verify
 import 'package:shared_themes/spaces.dart';
 
 class VerifyPhonePage extends StatelessWidget {
-  VerifyPhonePage({Key? key}) : super(key: key);
-
-  final TextEditingController otpEditingController = TextEditingController();
+  const VerifyPhonePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-  return StoreConnector<AppState, VerifyPhoneViewModel>(
+    return StoreConnector<AppState, VerifyPhoneViewModel>(
       converter: (Store<AppState> store) {
         return VerifyPhoneViewModel.fromStore(store);
       },
