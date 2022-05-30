@@ -93,7 +93,7 @@ void main() {
       expect(
         navDetails?.predicate.call(
           MaterialPageRoute<VerifyPhonePage>(
-            builder: (BuildContext context) => VerifyPhonePage(),
+            builder: (BuildContext context) => const VerifyPhonePage(),
           ),
         ),
         false,

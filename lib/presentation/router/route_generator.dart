@@ -8,6 +8,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/edit_group_info_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
@@ -152,7 +153,9 @@ class RouteGenerator {
 
       case AppRoutes.surveysSenderListPage:
         return MaterialPageRoute<SurveysSenderListPage>(
-          builder: (_) => SurveysSenderListPage(survey: args as Survey,),
+          builder: (_) => SurveysSenderListPage(
+            survey: args as Survey,
+          ),
         );
 
       case AppRoutes.surveysSendConfigurationsPage:
@@ -167,7 +170,7 @@ class RouteGenerator {
 
       case AppRoutes.verifyPhonePage:
         return MaterialPageRoute<VerifyPhonePage>(
-          builder: (_) => VerifyPhonePage(),
+          builder: (_) => const VerifyPhonePage(),
         );
 
       case AppRoutes.profilePage:
@@ -357,6 +360,11 @@ class RouteGenerator {
       case AppRoutes.resumeWithPin:
         return MaterialPageRoute<ResumePinConnector>(
           builder: (_) => const ResumePinConnector(),
+        );
+
+      case AppRoutes.editGroupInfoPage:
+        return MaterialPageRoute<EditGroupInfoPage>(
+          builder: (_) => const EditGroupInfoPage(),
         );
     }
   }

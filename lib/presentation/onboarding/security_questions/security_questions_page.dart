@@ -27,7 +27,7 @@ class SecurityQuestionsPage extends StatefulWidget {
 
 class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController dateController = TextEditingController();
+
   @override
   void initState() {
     super.initState();

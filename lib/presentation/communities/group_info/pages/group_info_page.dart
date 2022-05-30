@@ -14,9 +14,11 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/communities/flagged_messages/pages/flagged_messages_page.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/edit_group_info_page.dart';
 import 'package:mycarehubpro/presentation/communities/group_info/pages/group_member_connector.dart';
 import 'package:mycarehubpro/presentation/communities/view_models/groups_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:mycarehubpro/presentation/core/widgets/edit_widget.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -57,8 +59,22 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     final Channel channel = StreamChannel.of(context).channel;
 
     final String channelName = widget.channelName;
+
     return Scaffold(
-      appBar: const CustomAppBar(title: groupInfoText),
+      appBar: CustomAppBar(
+        title: groupInfoText,
+        trailingWidget: EditWidget(
+          onTap: () {
+            _navigateToPage(context, channel, const EditGroupInfoPage());
+          },
+          icon: SvgPicture.asset(
+            pencilIconUrl,
+            color: Colors.black,
+            width: 25,
+            height: 20,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -175,7 +191,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
             ),
             InkWell(
               onTap: () {
-                _navigateToFlaggedMessagesPage(context, channel);
+                _navigateToPage(context, channel, const FlaggedMessagesPage());
               },
               child: Container(
                 width: double.infinity,
@@ -235,16 +251,17 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     );
   }
 
-  Future<dynamic> _navigateToFlaggedMessagesPage(
+  Future<dynamic> _navigateToPage(
     BuildContext context,
     Channel channel,
+    Widget page,
   ) {
     return Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (_) {
           return StreamChannel(
             channel: channel,
-            child: const FlaggedMessagesPage(),
+            child: page,
           );
         },
       ),

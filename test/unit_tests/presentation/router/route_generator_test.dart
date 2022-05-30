@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/edit_group_info_page.dart';
 import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:mycarehubpro/presentation/communities/pages/community_list_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
@@ -530,6 +531,17 @@ void main() {
     expect(route, isA<MaterialPageRoute<AssessmentToolResponsesPage>>());
     expect(route?.builder(context), isA<AssessmentToolResponsesPage>());
   });
+
+  test('Test router returns successful edit group info page', () {
+    const RouteSettings routeSettings =
+        RouteSettings(name: AppRoutes.editGroupInfoPage);
+    final MaterialPageRoute<dynamic>? route =
+        routeGenerator(routeSettings) as MaterialPageRoute<dynamic>?;
+
+    expect(route, isA<MaterialPageRoute<EditGroupInfoPage>>());
+    expect(route?.builder(context), isA<EditGroupInfoPage>());
+  });
+
   test('Test router returns successful resume pin connector', () {
     const RouteSettings settings = RouteSettings(name: AppRoutes.resumeWithPin);
 
@@ -539,6 +551,7 @@ void main() {
     expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
     expect(route?.builder(context), isA<ResumePinConnector>());
   });
+
   test('Test router returns  Document page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.viewDocumentPage,
