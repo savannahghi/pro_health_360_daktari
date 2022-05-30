@@ -6,18 +6,21 @@ class GroupsViewModel extends Vm {
   final Wait wait;
   final List<GroupMember?>? groupMembers;
   final List<Role>? staffRoles;
+  final bool? isModerator;
 
   GroupsViewModel({
     required this.wait,
     this.groupMembers,
     this.staffRoles,
-  }) : super(equals: <Object?>[wait, groupMembers]);
+    this.isModerator,
+  }) : super(equals: <Object?>[wait, groupMembers, isModerator]);
 
   factory GroupsViewModel.fromStore(Store<AppState> store) {
     return GroupsViewModel(
       wait: store.state.wait!,
       groupMembers: store.state.miscState?.groupState?.groupMembers,
       staffRoles: store.state.staffState?.user?.roles,
+      isModerator: store.state.miscState?.groupState?.isModerator,
     );
   }
 }

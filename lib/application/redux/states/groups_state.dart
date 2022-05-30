@@ -9,10 +9,12 @@ part 'groups_state.g.dart';
 class GroupState with _$GroupState {
   factory GroupState({
     @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
+    bool? isModerator,
   }) = _GroupState;
 
   factory GroupState.fromJson(Map<String, dynamic> json) =>
       _$GroupStateFromJson(json);
 
-  factory GroupState.initial() => GroupState(groupMembers: <GroupMember?>[]);
+  factory GroupState.initial() =>
+      GroupState(groupMembers: <GroupMember?>[], isModerator: false);
 }
