@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/check_user_role_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -41,6 +43,11 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
     StoreProvider.dispatch<AppState>(
       context,
+      CheckUserRoleAction(channel: channel),
+    );
+
+    StoreProvider.dispatch<AppState>(
+      context,
       FetchGroupMembersAction(
         client: AppWrapperBase.of(context)!.graphQLClient,
         channelId: channel.id!,
@@ -63,16 +70,27 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: groupInfoText,
-        trailingWidget: EditWidget(
-          onTap: () {
-            _navigateToPage(context, channel, const EditGroupInfoPage());
+        trailingWidget: StoreConnector<AppState, GroupsViewModel>(
+          converter: (Store<AppState> store) {
+            return GroupsViewModel.fromStore(store);
           },
-          icon: SvgPicture.asset(
-            pencilIconUrl,
-            color: Colors.black,
-            width: 25,
-            height: 20,
-          ),
+          builder: (BuildContext context, GroupsViewModel vm) {
+            if (vm.isModerator ?? false) {
+              return EditWidget(
+                onTap: () {
+                  _navigateToPage(context, channel, const EditGroupInfoPage());
+                },
+                icon: SvgPicture.asset(
+                  pencilIconUrl,
+                  color: Colors.black,
+                  width: 25,
+                  height: 20,
+                ),
+              );
+            }
+
+            return const SizedBox();
+          },
         ),
       ),
       body: Padding(
@@ -111,8 +129,8 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                           );
                         }
 
-                        final List<GroupMember?>? groupMembers =
-                            vm.groupMembers;
+                        final List<GroupMember?> groupMembers =
+                            vm.groupMembers ?? <GroupMember>[];
 
                         final List<Role>? staffRoles = vm.staffRoles;
 
@@ -142,7 +160,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                             ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
-                              itemCount: groupMembers!.length,
+                              itemCount: groupMembers.length,
                               itemBuilder: (BuildContext context, int index) {
                                 final GroupMember currentMember =
                                     groupMembers.elementAt(index)!;
