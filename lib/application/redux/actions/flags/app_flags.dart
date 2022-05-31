@@ -58,6 +58,7 @@ const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';
 const String acceptDeclineCommunitiesInviteFlag =
     'accept_decline_communities_invite_flag';
 const String unBanUserFlag = 'unban_user_flag';
+const String deleteGroupFlag = 'delete_group_flag';
 
 // search client
 const String searchClientFlag = 'search_client_flag';

@@ -3,12 +3,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/check_user_role_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/check_user_is_owner.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'check_user_role_action_test.mocks.dart';
+import 'check_user_is_owner_action_test.mocks.dart';
 
 @GenerateMocks(<Type>[Channel])
 void main() {
@@ -18,7 +18,7 @@ void main() {
     store = Store<AppState>(initialState: AppState.initial());
   });
 
-  group('CheckUserRoleAction', () {
+  group('CheckUserIsOwnerAction', () {
     test('works correctly', () async {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
@@ -42,12 +42,12 @@ void main() {
         ),
       );
 
-      storeTester.dispatch(CheckUserRoleAction(channel: mockStreamChannel));
+      storeTester.dispatch(CheckUserIsOwnerAction(channel: mockStreamChannel));
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(CheckUserRoleAction);
+          await storeTester.waitUntil(CheckUserIsOwnerAction);
 
-      expect(info.state.miscState?.groupState?.isModerator, true);
+      expect(info.state.miscState?.groupState?.isOwner, true);
     });
 
     test('should handle errors', () async {
@@ -59,12 +59,12 @@ void main() {
         mockStreamChannel.queryMembers(filter: anyNamed('filter')),
       ).thenThrow(MyAfyaException(cause: 'random error', message: 'message'));
 
-      storeTester.dispatch(CheckUserRoleAction(channel: mockStreamChannel));
+      storeTester.dispatch(CheckUserIsOwnerAction(channel: mockStreamChannel));
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(CheckUserRoleAction);
+          await storeTester.waitUntil(CheckUserIsOwnerAction);
 
-      expect(info.dispatchCount, 1);
+      expect(info.dispatchCount, 2);
       expect(info.errors.removeFirst().msg, getErrorMessage());
     });
   });

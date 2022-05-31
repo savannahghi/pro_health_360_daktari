@@ -14,10 +14,12 @@ _$_GroupState _$$_GroupStateFromJson(Map<String, dynamic> json) =>
               : GroupMember.fromJson(e as Map<String, dynamic>))
           .toList(),
       isModerator: json['isModerator'] as bool?,
+      isOwner: json['isOwner'] as bool?,
     );
 
 Map<String, dynamic> _$$_GroupStateToJson(_$_GroupState instance) =>
     <String, dynamic>{
       'listCommunityMembers': instance.groupMembers,
       'isModerator': instance.isModerator,
+      'isOwner': instance.isOwner,
     };
