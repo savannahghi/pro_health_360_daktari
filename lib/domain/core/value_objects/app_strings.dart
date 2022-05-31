@@ -87,7 +87,7 @@ const String forgotPinString = 'Forgot Pin';
 //Security Questions
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
-    'Choose one security question. Make sure to remember the answer';
+    'Please answer the following security questions. Make sure to remember the answer';
 const String whereWereYouBornString = 'Where were you born?';
 const String whatsTheNameOfYourPetString = 'What is the name of your pet?';
 const String whatsYourFavoriteFoodString = 'What is your favorite food?';

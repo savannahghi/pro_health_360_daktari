@@ -26,6 +26,8 @@ class SecurityQuestionsPage extends StatefulWidget {
 }
 
 class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
+  TextEditingController dateController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -40,6 +42,76 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         ),
       ),
     );
+  }
+
+  Widget securityQuestionsBody({
+    required List<SecurityQuestion?> securityQuestions,
+    required List<SecurityQuestionResponse> securityQuestionsResponses,
+    required String userID,
+  }) {
+    if (securityQuestions.isEmpty) {
+      return GenericErrorWidget(
+        actionKey: helpNoDataWidgetKey,
+        headerIconSvgUrl: noSecurityQuestionsImage,
+        recoverCallback: () async {
+          StoreProvider.dispatch<AppState>(
+            context,
+            GetSecurityQuestionsAction(
+              context: context,
+            ),
+          );
+        },
+        messageTitle: noQuestionsLoadedString,
+        messageBody: const <TextSpan>[
+          TextSpan(text: noQuestionsLoadedDescription)
+        ],
+      );
+    } else {
+      return ListView.builder(
+        itemCount: securityQuestions.length,
+        shrinkWrap: true,
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
+        itemBuilder: (BuildContext context, int index) {
+          final SecurityQuestion? question = securityQuestions.elementAt(index);
+
+          return SecurityQuestionWidget(
+            securityQuestion: question!,
+            response: (securityQuestionsResponses.elementAt(index).response ==
+                    UNKNOWN)
+                ? null
+                : securityQuestionsResponses.elementAt(index).response,
+            onChanged: (String? value) {
+              if (question.responseType == SecurityQuestionResponseType.DATE &&
+                  value != null) {
+                final String convertedDate = formatSecurityQuestionDate(
+                  value,
+                  format: 'dd-MM-yyyy',
+                );
+
+                securityQuestionsResponses[index] = SecurityQuestionResponse(
+                  userID: userID,
+                  securityQuestionID: question.securityQuestionID,
+                  response: convertedDate,
+                );
+              } else {
+                securityQuestionsResponses[index] = SecurityQuestionResponse(
+                  userID: userID,
+                  securityQuestionID: question.securityQuestionID,
+                  response: value,
+                );
+              }
+
+              StoreProvider.dispatch<AppState>(
+                context,
+                UpdateOnboardingStateAction(
+                  securityQuestionsResponses: securityQuestionsResponses,
+                ),
+              );
+            },
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -167,75 +239,5 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         );
       },
     );
-  }
-
-  Widget securityQuestionsBody({
-    required List<SecurityQuestion?> securityQuestions,
-    required List<SecurityQuestionResponse> securityQuestionsResponses,
-    required String userID,
-  }) {
-    if (securityQuestions.isEmpty) {
-      return GenericErrorWidget(
-        actionKey: helpNoDataWidgetKey,
-        headerIconSvgUrl: noSecurityQuestionsImage,
-        recoverCallback: () async {
-          StoreProvider.dispatch<AppState>(
-            context,
-            GetSecurityQuestionsAction(
-              context: context,
-            ),
-          );
-        },
-        messageTitle: noQuestionsLoadedString,
-        messageBody: const <TextSpan>[
-          TextSpan(text: noQuestionsLoadedDescription)
-        ],
-      );
-    } else {
-      return ListView.builder(
-        itemCount: securityQuestions.length,
-        shrinkWrap: true,
-        padding: const EdgeInsets.only(top: 5, bottom: 5),
-        itemBuilder: (BuildContext context, int index) {
-          final SecurityQuestion? question = securityQuestions.elementAt(index);
-
-          return SecurityQuestionWidget(
-            securityQuestion: question!,
-            response: (securityQuestionsResponses.elementAt(index).response ==
-                    UNKNOWN)
-                ? null
-                : securityQuestionsResponses.elementAt(index).response,
-            onChanged: (String? value) {
-              if (question.responseType == SecurityQuestionResponseType.DATE &&
-                  value != null) {
-                final String convertedDate = formatSecurityQuestionDate(
-                  value,
-                  format: 'dd-MM-yyyy',
-                );
-
-                securityQuestionsResponses[index] = SecurityQuestionResponse(
-                  userID: userID,
-                  securityQuestionID: question.securityQuestionID,
-                  response: convertedDate,
-                );
-              } else {
-                securityQuestionsResponses[index] = SecurityQuestionResponse(
-                  userID: userID,
-                  securityQuestionID: question.securityQuestionID,
-                  response: value,
-                );
-              }
-
-              StoreProvider.dispatch<AppState>(
-                context,
-                UpdateOnboardingStateAction(
-                  securityQuestionsResponses: securityQuestionsResponses,
-                ),
-              );
-            },
-          );
-        },
-      );
-    }
   }
 }
