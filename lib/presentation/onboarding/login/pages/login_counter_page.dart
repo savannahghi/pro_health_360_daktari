@@ -12,6 +12,9 @@ class LoginCounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginCounterWidget(
+      title: tooManyAttemptsString,
+      subtitle: tooManyAttemptsMessageString,
+      requestForAssistanceSubtitle: requestForAssistanceMessageString,
       retryTimeout: retryTime ?? 0,
       actionKey: askForHelpButtonKey,
       actionText: askForHelpString,
