@@ -16,23 +16,33 @@ class InviteStaffAction extends ReduxAction<AppState> {
     required this.client,
     required this.onSuccess,
     required this.onFailure,
+    this.reinvite = false,
   });
 
   final IGraphQlClient client;
   final SearchUserResponse clientResponse;
   final void Function(String name)? onSuccess;
   final void Function()? onFailure;
+  final bool reinvite;
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(inviteStaffFlag));
+    dispatch(
+      WaitAction<AppState>.remove(
+        reinvite ? reinviteStaffFlag : inviteStaffFlag,
+      ),
+    );
     super.after();
   }
 
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(inviteStaffFlag));
+    dispatch(
+      WaitAction<AppState>.add(
+        reinvite ? reinviteStaffFlag : inviteStaffFlag,
+      ),
+    );
   }
 
   @override
@@ -40,7 +50,8 @@ class InviteStaffAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': clientResponse.user!.id,
       'flavour': Flavour.pro.name,
-      'phoneNumber': clientResponse.user?.primaryContact?.value
+      'phoneNumber': clientResponse.user?.primaryContact?.value,
+      'reinvite': reinvite,
     };
     final Response response = await client.query(inviteUserMutation, variables);
 

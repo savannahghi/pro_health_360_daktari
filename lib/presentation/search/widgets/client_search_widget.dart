@@ -15,6 +15,8 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/health_diary_entry_widget.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/search/widgets/active_client_actions.dart';
+import 'package:mycarehubpro/presentation/search/widgets/inactive_user_actions.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -54,70 +56,40 @@ class ClientSearchWidget extends StatelessWidget {
               vm.sharedDiaryEntries ?? <HealthDiaryEntry>[];
 
           final bool isActive = selectedSearchUserResponse.isActive ?? true;
+          final String names = selectedSearchUserResponse.user?.name ?? '';
+
           return Column(
             children: <Widget>[
               SearchDetailsInformationWidget(
                 searchUserResponse: selectedSearchUserResponse,
                 isClient: true,
               ),
+              smallVerticalSizedBox,
               const Divider(),
-              mediumVerticalSizedBox,
+              smallVerticalSizedBox,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      isActive ? actions : deactivatedUserString,
-                      style: boldSize18Text(AppColors.greyTextColor),
-                    ),
-                    smallVerticalSizedBox,
+                    // Only send an invite when a user is active
+
                     if (isActive)
-                      Text(
-                        '1. $myCareHubReInviteText',
-                        style: boldSize15Text(AppColors.greyTextColor),
+                      ActiveClientActions(
+                        names: names,
+                        isSendLoading: vm.wait.isWaitingFor(inviteClientFlag),
+                        isResendLoading:
+                            vm.wait.isWaitingFor(resendClientInviteFlag),
+                        searchUserResponse: selectedSearchUserResponse,
                       )
                     else
-                      Text(
-                        '${selectedSearchUserResponse.user?.userName} $deactivatedUserPageDescriptionString',
-                        style: normalSize14Text(AppColors.greyTextColor),
+                      InActiveUserActions(
+                        names: names,
+                        isLoading: vm.wait.isWaitingFor(reactivateClientFlag),
+                        searchUserResponse: selectedSearchUserResponse,
                       ),
-                    if (isActive) ...<Widget>{
-                      verySmallVerticalSizedBox,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                        child: Text(
-                          tapBelowToInvite(
-                            selectedSearchUserResponse.user?.userName ?? '',
-                          ),
-                          style: normalSize14Text(AppColors.greyTextColor),
-                        ),
-                      )
-                    },
-                    mediumVerticalSizedBox,
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                      width: double.infinity,
-                      child: (vm.wait.isWaitingFor(inviteClientFlag) ||
-                              vm.wait.isWaitingFor(reactivateClientFlag))
-                          ? const PlatformLoader()
-                          : MyAfyaHubPrimaryButton(
-                              customChild: Text(
-                                isActive
-                                    ? inviteToMyCareHubString
-                                    : reactivateUserString,
-                                style: veryBoldSize15Text(
-                                  AppColors.whiteColor,
-                                ),
-                              ),
-                              onPressed: () => onPressedPrimaryButton(
-                                context: context,
-                                selectedSearchUserResponse:
-                                    selectedSearchUserResponse,
-                              ),
-                            ),
-                    ),
-                    mediumVerticalSizedBox,
+
+                    /// Shared health diary entries section
                     if (vm.wait.isWaitingFor(sharedHealthDiaryFlag))
                       Container(
                         height: 300,
@@ -165,26 +137,29 @@ class ClientSearchWidget extends StatelessWidget {
   }
 }
 
-void onPressedPrimaryButton({
+/// Performs an invite to a client or reinvite based on the value of [reinvite]
+///
+/// It sends an invite if [reinvite] is true and a reinvite if false
+void clientSearchAction({
   required BuildContext context,
   required SearchUserResponse selectedSearchUserResponse,
+  final bool reinvite = false,
 }) {
   final bool isActive = selectedSearchUserResponse.isActive ?? true;
-  final String userName = selectedSearchUserResponse.user?.userName ?? '';
+  final String userName =
+      selectedSearchUserResponse.user?.userName ?? 'the client';
+  final IGraphQlClient? client = AppWrapperBase.of(context)?.graphQLClient;
 
   if (isActive) {
     StoreProvider.dispatch(
       context,
       InviteClientAction(
         clientResponse: selectedSearchUserResponse,
-        client: AppWrapperBase.of(context)!.graphQLClient,
+        client: client!,
+        reinvite: reinvite,
         onSuccess: () {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                '$inviteSent $userName',
-              ),
-            ),
+            SnackBar(content: Text('$inviteSent $userName')),
           );
           Navigator.of(context).pushNamedAndRemoveUntil(
             AppRoutes.homePage,
@@ -193,9 +168,7 @@ void onPressedPrimaryButton({
         },
         onFailure: () {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(unableToSendInvite),
-            ),
+            const SnackBar(content: Text(unableToSendInvite)),
           );
           Navigator.of(context).pushNamedAndRemoveUntil(
             AppRoutes.homePage,
@@ -207,7 +180,7 @@ void onPressedPrimaryButton({
   } else {
     final String? endpoint =
         AppWrapperBase.of(context)?.customContext?.optInClientEndpoint;
-    final IGraphQlClient? client = AppWrapperBase.of(context)?.graphQLClient;
+
     StoreProvider.dispatch(
       context,
       ReactivateClientAction(
@@ -215,18 +188,10 @@ void onPressedPrimaryButton({
         optInEndpoint: endpoint ?? '',
         searchUserResponse: selectedSearchUserResponse,
         onSuccess: () => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '$userName $reactivatedSuccessfullyString',
-            ),
-          ),
+          SnackBar(content: Text('$userName $reactivatedSuccessfullyString')),
         ),
         onError: () => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '$errorWhileReactivatingString $userName',
-            ),
-          ),
+          SnackBar(content: Text('$errorWhileReactivatingString $userName')),
         ),
       ),
     );

@@ -236,6 +236,7 @@ const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
 const String myCareHubReInviteText = 'Reinvite to myCareHub';
+const String myCareHubAlternateInvite = 'Resend myCareHub invite';
 const String myCareHubProInviteText = 'Invite to myCareHub professional';
 const String proInviteText = 'Invite to myCareHub Professional';
 const String registerBtnText = 'Register';
@@ -565,8 +566,12 @@ const String confirmCCCNumberIsCorrectString =
     '. Confirm that the CCC number is correct, or tap the button below to register them';
 const String registerClientString = 'Register Client';
 const String actions = 'Actions';
-String tapBelowToInvite(String userName) =>
-    'Tap the button below to invite $userName to myCareHub. They will receive and SMS with instructions on how to sign up';
+String tapBelowToInvite(String names) =>
+    'Tap the button below to invite $names to myCareHub. They will receive and SMS with instructions on how to sign up';
+
+String tapToResendInvite(String names) =>
+    'If $names did not receive the myCareHub invite, tap the button below to resend them another invite using an alternative channel';
+
 const String shareDiaryEntry = 'Shared diary entry';
 const String youDoNotHavePermission =
     'Failed to assign roles, you are not authorized to assign roles';

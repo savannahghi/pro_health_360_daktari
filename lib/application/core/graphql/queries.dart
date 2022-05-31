@@ -139,6 +139,7 @@ query searchClientsByCCCNumber($CCCNumber: String!){
     User{
       ID
       Username
+      Name
       Active
        Contacts{
         id
@@ -307,7 +308,6 @@ query listContentCategories{
   }
 }
 ''';
-
 
 const String getContentQuery = r'''
 query getContent($categoryID: Int, $Limit: String!){

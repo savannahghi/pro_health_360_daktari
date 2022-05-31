@@ -140,8 +140,8 @@ mutation rejectInvitation($memberID: String!, $communityID: String!){
 ''';
 
 const String inviteUserMutation = r'''
-mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
-  inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour )
+mutation inviteUser($userID: String!, $phoneNumber: String!, $flavour: Flavour!, $reinvite: Boolean!) {
+  inviteUser(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour, reinvite: $reinvite)
 }
 ''';
 

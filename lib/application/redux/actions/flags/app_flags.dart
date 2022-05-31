@@ -76,8 +76,13 @@ const String assignRolesFlag = 'assign_roles_flag';
 // invite staff
 const String inviteStaffFlag = 'invite_staff_flag';
 
+/// reinvite staff
+const String reinviteStaffFlag = 'reinvite_staff_flag';
+
 // invite client
 const String inviteClientFlag = 'invite_client_flag';
+
+const String resendClientInviteFlag = 'resend_invite_client_flag';
 
 // remove from group
 const String removeFromGroupFlag = 'remove_from group_flag';

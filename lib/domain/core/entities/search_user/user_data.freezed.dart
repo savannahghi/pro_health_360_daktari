@@ -27,13 +27,15 @@ class _$UserDataTearOff {
       @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact}) {
+      @JsonKey(name: 'Contacts') Contact? primaryContact,
+      @JsonKey(name: 'Name') String? name}) {
     return _UserData(
       id: id,
       userName: userName,
       termsAccepted: termsAccepted,
       active: active,
       primaryContact: primaryContact,
+      name: name,
     );
   }
 
@@ -57,6 +59,8 @@ mixin _$UserData {
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'Contacts')
   Contact? get primaryContact => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +77,8 @@ abstract class $UserDataCopyWith<$Res> {
       @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact});
+      @JsonKey(name: 'Contacts') Contact? primaryContact,
+      @JsonKey(name: 'Name') String? name});
 
   $ContactCopyWith<$Res>? get primaryContact;
 }
@@ -93,6 +98,7 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -115,6 +121,10 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.primaryContact
           : primaryContact // ignore: cast_nullable_to_non_nullable
               as Contact?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -140,7 +150,8 @@ abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact});
+      @JsonKey(name: 'Contacts') Contact? primaryContact,
+      @JsonKey(name: 'Name') String? name});
 
   @override
   $ContactCopyWith<$Res>? get primaryContact;
@@ -162,6 +173,7 @@ class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? termsAccepted = freezed,
     Object? active = freezed,
     Object? primaryContact = freezed,
+    Object? name = freezed,
   }) {
     return _then(_UserData(
       id: id == freezed
@@ -184,6 +196,10 @@ class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.primaryContact
           : primaryContact // ignore: cast_nullable_to_non_nullable
               as Contact?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -196,7 +212,8 @@ class _$_UserData implements _UserData {
       @JsonKey(name: 'Username') this.userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) this.termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) this.active,
-      @JsonKey(name: 'Contacts') this.primaryContact});
+      @JsonKey(name: 'Contacts') this.primaryContact,
+      @JsonKey(name: 'Name') this.name});
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
@@ -216,10 +233,13 @@ class _$_UserData implements _UserData {
   @override
   @JsonKey(name: 'Contacts')
   final Contact? primaryContact;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
 
   @override
   String toString() {
-    return 'UserData(id: $id, userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact)';
+    return 'UserData(id: $id, userName: $userName, termsAccepted: $termsAccepted, active: $active, primaryContact: $primaryContact, name: $name)';
   }
 
   @override
@@ -233,7 +253,8 @@ class _$_UserData implements _UserData {
                 .equals(other.termsAccepted, termsAccepted) &&
             const DeepCollectionEquality().equals(other.active, active) &&
             const DeepCollectionEquality()
-                .equals(other.primaryContact, primaryContact));
+                .equals(other.primaryContact, primaryContact) &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
@@ -243,7 +264,8 @@ class _$_UserData implements _UserData {
       const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(termsAccepted),
       const DeepCollectionEquality().hash(active),
-      const DeepCollectionEquality().hash(primaryContact));
+      const DeepCollectionEquality().hash(primaryContact),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +284,8 @@ abstract class _UserData implements UserData {
       @JsonKey(name: 'Username') String? userName,
       @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
       @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact}) = _$_UserData;
+      @JsonKey(name: 'Contacts') Contact? primaryContact,
+      @JsonKey(name: 'Name') String? name}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
@@ -281,6 +304,9 @@ abstract class _UserData implements UserData {
   @override
   @JsonKey(name: 'Contacts')
   Contact? get primaryContact;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$UserDataCopyWith<_UserData> get copyWith =>

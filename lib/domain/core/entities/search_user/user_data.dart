@@ -15,6 +15,7 @@ class UserData with _$UserData {
     @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
     @JsonKey(name: 'Active', defaultValue: false) bool? active,
     @JsonKey(name: 'Contacts') Contact? primaryContact,
+    @JsonKey(name: 'Name') String? name,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
@@ -26,5 +27,6 @@ class UserData with _$UserData {
         termsAccepted: false,
         active: false,
         primaryContact: Contact.initial(),
+        name: UNKNOWN,
       );
 }
