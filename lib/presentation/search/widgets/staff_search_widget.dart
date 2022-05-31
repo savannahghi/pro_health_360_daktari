@@ -7,7 +7,6 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/search_users/assign_roles_action.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/invite_staff_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
@@ -15,6 +14,7 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:mycarehubpro/presentation/search/widgets/active_staff_actions.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -55,7 +55,9 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
               vm.selectedSearchUserResponse!;
 
           final String? userId = selectedSearchUserResponse.user?.id;
-          final String? userName = selectedSearchUserResponse.user?.userName;
+
+          final String userName =
+              selectedSearchUserResponse.user?.userName ?? 'the staff member';
 
           return (vm.wait.isWaitingFor(searchStaffMemberFlag))
               ? Container(
@@ -69,92 +71,28 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                       searchUserResponse: selectedSearchUserResponse,
                       isClient: false,
                     ),
+                    smallVerticalSizedBox,
                     const Divider(),
-                    mediumVerticalSizedBox,
+                    smallVerticalSizedBox,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 14.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            actions,
-                            style: boldSize18Text(AppColors.greyTextColor),
+                          ActiveStaffActions(
+                            names: userName,
+                            isSendLoading:
+                                vm.wait.isWaitingFor(inviteStaffFlag),
+                            isResendLoading:
+                                vm.wait.isWaitingFor(reinviteStaffFlag),
+                            searchUserResponse: selectedSearchUserResponse,
                           ),
-                          smallVerticalSizedBox,
-                          Text(
-                            '1. $myCareHubReInviteText',
-                            style: boldSize16Text(AppColors.greyTextColor),
-                          ),
-                          smallVerticalSizedBox,
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 14.0),
-                            child: Text(
-                              tapBelowToInvite(
-                                selectedSearchUserResponse.user!.userName!,
-                              ),
-                              style: normalSize15Text(AppColors.greyTextColor),
-                            ),
-                          ),
-                          mediumVerticalSizedBox,
-                          Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 14.0),
-                            width: double.infinity,
-                            child: MyAfyaHubPrimaryButton(
-                              buttonKey: inviteStaffToMyCareHubButtonKey,
-                              customChild:
-                                  (vm.wait.isWaitingFor(inviteStaffFlag))
-                                      ? const PlatformLoader()
-                                      : Text(
-                                          inviteToMyCareHubString,
-                                          style: veryBoldSize15Text(
-                                            AppColors.whiteColor,
-                                          ),
-                                        ),
-                              onPressed: () {
-                                StoreProvider.dispatch(
-                                  context,
-                                  InviteStaffAction(
-                                    clientResponse: selectedSearchUserResponse,
-                                    client: AppWrapperBase.of(context)!
-                                        .graphQLClient,
-                                    onSuccess: (String name) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            '$inviteSent ${selectedSearchUserResponse.user?.userName}',
-                                          ),
-                                        ),
-                                      );
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                        AppRoutes.homePage,
-                                        (Route<dynamic> route) => false,
-                                      );
-                                    },
-                                    onFailure: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content: Text(unableToSendInvite),
-                                        ),
-                                      );
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                        AppRoutes.homePage,
-                                        (Route<dynamic> route) => false,
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+
                           mediumVerticalSizedBox,
                           const Divider(),
                           smallVerticalSizedBox,
+
+                          // User roles section
                           Text(
                             userRoles,
                             style: boldSize18Text(AppColors.greyTextColor),

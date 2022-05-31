@@ -16,6 +16,8 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page_detail_view.dart';
+import 'package:mycarehubpro/presentation/search/widgets/active_client_actions.dart';
+import 'package:mycarehubpro/presentation/search/widgets/active_staff_actions.dart';
 import 'package:mycarehubpro/presentation/search/widgets/client_search_widget.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
 import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dart';
@@ -122,7 +124,8 @@ void main() {
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
       });
 
-      testWidgets('invite button works correctly', (WidgetTester tester) async {
+      testWidgets('invite button works correctly for clients',
+          (WidgetTester tester) async {
         await buildTestWidget(
           tester: tester,
           graphQlClient: MockTestGraphQlClient(),
@@ -135,8 +138,32 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.byType(ClientSearchWidget), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveClientActions), findsOneWidget);
 
-        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        await tester.tap(find.byKey(sendClientInviteButtonKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(SnackBar), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
+      });
+
+      testWidgets('reinvite button works correctly for clients',
+          (WidgetTester tester) async {
+        await buildTestWidget(
+          tester: tester,
+          graphQlClient: MockTestGraphQlClient(),
+          widget: SearchPageDetailView(
+            searchUserResponse: SearchUserResponse.initial(),
+            isClient: true,
+          ),
+        );
+
+        await tester.pumpAndSettle();
+        expect(find.byType(ClientSearchWidget), findsOneWidget);
+        expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveClientActions), findsOneWidget);
+
+        await tester.tap(find.byKey(resendClientInviteButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(SnackBar), findsOneWidget);
@@ -197,8 +224,9 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.byType(ClientSearchWidget), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveClientActions), findsOneWidget);
 
-        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        await tester.tap(find.byKey(resendClientInviteButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(SnackBar), findsOneWidget);
@@ -229,7 +257,7 @@ void main() {
         expect(find.byType(ClientSearchWidget), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
 
-        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        await tester.tap(find.byKey(resendClientInviteButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(HomePage), findsNothing);
@@ -258,8 +286,9 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.byType(StaffSearchWidget), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveStaffActions), findsOneWidget);
 
-        await tester.tap(find.byType(MyAfyaHubPrimaryButton).first);
+        await tester.tap(find.byKey(inviteStaffButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(SnackBar), findsOneWidget);
@@ -289,8 +318,9 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.byType(StaffSearchWidget), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveStaffActions), findsOneWidget);
 
-        await tester.tap(find.byType(MyAfyaHubPrimaryButton).first);
+        await tester.tap(find.byKey(inviteStaffButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(HomePage), findsNothing);
@@ -308,10 +338,34 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        expect(find.byKey(inviteStaffToMyCareHubButtonKey), findsOneWidget);
+        expect(find.byKey(inviteStaffButtonKey), findsOneWidget);
         expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveStaffActions), findsOneWidget);
 
-        await tester.tap(find.byKey(inviteStaffToMyCareHubButtonKey));
+        await tester.tap(find.byKey(inviteStaffButtonKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(SnackBar), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
+      });
+
+      testWidgets('staff reinvite button works correctly',
+          (WidgetTester tester) async {
+        await buildTestWidget(
+          tester: tester,
+          graphQlClient: MockTestGraphQlClient(),
+          widget: SearchPageDetailView(
+            searchUserResponse: SearchUserResponse.initial(),
+            isClient: false,
+          ),
+        );
+
+        await tester.pumpAndSettle();
+        expect(find.byKey(reinviteStaffButtonKey), findsOneWidget);
+        expect(find.byType(SearchDetailsInformationWidget), findsOneWidget);
+        expect(find.byType(ActiveStaffActions), findsOneWidget);
+
+        await tester.tap(find.byKey(reinviteStaffButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(SnackBar), findsOneWidget);

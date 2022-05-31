@@ -17,6 +17,7 @@ class InviteClientAction extends ReduxAction<AppState> {
     required this.client,
     required this.onSuccess,
     required this.onFailure,
+    this.reinvite = false,
   });
 
   final IGraphQlClient client;
@@ -24,16 +25,28 @@ class InviteClientAction extends ReduxAction<AppState> {
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
 
+  /// Used to indicate whether the invite should be sent using an alternative
+  /// route
+  final bool reinvite;
+
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(inviteClientFlag));
+    dispatch(
+      WaitAction<AppState>.remove(
+        reinvite ? resendClientInviteFlag : inviteClientFlag,
+      ),
+    );
     super.after();
   }
 
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(inviteClientFlag));
+    dispatch(
+      WaitAction<AppState>.add(
+        reinvite ? resendClientInviteFlag : inviteClientFlag,
+      ),
+    );
   }
 
   @override
@@ -41,7 +54,8 @@ class InviteClientAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': clientResponse.user!.id,
       'flavour': Flavour.consumer.name,
-      'phoneNumber': clientResponse.user?.primaryContact?.value
+      'phoneNumber': clientResponse.user?.primaryContact?.value,
+      'reinvite': reinvite,
     };
     final Response response = await client.query(inviteUserMutation, variables);
 

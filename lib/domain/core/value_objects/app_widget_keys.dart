@@ -133,7 +133,9 @@ const Key bottomNavKey = Key('bottom_nav_key');
 const Key searchActionCardKey = Key('search_action_card_key');
 const Key clientSearchActionCardKey = Key('clients_search_action_card_key');
 const Key staffSearchActionCardKey = Key('staff_search_action_card_key');
-const Key inviteStaffToMyCareHubButtonKey = Key('invite_staff_button_key');
+const Key inviteStaffButtonKey = Key('invite_staff_button_key');
+const Key reinviteStaffButtonKey = Key('reinvite_staff_button_key');
+
 const Key updateRolesButtonKey = Key('update_roles_button_key');
 
 //pin request
@@ -165,7 +167,11 @@ const Key resolveRequestButtonKey = Key('resolve_request_button_key');
 const Key faqItemKey = Key('faq_item_key');
 
 const Key videoPlayIconKey = Key('video_play_icon_key');
-const String playIcon = 'assets/icons/playIcon.svg';
 const Key cancelButtonKey = Key('cancel_button');
 
 const Key notificationItemActionKey = Key('notification_item_action_key');
+
+/// client search keys
+const Key sendClientInviteButtonKey = Key('send_client_invite_button_key');
+
+const Key resendClientInviteButtonKey = Key('resend_client_invite_button_key');

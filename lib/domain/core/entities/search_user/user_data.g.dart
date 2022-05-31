@@ -14,6 +14,7 @@ _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
       primaryContact: json['Contacts'] == null
           ? null
           : Contact.fromJson(json['Contacts'] as Map<String, dynamic>),
+      name: json['Name'] as String?,
     );
 
 Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'TermsAccepted': instance.termsAccepted,
       'Active': instance.active,
       'Contacts': instance.primaryContact,
+      'Name': instance.name,
     };

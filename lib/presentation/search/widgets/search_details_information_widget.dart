@@ -16,9 +16,13 @@ class SearchDetailsInformationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String username = searchUserResponse?.user?.userName ?? UNKNOWN;
+    final String names = isClient
+        ? searchUserResponse?.user?.name ?? 'No name'
+        : searchUserResponse?.user?.userName ?? 'No name';
+
     final String phoneNumber =
         searchUserResponse?.user?.primaryContact?.value ?? noNumberAvailable;
+
     final String number = isClient
         ? 'CCC# ${searchUserResponse?.clientCCCNumber}'
         : 'Staff Number ${searchUserResponse?.staffNumber}';
@@ -34,14 +38,14 @@ class SearchDetailsInformationWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              username.trim()[0].toUpperCase(),
+              names.trim()[0].toUpperCase(),
               style: boldSize30Text(AppColors.primaryColor),
             ),
           ),
         ),
         mediumVerticalSizedBox,
         Text(
-          username,
+          names,
           style: veryBoldSize20Text(AppColors.blackColor),
         ),
         smallVerticalSizedBox,
