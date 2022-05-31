@@ -32,7 +32,7 @@ class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
     return Text.rich(
       TextSpan(
         children: <TextSpan>[
-          const TextSpan(text: 'Resend in '),
+          const TextSpan(text: 'You can request for another OTP in '),
           TextSpan(
             text: _count!.evaluate(animation).toString(),
             style: heavySize14Text(Colors.black),

@@ -827,3 +827,9 @@ const String emptyFieldErrorText = 'Please enter some text';
 const String nameOfGroupText = 'Name of the group';
 const String describeGroupText = 'Describe the group';
 const String deleteGroupText = 'Delete group';
+
+const String tooManyAttemptsString = 'Too many login attempts';
+const String tooManyAttemptsMessageString =
+    'You have made too many login attempts. No worries though, you can try again in ';
+const String requestForAssistanceMessageString =
+    'You can also request for assistance from your doctor or admin by tapping on the button below';
