@@ -10,11 +10,15 @@ class GroupState with _$GroupState {
   factory GroupState({
     @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
     bool? isModerator,
+    bool? isOwner,
   }) = _GroupState;
 
   factory GroupState.fromJson(Map<String, dynamic> json) =>
       _$GroupStateFromJson(json);
 
-  factory GroupState.initial() =>
-      GroupState(groupMembers: <GroupMember?>[], isModerator: false);
+  factory GroupState.initial() => GroupState(
+        groupMembers: <GroupMember?>[],
+        isModerator: false,
+        isOwner: false,
+      );
 }

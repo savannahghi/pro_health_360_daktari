@@ -3,12 +3,15 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/check_user_is_owner.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/update_group_info_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:mycarehubpro/presentation/communities/group_info/pages/delete_group_banner.dart';
 import 'package:mycarehubpro/presentation/communities/view_models/group_info_view_model.dart';
+import 'package:mycarehubpro/presentation/communities/view_models/groups_view_model.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -27,6 +30,18 @@ class _EditGroupInfoPageState extends State<EditGroupInfoPage> {
   final TextEditingController _groupNameController = TextEditingController();
   final TextEditingController _groupDescriptionController =
       TextEditingController();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final Channel channel = StreamChannel.of(context).channel;
+
+    StoreProvider.dispatch<AppState>(
+      context,
+      CheckUserIsOwnerAction(channel: channel),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,46 +170,17 @@ class _EditGroupInfoPageState extends State<EditGroupInfoPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              Container(
-                decoration: BoxDecoration(
-                  color: warningColor.withOpacity(0.14),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      deleteGroupText,
-                      style: boldSize18Text(warningColor),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      deleteGroupWarning,
-                      style: normalSize14Text(AppColors.grey50),
-                    ),
-                    const SizedBox(height: 14),
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: warningColor,
-                          primary: warningColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: const Text(
-                          deleteGroupText,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {},
-                      ),
-                    )
-                  ],
-                ),
+              StoreConnector<AppState, GroupsViewModel>(
+                converter: (Store<AppState> store) {
+                  return GroupsViewModel.fromStore(store);
+                },
+                builder: (BuildContext context, GroupsViewModel vm) {
+                  if (vm.isOwner ?? false) {
+                    return DeleteGroupBanner(channel: channel);
+                  }
+
+                  return const SizedBox();
+                },
               ),
               const SizedBox(height: 32),
             ],

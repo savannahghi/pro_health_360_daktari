@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/check_user_role_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/check_user_is_moderator_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
@@ -43,7 +43,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
     StoreProvider.dispatch<AppState>(
       context,
-      CheckUserRoleAction(channel: channel),
+      CheckUserIsModeratorAction(channel: channel),
     );
 
     StoreProvider.dispatch<AppState>(
@@ -132,18 +132,6 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                         final List<GroupMember?> groupMembers =
                             vm.groupMembers ?? <GroupMember>[];
 
-                        final List<Role>? staffRoles = vm.staffRoles;
-
-                        final List<Role>? communityRoles = staffRoles
-                            ?.where(
-                              (Role role) =>
-                                  role.name == RoleValue.COMMUNITY_MANAGEMENT,
-                            )
-                            .toList();
-
-                        final bool canModerate =
-                            communityRoles != null && communityRoles.isNotEmpty;
-
                         return Column(
                           children: <Widget>[
                             largeVerticalSizedBox,
@@ -188,7 +176,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   communityName: channelName,
                                   userType: userType,
                                   isModerator: isModerator,
-                                  canModerate: canModerate,
+                                  canModerate: isModerator,
                                   isBanned: isBanned,
                                   onError: (String errorMessage) {
                                     showTextSnackbar(

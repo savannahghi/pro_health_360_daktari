@@ -5,22 +5,27 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
-class CheckUserRoleAction extends ReduxAction<AppState> {
+class CheckUserIsOwnerAction extends ReduxAction<AppState> {
   final stream.Channel channel;
 
-  CheckUserRoleAction({required this.channel});
+  CheckUserIsOwnerAction({required this.channel});
+
+  @override
+  void before() {
+    dispatch(UpdateGroupStateAction(isOwner: false));
+  }
 
   @override
   Future<AppState?> reduce() async {
     final stream.QueryMembersResponse result = await channel.queryMembers(
-      filter: stream.Filter.equal('is_moderator', true),
+      filter: stream.Filter.equal('owner', true),
     );
 
-    final String userId = state.staffState?.id ?? '';
+    final String staffId = state.staffState?.id ?? '';
 
     for (final stream.Member member in result.members) {
-      if (member.user?.id == userId) {
-        dispatch(UpdateGroupStateAction(isModerator: true));
+      if (member.user?.id == staffId) {
+        dispatch(UpdateGroupStateAction(isOwner: true));
         return null;
       }
     }
