@@ -51,22 +51,15 @@ class RedFlagsPage extends StatelessWidget {
               children: <Widget>[
                 if (!error) ...<Widget>{
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 30,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 30),
                     child: Center(
-                      child: SvgPicture.asset(
-                        redFlagStressSvgPath,
-                        width: 200,
-                      ),
+                      child: SvgPicture.asset(redFlagStressSvgPath, width: 200),
                     ),
                   ),
                   if (vm.wait
                       .isWaitingFor(fetchServiceRequestFlag)) ...<Widget>{
                     const Padding(
-                      padding: EdgeInsets.only(
-                        top: 150,
-                      ),
+                      padding: EdgeInsets.only(top: 150),
                       child: PlatformLoader(),
                     )
                   } else if (vm.clientServiceRequests?.isEmpty ??
@@ -75,9 +68,7 @@ class RedFlagsPage extends StatelessWidget {
                       actionKey: helpNoDataWidgetKey,
                       actionText: actionTextGenericNoData,
                       type: GenericNoDataTypes.noData,
-                      recoverCallback: () {
-                        Navigator.of(context).pop();
-                      },
+                      recoverCallback: () => Navigator.of(context).pop(),
                       messageTitle: getNoDataTile(redFlagString.toLowerCase()),
                       messageBody: <TextSpan>[
                         TextSpan(

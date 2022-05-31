@@ -11,13 +11,16 @@ import 'package:shared_themes/spaces.dart';
 ///
 ///It takes in two required [clientName] and [feeling] parameters
 class RedFlagListItem extends StatelessWidget {
-  const RedFlagListItem({
-    this.serviceRequest,
-  });
+  const RedFlagListItem({this.serviceRequest});
+
   final ServiceRequest? serviceRequest;
 
   @override
   Widget build(BuildContext context) {
+    final String name = serviceRequest?.clientName ?? '';
+    final String phone = serviceRequest?.clientPhoneNumber ?? '';
+    final String note = serviceRequest?.meta?.note ?? '';
+
     return Column(
       children: <Widget>[
         Container(
@@ -42,12 +45,12 @@ class RedFlagListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          serviceRequest?.clientName ?? '',
+                          name,
                           style: veryBoldSize16Text(AppColors.greyTextColor),
                         ),
                         verySmallVerticalSizedBox,
                         Text(
-                          serviceRequest?.clientPhoneNumber ?? '',
+                          phone,
                           style: normalSize13Text(
                             AppColors.greyTextColor.withOpacity(0.5),
                           ),
@@ -73,7 +76,7 @@ class RedFlagListItem extends StatelessWidget {
               ),
               size15VerticalSizedBox,
               Text(
-                serviceRequest?.description ?? '',
+                note,
                 style: normalSize14Text(AppColors.greyTextColor),
               ),
             ],

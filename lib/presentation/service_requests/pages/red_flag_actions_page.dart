@@ -17,9 +17,9 @@ import 'package:mycarehubpro/presentation/service_requests/widgets/red_flag_list
 import 'package:shared_themes/spaces.dart';
 
 class RedFlagActionsPage extends StatelessWidget {
-  final ServiceRequest? serviceRequest;
-
   const RedFlagActionsPage({Key? key, this.serviceRequest}) : super(key: key);
+
+  final ServiceRequest? serviceRequest;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,8 @@ class RedFlagActionsPage extends StatelessWidget {
             '';
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar(
-        title: redFlagString,
-        showNotificationIcon: true,
-      ),
+      appBar:
+          const CustomAppBar(title: redFlagString, showNotificationIcon: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
@@ -66,9 +64,7 @@ class RedFlagActionsPage extends StatelessWidget {
                 ),
               ),
               mediumVerticalSizedBox,
-              RedFlagListItem(
-                serviceRequest: serviceRequest,
-              ),
+              RedFlagListItem(serviceRequest: serviceRequest),
               largeVerticalSizedBox,
               ReachOutWidget(
                 platform: _platform,
@@ -93,8 +89,7 @@ class RedFlagActionsPage extends StatelessWidget {
                       style: veryBoldSize16Text(AppColors.greyTextColor),
                     ),
                     const TextSpan(
-                      text:
-                          tapTapBelowToResolveString,
+                      text: tapTapBelowToResolveString,
                     ),
                   ],
                 ),
@@ -110,7 +105,7 @@ class RedFlagActionsPage extends StatelessWidget {
                     child: vm.wait.isWaitingFor(resolveServiceRequestFlag)
                         ? const PlatformLoader()
                         : MyAfyaHubPrimaryButton(
-                          buttonKey: resolveRequestButtonKey,
+                            buttonKey: resolveRequestButtonKey,
                             text: resolveString,
                             onPressed: () => StoreProvider.dispatch<AppState>(
                               context,
