@@ -53,6 +53,22 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
     ClientName
     ClientContact
     Status
+    CreatedAt
+  }
+}
+''';
+
+const String getResolvedServiceRequestsQuery = r'''
+query getServiceRequests($type: String, $status: String, $facilityID: String!, $flavour: Flavour!){
+  getServiceRequests(requestType: $type, requestStatus: $status, facilityID: $facilityID, flavour: $flavour){
+    ID
+    RequestType
+    Request
+    ClientID
+    FacilityID
+    ClientName
+    ClientContact
+    Status
     ResolvedAt
     ResolvedBy
     ResolvedByName

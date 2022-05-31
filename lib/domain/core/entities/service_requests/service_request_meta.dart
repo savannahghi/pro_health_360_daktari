@@ -8,6 +8,7 @@ class ServiceRequestMeta with _$ServiceRequestMeta {
   factory ServiceRequestMeta({
     @JsonKey(name: 'ccc_number') String? cccNumber,
     @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
+    @JsonKey(name: 'note') String? note,
   }) = _ServiceRequestMeta;
 
   factory ServiceRequestMeta.fromJson(Map<String, dynamic> json) =>

@@ -24,10 +24,12 @@ class _$ServiceRequestMetaTearOff {
 
   _ServiceRequestMeta call(
       {@JsonKey(name: 'ccc_number') String? cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid}) {
+      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
+      @JsonKey(name: 'note') String? note}) {
     return _ServiceRequestMeta(
       cccNumber: cccNumber,
       isCccNumberValid: isCccNumberValid,
+      note: note,
     );
   }
 
@@ -45,6 +47,8 @@ mixin _$ServiceRequestMeta {
   String? get cccNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_ccc_number_valid')
   bool? get isCccNumberValid => throw _privateConstructorUsedError;
+  @JsonKey(name: 'note')
+  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +63,8 @@ abstract class $ServiceRequestMetaCopyWith<$Res> {
       _$ServiceRequestMetaCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'ccc_number') String? cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid});
+      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
+      @JsonKey(name: 'note') String? note});
 }
 
 /// @nodoc
@@ -75,6 +80,7 @@ class _$ServiceRequestMetaCopyWithImpl<$Res>
   $Res call({
     Object? cccNumber = freezed,
     Object? isCccNumberValid = freezed,
+    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       cccNumber: cccNumber == freezed
@@ -85,6 +91,10 @@ class _$ServiceRequestMetaCopyWithImpl<$Res>
           ? _value.isCccNumberValid
           : isCccNumberValid // ignore: cast_nullable_to_non_nullable
               as bool?,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -98,7 +108,8 @@ abstract class _$ServiceRequestMetaCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'ccc_number') String? cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid});
+      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
+      @JsonKey(name: 'note') String? note});
 }
 
 /// @nodoc
@@ -116,6 +127,7 @@ class __$ServiceRequestMetaCopyWithImpl<$Res>
   $Res call({
     Object? cccNumber = freezed,
     Object? isCccNumberValid = freezed,
+    Object? note = freezed,
   }) {
     return _then(_ServiceRequestMeta(
       cccNumber: cccNumber == freezed
@@ -126,6 +138,10 @@ class __$ServiceRequestMetaCopyWithImpl<$Res>
           ? _value.isCccNumberValid
           : isCccNumberValid // ignore: cast_nullable_to_non_nullable
               as bool?,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -135,7 +151,8 @@ class __$ServiceRequestMetaCopyWithImpl<$Res>
 class _$_ServiceRequestMeta implements _ServiceRequestMeta {
   _$_ServiceRequestMeta(
       {@JsonKey(name: 'ccc_number') this.cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') this.isCccNumberValid});
+      @JsonKey(name: 'is_ccc_number_valid') this.isCccNumberValid,
+      @JsonKey(name: 'note') this.note});
 
   factory _$_ServiceRequestMeta.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestMetaFromJson(json);
@@ -146,10 +163,13 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
   @override
   @JsonKey(name: 'is_ccc_number_valid')
   final bool? isCccNumberValid;
+  @override
+  @JsonKey(name: 'note')
+  final String? note;
 
   @override
   String toString() {
-    return 'ServiceRequestMeta(cccNumber: $cccNumber, isCccNumberValid: $isCccNumberValid)';
+    return 'ServiceRequestMeta(cccNumber: $cccNumber, isCccNumberValid: $isCccNumberValid, note: $note)';
   }
 
   @override
@@ -159,14 +179,16 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
             other is _ServiceRequestMeta &&
             const DeepCollectionEquality().equals(other.cccNumber, cccNumber) &&
             const DeepCollectionEquality()
-                .equals(other.isCccNumberValid, isCccNumberValid));
+                .equals(other.isCccNumberValid, isCccNumberValid) &&
+            const DeepCollectionEquality().equals(other.note, note));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(cccNumber),
-      const DeepCollectionEquality().hash(isCccNumberValid));
+      const DeepCollectionEquality().hash(isCccNumberValid),
+      const DeepCollectionEquality().hash(note));
 
   @JsonKey(ignore: true)
   @override
@@ -181,9 +203,9 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
 
 abstract class _ServiceRequestMeta implements ServiceRequestMeta {
   factory _ServiceRequestMeta(
-          {@JsonKey(name: 'ccc_number') String? cccNumber,
-          @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid}) =
-      _$_ServiceRequestMeta;
+      {@JsonKey(name: 'ccc_number') String? cccNumber,
+      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
+      @JsonKey(name: 'note') String? note}) = _$_ServiceRequestMeta;
 
   factory _ServiceRequestMeta.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestMeta.fromJson;
@@ -194,6 +216,9 @@ abstract class _ServiceRequestMeta implements ServiceRequestMeta {
   @override
   @JsonKey(name: 'is_ccc_number_valid')
   bool? get isCccNumberValid;
+  @override
+  @JsonKey(name: 'note')
+  String? get note;
   @override
   @JsonKey(ignore: true)
   _$ServiceRequestMetaCopyWith<_ServiceRequestMeta> get copyWith =>

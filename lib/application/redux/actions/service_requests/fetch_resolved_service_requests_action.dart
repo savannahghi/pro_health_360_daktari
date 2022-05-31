@@ -49,7 +49,7 @@ class FetchResolvedServiceRequestsAction extends ReduxAction<AppState> {
     };
 
     final Response response = await client.query(
-      getServiceRequestsQuery,
+      getResolvedServiceRequestsQuery,
       variables,
     );
     client.close();
