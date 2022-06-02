@@ -169,6 +169,12 @@ mutation addModerators($memberIDs: [String!]!, $communityID: String!){
 }
 ''';
 
+const String demoteModeratorMutation = r'''
+mutation demoteModerators($memberIDs: [String!]!, $communityID: String!){
+  demoteModerators(memberIDs: $memberIDs, communityID: $communityID)
+}
+''';
+
 const String unBanUserMutation = r'''
 mutation UnBanUser($memberID: String!, $communityID: String!){
   unBanUser(memberID: $memberID, communityID: $communityID)

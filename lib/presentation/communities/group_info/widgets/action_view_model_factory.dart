@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
+import 'package:mycarehubpro/application/redux/actions/communities/demote_moderator_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:mycarehubpro/application/redux/actions/communities/remove_from_group_action.dart';
@@ -51,19 +52,35 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
   }
 
   void promoteToModerator() {
-    dispatch(
-      PromoteToModeratorAction(
-        client: client,
-        memberIds: <String>[dumbWidget.memberID],
-        communityId: dumbWidget.communityId,
-        successCallback: () {
-          dumbWidget.onSuccess?.call('Successfully promoted to admin');
+    if (dumbWidget.isModerator) {
+      dispatch(
+        DemoteModeratorAction(
+          client: client,
+          memberIds: <String>[dumbWidget.memberID],
+          communityId: dumbWidget.communityId,
+          successCallback: () {
+            dumbWidget.onSuccess?.call('Successfully demoted to normal user');
 
-          refreshGroupMembers();
-          dispatch(NavigateAction<AppState>.pop());
-        },
-      ),
-    );
+            refreshGroupMembers();
+            dispatch(NavigateAction<AppState>.pop());
+          },
+        ),
+      );
+    } else {
+      dispatch(
+        PromoteToModeratorAction(
+          client: client,
+          memberIds: <String>[dumbWidget.memberID],
+          communityId: dumbWidget.communityId,
+          successCallback: () {
+            dumbWidget.onSuccess?.call('Successfully promoted to admin');
+
+            refreshGroupMembers();
+            dispatch(NavigateAction<AppState>.pop());
+          },
+        ),
+      );
+    }
   }
 
   void banUser() {
