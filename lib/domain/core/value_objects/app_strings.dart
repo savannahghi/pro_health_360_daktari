@@ -838,3 +838,7 @@ const String tooManyAttemptsMessageString =
     'You have made too many login attempts. No worries though, you can try again in ';
 const String requestForAssistanceMessageString =
     'You can also request for assistance from your doctor or admin by tapping on the button below';
+
+const String moderationHelpText =
+    'Long press on a member to promote them to a moderator, '
+    'remove or ban them from this group';
