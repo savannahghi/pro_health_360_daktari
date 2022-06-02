@@ -525,6 +525,7 @@ String getGroupMembersNumber(int numberOfMembers) {
 const String actionsText = 'Actions';
 const String promoteToModeratorText = 'Promote to moderator';
 const String errorPromotingAdminText = 'Error promoting user to admin';
+const String errorDemotingAdminText = 'Error demoting user';
 
 const String removeFromGroupText = 'Remove user from group';
 
