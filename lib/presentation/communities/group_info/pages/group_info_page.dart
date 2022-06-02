@@ -144,6 +144,16 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                 ),
                               ),
                             ),
+                            if (vm.isModerator ?? false) ...<Widget>[
+                              const SizedBox(height: 12),
+                              const Text(
+                                moderationHelpText,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.unSelectedReactionIconColor,
+                                ),
+                              ),
+                            ],
                             largeVerticalSizedBox,
                             ListView.builder(
                               physics: const BouncingScrollPhysics(),
@@ -176,7 +186,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   communityName: channelName,
                                   userType: userType,
                                   isModerator: isModerator,
-                                  canModerate: isModerator,
+                                  canModerate: vm.isModerator ?? false,
                                   isBanned: isBanned,
                                   onError: (String errorMessage) {
                                     showTextSnackbar(
