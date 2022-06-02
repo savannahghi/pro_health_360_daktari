@@ -46,7 +46,7 @@ class GroupMemberConnector extends StatelessWidget {
       canModerate: canModerate,
       isBanned: isBanned,
       userType: userType,
-      onTap: () {
+      onLongPress: () {
         if (canModerate) showModerationDialog(context);
       },
     );
@@ -67,6 +67,7 @@ class GroupMemberConnector extends StatelessWidget {
               communityId: communityId,
               communityName: communityName,
               memberName: userName,
+              isModerator: isModerator,
               isBanned: isBanned,
               isPromoting: vm.wait.isWaitingFor(promoteToAdminFlag),
               isBanning:
