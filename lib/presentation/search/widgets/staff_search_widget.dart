@@ -56,8 +56,8 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
 
           final String? userId = selectedSearchUserResponse.user?.id;
 
-          final String userName =
-              selectedSearchUserResponse.user?.userName ?? 'the staff member';
+          final String name =
+              selectedSearchUserResponse.user?.name ?? 'the staff member';
 
           return (vm.wait.isWaitingFor(searchStaffMemberFlag))
               ? Container(
@@ -80,7 +80,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           ActiveStaffActions(
-                            names: userName,
+                            names: name,
                             isSendLoading:
                                 vm.wait.isWaitingFor(inviteStaffFlag),
                             isResendLoading:
@@ -179,7 +179,7 @@ class _StaffSearchWidgetState extends State<StaffSearchWidget> {
                                     onSuccess: () {
                                       showTextSnackbar(
                                         ScaffoldMessenger.of(context),
-                                        content: '$rolesAssigned $userName',
+                                        content: '$rolesAssigned $name',
                                       );
 
                                       Navigator.of(context)

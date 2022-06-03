@@ -43,7 +43,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SearchUserItem), findsWidgets);
-      await tester.tap(find.text('Username'));
+      await tester.tap(find.text('User Name'));
 
       await tester.pumpAndSettle();
       expect(find.byType(SearchPageDetailView), findsWidgets);

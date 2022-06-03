@@ -146,8 +146,7 @@ void clientSearchAction({
   final bool reinvite = false,
 }) {
   final bool isActive = selectedSearchUserResponse.isActive ?? true;
-  final String userName =
-      selectedSearchUserResponse.user?.userName ?? 'the client';
+  final String name = selectedSearchUserResponse.user?.name ?? 'the client';
   final IGraphQlClient? client = AppWrapperBase.of(context)?.graphQLClient;
 
   if (isActive) {
@@ -159,7 +158,7 @@ void clientSearchAction({
         reinvite: reinvite,
         onSuccess: () {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$inviteSent $userName')),
+            SnackBar(content: Text('$inviteSent $name')),
           );
           Navigator.of(context).pushNamedAndRemoveUntil(
             AppRoutes.homePage,
@@ -188,10 +187,10 @@ void clientSearchAction({
         optInEndpoint: endpoint ?? '',
         searchUserResponse: selectedSearchUserResponse,
         onSuccess: () => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$userName $reactivatedSuccessfullyString')),
+          SnackBar(content: Text('$name $reactivatedSuccessfullyString')),
         ),
         onError: () => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$errorWhileReactivatingString $userName')),
+          SnackBar(content: Text('$errorWhileReactivatingString $name')),
         ),
       ),
     );

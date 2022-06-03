@@ -44,7 +44,7 @@ class SearchStaffMemberAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'staffNumber': staffNumberQuery,
+      'searchParameter': staffNumberQuery
     };
 
     final Response response =
@@ -67,16 +67,10 @@ class SearchStaffMemberAction extends ReduxAction<AppState> {
       }
 
       final SearchedStaffMembers staffMembersResponse =
-          SearchedStaffMembers.fromJson(
-        body['data'] as Map<String, dynamic>,
-      );
+          SearchedStaffMembers.fromJson(body['data'] as Map<String, dynamic>);
 
       if (staffMembersResponse.staffMembers == null) {
-        dispatch(
-          UpdateSearchUserResponseStateAction(
-            noUserFound: true,
-          ),
-        );
+        dispatch(UpdateSearchUserResponseStateAction(noUserFound: true));
         return null;
       }
       dispatch(

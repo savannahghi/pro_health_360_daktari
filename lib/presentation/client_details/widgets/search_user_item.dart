@@ -30,7 +30,7 @@ class _SearchUserItemState extends State<SearchUserItem> {
 
   @override
   Widget build(BuildContext context) {
-    final String username = widget.searchUserResponse.user?.userName ?? UNKNOWN;
+    final String name = widget.searchUserResponse.user?.name ?? UNKNOWN;
     return InkWell(
       onTap: () {
         StoreProvider.dispatch(
@@ -63,7 +63,7 @@ class _SearchUserItemState extends State<SearchUserItem> {
                   ),
                   child: Center(
                     child: Text(
-                      username.trim()[0].toUpperCase(),
+                      name.trim()[0].toUpperCase(),
                       style: boldSize14Text(AppColors.primaryColor),
                     ),
                   ),
@@ -73,7 +73,7 @@ class _SearchUserItemState extends State<SearchUserItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      username,
+                      name,
                       style: boldSize12Text(),
                     ),
                     Text(

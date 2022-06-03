@@ -1521,6 +1521,7 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
       'User': <String, dynamic>{
         'ID': 'some-id',
         'Username': 'Username',
+        'Name': 'User Name',
         'Active': false,
         'TermsAccepted': false,
         'Contacts': <String, dynamic>{
@@ -1535,7 +1536,7 @@ final Map<String, dynamic> clientResponseMock = <String, dynamic>{
 };
 
 final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
-  'searchStaffByStaffNumber': <dynamic>[
+  'searchStaffUser': <dynamic>[
     <String, dynamic>{
       'ID': 'some-id',
       'CCCNumber': '12345',
@@ -1543,6 +1544,7 @@ final Map<String, dynamic> staffMembersResponseMock = <String, dynamic>{
       'User': <String, dynamic>{
         'ID': 'some-id',
         'Username': 'Username',
+        'Name': 'User Name',
         'Active': false,
         'TermsAccepted': false,
         'Contacts': <String, dynamic>{

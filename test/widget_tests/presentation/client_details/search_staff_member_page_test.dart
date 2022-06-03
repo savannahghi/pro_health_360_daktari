@@ -45,7 +45,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SearchUserItem), findsWidgets);
-      await tester.tap(find.text('Username'));
+      await tester.tap(find.text('User Name'));
 
       await tester.pumpAndSettle();
       expect(find.byType(SearchPageDetailView), findsWidgets);
@@ -60,9 +60,7 @@ void main() {
           'endpoint',
           Response(
             json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'searchStaffByStaffNumber': null,
-              },
+              'data': <String, dynamic>{'searchStaffUser': null},
             }),
             201,
           ),
