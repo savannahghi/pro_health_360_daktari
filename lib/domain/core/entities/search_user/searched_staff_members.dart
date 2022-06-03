@@ -9,7 +9,7 @@ part 'searched_staff_members.g.dart';
 @freezed
 class SearchedStaffMembers with _$SearchedStaffMembers {
   factory SearchedStaffMembers({
-    @JsonKey(name: 'searchStaffByStaffNumber')
+    @JsonKey(name: 'searchStaffUser')
         List<SearchUserResponse>? staffMembers, // Th
   }) = _SearchedStaffMembers;
 
