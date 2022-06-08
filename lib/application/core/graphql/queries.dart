@@ -54,6 +54,7 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
     ClientContact
     Status
     CreatedAt
+    Meta
   }
 }
 ''';
