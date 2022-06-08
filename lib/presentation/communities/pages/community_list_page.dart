@@ -11,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/communities/channel_page.dart';
 import 'package:mycarehubpro/presentation/communities/community_list_view_model.dart';
 import 'package:mycarehubpro/presentation/communities/community_utils.dart';
+import 'package:mycarehubpro/presentation/communities/widgets/empty_conversations_widget.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
@@ -75,6 +76,8 @@ class _CommunityListPageState extends State<CommunityListPage> {
             child: stream.ChannelsBloc(
               child: stream.ChannelListView(
                 channelListController: channelListController,
+                emptyBuilder: (BuildContext context) =>
+                    const EmptyConversationsWidget(),
                 errorBuilder: (BuildContext context, Object error) {
                   return GenericErrorWidget(
                     messageTitle: emptyConversationTitle,
