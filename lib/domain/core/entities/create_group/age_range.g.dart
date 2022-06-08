@@ -7,12 +7,12 @@ part of 'age_range.dart';
 // **************************************************************************
 
 _$_AgeRange _$$_AgeRangeFromJson(Map<String, dynamic> json) => _$_AgeRange(
-      lowerBound: (json['lowerBound'] as num).toDouble(),
-      upperBound: (json['upperBound'] as num).toDouble(),
+      lowerBound: json['lowerBound'] as String,
+      upperBound: json['upperBound'] as String,
     );
 
 Map<String, dynamic> _$$_AgeRangeToJson(_$_AgeRange instance) =>
     <String, dynamic>{
-      'lowerBound': doubleToInt(instance.lowerBound),
-      'upperBound': doubleToInt(instance.upperBound),
+      'lowerBound': stringToIntLower(instance.lowerBound),
+      'upperBound': stringToIntHigher(instance.upperBound),
     };

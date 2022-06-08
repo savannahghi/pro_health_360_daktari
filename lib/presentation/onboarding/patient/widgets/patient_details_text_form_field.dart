@@ -17,6 +17,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
     this.keyboardType,
     this.inputFormatters,
     this.controller,
+    this.initialValue,
   });
 
   final String label;
@@ -28,6 +29,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class PatientDetailsTextFormField extends StatelessWidget {
         TextFormField(
           controller: controller,
           key: textFieldKey,
+          initialValue: initialValue,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: const TextStyle(color: AppColors.hintTextColor),

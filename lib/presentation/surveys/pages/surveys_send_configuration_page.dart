@@ -4,6 +4,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
@@ -12,21 +13,21 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/surveys/send_surveys_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
+import 'package:mycarehubpro/application/redux/view_models/register_client/register_client_view_model.dart';
 import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/core/widgets/age_group_slider.dart';
+import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/client_configuration_form_manager.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
-import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
-class  SurveysSendConfigurationsPage extends StatefulWidget {
+class SurveysSendConfigurationsPage extends StatefulWidget {
   const SurveysSendConfigurationsPage({required this.survey});
 
   final Survey survey;
@@ -41,6 +42,7 @@ class _SurveysSendConfigurationsPageState
   final ClientConfigurationFormManager _formManager =
       ClientConfigurationFormManager();
   bool genderAllValue = false;
+  bool clientAllValue = false;
 
   @override
   void initState() {
@@ -62,6 +64,8 @@ class _SurveysSendConfigurationsPageState
 
     _formManager.inClientTypes.add(initialClientTypes);
     _formManager.inGender.add(initialGenders);
+    _formManager.inLowerBoundAge.add(minimumAge);
+    _formManager.inHigherBoundAge.add(maximumAge);
   }
 
   @override
@@ -86,7 +90,6 @@ class _SurveysSendConfigurationsPageState
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   setClientConfigurationsString,
-                  textAlign: TextAlign.center,
                   style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ),
@@ -130,7 +133,7 @@ class _SurveysSendConfigurationsPageState
                                     ),
                                     action: dismissSnackBar(
                                       closeString,
-                                      white,
+                                      AppColors.whiteColor,
                                       context,
                                     ),
                                   ),
@@ -191,23 +194,95 @@ class _SurveysSendConfigurationsPageState
                   ),
                 ),
               ),
+              smallVerticalSizedBox,
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: StreamBuilder<RangeValues>(
-                    stream: _formManager.ageRange,
-                    builder: (_, AsyncSnapshot<RangeValues> snapshot) {
-                      final RangeValues? data = snapshot.data;
-
-                      return AgeGroupSlider(
-                        data: data,
-                        onChanged: (RangeValues values) {
-                          _formManager.inAgeRange.add(values);
-                        },
-                      );
-                    },
+                  child: RichText(
+                    text: TextSpan(
+                      style: normalSize14Text(AppColors.greyTextColor),
+                      children: <TextSpan>[
+                        const TextSpan(
+                          text: enterAgeFromString,
+                        ),
+                        TextSpan(
+                          text: ageConstraintsString,
+                          style: veryBoldSize14Text(AppColors.greyTextColor),
+                        ),
+                      ],
+                    ),
                   ),
+                ),
+              ),
+              verySmallVerticalSizedBox,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // Lower bound
+                    Flexible(
+                      child: StreamBuilder<String>(
+                        stream: _formManager.lowerBoundAge,
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<String> snapshot,
+                        ) {
+                          return PatientDetailsTextFormField(
+                            textFieldKey: lowerBoundKey,
+                            initialValue: minimumAge,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(2),
+                            ],
+                            label: fromString,
+                            onChanged: (String? value) {
+                              _formManager.inLowerBoundAge.add(value ?? '');
+                            },
+                            validator: (String? value) {
+                              if (snapshot.hasError) {
+                                return (snapshot.error! as UserException).msg;
+                              }
+                              return null;
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    // Higher bound
+                    Flexible(
+                      child: StreamBuilder<String>(
+                        stream: _formManager.higherBoundAge,
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<String> snapshot,
+                        ) {
+                          return PatientDetailsTextFormField(
+                            textFieldKey: higherBoundKey,
+                            initialValue: maximumAge,
+                            label: toString,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(10),
+                            ],
+                            onChanged: (String? value) {
+                              _formManager.inHigherBoundAge.add(value ?? '');
+                            },
+                            validator: (String? value) {
+                              if (snapshot.hasError) {
+                                return (snapshot.error! as UserException).msg;
+                              }
+                              return null;
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
               mediumVerticalSizedBox,
@@ -243,38 +318,53 @@ class _SurveysSendConfigurationsPageState
                 },
               ),
               mediumVerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                child: StreamBuilder<bool>(
-                  stream: _formManager.isFormValid,
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<bool> snapshot,
-                  ) {
-                    final bool hasData =
-                        snapshot.hasData && snapshot.data != null;
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Submit button
+                  SizedBox(
+                    width: double.infinity,
+                    child: StreamBuilder<bool>(
+                      stream: _formManager.isFormValid,
+                      builder: (
+                        BuildContext context,
+                        AsyncSnapshot<bool> snapshot,
+                      ) {
+                        final bool hasData =
+                            snapshot.hasData && snapshot.data != null;
 
-                    return SizedBox(
-                      height: 48,
-                      child: StoreConnector<AppState, AppStateViewModel>(
-                        converter: (Store<AppState> store) =>
-                            AppStateViewModel.fromStore(store),
-                        builder: (BuildContext context, AppStateViewModel vm) {
-                          return vm.state.wait?.isWaitingFor(sendSurveysFlag) ??
-                                  false
-                              ? const PlatformLoader()
-                              : MyAfyaHubPrimaryButton(
-                                  buttonKey: sendSurveyButtonKey,
-                                  text: sendSurveyText,
-                                  onPressed: hasData && snapshot.data!
-                                      ? () => _processAndNavigate()
-                                      : null,
-                                );
-                        },
-                      ),
-                    );
-                  },
-                ),
+                        return StoreConnector<AppState,
+                            RegisterClientViewModel>(
+                          converter: (Store<AppState> store) =>
+                              RegisterClientViewModel.fromStore(
+                            store,
+                          ),
+                          builder: (
+                            BuildContext context,
+                            RegisterClientViewModel vm,
+                          ) {
+                            if (vm.wait.isWaitingFor(sendSurveysFlag)) {
+                              return const PlatformLoader();
+                            }
+
+                            return SizedBox(
+                              height: 48,
+                              child: ElevatedButton(
+                                key: sendSurveyButtonKey,
+                                onPressed: hasData && snapshot.data!
+                                    ? () => _processAndNavigate(
+                                          vm.hasConnection,
+                                        )
+                                    : null,
+                                child: const Text(sendSurveyText),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  )
+                ],
               ),
               largeVerticalSizedBox,
             ],
@@ -287,6 +377,33 @@ class _SurveysSendConfigurationsPageState
   List<Widget> getClientTypeCheckBoxes(Map<ClientType, bool> clientTypes) {
     final List<Widget> result = <Widget>[];
     final Map<ClientType, bool> clientTypesCopy = clientTypes;
+
+    result.add(
+      CheckboxListTile(
+        key: const ValueKey<String>(allText),
+        activeColor: AppColors.primaryColor,
+        title: const Text(
+          allText,
+          style: TextStyle(color: AppColors.grey50),
+        ),
+        value: clientAllValue,
+        onChanged: (_) {
+          setState(() {
+            clientAllValue = !clientAllValue;
+          });
+          if (clientAllValue) {
+            clientTypesCopy.forEach((ClientType key, bool value) {
+              clientTypesCopy[key] = true;
+            });
+          } else {
+            clientTypesCopy.forEach((ClientType key, bool value) {
+              clientTypesCopy[key] = false;
+            });
+          }
+          _formManager.inClientTypes.add(clientTypesCopy);
+        },
+      ),
+    );
 
     clientTypes.forEach((ClientType key, bool value) {
       result.add(
@@ -308,14 +425,6 @@ class _SurveysSendConfigurationsPageState
 
     return result;
   }
-
-  List<String> ageGroups = <String>[
-    '14 - 16 yrs',
-    '16 - 18 yrs',
-    '18 - 20 yrs',
-    '20 - 22 yrs',
-    '22 - 24 yrs'
-  ];
 
   List<Widget> getGenderCheckBoxes(Map<Gender, bool> genders) {
     final List<Widget> result = <Widget>[];
@@ -369,7 +478,26 @@ class _SurveysSendConfigurationsPageState
     return result;
   }
 
-  void _processAndNavigate() {
+  void _processAndNavigate(bool hasConnection) {
+    if (!hasConnection) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: const Text(
+              connectionLostText,
+            ),
+            duration: const Duration(seconds: 5),
+            action: dismissSnackBar(
+              closeString,
+              Colors.white,
+              context,
+            ),
+          ),
+        );
+
+      return;
+    }
     final String facilityID =
         StoreProvider.state<AppState>(context)?.staffState?.defaultFacility ??
             '';
@@ -395,7 +523,7 @@ class _SurveysSendConfigurationsPageState
                   ),
                   action: dismissSnackBar(
                     closeString,
-                    white,
+                    AppColors.whiteColor,
                     context,
                   ),
                 ),
@@ -404,7 +532,7 @@ class _SurveysSendConfigurationsPageState
         },
         variables: <String, dynamic>{
           'facilityID': facilityID,
-          'formID': widget.survey.xmlFormId,
+          'formID': 'widget.survey.xmlFormId',
           'projectID': widget.survey.projectId,
           'filterParams': _formManager.submit().toJson()
         },

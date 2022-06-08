@@ -1,13 +1,12 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
 import 'package:mycarehubpro/domain/core/entities/create_group/age_range.dart';
 import 'package:mycarehubpro/domain/core/entities/surveys/client_configuration_payload.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/validator_mixin.dart';
+import 'package:mycarehubpro/presentation/surveys/widgets/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
-const double minimumAge = 14;
-const double maximumAge = 25;
+const String minimumAge = '14';
+const String maximumAge = '25';
 
 class ClientConfigurationFormManager with Validator {
   final BehaviorSubject<Map<ClientType, bool>> _clientTypes =
@@ -15,34 +14,47 @@ class ClientConfigurationFormManager with Validator {
   Stream<Map<ClientType, bool>> get clientTypes => _clientTypes.stream;
   Sink<Map<ClientType, bool>> get inClientTypes => _clientTypes.sink;
 
-  final BehaviorSubject<RangeValues> _ageRange = BehaviorSubject<RangeValues>();
-  Stream<RangeValues> get ageRange => _ageRange.stream;
-  Sink<RangeValues> get inAgeRange => _ageRange.sink;
+  final BehaviorSubject<String> _higherBoundAge = BehaviorSubject<String>();
+  Stream<String> get higherBoundAge =>
+      _higherBoundAge.stream.transform(validateAgeRange);
+  Sink<String> get inHigherBoundAge => _higherBoundAge.sink;
+
+  final BehaviorSubject<String> _lowerBoundAge = BehaviorSubject<String>();
+  Stream<String> get lowerBoundAge =>
+      _lowerBoundAge.stream.transform(validateAgeRange);
+  Sink<String> get inLowerBoundAge => _lowerBoundAge.sink;
 
   final BehaviorSubject<Map<Gender, bool>> _gender =
       BehaviorSubject<Map<Gender, bool>>();
+
   Stream<Map<Gender, bool>> get gender => _gender.stream;
   Sink<Map<Gender, bool>> get inGender => _gender.sink;
 
-  // TODO: Wait for API
-  Stream<bool> get isFormValid => CombineLatestStream.combine2<
+  Stream<bool> get isFormValid => CombineLatestStream.combine4<
           Map<ClientType, bool>,
           Map<Gender, bool>,
-          bool>(_clientTypes, _gender, (
+          String,
+          String,
+          bool>(_clientTypes, _gender, _lowerBoundAge, _higherBoundAge, (
         Map<ClientType, bool> clientTypes,
         Map<Gender, bool> gender,
+        String lowerBoundAge,
+        String higherBoundAge,
       ) {
-        return clientTypes.isNotEmpty && gender.isNotEmpty;
+        return clientTypes.isNotEmpty &&
+            gender.isNotEmpty &&
+            Validator.isValidAgeRange(lowerBoundAge) &&
+            Validator.isValidAgeRange(higherBoundAge);
       });
 
   ClientConfigurationPayload submit() {
-    final RangeValues? ageRange = _ageRange.valueOrNull;
+    final String? lowerBoundAge = _lowerBoundAge.valueOrNull;
+    final String? higherBoundAge = _higherBoundAge.valueOrNull;
 
     final AgeRange ageRangeValue = AgeRange(
-      lowerBound: ageRange?.start ?? minimumAge,
-      upperBound: ageRange?.end ?? maximumAge,
+      lowerBound: lowerBoundAge ?? '',
+      upperBound: higherBoundAge ?? '',
     );
-
     final List<ClientType>? clientTypes = _clientTypes.valueOrNull?.entries
         .where((MapEntry<ClientType, bool> element) => element.value)
         .map((MapEntry<ClientType, bool> entry) => entry.key)
