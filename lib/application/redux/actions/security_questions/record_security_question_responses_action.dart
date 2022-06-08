@@ -48,16 +48,22 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
     final List<SecurityQuestionResponse> securityQuestionsResponses =
         state.onboardingState!.securityQuestionResponses!;
 
-    // initializing of the RecordSecurityQuestionResponses mutation
-    final Map<String, dynamic> variables = <String, dynamic>{
-      'input': securityQuestionsResponses,
+    final List<Map<String, dynamic>> vars = <Map<String, dynamic>>[];
+    for (final SecurityQuestionResponse response
+        in securityQuestionsResponses) {
+      vars.add(response.toJson());
+    }
+
+    final Map<String, dynamic> _variables = <String, dynamic>{
+      'input': vars,
       'flavour': Flavour.pro.name,
     };
+
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
     final http.Response result = await client.query(
       recordSecurityQuestionResponsesMutation,
-      variables,
+      _variables,
     );
 
     final Map<String, dynamic> body = client.toMap(result);
