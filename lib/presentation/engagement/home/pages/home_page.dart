@@ -151,6 +151,15 @@ class _HomePageState extends State<HomePage> {
                               .pushNamed(AppRoutes.surveysPage);
                         },
                       ),
+                      ActionCard(
+                        key: faqsCardKey,
+                        title: faqsText,
+                        iconUrl: faqsImageUrl,
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.profileFaqsPage);
+                        },
+                      ),
                     ],
                   ),
                 ),
