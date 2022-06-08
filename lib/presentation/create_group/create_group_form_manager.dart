@@ -7,8 +7,8 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
-const double minimumAge = 14;
-const double maximumAge = 25;
+const String minimumAge = '14';
+const String maximumAge = '25';
 
 class CreateGroupFormManager with Validator {
   final BehaviorSubject<String> _name = BehaviorSubject<String>();
@@ -58,8 +58,8 @@ class CreateGroupFormManager with Validator {
     final RangeValues? ageRange = _ageRange.valueOrNull;
 
     final AgeRange ageRangeValue = AgeRange(
-      lowerBound: ageRange?.start ?? minimumAge,
-      upperBound: ageRange?.end ?? maximumAge,
+      lowerBound: ageRange?.start.round().toString() ?? minimumAge,
+      upperBound: ageRange?.end.round().toString() ?? maximumAge,
     );
 
     final List<ClientType> clientTypeList = <ClientType>[];
