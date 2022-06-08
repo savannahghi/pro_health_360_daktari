@@ -152,3 +152,4 @@ const String acceptTermsImageSvgPath = 'assets/images/accept_terms_icon.svg';
 const String contentZeroStateImageUrl = 'assets/images/no_content_image.svg';
 
 const String pencilIconUrl = 'assets/icons/pencil.svg';
+const String noChatImage = 'assets/images/no_chat.svg';
