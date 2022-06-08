@@ -20,6 +20,7 @@ class RedFlagListItem extends StatelessWidget {
     final String name = serviceRequest?.clientName ?? '';
     final String phone = serviceRequest?.clientPhoneNumber ?? '';
     final String note = serviceRequest?.meta?.note ?? '';
+    final String createdAt = serviceRequest?.createdAt ?? '';
 
     return Column(
       children: <Widget>[
@@ -79,6 +80,25 @@ class RedFlagListItem extends StatelessWidget {
                 note,
                 style: normalSize14Text(AppColors.greyTextColor),
               ),
+              size15VerticalSizedBox,
+              if (createdAt.isNotEmpty)
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Created on ',
+                      style: normalSize14Text(
+                        AppColors.greyTextColor.withOpacity(0.5),
+                      ),
+                    ),
+                    humanizeDate(
+                      dateTextStyle: boldSize14Text(
+                        AppColors.greyTextColor.withOpacity(0.5),
+                      ),
+                      loadedDate: createdAt,
+                      showTime: true,
+                    )
+                  ],
+                ),
             ],
           ),
         ),
