@@ -40,14 +40,28 @@ void main() {
       await tester.tap(find.text('PMTCT'));
       await tester.pumpAndSettle();
 
-      final Finder ageRangeSliderFinder = find.byKey(ageRangeSlider);
-      final RangeSlider rangeSlider =
-          ageRangeSliderFinder.evaluate().first.widget as RangeSlider;
+        final Finder lowerBoundField = find.byKey(lowerBoundKey);
+      final Finder higherBoundField = find.byKey(higherBoundKey);
 
-      rangeSlider.onChanged?.call(const RangeValues(16, 25));
-      await tester.ensureVisible(ageRangeSliderFinder);
-      await tester.tap(ageRangeSliderFinder);
+      await tester.ensureVisible(lowerBoundField);
+      await tester.ensureVisible(higherBoundField);
+
+      await tester.tap(lowerBoundField);
+      await tester.enterText(lowerBoundField, '1');
       await tester.pumpAndSettle();
+      expect(find.text(ageMustBeWithinRange), findsOneWidget);
+      await tester.tap(higherBoundField);
+      await tester.enterText(higherBoundField, '2');
+      await tester.pumpAndSettle();
+      expect(find.text(ageMustBeWithinRange), findsNWidgets(2));
+
+      await tester.tap(lowerBoundField);
+      await tester.enterText(lowerBoundField, '16');
+      await tester.pumpAndSettle();
+      await tester.tap(higherBoundField);
+      await tester.enterText(higherBoundField, '25');
+      await tester.pumpAndSettle();
+
 
       await tester.tap(find.text('Male'));
       await tester.pumpAndSettle();
