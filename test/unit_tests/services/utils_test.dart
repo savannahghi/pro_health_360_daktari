@@ -478,7 +478,7 @@ void main() {
     expect(
       getNotificationInfo(NotificationType.COMMUNITIES),
       NotificationActionInfo(
-        actionTitle: 'View Communities',
+        actionTitle: 'View Conversations',
         route: AppRoutes.communityPage,
       ),
     );
