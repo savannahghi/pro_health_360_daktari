@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
@@ -16,7 +17,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/core/widgets/age_group_slider.dart';
 import 'package:mycarehubpro/presentation/create_group/create_group_form_manager.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 import 'package:shared_themes/spaces.dart';
@@ -40,6 +40,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
     createClientTypeFields();
     createGenderFields();
+
+    _formManager.inLowerBoundAge.add(minimumAge);
+    _formManager.inHigherBoundAge.add(maximumAge);
   }
 
   @override
@@ -162,40 +165,103 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 24),
-                Row(
-                  children: <Widget>[
-                    // Age
-                    Flexible(
-                      child: Column(
-                        children: <Widget>[
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              ageGroup,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: AppColors.greyTextColor,
-                              ),
-                            ),
-                          ),
-                          smallVerticalSizedBox,
-                          StreamBuilder<RangeValues>(
-                            stream: _formManager.ageRange,
-                            builder: (_, AsyncSnapshot<RangeValues> snapshot) {
-                              final RangeValues? data = snapshot.data;
-
-                              return AgeGroupSlider(
-                                data: data,
-                                onChanged: (RangeValues values) {
-                                  _formManager.inAgeRange.add(values);
-                                },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    ageGroup,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.greyTextColor,
                     ),
-                  ],
+                  ),
+                ),
+                smallVerticalSizedBox,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      style: normalSize14Text(AppColors.greyTextColor),
+                      children: <TextSpan>[
+                        const TextSpan(
+                          text: enterAgeFromString,
+                        ),
+                        TextSpan(
+                          text: ageConstraintsString,
+                          style: veryBoldSize14Text(AppColors.greyTextColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                verySmallVerticalSizedBox,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      // Lower bound
+                      Flexible(
+                        child: StreamBuilder<String>(
+                          stream: _formManager.lowerBoundAge,
+                          builder: (
+                            BuildContext context,
+                            AsyncSnapshot<String> snapshot,
+                          ) {
+                            return PatientDetailsTextFormField(
+                              textFieldKey: lowerBoundKey,
+                              initialValue: minimumAge,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(2),
+                              ],
+                              label: fromString,
+                              onChanged: (String? value) {
+                                _formManager.inLowerBoundAge.add(value ?? '');
+                              },
+                              validator: (String? value) {
+                                if (snapshot.hasError) {
+                                  return (snapshot.error! as UserException).msg;
+                                }
+                                return null;
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      // Higher bound
+                      Flexible(
+                        child: StreamBuilder<String>(
+                          stream: _formManager.higherBoundAge,
+                          builder: (
+                            BuildContext context,
+                            AsyncSnapshot<String> snapshot,
+                          ) {
+                            return PatientDetailsTextFormField(
+                              textFieldKey: higherBoundKey,
+                              initialValue: maximumAge,
+                              label: toString,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(10),
+                              ],
+                              onChanged: (String? value) {
+                                _formManager.inHigherBoundAge.add(value ?? '');
+                              },
+                              validator: (String? value) {
+                                if (snapshot.hasError) {
+                                  return (snapshot.error! as UserException).msg;
+                                }
+                                return null;
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 24),
                 Column(

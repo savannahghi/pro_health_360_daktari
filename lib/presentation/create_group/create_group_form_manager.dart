@@ -1,5 +1,4 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/entities/create_group/age_range.dart';
 import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
@@ -19,9 +18,15 @@ class CreateGroupFormManager with Validator {
   Stream<String> get description => _description.stream.transform(validateName);
   Sink<String> get inDescription => _description.sink;
 
-  final BehaviorSubject<RangeValues> _ageRange = BehaviorSubject<RangeValues>();
-  Stream<RangeValues> get ageRange => _ageRange.stream;
-  Sink<RangeValues> get inAgeRange => _ageRange.sink;
+  final BehaviorSubject<String> _higherBoundAge = BehaviorSubject<String>();
+  Stream<String> get higherBoundAge =>
+      _higherBoundAge.stream.transform(validateAgeRange);
+  Sink<String> get inHigherBoundAge => _higherBoundAge.sink;
+
+  final BehaviorSubject<String> _lowerBoundAge = BehaviorSubject<String>();
+  Stream<String> get lowerBoundAge =>
+      _lowerBoundAge.stream.transform(validateAgeRange);
+  Sink<String> get inLowerBoundAge => _lowerBoundAge.sink;
 
   final BehaviorSubject<Map<String, bool>> _gender =
       BehaviorSubject<Map<String, bool>>();
@@ -35,31 +40,40 @@ class CreateGroupFormManager with Validator {
   Stream<bool> get inviteOnly => _inviteOnly.stream;
   Sink<bool> get inInviteOnly => _inviteOnly.sink;
 
-  Stream<bool> get isFormValid => CombineLatestStream.combine4<
-      String,
-      String,
-      Map<String, bool>,
-      Map<String, bool>,
-      bool>(_name, _description, _gender, _clientType, validateFields);
+  Stream<bool> get isFormValid => CombineLatestStream.combine6<String, String,
+          Map<String, bool>, Map<String, bool>, String, String, bool>(
+        _name,
+        _description,
+        _gender,
+        _clientType,
+        _lowerBoundAge,
+        _higherBoundAge,
+        validateFields,
+      );
 
   bool validateFields(
     String name,
     String description,
     Map<String, bool> genders,
     Map<String, bool> clientType,
+    String lowerBoundAge,
+    String higherBoundAge,
   ) {
     return Validator.isValidName(name) &&
         Validator.isValidName(description) &&
         genders.isNotEmpty &&
-        clientType.isNotEmpty;
+        clientType.isNotEmpty &&
+        Validator.isValidAgeRange(lowerBoundAge) &&
+        Validator.isValidAgeRange(higherBoundAge);
   }
 
   CreateGroupPayload submit() {
-    final RangeValues? ageRange = _ageRange.valueOrNull;
+    final String? lowerBoundAge = _lowerBoundAge.valueOrNull;
+    final String? higherBoundAge = _higherBoundAge.valueOrNull;
 
     final AgeRange ageRangeValue = AgeRange(
-      lowerBound: ageRange?.start.round().toString() ?? minimumAge,
-      upperBound: ageRange?.end.round().toString() ?? maximumAge,
+      lowerBound: lowerBoundAge ?? '',
+      upperBound: higherBoundAge ?? '',
     );
 
     final List<ClientType> clientTypeList = <ClientType>[];
