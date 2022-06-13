@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:mycarehubpro/application/core/graphql/queries.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -87,6 +90,12 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
           dispatch(
             BatchUpdateMiscStateAction(resumeWithPin: false),
           );
+
+          await AnalyticsService().logEvent(
+            name: resumeWithPINEvent,
+            eventType: AnalyticsEventType.AUTH,
+          );
+          
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(navConfig.nextRoute),
           );

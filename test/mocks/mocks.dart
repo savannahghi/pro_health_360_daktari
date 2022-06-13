@@ -22,6 +22,7 @@ import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 // Project imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -2472,3 +2473,50 @@ final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
     'meta': <String, String>{'imageDownloadUrl': 'testImage'}
   }
 };
+
+
+Future<void> setupFirebaseAnalyticsMocks({
+  Function(MethodCall)? updateLogFunc,
+}) async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  MethodChannelFirebase.channel
+      .setMockMethodCallHandler((MethodCall call) async {
+    if (call.method == 'Firebase#initializeCore') {
+      return <Map<String, dynamic>>[
+        <String, dynamic>{
+          'name': defaultFirebaseAppName,
+          'options': <String, dynamic>{
+            'apiKey': '123',
+            'appId': '123',
+            'messagingSenderId': '123',
+            'projectId': '123',
+          },
+          'pluginConstants': <String, dynamic>{},
+        }
+      ];
+    }
+
+    if (call.method == 'Firebase#initializeApp') {
+      return <String, dynamic>{
+        'name': call.arguments['appName'],
+        'options': call.arguments['options'],
+        'pluginConstants': <String, dynamic>{},
+      };
+    }
+
+    return null;
+  });
+
+  MethodChannelFirebaseAnalytics.channel
+      .setMockMethodCallHandler((MethodCall methodCall) async {
+    if (updateLogFunc != null) {
+      updateLogFunc.call(methodCall);
+    }
+
+    switch (methodCall.method) {
+      default:
+        return false;
+    }
+  });
+}

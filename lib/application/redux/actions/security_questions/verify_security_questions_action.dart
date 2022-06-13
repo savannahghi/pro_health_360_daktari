@@ -5,13 +5,17 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -87,9 +91,19 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
         );
 
         final OnboardingPathInfo path = getOnboardingPath(state: state);
+        final CurrentOnboardingStage? currentOnboardingStage =
+            state.onboardingState?.currentOnboardingStage;
 
         dispatch(
           NavigateAction<AppState>.pushReplacementNamed(path.nextRoute),
+        );
+        await AnalyticsService().logEvent(
+          name: verifySecurityQuestionsEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+          parameters: <String, dynamic>{
+            'next_page': path.nextRoute,
+            'current_onboarding_workflow': describeEnum(currentOnboardingStage!),
+          },
         );
       }
       return state;
@@ -104,6 +118,10 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
             AppRoutes.verifySecurityQuestionsHelpPage,
           ),
         );
+        await AnalyticsService().logEvent(
+          name: securityQuestionThresholdEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+        );
       } else if (errors != null || responseMap['error'] != null) {
         dispatch(
           UpdateOnboardingStateAction(hasVerifiedSecurityQuestions: false),
@@ -113,5 +131,6 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
         throw const UserException(responseNotMatchingText);
       }
     }
+    return state;
   }
 }

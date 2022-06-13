@@ -1,10 +1,12 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
 import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 // Project imports:
 import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
 import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';
@@ -103,7 +105,16 @@ class RouteGenerator {
 
       case AppRoutes.notificationsPage:
         return MaterialPageRoute<NotificationsPage>(
-          builder: (_) => NotificationsPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewNotificationsEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return NotificationsPage();
+          },
         );
 
       case AppRoutes.contentPage:
@@ -175,7 +186,16 @@ class RouteGenerator {
 
       case AppRoutes.profilePage:
         return MaterialPageRoute<UserProfilePage>(
-          builder: (_) => UserProfilePage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewProfile,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return UserProfilePage();
+          },
         );
 
       case AppRoutes.settingsPage:

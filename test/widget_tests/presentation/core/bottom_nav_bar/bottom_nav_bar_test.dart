@@ -2,6 +2,7 @@
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +11,7 @@ import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_bar.dart';
 import 'package:mycarehubpro/presentation/notifications/notifications_page.dart';
 
+import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
 
 void main() {
@@ -17,6 +19,10 @@ void main() {
     final Store<AppState> store =
         Store<AppState>(initialState: AppState.initial());
 
+    setUp(() async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+    });
     testWidgets(
         'renders all bottom navigation items correctly '
         'and navigates to at least one of the bottom navigation items',

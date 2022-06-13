@@ -18,6 +18,7 @@ dependencies:
   cupertino_icons: ^1.0.3
   debug_logger: ^0.0.23
   dotted_decoration: ^2.0.0
+  firebase_analytics: ^9.1.1
   firebase_core: ^1.12.0
   firebase_messaging: ^11.2.7
   flutter:
@@ -47,6 +48,7 @@ dependencies:
   url_launcher: ^6.0.18
 
 dependency_overrides:
+  firebase_analytics_platform_interface: 3.0.5
   firebase_messaging_platform_interface: 3.1.6
 
 dev_dependencies:
