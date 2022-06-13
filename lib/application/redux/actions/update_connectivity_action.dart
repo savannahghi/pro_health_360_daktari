@@ -12,7 +12,6 @@ class UpdateConnectivityAction extends ReduxAction<AppState> {
     final AppState newState = state.copyWith(
       connectivityState: ConnectivityState(isConnected: hasConnection),
     );
-
     return newState;
   }
 }

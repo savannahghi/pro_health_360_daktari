@@ -3,6 +3,7 @@
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
@@ -24,12 +25,14 @@ class MyCareHubProApp extends StatelessWidget {
     required this.appSetupData,
     required this.streamClient,
     required this.connectivityChecker,
+    required this.analyticsObserver,
   }) : super(key: key);
 
   final AppSetupData appSetupData;
   final ConnectivityChecker connectivityChecker;
   final Store<AppState> store;
   final StreamChatClient streamClient;
+  final FirebaseAnalyticsObserver analyticsObserver;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +69,7 @@ class MyCareHubProApp extends StatelessWidget {
                 appName: appName,
                 appContexts: appSetupData.appContexts,
                 streamClient: streamClient,
+                analyticsObserver: analyticsObserver,
               ),
             );
           },

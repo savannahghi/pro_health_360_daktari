@@ -85,3 +85,25 @@ extension ScreeningToolsTypeExtension on ScreeningToolsType {
 }
 
 enum StreamUserType { STAFF, CLIENT }
+
+
+/// The types of events that we will collect on myCareHub
+enum AnalyticsEventType {
+  // Navigation events
+  NAVIGATION,
+
+  // General app interactions i.e record diary entry
+  INTERACTION,
+
+  // Used for likes, shared and saves in content
+  CONTENT_INTERACTION,
+
+  // Used for all authentication events e.g login, logout
+  AUTH,
+
+  // Connectivity events
+  CONNECTIVITY,
+
+  /// Events used in the onboarding workflow
+  ONBOARDING
+}

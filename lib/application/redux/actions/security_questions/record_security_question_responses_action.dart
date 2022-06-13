@@ -5,15 +5,19 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart' as utils;
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 // Project imports:
 import 'package:shared_themes/colors.dart';
@@ -86,9 +90,20 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
 
       final String route = utils.getOnboardingPath(state: state).nextRoute;
 
+      final CurrentOnboardingStage? currentOnboardingStage =
+          state.onboardingState?.currentOnboardingStage;
+
       Navigator.pushReplacementNamed(
         context,
         route,
+      );
+      await AnalyticsService().logEvent(
+        name: recordSecurityQuestionsEvent,
+        eventType: AnalyticsEventType.ONBOARDING,
+        parameters: <String, dynamic>{
+          'next_page': route,
+          'current_onboarding_workflow': describeEnum(currentOnboardingStage!),
+        },
       );
     }
 

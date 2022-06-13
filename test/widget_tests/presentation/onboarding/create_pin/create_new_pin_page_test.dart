@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -28,7 +29,7 @@ void main() {
   group('CreateNewPINPage', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
@@ -51,6 +52,8 @@ void main() {
           ),
         ),
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('PIN field validates correctly', (WidgetTester tester) async {

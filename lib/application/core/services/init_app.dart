@@ -3,6 +3,7 @@ import 'dart:async';
 
 // Flutter imports:
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +11,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:rxdart/rxdart.dart';
@@ -106,6 +108,10 @@ Future<void> initApp(List<AppContext> appContexts) async {
   };
 
   await Firebase.initializeApp();
+
+  await AnalyticsService().init(
+    environment: describeEnum(appSetupData.appContexts.first),
+  );
   runZonedGuarded(
     () async {
       await SentryFlutter.init(
@@ -120,6 +126,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
             store: store,
             appSetupData: appSetupData,
             streamClient: streamClient,
+            analyticsObserver: AnalyticsService().getAnalyticsObserver(),
           ),
         ),
       );

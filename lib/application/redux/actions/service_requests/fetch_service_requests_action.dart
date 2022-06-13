@@ -71,7 +71,6 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
           errorFetchingPendingServiceRequests: true,
         ),
       );
-
       return null;
     }
 
