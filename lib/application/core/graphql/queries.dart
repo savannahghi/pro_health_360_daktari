@@ -52,6 +52,9 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
     FacilityID
     ClientName
     ClientContact
+    StaffContact
+    StaffID
+    StaffName
     Status
     CreatedAt
     Meta
