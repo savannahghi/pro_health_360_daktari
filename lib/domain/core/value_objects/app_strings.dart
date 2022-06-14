@@ -843,3 +843,14 @@ const String requestForAssistanceMessageString =
 const String moderationHelpText =
     'Long press on a member to promote them to a moderator, '
     'remove or ban them from this group';
+const String noConversationsAvailable = 'No conversations available';
+const String noConversationsDescription =
+    'You have not been added to any conversation yet. Tap below to view your conversation invites or start a conversation';
+const String viewInvites = 'View Invites';
+const String orString = 'or';
+
+const String enterAgeFromString = 'Please enter an age range from';
+const String ageConstraintsString = ' 14 to 25';
+const String fromString = 'From';
+const String toString = 'To';
+const String ageMustBeWithinRange = 'Age is invalid';

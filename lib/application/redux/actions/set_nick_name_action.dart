@@ -4,15 +4,21 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/complete_onboarding_tour.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -91,6 +97,10 @@ class SetNicknameAction extends ReduxAction<AppState> {
         CompleteOnboardingTourAction(userID: userID, client: client),
       );
 
+      final CurrentOnboardingStage? currentOnboardingStage =
+          state.onboardingState?.currentOnboardingStage;
+      final OnboardingPathInfo path = getOnboardingPath(state: state);
+
       if (shouldNavigate) {
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -98,9 +108,17 @@ class SetNicknameAction extends ReduxAction<AppState> {
             (Route<dynamic> route) => false,
           ),
         );
+        await AnalyticsService().logEvent(
+          name: setNicknameEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+          parameters: <String, dynamic>{
+            'next_page': path.nextRoute,
+            'current_onboarding_workflow':
+                describeEnum(currentOnboardingStage!),
+          },
+        );
       }
     }
-
     return state;
   }
 }

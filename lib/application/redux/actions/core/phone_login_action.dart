@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/services/helpers.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
@@ -24,6 +25,7 @@ import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart
 import 'package:mycarehubpro/domain/core/entities/core/user.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 
@@ -74,7 +76,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         processHttpResponse(httpResponse);
 
     if (processedResponse.ok) {
-      final Map<String, dynamic> responseMap =
+    final Map<String, dynamic> responseMap =
           json.decode(processedResponse.response.body) as Map<String, dynamic>;
 
       final PhoneLoginResponse loginResponse =
@@ -173,6 +175,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           arguments: path.arguments,
         ),
       );
+      await AnalyticsService().logEvent(
+        name: loginEvent,
+        eventType: AnalyticsEventType.AUTH,
+      );
 
       return state;
     } else {
@@ -187,6 +193,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             error: processedResponse.message,
             response: processedResponse.response.body,
           );
+          await AnalyticsService().logEvent(
+            name: incorrectCredentialsLoginEvent,
+            eventType: AnalyticsEventType.AUTH,
+          );
           return null;
         case 48:
           dispatch(
@@ -195,6 +205,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
               (Route<dynamic> route) => false,
             ),
           );
+          await AnalyticsService().logEvent(
+            name: pinExpiredEvent,
+            eventType: AnalyticsEventType.AUTH,
+          );
+
           return state;
         case 72:
           dispatch(
@@ -202,6 +217,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
               AppRoutes.pendingPINRequestPage,
               (Route<dynamic> route) => false,
             ),
+          );
+          await AnalyticsService().logEvent(
+            name: pendingPinResetServiceRequest,
+            eventType: AnalyticsEventType.AUTH,
           );
           return state;
         case 73:
@@ -215,7 +234,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
               arguments: retryTime?.ceil(),
             ),
           );
-
+          await AnalyticsService().logEvent(
+            name: exponentialBackOffEvent,
+            eventType: AnalyticsEventType.AUTH,
+            parameters: <String, dynamic>{'retryTime': retryTime?.ceil()},
+          );
           return state;
 
         default:
@@ -223,6 +246,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             errorPhoneLogin,
             error: processedResponse.message,
             response: processedResponse.response.body,
+          );
+          // exception thrown if the backend could not match the provided
+          //credentials with those stored in the backend
+          await AnalyticsService().logEvent(
+            name: unknownAuthErrorEvent,
+            eventType: AnalyticsEventType.AUTH,
           );
           throw const UserException(somethingWentWrongText);
       }

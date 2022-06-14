@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:mycarehubpro/application/core/graphql/mutations.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
@@ -11,6 +13,7 @@ import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboard
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:mycarehubpro/domain/core/value_objects/error_tags.dart';
@@ -124,6 +127,17 @@ class CreatePINAction extends ReduxAction<AppState> {
         dispatch(UpdateOnboardingStateAction(hasSetPin: true));
         final OnboardingPathInfo path = getOnboardingPath(state: state);
         dispatch(NavigateAction<AppState>.pushNamed(path.nextRoute));
+        final CurrentOnboardingStage? currentOnboardingStage =
+            state.onboardingState?.currentOnboardingStage;
+        await AnalyticsService().logEvent(
+          name: setUserPINEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+          parameters: <String, dynamic>{
+            'next_page': path.nextRoute,
+            'current_onboarding_workflow':
+                describeEnum(currentOnboardingStage!),
+          },
+        );
       } else if (responseMap['data']['resetPIN'] == true) {
         onError
             ?.call(isResetPIN ? pinResetSuccessString : pinChangeSuccessString);

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/invite_members/invite_members_action.dart';
@@ -16,12 +17,14 @@ void main() {
   group('InviteMembersAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial()
             .copyWith(connectivityState: ConnectivityState(isConnected: true)),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     test('should run successfully', () async {

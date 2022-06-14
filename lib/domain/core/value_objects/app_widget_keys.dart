@@ -29,6 +29,8 @@ const Key forgotPinButton = Key('forgot_pin_button_key');
 const Key appBarUserKey = Key('app_bar_user_key');
 const Key contentCardKey = Key('content_card_key');
 const Key surveysCardKey = Key('surveys_card_key');
+const Key faqsCardKey = Key('faqs_card_key');
+
 
 //Service Requests keys
 const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
@@ -160,6 +162,8 @@ const Key resolvedStaffRequestsActionCardKey =
 const Key screeningToolsActionCardKey = Key('screening_tools_action_card_key');
 const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
+const Key lowerBoundKey = Key('lower_bound_key');
+const Key higherBoundKey = Key('higher_bound_key');
 
 const Key resolveRequestButtonKey = Key('resolve_request_button_key');
 

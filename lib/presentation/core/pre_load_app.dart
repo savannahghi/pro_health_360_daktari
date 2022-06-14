@@ -1,5 +1,6 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/services/custom_client.dart';
 import 'package:mycarehubpro/application/core/services/localization.dart';
@@ -23,17 +24,18 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
     required this.appName,
     required this.appContexts,
     required this.streamClient,
+    required this.analyticsObserver,
   });
 
   final List<AppContext> appContexts;
   final String appName;
   final StreamChatClient streamClient;
+  final FirebaseAnalyticsObserver analyticsObserver;
 
   @override
   State<PreLoadApp> createState() => _PreLoadAppState();
@@ -168,6 +170,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           debugShowCheckedModeBanner: false,
           navigatorKey: globalAppNavigatorKey,
           navigatorObservers: <NavigatorObserver>[
+            widget.analyticsObserver,
             SentryNavigatorObserver(),
           ],
           initialRoute: initialRoute,

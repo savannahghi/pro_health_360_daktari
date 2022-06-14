@@ -18,6 +18,7 @@ import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.da
 import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/register_client_page.dart';
 import 'package:mycarehubpro/presentation/onboarding/staff/add_new_staff_page.dart';
+import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
 import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
 import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
 import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
@@ -27,6 +28,25 @@ import '../../../../../mocks/test_helpers.dart';
 
 void main() {
   group('HomePage', () {
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(
+        json.encode(<String, dynamic>{
+          'data': <String, dynamic>{
+            'getContent': <String, dynamic>{
+              'items': <dynamic>[
+                contentMock.first,
+                documentContentMock,
+              ]
+            },
+            'listContentCategories': categoriesMock,
+          },
+        }),
+        201,
+      ),
+    );
     late Store<AppState> store;
 
     setUp(() async {
@@ -178,13 +198,30 @@ void main() {
         widget: const HomePage(),
       );
 
-      final Finder surveysActionCardFinder = find.byKey(surveysCardKey);
+      final Finder surveysCardFinder = find.byKey(surveysCardKey);
 
-      await tester.ensureVisible(surveysActionCardFinder);
+      await tester.ensureVisible(surveysCardFinder);
       await tester.pumpAndSettle();
-      await tester.tap(surveysActionCardFinder);
+      await tester.tap(surveysCardFinder);
       await tester.pumpAndSettle();
-      expect(find.byType(SurveysPage), findsWidgets);
+      expect(find.byType(SurveysPage), findsOneWidget);
+    });
+
+    testWidgets('navigates to faqs page', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        widget: const HomePage(),
+        graphQlClient: mockShortSILGraphQlClient,
+      );
+
+      final Finder faqCardFinder = find.byKey(faqsCardKey);
+
+      await tester.ensureVisible(faqCardFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(faqCardFinder);
+      await tester.pumpAndSettle();
+      expect(find.byType(ProfileFaqsPage), findsOneWidget);
     });
   });
 }

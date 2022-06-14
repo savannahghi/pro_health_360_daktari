@@ -4,6 +4,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,8 +20,10 @@ void main() {
   group('RecordSecurityQuestionResponsesAction', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUpAll(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should dispatch action and catch error',

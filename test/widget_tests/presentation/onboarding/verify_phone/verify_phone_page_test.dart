@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
@@ -26,7 +27,7 @@ void main() {
   group('VerifyPhonePage', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(
         initialState: AppState.initial()
             .copyWith
@@ -62,6 +63,9 @@ void main() {
               store.state.staffState!.user!.copyWith.call(termsAccepted: true),
         ),
       );
+
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should verify an OTP correctly and navigate to set PIN page',

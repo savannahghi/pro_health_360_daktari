@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
@@ -20,11 +21,13 @@ void main() {
   group('AcceptTermAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial(),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     test('updates staff state after user accepts', () async {

@@ -4,6 +4,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +21,7 @@ void main() {
   group('VerifyOTPAction', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(
         initialState: AppState.initial()
             .copyWith
@@ -38,6 +39,8 @@ void main() {
               phoneNumber: '+254717356476',
             ),
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should fail to verify an OTP if there is an API error',
