@@ -45,9 +45,7 @@ class FetchMembersAction extends ReduxAction<AppState> {
       return null;
     }
 
-    final Map<String, dynamic> filter = <String, dynamic>{
-      'role': 'user',
-    };
+    final Map<String, dynamic> filter = <String, dynamic>{'role': 'user'};
 
     if (isSearching) {
       filter.addAll(<String, dynamic>{

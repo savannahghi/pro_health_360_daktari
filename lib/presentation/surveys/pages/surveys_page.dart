@@ -27,10 +27,8 @@ class SurveysPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: surveysString,
-        showNotificationIcon: true,
-      ),
+      appBar:
+          const CustomAppBar(title: surveysString, showNotificationIcon: true),
       backgroundColor: Theme.of(context).backgroundColor,
       body: StoreConnector<AppState, SurveysViewModel>(
         onInit: (Store<AppState> store) {
@@ -43,6 +41,7 @@ class SurveysPage extends StatelessWidget {
         converter: (Store<AppState> store) => SurveysViewModel.fromStore(store),
         builder: (BuildContext context, SurveysViewModel vm) {
           final List<Survey?> surveys = vm.surveys ?? <Survey>[];
+
           final bool isLoading =
               vm.wait?.isWaitingFor(fetchSurveysFlag) ?? false;
           return Padding(
@@ -71,9 +70,7 @@ class SurveysPage extends StatelessWidget {
                       ],
                     )
                   else ...<Widget>{
-                    SvgPicture.asset(
-                      surveysImagePath,
-                    ),
+                    SvgPicture.asset(surveysImagePath),
                     mediumVerticalSizedBox,
                     if (isLoading)
                       const Padding(
@@ -89,9 +86,7 @@ class SurveysPage extends StatelessWidget {
                           style: normalSize14Text(AppColors.greyTextColor),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      smallVerticalSizedBox,
                       if (surveys.isNotEmpty)
                         ListView.builder(
                           shrinkWrap: true,
