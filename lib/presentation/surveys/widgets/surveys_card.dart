@@ -37,7 +37,7 @@ class SurveysCard extends StatelessWidget {
               color: const Color(0xFFF0EAF4),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.all(15),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,7 @@ class SurveysCard extends StatelessWidget {
                   title,
                   style: veryBoldSize16Text(AppColors.lightBlackTextColor),
                 ),
-                const SizedBox(height: 10),
+                mediumVerticalSizedBox,
                 if (message != null)
                   Column(
                     children: <Widget>[
@@ -60,6 +60,7 @@ class SurveysCard extends StatelessWidget {
                 if (buttonKey != null)
                   SizedBox(
                     width: double.infinity,
+                    height: 48,
                     child: isLoading
                         ? const PlatformLoader()
                         : MyAfyaHubPrimaryButton(
