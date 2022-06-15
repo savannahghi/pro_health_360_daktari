@@ -1,10 +1,10 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 // Package imports:
-import 'package:shared_themes/spaces.dart';
 
 class PatientDetailsTextFormField extends StatelessWidget {
   const PatientDetailsTextFormField({

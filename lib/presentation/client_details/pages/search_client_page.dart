@@ -14,7 +14,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/client_details/widgets/search_user_item.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SearchClientPage extends StatefulWidget {
   const SearchClientPage();

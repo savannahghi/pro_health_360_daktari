@@ -6,7 +6,6 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SuccessfulSurveySubmission extends StatelessWidget {
   const SuccessfulSurveySubmission({Key? key}) : super(key: key);

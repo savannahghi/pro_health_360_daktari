@@ -1,7 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ReachOutChannelWidget extends StatelessWidget {
   const ReachOutChannelWidget({
@@ -37,7 +36,8 @@ class ReachOutChannelWidget extends StatelessWidget {
             smallVerticalSizedBox,
             Text(
               description,
-              style: normalSize15Text(Theme.of(context).primaryColor).copyWith(fontWeight: FontWeight.w500),
+              style: normalSize15Text(Theme.of(context).primaryColor)
+                  .copyWith(fontWeight: FontWeight.w500),
             )
           ],
         ),

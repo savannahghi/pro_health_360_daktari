@@ -16,7 +16,6 @@ import 'package:mycarehubpro/presentation/profile/widgets/edit_info_button_widge
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/personal_information_widget.dart';
 // Project imports:
-import 'package:shared_themes/spaces.dart';
 
 /// [SettingsPage] is used to display the client's settings
 ///

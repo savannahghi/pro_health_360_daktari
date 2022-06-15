@@ -20,7 +20,6 @@ import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/register_client_form_manager.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
-import 'package:shared_themes/spaces.dart';
 
 class RegisterClientPage extends StatefulWidget {
   const RegisterClientPage({Key? key}) : super(key: key);

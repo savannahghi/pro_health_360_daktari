@@ -5,7 +5,6 @@ import 'package:mycarehubpro/domain/core/entities/search_user/search_user_respon
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/search/widgets/client_search_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// Contains a set of actions to perform for an active client
 class ActiveClientActions extends StatelessWidget {

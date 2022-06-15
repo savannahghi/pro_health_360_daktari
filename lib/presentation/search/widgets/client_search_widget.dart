@@ -18,7 +18,6 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/search/widgets/active_client_actions.dart';
 import 'package:mycarehubpro/presentation/search/widgets/inactive_user_actions.dart';
 import 'package:mycarehubpro/presentation/search/widgets/search_details_information_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ClientSearchWidget extends StatelessWidget {
   const ClientSearchWidget();
