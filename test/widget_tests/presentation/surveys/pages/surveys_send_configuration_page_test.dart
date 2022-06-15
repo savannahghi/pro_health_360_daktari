@@ -100,10 +100,18 @@ void main() {
       await tester.pumpAndSettle();
 
       final Finder maleGenderFinder =
-          find.text(Gender.female.name.toUpperCase());
+          find.text(Gender.male.name.toUpperCase());
+      final Finder ovcClientTypeFinder =
+          find.text(ClientType.OVC.name);
+
       await tester.ensureVisible(maleGenderFinder);
       expect(maleGenderFinder, findsOneWidget);
       await tester.tap(maleGenderFinder);
+      await tester.pumpAndSettle();
+      
+      await tester.ensureVisible(ovcClientTypeFinder);
+      expect(ovcClientTypeFinder, findsOneWidget);
+      await tester.tap(ovcClientTypeFinder);
       await tester.pumpAndSettle();
 
       final Finder submitSurveyFinder = find.byKey(sendSurveyButtonKey);
@@ -181,11 +189,17 @@ void main() {
       await tester.tap(allGenderFinder.last);
       await tester.pumpAndSettle();
 
-      final Finder maleGenderFinder =
-          find.text(Gender.female.name.toUpperCase());
+      final Finder maleGenderFinder = find.text(Gender.male.name.toUpperCase());
+      final Finder ovcClientTypeFinder = find.text(ClientType.OVC.name);
+
       await tester.ensureVisible(maleGenderFinder);
       expect(maleGenderFinder, findsOneWidget);
       await tester.tap(maleGenderFinder);
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(ovcClientTypeFinder);
+      expect(ovcClientTypeFinder, findsOneWidget);
+      await tester.tap(ovcClientTypeFinder);
       await tester.pumpAndSettle();
 
       store.dispatch(UpdateConnectivityAction(hasConnection: false));
@@ -311,6 +325,20 @@ void main() {
         );
         await tester.pumpAndSettle();
         final Finder submitSurveyFinder = find.byKey(sendSurveyButtonKey);
+        final Finder maleGenderFinder =
+            find.text(Gender.male.name.toUpperCase());
+        final Finder ovcClientTypeFinder = find.text(ClientType.OVC.name);
+
+        await tester.ensureVisible(maleGenderFinder);
+        expect(maleGenderFinder, findsOneWidget);
+        await tester.tap(maleGenderFinder);
+        await tester.pumpAndSettle();
+
+        await tester.ensureVisible(ovcClientTypeFinder);
+        expect(ovcClientTypeFinder, findsOneWidget);
+        await tester.tap(ovcClientTypeFinder);
+        await tester.pumpAndSettle();
+        
         await tester.ensureVisible(submitSurveyFinder);
         await tester.tap(submitSurveyFinder);
 

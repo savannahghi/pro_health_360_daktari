@@ -8,7 +8,6 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:shared_themes/spaces.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
   const HealthDiaryEntryWidget({

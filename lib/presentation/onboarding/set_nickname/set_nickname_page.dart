@@ -11,7 +11,6 @@ import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/onboarding/set_nickname_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SetNickNamePage extends StatefulWidget {
   const SetNickNamePage({Key? key}) : super(key: key);

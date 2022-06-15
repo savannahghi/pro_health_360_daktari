@@ -43,6 +43,8 @@ class ClientConfigurationFormManager with Validator {
       ) {
         return clientTypes.isNotEmpty &&
             gender.isNotEmpty &&
+            clientTypes.containsValue(true) &&
+            gender.containsValue(true) &&
             Validator.isValidAgeRange(lowerBoundAge) &&
             Validator.isValidAgeRange(higherBoundAge);
       });

@@ -14,7 +14,7 @@ import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dar
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
+
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {

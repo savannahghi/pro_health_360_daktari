@@ -6,8 +6,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
 
-import 'package:shared_themes/spaces.dart';
-
 class EmptyConversationsWidget extends StatelessWidget {
   const EmptyConversationsWidget({Key? key}) : super(key: key);
 

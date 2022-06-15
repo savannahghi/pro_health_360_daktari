@@ -16,7 +16,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 ClientType clientTypeFromJson(String? clientString) {
   if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {

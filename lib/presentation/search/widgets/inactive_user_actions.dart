@@ -4,7 +4,6 @@ import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/search/widgets/client_search_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 class InActiveUserActions extends StatelessWidget {
   const InActiveUserActions({

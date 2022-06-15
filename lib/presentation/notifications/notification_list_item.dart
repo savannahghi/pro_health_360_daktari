@@ -5,7 +5,6 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 // Package imports:
-import 'package:shared_themes/spaces.dart';
 
 /// [NotificationListItem] Displays the notifications with Icons and a short description
 class NotificationListItem extends StatelessWidget {
