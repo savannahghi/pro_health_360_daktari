@@ -39,7 +39,7 @@ class BanUserAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String staffID = state.staffState?.user?.userId ?? '';
+    final String staffID = state.staffState?.id ?? '';
     final Map<String, dynamic> variables = <String, dynamic>{
       'memberID': memberID,
       'bannedBy': staffID,
