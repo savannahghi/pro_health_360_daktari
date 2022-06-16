@@ -55,19 +55,19 @@ class ContactAdminCard extends StatelessWidget {
               buttonKey: buttonKey,
               text: (adminPhoneNumber != null) ? callString : emailString,
               onPressed: () async {
-                if (adminPhoneNumber != null) {
-                  final Uri launchUri = Uri(
-                    scheme: 'tel',
-                    path: adminPhoneNumber,
-                  );
-                  await launch(launchUri.toString());
-                } else {
-                  final Uri launchUri = Uri(
-                    scheme: 'mailto',
-                    path: adminEmail,
-                  );
-                  await launch(launchUri.toString());
-                }
+                // TODO: revert and change to a real number
+                // if (adminPhoneNumber != null) {
+                //   final Uri launchUri = Uri(
+                //     scheme: 'tel',
+                //     path: adminPhoneNumber,
+                //   );
+                //   await launch(launchUri.toString());
+                // } else {
+                final Uri launchUri = Uri(
+                  scheme: 'mailto',
+                  path: adminEmail,
+                );
+                await launch(launchUri.toString());
               },
             ),
           )

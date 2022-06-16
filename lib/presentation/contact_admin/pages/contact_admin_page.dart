@@ -45,17 +45,18 @@ class ContactAdminPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            const ContactAdminCard(
-              title: callYourAdmin,
-              message: tapBelowToCallAdmin,
-              adminPhoneNumber: '+254712345678',
-              buttonKey: callAdminKey,
-            ),
+            // TODO: revert and change to a real number
+            // const ContactAdminCard(
+            //   title: callYourAdmin,
+            //   message: tapBelowToCallAdmin,
+            //   adminPhoneNumber: '+254712345678',
+            //   buttonKey: callAdminKey,
+            // ),
             const SizedBox(height: 20),
             const ContactAdminCard(
               title: emailYourAdmin,
               message: tapBelowToEmailAdmin,
-              adminEmail: 'admin@mycarehub.com',
+              adminEmail: adminEmail,
               buttonKey: emailAdminKey,
             ),
             const SizedBox(height: 30),

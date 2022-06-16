@@ -238,7 +238,7 @@ void main() {
       await tester.enterText(cccFieldFinder, '');
       await tester.pump();
 
-      expect(find.text(fieldCannotBeEmptyText), findsOneWidget);
+      expect(find.text(enterAValidCCCNumberText), findsOneWidget);
     });
 
     testWidgets('first name field should show error',
