@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SurveysCard extends StatelessWidget {
   const SurveysCard({

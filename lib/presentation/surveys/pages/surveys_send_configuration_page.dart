@@ -25,7 +25,6 @@ import 'package:mycarehubpro/presentation/router/routes.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/client_configuration_form_manager.dart';
 import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SurveysSendConfigurationsPage extends StatefulWidget {
   const SurveysSendConfigurationsPage({required this.survey});
@@ -148,38 +147,6 @@ class _SurveysSendConfigurationsPageState
                         ),
                       );
                     },
-                  );
-                },
-              ),
-              mediumVerticalSizedBox,
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(
-                    clientTypeText,
-                    style: veryBoldSize16Text(AppColors.lightBlackTextColor),
-                  ),
-                ),
-              ),
-              StreamBuilder<Map<ClientType, bool>>(
-                stream: _formManager.clientTypes,
-                builder: (
-                  BuildContext context,
-                  AsyncSnapshot<Map<ClientType, bool>> snapshot,
-                ) {
-                  final Map<ClientType, bool> clientTypes =
-                      snapshot.data ?? <ClientType, bool>{};
-
-                  return GridView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1 / .4,
-                    ),
-                    children: getClientTypeCheckBoxes(clientTypes),
                   );
                 },
               ),
@@ -314,6 +281,37 @@ class _SurveysSendConfigurationsPageState
                       childAspectRatio: 1 / .4,
                     ),
                     children: getGenderCheckBoxes(genders),
+                  );
+                },
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    clientTypeText,
+                    style: veryBoldSize16Text(AppColors.lightBlackTextColor),
+                  ),
+                ),
+              ),
+              StreamBuilder<Map<ClientType, bool>>(
+                stream: _formManager.clientTypes,
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot<Map<ClientType, bool>> snapshot,
+                ) {
+                  final Map<ClientType, bool> clientTypes =
+                      snapshot.data ?? <ClientType, bool>{};
+
+                  return GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / .4,
+                    ),
+                    children: getClientTypeCheckBoxes(clientTypes),
                   );
                 },
               ),

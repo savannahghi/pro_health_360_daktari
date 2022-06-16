@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 // Project imports:
-import 'package:shared_themes/spaces.dart';
 
 class ErrorCardWidget extends StatelessWidget {
   const ErrorCardWidget({

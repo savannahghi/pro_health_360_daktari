@@ -14,7 +14,6 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/resolved_service_request_list_item.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ResolvedServiceRequestsListPage extends StatefulWidget {
   const ResolvedServiceRequestsListPage({Key? key, required this.flavour})

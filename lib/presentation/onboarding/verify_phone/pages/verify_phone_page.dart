@@ -10,7 +10,6 @@ import 'package:mycarehubpro/application/redux/view_models/onboarding/verify_pho
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:mycarehubpro/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 class VerifyPhonePage extends StatelessWidget {
   const VerifyPhonePage({Key? key}) : super(key: key);

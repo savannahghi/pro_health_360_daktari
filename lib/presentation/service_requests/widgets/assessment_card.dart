@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/states/service_requests/assessment_question_response.dart';
 import 'package:mycarehubpro/presentation/service_requests/widgets/assessment_list_item.dart';
-import 'package:shared_themes/spaces.dart';
 
 class AssessmentCard extends StatelessWidget {
   final String username;
