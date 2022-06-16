@@ -22,7 +22,7 @@ mixin Validator {
       if (isValidCccNumber(value)) {
         sink.add(value);
       } else {
-        sink.addError(const UserException(fieldCannotBeEmptyText));
+        sink.addError(const UserException(enterAValidCCCNumberText));
       }
     },
   );
@@ -93,6 +93,7 @@ mixin Validator {
   }
 
   static bool isValidCccNumber(String number) {
-    return number.isNotEmpty;
+    final int length = number.length;
+    return number.isNotEmpty && length >= 7 && length <= 10;
   }
 }

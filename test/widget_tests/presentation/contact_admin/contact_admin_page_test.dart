@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
 import 'package:mycarehubpro/presentation/contact_admin/widgets/contact_admin_card.dart';
@@ -20,30 +21,9 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(ContactAdminPage), findsOneWidget);
-      expect(find.byType(ContactAdminCard), findsNWidgets(2));
+      expect(find.byType(ContactAdminCard), findsOneWidget);
       final Finder backButton = find.byKey(appBarBackButtonKey);
       expect(backButton, findsOneWidget);
-    });
-
-    testWidgets('launches dialer correctly', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return const ContactAdminPage();
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-      expect(find.byType(ContactAdminPage), findsOneWidget);
-      expect(find.byType(ContactAdminCard), findsNWidgets(2));
-
-      final Finder callBtn = find.byKey(callAdminKey);
-      expect(callBtn, findsOneWidget);
-
-      await tester.tap(callBtn);
-      await tester.pumpAndSettle();
     });
 
     testWidgets('email launcher launches correctly',
@@ -59,7 +39,8 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(ContactAdminPage), findsOneWidget);
-      expect(find.byType(ContactAdminCard), findsNWidgets(2));
+      expect(find.byType(ContactAdminCard), findsOneWidget);
+      expect(find.text(adminEmail), findsOneWidget);
 
       final Finder sendEmailBtn = find.byKey(emailAdminKey);
       expect(sendEmailBtn, findsOneWidget);

@@ -3,6 +3,7 @@ import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
 const String appName = 'myCareHub Professional';
+const String adminEmail = 'mycarehub@uonbi.ac.ke';
 
 //Create New Pin Page
 const String confirmPinString = 'Confirm PIN';
@@ -227,7 +228,7 @@ const String noNotificationsDescription =
 
 // Add patient page
 const String CCCNumberLabel = 'CCC Number *';
-const String cccNumberHint = 'Enter a 10 digit number...';
+const String cccNumberHint = 'Enter a 7 to 10 digit number...';
 const String facilityLabel = 'Facility *';
 const String firstNameLabel = 'First Name *';
 const String lastNameLabel = 'Last Name *';
@@ -327,6 +328,7 @@ const String errorPhoneLogin = 'Error: Unable to login by phone';
 const String connectionLostText = 'Internet connection lost';
 
 const String fieldCannotBeEmptyText = 'Field cannot be empty';
+const String enterAValidCCCNumberText = 'Enter a valid CCC number';
 
 // PhoneNumberFormConstants
 const String phoneNumberInputLabelText = 'Phone number';
