@@ -77,3 +77,4 @@ linter:
     avoid_classes_with_only_static_members: false
     directives_ordering: false
     depend_on_referenced_packages: false
+    implementation_imports: false

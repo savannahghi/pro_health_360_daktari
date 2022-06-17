@@ -1,28 +1,31 @@
+import 'dart:async';
+
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:mycarehubpro/application/core/services/utils.dart';
+import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:rxdart/src/streams/merge.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+
 import 'package:mycarehubpro/application/core/services/custom_client.dart';
 import 'package:mycarehubpro/application/core/services/localization.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/check_and_update_connectivity_action.dart';
-import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:mycarehubpro/application/redux/actions/set_push_token/set_push_token_action.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/initial_route_view_model.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
 import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:mycarehubpro/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
 import 'package:mycarehubpro/presentation/core/widgets/error_dialog.dart';
 import 'package:mycarehubpro/presentation/router/route_generator.dart';
 import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -32,16 +35,19 @@ class PreLoadApp extends StatefulWidget {
     required this.analyticsObserver,
   });
 
+  final FirebaseAnalyticsObserver analyticsObserver;
   final List<AppContext> appContexts;
   final String appName;
   final StreamChatClient streamClient;
-  final FirebaseAnalyticsObserver analyticsObserver;
 
   @override
   State<PreLoadApp> createState() => _PreLoadAppState();
 }
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
+  final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
+  StreamSubscription<bool>? connectivityCheckerSubscription;
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -81,16 +87,6 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
       ),
     );
 
-    final ConnectivityChecker connectivityChecker =
-        ConnectivityCheckerProvider.of(context).connectivityChecker;
-
-    StoreProvider.dispatch(
-      context,
-      CheckAndUpdateConnectivityAction(
-        connectivityChecker: connectivityChecker,
-      ),
-    );
-
     StoreProvider.dispatch(
       context,
       SetPushToken(
@@ -103,6 +99,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance?.removeObserver(this);
+    connectivityCheckerSubscription?.cancel();
     super.dispose();
   }
 
@@ -132,6 +129,30 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
 
         return MaterialApp(
           builder: (BuildContext context, Widget? childWidget) {
+            connectivityCheckerSubscription = connectivityChecker
+                .checkConnection()
+                .asStream()
+                .mergeWith(
+                  <Stream<bool>>[connectivityChecker.onConnectivityChanged],
+                )
+                .distinct()
+                .listen((bool hasConnection) {
+                  final bool hasConn = StoreProvider.state<AppState>(context)
+                          ?.connectivityState
+                          ?.isConnected ??
+                      false;
+
+                  if (!hasConnection && hasConn) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text(connectionLostText)),
+                    );
+                  }
+                  StoreProvider.dispatch(
+                    context,
+                    UpdateConnectivityAction(hasConnection: hasConnection),
+                  );
+                });
+
             return UserExceptionDialog<AppState>(
               onShowUserExceptionDialog: (
                 BuildContext context,

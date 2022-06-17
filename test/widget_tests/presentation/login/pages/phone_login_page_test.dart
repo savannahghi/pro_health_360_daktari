@@ -4,12 +4,14 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
 import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
@@ -31,6 +33,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
     });
 
     testWidgets(
@@ -308,6 +311,41 @@ void main() {
         widget: PhoneLoginPage(),
       );
       expect(find.byType(PlatformLoader), findsOneWidget);
+    });
+
+    testWidgets('should not log in when network connectivity is not available',
+        (WidgetTester tester) async {
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(UpdateOnboardingStateAction(isPhoneVerified: true));
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
+
+      await mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          graphQlClient: mockGraphQlClient,
+          widget: PhoneLoginPage(),
+        );
+
+        final Finder phoneLoginButton = find.byKey(loginKey);
+        final Finder phoneInput = find.byKey(phoneLoginPinInputKey);
+
+        expect(phoneLoginButton, findsOneWidget);
+        expect(phoneInput, findsOneWidget);
+
+        // Enter phone number
+        await tester.enterText(find.byType(MyAfyaHubPhoneInput), '0712345678');
+
+        // Enter PIN
+        await tester.enterText(phoneInput, '1234');
+
+        // Tap the login button
+        await tester.ensureVisible(find.byKey(loginKey));
+        await tester.tap(phoneLoginButton);
+        await tester.pump();
+
+        expect(find.byType(SnackBar), findsOneWidget);
+      });
     });
   });
 }
