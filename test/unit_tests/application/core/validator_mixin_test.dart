@@ -35,7 +35,7 @@ void main() {
       testClass.inCccNumber?.add('');
       await expectLater(
         testClass.cccNumber,
-        emitsError(const UserException(fieldCannotBeEmptyText)),
+        emitsError(const UserException(enterAValidCCCNumberText)),
       );
 
       cccSubject.close();
