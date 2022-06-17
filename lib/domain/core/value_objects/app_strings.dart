@@ -856,3 +856,4 @@ const String ageConstraintsString = ' 14 to 25';
 const String fromString = 'From';
 const String toString = 'To';
 const String ageMustBeWithinRange = 'Age is invalid';
+const String checkInternetText = 'Check your internet connection and try again';

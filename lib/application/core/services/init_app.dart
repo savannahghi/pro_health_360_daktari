@@ -12,9 +12,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:mycarehubpro/application/core/services/analytics_service.dart';
-import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
-import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -71,19 +68,6 @@ Future<void> initApp(List<AppContext> appContexts) async {
     defaultDistinct: true,
   );
 
-  final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
-
-  connectivityChecker
-      .checkConnection()
-      .asStream()
-      .mergeWith(
-        <Stream<bool>>[connectivityChecker.onConnectivityChanged],
-      )
-      .distinct()
-      .listen((bool hasConnection) {
-        store.dispatch(UpdateConnectivityAction(hasConnection: hasConnection));
-      });
-
   final StreamChatClient streamClient = StreamChatClient(
     appSetupData.streamAPIKey,
     logLevel: Level.ALL,
@@ -122,7 +106,6 @@ Future<void> initApp(List<AppContext> appContexts) async {
         },
         appRunner: () => runApp(
           MyCareHubProApp(
-            connectivityChecker: connectivityChecker,
             store: store,
             appSetupData: appSetupData,
             streamClient: streamClient,

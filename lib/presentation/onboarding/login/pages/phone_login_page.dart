@@ -1,10 +1,9 @@
-// Flutter imports:
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mycarehubpro/application/core/services/analytics_service.dart';
 import 'package:mycarehubpro/application/core/services/input_validators.dart';
 import 'package:mycarehubpro/application/core/theme/app_themes.dart';
 import 'package:mycarehubpro/application/redux/actions/core/phone_login_action.dart';
@@ -12,7 +11,8 @@ import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
 import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
 import 'package:mycarehubpro/application/redux/states/app_state.dart';
 import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
-// Project imports:
+import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
 import 'package:mycarehubpro/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
@@ -24,7 +24,6 @@ class PhoneLoginPage extends StatefulWidget {
 
 class _PhoneLoginPageState extends State<PhoneLoginPage> {
   String? phoneNumber;
-
   String? pin;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -239,13 +238,25 @@ Future<void> login({
     context,
     UpdateOnboardingStateAction(phoneNumber: phoneNumber, pin: pin),
   );
+  final bool hasConnection =
+      StoreProvider.state<AppState>(context)?.connectivityState?.isConnected ??
+          false;
 
-  await StoreProvider.dispatch<AppState>(
-    context,
-    PhoneLoginAction(
-      httpClient: AppWrapperBase.of(context)!.graphQLClient,
-      phoneLoginEndpoint:
-          AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint,
-    ),
-  );
+  if (hasConnection) {
+    await StoreProvider.dispatch<AppState>(
+      context,
+      PhoneLoginAction(
+        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+        phoneLoginEndpoint:
+            AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint,
+      ),
+    );
+  } else {
+    const SnackBar snackbar = SnackBar(content: Text(checkInternetText));
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    AnalyticsService().logEvent(
+      name: noConnectionEvent,
+      eventType: AnalyticsEventType.CONNECTIVITY,
+    );
+  }
 }
