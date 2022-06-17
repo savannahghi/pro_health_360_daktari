@@ -46,83 +46,98 @@ class RedFlagsPage extends StatelessWidget {
         },
         builder: (BuildContext context, ServiceRequestsViewModel vm) {
           final bool error = vm.errorFetchingServiceRequests ?? false;
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                if (!error) ...<Widget>{
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: Center(
-                      child: SvgPicture.asset(redFlagStressSvgPath, width: 200),
+          return RefreshIndicator(
+            onRefresh: () async {
+              StoreProvider.dispatch<AppState>(
+                context,
+                FetchServiceRequestsAction(
+                  client: AppWrapperBase.of(context)!.graphQLClient,
+                  serviceRequestStatus: RequestStatus.PENDING,
+                  serviceRequestType: ServiceRequestType.RED_FLAG,
+                  flavour: Flavour.consumer,
+                ),
+              );
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  if (!error) ...<Widget>{
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: Center(
+                        child:
+                            SvgPicture.asset(redFlagStressSvgPath, width: 200),
+                      ),
                     ),
-                  ),
-                  if (vm.wait
-                      .isWaitingFor(fetchServiceRequestFlag)) ...<Widget>{
-                    const Padding(
-                      padding: EdgeInsets.only(top: 150),
-                      child: PlatformLoader(),
-                    )
-                  } else if (vm.clientServiceRequests?.isEmpty ??
-                      true) ...<Widget>{
+                    if (vm.wait
+                        .isWaitingFor(fetchServiceRequestFlag)) ...<Widget>{
+                      const Padding(
+                        padding: EdgeInsets.only(top: 150),
+                        child: PlatformLoader(),
+                      )
+                    } else if (vm.clientServiceRequests?.isEmpty ??
+                        true) ...<Widget>{
+                      GenericErrorWidget(
+                        actionKey: helpNoDataWidgetKey,
+                        actionText: actionTextGenericNoData,
+                        type: GenericNoDataTypes.noData,
+                        recoverCallback: () => Navigator.of(context).pop(),
+                        messageTitle:
+                            getNoDataTile(redFlagString.toLowerCase()),
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: serviceRequestsNoDataBodyString,
+                            style: normalSize16Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                        ],
+                      )
+                    } else
+                      ...List<Widget>.generate(
+                          vm.clientServiceRequests?.length ?? 0, (int index) {
+                        final List<ServiceRequest>? entries =
+                            vm.clientServiceRequests;
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: GestureDetector(
+                            onTap: () => Navigator.of(context).pushNamed(
+                              AppRoutes.redFlagActionsPage,
+                              arguments: entries?.elementAt(index),
+                            ),
+                            child: RedFlagListItem(
+                              serviceRequest: entries?.elementAt(index),
+                            ),
+                          ),
+                        );
+                      }),
+                  } else ...<Widget>{
                     GenericErrorWidget(
                       actionKey: helpNoDataWidgetKey,
-                      actionText: actionTextGenericNoData,
-                      type: GenericNoDataTypes.noData,
-                      recoverCallback: () => Navigator.of(context).pop(),
-                      messageTitle: getNoDataTile(redFlagString.toLowerCase()),
+                      recoverCallback: () {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          FetchServiceRequestsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            serviceRequestStatus: RequestStatus.PENDING,
+                            serviceRequestType: ServiceRequestType.RED_FLAG,
+                            flavour: Flavour.consumer,
+                          ),
+                        );
+                      },
                       messageBody: <TextSpan>[
                         TextSpan(
-                          text: serviceRequestsNoDataBodyString,
+                          text: getErrorMessage(fetchingResolvedRedFlagsString),
                           style: normalSize16Text(
                             AppColors.greyTextColor,
                           ),
                         ),
                       ],
                     )
-                  } else
-                    ...List<Widget>.generate(
-                        vm.clientServiceRequests?.length ?? 0, (int index) {
-                      final List<ServiceRequest>? entries =
-                          vm.clientServiceRequests;
-
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: GestureDetector(
-                          onTap: () => Navigator.of(context).pushNamed(
-                            AppRoutes.redFlagActionsPage,
-                            arguments: entries?.elementAt(index),
-                          ),
-                          child: RedFlagListItem(
-                            serviceRequest: entries?.elementAt(index),
-                          ),
-                        ),
-                      );
-                    }),
-                } else ...<Widget>{
-                  GenericErrorWidget(
-                    actionKey: helpNoDataWidgetKey,
-                    recoverCallback: () {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        FetchServiceRequestsAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          serviceRequestStatus: RequestStatus.PENDING,
-                          serviceRequestType: ServiceRequestType.RED_FLAG,
-                          flavour: Flavour.consumer,
-                        ),
-                      );
-                    },
-                    messageBody: <TextSpan>[
-                      TextSpan(
-                        text: getErrorMessage(fetchingResolvedRedFlagsString),
-                        style: normalSize16Text(
-                          AppColors.greyTextColor,
-                        ),
-                      ),
-                    ],
-                  )
-                },
-              ],
+                  },
+                ],
+              ),
             ),
           );
         },

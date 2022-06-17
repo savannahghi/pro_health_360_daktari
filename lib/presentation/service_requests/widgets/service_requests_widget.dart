@@ -24,14 +24,27 @@ class ServiceRequestsWidget extends StatefulWidget {
   }) : super(key: key);
 
   final bool? errorFetchingServiceRequests;
-  final PendingServiceRequestCount? pendingServiceRequestCount;
   final bool isLoading;
+  final PendingServiceRequestCount? pendingServiceRequestCount;
 
   @override
   State<ServiceRequestsWidget> createState() => _ServiceRequestsWidgetState();
 }
 
 class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
+  int _getServiceRequestTypeCount(
+    List<ServiceRequestCount>? requests,
+    ServiceRequestType type,
+  ) {
+    return requests
+            ?.singleWhere(
+              (ServiceRequestCount element) => element.requestType == type,
+              orElse: () => ServiceRequestCount.initial(),
+            )
+            .count ??
+        0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool error = widget.errorFetchingServiceRequests ?? false;
@@ -218,18 +231,5 @@ class _ServiceRequestsWidgetState extends State<ServiceRequestsWidget> {
         ),
       ),
     );
-  }
-
-  int _getServiceRequestTypeCount(
-    List<ServiceRequestCount>? requests,
-    ServiceRequestType type,
-  ) {
-    return requests
-            ?.singleWhere(
-              (ServiceRequestCount element) => element.requestType == type,
-              orElse: () => ServiceRequestCount.initial(),
-            )
-            .count ??
-        0;
   }
 }
