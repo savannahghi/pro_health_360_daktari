@@ -69,6 +69,7 @@ class RouteGenerator {
       case AppRoutes.deepLink:
         return MaterialPageRoute<HandleDeepLink>(
           builder: (BuildContext context) => const HandleDeepLink(),
+          settings: const RouteSettings(name: 'Handle deep link page'),
         );
 
       case AppRoutes.homePage:
@@ -76,31 +77,37 @@ class RouteGenerator {
           builder: (BuildContext context) {
             return const HomePage();
           },
+          settings: const RouteSettings(name: 'Home page'),
         );
 
       case AppRoutes.termsAndConditions:
         return MaterialPageRoute<TermsAndConditionsPage>(
           builder: (_) => const TermsAndConditionsPage(),
+          settings: const RouteSettings(name: 'Terms and conditions page'),
         );
 
       case AppRoutes.setPinPage:
         return MaterialPageRoute<CreateNewPINPage>(
           builder: (_) => const CreateNewPINPage(),
+          settings: const RouteSettings(name: 'Create new pin page'),
         );
 
       case AppRoutes.setNicknamePage:
         return MaterialPageRoute<SetNickNamePage>(
           builder: (_) => const SetNickNamePage(),
+          settings: const RouteSettings(name: 'Set nickname page'),
         );
 
       case AppRoutes.loginPage:
         return MaterialPageRoute<PhoneLoginPage>(
           builder: (_) => PhoneLoginPage(),
+          settings: const RouteSettings(name: 'Login page'),
         );
 
       case AppRoutes.communityPage:
         return MaterialPageRoute<CommunityListPage>(
           builder: (_) => const CommunityListPage(),
+          settings: const RouteSettings(name: 'Communities list page'),
         );
 
       case AppRoutes.notificationsPage:
@@ -115,51 +122,60 @@ class RouteGenerator {
                 .then((_) => null);
             return NotificationsPage();
           },
+          settings: const RouteSettings(name: 'Notifications page'),
         );
 
       case AppRoutes.contentPage:
         return MaterialPageRoute<ContentPage>(
           builder: (_) => ContentPage(),
         );
-
+        
       case AppRoutes.addNewGroupPage:
         return MaterialPageRoute<CreateGroupPage>(
           builder: (_) => const CreateGroupPage(),
+          settings: const RouteSettings(name: 'Create group page'),
         );
 
       case AppRoutes.inviteMembersPage:
         return MaterialPageRoute<InviteMembersPage>(
           builder: (_) => InviteMembersPage(channelId: args as String),
+          settings: const RouteSettings(name: 'Invite members page'),
         );
 
       case AppRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
           builder: (_) => const SecurityQuestionsPage(),
+          settings: const RouteSettings(name: 'Security questions page'),
         );
 
       case AppRoutes.forgotPinPage:
         return MaterialPageRoute<ForgotPinPage>(
           builder: (_) => ForgotPinPage(),
+          settings: const RouteSettings(name: 'Forgot pin page'),
         );
 
       case AppRoutes.registerClientPage:
         return MaterialPageRoute<RegisterClientPage>(
           builder: (_) => const RegisterClientPage(),
+          settings: const RouteSettings(name: 'Register client page'),
         );
 
       case AppRoutes.addNewStaffPage:
         return MaterialPageRoute<AddNewStaffPage>(
           builder: (_) => const AddNewStaffPage(),
+          settings: const RouteSettings(name: 'Add new staff page'),
         );
 
       case AppRoutes.serviceRequestsPage:
         return MaterialPageRoute<ServiceRequestsPage>(
           builder: (_) => const ServiceRequestsPage(),
+          settings: const RouteSettings(name: 'Service requests page'),
         );
 
       case AppRoutes.surveysPage:
         return MaterialPageRoute<SurveysPage>(
           builder: (_) => const SurveysPage(),
+          settings: const RouteSettings(name: 'Surveys page'),
         );
 
       case AppRoutes.surveysSenderListPage:
@@ -167,21 +183,26 @@ class RouteGenerator {
           builder: (_) => SurveysSenderListPage(
             survey: args as Survey,
           ),
+          settings: const RouteSettings(name: 'Surveys sender list page'),
         );
 
       case AppRoutes.surveysSendConfigurationsPage:
         return MaterialPageRoute<SurveysSendConfigurationsPage>(
           builder: (_) => SurveysSendConfigurationsPage(survey: args as Survey),
+          settings:
+              const RouteSettings(name: 'Surveys send configurations page'),
         );
 
       case AppRoutes.successfulSurveySubmission:
         return MaterialPageRoute<SuccessfulSurveySubmission>(
           builder: (_) => const SuccessfulSurveySubmission(),
+          settings: const RouteSettings(name: 'Successful survey submission'),
         );
 
       case AppRoutes.verifyPhonePage:
         return MaterialPageRoute<VerifyPhonePage>(
           builder: (_) => const VerifyPhonePage(),
+          settings: const RouteSettings(name: 'Verify phone page'),
         );
 
       case AppRoutes.profilePage:
@@ -196,11 +217,13 @@ class RouteGenerator {
                 .then((_) => null);
             return UserProfilePage();
           },
+          settings: const RouteSettings(name: 'User profile page'),
         );
 
       case AppRoutes.settingsPage:
         return MaterialPageRoute<SettingsPage>(
           builder: (_) => SettingsPage(),
+          settings: const RouteSettings(name: 'Settings page'),
         );
 
       case AppRoutes.editInformationPage:
@@ -223,46 +246,55 @@ class RouteGenerator {
             editInformationItem: editInformationItem,
             onSubmit: submitFunction,
           ),
+          settings: const RouteSettings(name: 'Edit information page'),
         );
 
       case AppRoutes.pinResetRequestsPage:
         return MaterialPageRoute<PinResetRequestsPage>(
           builder: (_) => const PinResetRequestsPage(),
+          settings: const RouteSettings(name: 'Pin reset requests page'),
         );
 
       case AppRoutes.redFlagsPage:
         return MaterialPageRoute<RedFlagsPage>(
           builder: (_) => const RedFlagsPage(),
+          settings: const RouteSettings(name: 'Red flags page'),
         );
 
       case AppRoutes.searchPage:
         return MaterialPageRoute<SearchPage>(
           builder: (_) => const SearchPage(),
+          settings: const RouteSettings(name: 'Search page'),
         );
 
       case AppRoutes.contactAdminPage:
         return MaterialPageRoute<ContactAdminPage>(
           builder: (_) => const ContactAdminPage(),
+          settings: const RouteSettings(name: 'Contact admin page'),
         );
 
       case AppRoutes.contentDetailsPage:
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => ContentDetailPage(payload: args as ContentDetails),
+          settings: const RouteSettings(name: 'Content details page'),
         );
 
       case AppRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
+          settings: const RouteSettings(name: 'Profile faqs page'),
         );
 
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
           builder: (_) => const ResolvedServiceRequestsPage(),
+          settings: const RouteSettings(name: 'Resolved service requests page'),
         );
 
       case AppRoutes.searchClientPage:
         return MaterialPageRoute<SearchClientPage>(
           builder: (_) => const SearchClientPage(),
+          settings: const RouteSettings(name: 'Search client page'),
         );
 
       case AppRoutes.searchDetailViewPage:
@@ -272,21 +304,25 @@ class RouteGenerator {
                 args['searchUserResponse'] as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
+          settings: const RouteSettings(name: 'Search page detail view'),
         );
 
       case AppRoutes.pinRequestSentPage:
         return MaterialPageRoute<PinRequestSentPage>(
           builder: (_) => const PinRequestSentPage(),
+          settings: const RouteSettings(name: 'Pin request sent page'),
         );
 
       case AppRoutes.pendingPINRequestPage:
         return MaterialPageRoute<PendingPINRequestPage>(
           builder: (_) => const PendingPINRequestPage(),
+          settings: const RouteSettings(name: 'Pending PIN request page'),
         );
 
       case AppRoutes.searchStaffMemberPage:
         return MaterialPageRoute<SearchStaffMemberPage>(
           builder: (_) => const SearchStaffMemberPage(),
+          settings: const RouteSettings(name: 'Search staff member page'),
         );
 
       case AppRoutes.loginCounterPage:
@@ -294,43 +330,51 @@ class RouteGenerator {
           builder: (_) => LoginCounterPage(
             retryTime: args as int?,
           ),
+          settings: const RouteSettings(name: 'login counter page'),
         );
 
       case AppRoutes.verifySecurityQuestionsHelpPage:
         return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
           builder: (_) => VerifySecurityQuestionsHelpPage(),
+          settings: const RouteSettings(name: 'Verify security questions page'),
         );
 
       case AppRoutes.pinExpiredPage:
         return MaterialPageRoute<PinExpiredPage>(
           builder: (_) => const PinExpiredPage(),
+          settings: const RouteSettings(name: 'Pin expired page'),
         );
 
       case AppRoutes.groupInvitesPage:
         return MaterialPageRoute<InvitedGroupsPage>(
           builder: (_) => const InvitedGroupsPage(),
+          settings: const RouteSettings(name: 'Invited groups page'),
         );
 
       case AppRoutes.staffPinResetRequestsPage:
         return MaterialPageRoute<StaffPinResetRequestsPage>(
           builder: (_) => const StaffPinResetRequestsPage(),
+          settings: const RouteSettings(name: 'Staff pin reset requests page'),
         );
       case AppRoutes.redFlagActionsPage:
         return MaterialPageRoute<RedFlagActionsPage>(
           builder: (_) => RedFlagActionsPage(
             serviceRequest: args as ServiceRequest?,
           ),
+          settings: const RouteSettings(name: 'Red flag actions page'),
         );
 
       case AppRoutes.screeningToolsListPage:
         return MaterialPageRoute<ScreeningToolsListPage>(
           builder: (_) => const ScreeningToolsListPage(),
+          settings: const RouteSettings(name: 'Screening tools list page'),
         );
       case AppRoutes.assessmentToolResponsesPage:
         return MaterialPageRoute<AssessmentToolResponsesPage>(
           builder: (_) => AssessmentToolResponsesPage(
             screeningToolsType: args as ScreeningToolsType,
           ),
+          settings: const RouteSettings(name: 'AssessmentTool responses page'),
         );
 
       case AppRoutes.assessmentCardAnswersPage:
@@ -338,6 +382,7 @@ class RouteGenerator {
           builder: (_) => AssessmentCardAnswersPage(
             payload: args as Map<String, dynamic>,
           ),
+          settings: const RouteSettings(name: 'Assessment card answers page'),
         );
 
       case AppRoutes.resolvedServiceRequestsListPage:
@@ -345,6 +390,8 @@ class RouteGenerator {
           builder: (_) => ResolvedServiceRequestsListPage(
             flavour: args as Flavour,
           ),
+          settings:
+              const RouteSettings(name: 'Resolved service requests list page'),
         );
 
       case AppRoutes.viewDocumentPage:
@@ -356,12 +403,14 @@ class RouteGenerator {
             pdfTitle: pdfTitle,
             pdfUrl: pdfUrl,
           ),
+          settings: const RouteSettings(name: 'Document content page'),
         );
       case AppRoutes.galleryImagesPage:
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => GalleryImagesPage(
             images: args as List<GalleryImage>,
           ),
+          settings: const RouteSettings(name: 'Gallery images page'),
         );
 
       case AppRoutes.acceptGroupInvitesPage:
@@ -375,16 +424,19 @@ class RouteGenerator {
             groupName: groupName,
             numberOfMembers: numberOfMembers,
           ),
+          settings: const RouteSettings(name: 'Accepted group invites page'),
         );
 
       case AppRoutes.resumeWithPin:
         return MaterialPageRoute<ResumePinConnector>(
           builder: (_) => const ResumePinConnector(),
+          settings: const RouteSettings(name: 'Resume with pin page'),
         );
 
       case AppRoutes.editGroupInfoPage:
         return MaterialPageRoute<EditGroupInfoPage>(
           builder: (_) => const EditGroupInfoPage(),
+          settings: const RouteSettings(name: 'Edit group info page'),
         );
     }
   }
