@@ -40,6 +40,33 @@ void main() {
       expect(redFlagItem, findsNWidgets(5));
     });
 
+    testWidgets('should refresh red flags correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        graphQlClient: MockTestGraphQlClient(),
+        widget: const RedFlagsPage(),
+      );
+      await tester.pumpAndSettle();
+
+      final Finder redFlagItem = find.byType(RedFlagListItem);
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(redFlagItem, findsNWidgets(5));
+
+      await tester.fling(
+        find.byType(RedFlagListItem).first,
+        const Offset(0.0, 300.0),
+        1000.0,
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(redFlagItem, findsNWidgets(5));
+    });
+
     testWidgets('Routes to RedFlagActionsPage correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
