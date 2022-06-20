@@ -150,9 +150,9 @@ query listPendingInvites($memberID: String!, $input: QueryOption){
 ''';
 
 const String searchClientQuery = r'''
-query searchClientsByCCCNumber($CCCNumber: String!){
-  searchClientsByCCCNumber(CCCNumber: $CCCNumber){
-    ID
+query searchClientUser($searchParameter: String!) {
+  searchClientUser(searchParameter: $searchParameter) {
+     ID
     CCCNumber
     FacilityID
     Active 
@@ -167,7 +167,7 @@ query searchClientsByCCCNumber($CCCNumber: String!){
         active
         optedIn
       }
-      TermsAccepted     
+      TermsAccepted
     }
   }
 }

@@ -100,7 +100,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
                                     SearchClientAction(
                                       client: AppWrapperBase.of(context)!
                                           .graphQLClient,
-                                      cccNumber: cccNumber,
+                                      searchParameter: cccNumber,
                                     ),
                                   );
                                 }

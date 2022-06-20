@@ -58,9 +58,7 @@ void main() {
           'endpoint',
           Response(
             json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'searchClientsByCCCNumber': null,
-              },
+              'data': <String, dynamic>{'searchClientUser': null},
             }),
             201,
           ),

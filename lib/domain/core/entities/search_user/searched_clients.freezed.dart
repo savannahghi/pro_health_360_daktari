@@ -23,8 +23,7 @@ class _$SearchedClientsTearOff {
   const _$SearchedClientsTearOff();
 
   _SearchedClients call(
-      {@JsonKey(name: 'searchClientsByCCCNumber')
-          List<SearchUserResponse>? clients}) {
+      {@JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients}) {
     return _SearchedClients(
       clients: clients,
     );
@@ -40,7 +39,7 @@ const $SearchedClients = _$SearchedClientsTearOff();
 
 /// @nodoc
 mixin _$SearchedClients {
-  @JsonKey(name: 'searchClientsByCCCNumber')
+  @JsonKey(name: 'searchClientUser')
   List<SearchUserResponse>? get clients => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,8 +54,7 @@ abstract class $SearchedClientsCopyWith<$Res> {
           SearchedClients value, $Res Function(SearchedClients) then) =
       _$SearchedClientsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'searchClientsByCCCNumber')
-          List<SearchUserResponse>? clients});
+      {@JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients});
 }
 
 /// @nodoc
@@ -89,8 +87,7 @@ abstract class _$SearchedClientsCopyWith<$Res>
       __$SearchedClientsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'searchClientsByCCCNumber')
-          List<SearchUserResponse>? clients});
+      {@JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients});
 }
 
 /// @nodoc
@@ -120,13 +117,13 @@ class __$SearchedClientsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SearchedClients implements _SearchedClients {
-  _$_SearchedClients({@JsonKey(name: 'searchClientsByCCCNumber') this.clients});
+  _$_SearchedClients({@JsonKey(name: 'searchClientUser') this.clients});
 
   factory _$_SearchedClients.fromJson(Map<String, dynamic> json) =>
       _$$_SearchedClientsFromJson(json);
 
   @override
-  @JsonKey(name: 'searchClientsByCCCNumber')
+  @JsonKey(name: 'searchClientUser')
   final List<SearchUserResponse>? clients;
 
   @override
@@ -159,14 +156,14 @@ class _$_SearchedClients implements _SearchedClients {
 
 abstract class _SearchedClients implements SearchedClients {
   factory _SearchedClients(
-      {@JsonKey(name: 'searchClientsByCCCNumber')
+      {@JsonKey(name: 'searchClientUser')
           List<SearchUserResponse>? clients}) = _$_SearchedClients;
 
   factory _SearchedClients.fromJson(Map<String, dynamic> json) =
       _$_SearchedClients.fromJson;
 
   @override
-  @JsonKey(name: 'searchClientsByCCCNumber')
+  @JsonKey(name: 'searchClientUser')
   List<SearchUserResponse>? get clients;
   @override
   @JsonKey(ignore: true)

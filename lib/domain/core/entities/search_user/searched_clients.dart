@@ -9,8 +9,7 @@ part 'searched_clients.g.dart';
 @freezed
 class SearchedClients with _$SearchedClients {
   factory SearchedClients({
-    @JsonKey(name: 'searchClientsByCCCNumber')
-        List<SearchUserResponse>? clients,
+    @JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients,
   }) = _SearchedClients;
 
   factory SearchedClients.fromJson(Map<String, dynamic> json) =>

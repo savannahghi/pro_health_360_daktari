@@ -14,13 +14,16 @@ import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SearchClientAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
-  String cccNumber;
+  SearchClientAction({required this.client, required this.searchParameter});
 
-  SearchClientAction({
-    required this.client,
-    required this.cccNumber,
-  });
+  final IGraphQlClient client;
+  String searchParameter;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(searchClientFlag));
+    super.after();
+  }
 
   @override
   void before() {
@@ -37,15 +40,9 @@ class SearchClientAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(searchClientFlag));
-    super.after();
-  }
-
-  @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'CCCNumber': cccNumber,
+      'searchParameter': searchParameter,
     };
 
     final Response response = await client.query(searchClientQuery, variables);

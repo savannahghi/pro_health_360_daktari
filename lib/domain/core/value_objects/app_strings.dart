@@ -560,7 +560,8 @@ const String noNumberAvailable = 'No number available';
 // search client
 const String searchClientsTitle = 'Search clients';
 const String searchClientsDescription =
-    'Search clients using their CCC number or Medical Health record number';
+    'Search clients using their CCC number, phone number or Medical Health '
+    'record number';
 const String searchClientsHintString = 'Search using CCC number...';
 const String noClientFoundString = 'No client found';
 const String couldNotFindClientString =
