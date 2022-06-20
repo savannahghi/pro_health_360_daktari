@@ -179,7 +179,7 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'searchClientsByCCCNumber': <dynamic>[
+                'searchClientUser': <dynamic>[
                   <String, dynamic>{
                     'ID': 'some-id',
                     'CCCNumber': '1234',

@@ -1514,7 +1514,7 @@ final Map<String, dynamic> surveysMock = <String, dynamic>{
 };
 
 final Map<String, dynamic> clientResponseMock = <String, dynamic>{
-  'searchClientsByCCCNumber': <dynamic>[
+  'searchClientUser': <dynamic>[
     <String, dynamic>{
       'ID': 'some-id',
       'CCCNumber': '1234',
@@ -2473,7 +2473,6 @@ final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
     'meta': <String, String>{'imageDownloadUrl': 'testImage'}
   }
 };
-
 
 Future<void> setupFirebaseAnalyticsMocks({
   Function(MethodCall)? updateLogFunc,

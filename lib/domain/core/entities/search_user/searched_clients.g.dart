@@ -8,12 +8,12 @@ part of 'searched_clients.dart';
 
 _$_SearchedClients _$$_SearchedClientsFromJson(Map<String, dynamic> json) =>
     _$_SearchedClients(
-      clients: (json['searchClientsByCCCNumber'] as List<dynamic>?)
+      clients: (json['searchClientUser'] as List<dynamic>?)
           ?.map((e) => SearchUserResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$$_SearchedClientsToJson(_$_SearchedClients instance) =>
     <String, dynamic>{
-      'searchClientsByCCCNumber': instance.clients,
+      'searchClientUser': instance.clients,
     };

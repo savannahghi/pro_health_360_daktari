@@ -32,7 +32,7 @@ void main() {
       storeTester.dispatch(
         SearchClientAction(
           client: MockTestGraphQlClient(),
-          cccNumber: '',
+          searchParameter: '',
         ),
       );
 
@@ -53,7 +53,7 @@ void main() {
               500,
             ),
           ),
-          cccNumber: '',
+          searchParameter: '',
         ),
       );
 
@@ -78,7 +78,7 @@ void main() {
               200,
             ),
           ),
-          cccNumber: '',
+          searchParameter: '',
         ),
       );
 
@@ -101,7 +101,7 @@ void main() {
       storeTester.dispatch(
         SearchClientAction(
           client: client,
-          cccNumber: '',
+          searchParameter: '',
         ),
       );
 
