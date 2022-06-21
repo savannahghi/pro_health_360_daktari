@@ -1,9 +1,9 @@
-name: myCareHub Professional CI/CD Workflow
+name: ProHealth360 Daktari CI/CD Workflow
 
 on: [push]
 jobs:
   publish-demo-binary-to-app-store:
-    name: Publish myCareHub Professional Demo binary to TestFlight
+    name: Publish ProHealth360 Daktari Demo binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
@@ -57,7 +57,7 @@ jobs:
 
   # AppStore ready
   publish-prod-binary-to-app-store:
-    name: Publish myCareHub Professional Prod binary to TestFlight
+    name: Publish ProHealth360 Daktari Prod binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/prod'

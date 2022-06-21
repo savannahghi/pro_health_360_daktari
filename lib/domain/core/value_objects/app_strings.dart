@@ -2,7 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:mycarehubpro/application/core/services/utils.dart';
 import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
 
-const String appName = 'myCareHub Professional';
+const String appName = 'ProHealth360 Daktari';
 const String adminEmail = 'mycarehub@uonbi.ac.ke';
 
 //Create New Pin Page
@@ -80,7 +80,7 @@ const String joinGroup = 'Join Group';
 const String declineInvite = 'Decline Invite';
 
 //Phone Login
-const String phoneLoginPageTitle = 'Welcome to myCareHub Professional';
+const String phoneLoginPageTitle = 'Welcome to ProHealth360 Daktari';
 const String phoneLoginPageDescription = 'Enter your provided PIN to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
@@ -238,8 +238,8 @@ const String phoneNoLabel = 'Phone No. *';
 const String myCareHubInviteText = 'Invite to myCareHub';
 const String myCareHubReInviteText = 'Reinvite to myCareHub';
 const String myCareHubAlternateInvite = 'Resend myCareHub invite';
-const String myCareHubProInviteText = 'Invite to myCareHub professional';
-const String proInviteText = 'Invite to myCareHub Professional';
+const String myCareHubProInviteText = 'Invite to ProHealth360 Daktari';
+const String proInviteText = 'Invite to ProHealth360 Daktari';
 const String registerBtnText = 'Register';
 const String addNewClientTitleText = 'Add new client';
 const String enrollmentDateLabel = 'Enrollment Date *';
@@ -386,7 +386,7 @@ const String logoutButtonText = 'Logout';
 const String usernameTakenText = 'Username has already been taken.';
 
 final String copyrightString =
-    'Copyright ©️ ${returnCurrentYear()} myCareHub Professional';
+    'Copyright ©️ ${returnCurrentYear()} ProHealth360 Daktari';
 const String appVersionString = 'Current Version:';
 const String setNicknameString = 'Set Your Nickname';
 

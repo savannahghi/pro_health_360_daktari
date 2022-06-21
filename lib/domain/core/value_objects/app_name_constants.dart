@@ -1,3 +1,3 @@
-const String testAppName = 'myCareHub Professional Test';
+const String testAppName = 'ProHealth360 Daktari Test';
 
 const String appProgramName = 'myCareHub';
