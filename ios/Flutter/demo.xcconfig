@@ -5,4 +5,4 @@
 
 PRODUCT_BUNDLE_IDENTIFIER=com.savannah.mycarehubpro
 FLUTTER_TARGET=lib/bin/main_demo.dart
-APP_NAME=myCareHub Professional Demo
+APP_NAME=ProHealth360 Daktari Demo

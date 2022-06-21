@@ -37,7 +37,7 @@ Code Signing Demo Build for TestFlight
 [bundle exec] fastlane ios prod
 ```
 
-Code Sign and Build myCareHub Professional for App Store
+Code Sign and Build ProHealth360 Daktari for App Store
 
 ----
 
