@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -21,6 +22,11 @@ void main() {
   final Store<AppState> store =
       Store<AppState>(initialState: AppState.initial());
 
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+  });
+  
   group('SearchClientPage', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
       store.dispatch(

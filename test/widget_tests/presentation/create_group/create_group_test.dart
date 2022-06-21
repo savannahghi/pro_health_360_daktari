@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
@@ -9,6 +10,10 @@ import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('CreateGroup', () {
+    setUp(() async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+    });
     testWidgets('renders correctly', (WidgetTester tester) async {
       int popped = 0;
 

@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
@@ -42,6 +43,8 @@ void main() {
 
     testWidgets('should render NotificationListItem with actions',
         (WidgetTester tester) async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       await buildTestWidget(
         tester: tester,
         store: store,

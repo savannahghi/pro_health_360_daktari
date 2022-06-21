@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
@@ -116,6 +117,8 @@ void main() {
 
     testWidgets('navigates to resolved service requests page correctly',
         (WidgetTester tester) async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       await buildTestWidget(
         tester: tester,
         graphQlClient: mockShortSILGraphQlClient,

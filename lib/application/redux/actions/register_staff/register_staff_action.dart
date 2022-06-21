@@ -6,10 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 import 'package:prohealth360_daktari/application/core/services/helpers.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/domain/core/entities/register_staff/register_staff_payload.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -68,6 +71,14 @@ class RegisterStaffAction extends ReduxAction<AppState> {
       }
 
       this.onSuccess();
+      await AnalyticsService().logEvent(
+        name: registerStaff,
+        eventType: AnalyticsEventType.INTERACTION,
+        parameters: <String, dynamic>{
+          'staffName': registerStaffPayload.staffName,
+          'staffNumber': registerStaffPayload.staffNumber,
+        },
+      );
     } else {
       await captureException(
         errorPhoneLogin,

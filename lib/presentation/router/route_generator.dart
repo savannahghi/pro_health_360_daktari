@@ -132,7 +132,16 @@ class RouteGenerator {
 
       case AppRoutes.addNewGroupPage:
         return MaterialPageRoute<CreateGroupPage>(
-          builder: (_) => const CreateGroupPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: createGroup,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const CreateGroupPage();
+          },
           settings: const RouteSettings(name: 'Create group page'),
         );
 
@@ -156,19 +165,46 @@ class RouteGenerator {
 
       case AppRoutes.registerClientPage:
         return MaterialPageRoute<RegisterClientPage>(
-          builder: (_) => const RegisterClientPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: addNewClient,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const RegisterClientPage();
+          },
           settings: const RouteSettings(name: 'Register client page'),
         );
 
       case AppRoutes.addNewStaffPage:
         return MaterialPageRoute<AddNewStaffPage>(
-          builder: (_) => const AddNewStaffPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: addNewStaff,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const AddNewStaffPage();
+          },
           settings: const RouteSettings(name: 'Add new staff page'),
         );
 
       case AppRoutes.serviceRequestsPage:
         return MaterialPageRoute<ServiceRequestsPage>(
-          builder: (_) => const ServiceRequestsPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewServiceRequests,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const ServiceRequestsPage();
+          },
           settings: const RouteSettings(name: 'Service requests page'),
         );
 
@@ -287,7 +323,16 @@ class RouteGenerator {
 
       case AppRoutes.resolvedServiceRequestsPage:
         return MaterialPageRoute<ResolvedServiceRequestsPage>(
-          builder: (_) => const ResolvedServiceRequestsPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewResolvedServiceRequests,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const ResolvedServiceRequestsPage();
+          },
           settings: const RouteSettings(name: 'Resolved service requests page'),
         );
 

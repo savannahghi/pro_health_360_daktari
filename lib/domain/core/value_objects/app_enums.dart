@@ -91,11 +91,8 @@ enum AnalyticsEventType {
   // Navigation events
   NAVIGATION,
 
-  // General app interactions i.e record diary entry
+  // General app interactions i.e resolving service request
   INTERACTION,
-
-  // Used for likes, shared and saves in content
-  CONTENT_INTERACTION,
 
   // Used for all authentication events e.g login, logout
   AUTH,
