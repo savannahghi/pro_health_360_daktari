@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/surveys/survey.dart';
 
 class SurveysViewModel extends Vm {
   final Wait? wait;

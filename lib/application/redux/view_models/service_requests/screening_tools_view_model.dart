@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/tool_assessment_response.dart';
 
 class ScreeningToolsViewModel extends Vm {
   final Wait wait;

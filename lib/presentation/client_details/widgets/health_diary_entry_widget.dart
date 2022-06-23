@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:prohealth360_daktari/domain/core/entities/health_diary/mood_item_data.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
   const HealthDiaryEntryWidget({

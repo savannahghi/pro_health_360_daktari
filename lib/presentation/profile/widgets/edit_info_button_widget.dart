@@ -1,10 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/profile/widgets/edit_information_item.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class EditInformationButtonWidget extends StatelessWidget {
   ///[EditInformationButtonWidget] used to edit information in user profile

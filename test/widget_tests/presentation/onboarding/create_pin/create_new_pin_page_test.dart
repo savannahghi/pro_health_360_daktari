@@ -8,19 +8,19 @@ import 'package:firebase_core/firebase_core.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_credentials_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_user_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/update_connectivity_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/set_nickname/set_nickname_page.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/set_nickname/set_nickname_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

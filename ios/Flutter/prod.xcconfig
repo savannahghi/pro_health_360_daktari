@@ -3,6 +3,6 @@
 
 #include "Generated.xcconfig"
 
-PRODUCT_BUNDLE_IDENTIFIER=com.savannah.mycarehubpro
+PRODUCT_BUNDLE_IDENTIFIER=com.mycarehub.prohealth360daktari
 FLUTTER_TARGET=lib/bin/main_prod.dart
 APP_NAME=myCareHub

@@ -1,9 +1,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/deep_link_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/deep_link_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 void main() {
   group('DeepLinkAction', () {

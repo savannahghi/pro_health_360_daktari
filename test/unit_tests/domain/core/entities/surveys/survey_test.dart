@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
+import 'package:prohealth360_daktari/domain/core/entities/surveys/survey.dart';
 
 import '../../../../../mocks/mocks.dart';
 

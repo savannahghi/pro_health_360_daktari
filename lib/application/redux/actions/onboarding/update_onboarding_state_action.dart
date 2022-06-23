@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 // Project imports:
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {

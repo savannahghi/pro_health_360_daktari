@@ -1,5 +1,5 @@
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class BottomNavItem {
   const BottomNavItem({

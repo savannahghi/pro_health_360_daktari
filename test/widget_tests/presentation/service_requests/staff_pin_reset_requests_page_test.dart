@@ -4,14 +4,14 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/service_requests/pages/staff_pin_reset_requests_page.dart';
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
 
 void main() {
   group('PinResetRequestsPage', () {
-     testWidgets('accepting service request shows success message',
+    testWidgets('accepting service request shows success message',
         (WidgetTester tester) async {
       final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         'idToken',
@@ -21,7 +21,7 @@ void main() {
             'data': <String, dynamic>{
               'verifyStaffPinResetServiceRequest': true,
               'getServiceRequests': <Map<String, dynamic>>[
-                 <String, dynamic>{
+                <String, dynamic>{
                   'ID': 'some-id',
                   'RequestType': 'STAFF_PIN_RESET',
                   'StaffName': 'John Doe',
@@ -50,8 +50,7 @@ void main() {
 
       expect(find.byType(StaffPinResetRequestsPage), findsOneWidget);
 
-      final Finder acceptFinder =
-          find.text('Approve');
+      final Finder acceptFinder = find.text('Approve');
 
       expect(acceptFinder, findsNWidgets(2));
 

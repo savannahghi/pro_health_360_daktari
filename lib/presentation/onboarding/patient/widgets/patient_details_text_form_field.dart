@@ -3,7 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
 // Package imports:
 
 class PatientDetailsTextFormField extends StatelessWidget {

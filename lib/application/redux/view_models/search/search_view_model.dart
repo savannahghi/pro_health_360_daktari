@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:prohealth360_daktari/domain/core/entities/search_user/search_user_response.dart';
 
 class SearchViewModel extends Vm {
   final Wait wait;

@@ -6,11 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/security_questions/verify_security_questions_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/verify_security_questions_help_page.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/security_questions/verify_security_questions_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/presentation/service_requests/pages/verify_security_questions_help_page.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';

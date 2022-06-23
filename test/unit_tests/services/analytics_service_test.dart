@@ -2,8 +2,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/core/services/analytics_service.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 
 import '../../mocks/mocks.dart';
 

@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
 
 part 'auth_state.freezed.dart';
 part 'auth_state.g.dart';

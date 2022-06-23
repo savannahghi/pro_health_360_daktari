@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 
 RegExp validNumberRegexp = RegExp(r'^-?[0-9]+$');
 

@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/screening_question.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/screening_question.dart';
 
 void main() {
   final Map<String, dynamic> data = <String, dynamic>{

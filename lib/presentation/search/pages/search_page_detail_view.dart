@@ -2,15 +2,15 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/search_users/fetch_staff_roles_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_models/search/search_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/roles_list.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
-import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/search/widgets/client_search_widget.dart';
-import 'package:mycarehubpro/presentation/search/widgets/staff_search_widget.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/search_users/fetch_staff_roles_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/view_models/search/search_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/entities/search_user/roles_list.dart';
+import 'package:prohealth360_daktari/domain/core/entities/search_user/search_user_response.dart';
+import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/search/widgets/client_search_widget.dart';
+import 'package:prohealth360_daktari/presentation/search/widgets/staff_search_widget.dart';
 
 class SearchPageDetailView extends StatefulWidget {
   const SearchPageDetailView({

@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/core/bottom_nav/bottom_nav_items.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/core/bottom_nav/bottom_nav_items.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class DeepLinkAction extends ReduxAction<AppState> {
   @override

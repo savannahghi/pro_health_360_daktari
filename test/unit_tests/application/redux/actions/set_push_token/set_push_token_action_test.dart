@@ -9,9 +9,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/set_push_token/set_push_token_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/application/redux/actions/set_push_token/set_push_token_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 
 import '../../../../../mocks/mocks.dart';

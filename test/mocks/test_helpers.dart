@@ -10,12 +10,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:flutter_config/flutter_config.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_contexts.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_name_constants.dart';
-import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
-import 'package:mycarehubpro/presentation/router/route_generator.dart';
+import 'package:prohealth360_daktari/application/core/services/helpers.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_contexts.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_name_constants.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/global_keys.dart';
+import 'package:prohealth360_daktari/presentation/router/route_generator.dart';
 import 'mocks.dart';
 
 /// [buildTestWidget] is a widget wrapper used for testing

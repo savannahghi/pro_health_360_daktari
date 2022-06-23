@@ -3,7 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/misc_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/misc_state.dart';
 import '../../../../mocks/mocks.dart';
 
 void main() {

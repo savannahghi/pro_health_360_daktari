@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/tool_assessment_response.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/tool_type.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/tool_assessment_response.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/tool_type.dart';
 
 part 'screening_tools_state.g.dart';
 part 'screening_tools_state.freezed.dart';

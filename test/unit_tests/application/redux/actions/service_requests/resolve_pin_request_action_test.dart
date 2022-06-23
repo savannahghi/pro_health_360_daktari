@@ -7,11 +7,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/resolve_pin_request_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/service_requests_state.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/application/redux/actions/service_requests/resolve_pin_request_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/service_requests_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 
 import '../../../../../mocks/mocks.dart';
 

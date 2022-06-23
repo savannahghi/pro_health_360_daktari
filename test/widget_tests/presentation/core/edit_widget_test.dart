@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/presentation/core/widgets/edit_widget.dart';
+import 'package:prohealth360_daktari/presentation/core/widgets/edit_widget.dart';
 
 import '../../../mocks/test_helpers.dart';
 

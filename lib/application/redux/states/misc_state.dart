@@ -1,8 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/application/redux/states/groups_state.dart';
-import 'package:mycarehubpro/application/redux/states/search_user_response_state.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/states/groups_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/search_user_response_state.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';

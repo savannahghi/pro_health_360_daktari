@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
 
 class UpdateCredentialsAction extends ReduxAction<AppState> {
   UpdateCredentialsAction({

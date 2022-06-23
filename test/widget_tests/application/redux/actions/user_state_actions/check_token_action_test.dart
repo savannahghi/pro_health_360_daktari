@@ -1,11 +1,11 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/core/services/custom_client.dart';
-import 'package:mycarehubpro/application/redux/actions/user_state_actions/check_token_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/services/custom_client.dart';
+import 'package:prohealth360_daktari/application/redux/actions/user_state_actions/check_token_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 import '../../../../../mocks/mocks.dart';
 

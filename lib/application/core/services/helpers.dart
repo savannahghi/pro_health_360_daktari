@@ -2,11 +2,11 @@ import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
+import 'package:prohealth360_daktari/application/core/services/app_setup_data.dart';
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_contexts.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/infrastructure/endpoints.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_contexts.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/infrastructure/endpoints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// This show only exposed the AppContext and BaseContext to prevent conflicts

@@ -6,13 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/service_requests/update_service_requests_state_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/service_requests/pages/red_flag_actions_page.dart';
-import 'package:mycarehubpro/presentation/service_requests/widgets/reach_out_channel_widget.dart';
+import 'package:prohealth360_daktari/application/redux/actions/service_requests/update_service_requests_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/service_requests/pages/red_flag_actions_page.dart';
+import 'package:prohealth360_daktari/presentation/service_requests/widgets/reach_out_channel_widget.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -165,15 +165,16 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text(somethingWentWrongText), findsOneWidget);
     });
-    testWidgets(
-        'shows snackbar with error message when result is not true',
+    testWidgets('shows snackbar with error message when result is not true',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
-          json.encode(<String, dynamic>{'data': <String, dynamic>{'resolveServiceRequest':false}}),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'resolveServiceRequest': false}
+          }),
           201,
         ),
       );

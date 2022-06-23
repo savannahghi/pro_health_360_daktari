@@ -1,7 +1,7 @@
 // Package imports:
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/states/communities_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/communities_state.dart';
 
 import '../../../mocks/mocks.dart';
 

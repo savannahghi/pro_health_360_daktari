@@ -3,9 +3,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/core/graphql/mutations.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_credentials_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SetPushToken extends ReduxAction<AppState> {

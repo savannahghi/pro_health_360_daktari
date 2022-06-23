@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/core/services/input_validators.dart';
+import 'package:prohealth360_daktari/application/core/services/input_validators.dart';
 
 void main() {
   group('InputValidators', () {

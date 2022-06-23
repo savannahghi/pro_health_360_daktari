@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/pin_request_sent_page.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/login/pages/pin_request_sent_page.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

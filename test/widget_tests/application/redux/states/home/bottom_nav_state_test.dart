@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/home/bottom_nav_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/home/bottom_nav_state.dart';
 
 void main() {
   group('BottomNavigationState', () {

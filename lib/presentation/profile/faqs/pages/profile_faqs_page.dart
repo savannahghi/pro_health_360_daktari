@@ -3,15 +3,15 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/redux/actions/faqs/fetch_faqs_content_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_model_factories/FAQs/faqs_content_view_model.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/faqs/fetch_faqs_content_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/view_model_factories/FAQs/faqs_content_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -116,8 +116,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                             top: index == 0 ? 15 : 7.5,
                           ),
                           child: SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 0.38,
+                            height: MediaQuery.of(context).size.height * 0.38,
                             child: ContentItem(
                               contentDetails: currentSavedItem,
                               contentDisplayedType:

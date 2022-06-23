@@ -3,7 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
+import 'package:prohealth360_daktari/application/core/services/app_setup_data.dart';
 
 void main() {
   test('AppSetupData creates a valid object', () {

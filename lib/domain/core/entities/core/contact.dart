@@ -2,7 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 
 part 'contact.freezed.dart';
 part 'contact.g.dart';

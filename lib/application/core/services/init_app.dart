@@ -11,18 +11,18 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:mycarehubpro/application/core/services/analytics_service.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/global_keys.dart';
-import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
-import 'package:mycarehubpro/infrastructure/repository/database_state_persistor.dart';
-import 'package:mycarehubpro/presentation/core/mycarehub_pro_app.dart';
-import 'package:mycarehubpro/presentation/core/widgets/unrecoverable_error_widget.dart';
+import 'package:prohealth360_daktari/application/core/services/app_setup_data.dart';
+import 'package:prohealth360_daktari/application/core/services/helpers.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/global_keys.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/database_base.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/database_state_persistor.dart';
+import 'package:prohealth360_daktari/presentation/core/mycarehub_pro_app.dart';
+import 'package:prohealth360_daktari/presentation/core/widgets/unrecoverable_error_widget.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 /// Responsible for putting together everything that the app needs in order

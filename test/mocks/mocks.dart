@@ -14,12 +14,12 @@ import 'package:flutter_graphql_client/graph_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/core/graphql/mutations.dart';
-import 'package:mycarehubpro/application/core/graphql/queries.dart';
+import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/core/graphql/queries.dart';
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/initialize_db.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 // Project imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';

@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/terms/terms_and_conditions.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/terms/terms_and_conditions.dart';
 
 class TermsViewModel extends Vm {
   final Wait wait;

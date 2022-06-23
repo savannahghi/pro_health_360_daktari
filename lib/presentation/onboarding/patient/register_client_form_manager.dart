@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:mycarehubpro/domain/core/entities/register_client/register_client_payload.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/validator_mixin.dart';
+import 'package:prohealth360_daktari/domain/core/entities/register_client/register_client_payload.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/patient/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterClientFormManager with Validator {
@@ -37,7 +37,6 @@ class RegisterClientFormManager with Validator {
   Sink<String> get inCccNumber => _cccNumber.sink;
 
   final BehaviorSubject<Map<ClientType, bool>> _clientTypes =
-  
       BehaviorSubject<Map<ClientType, bool>>();
   Stream<Map<ClientType, bool>> get clientTypes => _clientTypes.stream;
   Sink<Map<ClientType, bool>> get inClientTypes => _clientTypes.sink;

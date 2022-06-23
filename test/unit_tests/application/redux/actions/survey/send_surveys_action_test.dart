@@ -4,8 +4,8 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mycarehubpro/application/redux/actions/surveys/send_surveys_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/actions/surveys/send_surveys_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 import '../../../../../mocks/mocks.dart';
 

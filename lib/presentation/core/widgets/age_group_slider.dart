@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
 
 class AgeGroupSlider extends StatelessWidget {
   const AgeGroupSlider({

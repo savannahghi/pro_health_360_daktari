@@ -2,9 +2,9 @@
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/user.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/user.dart';
 
 /// This class replaces the whole user object
 class UpdateUserAction extends ReduxAction<AppState> {

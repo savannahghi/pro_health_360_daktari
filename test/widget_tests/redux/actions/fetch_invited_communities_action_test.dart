@@ -8,9 +8,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:mycarehubpro/application/redux/actions/communities/fetch_invited_communities_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/fetch_invited_communities_action.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';

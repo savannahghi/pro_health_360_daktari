@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/actions/create_group/create_group_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/create_group/create_group_payload.dart';
+import 'package:prohealth360_daktari/application/redux/actions/create_group/create_group_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:http/http.dart';
 
 import '../../../../../mocks/mocks.dart';

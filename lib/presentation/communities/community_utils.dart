@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/presentation/communities/channel_page.dart';
+import 'package:prohealth360_daktari/presentation/communities/channel_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Widget channelPreviewBuilder(BuildContext context, Channel channel) {

@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:mycarehubpro/domain/community/entities/dropdown_item.dart';
+import 'package:prohealth360_daktari/domain/community/entities/dropdown_item.dart';
 
 part 'add_group_data_config.freezed.dart';
 

@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/demote_moderator_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/demote_moderator_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 
 import '../../../../../mocks/mocks.dart';
 import 'demote_moderator_action_test.mocks.dart';

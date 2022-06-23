@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 class FAQsContentViewModel extends Vm {
   FAQsContentViewModel({
@@ -33,8 +33,9 @@ class FAQsContentViewModel extends Vm {
       errorFetchingContentCategories:
           state.miscState?.categoriesList?.errorFetchingContentCategories ??
               false,
-      timeoutFetchingContentCategories:  state.miscState?.categoriesList?.timeoutFetchingContentCategories ??
-          false,
+      timeoutFetchingContentCategories:
+          state.miscState?.categoriesList?.timeoutFetchingContentCategories ??
+              false,
     );
   }
 

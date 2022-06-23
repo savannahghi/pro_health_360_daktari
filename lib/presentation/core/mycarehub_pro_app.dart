@@ -6,14 +6,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/services/app_setup_data.dart';
-import 'package:mycarehubpro/application/core/services/custom_client.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_model_factories/app_entry_point_view_model_factory.dart';
-import 'package:mycarehubpro/application/redux/view_models/app_entry_point_view_model.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/core/pre_load_app.dart';
+import 'package:prohealth360_daktari/application/core/services/app_setup_data.dart';
+import 'package:prohealth360_daktari/application/core/services/custom_client.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/view_model_factories/app_entry_point_view_model_factory.dart';
+import 'package:prohealth360_daktari/application/redux/view_models/app_entry_point_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/core/pre_load_app.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class MyCareHubProApp extends StatelessWidget {

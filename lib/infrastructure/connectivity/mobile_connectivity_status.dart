@@ -3,7 +3,7 @@ import 'dart:async';
 
 // Package imports:
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:mycarehubpro/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:prohealth360_daktari/infrastructure/connectivity/connectivity_interface.dart';
 
 import 'connectivity_helper.dart';
 

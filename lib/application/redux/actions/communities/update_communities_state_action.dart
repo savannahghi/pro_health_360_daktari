@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/communities_state.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/community.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/communities_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/community_members/community.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class UpdateCommunitiesStateAction extends ReduxAction<AppState> {

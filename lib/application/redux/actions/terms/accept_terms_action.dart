@@ -10,18 +10,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:mycarehubpro/application/core/graphql/mutations.dart';
-import 'package:mycarehubpro/application/core/services/analytics_service.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/redux/actions/core/batch_update_misc_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:mycarehubpro/domain/core/entities/terms/accept_terms_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/batch_update_misc_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/terms/update_terms_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:prohealth360_daktari/domain/core/entities/terms/accept_terms_response.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -82,7 +82,7 @@ class AcceptTermAction extends ReduxAction<AppState> {
 
     final OnboardingPathInfo onboardingPathConfig =
         getOnboardingPath(state: state);
-        final CurrentOnboardingStage? currentOnboardingStage =
+    final CurrentOnboardingStage? currentOnboardingStage =
         state.onboardingState?.currentOnboardingStage;
 
     dispatch(

@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/actions/user_state_actions/logout_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 import '../../../../mocks/mocks.dart';
 

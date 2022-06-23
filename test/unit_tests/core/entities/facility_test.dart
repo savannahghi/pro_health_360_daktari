@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:mycarehubpro/domain/core/entities/core/facility.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/facility.dart';
 import '../../../mocks/mocks.dart';
 
 void main() {

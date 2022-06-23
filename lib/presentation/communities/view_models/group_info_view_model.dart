@@ -1,5 +1,5 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 class GroupInfoViewModel extends Vm {
   final Wait wait;

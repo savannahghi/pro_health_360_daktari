@@ -14,16 +14,16 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/update_user_profile_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
-import 'package:mycarehubpro/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/update_user_profile_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/security_questions/security_questions_page.dart';
 
 // Project imports:
 

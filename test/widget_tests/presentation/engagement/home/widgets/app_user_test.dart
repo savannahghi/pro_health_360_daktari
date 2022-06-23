@@ -7,12 +7,12 @@ import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_user_action.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/user.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/engagement/home/widgets/appbar_user.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/user.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/engagement/home/widgets/appbar_user.dart';
 
 import '../../../../../mock_image_http_client.dart';
 import '../../../../../mocks/mocks.dart';

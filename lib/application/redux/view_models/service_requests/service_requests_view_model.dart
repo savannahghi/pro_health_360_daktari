@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/screening_tools_state.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_request_count.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/screening_tools_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/pending_service_request_count.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
 
 class ServiceRequestsViewModel extends Vm {
   final Wait wait;

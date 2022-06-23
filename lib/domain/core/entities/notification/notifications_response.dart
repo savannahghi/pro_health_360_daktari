@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/notification/notifications_data.dart';
+import 'package:prohealth360_daktari/domain/core/entities/notification/notifications_data.dart';
 
 part 'notifications_response.freezed.dart';
 part 'notifications_response.g.dart';

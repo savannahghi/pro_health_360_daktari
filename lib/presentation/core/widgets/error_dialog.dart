@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({
