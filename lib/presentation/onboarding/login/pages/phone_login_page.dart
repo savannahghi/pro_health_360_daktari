@@ -39,6 +39,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final TargetPlatform _platform = Theme.of(context).platform;
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 8;
     // A small indicator to help us identify whether the app is running in
     // staging or testing
@@ -174,7 +175,34 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                         phone: phoneNumber,
                       ),
                     ],
-
+                    largeVerticalSizedBox,
+                    Center(
+                      child: Text(
+                        copyrightString,
+                        style: normalSize10Text(Colors.grey),
+                      ),
+                    ),
+                    smallVerticalSizedBox,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: Text(
+                        poweredByMyCareHubString,
+                        style: normalSize10Text(Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    smallVerticalSizedBox,
+                    if (_platform != TargetPlatform.iOS)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Center(
+                          child: Text(
+                            '$appVersionString $APPVERSION',
+                            style: normalSize9Text(Colors.grey),
+                          ),
+                        ),
+                      ),
+                    smallVerticalSizedBox,
                     veryLargeVerticalSizedBox,
                   ],
                 ),
