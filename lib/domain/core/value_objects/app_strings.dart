@@ -386,7 +386,10 @@ const String logoutButtonText = 'Logout';
 const String usernameTakenText = 'Username has already been taken.';
 
 final String copyrightString =
-    'Copyright ©️ ${returnCurrentYear()} ProHealth360 Daktari';
+    'Content © University of Nairobi ${returnCurrentYear()}';
+const String copyrightDescriptionString =
+    'myCareHub™ is a platform developed by Johnson & Johnson Global public Health, used under license';
+const String poweredByMyCareHubString = 'Powered by myCareHub™';
 const String appVersionString = 'Current Version:';
 const String setNicknameString = 'Set Your Nickname';
 

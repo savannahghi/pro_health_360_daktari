@@ -34,6 +34,7 @@ class UserProfilePage extends StatelessWidget {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.fromStore(store),
             builder: (BuildContext context, AppStateViewModel vm) {
+              final TargetPlatform _platform = Theme.of(context).platform;
               final StaffState? staffState = vm.state.staffState;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,13 +111,20 @@ class UserProfilePage extends StatelessWidget {
                           style: normalSize10Text(Colors.grey),
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Center(
-                        child: Text(
-                          '$appVersionString $APPVERSION',
-                          style: normalSize9Text(Colors.grey),
-                        ),
+                      smallVerticalSizedBox,
+                      Text(
+                        poweredByMyCareHubString,
+                        style: normalSize10Text(Colors.grey),
+                        textAlign: TextAlign.center,
                       ),
+                      smallVerticalSizedBox,
+                      if (_platform != TargetPlatform.iOS)
+                        Center(
+                          child: Text(
+                            '$appVersionString $APPVERSION',
+                            style: normalSize9Text(Colors.grey),
+                          ),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 20),
