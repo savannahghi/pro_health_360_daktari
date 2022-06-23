@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:prohealth360_daktari/application/core/services/utils.dart';
-import 'package:prohealth360_daktari/domain/core/entities/create_group/age_range.dart';
+import 'package:prohealth360_daktari/domain/community/entities/age_range.dart';
 import 'package:prohealth360_daktari/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/patient/validator_mixin.dart';
@@ -72,8 +72,8 @@ class CreateGroupFormManager with Validator {
     final String? higherBoundAge = _higherBoundAge.valueOrNull;
 
     final AgeRange ageRangeValue = AgeRange(
-      lowerBound: lowerBoundAge ?? '',
-      upperBound: higherBoundAge ?? '',
+      lowerBound: int.tryParse(lowerBoundAge ?? ''),
+      upperBound: int.tryParse(higherBoundAge ?? ''),
     );
 
     final List<ClientType> clientTypeList = <ClientType>[];

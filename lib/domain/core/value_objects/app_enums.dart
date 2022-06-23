@@ -22,7 +22,7 @@ enum ClientType {
 
 extension ClientTypeEx on ClientType {
   String get name {
-    return describeEnum(this);
+    return describeEnum(this).replaceAll('_', ' ');
   }
 }
 
@@ -85,7 +85,6 @@ extension ScreeningToolsTypeExtension on ScreeningToolsType {
 }
 
 enum StreamUserType { STAFF, CLIENT }
-
 
 /// The types of events that we will collect on myCareHub
 enum AnalyticsEventType {
