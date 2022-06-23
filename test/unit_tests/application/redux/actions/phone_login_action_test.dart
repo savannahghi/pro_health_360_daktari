@@ -5,13 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/core/phone_login_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/phone_login_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 import '../../../../mocks/mocks.dart';
 

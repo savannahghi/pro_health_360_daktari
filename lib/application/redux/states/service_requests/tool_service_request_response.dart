@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/assessment_question_response.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/assessment_question_response.dart';
 
 part 'tool_service_request_response.freezed.dart';
 part 'tool_service_request_response.g.dart';

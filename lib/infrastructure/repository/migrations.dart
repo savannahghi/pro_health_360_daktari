@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/database_base.dart';
 
 final List<String> migrations = <String>[
   '''

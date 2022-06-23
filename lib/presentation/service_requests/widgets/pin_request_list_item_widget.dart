@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 
 // Project imports:
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
 
 class PINRequestListItem extends StatefulWidget {
   /// [PINRequestListItem] is a shared widget used in [PINResetRequestsPage]

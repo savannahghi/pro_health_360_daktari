@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_contexts.dart';
+import 'package:prohealth360_daktari/application/core/services/helpers.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_contexts.dart';
 
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{

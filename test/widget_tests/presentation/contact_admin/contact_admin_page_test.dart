@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
-import 'package:mycarehubpro/presentation/contact_admin/widgets/contact_admin_card.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:prohealth360_daktari/presentation/contact_admin/widgets/contact_admin_card.dart';
 
 import '../../../mocks/test_helpers.dart';
 

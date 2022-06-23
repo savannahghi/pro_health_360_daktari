@@ -3,10 +3,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:mycarehubpro/application/redux/actions/search_users/invite_client_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:prohealth360_daktari/application/redux/actions/search_users/invite_client_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/search_user/search_user_response.dart';
 
 import '../../../../../mocks/mocks.dart';
 

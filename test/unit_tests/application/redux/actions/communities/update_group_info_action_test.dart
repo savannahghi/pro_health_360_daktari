@@ -3,8 +3,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/update_group_info_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/update_group_info_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'update_group_info_action_test.mocks.dart';

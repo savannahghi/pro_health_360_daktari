@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/create_group/create_group.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/create_group/create_group.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';
@@ -40,7 +40,7 @@ void main() {
       await tester.tap(find.text('PMTCT'));
       await tester.pumpAndSettle();
 
-        final Finder lowerBoundField = find.byKey(lowerBoundKey);
+      final Finder lowerBoundField = find.byKey(lowerBoundKey);
       final Finder higherBoundField = find.byKey(higherBoundKey);
 
       await tester.ensureVisible(lowerBoundField);
@@ -61,7 +61,6 @@ void main() {
       await tester.tap(higherBoundField);
       await tester.enterText(higherBoundField, '25');
       await tester.pumpAndSettle();
-
 
       await tester.tap(find.text('Male'));
       await tester.pumpAndSettle();

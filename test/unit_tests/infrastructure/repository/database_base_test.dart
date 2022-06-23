@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
-import 'package:mycarehubpro/infrastructure/repository/migrations.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/database_base.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/migrations.dart';
 
 void main() {
   group('MyCareHubProfessionalDatabaseMobile', () {

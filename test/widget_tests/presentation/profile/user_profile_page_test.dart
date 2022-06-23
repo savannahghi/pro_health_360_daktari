@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/communities/invited_groups/pages/invited_groups_page.dart';
-import 'package:mycarehubpro/presentation/contact_admin/pages/contact_admin_page.dart';
-import 'package:mycarehubpro/presentation/engagement/home/widgets/action_card.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/pages/profile_faqs_page.dart';
-import 'package:mycarehubpro/presentation/profile/pages/settings_page.dart';
-import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
-import 'package:mycarehubpro/presentation/profile/widgets/user_details_card_widget.dart'
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/communities/invited_groups/pages/invited_groups_page.dart';
+import 'package:prohealth360_daktari/presentation/contact_admin/pages/contact_admin_page.dart';
+import 'package:prohealth360_daktari/presentation/engagement/home/widgets/action_card.dart';
+import 'package:prohealth360_daktari/presentation/profile/faqs/pages/profile_faqs_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/settings_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/user_profile_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/widgets/user_details_card_widget.dart'
     as local;
 
 import '../../../mocks/mocks.dart';

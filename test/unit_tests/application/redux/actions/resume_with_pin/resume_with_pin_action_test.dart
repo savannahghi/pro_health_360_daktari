@@ -7,11 +7,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mycarehubpro/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/infrastructure/endpoints.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/infrastructure/endpoints.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 import '../../../../../mocks/mocks.dart';
 
 @GenerateMocks(<Type>[IGraphQlClient])

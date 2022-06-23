@@ -2,12 +2,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/profile/pages/edit_information_page.dart';
-import 'package:mycarehubpro/presentation/profile/widgets/edit_info_button_widget.dart';
-import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/edit_information_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/widgets/edit_info_button_widget.dart';
+import 'package:prohealth360_daktari/presentation/profile/widgets/edit_information_item.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';

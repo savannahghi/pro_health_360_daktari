@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/community_members/community.dart';
+import 'package:prohealth360_daktari/domain/core/entities/community_members/community.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 part 'communities_state.freezed.dart';

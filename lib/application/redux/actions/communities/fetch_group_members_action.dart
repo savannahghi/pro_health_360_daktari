@@ -4,11 +4,11 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/core/graphql/queries.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/update_group_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/groups_state.dart';
+import 'package:prohealth360_daktari/application/core/graphql/queries.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/update_group_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/groups_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {

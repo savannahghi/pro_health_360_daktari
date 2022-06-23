@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:convert';
 
 // Project imports:
-import 'package:mycarehubpro/infrastructure/repository/database_base.dart';
-import 'package:mycarehubpro/infrastructure/repository/initialize_db.dart';
-import 'package:mycarehubpro/infrastructure/repository/sqlite.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/database_base.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/initialize_db.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/sqlite.dart';
 // Package imports:
 import 'package:sqflite/sqflite.dart';
 

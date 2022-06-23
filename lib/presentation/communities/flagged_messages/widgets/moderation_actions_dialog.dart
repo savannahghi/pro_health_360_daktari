@@ -2,14 +2,14 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/ban_user_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flagged_messages/delete_community_message_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/communities/view_models/flagged_messages_view_model.dart';
+import 'package:prohealth360_daktari/application/core/services/helpers.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/ban_user_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flagged_messages/delete_community_message_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/communities/view_models/flagged_messages_view_model.dart';
 
 class ModerationActionsDialog extends StatelessWidget {
   const ModerationActionsDialog({

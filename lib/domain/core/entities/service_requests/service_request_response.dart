@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/pending_service_request_count.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/pending_service_request_count.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
 
 part 'service_request_response.freezed.dart';
 part 'service_request_response.g.dart';

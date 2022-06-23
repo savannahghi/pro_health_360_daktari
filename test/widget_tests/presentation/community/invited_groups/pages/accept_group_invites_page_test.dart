@@ -5,11 +5,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
-import 'package:mycarehubpro/presentation/profile/pages/user_profile_page.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/user_profile_page.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 import '../../../../../mocks/mocks.dart';
 import '../../../../../mocks/test_helpers.dart';

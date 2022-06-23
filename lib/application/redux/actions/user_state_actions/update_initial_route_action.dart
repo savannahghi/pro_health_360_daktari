@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/misc_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/misc_state.dart';
 
 class UpdateInitialRouteAction extends ReduxAction<AppState> {
   UpdateInitialRouteAction({this.initialRoute});

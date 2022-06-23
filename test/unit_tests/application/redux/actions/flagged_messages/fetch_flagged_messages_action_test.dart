@@ -4,11 +4,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/flagged_messages/fetch_flagged_messages_action.dart';
-import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flagged_messages/fetch_flagged_messages_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/update_connectivity_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../../../mocks/mocks.dart';

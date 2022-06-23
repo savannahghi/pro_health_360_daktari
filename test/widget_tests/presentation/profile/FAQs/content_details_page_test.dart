@@ -5,9 +5,9 @@ import 'dart:io';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/pages/content_details_page.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/profile/faqs/pages/content_details_page.dart';
 
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks/mocks.dart';
@@ -22,10 +22,8 @@ void main() {
       HttpOverrides.global = TestHttpOverrides();
     });
 
-  
     testWidgets('renders correctly with the correct content data',
         (WidgetTester tester) async {
-     
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -40,6 +38,5 @@ void main() {
       );
       expect(find.byKey(cancelButtonKey), findsOneWidget);
     });
-
   });
 }

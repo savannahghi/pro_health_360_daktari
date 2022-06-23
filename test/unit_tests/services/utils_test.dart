@@ -9,23 +9,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:mycarehubpro/application/redux/actions/terms/update_terms_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/misc_state.dart';
-import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/user.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/infrastructure/endpoints.dart';
-import 'package:mycarehubpro/presentation/onboarding/login/pages/phone_login_page.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_credentials_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/terms/update_terms_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/misc_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/user.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/infrastructure/endpoints.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/login/pages/phone_login_page.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 import '../../mocks/mocks.dart';
 import '../../mocks/test_helpers.dart';
@@ -302,7 +302,7 @@ void main() {
 
   testWidgets('should test logout user works correctly',
       (WidgetTester tester) async {
-        setupFirebaseAnalyticsMocks();
+    setupFirebaseAnalyticsMocks();
     await Firebase.initializeApp();
     final Store<AppState> store =
         Store<AppState>(initialState: AppState.initial());

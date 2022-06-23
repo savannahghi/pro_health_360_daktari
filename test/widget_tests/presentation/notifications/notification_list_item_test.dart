@@ -3,11 +3,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/notifications/notification_list_item.dart' as local;
-import 'package:mycarehubpro/presentation/service_requests/pages/service_requests_page.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/notifications/notification_list_item.dart'
+    as local;
+import 'package:prohealth360_daktari/presentation/service_requests/pages/service_requests_page.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';

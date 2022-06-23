@@ -5,10 +5,11 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/core/services/custom_client.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/infrastructure/endpoints.dart' as app_endpoints;
+import 'package:prohealth360_daktari/application/core/services/custom_client.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/infrastructure/endpoints.dart'
+    as app_endpoints;
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

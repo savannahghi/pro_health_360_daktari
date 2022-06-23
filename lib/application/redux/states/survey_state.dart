@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
+import 'package:prohealth360_daktari/domain/core/entities/surveys/survey.dart';
 
 part 'survey_state.freezed.dart';
 part 'survey_state.g.dart';

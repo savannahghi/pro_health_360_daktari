@@ -5,9 +5,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/send_otp_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/contact.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/send_otp_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/contact.dart';
 import 'package:http/http.dart';
 
 import '../../../mocks/mocks.dart';
@@ -38,7 +38,6 @@ void main() {
 
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
-      
     });
 
     testWidgets(

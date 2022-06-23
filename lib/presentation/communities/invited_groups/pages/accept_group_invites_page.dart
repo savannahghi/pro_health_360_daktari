@@ -3,13 +3,13 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/accept_communities_invite_action.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/decline_communities_invite_action.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/accept_communities_invite_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/decline_communities_invite_action.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class AcceptGroupInvitesPage extends StatefulWidget {
   const AcceptGroupInvitesPage({

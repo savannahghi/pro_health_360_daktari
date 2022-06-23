@@ -1,4 +1,4 @@
-package com.savannah.mycarehubpro
+package com.mycarehub.prohealth360daktari
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterFragmentActivity

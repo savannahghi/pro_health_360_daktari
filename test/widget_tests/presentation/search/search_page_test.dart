@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/client_details/pages/search_client_page.dart';
-import 'package:mycarehubpro/presentation/client_details/pages/search_staff_member_page.dart';
-import 'package:mycarehubpro/presentation/search/pages/search_page.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/client_details/pages/search_client_page.dart';
+import 'package:prohealth360_daktari/presentation/client_details/pages/search_staff_member_page.dart';
+import 'package:prohealth360_daktari/presentation/search/pages/search_page.dart';
 
 import '../../../mocks/test_helpers.dart';
 

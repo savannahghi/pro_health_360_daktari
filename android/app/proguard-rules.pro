@@ -1,1 +1,1 @@
--keep class com.savannah.mycarehubpro.BuildConfig { *; }
+-keep class com.mycarehub.prohealth360daktari.BuildConfig { *; }

@@ -6,9 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/successful_survey_submission.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/engagement/home/pages/home_page.dart';
+import 'package:prohealth360_daktari/presentation/surveys/pages/successful_survey_submission.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

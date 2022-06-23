@@ -7,8 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mycarehubpro/application/redux/actions/surveys/fetch_surveys_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/actions/surveys/fetch_surveys_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 
 import '../../../../../mocks/mocks.dart';
 import 'fetch_surveys_action_test.mocks.dart';
@@ -47,7 +47,6 @@ void main() {
       expect(info.state.surveyState?.surveys?.length, 2);
     });
 
-  
     test('should handle exception', () async {
       final MockIGraphQlClient client = MockIGraphQlClient();
 

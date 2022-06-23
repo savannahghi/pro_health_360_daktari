@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/search_user_response_state.dart';
-import 'package:mycarehubpro/domain/core/entities/search_user/search_user_response.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/search_user_response_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/search_user/search_user_response.dart';
 
 class UpdateSearchUserResponseStateAction extends ReduxAction<AppState> {
   UpdateSearchUserResponseStateAction({

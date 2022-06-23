@@ -8,16 +8,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/engagement/home/pages/home_page.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/surveys_page.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/surveys_sender_list_page.dart';
-import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/engagement/home/pages/home_page.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/presentation/surveys/pages/surveys_page.dart';
+import 'package:prohealth360_daktari/presentation/surveys/pages/surveys_sender_list_page.dart';
+import 'package:prohealth360_daktari/presentation/surveys/widgets/surveys_card.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';

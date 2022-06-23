@@ -9,25 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/core/services/analytics_service.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/services/helpers.dart';
-import 'package:mycarehubpro/application/core/services/utils.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_credentials_action.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_staff_profile_action.dart';
-import 'package:mycarehubpro/application/redux/actions/core/update_user_action.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/onboarding/update_onboarding_state_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:mycarehubpro/domain/core/entities/core/user.dart';
-import 'package:mycarehubpro/domain/core/entities/login/phone_login_response.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_events.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/services/helpers.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_credentials_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_staff_profile_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/core/update_user_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/onboarding/update_onboarding_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/user.dart';
+import 'package:prohealth360_daktari/domain/core/entities/login/phone_login_response.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 /// [PhoneLoginAction] called when the user try to login using their primary phone
 class PhoneLoginAction extends ReduxAction<AppState> {
@@ -76,7 +76,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         processHttpResponse(httpResponse);
 
     if (processedResponse.ok) {
-    final Map<String, dynamic> responseMap =
+      final Map<String, dynamic> responseMap =
           json.decode(processedResponse.response.body) as Map<String, dynamic>;
 
       final PhoneLoginResponse loginResponse =

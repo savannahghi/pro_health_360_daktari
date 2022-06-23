@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/actions/deep_link_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/deep_link_action.dart';
 
 // Project imports:
 

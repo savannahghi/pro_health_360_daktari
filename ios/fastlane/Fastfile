@@ -20,7 +20,7 @@ APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_API_KEY_CONTENT = ENV["APPLE_API_KEY_CONTENT"]
 
 XCODE_PROJECT = "Runner.xcodeproj"
-APP_IDENTIFIER = "com.savannah.mycarehubpro"
+APP_IDENTIFIER = "com.mycarehub.prohealth360daktari"
 MATCH_TYPE = "appstore"
 DEV_SCHEME = "dev"
 DEMO_SCHEME = "demo"

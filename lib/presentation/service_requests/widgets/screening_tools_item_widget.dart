@@ -1,8 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 class ScreeningToolsItemWidget extends StatelessWidget {
   final String title;

@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/login/user_response.dart';
+import 'package:prohealth360_daktari/domain/core/entities/login/user_response.dart';
 
 // Project imports:
 

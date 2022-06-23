@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request_meta.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request_meta.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 
 part 'service_request.freezed.dart';
 part 'service_request.g.dart';

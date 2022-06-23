@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
 
 class GalleryImagesPage extends StatelessWidget {
   const GalleryImagesPage({Key? key, required this.images}) : super(key: key);

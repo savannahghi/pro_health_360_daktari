@@ -1,6 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
 
 class StaffStateViewModel extends Vm {
   final StaffState? staffState;

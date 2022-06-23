@@ -5,18 +5,18 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/update_connectivity_action.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/update_connectivity_action.dart';
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/successful_survey_submission.dart';
-import 'package:mycarehubpro/presentation/surveys/pages/surveys_send_configuration_page.dart';
-import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/surveys/survey.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/surveys/pages/successful_survey_submission.dart';
+import 'package:prohealth360_daktari/presentation/surveys/pages/surveys_send_configuration_page.dart';
+import 'package:prohealth360_daktari/presentation/surveys/widgets/surveys_card.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -99,16 +99,14 @@ void main() {
       await tester.tap(allGenderFinder.first);
       await tester.pumpAndSettle();
 
-      final Finder maleGenderFinder =
-          find.text(Gender.male.name.toUpperCase());
-      final Finder ovcClientTypeFinder =
-          find.text(ClientType.OVC.name);
+      final Finder maleGenderFinder = find.text(Gender.male.name.toUpperCase());
+      final Finder ovcClientTypeFinder = find.text(ClientType.OVC.name);
 
       await tester.ensureVisible(maleGenderFinder);
       expect(maleGenderFinder, findsOneWidget);
       await tester.tap(maleGenderFinder);
       await tester.pumpAndSettle();
-      
+
       await tester.ensureVisible(ovcClientTypeFinder);
       expect(ovcClientTypeFinder, findsOneWidget);
       await tester.tap(ovcClientTypeFinder);
@@ -338,7 +336,7 @@ void main() {
         expect(ovcClientTypeFinder, findsOneWidget);
         await tester.tap(ovcClientTypeFinder);
         await tester.pumpAndSettle();
-        
+
         await tester.ensureVisible(submitSurveyFinder);
         await tester.tap(submitSurveyFinder);
 

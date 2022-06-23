@@ -1,18 +1,18 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/application/redux/states/connectivity_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Project imports:
-import 'package:mycarehubpro/application/redux/states/home/bottom_nav_state.dart';
-import 'package:mycarehubpro/application/redux/states/home_state.dart';
-import 'package:mycarehubpro/application/redux/states/misc_state.dart';
-import 'package:mycarehubpro/application/redux/states/onboarding/onboarding_state.dart';
-import 'package:mycarehubpro/application/redux/states/service_requests/service_requests_state.dart';
-import 'package:mycarehubpro/application/redux/states/survey_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/auth_credentials.dart';
-import 'package:mycarehubpro/domain/core/entities/core/staff_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/home/bottom_nav_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/home_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/misc_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/onboarding/onboarding_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/service_requests/service_requests_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/survey_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/auth_credentials.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
 
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';

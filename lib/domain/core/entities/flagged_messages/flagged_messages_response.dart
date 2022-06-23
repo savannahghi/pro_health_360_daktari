@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mycarehubpro/domain/core/entities/flagged_messages/message_object.dart';
+import 'package:prohealth360_daktari/domain/core/entities/flagged_messages/message_object.dart';
 
 part 'flagged_messages_response.freezed.dart';
 part 'flagged_messages_response.g.dart';

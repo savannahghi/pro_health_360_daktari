@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mycarehubpro/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
 
 void main() {
   group('ServiceRequest', () {

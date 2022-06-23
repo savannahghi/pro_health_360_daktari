@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:mycarehubpro/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:prohealth360_daktari/domain/core/entities/health_diary/health_diary_entry.dart';
 
 import '../../../mocks/mocks.dart';
 

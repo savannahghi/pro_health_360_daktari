@@ -6,8 +6,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/profile/faqs/pages/document_content_widget.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/profile/faqs/pages/document_content_widget.dart';
 
 import '../../../../mocks/mocks.dart';
 import '../../../../mocks/test_helpers.dart';
@@ -22,7 +22,6 @@ void main() {
 
     testWidgets('shows loading indicator while loading the pdf',
         (WidgetTester tester) async {
-
       await buildTestWidget(
         tester: tester,
         store: store,

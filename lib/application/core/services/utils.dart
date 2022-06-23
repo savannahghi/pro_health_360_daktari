@@ -5,17 +5,17 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/user_state_actions/logout_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:mycarehubpro/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/profile/widgets/edit_information_item.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/user_state_actions/logout_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:prohealth360_daktari/domain/core/entities/health_diary/mood_item_data.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/profile/widgets/edit_information_item.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 ClientType clientTypeFromJson(String? clientString) {
   if (clientString == null || clientString.isEmpty || clientString == UNKNOWN) {

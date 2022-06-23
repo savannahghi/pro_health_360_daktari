@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:mycarehubpro/infrastructure/repository/migrations.dart';
+import 'package:prohealth360_daktari/infrastructure/repository/migrations.dart';
 
 Future<T> initDatabase<T extends DatabaseExecutor>(String dbName) async {
   final String _dbPath = await getDatabasesPath();

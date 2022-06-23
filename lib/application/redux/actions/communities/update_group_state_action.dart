@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/states/groups_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/states/groups_state.dart';
 
 class UpdateGroupStateAction extends ReduxAction<AppState> {
   final List<GroupMember?>? groupMembers;

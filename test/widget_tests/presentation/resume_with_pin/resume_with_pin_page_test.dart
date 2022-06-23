@@ -4,10 +4,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mycarehubpro/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
-import 'package:mycarehubpro/presentation/resume_with_pin/resume_with_pin_page.dart';
+import 'package:prohealth360_daktari/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
+import 'package:prohealth360_daktari/presentation/resume_with_pin/resume_with_pin_page.dart';
 
 import '../../../mocks/mocks.dart';
 import '../../../mocks/test_helpers.dart';

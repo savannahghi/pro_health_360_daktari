@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
 
 class SurveyLinkInputWidget extends StatelessWidget {
   const SurveyLinkInputWidget({

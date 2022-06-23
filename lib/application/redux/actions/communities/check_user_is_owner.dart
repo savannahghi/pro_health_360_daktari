@@ -1,7 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:mycarehubpro/application/redux/actions/communities/update_group_state_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/actions/communities/update_group_state_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 

@@ -8,22 +8,22 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
-import 'package:mycarehubpro/application/core/theme/app_themes.dart';
-import 'package:mycarehubpro/application/redux/actions/flags/app_flags.dart';
-import 'package:mycarehubpro/application/redux/actions/surveys/send_surveys_action.dart';
-import 'package:mycarehubpro/application/redux/states/app_state.dart';
-import 'package:mycarehubpro/application/redux/view_models/app_state_view_model.dart';
-import 'package:mycarehubpro/application/redux/view_models/register_client/register_client_view_model.dart';
-import 'package:mycarehubpro/domain/core/entities/surveys/survey.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_enums.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_strings.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_widget_keys.dart';
-import 'package:mycarehubpro/presentation/core/app_bar/custom_app_bar.dart';
-import 'package:mycarehubpro/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
-import 'package:mycarehubpro/presentation/router/routes.dart';
-import 'package:mycarehubpro/presentation/surveys/widgets/client_configuration_form_manager.dart';
-import 'package:mycarehubpro/presentation/surveys/widgets/surveys_card.dart';
+import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
+import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/surveys/send_surveys_action.dart';
+import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/application/redux/view_models/app_state_view_model.dart';
+import 'package:prohealth360_daktari/application/redux/view_models/register_client/register_client_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/entities/surveys/survey.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
+import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
+import 'package:prohealth360_daktari/presentation/router/routes.dart';
+import 'package:prohealth360_daktari/presentation/surveys/widgets/client_configuration_form_manager.dart';
+import 'package:prohealth360_daktari/presentation/surveys/widgets/surveys_card.dart';
 import 'package:shared_themes/constants.dart';
 
 class SurveysSendConfigurationsPage extends StatefulWidget {

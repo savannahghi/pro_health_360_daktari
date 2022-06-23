@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mycarehubpro/domain/core/value_objects/app_asset_strings.dart';
-import 'package:mycarehubpro/presentation/communities/group_info/pages/group_info_page.dart';
-import 'package:mycarehubpro/presentation/communities/thread_page.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
+import 'package:prohealth360_daktari/presentation/communities/group_info/pages/group_info_page.dart';
+import 'package:prohealth360_daktari/presentation/communities/thread_page.dart';
 
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
