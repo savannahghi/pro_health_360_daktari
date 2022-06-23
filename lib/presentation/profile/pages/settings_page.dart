@@ -44,7 +44,6 @@ class SettingsPage extends StatelessWidget {
                 height: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,6 +116,17 @@ class SettingsPage extends StatelessWidget {
                           description: initialNickName,
                         ),
                       ],
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      padding: const EdgeInsets.only(
+                        bottom: 10,
+                      ),
+                      child: Text(
+                        copyrightDescriptionString,
+                        style: normalSize10Text(Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ],
                 ),
