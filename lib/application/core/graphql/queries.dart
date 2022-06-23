@@ -123,16 +123,24 @@ query inviteMembersToCommunity($communityID: String!,$memberIDs: [String!]! ){
 ''';
 
 const String listCommunityMembersQuery = r'''
-query listCommunityMembers($communityID: ID!){
-	listCommunityMembers(communityID: $communityID) {
+query listCommunityMembers($communityID: ID!, $communityMembersFilter: QueryOption!, $listCommunitiesFilter: QueryOption!){
+	listCommunityMembers(communityID: $communityID, input: $communityMembersFilter) {
       user{
         id
+        userID
         username
         role
         extraData
       }
       isModerator
-      userType
+  }
+  listCommunities(input: $listCommunitiesFilter) {
+    ageRange {
+      lowerBound
+      upperBound
+    }
+    gender
+    clientType
   }
 }
 ''';

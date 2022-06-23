@@ -27,13 +27,19 @@ class _$CommunityTearOff {
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'memberCount') int? memberCount,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdBy') String? createdBy}) {
+      @JsonKey(name: 'createdBy') Member? createdBy,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
+      @JsonKey(name: 'gender') List<Gender>? gender,
+      @JsonKey(name: 'clientType') List<ClientType>? clientType}) {
     return _Community(
       id: id,
       name: name,
       memberCount: memberCount,
       description: description,
       createdBy: createdBy,
+      ageRange: ageRange,
+      gender: gender,
+      clientType: clientType,
     );
   }
 
@@ -56,7 +62,13 @@ mixin _$Community {
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdBy')
-  String? get createdBy => throw _privateConstructorUsedError;
+  Member? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ageRange')
+  AgeRange? get ageRange => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender')
+  List<Gender>? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientType')
+  List<ClientType>? get clientType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +85,13 @@ abstract class $CommunityCopyWith<$Res> {
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'memberCount') int? memberCount,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdBy') String? createdBy});
+      @JsonKey(name: 'createdBy') Member? createdBy,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
+      @JsonKey(name: 'gender') List<Gender>? gender,
+      @JsonKey(name: 'clientType') List<ClientType>? clientType});
+
+  $MemberCopyWith<$Res>? get createdBy;
+  $AgeRangeCopyWith<$Res>? get ageRange;
 }
 
 /// @nodoc
@@ -91,6 +109,9 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
     Object? memberCount = freezed,
     Object? description = freezed,
     Object? createdBy = freezed,
+    Object? ageRange = freezed,
+    Object? gender = freezed,
+    Object? clientType = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -112,8 +133,42 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
       createdBy: createdBy == freezed
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Member?,
+      ageRange: ageRange == freezed
+          ? _value.ageRange
+          : ageRange // ignore: cast_nullable_to_non_nullable
+              as AgeRange?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as List<Gender>?,
+      clientType: clientType == freezed
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as List<ClientType>?,
     ));
+  }
+
+  @override
+  $MemberCopyWith<$Res>? get createdBy {
+    if (_value.createdBy == null) {
+      return null;
+    }
+
+    return $MemberCopyWith<$Res>(_value.createdBy!, (value) {
+      return _then(_value.copyWith(createdBy: value));
+    });
+  }
+
+  @override
+  $AgeRangeCopyWith<$Res>? get ageRange {
+    if (_value.ageRange == null) {
+      return null;
+    }
+
+    return $AgeRangeCopyWith<$Res>(_value.ageRange!, (value) {
+      return _then(_value.copyWith(ageRange: value));
+    });
   }
 }
 
@@ -128,7 +183,15 @@ abstract class _$CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'memberCount') int? memberCount,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdBy') String? createdBy});
+      @JsonKey(name: 'createdBy') Member? createdBy,
+      @JsonKey(name: 'ageRange') AgeRange? ageRange,
+      @JsonKey(name: 'gender') List<Gender>? gender,
+      @JsonKey(name: 'clientType') List<ClientType>? clientType});
+
+  @override
+  $MemberCopyWith<$Res>? get createdBy;
+  @override
+  $AgeRangeCopyWith<$Res>? get ageRange;
 }
 
 /// @nodoc
@@ -147,6 +210,9 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
     Object? memberCount = freezed,
     Object? description = freezed,
     Object? createdBy = freezed,
+    Object? ageRange = freezed,
+    Object? gender = freezed,
+    Object? clientType = freezed,
   }) {
     return _then(_Community(
       id: id == freezed
@@ -168,7 +234,19 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
       createdBy: createdBy == freezed
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Member?,
+      ageRange: ageRange == freezed
+          ? _value.ageRange
+          : ageRange // ignore: cast_nullable_to_non_nullable
+              as AgeRange?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as List<Gender>?,
+      clientType: clientType == freezed
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as List<ClientType>?,
     ));
   }
 }
@@ -181,7 +259,10 @@ class _$_Community implements _Community {
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'memberCount') this.memberCount,
       @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'createdBy') this.createdBy});
+      @JsonKey(name: 'createdBy') this.createdBy,
+      @JsonKey(name: 'ageRange') this.ageRange,
+      @JsonKey(name: 'gender') this.gender,
+      @JsonKey(name: 'clientType') this.clientType});
 
   factory _$_Community.fromJson(Map<String, dynamic> json) =>
       _$$_CommunityFromJson(json);
@@ -200,11 +281,20 @@ class _$_Community implements _Community {
   final String? description;
   @override
   @JsonKey(name: 'createdBy')
-  final String? createdBy;
+  final Member? createdBy;
+  @override
+  @JsonKey(name: 'ageRange')
+  final AgeRange? ageRange;
+  @override
+  @JsonKey(name: 'gender')
+  final List<Gender>? gender;
+  @override
+  @JsonKey(name: 'clientType')
+  final List<ClientType>? clientType;
 
   @override
   String toString() {
-    return 'Community(id: $id, name: $name, memberCount: $memberCount, description: $description, createdBy: $createdBy)';
+    return 'Community(id: $id, name: $name, memberCount: $memberCount, description: $description, createdBy: $createdBy, ageRange: $ageRange, gender: $gender, clientType: $clientType)';
   }
 
   @override
@@ -218,7 +308,11 @@ class _$_Community implements _Community {
                 .equals(other.memberCount, memberCount) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.createdBy, createdBy));
+            const DeepCollectionEquality().equals(other.createdBy, createdBy) &&
+            const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality()
+                .equals(other.clientType, clientType));
   }
 
   @override
@@ -228,7 +322,10 @@ class _$_Community implements _Community {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(memberCount),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(createdBy));
+      const DeepCollectionEquality().hash(createdBy),
+      const DeepCollectionEquality().hash(ageRange),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(clientType));
 
   @JsonKey(ignore: true)
   @override
@@ -243,11 +340,15 @@ class _$_Community implements _Community {
 
 abstract class _Community implements Community {
   factory _Community(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdBy') String? createdBy}) = _$_Community;
+          {@JsonKey(name: 'id') String? id,
+          @JsonKey(name: 'name') String? name,
+          @JsonKey(name: 'memberCount') int? memberCount,
+          @JsonKey(name: 'description') String? description,
+          @JsonKey(name: 'createdBy') Member? createdBy,
+          @JsonKey(name: 'ageRange') AgeRange? ageRange,
+          @JsonKey(name: 'gender') List<Gender>? gender,
+          @JsonKey(name: 'clientType') List<ClientType>? clientType}) =
+      _$_Community;
 
   factory _Community.fromJson(Map<String, dynamic> json) =
       _$_Community.fromJson;
@@ -266,7 +367,16 @@ abstract class _Community implements Community {
   String? get description;
   @override
   @JsonKey(name: 'createdBy')
-  String? get createdBy;
+  Member? get createdBy;
+  @override
+  @JsonKey(name: 'ageRange')
+  AgeRange? get ageRange;
+  @override
+  @JsonKey(name: 'gender')
+  List<Gender>? get gender;
+  @override
+  @JsonKey(name: 'clientType')
+  List<ClientType>? get clientType;
   @override
   @JsonKey(ignore: true)
   _$CommunityCopyWith<_Community> get copyWith =>

@@ -507,6 +507,9 @@ const String staffMemberText = 'Staff member';
 
 // group info
 const String groupInfoText = 'Group Info';
+const String groupInformationText = 'Group Information';
+const String clientTypesText = 'Client types';
+const String ageGroupsText = 'Age groups';
 const String flaggedMessagesText = 'Flagged messages';
 const String tapToViewFlaggedMessagesText = 'Tap to view flagged messages';
 const String moderatorText = 'Moderator';

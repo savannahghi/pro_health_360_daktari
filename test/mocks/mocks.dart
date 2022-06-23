@@ -1874,7 +1874,14 @@ final Map<String, dynamic> mockInvitedCommunities = <String, dynamic>{
       'name': core.UNKNOWN,
       'memberCount': 0,
       'description': core.UNKNOWN,
-      'createdBy': core.UNKNOWN,
+      'createdBy': <String, dynamic>{
+        'id': core.UNKNOWN,
+        'userID': core.UNKNOWN,
+        'role': core.UNKNOWN,
+        'username': core.UNKNOWN,
+        'gender': core.Gender.unknown.name,
+        'userType': core.UserType.CLIENT.name,
+      },
     },
   ]
 };
@@ -1884,7 +1891,19 @@ final Map<String, dynamic> mockCommunity = <String, dynamic>{
   'name': core.UNKNOWN,
   'memberCount': 0,
   'description': core.UNKNOWN,
-  'createdBy': core.UNKNOWN,
+  'ageRange': <String, dynamic>{
+    'lowerBound': 14,
+    'upperBound': 20,
+  },
+  'createdBy': <String, dynamic>{
+    'id': core.UNKNOWN,
+    'userID': core.UNKNOWN,
+    'role': core.UNKNOWN,
+    'username': core.UNKNOWN,
+    'gender': core.Gender.unknown.name,
+    'userType': core.UserType.CLIENT.name,
+  },
+  'clientType': <String>['PMTCT']
 };
 
 final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{

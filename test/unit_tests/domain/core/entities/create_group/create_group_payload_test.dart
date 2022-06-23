@@ -9,7 +9,7 @@ void main() {
           CreateGroupPayload.fromJson(<String, dynamic>{
         'name': 'Test',
         'description': 'Test group',
-        'ageRange': <String, dynamic>{'lowerBound': '17', 'upperBound': '25'},
+        'ageRange': <String, dynamic>{'lowerBound': 17, 'upperBound': 25},
         'gender': <String>['male', 'female'],
         'clientType': <String>['PMTCT', 'OVC'],
         'inviteOnly': false

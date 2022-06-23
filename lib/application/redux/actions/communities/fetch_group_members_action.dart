@@ -8,7 +8,7 @@ import 'package:prohealth360_daktari/application/core/graphql/queries.dart';
 import 'package:prohealth360_daktari/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
-import 'package:prohealth360_daktari/application/redux/states/groups_state.dart';
+import 'package:prohealth360_daktari/domain/community/entities/list_group_info_response.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
@@ -37,7 +37,13 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'communityID': channelId
+      'communityID': channelId,
+      'communityMembersFilter': <String, dynamic>{
+        'filter': <String, String>{'invite': 'accepted'}
+      },
+      'listCommunitiesFilter': <String, dynamic>{
+        'filter': <String, String>{'id': channelId}
+      }
     };
 
     final Response response = await client.query(
@@ -65,12 +71,17 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
       return state;
     }
 
-    final GroupState groupState = GroupState.fromJson(
+    final ListGroupInfoResponse groupInfoResponse =
+        ListGroupInfoResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
-    final List<GroupMember?>? groupMembers = groupState.groupMembers;
 
-    dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
+    dispatch(
+      UpdateGroupStateAction(
+        groupMembers: groupInfoResponse.groupMembers,
+        communities: groupInfoResponse.communities,
+      ),
+    );
 
     return state;
   }

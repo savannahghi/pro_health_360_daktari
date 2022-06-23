@@ -1,12 +1,12 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:prohealth360_daktari/domain/core/entities/create_group/age_range.dart';
+import 'package:prohealth360_daktari/domain/community/entities/age_range.dart';
 import 'package:prohealth360_daktari/domain/core/entities/surveys/client_configuration_payload.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:prohealth360_daktari/presentation/surveys/widgets/validator_mixin.dart';
 import 'package:rxdart/rxdart.dart';
 
 const String minimumAge = '14';
-const String maximumAge = '25';
+const String maximumAge = '24';
 
 class ClientConfigurationFormManager with Validator {
   final BehaviorSubject<Map<ClientType, bool>> _clientTypes =
@@ -54,9 +54,10 @@ class ClientConfigurationFormManager with Validator {
     final String? higherBoundAge = _higherBoundAge.valueOrNull;
 
     final AgeRange ageRangeValue = AgeRange(
-      lowerBound: lowerBoundAge ?? '',
-      upperBound: higherBoundAge ?? '',
+      lowerBound: int.tryParse(lowerBoundAge ?? ''),
+      upperBound: int.tryParse(higherBoundAge ?? ''),
     );
+
     final List<ClientType>? clientTypes = _clientTypes.valueOrNull?.entries
         .where((MapEntry<ClientType, bool> element) => element.value)
         .map((MapEntry<ClientType, bool> entry) => entry.key)
