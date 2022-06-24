@@ -39,7 +39,7 @@ class ActiveClientActions extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         Text(
-          '1. $myCareHubReInviteText',
+          '1. $appReInviteText',
           style: boldSize15Text(AppColors.greyTextColor),
         ),
         verySmallVerticalSizedBox,
@@ -59,7 +59,7 @@ class ActiveClientActions extends StatelessWidget {
               : MyAfyaHubPrimaryButton(
                   buttonKey: sendClientInviteButtonKey,
                   customChild: Text(
-                    inviteToMyCareHubString,
+                    appReInviteText,
                     style: veryBoldSize15Text(
                       AppColors.whiteColor,
                     ),
@@ -72,7 +72,7 @@ class ActiveClientActions extends StatelessWidget {
         ),
         mediumVerticalSizedBox,
         Text(
-          '2. $myCareHubAlternateInvite',
+          '2. $appAlternateInvite',
           style: boldSize15Text(AppColors.greyTextColor),
         ),
         verySmallVerticalSizedBox,
@@ -92,7 +92,7 @@ class ActiveClientActions extends StatelessWidget {
               : MyAfyaHubPrimaryButton(
                   buttonKey: resendClientInviteButtonKey,
                   customChild: Text(
-                    myCareHubAlternateInvite,
+                    appAlternateInvite,
                     style: veryBoldSize15Text(
                       AppColors.whiteColor,
                     ),

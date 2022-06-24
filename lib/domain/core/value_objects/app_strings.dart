@@ -236,10 +236,10 @@ const String lastNameLabel = 'Last Name *';
 const String birthDateLabel = 'Birth Date *';
 const String genderLabel = 'Gender *';
 const String phoneNoLabel = 'Phone No. *';
-const String myCareHubInviteText = 'Invite to myCareHub';
-const String myCareHubReInviteText = 'Reinvite to myCareHub';
-const String myCareHubAlternateInvite = 'Resend myCareHub invite';
-const String myCareHubProInviteText = 'Invite to ProHealth360 Daktari';
+const String appInviteText = 'Invite to ProHealth360';
+const String appReInviteText = 'Reinvite to ProHealth360';
+const String appAlternateInvite = 'Resend ProHealth360 invite';
+const String proAppInviteText = 'Invite to ProHealth360 Daktari';
 const String proInviteText = 'Invite to ProHealth360 Daktari';
 const String registerBtnText = 'Register';
 const String addNewClientTitleText = 'Add new client';
@@ -306,7 +306,6 @@ const String newEntryString = 'New Entry';
 const String transferOut = 'Transfer out';
 
 //Client Details Card
-const String inviteToMyCareHubString = 'Reinvite to myCareHub';
 const String viewProfileString = 'View profile';
 const String userInitialsStrings = 'WJ';
 const String userCCCNumberString = '12345678';

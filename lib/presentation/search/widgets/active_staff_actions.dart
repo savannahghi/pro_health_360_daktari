@@ -39,7 +39,7 @@ class ActiveStaffActions extends StatelessWidget {
         Text(actions, style: boldSize18Text(AppColors.greyTextColor)),
         smallVerticalSizedBox,
         Text(
-          '1. $myCareHubReInviteText',
+          '1. $appReInviteText',
           style: boldSize15Text(AppColors.greyTextColor),
         ),
         verySmallVerticalSizedBox,
@@ -59,7 +59,7 @@ class ActiveStaffActions extends StatelessWidget {
               : MyAfyaHubPrimaryButton(
                   buttonKey: inviteStaffButtonKey,
                   customChild: Text(
-                    inviteToMyCareHubString,
+                    appReInviteText,
                     style: veryBoldSize15Text(AppColors.whiteColor),
                   ),
                   onPressed: () => staffSearchAction(
@@ -70,7 +70,7 @@ class ActiveStaffActions extends StatelessWidget {
         ),
         mediumVerticalSizedBox,
         Text(
-          '2. $myCareHubAlternateInvite',
+          '2. $appAlternateInvite',
           style: boldSize15Text(AppColors.greyTextColor),
         ),
         verySmallVerticalSizedBox,
@@ -90,7 +90,7 @@ class ActiveStaffActions extends StatelessWidget {
             customChild: isResendLoading
                 ? const PlatformLoader()
                 : Text(
-                    myCareHubAlternateInvite,
+                    appAlternateInvite,
                     style: veryBoldSize15Text(AppColors.whiteColor),
                   ),
             onPressed: () => staffSearchAction(
