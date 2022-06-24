@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:prohealth360_daktari/application/core/services/utils.dart';
@@ -293,6 +294,10 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                           return PatientDetailsTextFormField(
                             textFieldKey: const Key('id_number_key'),
                             label: 'ID number *',
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             onChanged: (String value) {
                               _formManager.inIdNumber.add(value);
                             },
