@@ -23,6 +23,7 @@ class RedFlagActionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TargetPlatform _platform = Theme.of(context).platform;
+    final TextEditingController notesInputController = TextEditingController();
 
     final String phoneNumber = serviceRequest?.clientPhoneNumber ?? '';
     final String clientName = serviceRequest?.clientName ?? '';
@@ -93,6 +94,47 @@ class RedFlagActionsPage extends StatelessWidget {
                   ],
                 ),
               ),
+              smallVerticalSizedBox,
+              Text(
+                notesString,
+                style: normalSize16Text(AppColors.greyTextColor),
+              ),
+              smallVerticalSizedBox,
+              TextField(
+                key: serviceRequestNotesTextFieldKey,
+                keyboardType: TextInputType.visiblePassword,
+                controller: notesInputController,
+                style: normalSize14Text(
+                  AppColors.greyTextColor,
+                ),
+                maxLines: 9,
+                minLines: 3,
+                decoration: InputDecoration(
+                  hintText: describeHelpProvidedString,
+                  hintStyle: normalSize14Text(
+                    AppColors.greyTextColor.withOpacity(0.4),
+                  ),
+                  filled: true,
+                  fillColor: AppColors.galleryColor,
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6),
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.primaryColor.withOpacity(0.3),
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(6),
+                    ),
+                  ),
+                  focusColor: AppColors.greyTextColor,
+                ),
+              ),
               mediumVerticalSizedBox,
               StoreConnector<AppState, ServiceRequestsViewModel>(
                 converter: (Store<AppState> store) =>
@@ -129,6 +171,7 @@ class RedFlagActionsPage extends StatelessWidget {
                   );
                 },
               ),
+              largeVerticalSizedBox,
             ],
           ),
         ),

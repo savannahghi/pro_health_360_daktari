@@ -164,6 +164,7 @@ const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
 const Key lowerBoundKey = Key('lower_bound_key');
 const Key higherBoundKey = Key('higher_bound_key');
+const Key serviceRequestNotesTextFieldKey = Key('service_request_notes_text_field_key');
 
 const Key resolveRequestButtonKey = Key('resolve_request_button_key');
 

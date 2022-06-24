@@ -57,6 +57,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
   @override
   Widget build(BuildContext context) {
     final TargetPlatform _platform = Theme.of(context).platform;
+    final TextEditingController notesInputController = TextEditingController();
     final ToolAssessmentResponse assessmentResponse =
         widget.payload['assessmentResponse'] as ToolAssessmentResponse;
     final ScreeningToolsType toolsType =
@@ -166,6 +167,47 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                       ],
                     ),
                   ),
+                  smallVerticalSizedBox,
+                  Text(
+                    notesString,
+                    style: normalSize16Text(AppColors.greyTextColor),
+                  ),
+                  smallVerticalSizedBox,
+                  TextField(
+                    key: serviceRequestNotesTextFieldKey,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: notesInputController,
+                    style: normalSize14Text(
+                      AppColors.greyTextColor,
+                    ),
+                    maxLines: 9,
+                    minLines: 3,
+                    decoration: InputDecoration(
+                      hintText: describeHelpProvidedString,
+                      hintStyle: normalSize14Text(
+                        AppColors.greyTextColor.withOpacity(0.4),
+                      ),
+                      filled: true,
+                      fillColor: AppColors.galleryColor,
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(6),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.primaryColor.withOpacity(0.3),
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(6),
+                        ),
+                      ),
+                      focusColor: AppColors.greyTextColor,
+                    ),
+                  ),
                   mediumVerticalSizedBox,
                   SizedBox(
                     width: double.infinity,
@@ -200,6 +242,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                             ),
                           ),
                   ),
+                  largeVerticalSizedBox,
                 ],
               ),
             );
