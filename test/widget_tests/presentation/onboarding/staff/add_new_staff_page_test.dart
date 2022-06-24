@@ -226,8 +226,8 @@ void main() {
 
       final Finder idFieldFinder = find.byKey(const Key('id_number_key'));
       expect(idFieldFinder, findsOneWidget);
-      await tester.enterText(idFieldFinder, 'test');
-      expect(find.text('test'), findsOneWidget);
+      await tester.enterText(idFieldFinder, '1234');
+      expect(find.text('1234'), findsOneWidget);
 
       await tester.enterText(idFieldFinder, '');
       await tester.pump();
