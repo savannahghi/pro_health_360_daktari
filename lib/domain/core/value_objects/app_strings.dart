@@ -156,7 +156,8 @@ const String clientPINResetString = 'Client PIN resets';
 const String staffPINResetString = 'Staff PIN resets';
 const String ifYouHaveReachedOutString = 'If you have reached out to ';
 const String tapTapBelowToResolveString =
-    ', please tap the button below to resolve this service request.';
+    ', please tap the button below to resolve this service request.\n\nYou can also describe the help you provided below';
+const String notesString = 'Notes';
 
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
@@ -410,6 +411,8 @@ const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
 const String fetchingRedFlagsString = 'fetching red flags';
+const String describeHelpProvidedString =
+    'Describe the help you provided if any';
 String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
 String fetchingResolvedRedFlagsString =
