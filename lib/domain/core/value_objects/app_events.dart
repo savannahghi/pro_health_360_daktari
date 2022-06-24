@@ -8,6 +8,22 @@ const String resumeWithPINEvent = 'resume_with_pin';
 
 const String viewProfile = 'view_profile';
 
+const String viewServiceRequests = 'view_service_requests';
+
+const String viewResolvedServiceRequests = 'view_resolved_service_requests';
+
+const String addNewClient = 'add_new_client';
+
+const String addNewStaff = 'add_new_staff';
+
+const String registerStaff = 'register_staff';
+
+const String resolvePinRequest = 'resolve_pin_request';
+
+const String resolveServiceRequest = 'resolve_service_request';
+
+const String registerClient = 'register_staff';
+
 const String viewNotificationsEvent = 'view_notifications';
 
 const String pinExpiredEvent = 'pin_expired';
@@ -43,3 +59,7 @@ const String setNicknameEvent = 'set_nickname';
 const String setUserPINEvent = 'set_PIN';
 
 const String noConnectionEvent = 'no_internet_connection';
+
+const String createGroup = 'create_group';
+
+const String addNewGroup = 'add_new_group';

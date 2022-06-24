@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prohealth360_daktari/application/redux/actions/register_staff/register_staff_action.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
@@ -13,11 +14,13 @@ void main() {
   group('RegisterStaffAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial(),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     test('should run successfully', () async {

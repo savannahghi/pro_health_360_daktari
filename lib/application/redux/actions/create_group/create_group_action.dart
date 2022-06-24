@@ -5,8 +5,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/entities/create_group/create_group_payload.dart';
 import 'package:http/http.dart';
@@ -61,6 +64,14 @@ class CreateGroupAction extends ReduxAction<AppState> {
       }
 
       this.onSuccess();
+      await AnalyticsService().logEvent(
+        name: addNewGroup,
+        eventType: AnalyticsEventType.INTERACTION,
+        parameters: <String, dynamic>{
+          'name': createGroupPayload.name,
+          'clientType': createGroupPayload.clientType.toString(),
+        },
+      );
     } else {
       throw UserException(processedResponse.message);
     }

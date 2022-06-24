@@ -4,11 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
+import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ResolveServiceRequestAction extends ReduxAction<AppState> {
@@ -93,6 +96,14 @@ class ResolveServiceRequestAction extends ReduxAction<AppState> {
       }
 
       onSuccess?.call();
+      await AnalyticsService().logEvent(
+        name: resolveServiceRequest,
+        eventType: AnalyticsEventType.INTERACTION,
+        parameters: <String, dynamic>{
+          'staffID': staffId,
+          'requestID': serviceRequestId,
+        },
+      );
       return state;
     }
 
