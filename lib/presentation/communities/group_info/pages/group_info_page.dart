@@ -301,9 +301,12 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                         .memberDetails?.extraData?.isBanned ??
                                     false;
 
-                                final String userType =
-                                    currentMember.userType?.name ??
-                                        UserType.STAFF.name;
+                                final String userType = currentMember
+                                        .memberDetails
+                                        ?.extraData
+                                        ?.userType
+                                        ?.name ??
+                                    '';
 
                                 return GroupMemberConnector(
                                   itemKey: ValueKey<int>(index),

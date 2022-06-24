@@ -1802,6 +1802,10 @@ final List<dynamic> listMembersMock = <dynamic>[
     'userType': 'STAFF',
     'username': 'Jane',
     'gender': core.Gender.male.name,
+    'extraData': <String, dynamic>{
+      'bannedInCommunity': false,
+      'userType': 'STAFF',
+    }
   },
   <String, dynamic>{
     'id': 'id1',
