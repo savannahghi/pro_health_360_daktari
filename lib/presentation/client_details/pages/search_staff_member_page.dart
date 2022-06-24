@@ -41,6 +41,7 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
         ),
       );
     });
+
     searchController.addListener(() async {
       if (searchController.text.isEmpty) {
         setState(() {

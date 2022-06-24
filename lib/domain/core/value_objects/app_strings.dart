@@ -593,7 +593,7 @@ const String searchStaffMembersTitle = 'Search staff members';
 const String searchStaffMembersDescription =
     'Search staff members using their phone number or staff number';
 const String searchStaffMembersHintString =
-    'Search using their name or phone number...';
+    'Search using their name, username or phone number...';
 const String noStaffMemberFoundString = 'No staff member found';
 const String couldNotFindStaffMemberString =
     'We could not find a staff member ';
