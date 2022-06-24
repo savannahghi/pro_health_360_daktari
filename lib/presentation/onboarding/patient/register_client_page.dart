@@ -187,7 +187,6 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                 Row(
                   children: <Widget>[
                     // Birth date
-
                     Flexible(
                       child: Column(
                         children: <Widget>[
@@ -394,7 +393,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                       ),
                       children: getCheckBoxes(clientTypes),
                     );
-                  },
+                  }, 
                 ),
                 const SizedBox(height: 28),
                 Row(
@@ -403,7 +402,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         const Text(
-                          myCareHubInviteText,
+                          appInviteText,
                           style: TextStyle(
                             fontSize: 14,
                             color: AppColors.greyTextColor,
@@ -433,7 +432,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                                 );
                               },
                             ),
-                            const Text(myCareHubInviteText),
+                            const Text(appInviteText),
                           ],
                         ),
                       ],
