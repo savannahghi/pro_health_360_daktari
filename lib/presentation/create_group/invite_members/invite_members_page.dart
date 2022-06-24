@@ -113,9 +113,7 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
               messageBody: <TextSpan>[
                 TextSpan(
                   text: noAvailableMemberDescription,
-                  style: normalSize16Text(
-                    AppColors.greyTextColor,
-                  ),
+                  style: normalSize16Text(AppColors.greyTextColor),
                 ),
               ],
             );
@@ -181,9 +179,11 @@ class _InviteMembersPageState extends State<InviteMembersPage> {
                               final String memberUserId =
                                   communityMembers[index].id?.trim() ?? '';
 
-                              final String userType =
-                                  communityMembers[index].userType ?? UNKNOWN;
-
+                              final String userType = communityMembers[index]
+                                      .extraData
+                                      ?.userType
+                                      ?.name ??
+                                  '';
                               return MemberListItem(
                                 username: memberName.trim().isEmpty
                                     ? UNKNOWN

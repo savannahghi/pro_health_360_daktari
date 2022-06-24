@@ -90,15 +90,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
 
-      store.dispatch(
-        BatchUpdateMiscStateAction(
-          communityMembers: <Member>[],
-        ),
-      );
+      store.dispatch(BatchUpdateMiscStateAction(communityMembers: <Member>[]));
 
-      store.dispatch(
-        UpdateConnectivityAction(hasConnection: false),
-      );
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
 
       expect(searchNameFinder, findsOneWidget);
       await tester.tap(searchNameFinder);
@@ -126,9 +120,8 @@ void main() {
     testWidgets(
         'displays error if there is no internet connection when invite is tapped',
         (WidgetTester tester) async {
-      store.dispatch(
-        UpdateConnectivityAction(hasConnection: true),
-      );
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
       const String testName = 'Sam';
       const String testFemaleName = 'Jane';
 
@@ -145,9 +138,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const InviteMembersPage(
-          channelId: 'some-channel-id',
-        ),
+        widget: const InviteMembersPage(channelId: 'some-channel-id'),
       );
 
       await tester.pumpAndSettle();
@@ -169,9 +160,7 @@ void main() {
       await tester.tap(searchNameFinder);
       await tester.enterText(searchNameFinder, 'David');
 
-      store.dispatch(
-        UpdateConnectivityAction(hasConnection: false),
-      );
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
 
       final Finder submitBtn = find.byKey(inviteMembersBtnKey);
       await tester.ensureVisible(submitBtn);

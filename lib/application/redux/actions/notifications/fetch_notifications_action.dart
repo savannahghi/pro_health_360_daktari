@@ -15,9 +15,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class FetchNotificationsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
 
-  FetchNotificationsAction({
-    required this.client,
-  });
+  FetchNotificationsAction({required this.client});
 
   @override
   void before() {
@@ -39,10 +37,7 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
       'flavour': Flavour.pro.name,
-      'paginationInput': <String, dynamic>{
-        'Limit': 10,
-        'CurrentPage': 1,
-      }
+      'paginationInput': <String, dynamic>{'Limit': 10, 'CurrentPage': 1}
     };
 
     final Response response =

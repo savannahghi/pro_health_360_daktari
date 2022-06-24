@@ -25,10 +25,8 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: notificationsText,
-        showBackButton: false,
-      ),
+      appBar:
+          const CustomAppBar(title: notificationsText, showBackButton: false),
       backgroundColor: AppColors.whiteColor,
       body: StoreConnector<AppState, NotificationsViewModel>(
         onInit: (Store<AppState> store) {
