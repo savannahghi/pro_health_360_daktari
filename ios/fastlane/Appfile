@@ -1,5 +1,11 @@
-apple_id("abiud.orina@savannahinformatics.com") # Your Apple email address
-itc_team_id("120973169") # App Store Connect Team ID
+apple_id("info@prohealth360.org") # Your Apple email address
 
-team_id("533DA44846") # Developer Portal Team ID
+# Get this info using the following steps
+# Login to itunesconnect (https://itunesconnect.apple.com/)
+# Get output (JSON) from (https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/ra/user/detail)
+# You can now get your iTunes Connect ids from the associatedAccounts array with the different contentProvider objects - the entry named contentProviderId reflects the iTunes Connect id, lookup for the name value to pick the correct one
+itc_team_id("125225674") # App Store Connect Team ID
+
+# Get this one from https://developer.apple.com/account/#!/membership/
+team_id("3C526Y9XH4") # Developer Portal Team ID
 app_identifier 'com.mycarehub.prohealth360daktari'
