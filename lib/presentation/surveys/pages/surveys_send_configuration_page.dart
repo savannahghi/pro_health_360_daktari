@@ -530,7 +530,7 @@ class _SurveysSendConfigurationsPageState
         },
         variables: <String, dynamic>{
           'facilityID': facilityID,
-          'formID': 'widget.survey.xmlFormId',
+          'formID': widget.survey.xmlFormId,
           'projectID': widget.survey.projectId,
           'filterParams': _formManager.submit().toJson()
         },
