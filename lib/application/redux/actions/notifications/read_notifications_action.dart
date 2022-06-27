@@ -53,8 +53,9 @@ class ReadNotificationsAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('fetching notifications'));
       }
 
-      final bool? readNotifications =
-          body['data']['readNotifications'] as bool?;
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      final bool? readNotifications = data?['readNotifications'] as bool?;
 
       if (readNotifications == null || !readNotifications) {
         Sentry.captureException(

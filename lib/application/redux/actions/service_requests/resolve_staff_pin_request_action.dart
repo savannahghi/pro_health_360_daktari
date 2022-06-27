@@ -6,14 +6,13 @@ import 'package:http/http.dart';
 import 'package:prohealth360_daktari/application/core/graphql/mutations.dart';
 import 'package:prohealth360_daktari/application/core/services/analytics_service.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
+import 'package:prohealth360_daktari/application/redux/actions/service_requests/fetch_service_request_count_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_events.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-
-import 'fetch_service_request_count_action.dart';
 
 class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient httpClient;
@@ -82,8 +81,10 @@ class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage());
       }
 
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
       final bool isRequestApproved =
-          body['data']['verifyStaffPinResetServiceRequest'] as bool? ?? false;
+          data?['verifyStaffPinResetServiceRequest'] as bool? ?? false;
 
       if (isRequestApproved) {
         final List<ServiceRequest>? serviceRequests =
@@ -119,6 +120,8 @@ class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
       );
       throw UserException(getErrorMessage());
     }
+
+    return null;
   }
 
   @override

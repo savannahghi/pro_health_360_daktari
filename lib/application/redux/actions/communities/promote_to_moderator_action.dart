@@ -54,7 +54,9 @@ class PromoteToModeratorAction extends ReduxAction<AppState> {
         throw const UserException(errorPromotingAdminText);
       }
 
-      final bool promotedSuccessfully = body['data']['addModerators'] as bool;
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      final bool promotedSuccessfully = data?['addModerators'] as bool;
 
       if (promotedSuccessfully) {
         successCallback?.call();

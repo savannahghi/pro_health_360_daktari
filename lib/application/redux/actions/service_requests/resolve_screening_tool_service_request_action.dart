@@ -76,7 +76,9 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
       return null;
     }
 
-    final bool? isResolved = payLoad['data']['resolveServiceRequest'] as bool?;
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
+
+    final bool? isResolved = data?['resolveServiceRequest'] as bool?;
 
     if (isResolved ?? false) {
       dispatch(

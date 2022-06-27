@@ -1,6 +1,5 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
@@ -83,8 +82,10 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         }
       }
 
-      if (body['data']?['verifyPIN'] != null) {
-        final bool pinVerified = body['data']['verifyPIN'] as bool;
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['verifyPIN'] != null) {
+        final bool pinVerified = data?['verifyPIN'] as bool;
         if (pinVerified) {
           final OnboardingPathInfo navConfig = getOnboardingPath(state: state);
           dispatch(

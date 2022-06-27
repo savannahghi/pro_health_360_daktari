@@ -59,7 +59,9 @@ class UnBanUserAction extends ReduxAction<AppState> {
       return null;
     }
 
-    if (payLoad['data']['unBanUser'] == true) {
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
+
+    if (data?['unBanUser'] == true) {
       onSuccess?.call();
       return state;
     } else {

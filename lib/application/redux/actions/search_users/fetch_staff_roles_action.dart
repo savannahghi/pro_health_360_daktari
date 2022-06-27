@@ -59,10 +59,12 @@ class FetchStaffRolesAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('getting user roles'));
       }
 
-      if (body['data'] != null &&
-          body['data']['getUserRoles'] != null &&
-          body['data']['getUserRoles'] is List &&
-          (body['data']['getUserRoles'] as List<dynamic>).isNotEmpty) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data != null &&
+          data['getUserRoles'] != null &&
+          data['getUserRoles'] is List &&
+          (data['getUserRoles'] as List<dynamic>).isNotEmpty) {
         final RolesList roles =
             RolesList.fromJson(body['data'] as Map<String, dynamic>);
 
@@ -81,5 +83,7 @@ class FetchStaffRolesAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

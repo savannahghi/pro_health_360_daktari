@@ -70,5 +70,7 @@ class FetchServiceRequestsCountAction extends ReduxAction<AppState> {
         pendingServiceRequestsCount: serviceRequests.pendingServiceRequests,
       ),
     );
+
+    return null;
   }
 }

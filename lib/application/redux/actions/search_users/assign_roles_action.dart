@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
@@ -72,10 +71,12 @@ class AssignRolesAction extends ReduxAction<AppState> {
 
         throw UserException(getErrorMessage('assigning roles'));
       }
-      if (body['data'] != null &&
-          body['data']['assignOrRevokeRoles'] != null &&
-          body['data']['assignOrRevokeRoles'] is bool &&
-          body['data']['assignOrRevokeRoles'] == true) {
+
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+      if (data != null &&
+          data['assignOrRevokeRoles'] != null &&
+          data['assignOrRevokeRoles'] is bool &&
+          data['assignOrRevokeRoles'] == true) {
         final User? user = state.staffState?.user;
 
         final List<Role> newRoles = roles.map((RoleValue roleValue) {
@@ -91,5 +92,7 @@ class AssignRolesAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

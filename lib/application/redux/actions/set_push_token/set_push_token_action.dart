@@ -61,6 +61,8 @@ class SetPushToken extends ReduxAction<AppState> {
 
       return null;
     }
+
+    return null;
   }
 
   @override

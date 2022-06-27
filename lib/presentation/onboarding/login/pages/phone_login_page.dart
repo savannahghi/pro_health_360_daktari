@@ -246,7 +246,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                       borderColor: Theme.of(context).primaryColor,
                       text: phoneLoginText,
                       textColor: isAppTest
-                          ? Theme.of(context).colorScheme.primaryVariant
+                          ? Theme.of(context).colorScheme.primary
                           : null,
                     ),
                   ),

@@ -1,5 +1,4 @@
 // Package imports:
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prohealth360_daktari/infrastructure/connectivity/connectivity_interface.dart';

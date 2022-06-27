@@ -71,7 +71,9 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                         maxLines: 1,
                         keyboardType: TextInputType.number,
                         obscureText: true,
-                        validator: (String? value) {},
+                        validator: (String? value) {
+                          return null;
+                        },
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],

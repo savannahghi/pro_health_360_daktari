@@ -54,8 +54,9 @@ class DemoteModeratorAction extends ReduxAction<AppState> {
         throw const UserException(errorDemotingAdminText);
       }
 
-      final bool promotedSuccessfully =
-          body['data']['demoteModerators'] as bool;
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      final bool promotedSuccessfully = data?['demoteModerators'] as bool;
 
       if (promotedSuccessfully) {
         successCallback?.call();

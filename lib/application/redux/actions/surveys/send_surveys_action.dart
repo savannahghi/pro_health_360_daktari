@@ -60,7 +60,9 @@ class SendSurveysAction extends ReduxAction<AppState> {
       );
       return null;
     }
-    if (payLoad['data']['sendClientSurveyLinks'] == true) {
+
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
+    if (data?['sendClientSurveyLinks'] == true) {
       onSuccess?.call();
       return state;
     }

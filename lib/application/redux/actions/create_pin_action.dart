@@ -122,7 +122,10 @@ class CreatePINAction extends ReduxAction<AppState> {
         );
       }
 
-      if (responseMap['data']['setUserPIN'] == true) {
+      final Map<String, dynamic>? data =
+          responseMap['data'] as Map<String, dynamic>?;
+
+      if (data?['setUserPIN'] == true) {
         onSuccess?.call();
         dispatch(UpdateOnboardingStateAction(hasSetPin: true));
         final OnboardingPathInfo path = getOnboardingPath(state: state);
@@ -138,7 +141,7 @@ class CreatePINAction extends ReduxAction<AppState> {
                 describeEnum(currentOnboardingStage!),
           },
         );
-      } else if (responseMap['data']['resetPIN'] == true) {
+      } else if (data?['resetPIN'] == true) {
         onError
             ?.call(isResetPIN ? pinResetSuccessString : pinChangeSuccessString);
 

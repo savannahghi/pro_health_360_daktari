@@ -67,7 +67,7 @@ class ContactAdminCard extends StatelessWidget {
                   scheme: 'mailto',
                   path: adminEmail,
                 );
-                await launch(launchUri.toString());
+                await launchUrl(launchUri);
               },
             ),
           )

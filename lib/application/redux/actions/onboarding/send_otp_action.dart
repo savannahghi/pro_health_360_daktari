@@ -22,7 +22,7 @@ class SendOTPAction extends ReduxAction<AppState> {
     this.callBackFunction,
   });
 
-  final Function? callBackFunction;
+  final VoidCallback? callBackFunction;
   final BuildContext context;
 
   @override
@@ -82,7 +82,10 @@ class SendOTPAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final String otp = parsed['data']['sendOTP'] as String;
+        final Map<String, dynamic>? data =
+            parsed['data'] as Map<String, dynamic>?;
+
+        final String otp = data?['sendOTP'] as String;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));
@@ -107,5 +110,7 @@ class SendOTPAction extends ReduxAction<AppState> {
       //Incase user's phone number is not found
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
+
+    return null;
   }
 }

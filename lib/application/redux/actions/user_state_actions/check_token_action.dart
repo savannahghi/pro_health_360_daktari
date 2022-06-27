@@ -61,5 +61,7 @@ class CheckTokenAction extends ReduxAction<AppState> {
     }
 
     dispatch(UpdateInitialRouteAction(initialRoute: initialRoute));
+
+    return null;
   }
 }

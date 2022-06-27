@@ -30,6 +30,8 @@ class DeleteGroupAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     await channel.delete();
     onSuccess?.call();
+
+    return null;
   }
 
   @override

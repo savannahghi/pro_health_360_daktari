@@ -85,8 +85,10 @@ class SetNicknameAction extends ReduxAction<AppState> {
       }
     }
 
-    if (responseMap['data']['setNickName'] != null &&
-        responseMap['data']['setNickName'] == true) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['setNickName'] != null && data?['setNickName'] == true) {
       dispatch(
         UpdateOnboardingStateAction(hasSetNickName: true),
       );
