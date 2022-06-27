@@ -44,14 +44,20 @@ class DeclineCommunitiesInviteAction extends ReduxAction<AppState> {
 
       throw const UserException(somethingWentWrongText);
     }
-    if (responseMap['data'] != null &&
-        responseMap['data']['rejectInvitation'] != null &&
-        responseMap['data']['rejectInvitation'] is bool &&
-        responseMap['data']['rejectInvitation'] != false) {
+
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data != null &&
+        data['rejectInvitation'] != null &&
+        data['rejectInvitation'] is bool &&
+        data['rejectInvitation'] != false) {
       onSuccess?.call();
     } else {
       onFailure?.call();
       throw const UserException(genericErrorOccurred);
     }
+
+    return null;
   }
 }

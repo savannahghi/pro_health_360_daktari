@@ -51,7 +51,7 @@ class ReachOutWidget extends StatelessWidget {
                         scheme: 'tel',
                         path: phoneNumber,
                       );
-                      launch(launchUri.toString());
+                      launchUrl(launchUri);
                     }
                   : null,
             ),
@@ -62,27 +62,17 @@ class ReachOutWidget extends StatelessWidget {
               iconSvgUrl: whatsappIconSvgPath,
               onTapCallback: phoneNumber.isNotEmpty && phoneNumber != UNKNOWN
                   ? () async {
-                      if (platform == TargetPlatform.iOS) {
-                        final String whatsAppURL =
-                            'https://wa.me/$phoneNumber?text=${Uri.parse(
-                          redFlagSMSTemplate(
-                            clientName: clientName,
-                            staffFirstName: staffFirstName,
-                            staffLastName: staffLastName,
-                          ),
-                        )}';
-                        await launch(whatsAppURL, forceSafariVC: false);
-                      } else {
-                        await launch(
-                          'https://wa.me/$phoneNumber/?text=${Uri.parse(
-                            redFlagSMSTemplate(
-                              clientName: clientName,
-                              staffFirstName: staffFirstName,
-                              staffLastName: staffLastName,
-                            ),
-                          )}',
-                        );
-                      }
+                      final String whatsAppURL =
+                          'https://wa.me/$phoneNumber?text=${Uri.parse(
+                        redFlagSMSTemplate(
+                          clientName: clientName,
+                          staffFirstName: staffFirstName,
+                          staffLastName: staffLastName,
+                        ),
+                      )}';
+                      final Uri launchUri =
+                          Uri.parse(Uri.encodeFull(whatsAppURL));
+                      await launchUrl(launchUri);
                     }
                   : null,
             ),

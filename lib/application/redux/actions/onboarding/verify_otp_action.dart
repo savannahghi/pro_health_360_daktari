@@ -66,8 +66,12 @@ class VerifyOTPAction extends ReduxAction<AppState> {
           processHttpResponse(httpResponse);
 
       if (processedResponse.ok) {
-        final bool isValid =
-            jsonDecode(httpResponse.body)['data']['verifyOTP'] as bool;
+        final Map<String, dynamic> jsonData =
+            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+        final Map<String, dynamic>? data =
+            jsonData['data'] as Map<String, dynamic>?;
+
+        final bool isValid = data?['verifyOTP'] as bool;
 
         if (isValid) {
           dispatch(
@@ -108,6 +112,8 @@ class VerifyOTPAction extends ReduxAction<AppState> {
         );
       }
     }
+
+    return null;
   }
 
   @override
@@ -115,7 +121,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
     if (error.runtimeType == MyAfyaException) {
       feedbackBottomSheet(
         context: context,
-        modalContent: error.message.toString(),
+        modalContent: (error as MyAfyaException).message.toString(),
         imageAssetPath: errorIconUrl,
       );
     }

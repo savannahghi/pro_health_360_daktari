@@ -118,7 +118,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(closeString, white, context),
           ),

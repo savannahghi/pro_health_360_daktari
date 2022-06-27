@@ -60,10 +60,12 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['listPendingInvites'] != null) {
-      if (responseMap['data']['listPendingInvites'] is List &&
-          (responseMap['data']['listPendingInvites'] as List<dynamic>)
-              .isNotEmpty) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['listPendingInvites'] != null) {
+      if (data?['listPendingInvites'] is List &&
+          (data?['listPendingInvites'] as List<dynamic>).isNotEmpty) {
         final PendingInvitesState communitiesMap = PendingInvitesState.fromJson(
           responseMap['data'] as Map<String, dynamic>,
         );
@@ -83,5 +85,7 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
         UpdateCommunitiesStateAction(communitiesList: <Community>[]),
       );
     }
+
+    return null;
   }
 }

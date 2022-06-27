@@ -2,7 +2,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 // Project imports:
 import 'package:prohealth360_daktari/application/redux/states/home/bottom_nav_state.dart';

@@ -95,8 +95,10 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage());
       }
 
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
       final bool isRequestApproved =
-          body['data']['verifyClientPinResetServiceRequest'] as bool? ?? false;
+          data?['verifyClientPinResetServiceRequest'] as bool? ?? false;
 
       if (isRequestApproved) {
         final List<ServiceRequest>? serviceRequests =
@@ -132,6 +134,8 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
       );
       throw UserException(getErrorMessage());
     }
+
+    return null;
   }
 
   @override

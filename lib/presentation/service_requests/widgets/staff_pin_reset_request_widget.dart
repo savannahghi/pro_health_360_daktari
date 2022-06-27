@@ -71,7 +71,7 @@ class StaffPinResetRequestWidget extends StatelessWidget {
                       scheme: 'tel',
                       path: phoneNumber,
                     );
-                    launch(launchUri.toString());
+                    launchUrl(launchUri);
                   },
                 ),
               ),

@@ -45,11 +45,17 @@ class AcceptCommunitiesInviteAction extends ReduxAction<AppState> {
 
       throw const UserException(somethingWentWrongText);
     }
-    if ((responseMap['data']?['acceptInvitation'] ?? false) == true) {
+
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if ((data?['acceptInvitation'] ?? false) == true) {
       onSuccess?.call();
     } else {
       onFailure?.call();
       throw const UserException(genericErrorOccurred);
     }
+
+    return null;
   }
 }

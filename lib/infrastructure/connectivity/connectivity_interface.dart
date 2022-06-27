@@ -1,4 +1,4 @@
-import 'connectivity_status_stub.dart'
+import 'package:prohealth360_daktari/infrastructure/connectivity/connectivity_status_stub.dart'
     if (dart.library.html) 'web_connectivity_status.dart'
     if (dart.library.io) 'mobile_connectivity_status.dart';
 

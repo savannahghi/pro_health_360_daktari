@@ -29,6 +29,8 @@ class CheckUserIsOwnerAction extends ReduxAction<AppState> {
         return null;
       }
     }
+
+    return null;
   }
 
   @override

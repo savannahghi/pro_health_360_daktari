@@ -265,7 +265,8 @@ class RouteGenerator {
 
       case AppRoutes.editInformationPage:
         final EditInformationItem editInformationItem =
-            args['editInformationItem'] as EditInformationItem;
+            (args as Map<String, dynamic>)['editInformationItem']
+                as EditInformationItem;
 
         void Function(EditInformationItem editInformationItem) submitFunction;
 
@@ -347,7 +348,8 @@ class RouteGenerator {
         return MaterialPageRoute<SearchPageDetailView>(
           builder: (_) => SearchPageDetailView(
             searchUserResponse:
-                args['searchUserResponse'] as SearchUserResponse,
+                (args as Map<String, dynamic>)['searchUserResponse']
+                    as SearchUserResponse,
             isClient: args['isClient'] as bool,
           ),
           settings: const RouteSettings(name: 'Search page detail view'),
@@ -441,7 +443,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.viewDocumentPage:
-        final String pdfTitle = args['pdfTitle'] as String;
+        final String pdfTitle =
+            (args as Map<String, dynamic>)['pdfTitle'] as String;
         final String pdfUrl = args['pdfUrl'] as String;
 
         return MaterialPageRoute<DocumentContentPage>(
@@ -460,7 +463,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.acceptGroupInvitesPage:
-        final String groupId = args['groupId'] as String;
+        final String groupId =
+            (args as Map<String, dynamic>)['groupId'] as String;
         final String groupName = args['groupName'] as String;
         final int numberOfMembers = args['numberOfMembers'] as int;
 
@@ -491,5 +495,7 @@ class RouteGenerator {
           settings: const RouteSettings(name: 'Search facilities page'),
         );
     }
+
+    return null;
   }
 }

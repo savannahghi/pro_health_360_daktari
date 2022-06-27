@@ -72,10 +72,12 @@ class InviteStaffAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('inviting staff'));
       }
 
-      if (body['data'] != null &&
-          body['data']['inviteUser'] != null &&
-          body['data']['inviteUser'] is bool &&
-          body['data']['inviteUser'] == true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data != null &&
+          data['inviteUser'] != null &&
+          data['inviteUser'] is bool &&
+          data['inviteUser'] == true) {
         onSuccess?.call(clientResponse.user?.userName ?? UNKNOWN);
       } else {
         onFailure?.call();
@@ -83,5 +85,7 @@ class InviteStaffAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

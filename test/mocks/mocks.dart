@@ -4,7 +4,6 @@ import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -1982,9 +1981,10 @@ void setupFirebaseMessagingMocks() {
     }
 
     if (call.method == 'Firebase#initializeApp') {
+      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
       return <String, dynamic>{
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': args['appName'],
+        'options': args['options'],
         'pluginConstants': <String, dynamic>{},
       };
     }
@@ -2522,9 +2522,10 @@ Future<void> setupFirebaseAnalyticsMocks({
     }
 
     if (call.method == 'Firebase#initializeApp') {
+      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
       return <String, dynamic>{
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': args['appName'],
+        'options': args['options'],
         'pluginConstants': <String, dynamic>{},
       };
     }

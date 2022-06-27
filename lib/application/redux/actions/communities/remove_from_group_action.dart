@@ -64,7 +64,9 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('removing user from group'));
       }
 
-      if (body['data']['removeMembersFromCommunity'] == true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['removeMembersFromCommunity'] == true) {
         onSuccess?.call();
       } else {
         onFailure?.call();
@@ -72,5 +74,7 @@ class RemoveFromGroupAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

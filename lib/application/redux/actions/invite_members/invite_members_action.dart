@@ -65,7 +65,9 @@ class InviteMembersAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('inviting members'));
       }
 
-      if (body['data']['inviteMembersToCommunity'] == true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['inviteMembersToCommunity'] == true) {
         onSuccess?.call();
       }
     } else {
