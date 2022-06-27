@@ -392,7 +392,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         const Text(
-                          proInviteText,
+                          proAppInviteText,
                           style: TextStyle(
                             fontSize: 14,
                             color: AppColors.greyTextColor,
