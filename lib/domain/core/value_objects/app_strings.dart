@@ -240,7 +240,6 @@ const String appInviteText = 'Invite to ProHealth360';
 const String appReInviteText = 'Reinvite to ProHealth360';
 const String appAlternateInvite = 'Resend ProHealth360 invite';
 const String proAppInviteText = 'Invite to ProHealth360 Daktari';
-const String proInviteText = 'Invite to ProHealth360 Daktari';
 const String registerBtnText = 'Register';
 const String addNewClientTitleText = 'Add new client';
 const String enrollmentDateLabel = 'Enrollment Date *';
@@ -568,8 +567,7 @@ const String noNumberAvailable = 'No number available';
 // search client
 const String searchClientsTitle = 'Search clients';
 const String searchClientsDescription =
-    'Search clients using their CCC number, phone number or Medical Health '
-    'record number';
+    'Search clients using their CCC number, phone number or username';
 const String searchClientsHintString = 'Search using CCC number...';
 const String noClientFoundString = 'No client found';
 const String couldNotFindClientString =
@@ -579,10 +577,10 @@ const String confirmCCCNumberIsCorrectString =
 const String registerClientString = 'Register Client';
 const String actions = 'Actions';
 String tapBelowToInvite(String names) =>
-    'Tap the button below to invite $names to myCareHub. They will receive and SMS with instructions on how to sign up';
+    'Tap the button below to invite $names to ProHealth360. They will receive and SMS with instructions on how to sign up';
 
 String tapToResendInvite(String names) =>
-    'If $names did not receive the myCareHub invite, tap the button below to resend them another invite using an alternative channel';
+    'If $names did not receive the ProHealth360 invite, tap the button below to resend them another invite using an alternative channel';
 
 const String shareDiaryEntry = 'Shared diary entry';
 const String youDoNotHavePermission =
