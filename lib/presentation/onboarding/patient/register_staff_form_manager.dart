@@ -13,7 +13,6 @@ class RegisterStaffFormManager with Validator {
   Sink<String> get inLastName => _lastName.sink;
 
   final BehaviorSubject<String> _facility = BehaviorSubject<String>();
-  Stream<String> get facility => _facility.stream.transform(validateName);
   Sink<String> get inFacility => _facility.sink;
 
   final BehaviorSubject<DateTime> _dateOfBirth = BehaviorSubject<DateTime>();

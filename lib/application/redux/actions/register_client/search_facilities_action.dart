@@ -7,22 +7,26 @@ import 'package:prohealth360_daktari/application/core/graphql/queries.dart';
 import 'package:prohealth360_daktari/application/redux/actions/core/update_staff_profile_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/facility.dart';
 import 'package:prohealth360_daktari/domain/core/entities/register_client/fetch_facilities_response.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class FetchFacilitiesAction extends ReduxAction<AppState> {
+class SearchFacilitiesAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final void Function(String message)? onFailure;
+  final String mflCode;
 
-  FetchFacilitiesAction({
+  SearchFacilitiesAction({
     required this.client,
     this.onFailure,
+    required this.mflCode,
   });
 
   @override
   void before() {
     super.before();
+    dispatch(UpdateStaffProfileAction(facilities: <Facility>[]));
     dispatch(WaitAction<AppState>.add(fetchFacilitiesFlag));
   }
 
@@ -40,8 +44,12 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
       return null;
     }
 
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'searchParameter': mflCode,
+    };
+
     final Response response =
-        await client.query(fetchFacilitiesQuery, <String, dynamic>{});
+        await client.query(searchFacilityQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
@@ -68,7 +76,6 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
-
     return null;
   }
 }

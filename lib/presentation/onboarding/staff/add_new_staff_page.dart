@@ -16,8 +16,8 @@ import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
 import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/core/widgets/search_facility_field.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/patient/register_staff_form_manager.dart';
-import 'package:prohealth360_daktari/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 
 class AddNewStaffPage extends StatefulWidget {
@@ -122,21 +122,10 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                 ),
                 const SizedBox(height: 24),
                 // Facility
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: FacilityDropdown(
-                        dropdownInputKey: facilitySelectOptionFieldKey,
-                        label: facilityLabel,
-                        stream: _formManager.facility,
-                        onChanged: (String? value) {
-                          if (value != null) {
-                            _formManager.inFacility.add(value);
-                          }
-                        },
-                      ),
-                    )
-                  ],
+                SearchFacilityField(
+                  onChanged: (String facilityName) =>
+                      _formManager.inFacility.add(facilityName),
+                      onFieldCleared: () => _formManager.inFacility.add(''),
                 ),
                 const SizedBox(height: 24),
                 Row(

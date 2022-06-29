@@ -9,7 +9,7 @@ part of 'fetch_facilities_response.dart';
 _$_FetchFacilitiesResponse _$$_FetchFacilitiesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_FetchFacilitiesResponse(
-      facilities: (json['fetchFacilities'] as List<dynamic>?)
+      facilities: (json['searchFacility'] as List<dynamic>?)
           ?.map((e) => Facility.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,5 +17,5 @@ _$_FetchFacilitiesResponse _$$_FetchFacilitiesResponseFromJson(
 Map<String, dynamic> _$$_FetchFacilitiesResponseToJson(
         _$_FetchFacilitiesResponse instance) =>
     <String, dynamic>{
-      'fetchFacilities': instance.facilities,
+      'searchFacility': instance.facilities,
     };
