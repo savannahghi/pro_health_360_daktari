@@ -324,6 +324,8 @@ const String noPINFoundText = 'No PIN found for this user.';
 
 const String errorPhoneLogin = 'Error: Unable to login by phone';
 
+const String errorNoUserFound = 'Error: no user found';
+
 const String connectionLostText = 'Internet connection lost';
 
 const String fieldCannotBeEmptyText = 'Field cannot be empty';
@@ -355,6 +357,10 @@ const String drawerTestRootText = 'You have closed the drawer';
 const String somethingWentWrongText =
     'Sorry, an unknown error occurred, please try again or get help from '
     'our help center.';
+
+const String noUserFound =
+    'Sorry, we could not find a user with those details. Please make sure that '
+    'the credentials you provided are correct and try again';
 
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';

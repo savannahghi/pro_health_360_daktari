@@ -186,6 +186,25 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
       switch (processedResponse.code) {
+        case 7:
+          final OnboardingState? onboardingState = state.onboardingState;
+
+          await captureException(
+            errorNoUserFound,
+            error: processedResponse.message,
+            response: processedResponse.response.body,
+          );
+
+          await AnalyticsService().logEvent(
+            name: noUserFoundEvent,
+            eventType: AnalyticsEventType.AUTH,
+            parameters: <String, dynamic>{
+              'phoneNumber': onboardingState?.phoneNumber ?? UNKNOWN,
+            },
+          );
+
+          throw const UserException(noUserFound);
+
         case 8:
           dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
           await captureException(

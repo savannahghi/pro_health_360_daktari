@@ -37,6 +37,8 @@ const String pendingPinResetServiceRequest =
 
 const String incorrectCredentialsLoginEvent = 'incorrect_credentials_login';
 
+const String noUserFoundEvent = 'no_user_found';
+
 const String sendOTPEvent = 'send_OTP';
 
 const String resendOTPEvent = 'resend_OTP';

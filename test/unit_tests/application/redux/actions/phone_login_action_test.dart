@@ -25,6 +25,7 @@ void main() {
             .copyWith(connectivityState: ConnectivityState(isConnected: true)),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
     });
@@ -58,10 +59,27 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(PhoneLoginAction);
 
-      expect(
-        (info.error! as UserException).msg,
-        somethingWentWrongText,
+      expect((info.error! as UserException).msg, somethingWentWrongText);
+    });
+
+    test(
+        'should show a no user found text in case wrong credentials are provided',
+        () async {
+      storeTester.dispatch(
+        PhoneLoginAction(
+          httpClient: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(json.encode(<String, dynamic>{'code': 7}), 400),
+          ),
+          phoneLoginEndpoint: '',
+        ),
       );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(PhoneLoginAction);
+
+      expect((info.error! as UserException).msg, noUserFound);
     });
 
     test('should change to new user workflow when pin update is required',
