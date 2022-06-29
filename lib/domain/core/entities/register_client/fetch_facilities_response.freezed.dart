@@ -24,7 +24,7 @@ class _$FetchFacilitiesResponseTearOff {
   const _$FetchFacilitiesResponseTearOff();
 
   _FetchFacilitiesResponse call(
-      {@JsonKey(name: 'fetchFacilities') List<Facility>? facilities}) {
+      {@JsonKey(name: 'searchFacility') List<Facility>? facilities}) {
     return _FetchFacilitiesResponse(
       facilities: facilities,
     );
@@ -40,7 +40,7 @@ const $FetchFacilitiesResponse = _$FetchFacilitiesResponseTearOff();
 
 /// @nodoc
 mixin _$FetchFacilitiesResponse {
-  @JsonKey(name: 'fetchFacilities')
+  @JsonKey(name: 'searchFacility')
   List<Facility>? get facilities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $FetchFacilitiesResponseCopyWith<$Res> {
   factory $FetchFacilitiesResponseCopyWith(FetchFacilitiesResponse value,
           $Res Function(FetchFacilitiesResponse) then) =
       _$FetchFacilitiesResponseCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'fetchFacilities') List<Facility>? facilities});
+  $Res call({@JsonKey(name: 'searchFacility') List<Facility>? facilities});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ abstract class _$FetchFacilitiesResponseCopyWith<$Res>
           $Res Function(_FetchFacilitiesResponse) then) =
       __$FetchFacilitiesResponseCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'fetchFacilities') List<Facility>? facilities});
+  $Res call({@JsonKey(name: 'searchFacility') List<Facility>? facilities});
 }
 
 /// @nodoc
@@ -118,13 +118,13 @@ class __$FetchFacilitiesResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_FetchFacilitiesResponse implements _FetchFacilitiesResponse {
   _$_FetchFacilitiesResponse(
-      {@JsonKey(name: 'fetchFacilities') this.facilities});
+      {@JsonKey(name: 'searchFacility') this.facilities});
 
   factory _$_FetchFacilitiesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_FetchFacilitiesResponseFromJson(json);
 
   @override
-  @JsonKey(name: 'fetchFacilities')
+  @JsonKey(name: 'searchFacility')
   final List<Facility>? facilities;
 
   @override
@@ -159,14 +159,14 @@ class _$_FetchFacilitiesResponse implements _FetchFacilitiesResponse {
 
 abstract class _FetchFacilitiesResponse implements FetchFacilitiesResponse {
   factory _FetchFacilitiesResponse(
-          {@JsonKey(name: 'fetchFacilities') List<Facility>? facilities}) =
+          {@JsonKey(name: 'searchFacility') List<Facility>? facilities}) =
       _$_FetchFacilitiesResponse;
 
   factory _FetchFacilitiesResponse.fromJson(Map<String, dynamic> json) =
       _$_FetchFacilitiesResponse.fromJson;
 
   @override
-  @JsonKey(name: 'fetchFacilities')
+  @JsonKey(name: 'searchFacility')
   List<Facility>? get facilities;
   @override
   @JsonKey(ignore: true)

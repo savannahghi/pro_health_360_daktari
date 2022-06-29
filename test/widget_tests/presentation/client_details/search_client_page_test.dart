@@ -115,10 +115,6 @@ void main() {
 
     testWidgets('Shows error widget if there was an error',
         (WidgetTester tester) async {
-      store.dispatch(
-        UpdateSearchUserResponseStateAction(errorSearchingUser: true),
-      );
-
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -128,7 +124,6 @@ void main() {
       store.dispatch(
         UpdateSearchUserResponseStateAction(errorSearchingUser: true),
       );
-
       await tester.pump();
       expect(find.byType(GenericErrorWidget), findsOneWidget);
     });

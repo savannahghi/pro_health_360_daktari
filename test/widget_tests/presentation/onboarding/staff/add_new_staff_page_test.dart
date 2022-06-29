@@ -48,10 +48,25 @@ void main() {
 
       final Finder facilityFieldFinder =
           find.byKey(facilitySelectOptionFieldKey);
+      final Finder saveFacilityBtnFinder = find.byKey(saveFacilityBtnKey);
       expect(facilityFieldFinder, findsOneWidget);
       await tester.tap(facilityFieldFinder);
       await tester.pumpAndSettle();
       await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+      await tester.tap(saveFacilityBtnFinder);
+      await tester.pumpAndSettle();
+
+      final Finder searchFacilityIconBtnFinder =
+          find.byKey(searchFacilityIconBtnKey);
+      await tester.tap(searchFacilityIconBtnFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(facilityFieldFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+      await tester.tap(saveFacilityBtnFinder);
       await tester.pumpAndSettle();
 
       // Dob field
@@ -141,12 +156,14 @@ void main() {
 
       final Finder facilityFieldFinder =
           find.byKey(facilitySelectOptionFieldKey);
+      final Finder saveFacilityBtnFinder = find.byKey(saveFacilityBtnKey);
       expect(facilityFieldFinder, findsOneWidget);
       await tester.tap(facilityFieldFinder);
       await tester.pumpAndSettle();
       await tester.tap(find.text('Kanairo').last);
       await tester.pumpAndSettle();
-
+      await tester.tap(saveFacilityBtnFinder);
+      await tester.pumpAndSettle();
       // Dob field
       final Finder dobField = find.byKey(dobKey);
       await tester.ensureVisible(dobField);

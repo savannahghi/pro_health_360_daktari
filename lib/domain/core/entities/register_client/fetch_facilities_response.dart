@@ -8,7 +8,7 @@ part 'fetch_facilities_response.g.dart';
 @freezed
 class FetchFacilitiesResponse with _$FetchFacilitiesResponse {
   factory FetchFacilitiesResponse({
-    @JsonKey(name: 'fetchFacilities') List<Facility>? facilities,
+    @JsonKey(name: 'searchFacility') List<Facility>? facilities,
   }) = _FetchFacilitiesResponse;
 
   factory FetchFacilitiesResponse.fromJson(Map<String, dynamic> json) =>

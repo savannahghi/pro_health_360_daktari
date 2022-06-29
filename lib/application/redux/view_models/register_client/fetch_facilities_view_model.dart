@@ -6,15 +6,18 @@ class ListFacilitiesViewModel extends Vm {
   ListFacilitiesViewModel({
     required this.wait,
     this.facilities,
-  }) : super(equals: <Object?>[wait, facilities]);
+    required this.selectedFacility,
+  }) : super(equals: <Object?>[wait, facilities, selectedFacility]);
 
   final Wait wait;
   final List<Facility>? facilities;
+  final Facility selectedFacility;
 
   factory ListFacilitiesViewModel.fromStore(Store<AppState> store) {
     return ListFacilitiesViewModel(
       wait: store.state.wait!,
       facilities: store.state.staffState?.facilities,
+      selectedFacility: store.state.miscState?.selectedFacility ?? Facility.initial(),
     );
   }
 }

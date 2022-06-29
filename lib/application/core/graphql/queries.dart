@@ -18,26 +18,12 @@ query getSecurityQuestions($flavour: Flavour!) {
   }
 }
 ''';
-const String listFacilitiesQuery = r'''
-query listFacilities($searchTerm: String, $filterInput:[FiltersInput],$paginationInput:PaginationsInput!){
-  listFacilities(searchTerm: $searchTerm,filterInput: $filterInput,paginationInput: $paginationInput){
-    Facilities{
-      ID
-      name
-      code
-      phone
-      county
-      description
-    }
-  }
-}
-''';
-
-const String fetchFacilitiesQuery = '''
-query fetchFacilities {
-  fetchFacilities {
-    ID,
-    name,
+const String searchFacilityQuery = r'''
+query searchFacility($searchParameter: String) {
+  searchFacility(searchParameter: $searchParameter) {
+    ID
+    name
+    code
   }
 }
 ''';

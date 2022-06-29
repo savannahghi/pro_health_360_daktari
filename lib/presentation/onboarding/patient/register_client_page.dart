@@ -17,8 +17,8 @@ import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
 import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/core/widgets/search_facility_field.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/patient/register_client_form_manager.dart';
-import 'package:prohealth360_daktari/presentation/onboarding/patient/widgets/facility_dropdown.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/patient/widgets/patient_details_text_form_field.dart';
 
 class RegisterClientPage extends StatefulWidget {
@@ -113,21 +113,12 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                 ),
                 const SizedBox(height: 24),
                 // Facilities
-                Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: FacilityDropdown(
-                        dropdownInputKey: facilitySelectOptionFieldKey,
-                        label: facilityLabel,
-                        stream: _formManager.facility,
-                        onChanged: (String? value) {
-                          if (value != null) {
-                            _formManager.inFacility.add(value);
-                          }
-                        },
-                      ),
-                    )
-                  ],
+                Flexible(
+                  child: SearchFacilityField(
+                    onChanged: (String facilityName) =>
+                        _formManager.inFacility.add(facilityName),
+                    onFieldCleared: () => _formManager.inFacility.add(''),
+                  ),
                 ),
                 const SizedBox(height: 24),
                 Row(
@@ -393,7 +384,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                       ),
                       children: getCheckBoxes(clientTypes),
                     );
-                  }, 
+                  },
                 ),
                 const SizedBox(height: 28),
                 Row(
