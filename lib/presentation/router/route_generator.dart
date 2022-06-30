@@ -21,6 +21,7 @@ import 'package:prohealth360_daktari/presentation/create_group/invite_members/in
 import 'package:prohealth360_daktari/presentation/engagement/home/pages/content_page.dart';
 import 'package:prohealth360_daktari/presentation/engagement/home/pages/home_page.dart';
 import 'package:prohealth360_daktari/presentation/notifications/notifications_page.dart';
+import 'package:prohealth360_daktari/presentation/onboarding/core/search_facilities_page.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/create_pin/pages/create_new_pin_page.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:prohealth360_daktari/presentation/onboarding/login/pages/login_counter_page.dart';
@@ -482,6 +483,12 @@ class RouteGenerator {
         return MaterialPageRoute<EditGroupInfoPage>(
           builder: (_) => const EditGroupInfoPage(),
           settings: const RouteSettings(name: 'Edit group info page'),
+        );
+
+      case AppRoutes.searchFacilitiesPage:
+        return MaterialPageRoute<SearchFacilitiesPage>(
+          builder: (_) => SearchFacilitiesPage(),
+          settings: const RouteSettings(name: 'Search facilities page'),
         );
     }
   }

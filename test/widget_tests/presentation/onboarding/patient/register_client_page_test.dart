@@ -18,7 +18,7 @@ void main() {
   group('AddNewPatientPage', () {
     late Store<AppState> store;
 
-    setUp(() async  {
+    setUp(() async {
       store = Store<AppState>(
         initialState: AppState.initial()
             .copyWith(connectivityState: ConnectivityState(isConnected: true)),
@@ -44,10 +44,25 @@ void main() {
 
       final Finder facilityFieldFinder =
           find.byKey(facilitySelectOptionFieldKey);
+      final Finder saveFacilityBtnFinder = find.byKey(saveFacilityBtnKey);
       expect(facilityFieldFinder, findsOneWidget);
       await tester.tap(facilityFieldFinder);
       await tester.pumpAndSettle();
       await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+      await tester.tap(saveFacilityBtnFinder);
+      await tester.pumpAndSettle();
+
+      final Finder searchFacilityIconBtnFinder =
+          find.byKey(searchFacilityIconBtnKey);
+      await tester.tap(searchFacilityIconBtnFinder);
+      await tester.pumpAndSettle();
+
+      await tester.tap(facilityFieldFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+      await tester.tap(saveFacilityBtnFinder);
       await tester.pumpAndSettle();
 
       final Finder fNameFieldFinder = find.byKey(firstNameKey);
@@ -141,10 +156,13 @@ void main() {
 
       final Finder facilityFieldFinder =
           find.byKey(facilitySelectOptionFieldKey);
+      final Finder saveFacilityBtnFinder = find.byKey(saveFacilityBtnKey);
       expect(facilityFieldFinder, findsOneWidget);
       await tester.tap(facilityFieldFinder);
       await tester.pumpAndSettle();
       await tester.tap(find.text('Kanairo').last);
+      await tester.pumpAndSettle();
+      await tester.tap(saveFacilityBtnFinder);
       await tester.pumpAndSettle();
 
       final Finder fNameFieldFinder = find.byKey(firstNameKey);

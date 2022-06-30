@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/facility.dart';
 
 /// [BatchUpdateMiscStateAction] is the ONLY action that should be called to update [miscState]
 /// with the exception of [IncrementUserVisitCountAction]
@@ -16,6 +17,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
   final List<Member>? communityMembers;
   final String? inactiveTime;
   final bool? resumeWithPin;
+  final Facility? selectedFacility;
 
   BatchUpdateMiscStateAction({
     this.initialRoute,
@@ -23,6 +25,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
     this.communityMembers,
     this.inactiveTime,
     this.resumeWithPin,
+    this.selectedFacility,
   });
 
   @override
@@ -34,6 +37,7 @@ class BatchUpdateMiscStateAction extends ReduxAction<AppState> {
         communityMembers: communityMembers,
         inactiveTime: inactiveTime ?? state.miscState?.inactiveTime,
         resumeWithPin: resumeWithPin ?? state.miscState?.resumeWithPin,
+        selectedFacility: selectedFacility ?? state.miscState?.selectedFacility,
       ),
     );
 

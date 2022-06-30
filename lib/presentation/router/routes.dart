@@ -110,4 +110,6 @@ class AppRoutes {
   static const String galleryImagesPage = '/galleryImagesPage';
 
   static const String editGroupInfoPage = '/editGroupInfoPage';
+  
+  static const String searchFacilitiesPage = '/searchFacilitiesPage';
 }

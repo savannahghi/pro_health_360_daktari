@@ -252,6 +252,7 @@ const String clientPhoneExists =
     'A client with that phone number already exists';
 const String contactExists =
     'a contact with this value and flavour already exists';
+const String searchFacilitiesString = 'Search facilities';
 
 // add new staff page
 const String registerStaffSuccess = 'Successfully registered staff';
@@ -504,14 +505,20 @@ const String inviteMembersDescription =
 const String searchMembersString = 'Search members ...';
 const String fetchingMemberFlagText = 'fetching members';
 const String availableMembersText = 'available members';
+const String noAvailableFacilitiesText = 'There are no available facilities';
 const String noAvailableMemberDescription =
     'Please try again or contact support';
 const String inviteMembersSuccessfulText = 'Members invited successfully';
 const String noMemberFoundText = 'No member found with that name';
+const String noFacilityFoundText = 'No facility found with that code';
 const String couldNotFindAMemberText =
     'It seems like we could not find a member by the name ';
+const String couldNotFindFacilityText =
+    'It seems like we could not find a facility by the code ';
 const String confirmTheNamesAreCorrectText =
     '. Confirm that the names are correct before searching again, or use different names';
+const String confirmTheCodeIsCorrectText =
+    '. Confirm that the code is correct before searching again';
 const String staffMemberText = 'Staff member';
 
 // group info
@@ -869,3 +876,5 @@ const String fromString = 'From';
 const String toString = 'To';
 const String ageMustBeWithinRange = 'Age is invalid';
 const String checkInternetText = 'Check your internet connection and try again';
+const String searchFacilityActionString = 'Tap to search for a facility...';
+const String searchFacilityPageDescription = 'Search for a facility using its MFL code or name';

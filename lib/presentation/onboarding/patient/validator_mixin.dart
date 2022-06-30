@@ -71,7 +71,7 @@ mixin Validator {
   );
 
   static bool isValidName(String name) {
-    return name.isNotEmpty;
+    return name.isNotEmpty && name != UNKNOWN;
   }
 
   static bool isValidAgeRange(String age) {

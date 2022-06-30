@@ -56,6 +56,7 @@ const Key sendSurveyButtonKey = Key('send_survey_button_key');
 // add new patient page
 const Key myAfyaHubInviteKey = Key('appAccessKey');
 const Key patientRegisterBtnKey = Key('patientRegisterButton');
+const Key saveFacilityBtnKey = Key('save_facility_btn_key');
 const Key facilitySelectOptionFieldKey = Key('facility_select_option_field');
 const Key cccFieldKey = Key('ccc_field');
 const Key firstNameKey = Key('first_name_key');
@@ -173,10 +174,11 @@ const Key faqItemKey = Key('faq_item_key');
 
 const Key videoPlayIconKey = Key('video_play_icon_key');
 const Key cancelButtonKey = Key('cancel_button');
-
 const Key notificationItemActionKey = Key('notification_item_action_key');
 
 /// client search keys
 const Key sendClientInviteButtonKey = Key('send_client_invite_button_key');
 
 const Key resendClientInviteButtonKey = Key('resend_client_invite_button_key');
+const Key searchFacilityIconBtnKey = Key('search_facility_icon_btn_key');
+const Key searchNotFoundKey = Key('search_not_found_key');

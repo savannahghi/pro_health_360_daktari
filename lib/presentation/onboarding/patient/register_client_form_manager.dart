@@ -6,7 +6,6 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterClientFormManager with Validator {
   final BehaviorSubject<String> _facility = BehaviorSubject<String>();
-  Stream<String> get facility => _facility.stream.transform(validateName);
   Sink<String> get inFacility => _facility.sink;
 
   final BehaviorSubject<String> _firstName = BehaviorSubject<String>();
