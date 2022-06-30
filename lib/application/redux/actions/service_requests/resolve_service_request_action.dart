@@ -17,12 +17,14 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ResolveServiceRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String serviceRequestId;
+  final String? actionTakenDescription;
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
 
   ResolveServiceRequestAction({
     required this.serviceRequestId,
     required this.client,
+    required this.actionTakenDescription,
     this.onSuccess,
     this.onFailure,
   });
@@ -54,6 +56,7 @@ class ResolveServiceRequestAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'staffID': staffId,
       'requestID': serviceRequestId,
+      'comment': actionTakenDescription,
     };
 
     final Response result = await client.query(
