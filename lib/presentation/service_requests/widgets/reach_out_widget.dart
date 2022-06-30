@@ -31,7 +31,7 @@ class ReachOutWidget extends StatelessWidget {
       children: <Widget>[
         Text(
           reachOutString,
-          style: veryBoldSize20Text(AppColors.greyTextColor),
+          style: veryBoldSize18Text(AppColors.greyTextColor),
         ),
         smallVerticalSizedBox,
         Text(

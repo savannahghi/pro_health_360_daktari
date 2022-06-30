@@ -149,7 +149,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                   mediumVerticalSizedBox,
                   Text(
                     resolveString,
-                    style: veryBoldSize20Text(AppColors.greyTextColor),
+                    style: veryBoldSize18Text(AppColors.greyTextColor),
                   ),
                   smallVerticalSizedBox,
                   RichText(
@@ -169,8 +169,8 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                   ),
                   smallVerticalSizedBox,
                   Text(
-                    notesString,
-                    style: normalSize16Text(AppColors.greyTextColor),
+                    actionTakenString,
+                    style: veryBoldSize18Text(AppColors.greyTextColor),
                   ),
                   smallVerticalSizedBox,
                   TextField(
@@ -183,7 +183,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                     maxLines: 9,
                     minLines: 3,
                     decoration: InputDecoration(
-                      hintText: describeHelpProvidedString,
+                      hintText: describeActionTakenString,
                       hintStyle: normalSize14Text(
                         AppColors.greyTextColor.withOpacity(0.4),
                       ),
