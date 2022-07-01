@@ -36,11 +36,9 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
 
   final InputDecoration dropdownDecoration = InputDecoration(
     filled: true,
-    border: OutlineInputBorder(
+    border: UnderlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-    ),
-    enabledBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: Color(0x00eeeeee)),
+      borderSide: BorderSide.none,
     ),
   );
 
