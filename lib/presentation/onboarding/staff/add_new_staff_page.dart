@@ -33,11 +33,9 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
 
   final InputDecoration dropdownDecoration = InputDecoration(
     filled: true,
-    border: OutlineInputBorder(
+    border: UnderlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-    ),
-    enabledBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: Color(0x00eeeeee)),
+      borderSide: BorderSide.none,
     ),
   );
 
@@ -125,7 +123,7 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                 SearchFacilityField(
                   onChanged: (String facilityName) =>
                       _formManager.inFacility.add(facilityName),
-                      onFieldCleared: () => _formManager.inFacility.add(''),
+                  onFieldCleared: () => _formManager.inFacility.add(''),
                 ),
                 const SizedBox(height: 24),
                 Row(
