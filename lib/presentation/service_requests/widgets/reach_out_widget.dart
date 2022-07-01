@@ -1,6 +1,7 @@
 // Flutter imports
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prohealth360_daktari/application/core/services/utils.dart';
 import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
@@ -62,17 +63,23 @@ class ReachOutWidget extends StatelessWidget {
               iconSvgUrl: whatsappIconSvgPath,
               onTapCallback: phoneNumber.isNotEmpty && phoneNumber != UNKNOWN
                   ? () async {
-                      final String whatsAppURL =
-                          'https://wa.me/$phoneNumber?text=${Uri.parse(
-                        redFlagSMSTemplate(
-                          clientName: clientName,
-                          staffFirstName: staffFirstName,
-                          staffLastName: staffLastName,
+                      final Uri launchUri = Uri(
+                        scheme: 'https',
+                        path: 'wa.me/$phoneNumber',
+                        query: encodeQueryParameters(
+                          <String, String>{
+                            'text': redFlagSMSTemplate(
+                              clientName: clientName,
+                              staffFirstName: staffFirstName,
+                              staffLastName: staffLastName,
+                            ),
+                          },
                         ),
-                      )}';
-                      final Uri launchUri =
-                          Uri.parse(Uri.encodeFull(whatsAppURL));
-                      await launchUrl(launchUri);
+                      );
+                      launchUrl(
+                        launchUri,
+                        mode: LaunchMode.externalApplication,
+                      );
                     }
                   : null,
             ),
