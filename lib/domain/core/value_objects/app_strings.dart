@@ -877,4 +877,5 @@ const String toString = 'To';
 const String ageMustBeWithinRange = 'Age is invalid';
 const String checkInternetText = 'Check your internet connection and try again';
 const String searchFacilityActionString = 'Tap to search for a facility...';
-const String searchFacilityPageDescription = 'Search for a facility using its MFL code or name';
+const String searchFacilityPageDescription =
+    'Search for a facility using its MFL code or name';
