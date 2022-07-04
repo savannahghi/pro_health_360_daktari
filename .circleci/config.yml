@@ -221,8 +221,8 @@ workflows:
              only:
                - develop
      - deploy_to_play_store_alpha:
-        #  requires:
-        #    - run_tests_and_generate_coverage
+         requires:
+           - run_tests_and_generate_coverage
          filters:
            branches:
              only:
