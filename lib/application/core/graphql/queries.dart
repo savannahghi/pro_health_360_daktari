@@ -391,3 +391,14 @@ query getContent($categoryID: Int, $Limit: String!){
   }
 }
 ''';
+
+const String retrieveFacilityQuery = r'''
+query retrieveFacility($id: String!, $active: Boolean!){
+  retrieveFacility(id: $id, active: $active) {
+    ID
+    name
+    code
+    phone
+  }
+}
+''';

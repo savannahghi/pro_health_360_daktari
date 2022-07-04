@@ -57,6 +57,8 @@ class AppRoutes {
   static const String recoverPinRoute = '/recoverPin';
   static const String setNicknamePage = '/setNicknamePage';
   static const String contactAdminPage = '/contactAdminPage';
+  static const String facilityContactsPage = '/facilityContactsPage';
+  static const String addFacilityContactPage = '/addFacilityContactPage';
 
   // Profile Faqs Page
   static const String contentDetailsPage = '/contentDetailsPage';
@@ -110,6 +112,6 @@ class AppRoutes {
   static const String galleryImagesPage = '/galleryImagesPage';
 
   static const String editGroupInfoPage = '/editGroupInfoPage';
-  
+
   static const String searchFacilitiesPage = '/searchFacilitiesPage';
 }

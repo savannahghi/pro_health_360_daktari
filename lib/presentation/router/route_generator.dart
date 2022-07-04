@@ -39,7 +39,9 @@ import 'package:prohealth360_daktari/presentation/profile/faqs/pages/content_det
 import 'package:prohealth360_daktari/presentation/profile/faqs/pages/document_content_widget.dart';
 import 'package:prohealth360_daktari/presentation/profile/faqs/pages/gallery_images_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/faqs/pages/profile_faqs_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/add_facility_contact_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/edit_information_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/facility_contacts_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/settings_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/user_profile_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/widgets/edit_information_item.dart';
@@ -309,6 +311,21 @@ class RouteGenerator {
         return MaterialPageRoute<ContactAdminPage>(
           builder: (_) => const ContactAdminPage(),
           settings: const RouteSettings(name: 'Contact admin page'),
+        );
+
+      case AppRoutes.facilityContactsPage:
+        return MaterialPageRoute<FacilityContactsPage>(
+          builder: (_) => FacilityContactsPage(
+          ),
+          settings: const RouteSettings(name: 'Facility Contacts Page'),
+        );
+
+      case AppRoutes.addFacilityContactPage:
+        return MaterialPageRoute<AddFacilityContactPage>(
+          builder: (_) => AddFacilityContactPage(
+            phoneNumber: args as String,
+          ),
+          settings: const RouteSettings(name: 'AddFacility Contact Page'),
         );
 
       case AppRoutes.contentDetailsPage:

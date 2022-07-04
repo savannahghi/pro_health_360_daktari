@@ -36,6 +36,7 @@ import 'package:prohealth360_daktari/presentation/onboarding/terms/terms_and_con
 import 'package:prohealth360_daktari/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/faqs/pages/document_content_widget.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/edit_information_page.dart';
+import 'package:prohealth360_daktari/presentation/profile/pages/facility_contacts_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/settings_page.dart';
 import 'package:prohealth360_daktari/presentation/profile/pages/user_profile_page.dart';
 import 'package:prohealth360_daktari/presentation/resume_with_pin/resume_pin_connector.dart';
@@ -557,6 +558,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
     expect(route?.builder(context), isA<ResumePinConnector>());
+  });
+
+  test('Test router returns successful Facility Contacts Page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.facilityContactsPage);
+
+    final MaterialPageRoute<FacilityContactsPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<FacilityContactsPage>?;
+
+    expect(route, isA<MaterialPageRoute<FacilityContactsPage>>());
+    expect(route?.builder(context), isA<FacilityContactsPage>());
   });
 
   test('Test router returns  Document page', () {

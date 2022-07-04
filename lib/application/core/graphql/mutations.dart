@@ -218,3 +218,9 @@ mutation readNotifications($ids: [ID!]!){
   readNotifications(ids: $ids)
 }
 ''';
+
+const String addFacilityContactMutation = r'''
+mutation addFacilityContact($facilityID: ID!, $contact: String!) {
+  addFacilityContact(facilityID: $facilityID, contact: $contact)
+}
+''';
