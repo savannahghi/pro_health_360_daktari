@@ -58,6 +58,8 @@ const String securityQuestionThresholdEvent = 'security_question_threshold';
 
 const String setNicknameEvent = 'set_nickname';
 
+const String addFacilityContactEvent = 'add_facility_contact_nickname';
+
 const String setUserPINEvent = 'set_PIN';
 
 const String noConnectionEvent = 'no_internet_connection';

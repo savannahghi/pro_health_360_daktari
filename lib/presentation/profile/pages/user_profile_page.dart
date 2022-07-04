@@ -63,6 +63,15 @@ class UserProfilePage extends StatelessWidget {
                   ),
                   // contact admin
                   UserProfileItem(
+                    iconPath: phoneIconSvgPath,
+                    title: facilityContactsString,
+                    itemBackgroundColor: AppColors.profileListCardColor,
+                    onTap: () => Navigator.of(context).pushNamed(
+                      AppRoutes.facilityContactsPage,
+                    ),
+                  ),
+                  // contact admin
+                  UserProfileItem(
                     iconPath: helpCircleIcon,
                     title: helpContactAdminString,
                     itemBackgroundColor: AppColors.profileListCardColor,

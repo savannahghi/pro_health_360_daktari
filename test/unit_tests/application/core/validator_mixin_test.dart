@@ -103,7 +103,7 @@ void main() {
       testClass.inPhoneNumber?.add(incorrectPhoneNumber);
       await expectLater(
         testClass.phoneNumber,
-        emitsError(const UserException('Invalid phone number')),
+        emitsError(const UserException(invalidPhoneNumber)),
       );
 
       phoneSubject.close();

@@ -66,6 +66,19 @@ const String conversationsInvitesTitle = 'Conversations invites';
 const String groupInvitesString = 'Group Invites';
 const String groupsYouHaveBeenInvited = 'Groups you have been invited to';
 const String youHaveNoInvites = 'You have no invites';
+const String facilityContactsString = 'Facility contacts';
+const String addFacilityContactString = 'Add facility contact';
+const String facilityPhoneNumberString = 'Facility phone number';
+const String enterPhoneNumberString = 'Enter phone number';
+const String updateContactString = 'Update Contact';
+const String saveContactString = 'Save Contact';
+const String createContactString = 'Create Contact';
+const String facilityContactsDescriptionString =
+    'Here is the contact information for your facility. Clients will use this information to contact';
+const String addFacilityContactDescriptionString =
+    'Add contact information about your facility. Clients will be able to contact your facility using this phone number';
+const String noContactForFacilityDescriptionString =
+    'Your facility does not have a contact added. Tap below to add it';
 const String noInvitesDescription =
     'There seems to be no group invites for you at the moment. We will notify you the moment you get more invites. Enjoy your day!';
 const String invitationAcceptedSuccessfully =
@@ -870,6 +883,9 @@ const String noConversationsDescription =
 const String viewInvites = 'View Invites';
 const String orString = 'or';
 
+
+const String contactUpdateSuccessfulString = 'Facility contact updated successfully';
+
 const String enterAgeFromString = 'Please enter an age range from';
 const String ageConstraintsString = ' 14 to 25';
 const String fromString = 'From';
@@ -879,3 +895,4 @@ const String checkInternetText = 'Check your internet connection and try again';
 const String searchFacilityActionString = 'Tap to search for a facility...';
 const String searchFacilityPageDescription =
     'Search for a facility using its MFL code or name';
+const String invalidPhoneNumber = 'Invalid phone number';

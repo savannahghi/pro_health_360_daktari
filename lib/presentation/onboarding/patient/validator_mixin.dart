@@ -55,7 +55,7 @@ mixin Validator {
       if (isValidPhone(value)) {
         sink.add(value);
       } else {
-        sink.addError(const UserException('Invalid phone number'));
+        sink.addError(const UserException(invalidPhoneNumber));
       }
     },
   );
