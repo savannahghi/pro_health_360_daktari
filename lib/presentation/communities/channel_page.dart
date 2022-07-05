@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_asset_strings.dart';
 import 'package:prohealth360_daktari/presentation/communities/group_info/pages/group_info_page.dart';
-import 'package:prohealth360_daktari/presentation/communities/thread_page.dart';
-
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {
@@ -25,7 +23,7 @@ class ChannelPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: ChannelHeader(
+      appBar: StreamChannelHeader(
         title: GestureDetector(
           onTap: () {
             _navigateToGroupInfoPage(context, channel, channelName);
@@ -61,16 +59,11 @@ class ChannelPage extends StatelessWidget {
         ],
       ),
       body: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Expanded(
-            child: MessageListView(
-              threadBuilder: (_, Message? parentMessage) => ThreadPage(
-                parent: parentMessage,
-              ),
-              pinPermissions: const <String>['admin', 'user', 'owner'],
-            ),
+            child: StreamMessageListView(),
           ),
-          const MessageInput(),
+          StreamMessageInput(),
         ],
       ),
     );

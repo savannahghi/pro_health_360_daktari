@@ -91,13 +91,15 @@ class ResolveStaffPinRequestAction extends ReduxAction<AppState> {
             state.serviceRequestState?.staffServiceRequests;
 
         if (serviceRequests != null) {
-          serviceRequests.removeWhere(
-            (ServiceRequest request) => request.id == serviceRequestId,
-          );
-
+          final List<ServiceRequest> remainingServiceRequests = serviceRequests
+              .where(
+                (ServiceRequest request) => request.id != serviceRequestId,
+              )
+              .toList();
+              
           dispatch(
             UpdateServiceRequestsStateAction(
-              staffServiceRequests: serviceRequests,
+              staffServiceRequests: remainingServiceRequests,
             ),
           );
 

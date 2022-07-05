@@ -12,40 +12,11 @@ part of 'user_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserData _$UserDataFromJson(Map<String, dynamic> json) {
   return _UserData.fromJson(json);
 }
-
-/// @nodoc
-class _$UserDataTearOff {
-  const _$UserDataTearOff();
-
-  _UserData call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Username') String? userName,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact,
-      @JsonKey(name: 'Name') String? name}) {
-    return _UserData(
-      id: id,
-      userName: userName,
-      termsAccepted: termsAccepted,
-      active: active,
-      primaryContact: primaryContact,
-      name: name,
-    );
-  }
-
-  UserData fromJson(Map<String, Object?> json) {
-    return UserData.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $UserData = _$UserDataTearOff();
 
 /// @nodoc
 mixin _$UserData {
@@ -141,9 +112,10 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
-  factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) then) =
-      __$UserDataCopyWithImpl<$Res>;
+abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
+  factory _$$_UserDataCopyWith(
+          _$_UserData value, $Res Function(_$_UserData) then) =
+      __$$_UserDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? id,
@@ -158,13 +130,14 @@ abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
-    implements _$UserDataCopyWith<$Res> {
-  __$UserDataCopyWithImpl(_UserData _value, $Res Function(_UserData) _then)
-      : super(_value, (v) => _then(v as _UserData));
+class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
+    implements _$$_UserDataCopyWith<$Res> {
+  __$$_UserDataCopyWithImpl(
+      _$_UserData _value, $Res Function(_$_UserData) _then)
+      : super(_value, (v) => _then(v as _$_UserData));
 
   @override
-  _UserData get _value => super._value as _UserData;
+  _$_UserData get _value => super._value as _$_UserData;
 
   @override
   $Res call({
@@ -175,7 +148,7 @@ class __$UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? primaryContact = freezed,
     Object? name = freezed,
   }) {
-    return _then(_UserData(
+    return _then(_$_UserData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -246,7 +219,7 @@ class _$_UserData implements _UserData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserData &&
+            other is _$_UserData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality()
@@ -257,6 +230,7 @@ class _$_UserData implements _UserData {
             const DeepCollectionEquality().equals(other.name, name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -269,8 +243,8 @@ class _$_UserData implements _UserData {
 
   @JsonKey(ignore: true)
   @override
-  _$UserDataCopyWith<_UserData> get copyWith =>
-      __$UserDataCopyWithImpl<_UserData>(this, _$identity);
+  _$$_UserDataCopyWith<_$_UserData> get copyWith =>
+      __$$_UserDataCopyWithImpl<_$_UserData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -280,35 +254,41 @@ class _$_UserData implements _UserData {
 
 abstract class _UserData implements UserData {
   factory _UserData(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Username') String? userName,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'Contacts') Contact? primaryContact,
-      @JsonKey(name: 'Name') String? name}) = _$_UserData;
+      {@JsonKey(name: 'ID')
+          final String? id,
+      @JsonKey(name: 'Username')
+          final String? userName,
+      @JsonKey(name: 'TermsAccepted', defaultValue: false)
+          final bool? termsAccepted,
+      @JsonKey(name: 'Active', defaultValue: false)
+          final bool? active,
+      @JsonKey(name: 'Contacts')
+          final Contact? primaryContact,
+      @JsonKey(name: 'Name')
+          final String? name}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
   @override
   @JsonKey(name: 'ID')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Username')
-  String? get userName;
+  String? get userName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'TermsAccepted', defaultValue: false)
-  bool? get termsAccepted;
+  bool? get termsAccepted => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Active', defaultValue: false)
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Contacts')
-  Contact? get primaryContact;
+  Contact? get primaryContact => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Name')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserDataCopyWith<_UserData> get copyWith =>
+  _$$_UserDataCopyWith<_$_UserData> get copyWith =>
       throw _privateConstructorUsedError;
 }

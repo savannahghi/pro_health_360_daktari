@@ -12,34 +12,11 @@ part of 'phone_login_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PhoneLoginResponse _$PhoneLoginResponseFromJson(Map<String, dynamic> json) {
   return _PhoneLoginResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$PhoneLoginResponseTearOff {
-  const _$PhoneLoginResponseTearOff();
-
-  _PhoneLoginResponse call(
-      {@JsonKey(name: 'code') int? code,
-      @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'response') UserResponse? userResponse}) {
-    return _PhoneLoginResponse(
-      code: code,
-      message: message,
-      userResponse: userResponse,
-    );
-  }
-
-  PhoneLoginResponse fromJson(Map<String, Object?> json) {
-    return PhoneLoginResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PhoneLoginResponse = _$PhoneLoginResponseTearOff();
 
 /// @nodoc
 mixin _$PhoneLoginResponse {
@@ -113,11 +90,11 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PhoneLoginResponseCopyWith<$Res>
+abstract class _$$_PhoneLoginResponseCopyWith<$Res>
     implements $PhoneLoginResponseCopyWith<$Res> {
-  factory _$PhoneLoginResponseCopyWith(
-          _PhoneLoginResponse value, $Res Function(_PhoneLoginResponse) then) =
-      __$PhoneLoginResponseCopyWithImpl<$Res>;
+  factory _$$_PhoneLoginResponseCopyWith(_$_PhoneLoginResponse value,
+          $Res Function(_$_PhoneLoginResponse) then) =
+      __$$_PhoneLoginResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'code') int? code,
@@ -129,15 +106,15 @@ abstract class _$PhoneLoginResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PhoneLoginResponseCopyWithImpl<$Res>
+class __$$_PhoneLoginResponseCopyWithImpl<$Res>
     extends _$PhoneLoginResponseCopyWithImpl<$Res>
-    implements _$PhoneLoginResponseCopyWith<$Res> {
-  __$PhoneLoginResponseCopyWithImpl(
-      _PhoneLoginResponse _value, $Res Function(_PhoneLoginResponse) _then)
-      : super(_value, (v) => _then(v as _PhoneLoginResponse));
+    implements _$$_PhoneLoginResponseCopyWith<$Res> {
+  __$$_PhoneLoginResponseCopyWithImpl(
+      _$_PhoneLoginResponse _value, $Res Function(_$_PhoneLoginResponse) _then)
+      : super(_value, (v) => _then(v as _$_PhoneLoginResponse));
 
   @override
-  _PhoneLoginResponse get _value => super._value as _PhoneLoginResponse;
+  _$_PhoneLoginResponse get _value => super._value as _$_PhoneLoginResponse;
 
   @override
   $Res call({
@@ -145,7 +122,7 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? userResponse = freezed,
   }) {
-    return _then(_PhoneLoginResponse(
+    return _then(_$_PhoneLoginResponse(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -192,13 +169,14 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PhoneLoginResponse &&
+            other is _$_PhoneLoginResponse &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
                 .equals(other.userResponse, userResponse));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -208,8 +186,9 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$PhoneLoginResponseCopyWith<_PhoneLoginResponse> get copyWith =>
-      __$PhoneLoginResponseCopyWithImpl<_PhoneLoginResponse>(this, _$identity);
+  _$$_PhoneLoginResponseCopyWith<_$_PhoneLoginResponse> get copyWith =>
+      __$$_PhoneLoginResponseCopyWithImpl<_$_PhoneLoginResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -219,9 +198,9 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
 abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   factory _PhoneLoginResponse(
-          {@JsonKey(name: 'code') int? code,
-          @JsonKey(name: 'message') String? message,
-          @JsonKey(name: 'response') UserResponse? userResponse}) =
+          {@JsonKey(name: 'code') final int? code,
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'response') final UserResponse? userResponse}) =
       _$_PhoneLoginResponse;
 
   factory _PhoneLoginResponse.fromJson(Map<String, dynamic> json) =
@@ -229,15 +208,15 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
 
   @override
   @JsonKey(name: 'code')
-  int? get code;
+  int? get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'message')
-  String? get message;
+  String? get message => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'response')
-  UserResponse? get userResponse;
+  UserResponse? get userResponse => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PhoneLoginResponseCopyWith<_PhoneLoginResponse> get copyWith =>
+  _$$_PhoneLoginResponseCopyWith<_$_PhoneLoginResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

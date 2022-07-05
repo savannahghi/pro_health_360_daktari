@@ -32,7 +32,7 @@ class _SearchClientPageState extends State<SearchClientPage> {
     super.initState();
 
     // reset the values in state
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       StoreProvider.dispatch(
         context,
         UpdateSearchUserResponseStateAction(

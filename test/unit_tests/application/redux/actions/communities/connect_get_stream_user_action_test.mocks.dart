@@ -156,10 +156,6 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
       (super.noSuchMethod(Invocation.getter(#logHandlerFunction),
           returnValue: (_i3.LogRecord record) {}) as _i2.LogHandlerFunction);
   @override
-  set logHandlerFunction(_i2.LogHandlerFunction? _logHandlerFunction) => super
-      .noSuchMethod(Invocation.setter(#logHandlerFunction, _logHandlerFunction),
-          returnValueForMissingStub: null);
-  @override
   set chatPersistenceClient(_i10.ChatPersistenceClient? value) =>
       super.noSuchMethod(Invocation.setter(#chatPersistenceClient, value),
           returnValueForMissingStub: null);
@@ -371,10 +367,18 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
   _i11.Future<_i6.SendFileResponse> sendFile(
           _i19.AttachmentFile? file, String? channelId, String? channelType,
           {_i20.ProgressCallback? onSendProgress,
-          _i20.CancelToken? cancelToken}) =>
+          _i20.CancelToken? cancelToken,
+          Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-              Invocation.method(#sendFile, [file, channelId, channelType],
-                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              Invocation.method(#sendFile, [
+                file,
+                channelId,
+                channelType
+              ], {
+                #onSendProgress: onSendProgress,
+                #cancelToken: cancelToken,
+                #extraData: extraData
+              }),
               returnValue:
                   Future<_i6.SendFileResponse>.value(_FakeSendFileResponse_8()))
           as _i11.Future<_i6.SendFileResponse>);
@@ -382,30 +386,38 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
   _i11.Future<_i6.SendImageResponse> sendImage(
           _i19.AttachmentFile? image, String? channelId, String? channelType,
           {_i20.ProgressCallback? onSendProgress,
-          _i20.CancelToken? cancelToken}) =>
+          _i20.CancelToken? cancelToken,
+          Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-              Invocation.method(#sendImage, [image, channelId, channelType],
-                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              Invocation.method(#sendImage, [
+                image,
+                channelId,
+                channelType
+              ], {
+                #onSendProgress: onSendProgress,
+                #cancelToken: cancelToken,
+                #extraData: extraData
+              }),
               returnValue: Future<_i6.SendImageResponse>.value(
                   _FakeSendImageResponse_9()))
           as _i11.Future<_i6.SendImageResponse>);
   @override
   _i11.Future<_i6.EmptyResponse> deleteFile(
           String? url, String? channelId, String? channelType,
-          {_i20.CancelToken? cancelToken}) =>
+          {_i20.CancelToken? cancelToken, Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
               Invocation.method(#deleteFile, [url, channelId, channelType],
-                  {#cancelToken: cancelToken}),
+                  {#cancelToken: cancelToken, #extraData: extraData}),
               returnValue:
                   Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_10()))
           as _i11.Future<_i6.EmptyResponse>);
   @override
   _i11.Future<_i6.EmptyResponse> deleteImage(
           String? url, String? channelId, String? channelType,
-          {_i20.CancelToken? cancelToken}) =>
+          {_i20.CancelToken? cancelToken, Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
               Invocation.method(#deleteImage, [url, channelId, channelType],
-                  {#cancelToken: cancelToken}),
+                  {#cancelToken: cancelToken, #extraData: extraData}),
               returnValue:
                   Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_10()))
           as _i11.Future<_i6.EmptyResponse>);
@@ -431,8 +443,11 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
           as _i11.Future<_i6.PartialUpdateChannelResponse>);
   @override
   _i11.Future<_i6.EmptyResponse> addDevice(
-          String? id, _i22.PushProvider? pushProvider) =>
-      (super.noSuchMethod(Invocation.method(#addDevice, [id, pushProvider]),
+          String? id, _i22.PushProvider? pushProvider,
+          {String? pushProviderName}) =>
+      (super.noSuchMethod(
+              Invocation.method(#addDevice, [id, pushProvider],
+                  {#pushProviderName: pushProviderName}),
               returnValue:
                   Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_10()))
           as _i11.Future<_i6.EmptyResponse>);
@@ -792,10 +807,10 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
   @override
   _i11.Future<_i6.SendMessageResponse> sendMessage(
           _i21.Message? message, String? channelId, String? channelType,
-          {bool? skipPush = false}) =>
+          {bool? skipPush = false, bool? skipEnrichUrl = false}) =>
       (super.noSuchMethod(
               Invocation.method(#sendMessage, [message, channelId, channelType],
-                  {#skipPush: skipPush}),
+                  {#skipPush: skipPush, #skipEnrichUrl: skipEnrichUrl}),
               returnValue: Future<_i6.SendMessageResponse>.value(
                   _FakeSendMessageResponse_26()))
           as _i11.Future<_i6.SendMessageResponse>);
@@ -817,20 +832,25 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
                   _FakeQueryReactionsResponse_28()))
           as _i11.Future<_i6.QueryReactionsResponse>);
   @override
-  _i11.Future<_i6.UpdateMessageResponse> updateMessage(_i21.Message? message) =>
-      (super.noSuchMethod(Invocation.method(#updateMessage, [message]),
+  _i11.Future<_i6.UpdateMessageResponse> updateMessage(_i21.Message? message,
+          {bool? skipEnrichUrl = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #updateMessage, [message], {#skipEnrichUrl: skipEnrichUrl}),
               returnValue: Future<_i6.UpdateMessageResponse>.value(
                   _FakeUpdateMessageResponse_29()))
           as _i11.Future<_i6.UpdateMessageResponse>);
   @override
   _i11.Future<_i6.UpdateMessageResponse> partialUpdateMessage(String? messageId,
-          {Map<String, Object?>? set, List<String>? unset}) =>
+          {Map<String, Object?>? set,
+          List<String>? unset,
+          bool? skipEnrichUrl = false}) =>
       (super.noSuchMethod(
-          Invocation.method(
-              #partialUpdateMessage, [messageId], {#set: set, #unset: unset}),
-          returnValue: Future<_i6.UpdateMessageResponse>.value(
-              _FakeUpdateMessageResponse_29())) as _i11
-          .Future<_i6.UpdateMessageResponse>);
+              Invocation.method(#partialUpdateMessage, [messageId],
+                  {#set: set, #unset: unset, #skipEnrichUrl: skipEnrichUrl}),
+              returnValue: Future<_i6.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_29()))
+          as _i11.Future<_i6.UpdateMessageResponse>);
   @override
   _i11.Future<_i6.EmptyResponse> deleteMessage(String? messageId,
           {bool? hard}) =>

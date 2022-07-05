@@ -7,20 +7,20 @@ documentation: https://github.com/savannahghi/AfyaMoja/tree/main/docs
 publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.1.9
+  afya_moja_core: ^0.2.2
   app_wrapper: ^0.1.36
-  async_redux: ^12.0.0
-  collection: ^1.15.0
+  async_redux: ^15.0.0
+  collection: ^1.16.0
   connectivity_plus: ^2.3.5
   cupertino_icons: ^1.0.5
   debug_logger: ^0.0.23
   dotted_decoration: ^2.0.0
-  firebase_analytics: ^9.1.10
-  firebase_core: ^1.18.0
-  firebase_messaging: ^11.4.2
+  firebase_analytics: ^9.1.12
+  firebase_core: ^1.19.1
+  firebase_messaging: ^11.4.4
   flutter:
     sdk: flutter
   flutter_config: ^2.0.0
@@ -30,8 +30,8 @@ dependencies:
     sdk: flutter
   flutter_pdfview: ^1.2.1
   flutter_svg: ^1.0.3
-  freezed: ^1.1.1
-  freezed_annotation: ^1.1.0
+  freezed: ^2.0.3+1
+  freezed_annotation: ^2.0.3
   http: ^0.13.4
   intl: ^0.17.0
   json_annotation: ^4.5.0
@@ -43,7 +43,7 @@ dependencies:
   shared_themes: ^0.1.1
   sms_autofill: ^2.2.0
   sqflite: ^2.0.2+1
-  stream_chat_flutter: ^3.6.1
+  stream_chat_flutter: ^4.1.0
   unicons: ^2.0.1
   url_launcher: ^6.1.4
 
@@ -56,7 +56,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   lint: ^1.8.2
   mockito: ^5.2.0
-  mocktail_image_network: ^0.0.1-dev.1
+  mocktail_image_network: ^0.3.1
   plugin_platform_interface: ^2.1.2
 
 flutter:

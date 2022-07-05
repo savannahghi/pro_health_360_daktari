@@ -12,34 +12,11 @@ part of 'service_request_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequestMeta _$ServiceRequestMetaFromJson(Map<String, dynamic> json) {
   return _ServiceRequestMeta.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestMetaTearOff {
-  const _$ServiceRequestMetaTearOff();
-
-  _ServiceRequestMeta call(
-      {@JsonKey(name: 'ccc_number') String? cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
-      @JsonKey(name: 'note') String? note}) {
-    return _ServiceRequestMeta(
-      cccNumber: cccNumber,
-      isCccNumberValid: isCccNumberValid,
-      note: note,
-    );
-  }
-
-  ServiceRequestMeta fromJson(Map<String, Object?> json) {
-    return ServiceRequestMeta.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequestMeta = _$ServiceRequestMetaTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestMeta {
@@ -100,11 +77,11 @@ class _$ServiceRequestMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestMetaCopyWith<$Res>
+abstract class _$$_ServiceRequestMetaCopyWith<$Res>
     implements $ServiceRequestMetaCopyWith<$Res> {
-  factory _$ServiceRequestMetaCopyWith(
-          _ServiceRequestMeta value, $Res Function(_ServiceRequestMeta) then) =
-      __$ServiceRequestMetaCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestMetaCopyWith(_$_ServiceRequestMeta value,
+          $Res Function(_$_ServiceRequestMeta) then) =
+      __$$_ServiceRequestMetaCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ccc_number') String? cccNumber,
@@ -113,15 +90,15 @@ abstract class _$ServiceRequestMetaCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestMetaCopyWithImpl<$Res>
+class __$$_ServiceRequestMetaCopyWithImpl<$Res>
     extends _$ServiceRequestMetaCopyWithImpl<$Res>
-    implements _$ServiceRequestMetaCopyWith<$Res> {
-  __$ServiceRequestMetaCopyWithImpl(
-      _ServiceRequestMeta _value, $Res Function(_ServiceRequestMeta) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestMeta));
+    implements _$$_ServiceRequestMetaCopyWith<$Res> {
+  __$$_ServiceRequestMetaCopyWithImpl(
+      _$_ServiceRequestMeta _value, $Res Function(_$_ServiceRequestMeta) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequestMeta));
 
   @override
-  _ServiceRequestMeta get _value => super._value as _ServiceRequestMeta;
+  _$_ServiceRequestMeta get _value => super._value as _$_ServiceRequestMeta;
 
   @override
   $Res call({
@@ -129,7 +106,7 @@ class __$ServiceRequestMetaCopyWithImpl<$Res>
     Object? isCccNumberValid = freezed,
     Object? note = freezed,
   }) {
-    return _then(_ServiceRequestMeta(
+    return _then(_$_ServiceRequestMeta(
       cccNumber: cccNumber == freezed
           ? _value.cccNumber
           : cccNumber // ignore: cast_nullable_to_non_nullable
@@ -176,13 +153,14 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestMeta &&
+            other is _$_ServiceRequestMeta &&
             const DeepCollectionEquality().equals(other.cccNumber, cccNumber) &&
             const DeepCollectionEquality()
                 .equals(other.isCccNumberValid, isCccNumberValid) &&
             const DeepCollectionEquality().equals(other.note, note));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -192,8 +170,9 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestMetaCopyWith<_ServiceRequestMeta> get copyWith =>
-      __$ServiceRequestMetaCopyWithImpl<_ServiceRequestMeta>(this, _$identity);
+  _$$_ServiceRequestMetaCopyWith<_$_ServiceRequestMeta> get copyWith =>
+      __$$_ServiceRequestMetaCopyWithImpl<_$_ServiceRequestMeta>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -203,24 +182,24 @@ class _$_ServiceRequestMeta implements _ServiceRequestMeta {
 
 abstract class _ServiceRequestMeta implements ServiceRequestMeta {
   factory _ServiceRequestMeta(
-      {@JsonKey(name: 'ccc_number') String? cccNumber,
-      @JsonKey(name: 'is_ccc_number_valid') bool? isCccNumberValid,
-      @JsonKey(name: 'note') String? note}) = _$_ServiceRequestMeta;
+      {@JsonKey(name: 'ccc_number') final String? cccNumber,
+      @JsonKey(name: 'is_ccc_number_valid') final bool? isCccNumberValid,
+      @JsonKey(name: 'note') final String? note}) = _$_ServiceRequestMeta;
 
   factory _ServiceRequestMeta.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestMeta.fromJson;
 
   @override
   @JsonKey(name: 'ccc_number')
-  String? get cccNumber;
+  String? get cccNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'is_ccc_number_valid')
-  bool? get isCccNumberValid;
+  bool? get isCccNumberValid => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'note')
-  String? get note;
+  String? get note => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestMetaCopyWith<_ServiceRequestMeta> get copyWith =>
+  _$$_ServiceRequestMetaCopyWith<_$_ServiceRequestMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

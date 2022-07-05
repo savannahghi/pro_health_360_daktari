@@ -30,7 +30,7 @@ class _SearchStaffMemberPageState extends State<SearchStaffMemberPage> {
   void initState() {
     super.initState();
     // reset the values in state
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       StoreProvider.dispatch(
         context,
         UpdateSearchUserResponseStateAction(

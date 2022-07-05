@@ -111,16 +111,13 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
         responseMap['data'] as Map<String, dynamic>,
       );
 
-      final List<SecurityQuestionResponse> responses =
-          <SecurityQuestionResponse>[];
-      for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
-        responses.add(SecurityQuestionResponse.initial());
-      }
-
       dispatch(
         UpdateOnboardingStateAction(
           securityQuestions: securityQuestionsData.securityQuestions,
-          securityQuestionsResponses: responses,
+          securityQuestionsResponses: List<SecurityQuestionResponse>.filled(
+            securityQuestionsData.securityQuestions.length,
+            SecurityQuestionResponse.initial(),
+          ),
         ),
       );
     }

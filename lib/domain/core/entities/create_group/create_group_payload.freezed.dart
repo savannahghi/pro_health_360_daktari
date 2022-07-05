@@ -12,40 +12,11 @@ part of 'create_group_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 CreateGroupPayload _$CreateGroupPayloadFromJson(Map<String, dynamic> json) {
   return _CreateGroupPayload.fromJson(json);
 }
-
-/// @nodoc
-class _$CreateGroupPayloadTearOff {
-  const _$CreateGroupPayloadTearOff();
-
-  _CreateGroupPayload call(
-      {String? name,
-      String? description,
-      AgeRange? ageRange,
-      List<Gender>? gender,
-      List<ClientType>? clientType,
-      bool? inviteOnly}) {
-    return _CreateGroupPayload(
-      name: name,
-      description: description,
-      ageRange: ageRange,
-      gender: gender,
-      clientType: clientType,
-      inviteOnly: inviteOnly,
-    );
-  }
-
-  CreateGroupPayload fromJson(Map<String, Object?> json) {
-    return CreateGroupPayload.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $CreateGroupPayload = _$CreateGroupPayloadTearOff();
 
 /// @nodoc
 mixin _$CreateGroupPayload {
@@ -137,11 +108,11 @@ class _$CreateGroupPayloadCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreateGroupPayloadCopyWith<$Res>
+abstract class _$$_CreateGroupPayloadCopyWith<$Res>
     implements $CreateGroupPayloadCopyWith<$Res> {
-  factory _$CreateGroupPayloadCopyWith(
-          _CreateGroupPayload value, $Res Function(_CreateGroupPayload) then) =
-      __$CreateGroupPayloadCopyWithImpl<$Res>;
+  factory _$$_CreateGroupPayloadCopyWith(_$_CreateGroupPayload value,
+          $Res Function(_$_CreateGroupPayload) then) =
+      __$$_CreateGroupPayloadCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? name,
@@ -156,15 +127,15 @@ abstract class _$CreateGroupPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CreateGroupPayloadCopyWithImpl<$Res>
+class __$$_CreateGroupPayloadCopyWithImpl<$Res>
     extends _$CreateGroupPayloadCopyWithImpl<$Res>
-    implements _$CreateGroupPayloadCopyWith<$Res> {
-  __$CreateGroupPayloadCopyWithImpl(
-      _CreateGroupPayload _value, $Res Function(_CreateGroupPayload) _then)
-      : super(_value, (v) => _then(v as _CreateGroupPayload));
+    implements _$$_CreateGroupPayloadCopyWith<$Res> {
+  __$$_CreateGroupPayloadCopyWithImpl(
+      _$_CreateGroupPayload _value, $Res Function(_$_CreateGroupPayload) _then)
+      : super(_value, (v) => _then(v as _$_CreateGroupPayload));
 
   @override
-  _CreateGroupPayload get _value => super._value as _CreateGroupPayload;
+  _$_CreateGroupPayload get _value => super._value as _$_CreateGroupPayload;
 
   @override
   $Res call({
@@ -175,7 +146,7 @@ class __$CreateGroupPayloadCopyWithImpl<$Res>
     Object? clientType = freezed,
     Object? inviteOnly = freezed,
   }) {
-    return _then(_CreateGroupPayload(
+    return _then(_$_CreateGroupPayload(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -189,11 +160,11 @@ class __$CreateGroupPayloadCopyWithImpl<$Res>
           : ageRange // ignore: cast_nullable_to_non_nullable
               as AgeRange?,
       gender: gender == freezed
-          ? _value.gender
+          ? _value._gender
           : gender // ignore: cast_nullable_to_non_nullable
               as List<Gender>?,
       clientType: clientType == freezed
-          ? _value.clientType
+          ? _value._clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
       inviteOnly: inviteOnly == freezed
@@ -212,9 +183,11 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
       {this.name,
       this.description,
       this.ageRange,
-      this.gender,
-      this.clientType,
-      this.inviteOnly});
+      final List<Gender>? gender,
+      final List<ClientType>? clientType,
+      this.inviteOnly})
+      : _gender = gender,
+        _clientType = clientType;
 
   factory _$_CreateGroupPayload.fromJson(Map<String, dynamic> json) =>
       _$$_CreateGroupPayloadFromJson(json);
@@ -225,10 +198,24 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
   final String? description;
   @override
   final AgeRange? ageRange;
+  final List<Gender>? _gender;
   @override
-  final List<Gender>? gender;
+  List<Gender>? get gender {
+    final value = _gender;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ClientType>? _clientType;
   @override
-  final List<ClientType>? clientType;
+  List<ClientType>? get clientType {
+    final value = _clientType;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final bool? inviteOnly;
 
@@ -241,32 +228,34 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreateGroupPayload &&
+            other is _$_CreateGroupPayload &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other._gender, _gender) &&
             const DeepCollectionEquality()
-                .equals(other.clientType, clientType) &&
+                .equals(other._clientType, _clientType) &&
             const DeepCollectionEquality()
                 .equals(other.inviteOnly, inviteOnly));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(ageRange),
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(clientType),
+      const DeepCollectionEquality().hash(_gender),
+      const DeepCollectionEquality().hash(_clientType),
       const DeepCollectionEquality().hash(inviteOnly));
 
   @JsonKey(ignore: true)
   @override
-  _$CreateGroupPayloadCopyWith<_CreateGroupPayload> get copyWith =>
-      __$CreateGroupPayloadCopyWithImpl<_CreateGroupPayload>(this, _$identity);
+  _$$_CreateGroupPayloadCopyWith<_$_CreateGroupPayload> get copyWith =>
+      __$$_CreateGroupPayloadCopyWithImpl<_$_CreateGroupPayload>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -276,30 +265,30 @@ class _$_CreateGroupPayload implements _CreateGroupPayload {
 
 abstract class _CreateGroupPayload implements CreateGroupPayload {
   factory _CreateGroupPayload(
-      {String? name,
-      String? description,
-      AgeRange? ageRange,
-      List<Gender>? gender,
-      List<ClientType>? clientType,
-      bool? inviteOnly}) = _$_CreateGroupPayload;
+      {final String? name,
+      final String? description,
+      final AgeRange? ageRange,
+      final List<Gender>? gender,
+      final List<ClientType>? clientType,
+      final bool? inviteOnly}) = _$_CreateGroupPayload;
 
   factory _CreateGroupPayload.fromJson(Map<String, dynamic> json) =
       _$_CreateGroupPayload.fromJson;
 
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  AgeRange? get ageRange;
+  AgeRange? get ageRange => throw _privateConstructorUsedError;
   @override
-  List<Gender>? get gender;
+  List<Gender>? get gender => throw _privateConstructorUsedError;
   @override
-  List<ClientType>? get clientType;
+  List<ClientType>? get clientType => throw _privateConstructorUsedError;
   @override
-  bool? get inviteOnly;
+  bool? get inviteOnly => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreateGroupPayloadCopyWith<_CreateGroupPayload> get copyWith =>
+  _$$_CreateGroupPayloadCopyWith<_$_CreateGroupPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }

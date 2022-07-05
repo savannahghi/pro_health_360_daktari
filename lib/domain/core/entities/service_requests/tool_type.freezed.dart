@@ -12,29 +12,11 @@ part of 'tool_type.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ToolType _$ToolTypeFromJson(Map<String, dynamic> json) {
   return _ToolType.fromJson(json);
 }
-
-/// @nodoc
-class _$ToolTypeTearOff {
-  const _$ToolTypeTearOff();
-
-  _ToolType call({@JsonKey(name: 'toolType') ScreeningToolsType? toolType}) {
-    return _ToolType(
-      toolType: toolType,
-    );
-  }
-
-  ToolType fromJson(Map<String, Object?> json) {
-    return ToolType.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ToolType = _$ToolTypeTearOff();
 
 /// @nodoc
 mixin _$ToolType {
@@ -76,27 +58,29 @@ class _$ToolTypeCopyWithImpl<$Res> implements $ToolTypeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ToolTypeCopyWith<$Res> implements $ToolTypeCopyWith<$Res> {
-  factory _$ToolTypeCopyWith(_ToolType value, $Res Function(_ToolType) then) =
-      __$ToolTypeCopyWithImpl<$Res>;
+abstract class _$$_ToolTypeCopyWith<$Res> implements $ToolTypeCopyWith<$Res> {
+  factory _$$_ToolTypeCopyWith(
+          _$_ToolType value, $Res Function(_$_ToolType) then) =
+      __$$_ToolTypeCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'toolType') ScreeningToolsType? toolType});
 }
 
 /// @nodoc
-class __$ToolTypeCopyWithImpl<$Res> extends _$ToolTypeCopyWithImpl<$Res>
-    implements _$ToolTypeCopyWith<$Res> {
-  __$ToolTypeCopyWithImpl(_ToolType _value, $Res Function(_ToolType) _then)
-      : super(_value, (v) => _then(v as _ToolType));
+class __$$_ToolTypeCopyWithImpl<$Res> extends _$ToolTypeCopyWithImpl<$Res>
+    implements _$$_ToolTypeCopyWith<$Res> {
+  __$$_ToolTypeCopyWithImpl(
+      _$_ToolType _value, $Res Function(_$_ToolType) _then)
+      : super(_value, (v) => _then(v as _$_ToolType));
 
   @override
-  _ToolType get _value => super._value as _ToolType;
+  _$_ToolType get _value => super._value as _$_ToolType;
 
   @override
   $Res call({
     Object? toolType = freezed,
   }) {
-    return _then(_ToolType(
+    return _then(_$_ToolType(
       toolType: toolType == freezed
           ? _value.toolType
           : toolType // ignore: cast_nullable_to_non_nullable
@@ -126,18 +110,19 @@ class _$_ToolType implements _ToolType {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ToolType &&
+            other is _$_ToolType &&
             const DeepCollectionEquality().equals(other.toolType, toolType));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(toolType));
 
   @JsonKey(ignore: true)
   @override
-  _$ToolTypeCopyWith<_ToolType> get copyWith =>
-      __$ToolTypeCopyWithImpl<_ToolType>(this, _$identity);
+  _$$_ToolTypeCopyWith<_$_ToolType> get copyWith =>
+      __$$_ToolTypeCopyWithImpl<_$_ToolType>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -146,16 +131,17 @@ class _$_ToolType implements _ToolType {
 }
 
 abstract class _ToolType implements ToolType {
-  factory _ToolType({@JsonKey(name: 'toolType') ScreeningToolsType? toolType}) =
+  factory _ToolType(
+          {@JsonKey(name: 'toolType') final ScreeningToolsType? toolType}) =
       _$_ToolType;
 
   factory _ToolType.fromJson(Map<String, dynamic> json) = _$_ToolType.fromJson;
 
   @override
   @JsonKey(name: 'toolType')
-  ScreeningToolsType? get toolType;
+  ScreeningToolsType? get toolType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ToolTypeCopyWith<_ToolType> get copyWith =>
+  _$$_ToolTypeCopyWith<_$_ToolType> get copyWith =>
       throw _privateConstructorUsedError;
 }

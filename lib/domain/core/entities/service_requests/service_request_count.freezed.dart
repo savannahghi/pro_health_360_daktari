@@ -12,32 +12,11 @@ part of 'service_request_count.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequestCount _$ServiceRequestCountFromJson(Map<String, dynamic> json) {
   return _ServiceRequestCount.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestCountTearOff {
-  const _$ServiceRequestCountTearOff();
-
-  _ServiceRequestCount call(
-      {@JsonKey(name: 'requestType') ServiceRequestType? requestType,
-      @JsonKey(name: 'total') int? count}) {
-    return _ServiceRequestCount(
-      requestType: requestType,
-      count: count,
-    );
-  }
-
-  ServiceRequestCount fromJson(Map<String, Object?> json) {
-    return ServiceRequestCount.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequestCount = _$ServiceRequestCountTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestCount {
@@ -90,11 +69,11 @@ class _$ServiceRequestCountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestCountCopyWith<$Res>
+abstract class _$$_ServiceRequestCountCopyWith<$Res>
     implements $ServiceRequestCountCopyWith<$Res> {
-  factory _$ServiceRequestCountCopyWith(_ServiceRequestCount value,
-          $Res Function(_ServiceRequestCount) then) =
-      __$ServiceRequestCountCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestCountCopyWith(_$_ServiceRequestCount value,
+          $Res Function(_$_ServiceRequestCount) then) =
+      __$$_ServiceRequestCountCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'requestType') ServiceRequestType? requestType,
@@ -102,22 +81,22 @@ abstract class _$ServiceRequestCountCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestCountCopyWithImpl<$Res>
+class __$$_ServiceRequestCountCopyWithImpl<$Res>
     extends _$ServiceRequestCountCopyWithImpl<$Res>
-    implements _$ServiceRequestCountCopyWith<$Res> {
-  __$ServiceRequestCountCopyWithImpl(
-      _ServiceRequestCount _value, $Res Function(_ServiceRequestCount) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestCount));
+    implements _$$_ServiceRequestCountCopyWith<$Res> {
+  __$$_ServiceRequestCountCopyWithImpl(_$_ServiceRequestCount _value,
+      $Res Function(_$_ServiceRequestCount) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequestCount));
 
   @override
-  _ServiceRequestCount get _value => super._value as _ServiceRequestCount;
+  _$_ServiceRequestCount get _value => super._value as _$_ServiceRequestCount;
 
   @override
   $Res call({
     Object? requestType = freezed,
     Object? count = freezed,
   }) {
-    return _then(_ServiceRequestCount(
+    return _then(_$_ServiceRequestCount(
       requestType: requestType == freezed
           ? _value.requestType
           : requestType // ignore: cast_nullable_to_non_nullable
@@ -156,12 +135,13 @@ class _$_ServiceRequestCount implements _ServiceRequestCount {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestCount &&
+            other is _$_ServiceRequestCount &&
             const DeepCollectionEquality()
                 .equals(other.requestType, requestType) &&
             const DeepCollectionEquality().equals(other.count, count));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -170,8 +150,8 @@ class _$_ServiceRequestCount implements _ServiceRequestCount {
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestCountCopyWith<_ServiceRequestCount> get copyWith =>
-      __$ServiceRequestCountCopyWithImpl<_ServiceRequestCount>(
+  _$$_ServiceRequestCountCopyWith<_$_ServiceRequestCount> get copyWith =>
+      __$$_ServiceRequestCountCopyWithImpl<_$_ServiceRequestCount>(
           this, _$identity);
 
   @override
@@ -182,20 +162,20 @@ class _$_ServiceRequestCount implements _ServiceRequestCount {
 
 abstract class _ServiceRequestCount implements ServiceRequestCount {
   factory _ServiceRequestCount(
-      {@JsonKey(name: 'requestType') ServiceRequestType? requestType,
-      @JsonKey(name: 'total') int? count}) = _$_ServiceRequestCount;
+      {@JsonKey(name: 'requestType') final ServiceRequestType? requestType,
+      @JsonKey(name: 'total') final int? count}) = _$_ServiceRequestCount;
 
   factory _ServiceRequestCount.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestCount.fromJson;
 
   @override
   @JsonKey(name: 'requestType')
-  ServiceRequestType? get requestType;
+  ServiceRequestType? get requestType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'total')
-  int? get count;
+  int? get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestCountCopyWith<_ServiceRequestCount> get copyWith =>
+  _$$_ServiceRequestCountCopyWith<_$_ServiceRequestCount> get copyWith =>
       throw _privateConstructorUsedError;
 }

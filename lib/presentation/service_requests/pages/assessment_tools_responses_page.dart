@@ -35,7 +35,7 @@ class _AssessmentToolResponsesPageState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       StoreProvider.dispatch<AppState>(
         context,
         FetchAssessmentResponsesByToolAction(

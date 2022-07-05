@@ -12,35 +12,12 @@ part of 'pending_service_requests.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PendingServiceRequest _$PendingServiceRequestFromJson(
     Map<String, dynamic> json) {
   return _PendingServiceRequest.fromJson(json);
 }
-
-/// @nodoc
-class _$PendingServiceRequestTearOff {
-  const _$PendingServiceRequestTearOff();
-
-  _PendingServiceRequest call(
-      {@JsonKey(name: 'total')
-          int? total,
-      @JsonKey(name: 'requestsTypeCount')
-          List<ServiceRequestCount>? serviceRequestsCount}) {
-    return _PendingServiceRequest(
-      total: total,
-      serviceRequestsCount: serviceRequestsCount,
-    );
-  }
-
-  PendingServiceRequest fromJson(Map<String, Object?> json) {
-    return PendingServiceRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PendingServiceRequest = _$PendingServiceRequestTearOff();
 
 /// @nodoc
 mixin _$PendingServiceRequest {
@@ -96,11 +73,11 @@ class _$PendingServiceRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PendingServiceRequestCopyWith<$Res>
+abstract class _$$_PendingServiceRequestCopyWith<$Res>
     implements $PendingServiceRequestCopyWith<$Res> {
-  factory _$PendingServiceRequestCopyWith(_PendingServiceRequest value,
-          $Res Function(_PendingServiceRequest) then) =
-      __$PendingServiceRequestCopyWithImpl<$Res>;
+  factory _$$_PendingServiceRequestCopyWith(_$_PendingServiceRequest value,
+          $Res Function(_$_PendingServiceRequest) then) =
+      __$$_PendingServiceRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'total')
@@ -110,28 +87,29 @@ abstract class _$PendingServiceRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PendingServiceRequestCopyWithImpl<$Res>
+class __$$_PendingServiceRequestCopyWithImpl<$Res>
     extends _$PendingServiceRequestCopyWithImpl<$Res>
-    implements _$PendingServiceRequestCopyWith<$Res> {
-  __$PendingServiceRequestCopyWithImpl(_PendingServiceRequest _value,
-      $Res Function(_PendingServiceRequest) _then)
-      : super(_value, (v) => _then(v as _PendingServiceRequest));
+    implements _$$_PendingServiceRequestCopyWith<$Res> {
+  __$$_PendingServiceRequestCopyWithImpl(_$_PendingServiceRequest _value,
+      $Res Function(_$_PendingServiceRequest) _then)
+      : super(_value, (v) => _then(v as _$_PendingServiceRequest));
 
   @override
-  _PendingServiceRequest get _value => super._value as _PendingServiceRequest;
+  _$_PendingServiceRequest get _value =>
+      super._value as _$_PendingServiceRequest;
 
   @override
   $Res call({
     Object? total = freezed,
     Object? serviceRequestsCount = freezed,
   }) {
-    return _then(_PendingServiceRequest(
+    return _then(_$_PendingServiceRequest(
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int?,
       serviceRequestsCount: serviceRequestsCount == freezed
-          ? _value.serviceRequestsCount
+          ? _value._serviceRequestsCount
           : serviceRequestsCount // ignore: cast_nullable_to_non_nullable
               as List<ServiceRequestCount>?,
     ));
@@ -142,8 +120,11 @@ class __$PendingServiceRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PendingServiceRequest implements _PendingServiceRequest {
   _$_PendingServiceRequest(
-      {@JsonKey(name: 'total') this.total,
-      @JsonKey(name: 'requestsTypeCount') this.serviceRequestsCount});
+      {@JsonKey(name: 'total')
+          this.total,
+      @JsonKey(name: 'requestsTypeCount')
+          final List<ServiceRequestCount>? serviceRequestsCount})
+      : _serviceRequestsCount = serviceRequestsCount;
 
   factory _$_PendingServiceRequest.fromJson(Map<String, dynamic> json) =>
       _$$_PendingServiceRequestFromJson(json);
@@ -151,9 +132,15 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
   @override
   @JsonKey(name: 'total')
   final int? total;
+  final List<ServiceRequestCount>? _serviceRequestsCount;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  final List<ServiceRequestCount>? serviceRequestsCount;
+  List<ServiceRequestCount>? get serviceRequestsCount {
+    final value = _serviceRequestsCount;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -164,22 +151,23 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PendingServiceRequest &&
+            other is _$_PendingServiceRequest &&
             const DeepCollectionEquality().equals(other.total, total) &&
             const DeepCollectionEquality()
-                .equals(other.serviceRequestsCount, serviceRequestsCount));
+                .equals(other._serviceRequestsCount, _serviceRequestsCount));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(total),
-      const DeepCollectionEquality().hash(serviceRequestsCount));
+      const DeepCollectionEquality().hash(_serviceRequestsCount));
 
   @JsonKey(ignore: true)
   @override
-  _$PendingServiceRequestCopyWith<_PendingServiceRequest> get copyWith =>
-      __$PendingServiceRequestCopyWithImpl<_PendingServiceRequest>(
+  _$$_PendingServiceRequestCopyWith<_$_PendingServiceRequest> get copyWith =>
+      __$$_PendingServiceRequestCopyWithImpl<_$_PendingServiceRequest>(
           this, _$identity);
 
   @override
@@ -191,9 +179,9 @@ class _$_PendingServiceRequest implements _PendingServiceRequest {
 abstract class _PendingServiceRequest implements PendingServiceRequest {
   factory _PendingServiceRequest(
           {@JsonKey(name: 'total')
-              int? total,
+              final int? total,
           @JsonKey(name: 'requestsTypeCount')
-              List<ServiceRequestCount>? serviceRequestsCount}) =
+              final List<ServiceRequestCount>? serviceRequestsCount}) =
       _$_PendingServiceRequest;
 
   factory _PendingServiceRequest.fromJson(Map<String, dynamic> json) =
@@ -201,12 +189,13 @@ abstract class _PendingServiceRequest implements PendingServiceRequest {
 
   @override
   @JsonKey(name: 'total')
-  int? get total;
+  int? get total => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  List<ServiceRequestCount>? get serviceRequestsCount;
+  List<ServiceRequestCount>? get serviceRequestsCount =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PendingServiceRequestCopyWith<_PendingServiceRequest> get copyWith =>
+  _$$_PendingServiceRequestCopyWith<_$_PendingServiceRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

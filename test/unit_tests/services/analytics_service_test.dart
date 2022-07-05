@@ -9,19 +9,18 @@ import '../../mocks/mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setupFirebaseAnalyticsMocks();
 
   group('AnalyticsService', () {
-    final List<MethodCall> methodCallLog = <MethodCall>[];
-
-    setUp(() async {
-      setupFirebaseAnalyticsMocks(
-        updateLogFunc: (MethodCall call) => methodCallLog.add(call),
-      );
-
+    setUpAll(() async {
       await Firebase.initializeApp();
     });
 
-    tearDown(() => methodCallLog.clear());
+    setUp(() async {
+      methodCallLog.clear();
+    });
+
+    tearDown(methodCallLog.clear);
 
     test('should return the correct analytics observer', () {
       expect(

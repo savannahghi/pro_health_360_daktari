@@ -34,7 +34,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final ToolAssessmentResponse assessmentResponse =
           widget.payload['assessmentResponse'] as ToolAssessmentResponse;
       final ScreeningToolsType toolsType =

@@ -12,34 +12,11 @@ part of 'user_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
   return _UserResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$UserResponseTearOff {
-  const _$UserResponseTearOff();
-
-  _UserResponse call(
-      {@JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'staffProfile') StaffState? staffState,
-      @JsonKey(name: 'getStreamToken') String? streamToken}) {
-    return _UserResponse(
-      credentials: credentials,
-      staffState: staffState,
-      streamToken: streamToken,
-    );
-  }
-
-  UserResponse fromJson(Map<String, Object?> json) {
-    return UserResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $UserResponse = _$UserResponseTearOff();
 
 /// @nodoc
 mixin _$UserResponse {
@@ -124,11 +101,11 @@ class _$UserResponseCopyWithImpl<$Res> implements $UserResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserResponseCopyWith<$Res>
+abstract class _$$_UserResponseCopyWith<$Res>
     implements $UserResponseCopyWith<$Res> {
-  factory _$UserResponseCopyWith(
-          _UserResponse value, $Res Function(_UserResponse) then) =
-      __$UserResponseCopyWithImpl<$Res>;
+  factory _$$_UserResponseCopyWith(
+          _$_UserResponse value, $Res Function(_$_UserResponse) then) =
+      __$$_UserResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'credentials') AuthCredentials? credentials,
@@ -142,14 +119,15 @@ abstract class _$UserResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$UserResponseCopyWithImpl<$Res> extends _$UserResponseCopyWithImpl<$Res>
-    implements _$UserResponseCopyWith<$Res> {
-  __$UserResponseCopyWithImpl(
-      _UserResponse _value, $Res Function(_UserResponse) _then)
-      : super(_value, (v) => _then(v as _UserResponse));
+class __$$_UserResponseCopyWithImpl<$Res>
+    extends _$UserResponseCopyWithImpl<$Res>
+    implements _$$_UserResponseCopyWith<$Res> {
+  __$$_UserResponseCopyWithImpl(
+      _$_UserResponse _value, $Res Function(_$_UserResponse) _then)
+      : super(_value, (v) => _then(v as _$_UserResponse));
 
   @override
-  _UserResponse get _value => super._value as _UserResponse;
+  _$_UserResponse get _value => super._value as _$_UserResponse;
 
   @override
   $Res call({
@@ -157,7 +135,7 @@ class __$UserResponseCopyWithImpl<$Res> extends _$UserResponseCopyWithImpl<$Res>
     Object? staffState = freezed,
     Object? streamToken = freezed,
   }) {
-    return _then(_UserResponse(
+    return _then(_$_UserResponse(
       credentials: credentials == freezed
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
@@ -204,7 +182,7 @@ class _$_UserResponse implements _UserResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserResponse &&
+            other is _$_UserResponse &&
             const DeepCollectionEquality()
                 .equals(other.credentials, credentials) &&
             const DeepCollectionEquality()
@@ -213,6 +191,7 @@ class _$_UserResponse implements _UserResponse {
                 .equals(other.streamToken, streamToken));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -222,8 +201,8 @@ class _$_UserResponse implements _UserResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$UserResponseCopyWith<_UserResponse> get copyWith =>
-      __$UserResponseCopyWithImpl<_UserResponse>(this, _$identity);
+  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
+      __$$_UserResponseCopyWithImpl<_$_UserResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -233,24 +212,25 @@ class _$_UserResponse implements _UserResponse {
 
 abstract class _UserResponse implements UserResponse {
   factory _UserResponse(
-      {@JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'staffProfile') StaffState? staffState,
-      @JsonKey(name: 'getStreamToken') String? streamToken}) = _$_UserResponse;
+          {@JsonKey(name: 'credentials') final AuthCredentials? credentials,
+          @JsonKey(name: 'staffProfile') final StaffState? staffState,
+          @JsonKey(name: 'getStreamToken') final String? streamToken}) =
+      _$_UserResponse;
 
   factory _UserResponse.fromJson(Map<String, dynamic> json) =
       _$_UserResponse.fromJson;
 
   @override
   @JsonKey(name: 'credentials')
-  AuthCredentials? get credentials;
+  AuthCredentials? get credentials => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staffProfile')
-  StaffState? get staffState;
+  StaffState? get staffState => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'getStreamToken')
-  String? get streamToken;
+  String? get streamToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserResponseCopyWith<_UserResponse> get copyWith =>
+  _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

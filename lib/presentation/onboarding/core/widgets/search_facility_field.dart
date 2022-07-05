@@ -30,7 +30,7 @@ class _SearchFacilityFieldState extends State<SearchFacilityField> {
     super.initState();
 
     // reset the selected facility value in state
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       StoreProvider.dispatch<AppState>(
         context,
         BatchUpdateMiscStateAction(

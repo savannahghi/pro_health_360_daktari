@@ -5,7 +5,7 @@ import 'package:prohealth360_daktari/domain/core/entities/service_requests/tool_
 part 'screening_tools_state.g.dart';
 part 'screening_tools_state.freezed.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class ScreeningToolsState with _$ScreeningToolsState {
   factory ScreeningToolsState({
     @JsonKey(name: 'getAvailableFacilityScreeningTools')

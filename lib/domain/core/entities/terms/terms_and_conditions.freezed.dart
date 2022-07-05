@@ -12,32 +12,11 @@ part of 'terms_and_conditions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TermsAndConditions _$TermsAndConditionsFromJson(Map<String, dynamic> json) {
   return _TermsAndConditions.fromJson(json);
 }
-
-/// @nodoc
-class _$TermsAndConditionsTearOff {
-  const _$TermsAndConditionsTearOff();
-
-  _TermsAndConditions call(
-      {@JsonKey(name: 'termsID') required int termsId,
-      @JsonKey(name: 'text') required String text}) {
-    return _TermsAndConditions(
-      termsId: termsId,
-      text: text,
-    );
-  }
-
-  TermsAndConditions fromJson(Map<String, Object?> json) {
-    return TermsAndConditions.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TermsAndConditions = _$TermsAndConditionsTearOff();
 
 /// @nodoc
 mixin _$TermsAndConditions {
@@ -90,11 +69,11 @@ class _$TermsAndConditionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$TermsAndConditionsCopyWith<$Res>
+abstract class _$$_TermsAndConditionsCopyWith<$Res>
     implements $TermsAndConditionsCopyWith<$Res> {
-  factory _$TermsAndConditionsCopyWith(
-          _TermsAndConditions value, $Res Function(_TermsAndConditions) then) =
-      __$TermsAndConditionsCopyWithImpl<$Res>;
+  factory _$$_TermsAndConditionsCopyWith(_$_TermsAndConditions value,
+          $Res Function(_$_TermsAndConditions) then) =
+      __$$_TermsAndConditionsCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'termsID') int termsId,
@@ -102,22 +81,22 @@ abstract class _$TermsAndConditionsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TermsAndConditionsCopyWithImpl<$Res>
+class __$$_TermsAndConditionsCopyWithImpl<$Res>
     extends _$TermsAndConditionsCopyWithImpl<$Res>
-    implements _$TermsAndConditionsCopyWith<$Res> {
-  __$TermsAndConditionsCopyWithImpl(
-      _TermsAndConditions _value, $Res Function(_TermsAndConditions) _then)
-      : super(_value, (v) => _then(v as _TermsAndConditions));
+    implements _$$_TermsAndConditionsCopyWith<$Res> {
+  __$$_TermsAndConditionsCopyWithImpl(
+      _$_TermsAndConditions _value, $Res Function(_$_TermsAndConditions) _then)
+      : super(_value, (v) => _then(v as _$_TermsAndConditions));
 
   @override
-  _TermsAndConditions get _value => super._value as _TermsAndConditions;
+  _$_TermsAndConditions get _value => super._value as _$_TermsAndConditions;
 
   @override
   $Res call({
     Object? termsId = freezed,
     Object? text = freezed,
   }) {
-    return _then(_TermsAndConditions(
+    return _then(_$_TermsAndConditions(
       termsId: termsId == freezed
           ? _value.termsId
           : termsId // ignore: cast_nullable_to_non_nullable
@@ -156,11 +135,12 @@ class _$_TermsAndConditions implements _TermsAndConditions {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TermsAndConditions &&
+            other is _$_TermsAndConditions &&
             const DeepCollectionEquality().equals(other.termsId, termsId) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -169,8 +149,9 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
   @JsonKey(ignore: true)
   @override
-  _$TermsAndConditionsCopyWith<_TermsAndConditions> get copyWith =>
-      __$TermsAndConditionsCopyWithImpl<_TermsAndConditions>(this, _$identity);
+  _$$_TermsAndConditionsCopyWith<_$_TermsAndConditions> get copyWith =>
+      __$$_TermsAndConditionsCopyWithImpl<_$_TermsAndConditions>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -180,20 +161,21 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
 abstract class _TermsAndConditions implements TermsAndConditions {
   factory _TermsAndConditions(
-      {@JsonKey(name: 'termsID') required int termsId,
-      @JsonKey(name: 'text') required String text}) = _$_TermsAndConditions;
+          {@JsonKey(name: 'termsID') required final int termsId,
+          @JsonKey(name: 'text') required final String text}) =
+      _$_TermsAndConditions;
 
   factory _TermsAndConditions.fromJson(Map<String, dynamic> json) =
       _$_TermsAndConditions.fromJson;
 
   @override
   @JsonKey(name: 'termsID')
-  int get termsId;
+  int get termsId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'text')
-  String get text;
+  String get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TermsAndConditionsCopyWith<_TermsAndConditions> get copyWith =>
+  _$$_TermsAndConditionsCopyWith<_$_TermsAndConditions> get copyWith =>
       throw _privateConstructorUsedError;
 }

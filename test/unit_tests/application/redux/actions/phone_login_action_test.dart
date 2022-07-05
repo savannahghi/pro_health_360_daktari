@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:prohealth360_daktari/application/redux/actions/core/phone_login_action.dart';
@@ -10,7 +9,6 @@ import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.d
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/application/redux/states/connectivity_state.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
-import 'package:prohealth360_daktari/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
 import '../../../../mocks/mocks.dart';
@@ -107,18 +105,14 @@ void main() {
       final NavigateAction<AppState>? actionDispatched =
           info.action as NavigateAction<AppState>?;
 
-      final NavigatorDetails_PushNamedAndRemoveUntil? navDetails =
+      final NavigatorDetails_PushNamedAndRemoveAll? navDetails =
           actionDispatched?.details
-              as NavigatorDetails_PushNamedAndRemoveUntil?;
+              as NavigatorDetails_PushNamedAndRemoveAll?;
 
       expect(navDetails?.newRouteName, AppRoutes.verifyPhonePage);
       expect(
-        navDetails?.predicate.call(
-          MaterialPageRoute<VerifyPhonePage>(
-            builder: (BuildContext context) => const VerifyPhonePage(),
-          ),
-        ),
-        false,
+        navDetails,
+        isNotNull,
       );
     });
   });

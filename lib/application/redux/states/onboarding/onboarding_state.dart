@@ -7,7 +7,7 @@ import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class OnboardingState with _$OnboardingState {
   factory OnboardingState({
     TermsAndConditions? termsAndConditions,

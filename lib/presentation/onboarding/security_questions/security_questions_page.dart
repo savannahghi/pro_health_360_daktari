@@ -33,7 +33,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) => StoreProvider.dispatch<AppState>(
         context,
         // retrieve the security questions

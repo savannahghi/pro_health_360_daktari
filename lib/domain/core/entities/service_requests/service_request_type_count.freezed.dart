@@ -12,32 +12,12 @@ part of 'service_request_type_count.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequestTypeCount _$ServiceRequestTypeCountFromJson(
     Map<String, dynamic> json) {
   return _ServiceRequestTypeCount.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestTypeCountTearOff {
-  const _$ServiceRequestTypeCountTearOff();
-
-  _ServiceRequestTypeCount call(
-      {@JsonKey(name: 'requestsTypeCount')
-          List<ServiceRequestCount>? requestsTypeCount}) {
-    return _ServiceRequestTypeCount(
-      requestsTypeCount: requestsTypeCount,
-    );
-  }
-
-  ServiceRequestTypeCount fromJson(Map<String, Object?> json) {
-    return ServiceRequestTypeCount.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequestTypeCount = _$ServiceRequestTypeCountTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestTypeCount {
@@ -84,11 +64,11 @@ class _$ServiceRequestTypeCountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestTypeCountCopyWith<$Res>
+abstract class _$$_ServiceRequestTypeCountCopyWith<$Res>
     implements $ServiceRequestTypeCountCopyWith<$Res> {
-  factory _$ServiceRequestTypeCountCopyWith(_ServiceRequestTypeCount value,
-          $Res Function(_ServiceRequestTypeCount) then) =
-      __$ServiceRequestTypeCountCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestTypeCountCopyWith(_$_ServiceRequestTypeCount value,
+          $Res Function(_$_ServiceRequestTypeCount) then) =
+      __$$_ServiceRequestTypeCountCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'requestsTypeCount')
@@ -96,24 +76,24 @@ abstract class _$ServiceRequestTypeCountCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestTypeCountCopyWithImpl<$Res>
+class __$$_ServiceRequestTypeCountCopyWithImpl<$Res>
     extends _$ServiceRequestTypeCountCopyWithImpl<$Res>
-    implements _$ServiceRequestTypeCountCopyWith<$Res> {
-  __$ServiceRequestTypeCountCopyWithImpl(_ServiceRequestTypeCount _value,
-      $Res Function(_ServiceRequestTypeCount) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestTypeCount));
+    implements _$$_ServiceRequestTypeCountCopyWith<$Res> {
+  __$$_ServiceRequestTypeCountCopyWithImpl(_$_ServiceRequestTypeCount _value,
+      $Res Function(_$_ServiceRequestTypeCount) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequestTypeCount));
 
   @override
-  _ServiceRequestTypeCount get _value =>
-      super._value as _ServiceRequestTypeCount;
+  _$_ServiceRequestTypeCount get _value =>
+      super._value as _$_ServiceRequestTypeCount;
 
   @override
   $Res call({
     Object? requestsTypeCount = freezed,
   }) {
-    return _then(_ServiceRequestTypeCount(
+    return _then(_$_ServiceRequestTypeCount(
       requestsTypeCount: requestsTypeCount == freezed
-          ? _value.requestsTypeCount
+          ? _value._requestsTypeCount
           : requestsTypeCount // ignore: cast_nullable_to_non_nullable
               as List<ServiceRequestCount>?,
     ));
@@ -124,14 +104,22 @@ class __$ServiceRequestTypeCountCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ServiceRequestTypeCount implements _ServiceRequestTypeCount {
   _$_ServiceRequestTypeCount(
-      {@JsonKey(name: 'requestsTypeCount') this.requestsTypeCount});
+      {@JsonKey(name: 'requestsTypeCount')
+          final List<ServiceRequestCount>? requestsTypeCount})
+      : _requestsTypeCount = requestsTypeCount;
 
   factory _$_ServiceRequestTypeCount.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestTypeCountFromJson(json);
 
+  final List<ServiceRequestCount>? _requestsTypeCount;
   @override
   @JsonKey(name: 'requestsTypeCount')
-  final List<ServiceRequestCount>? requestsTypeCount;
+  List<ServiceRequestCount>? get requestsTypeCount {
+    final value = _requestsTypeCount;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -142,20 +130,22 @@ class _$_ServiceRequestTypeCount implements _ServiceRequestTypeCount {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestTypeCount &&
+            other is _$_ServiceRequestTypeCount &&
             const DeepCollectionEquality()
-                .equals(other.requestsTypeCount, requestsTypeCount));
+                .equals(other._requestsTypeCount, _requestsTypeCount));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(requestsTypeCount));
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestTypeCountCopyWith<_ServiceRequestTypeCount> get copyWith =>
-      __$ServiceRequestTypeCountCopyWithImpl<_ServiceRequestTypeCount>(
-          this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_requestsTypeCount));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ServiceRequestTypeCountCopyWith<_$_ServiceRequestTypeCount>
+      get copyWith =>
+          __$$_ServiceRequestTypeCountCopyWithImpl<_$_ServiceRequestTypeCount>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -166,7 +156,7 @@ class _$_ServiceRequestTypeCount implements _ServiceRequestTypeCount {
 abstract class _ServiceRequestTypeCount implements ServiceRequestTypeCount {
   factory _ServiceRequestTypeCount(
           {@JsonKey(name: 'requestsTypeCount')
-              List<ServiceRequestCount>? requestsTypeCount}) =
+              final List<ServiceRequestCount>? requestsTypeCount}) =
       _$_ServiceRequestTypeCount;
 
   factory _ServiceRequestTypeCount.fromJson(Map<String, dynamic> json) =
@@ -174,9 +164,10 @@ abstract class _ServiceRequestTypeCount implements ServiceRequestTypeCount {
 
   @override
   @JsonKey(name: 'requestsTypeCount')
-  List<ServiceRequestCount>? get requestsTypeCount;
+  List<ServiceRequestCount>? get requestsTypeCount =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestTypeCountCopyWith<_ServiceRequestTypeCount> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ServiceRequestTypeCountCopyWith<_$_ServiceRequestTypeCount>
+      get copyWith => throw _privateConstructorUsedError;
 }

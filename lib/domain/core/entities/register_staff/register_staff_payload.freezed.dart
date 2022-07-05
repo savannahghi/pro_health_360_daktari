@@ -12,46 +12,11 @@ part of 'register_staff_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RegisterStaffPayload _$RegisterStaffPayloadFromJson(Map<String, dynamic> json) {
   return _RegisterStaffPayload.fromJson(json);
 }
-
-/// @nodoc
-class _$RegisterStaffPayloadTearOff {
-  const _$RegisterStaffPayloadTearOff();
-
-  _RegisterStaffPayload call(
-      {@JsonKey(name: 'facility') String? facility,
-      @JsonKey(name: 'staffName') String? staffName,
-      @JsonKey(name: 'gender', fromJson: genderFromJson) Gender? gender,
-      @JsonKey(name: 'phoneNumber') String? phoneNumber,
-      @JsonKey(name: 'idNumber') String? idNumber,
-      @JsonKey(name: 'staffNumber') String? staffNumber,
-      @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson) RoleValue? role,
-      @JsonKey(name: 'inviteStaff') bool? inviteStaff,
-      @JsonKey(name: 'dateOfBirth', toJson: dobToJson) DateTime? dateOfBirth}) {
-    return _RegisterStaffPayload(
-      facility: facility,
-      staffName: staffName,
-      gender: gender,
-      phoneNumber: phoneNumber,
-      idNumber: idNumber,
-      staffNumber: staffNumber,
-      role: role,
-      inviteStaff: inviteStaff,
-      dateOfBirth: dateOfBirth,
-    );
-  }
-
-  RegisterStaffPayload fromJson(Map<String, Object?> json) {
-    return RegisterStaffPayload.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $RegisterStaffPayload = _$RegisterStaffPayloadTearOff();
 
 /// @nodoc
 mixin _$RegisterStaffPayload {
@@ -160,11 +125,11 @@ class _$RegisterStaffPayloadCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RegisterStaffPayloadCopyWith<$Res>
+abstract class _$$_RegisterStaffPayloadCopyWith<$Res>
     implements $RegisterStaffPayloadCopyWith<$Res> {
-  factory _$RegisterStaffPayloadCopyWith(_RegisterStaffPayload value,
-          $Res Function(_RegisterStaffPayload) then) =
-      __$RegisterStaffPayloadCopyWithImpl<$Res>;
+  factory _$$_RegisterStaffPayloadCopyWith(_$_RegisterStaffPayload value,
+          $Res Function(_$_RegisterStaffPayload) then) =
+      __$$_RegisterStaffPayloadCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'facility') String? facility,
@@ -179,15 +144,15 @@ abstract class _$RegisterStaffPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RegisterStaffPayloadCopyWithImpl<$Res>
+class __$$_RegisterStaffPayloadCopyWithImpl<$Res>
     extends _$RegisterStaffPayloadCopyWithImpl<$Res>
-    implements _$RegisterStaffPayloadCopyWith<$Res> {
-  __$RegisterStaffPayloadCopyWithImpl(
-      _RegisterStaffPayload _value, $Res Function(_RegisterStaffPayload) _then)
-      : super(_value, (v) => _then(v as _RegisterStaffPayload));
+    implements _$$_RegisterStaffPayloadCopyWith<$Res> {
+  __$$_RegisterStaffPayloadCopyWithImpl(_$_RegisterStaffPayload _value,
+      $Res Function(_$_RegisterStaffPayload) _then)
+      : super(_value, (v) => _then(v as _$_RegisterStaffPayload));
 
   @override
-  _RegisterStaffPayload get _value => super._value as _RegisterStaffPayload;
+  _$_RegisterStaffPayload get _value => super._value as _$_RegisterStaffPayload;
 
   @override
   $Res call({
@@ -201,7 +166,7 @@ class __$RegisterStaffPayloadCopyWithImpl<$Res>
     Object? inviteStaff = freezed,
     Object? dateOfBirth = freezed,
   }) {
-    return _then(_RegisterStaffPayload(
+    return _then(_$_RegisterStaffPayload(
       facility: facility == freezed
           ? _value.facility
           : facility // ignore: cast_nullable_to_non_nullable
@@ -296,7 +261,7 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RegisterStaffPayload &&
+            other is _$_RegisterStaffPayload &&
             const DeepCollectionEquality().equals(other.facility, facility) &&
             const DeepCollectionEquality().equals(other.staffName, staffName) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
@@ -312,6 +277,7 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
                 .equals(other.dateOfBirth, dateOfBirth));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -327,8 +293,8 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
 
   @JsonKey(ignore: true)
   @override
-  _$RegisterStaffPayloadCopyWith<_RegisterStaffPayload> get copyWith =>
-      __$RegisterStaffPayloadCopyWithImpl<_RegisterStaffPayload>(
+  _$$_RegisterStaffPayloadCopyWith<_$_RegisterStaffPayload> get copyWith =>
+      __$$_RegisterStaffPayloadCopyWithImpl<_$_RegisterStaffPayload>(
           this, _$identity);
 
   @override
@@ -340,56 +306,56 @@ class _$_RegisterStaffPayload implements _RegisterStaffPayload {
 abstract class _RegisterStaffPayload implements RegisterStaffPayload {
   factory _RegisterStaffPayload(
       {@JsonKey(name: 'facility')
-          String? facility,
+          final String? facility,
       @JsonKey(name: 'staffName')
-          String? staffName,
+          final String? staffName,
       @JsonKey(name: 'gender', fromJson: genderFromJson)
-          Gender? gender,
+          final Gender? gender,
       @JsonKey(name: 'phoneNumber')
-          String? phoneNumber,
+          final String? phoneNumber,
       @JsonKey(name: 'idNumber')
-          String? idNumber,
+          final String? idNumber,
       @JsonKey(name: 'staffNumber')
-          String? staffNumber,
+          final String? staffNumber,
       @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
-          RoleValue? role,
+          final RoleValue? role,
       @JsonKey(name: 'inviteStaff')
-          bool? inviteStaff,
+          final bool? inviteStaff,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-          DateTime? dateOfBirth}) = _$_RegisterStaffPayload;
+          final DateTime? dateOfBirth}) = _$_RegisterStaffPayload;
 
   factory _RegisterStaffPayload.fromJson(Map<String, dynamic> json) =
       _$_RegisterStaffPayload.fromJson;
 
   @override
   @JsonKey(name: 'facility')
-  String? get facility;
+  String? get facility => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staffName')
-  String? get staffName;
+  String? get staffName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson)
-  Gender? get gender;
+  Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'phoneNumber')
-  String? get phoneNumber;
+  String? get phoneNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'idNumber')
-  String? get idNumber;
+  String? get idNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staffNumber')
-  String? get staffNumber;
+  String? get staffNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staffRoles', fromJson: roleValueFromJson)
-  RoleValue? get role;
+  RoleValue? get role => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'inviteStaff')
-  bool? get inviteStaff;
+  bool? get inviteStaff => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-  DateTime? get dateOfBirth;
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RegisterStaffPayloadCopyWith<_RegisterStaffPayload> get copyWith =>
+  _$$_RegisterStaffPayloadCopyWith<_$_RegisterStaffPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }

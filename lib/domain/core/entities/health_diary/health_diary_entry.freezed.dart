@@ -12,31 +12,11 @@ part of 'health_diary_entry.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 HealthDiaryEdge _$HealthDiaryEdgeFromJson(Map<String, dynamic> json) {
   return _HealthDiaryEdge.fromJson(json);
 }
-
-/// @nodoc
-class _$HealthDiaryEdgeTearOff {
-  const _$HealthDiaryEdgeTearOff();
-
-  _HealthDiaryEdge call(
-      {@JsonKey(name: 'getSharedHealthDiaryEntries')
-          required List<HealthDiaryEntry> healthDiaryEntry}) {
-    return _HealthDiaryEdge(
-      healthDiaryEntry: healthDiaryEntry,
-    );
-  }
-
-  HealthDiaryEdge fromJson(Map<String, Object?> json) {
-    return HealthDiaryEdge.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $HealthDiaryEdge = _$HealthDiaryEdgeTearOff();
 
 /// @nodoc
 mixin _$HealthDiaryEdge {
@@ -83,11 +63,11 @@ class _$HealthDiaryEdgeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$HealthDiaryEdgeCopyWith<$Res>
+abstract class _$$_HealthDiaryEdgeCopyWith<$Res>
     implements $HealthDiaryEdgeCopyWith<$Res> {
-  factory _$HealthDiaryEdgeCopyWith(
-          _HealthDiaryEdge value, $Res Function(_HealthDiaryEdge) then) =
-      __$HealthDiaryEdgeCopyWithImpl<$Res>;
+  factory _$$_HealthDiaryEdgeCopyWith(
+          _$_HealthDiaryEdge value, $Res Function(_$_HealthDiaryEdge) then) =
+      __$$_HealthDiaryEdgeCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getSharedHealthDiaryEntries')
@@ -95,23 +75,23 @@ abstract class _$HealthDiaryEdgeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$HealthDiaryEdgeCopyWithImpl<$Res>
+class __$$_HealthDiaryEdgeCopyWithImpl<$Res>
     extends _$HealthDiaryEdgeCopyWithImpl<$Res>
-    implements _$HealthDiaryEdgeCopyWith<$Res> {
-  __$HealthDiaryEdgeCopyWithImpl(
-      _HealthDiaryEdge _value, $Res Function(_HealthDiaryEdge) _then)
-      : super(_value, (v) => _then(v as _HealthDiaryEdge));
+    implements _$$_HealthDiaryEdgeCopyWith<$Res> {
+  __$$_HealthDiaryEdgeCopyWithImpl(
+      _$_HealthDiaryEdge _value, $Res Function(_$_HealthDiaryEdge) _then)
+      : super(_value, (v) => _then(v as _$_HealthDiaryEdge));
 
   @override
-  _HealthDiaryEdge get _value => super._value as _HealthDiaryEdge;
+  _$_HealthDiaryEdge get _value => super._value as _$_HealthDiaryEdge;
 
   @override
   $Res call({
     Object? healthDiaryEntry = freezed,
   }) {
-    return _then(_HealthDiaryEdge(
+    return _then(_$_HealthDiaryEdge(
       healthDiaryEntry: healthDiaryEntry == freezed
-          ? _value.healthDiaryEntry
+          ? _value._healthDiaryEntry
           : healthDiaryEntry // ignore: cast_nullable_to_non_nullable
               as List<HealthDiaryEntry>,
     ));
@@ -123,14 +103,19 @@ class __$HealthDiaryEdgeCopyWithImpl<$Res>
 class _$_HealthDiaryEdge implements _HealthDiaryEdge {
   _$_HealthDiaryEdge(
       {@JsonKey(name: 'getSharedHealthDiaryEntries')
-          required this.healthDiaryEntry});
+          required final List<HealthDiaryEntry> healthDiaryEntry})
+      : _healthDiaryEntry = healthDiaryEntry;
 
   factory _$_HealthDiaryEdge.fromJson(Map<String, dynamic> json) =>
       _$$_HealthDiaryEdgeFromJson(json);
 
+  final List<HealthDiaryEntry> _healthDiaryEntry;
   @override
   @JsonKey(name: 'getSharedHealthDiaryEntries')
-  final List<HealthDiaryEntry> healthDiaryEntry;
+  List<HealthDiaryEntry> get healthDiaryEntry {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_healthDiaryEntry);
+  }
 
   @override
   String toString() {
@@ -141,19 +126,20 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HealthDiaryEdge &&
+            other is _$_HealthDiaryEdge &&
             const DeepCollectionEquality()
-                .equals(other.healthDiaryEntry, healthDiaryEntry));
+                .equals(other._healthDiaryEntry, _healthDiaryEntry));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(healthDiaryEntry));
 
   @JsonKey(ignore: true)
   @override
-  _$HealthDiaryEdgeCopyWith<_HealthDiaryEdge> get copyWith =>
-      __$HealthDiaryEdgeCopyWithImpl<_HealthDiaryEdge>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_healthDiaryEntry));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_HealthDiaryEdgeCopyWith<_$_HealthDiaryEdge> get copyWith =>
+      __$$_HealthDiaryEdgeCopyWithImpl<_$_HealthDiaryEdge>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -164,7 +150,7 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
 abstract class _HealthDiaryEdge implements HealthDiaryEdge {
   factory _HealthDiaryEdge(
           {@JsonKey(name: 'getSharedHealthDiaryEntries')
-              required List<HealthDiaryEntry> healthDiaryEntry}) =
+              required final List<HealthDiaryEntry> healthDiaryEntry}) =
       _$_HealthDiaryEdge;
 
   factory _HealthDiaryEdge.fromJson(Map<String, dynamic> json) =
@@ -172,43 +158,17 @@ abstract class _HealthDiaryEdge implements HealthDiaryEdge {
 
   @override
   @JsonKey(name: 'getSharedHealthDiaryEntries')
-  List<HealthDiaryEntry> get healthDiaryEntry;
+  List<HealthDiaryEntry> get healthDiaryEntry =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$HealthDiaryEdgeCopyWith<_HealthDiaryEdge> get copyWith =>
+  _$$_HealthDiaryEdgeCopyWith<_$_HealthDiaryEdge> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 HealthDiaryEntry _$HealthDiaryEntryFromJson(Map<String, dynamic> json) {
   return _HealthDiaryEntry.fromJson(json);
 }
-
-/// @nodoc
-class _$HealthDiaryEntryTearOff {
-  const _$HealthDiaryEntryTearOff();
-
-  _HealthDiaryEntry call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'mood') String? mood,
-      @JsonKey(name: 'note') String? note,
-      @JsonKey(name: 'sharedAt') String? sharedAt,
-      @JsonKey(name: 'active', defaultValue: false) bool? active}) {
-    return _HealthDiaryEntry(
-      id: id,
-      mood: mood,
-      note: note,
-      sharedAt: sharedAt,
-      active: active,
-    );
-  }
-
-  HealthDiaryEntry fromJson(Map<String, Object?> json) {
-    return HealthDiaryEntry.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $HealthDiaryEntry = _$HealthDiaryEntryTearOff();
 
 /// @nodoc
 mixin _$HealthDiaryEntry {
@@ -285,11 +245,11 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$HealthDiaryEntryCopyWith<$Res>
+abstract class _$$_HealthDiaryEntryCopyWith<$Res>
     implements $HealthDiaryEntryCopyWith<$Res> {
-  factory _$HealthDiaryEntryCopyWith(
-          _HealthDiaryEntry value, $Res Function(_HealthDiaryEntry) then) =
-      __$HealthDiaryEntryCopyWithImpl<$Res>;
+  factory _$$_HealthDiaryEntryCopyWith(
+          _$_HealthDiaryEntry value, $Res Function(_$_HealthDiaryEntry) then) =
+      __$$_HealthDiaryEntryCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -300,15 +260,15 @@ abstract class _$HealthDiaryEntryCopyWith<$Res>
 }
 
 /// @nodoc
-class __$HealthDiaryEntryCopyWithImpl<$Res>
+class __$$_HealthDiaryEntryCopyWithImpl<$Res>
     extends _$HealthDiaryEntryCopyWithImpl<$Res>
-    implements _$HealthDiaryEntryCopyWith<$Res> {
-  __$HealthDiaryEntryCopyWithImpl(
-      _HealthDiaryEntry _value, $Res Function(_HealthDiaryEntry) _then)
-      : super(_value, (v) => _then(v as _HealthDiaryEntry));
+    implements _$$_HealthDiaryEntryCopyWith<$Res> {
+  __$$_HealthDiaryEntryCopyWithImpl(
+      _$_HealthDiaryEntry _value, $Res Function(_$_HealthDiaryEntry) _then)
+      : super(_value, (v) => _then(v as _$_HealthDiaryEntry));
 
   @override
-  _HealthDiaryEntry get _value => super._value as _HealthDiaryEntry;
+  _$_HealthDiaryEntry get _value => super._value as _$_HealthDiaryEntry;
 
   @override
   $Res call({
@@ -318,7 +278,7 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
     Object? sharedAt = freezed,
     Object? active = freezed,
   }) {
-    return _then(_HealthDiaryEntry(
+    return _then(_$_HealthDiaryEntry(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -381,7 +341,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HealthDiaryEntry &&
+            other is _$_HealthDiaryEntry &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.mood, mood) &&
             const DeepCollectionEquality().equals(other.note, note) &&
@@ -389,6 +349,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
             const DeepCollectionEquality().equals(other.active, active));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -400,8 +361,8 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
   @JsonKey(ignore: true)
   @override
-  _$HealthDiaryEntryCopyWith<_HealthDiaryEntry> get copyWith =>
-      __$HealthDiaryEntryCopyWithImpl<_HealthDiaryEntry>(this, _$identity);
+  _$$_HealthDiaryEntryCopyWith<_$_HealthDiaryEntry> get copyWith =>
+      __$$_HealthDiaryEntryCopyWithImpl<_$_HealthDiaryEntry>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -411,11 +372,11 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
 abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   factory _HealthDiaryEntry(
-          {@JsonKey(name: 'id') String? id,
-          @JsonKey(name: 'mood') String? mood,
-          @JsonKey(name: 'note') String? note,
-          @JsonKey(name: 'sharedAt') String? sharedAt,
-          @JsonKey(name: 'active', defaultValue: false) bool? active}) =
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'mood') final String? mood,
+          @JsonKey(name: 'note') final String? note,
+          @JsonKey(name: 'sharedAt') final String? sharedAt,
+          @JsonKey(name: 'active', defaultValue: false) final bool? active}) =
       _$_HealthDiaryEntry;
 
   factory _HealthDiaryEntry.fromJson(Map<String, dynamic> json) =
@@ -423,21 +384,21 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
 
   @override
   @JsonKey(name: 'id')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'mood')
-  String? get mood;
+  String? get mood => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'note')
-  String? get note;
+  String? get note => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'sharedAt')
-  String? get sharedAt;
+  String? get sharedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$HealthDiaryEntryCopyWith<_HealthDiaryEntry> get copyWith =>
+  _$$_HealthDiaryEntryCopyWith<_$_HealthDiaryEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }

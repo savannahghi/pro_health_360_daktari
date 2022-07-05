@@ -12,34 +12,11 @@ part of 'survey.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Survey _$SurveyFromJson(Map<String, dynamic> json) {
   return _Survey.fromJson(json);
 }
-
-/// @nodoc
-class _$SurveyTearOff {
-  const _$SurveyTearOff();
-
-  _Survey call(
-      {@JsonKey(name: 'projectId') int? projectId,
-      @JsonKey(name: 'xmlFormId') String? xmlFormId,
-      @JsonKey(name: 'name') String? name}) {
-    return _Survey(
-      projectId: projectId,
-      xmlFormId: xmlFormId,
-      name: name,
-    );
-  }
-
-  Survey fromJson(Map<String, Object?> json) {
-    return Survey.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Survey = _$SurveyTearOff();
 
 /// @nodoc
 mixin _$Survey {
@@ -97,9 +74,9 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
-  factory _$SurveyCopyWith(_Survey value, $Res Function(_Survey) then) =
-      __$SurveyCopyWithImpl<$Res>;
+abstract class _$$_SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
+  factory _$$_SurveyCopyWith(_$_Survey value, $Res Function(_$_Survey) then) =
+      __$$_SurveyCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'projectId') int? projectId,
@@ -108,13 +85,13 @@ abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
-    implements _$SurveyCopyWith<$Res> {
-  __$SurveyCopyWithImpl(_Survey _value, $Res Function(_Survey) _then)
-      : super(_value, (v) => _then(v as _Survey));
+class __$$_SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
+    implements _$$_SurveyCopyWith<$Res> {
+  __$$_SurveyCopyWithImpl(_$_Survey _value, $Res Function(_$_Survey) _then)
+      : super(_value, (v) => _then(v as _$_Survey));
 
   @override
-  _Survey get _value => super._value as _Survey;
+  _$_Survey get _value => super._value as _$_Survey;
 
   @override
   $Res call({
@@ -122,7 +99,7 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
     Object? xmlFormId = freezed,
     Object? name = freezed,
   }) {
-    return _then(_Survey(
+    return _then(_$_Survey(
       projectId: projectId == freezed
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
@@ -169,12 +146,13 @@ class _$_Survey implements _Survey {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Survey &&
+            other is _$_Survey &&
             const DeepCollectionEquality().equals(other.projectId, projectId) &&
             const DeepCollectionEquality().equals(other.xmlFormId, xmlFormId) &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -184,8 +162,8 @@ class _$_Survey implements _Survey {
 
   @JsonKey(ignore: true)
   @override
-  _$SurveyCopyWith<_Survey> get copyWith =>
-      __$SurveyCopyWithImpl<_Survey>(this, _$identity);
+  _$$_SurveyCopyWith<_$_Survey> get copyWith =>
+      __$$_SurveyCopyWithImpl<_$_Survey>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -195,22 +173,23 @@ class _$_Survey implements _Survey {
 
 abstract class _Survey implements Survey {
   factory _Survey(
-      {@JsonKey(name: 'projectId') int? projectId,
-      @JsonKey(name: 'xmlFormId') String? xmlFormId,
-      @JsonKey(name: 'name') String? name}) = _$_Survey;
+      {@JsonKey(name: 'projectId') final int? projectId,
+      @JsonKey(name: 'xmlFormId') final String? xmlFormId,
+      @JsonKey(name: 'name') final String? name}) = _$_Survey;
 
   factory _Survey.fromJson(Map<String, dynamic> json) = _$_Survey.fromJson;
 
   @override
   @JsonKey(name: 'projectId')
-  int? get projectId;
+  int? get projectId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'xmlFormId')
-  String? get xmlFormId;
+  String? get xmlFormId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SurveyCopyWith<_Survey> get copyWith => throw _privateConstructorUsedError;
+  _$$_SurveyCopyWith<_$_Survey> get copyWith =>
+      throw _privateConstructorUsedError;
 }

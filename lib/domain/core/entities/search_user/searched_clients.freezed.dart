@@ -12,30 +12,11 @@ part of 'searched_clients.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchedClients _$SearchedClientsFromJson(Map<String, dynamic> json) {
   return _SearchedClients.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchedClientsTearOff {
-  const _$SearchedClientsTearOff();
-
-  _SearchedClients call(
-      {@JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients}) {
-    return _SearchedClients(
-      clients: clients,
-    );
-  }
-
-  SearchedClients fromJson(Map<String, Object?> json) {
-    return SearchedClients.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchedClients = _$SearchedClientsTearOff();
 
 /// @nodoc
 mixin _$SearchedClients {
@@ -80,34 +61,34 @@ class _$SearchedClientsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SearchedClientsCopyWith<$Res>
+abstract class _$$_SearchedClientsCopyWith<$Res>
     implements $SearchedClientsCopyWith<$Res> {
-  factory _$SearchedClientsCopyWith(
-          _SearchedClients value, $Res Function(_SearchedClients) then) =
-      __$SearchedClientsCopyWithImpl<$Res>;
+  factory _$$_SearchedClientsCopyWith(
+          _$_SearchedClients value, $Res Function(_$_SearchedClients) then) =
+      __$$_SearchedClientsCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'searchClientUser') List<SearchUserResponse>? clients});
 }
 
 /// @nodoc
-class __$SearchedClientsCopyWithImpl<$Res>
+class __$$_SearchedClientsCopyWithImpl<$Res>
     extends _$SearchedClientsCopyWithImpl<$Res>
-    implements _$SearchedClientsCopyWith<$Res> {
-  __$SearchedClientsCopyWithImpl(
-      _SearchedClients _value, $Res Function(_SearchedClients) _then)
-      : super(_value, (v) => _then(v as _SearchedClients));
+    implements _$$_SearchedClientsCopyWith<$Res> {
+  __$$_SearchedClientsCopyWithImpl(
+      _$_SearchedClients _value, $Res Function(_$_SearchedClients) _then)
+      : super(_value, (v) => _then(v as _$_SearchedClients));
 
   @override
-  _SearchedClients get _value => super._value as _SearchedClients;
+  _$_SearchedClients get _value => super._value as _$_SearchedClients;
 
   @override
   $Res call({
     Object? clients = freezed,
   }) {
-    return _then(_SearchedClients(
+    return _then(_$_SearchedClients(
       clients: clients == freezed
-          ? _value.clients
+          ? _value._clients
           : clients // ignore: cast_nullable_to_non_nullable
               as List<SearchUserResponse>?,
     ));
@@ -117,14 +98,23 @@ class __$SearchedClientsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SearchedClients implements _SearchedClients {
-  _$_SearchedClients({@JsonKey(name: 'searchClientUser') this.clients});
+  _$_SearchedClients(
+      {@JsonKey(name: 'searchClientUser')
+          final List<SearchUserResponse>? clients})
+      : _clients = clients;
 
   factory _$_SearchedClients.fromJson(Map<String, dynamic> json) =>
       _$$_SearchedClientsFromJson(json);
 
+  final List<SearchUserResponse>? _clients;
   @override
   @JsonKey(name: 'searchClientUser')
-  final List<SearchUserResponse>? clients;
+  List<SearchUserResponse>? get clients {
+    final value = _clients;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -135,18 +125,19 @@ class _$_SearchedClients implements _SearchedClients {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchedClients &&
-            const DeepCollectionEquality().equals(other.clients, clients));
+            other is _$_SearchedClients &&
+            const DeepCollectionEquality().equals(other._clients, _clients));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(clients));
 
   @JsonKey(ignore: true)
   @override
-  _$SearchedClientsCopyWith<_SearchedClients> get copyWith =>
-      __$SearchedClientsCopyWithImpl<_SearchedClients>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_clients));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SearchedClientsCopyWith<_$_SearchedClients> get copyWith =>
+      __$$_SearchedClientsCopyWithImpl<_$_SearchedClients>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -157,16 +148,16 @@ class _$_SearchedClients implements _SearchedClients {
 abstract class _SearchedClients implements SearchedClients {
   factory _SearchedClients(
       {@JsonKey(name: 'searchClientUser')
-          List<SearchUserResponse>? clients}) = _$_SearchedClients;
+          final List<SearchUserResponse>? clients}) = _$_SearchedClients;
 
   factory _SearchedClients.fromJson(Map<String, dynamic> json) =
       _$_SearchedClients.fromJson;
 
   @override
   @JsonKey(name: 'searchClientUser')
-  List<SearchUserResponse>? get clients;
+  List<SearchUserResponse>? get clients => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SearchedClientsCopyWith<_SearchedClients> get copyWith =>
+  _$$_SearchedClientsCopyWith<_$_SearchedClients> get copyWith =>
       throw _privateConstructorUsedError;
 }

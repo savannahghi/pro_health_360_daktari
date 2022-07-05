@@ -6,11 +6,11 @@
 
 ### Project prerequisites
 
-1. The **ProHealth360 Daktari** app runs on Flutter version 2.5.3 **stable channel**. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **ProHealth360 Daktari** app runs on Flutter version 3.0.4 **stable channel**. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 
-3. To install Flutter version 2.5.3 run `flutter version v2.5.3`.
+3. To install Flutter version 3.0.4 run `flutter version v3.0.4`.
 
 Looks like we are done with the prerequisites :-)
 

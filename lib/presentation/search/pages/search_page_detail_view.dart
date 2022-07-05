@@ -29,7 +29,7 @@ class _SearchPageDetailViewState extends State<SearchPageDetailView> {
   @override
   void initState() {
     // fetch roles if the user being searched is a staff member
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!widget.isClient) {
         StoreProvider.dispatch(
           context,

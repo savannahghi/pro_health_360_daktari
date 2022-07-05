@@ -12,66 +12,11 @@ part of 'onboarding_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 OnboardingState _$OnboardingStateFromJson(Map<String, dynamic> json) {
   return _OnboardingState.fromJson(json);
 }
-
-/// @nodoc
-class _$OnboardingStateTearOff {
-  const _$OnboardingStateTearOff();
-
-  _OnboardingState call(
-      {TermsAndConditions? termsAndConditions,
-      List<SecurityQuestion>? securityQuestions,
-      List<SecurityQuestionResponse>? securityQuestionResponses,
-      CurrentOnboardingStage? currentOnboardingStage,
-      bool? isPhoneVerified,
-      bool? hasSetSecurityQuestions,
-      bool? hasVerifiedSecurityQuestions,
-      bool? hasSetNickName,
-      bool? hasSetPin,
-      bool? hasAcceptedTerms,
-      String? phoneNumber,
-      String? pin,
-      String? confirmPIN,
-      String? otp,
-      int? failedLoginCount,
-      bool? invalidCredentials,
-      bool? invalidOTP,
-      bool? failedToSendOTP,
-      bool? canResendOTP}) {
-    return _OnboardingState(
-      termsAndConditions: termsAndConditions,
-      securityQuestions: securityQuestions,
-      securityQuestionResponses: securityQuestionResponses,
-      currentOnboardingStage: currentOnboardingStage,
-      isPhoneVerified: isPhoneVerified,
-      hasSetSecurityQuestions: hasSetSecurityQuestions,
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
-      hasSetNickName: hasSetNickName,
-      hasSetPin: hasSetPin,
-      hasAcceptedTerms: hasAcceptedTerms,
-      phoneNumber: phoneNumber,
-      pin: pin,
-      confirmPIN: confirmPIN,
-      otp: otp,
-      failedLoginCount: failedLoginCount,
-      invalidCredentials: invalidCredentials,
-      invalidOTP: invalidOTP,
-      failedToSendOTP: failedToSendOTP,
-      canResendOTP: canResendOTP,
-    );
-  }
-
-  OnboardingState fromJson(Map<String, Object?> json) {
-    return OnboardingState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OnboardingState = _$OnboardingStateTearOff();
 
 /// @nodoc
 mixin _$OnboardingState {
@@ -282,11 +227,11 @@ class _$OnboardingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$OnboardingStateCopyWith<$Res>
+abstract class _$$_OnboardingStateCopyWith<$Res>
     implements $OnboardingStateCopyWith<$Res> {
-  factory _$OnboardingStateCopyWith(
-          _OnboardingState value, $Res Function(_OnboardingState) then) =
-      __$OnboardingStateCopyWithImpl<$Res>;
+  factory _$$_OnboardingStateCopyWith(
+          _$_OnboardingState value, $Res Function(_$_OnboardingState) then) =
+      __$$_OnboardingStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {TermsAndConditions? termsAndConditions,
@@ -314,15 +259,15 @@ abstract class _$OnboardingStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OnboardingStateCopyWithImpl<$Res>
+class __$$_OnboardingStateCopyWithImpl<$Res>
     extends _$OnboardingStateCopyWithImpl<$Res>
-    implements _$OnboardingStateCopyWith<$Res> {
-  __$OnboardingStateCopyWithImpl(
-      _OnboardingState _value, $Res Function(_OnboardingState) _then)
-      : super(_value, (v) => _then(v as _OnboardingState));
+    implements _$$_OnboardingStateCopyWith<$Res> {
+  __$$_OnboardingStateCopyWithImpl(
+      _$_OnboardingState _value, $Res Function(_$_OnboardingState) _then)
+      : super(_value, (v) => _then(v as _$_OnboardingState));
 
   @override
-  _OnboardingState get _value => super._value as _OnboardingState;
+  _$_OnboardingState get _value => super._value as _$_OnboardingState;
 
   @override
   $Res call({
@@ -346,7 +291,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? failedToSendOTP = freezed,
     Object? canResendOTP = freezed,
   }) {
-    return _then(_OnboardingState(
+    return _then(_$_OnboardingState(
       termsAndConditions: termsAndConditions == freezed
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
@@ -460,51 +405,63 @@ class _$_OnboardingState implements _OnboardingState {
   final List<SecurityQuestion>? securityQuestions;
   @override
   final List<SecurityQuestionResponse>? securityQuestionResponses;
-  @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
   /// regardless of the workflow
 // The current stage of onboarding that the user is in
-  final CurrentOnboardingStage? currentOnboardingStage;
-  @override // If the user has verified their phone number
-  final bool? isPhoneVerified;
-  @override // If the user has set their security questions
-  final bool? hasSetSecurityQuestions;
-  @override // If the user has successfully verified their security questions if pin is expired
-  final bool? hasVerifiedSecurityQuestions;
-  @override // If the user has set their nickname
-  final bool? hasSetNickName;
-  @override // Whether the user's PIN has been set
-  final bool? hasSetPin;
-  @override // Whether the user has accepted terms and conditions
-  final bool? hasAcceptedTerms;
   @override
+  final CurrentOnboardingStage? currentOnboardingStage;
+// If the user has verified their phone number
+  @override
+  final bool? isPhoneVerified;
+// If the user has set their security questions
+  @override
+  final bool? hasSetSecurityQuestions;
+// If the user has successfully verified their security questions if pin is expired
+  @override
+  final bool? hasVerifiedSecurityQuestions;
+// If the user has set their nickname
+  @override
+  final bool? hasSetNickName;
+// Whether the user's PIN has been set
+  @override
+  final bool? hasSetPin;
+// Whether the user has accepted terms and conditions
+  @override
+  final bool? hasAcceptedTerms;
 
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
-  final String? phoneNumber;
-  @override // The PIN
-  final String? pin;
-  @override // The confirm PIN
-  final String? confirmPIN;
-  @override // The OTP used when confirming the phone number
-  final String? otp;
   @override
+  final String? phoneNumber;
+// The PIN
+  @override
+  final String? pin;
+// The confirm PIN
+  @override
+  final String? confirmPIN;
+// The OTP used when confirming the phone number
+  @override
+  final String? otp;
 
   ///------------LOGIN RELATED VALUES------------
 // The number of failed login attempts that this user has
-  final int? failedLoginCount;
-  @override // Whether the credentials this user entered are invalid
-  final bool? invalidCredentials;
   @override
+  final int? failedLoginCount;
+// Whether the credentials this user entered are invalid
+  @override
+  final bool? invalidCredentials;
 
   ///------------VERIFY PHONE RELATED VALUES------------
 // If the OTP entered is invalid
+  @override
   final bool? invalidOTP;
-  @override // Whether there was a failure while sending an OTP
+// Whether there was a failure while sending an OTP
+  @override
   final bool? failedToSendOTP;
-  @override //  Whether the user is allowed to resend their PIN
+//  Whether the user is allowed to resend their PIN
+  @override
   final bool? canResendOTP;
 
   @override
@@ -516,7 +473,7 @@ class _$_OnboardingState implements _OnboardingState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OnboardingState &&
+            other is _$_OnboardingState &&
             const DeepCollectionEquality()
                 .equals(other.termsAndConditions, termsAndConditions) &&
             const DeepCollectionEquality()
@@ -555,6 +512,7 @@ class _$_OnboardingState implements _OnboardingState {
                 .equals(other.canResendOTP, canResendOTP));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -581,8 +539,8 @@ class _$_OnboardingState implements _OnboardingState {
 
   @JsonKey(ignore: true)
   @override
-  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
-      __$OnboardingStateCopyWithImpl<_OnboardingState>(this, _$identity);
+  _$$_OnboardingStateCopyWith<_$_OnboardingState> get copyWith =>
+      __$$_OnboardingStateCopyWithImpl<_$_OnboardingState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -592,83 +550,87 @@ class _$_OnboardingState implements _OnboardingState {
 
 abstract class _OnboardingState implements OnboardingState {
   factory _OnboardingState(
-      {TermsAndConditions? termsAndConditions,
-      List<SecurityQuestion>? securityQuestions,
-      List<SecurityQuestionResponse>? securityQuestionResponses,
-      CurrentOnboardingStage? currentOnboardingStage,
-      bool? isPhoneVerified,
-      bool? hasSetSecurityQuestions,
-      bool? hasVerifiedSecurityQuestions,
-      bool? hasSetNickName,
-      bool? hasSetPin,
-      bool? hasAcceptedTerms,
-      String? phoneNumber,
-      String? pin,
-      String? confirmPIN,
-      String? otp,
-      int? failedLoginCount,
-      bool? invalidCredentials,
-      bool? invalidOTP,
-      bool? failedToSendOTP,
-      bool? canResendOTP}) = _$_OnboardingState;
+      {final TermsAndConditions? termsAndConditions,
+      final List<SecurityQuestion>? securityQuestions,
+      final List<SecurityQuestionResponse>? securityQuestionResponses,
+      final CurrentOnboardingStage? currentOnboardingStage,
+      final bool? isPhoneVerified,
+      final bool? hasSetSecurityQuestions,
+      final bool? hasVerifiedSecurityQuestions,
+      final bool? hasSetNickName,
+      final bool? hasSetPin,
+      final bool? hasAcceptedTerms,
+      final String? phoneNumber,
+      final String? pin,
+      final String? confirmPIN,
+      final String? otp,
+      final int? failedLoginCount,
+      final bool? invalidCredentials,
+      final bool? invalidOTP,
+      final bool? failedToSendOTP,
+      final bool? canResendOTP}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
 
   @override
-  TermsAndConditions? get termsAndConditions;
+  TermsAndConditions? get termsAndConditions =>
+      throw _privateConstructorUsedError;
   @override
-  List<SecurityQuestion>? get securityQuestions;
+  List<SecurityQuestion>? get securityQuestions =>
+      throw _privateConstructorUsedError;
   @override
-  List<SecurityQuestionResponse>? get securityQuestionResponses;
+  List<SecurityQuestionResponse>? get securityQuestionResponses =>
+      throw _privateConstructorUsedError;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
   /// regardless of the workflow
 // The current stage of onboarding that the user is in
-  CurrentOnboardingStage? get currentOnboardingStage;
+  CurrentOnboardingStage? get currentOnboardingStage =>
+      throw _privateConstructorUsedError;
   @override // If the user has verified their phone number
-  bool? get isPhoneVerified;
+  bool? get isPhoneVerified => throw _privateConstructorUsedError;
   @override // If the user has set their security questions
-  bool? get hasSetSecurityQuestions;
+  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
   @override // If the user has successfully verified their security questions if pin is expired
-  bool? get hasVerifiedSecurityQuestions;
+  bool? get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
   @override // If the user has set their nickname
-  bool? get hasSetNickName;
+  bool? get hasSetNickName => throw _privateConstructorUsedError;
   @override // Whether the user's PIN has been set
-  bool? get hasSetPin;
+  bool? get hasSetPin => throw _privateConstructorUsedError;
   @override // Whether the user has accepted terms and conditions
-  bool? get hasAcceptedTerms;
+  bool? get hasAcceptedTerms => throw _privateConstructorUsedError;
   @override
 
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
-  String? get phoneNumber;
+  String? get phoneNumber => throw _privateConstructorUsedError;
   @override // The PIN
-  String? get pin;
+  String? get pin => throw _privateConstructorUsedError;
   @override // The confirm PIN
-  String? get confirmPIN;
+  String? get confirmPIN => throw _privateConstructorUsedError;
   @override // The OTP used when confirming the phone number
-  String? get otp;
+  String? get otp => throw _privateConstructorUsedError;
   @override
 
   ///------------LOGIN RELATED VALUES------------
 // The number of failed login attempts that this user has
-  int? get failedLoginCount;
+  int? get failedLoginCount => throw _privateConstructorUsedError;
   @override // Whether the credentials this user entered are invalid
-  bool? get invalidCredentials;
+  bool? get invalidCredentials => throw _privateConstructorUsedError;
   @override
 
   ///------------VERIFY PHONE RELATED VALUES------------
 // If the OTP entered is invalid
-  bool? get invalidOTP;
+  bool? get invalidOTP => throw _privateConstructorUsedError;
   @override // Whether there was a failure while sending an OTP
-  bool? get failedToSendOTP;
+  bool? get failedToSendOTP => throw _privateConstructorUsedError;
   @override //  Whether the user is allowed to resend their PIN
-  bool? get canResendOTP;
+  bool? get canResendOTP => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
+  _$$_OnboardingStateCopyWith<_$_OnboardingState> get copyWith =>
       throw _privateConstructorUsedError;
 }

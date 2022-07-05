@@ -12,30 +12,12 @@ part of 'bottom_nav_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 BottomNavigationState _$BottomNavigationStateFromJson(
     Map<String, dynamic> json) {
   return _BottomNavigationState.fromJson(json);
 }
-
-/// @nodoc
-class _$BottomNavigationStateTearOff {
-  const _$BottomNavigationStateTearOff();
-
-  _BottomNavigationState call({int? currentBottomNavIndex}) {
-    return _BottomNavigationState(
-      currentBottomNavIndex: currentBottomNavIndex,
-    );
-  }
-
-  BottomNavigationState fromJson(Map<String, Object?> json) {
-    return BottomNavigationState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $BottomNavigationState = _$BottomNavigationStateTearOff();
 
 /// @nodoc
 mixin _$BottomNavigationState {
@@ -78,31 +60,32 @@ class _$BottomNavigationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BottomNavigationStateCopyWith<$Res>
+abstract class _$$_BottomNavigationStateCopyWith<$Res>
     implements $BottomNavigationStateCopyWith<$Res> {
-  factory _$BottomNavigationStateCopyWith(_BottomNavigationState value,
-          $Res Function(_BottomNavigationState) then) =
-      __$BottomNavigationStateCopyWithImpl<$Res>;
+  factory _$$_BottomNavigationStateCopyWith(_$_BottomNavigationState value,
+          $Res Function(_$_BottomNavigationState) then) =
+      __$$_BottomNavigationStateCopyWithImpl<$Res>;
   @override
   $Res call({int? currentBottomNavIndex});
 }
 
 /// @nodoc
-class __$BottomNavigationStateCopyWithImpl<$Res>
+class __$$_BottomNavigationStateCopyWithImpl<$Res>
     extends _$BottomNavigationStateCopyWithImpl<$Res>
-    implements _$BottomNavigationStateCopyWith<$Res> {
-  __$BottomNavigationStateCopyWithImpl(_BottomNavigationState _value,
-      $Res Function(_BottomNavigationState) _then)
-      : super(_value, (v) => _then(v as _BottomNavigationState));
+    implements _$$_BottomNavigationStateCopyWith<$Res> {
+  __$$_BottomNavigationStateCopyWithImpl(_$_BottomNavigationState _value,
+      $Res Function(_$_BottomNavigationState) _then)
+      : super(_value, (v) => _then(v as _$_BottomNavigationState));
 
   @override
-  _BottomNavigationState get _value => super._value as _BottomNavigationState;
+  _$_BottomNavigationState get _value =>
+      super._value as _$_BottomNavigationState;
 
   @override
   $Res call({
     Object? currentBottomNavIndex = freezed,
   }) {
-    return _then(_BottomNavigationState(
+    return _then(_$_BottomNavigationState(
       currentBottomNavIndex: currentBottomNavIndex == freezed
           ? _value.currentBottomNavIndex
           : currentBottomNavIndex // ignore: cast_nullable_to_non_nullable
@@ -131,19 +114,20 @@ class _$_BottomNavigationState implements _BottomNavigationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BottomNavigationState &&
+            other is _$_BottomNavigationState &&
             const DeepCollectionEquality()
                 .equals(other.currentBottomNavIndex, currentBottomNavIndex));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(currentBottomNavIndex));
 
   @JsonKey(ignore: true)
   @override
-  _$BottomNavigationStateCopyWith<_BottomNavigationState> get copyWith =>
-      __$BottomNavigationStateCopyWithImpl<_BottomNavigationState>(
+  _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>
+      __$$_BottomNavigationStateCopyWithImpl<_$_BottomNavigationState>(
           this, _$identity);
 
   @override
@@ -153,16 +137,16 @@ class _$_BottomNavigationState implements _BottomNavigationState {
 }
 
 abstract class _BottomNavigationState implements BottomNavigationState {
-  factory _BottomNavigationState({int? currentBottomNavIndex}) =
+  factory _BottomNavigationState({final int? currentBottomNavIndex}) =
       _$_BottomNavigationState;
 
   factory _BottomNavigationState.fromJson(Map<String, dynamic> json) =
       _$_BottomNavigationState.fromJson;
 
   @override
-  int? get currentBottomNavIndex;
+  int? get currentBottomNavIndex => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BottomNavigationStateCopyWith<_BottomNavigationState> get copyWith =>
+  _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>
       throw _privateConstructorUsedError;
 }

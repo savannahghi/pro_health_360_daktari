@@ -12,31 +12,12 @@ part of 'notifications_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 NotificationsResponse _$NotificationsResponseFromJson(
     Map<String, dynamic> json) {
   return _NotificationsResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$NotificationsResponseTearOff {
-  const _$NotificationsResponseTearOff();
-
-  _NotificationsResponse call(
-      {@JsonKey(name: 'fetchNotifications') required NotificationsData data}) {
-    return _NotificationsResponse(
-      data: data,
-    );
-  }
-
-  NotificationsResponse fromJson(Map<String, Object?> json) {
-    return NotificationsResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $NotificationsResponse = _$NotificationsResponseTearOff();
 
 /// @nodoc
 mixin _$NotificationsResponse {
@@ -89,11 +70,11 @@ class _$NotificationsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationsResponseCopyWith<$Res>
+abstract class _$$_NotificationsResponseCopyWith<$Res>
     implements $NotificationsResponseCopyWith<$Res> {
-  factory _$NotificationsResponseCopyWith(_NotificationsResponse value,
-          $Res Function(_NotificationsResponse) then) =
-      __$NotificationsResponseCopyWithImpl<$Res>;
+  factory _$$_NotificationsResponseCopyWith(_$_NotificationsResponse value,
+          $Res Function(_$_NotificationsResponse) then) =
+      __$$_NotificationsResponseCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'fetchNotifications') NotificationsData data});
 
@@ -102,21 +83,22 @@ abstract class _$NotificationsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$NotificationsResponseCopyWithImpl<$Res>
+class __$$_NotificationsResponseCopyWithImpl<$Res>
     extends _$NotificationsResponseCopyWithImpl<$Res>
-    implements _$NotificationsResponseCopyWith<$Res> {
-  __$NotificationsResponseCopyWithImpl(_NotificationsResponse _value,
-      $Res Function(_NotificationsResponse) _then)
-      : super(_value, (v) => _then(v as _NotificationsResponse));
+    implements _$$_NotificationsResponseCopyWith<$Res> {
+  __$$_NotificationsResponseCopyWithImpl(_$_NotificationsResponse _value,
+      $Res Function(_$_NotificationsResponse) _then)
+      : super(_value, (v) => _then(v as _$_NotificationsResponse));
 
   @override
-  _NotificationsResponse get _value => super._value as _NotificationsResponse;
+  _$_NotificationsResponse get _value =>
+      super._value as _$_NotificationsResponse;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_NotificationsResponse(
+    return _then(_$_NotificationsResponse(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -147,18 +129,19 @@ class _$_NotificationsResponse implements _NotificationsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotificationsResponse &&
+            other is _$_NotificationsResponse &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationsResponseCopyWith<_NotificationsResponse> get copyWith =>
-      __$NotificationsResponseCopyWithImpl<_NotificationsResponse>(
+  _$$_NotificationsResponseCopyWith<_$_NotificationsResponse> get copyWith =>
+      __$$_NotificationsResponseCopyWithImpl<_$_NotificationsResponse>(
           this, _$identity);
 
   @override
@@ -170,16 +153,16 @@ class _$_NotificationsResponse implements _NotificationsResponse {
 abstract class _NotificationsResponse implements NotificationsResponse {
   factory _NotificationsResponse(
       {@JsonKey(name: 'fetchNotifications')
-          required NotificationsData data}) = _$_NotificationsResponse;
+          required final NotificationsData data}) = _$_NotificationsResponse;
 
   factory _NotificationsResponse.fromJson(Map<String, dynamic> json) =
       _$_NotificationsResponse.fromJson;
 
   @override
   @JsonKey(name: 'fetchNotifications')
-  NotificationsData get data;
+  NotificationsData get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NotificationsResponseCopyWith<_NotificationsResponse> get copyWith =>
+  _$$_NotificationsResponseCopyWith<_$_NotificationsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

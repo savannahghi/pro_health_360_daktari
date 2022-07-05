@@ -12,29 +12,11 @@ part of 'ban_status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 BanStatus _$BanStatusFromJson(Map<String, dynamic> json) {
   return _BanStatus.fromJson(json);
 }
-
-/// @nodoc
-class _$BanStatusTearOff {
-  const _$BanStatusTearOff();
-
-  _BanStatus call({@JsonKey(name: 'bannedInCommunity') bool? value}) {
-    return _BanStatus(
-      value: value,
-    );
-  }
-
-  BanStatus fromJson(Map<String, Object?> json) {
-    return BanStatus.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $BanStatus = _$BanStatusTearOff();
 
 /// @nodoc
 mixin _$BanStatus {
@@ -76,28 +58,29 @@ class _$BanStatusCopyWithImpl<$Res> implements $BanStatusCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BanStatusCopyWith<$Res> implements $BanStatusCopyWith<$Res> {
-  factory _$BanStatusCopyWith(
-          _BanStatus value, $Res Function(_BanStatus) then) =
-      __$BanStatusCopyWithImpl<$Res>;
+abstract class _$$_BanStatusCopyWith<$Res> implements $BanStatusCopyWith<$Res> {
+  factory _$$_BanStatusCopyWith(
+          _$_BanStatus value, $Res Function(_$_BanStatus) then) =
+      __$$_BanStatusCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'bannedInCommunity') bool? value});
 }
 
 /// @nodoc
-class __$BanStatusCopyWithImpl<$Res> extends _$BanStatusCopyWithImpl<$Res>
-    implements _$BanStatusCopyWith<$Res> {
-  __$BanStatusCopyWithImpl(_BanStatus _value, $Res Function(_BanStatus) _then)
-      : super(_value, (v) => _then(v as _BanStatus));
+class __$$_BanStatusCopyWithImpl<$Res> extends _$BanStatusCopyWithImpl<$Res>
+    implements _$$_BanStatusCopyWith<$Res> {
+  __$$_BanStatusCopyWithImpl(
+      _$_BanStatus _value, $Res Function(_$_BanStatus) _then)
+      : super(_value, (v) => _then(v as _$_BanStatus));
 
   @override
-  _BanStatus get _value => super._value as _BanStatus;
+  _$_BanStatus get _value => super._value as _$_BanStatus;
 
   @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_BanStatus(
+    return _then(_$_BanStatus(
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -127,18 +110,19 @@ class _$_BanStatus implements _BanStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BanStatus &&
+            other is _$_BanStatus &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
-  _$BanStatusCopyWith<_BanStatus> get copyWith =>
-      __$BanStatusCopyWithImpl<_BanStatus>(this, _$identity);
+  _$$_BanStatusCopyWith<_$_BanStatus> get copyWith =>
+      __$$_BanStatusCopyWithImpl<_$_BanStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -147,7 +131,7 @@ class _$_BanStatus implements _BanStatus {
 }
 
 abstract class _BanStatus implements BanStatus {
-  factory _BanStatus({@JsonKey(name: 'bannedInCommunity') bool? value}) =
+  factory _BanStatus({@JsonKey(name: 'bannedInCommunity') final bool? value}) =
       _$_BanStatus;
 
   factory _BanStatus.fromJson(Map<String, dynamic> json) =
@@ -155,9 +139,9 @@ abstract class _BanStatus implements BanStatus {
 
   @override
   @JsonKey(name: 'bannedInCommunity')
-  bool? get value;
+  bool? get value => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BanStatusCopyWith<_BanStatus> get copyWith =>
+  _$$_BanStatusCopyWith<_$_BanStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }

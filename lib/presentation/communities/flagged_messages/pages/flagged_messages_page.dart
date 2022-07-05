@@ -140,7 +140,7 @@ class FlaggedMessagesPage extends StatelessWidget {
                     itemBuilder: (_, int index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 8.0),
-                        child: MessageWidget(
+                        child: StreamMessageWidget(
                           onMessageActions:
                               (BuildContext context, Message message) {},
                           onMessageTap: (Message message) {

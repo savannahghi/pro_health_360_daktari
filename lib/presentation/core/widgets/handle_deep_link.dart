@@ -19,7 +19,7 @@ class _HandleDeepLinkState extends State<HandleDeepLink> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       StoreProvider.dispatch(context, DeepLinkAction());
     });
   }

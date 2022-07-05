@@ -12,26 +12,7 @@ part of 'onboarding_path_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$OnboardingPathInfoTearOff {
-  const _$OnboardingPathInfoTearOff();
-
-  _OnboardingPathInfo call(
-      {required String nextRoute,
-      required String previousRoute,
-      dynamic arguments = null}) {
-    return _OnboardingPathInfo(
-      nextRoute: nextRoute,
-      previousRoute: previousRoute,
-      arguments: arguments,
-    );
-  }
-}
-
-/// @nodoc
-const $OnboardingPathInfo = _$OnboardingPathInfoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$OnboardingPathInfo {
@@ -88,25 +69,25 @@ class _$OnboardingPathInfoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$OnboardingPathInfoCopyWith<$Res>
+abstract class _$$_OnboardingPathInfoCopyWith<$Res>
     implements $OnboardingPathInfoCopyWith<$Res> {
-  factory _$OnboardingPathInfoCopyWith(
-          _OnboardingPathInfo value, $Res Function(_OnboardingPathInfo) then) =
-      __$OnboardingPathInfoCopyWithImpl<$Res>;
+  factory _$$_OnboardingPathInfoCopyWith(_$_OnboardingPathInfo value,
+          $Res Function(_$_OnboardingPathInfo) then) =
+      __$$_OnboardingPathInfoCopyWithImpl<$Res>;
   @override
   $Res call({String nextRoute, String previousRoute, dynamic arguments});
 }
 
 /// @nodoc
-class __$OnboardingPathInfoCopyWithImpl<$Res>
+class __$$_OnboardingPathInfoCopyWithImpl<$Res>
     extends _$OnboardingPathInfoCopyWithImpl<$Res>
-    implements _$OnboardingPathInfoCopyWith<$Res> {
-  __$OnboardingPathInfoCopyWithImpl(
-      _OnboardingPathInfo _value, $Res Function(_OnboardingPathInfo) _then)
-      : super(_value, (v) => _then(v as _OnboardingPathInfo));
+    implements _$$_OnboardingPathInfoCopyWith<$Res> {
+  __$$_OnboardingPathInfoCopyWithImpl(
+      _$_OnboardingPathInfo _value, $Res Function(_$_OnboardingPathInfo) _then)
+      : super(_value, (v) => _then(v as _$_OnboardingPathInfo));
 
   @override
-  _OnboardingPathInfo get _value => super._value as _OnboardingPathInfo;
+  _$_OnboardingPathInfo get _value => super._value as _$_OnboardingPathInfo;
 
   @override
   $Res call({
@@ -114,7 +95,7 @@ class __$OnboardingPathInfoCopyWithImpl<$Res>
     Object? previousRoute = freezed,
     Object? arguments = freezed,
   }) {
-    return _then(_OnboardingPathInfo(
+    return _then(_$_OnboardingPathInfo(
       nextRoute: nextRoute == freezed
           ? _value.nextRoute
           : nextRoute // ignore: cast_nullable_to_non_nullable
@@ -139,12 +120,15 @@ class _$_OnboardingPathInfo implements _OnboardingPathInfo {
       required this.previousRoute,
       this.arguments = null});
 
-  @override // The next route to navigate to
+// The next route to navigate to
+  @override
   final String nextRoute;
-  @override // The previous route to navigate to
+// The previous route to navigate to
+  @override
   final String previousRoute;
+// Any route arguments that may need to be passed while navigating
+  @override
   @JsonKey()
-  @override // Any route arguments that may need to be passed while navigating
   final dynamic arguments;
 
   @override
@@ -156,7 +140,7 @@ class _$_OnboardingPathInfo implements _OnboardingPathInfo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OnboardingPathInfo &&
+            other is _$_OnboardingPathInfo &&
             const DeepCollectionEquality().equals(other.nextRoute, nextRoute) &&
             const DeepCollectionEquality()
                 .equals(other.previousRoute, previousRoute) &&
@@ -172,24 +156,25 @@ class _$_OnboardingPathInfo implements _OnboardingPathInfo {
 
   @JsonKey(ignore: true)
   @override
-  _$OnboardingPathInfoCopyWith<_OnboardingPathInfo> get copyWith =>
-      __$OnboardingPathInfoCopyWithImpl<_OnboardingPathInfo>(this, _$identity);
+  _$$_OnboardingPathInfoCopyWith<_$_OnboardingPathInfo> get copyWith =>
+      __$$_OnboardingPathInfoCopyWithImpl<_$_OnboardingPathInfo>(
+          this, _$identity);
 }
 
 abstract class _OnboardingPathInfo implements OnboardingPathInfo {
   factory _OnboardingPathInfo(
-      {required String nextRoute,
-      required String previousRoute,
-      dynamic arguments}) = _$_OnboardingPathInfo;
+      {required final String nextRoute,
+      required final String previousRoute,
+      final dynamic arguments}) = _$_OnboardingPathInfo;
 
   @override // The next route to navigate to
-  String get nextRoute;
+  String get nextRoute => throw _privateConstructorUsedError;
   @override // The previous route to navigate to
-  String get previousRoute;
+  String get previousRoute => throw _privateConstructorUsedError;
   @override // Any route arguments that may need to be passed while navigating
-  dynamic get arguments;
+  dynamic get arguments => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OnboardingPathInfoCopyWith<_OnboardingPathInfo> get copyWith =>
+  _$$_OnboardingPathInfoCopyWith<_$_OnboardingPathInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }

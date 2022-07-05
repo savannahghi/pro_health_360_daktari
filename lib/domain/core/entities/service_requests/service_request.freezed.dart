@@ -12,58 +12,11 @@ part of 'service_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequest _$ServiceRequestFromJson(Map<String, dynamic> json) {
   return _ServiceRequest.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestTearOff {
-  const _$ServiceRequestTearOff();
-
-  _ServiceRequest call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Request') String? description,
-      @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
-      @JsonKey(name: 'ClientID') String? clientId,
-      @JsonKey(name: 'ClientName') String? clientName,
-      @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
-      @JsonKey(name: 'Status') RequestStatus? status,
-      @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-      @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-      @JsonKey(name: 'ResolvedByName') String? resolvedByName,
-      @JsonKey(name: 'CreatedAt') String? createdAt,
-      @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
-      @JsonKey(name: 'StaffID') String? staffId,
-      @JsonKey(name: 'StaffName') String? staffName,
-      @JsonKey(name: 'StaffContact') String? staffPhoneNumber}) {
-    return _ServiceRequest(
-      id: id,
-      description: description,
-      serviceRequestType: serviceRequestType,
-      clientId: clientId,
-      clientName: clientName,
-      clientPhoneNumber: clientPhoneNumber,
-      status: status,
-      resolvedTime: resolvedTime,
-      resolvedBy: resolvedBy,
-      resolvedByName: resolvedByName,
-      createdAt: createdAt,
-      meta: meta,
-      staffId: staffId,
-      staffName: staffName,
-      staffPhoneNumber: staffPhoneNumber,
-    );
-  }
-
-  ServiceRequest fromJson(Map<String, Object?> json) {
-    return ServiceRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequest = _$ServiceRequestTearOff();
 
 /// @nodoc
 mixin _$ServiceRequest {
@@ -234,11 +187,11 @@ class _$ServiceRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestCopyWith<$Res>
+abstract class _$$_ServiceRequestCopyWith<$Res>
     implements $ServiceRequestCopyWith<$Res> {
-  factory _$ServiceRequestCopyWith(
-          _ServiceRequest value, $Res Function(_ServiceRequest) then) =
-      __$ServiceRequestCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestCopyWith(
+          _$_ServiceRequest value, $Res Function(_$_ServiceRequest) then) =
+      __$$_ServiceRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? id,
@@ -262,15 +215,15 @@ abstract class _$ServiceRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestCopyWithImpl<$Res>
+class __$$_ServiceRequestCopyWithImpl<$Res>
     extends _$ServiceRequestCopyWithImpl<$Res>
-    implements _$ServiceRequestCopyWith<$Res> {
-  __$ServiceRequestCopyWithImpl(
-      _ServiceRequest _value, $Res Function(_ServiceRequest) _then)
-      : super(_value, (v) => _then(v as _ServiceRequest));
+    implements _$$_ServiceRequestCopyWith<$Res> {
+  __$$_ServiceRequestCopyWithImpl(
+      _$_ServiceRequest _value, $Res Function(_$_ServiceRequest) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequest));
 
   @override
-  _ServiceRequest get _value => super._value as _ServiceRequest;
+  _$_ServiceRequest get _value => super._value as _$_ServiceRequest;
 
   @override
   $Res call({
@@ -290,7 +243,7 @@ class __$ServiceRequestCopyWithImpl<$Res>
     Object? staffName = freezed,
     Object? staffPhoneNumber = freezed,
   }) {
-    return _then(_ServiceRequest(
+    return _then(_$_ServiceRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -433,7 +386,7 @@ class _$_ServiceRequest implements _ServiceRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequest &&
+            other is _$_ServiceRequest &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -459,6 +412,7 @@ class _$_ServiceRequest implements _ServiceRequest {
                 .equals(other.staffPhoneNumber, staffPhoneNumber));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -480,8 +434,8 @@ class _$_ServiceRequest implements _ServiceRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestCopyWith<_ServiceRequest> get copyWith =>
-      __$ServiceRequestCopyWithImpl<_ServiceRequest>(this, _$identity);
+  _$$_ServiceRequestCopyWith<_$_ServiceRequest> get copyWith =>
+      __$$_ServiceRequestCopyWithImpl<_$_ServiceRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -491,73 +445,88 @@ class _$_ServiceRequest implements _ServiceRequest {
 
 abstract class _ServiceRequest implements ServiceRequest {
   factory _ServiceRequest(
-          {@JsonKey(name: 'ID') String? id,
-          @JsonKey(name: 'Request') String? description,
-          @JsonKey(name: 'RequestType') ServiceRequestType? serviceRequestType,
-          @JsonKey(name: 'ClientID') String? clientId,
-          @JsonKey(name: 'ClientName') String? clientName,
-          @JsonKey(name: 'ClientContact') String? clientPhoneNumber,
-          @JsonKey(name: 'Status') RequestStatus? status,
-          @JsonKey(name: 'ResolvedAt') String? resolvedTime,
-          @JsonKey(name: 'ResolvedBy') String? resolvedBy,
-          @JsonKey(name: 'ResolvedByName') String? resolvedByName,
-          @JsonKey(name: 'CreatedAt') String? createdAt,
-          @JsonKey(name: 'Meta') ServiceRequestMeta? meta,
-          @JsonKey(name: 'StaffID') String? staffId,
-          @JsonKey(name: 'StaffName') String? staffName,
-          @JsonKey(name: 'StaffContact') String? staffPhoneNumber}) =
-      _$_ServiceRequest;
+      {@JsonKey(name: 'ID')
+          final String? id,
+      @JsonKey(name: 'Request')
+          final String? description,
+      @JsonKey(name: 'RequestType')
+          final ServiceRequestType? serviceRequestType,
+      @JsonKey(name: 'ClientID')
+          final String? clientId,
+      @JsonKey(name: 'ClientName')
+          final String? clientName,
+      @JsonKey(name: 'ClientContact')
+          final String? clientPhoneNumber,
+      @JsonKey(name: 'Status')
+          final RequestStatus? status,
+      @JsonKey(name: 'ResolvedAt')
+          final String? resolvedTime,
+      @JsonKey(name: 'ResolvedBy')
+          final String? resolvedBy,
+      @JsonKey(name: 'ResolvedByName')
+          final String? resolvedByName,
+      @JsonKey(name: 'CreatedAt')
+          final String? createdAt,
+      @JsonKey(name: 'Meta')
+          final ServiceRequestMeta? meta,
+      @JsonKey(name: 'StaffID')
+          final String? staffId,
+      @JsonKey(name: 'StaffName')
+          final String? staffName,
+      @JsonKey(name: 'StaffContact')
+          final String? staffPhoneNumber}) = _$_ServiceRequest;
 
   factory _ServiceRequest.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequest.fromJson;
 
   @override
   @JsonKey(name: 'ID')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Request')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'RequestType')
-  ServiceRequestType? get serviceRequestType;
+  ServiceRequestType? get serviceRequestType =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ClientID')
-  String? get clientId;
+  String? get clientId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ClientName')
-  String? get clientName;
+  String? get clientName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ClientContact')
-  String? get clientPhoneNumber;
+  String? get clientPhoneNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Status')
-  RequestStatus? get status;
+  RequestStatus? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ResolvedAt')
-  String? get resolvedTime;
+  String? get resolvedTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ResolvedBy')
-  String? get resolvedBy;
+  String? get resolvedBy => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ResolvedByName')
-  String? get resolvedByName;
+  String? get resolvedByName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'CreatedAt')
-  String? get createdAt;
+  String? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Meta')
-  ServiceRequestMeta? get meta;
+  ServiceRequestMeta? get meta => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'StaffID')
-  String? get staffId;
+  String? get staffId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'StaffName')
-  String? get staffName;
+  String? get staffName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'StaffContact')
-  String? get staffPhoneNumber;
+  String? get staffPhoneNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestCopyWith<_ServiceRequest> get copyWith =>
+  _$$_ServiceRequestCopyWith<_$_ServiceRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,30 +12,11 @@ part of 'get_stream_token.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GetStreamToken _$GetStreamTokenFromJson(Map<String, dynamic> json) {
   return _GetStreamToken.fromJson(json);
 }
-
-/// @nodoc
-class _$GetStreamTokenTearOff {
-  const _$GetStreamTokenTearOff();
-
-  _GetStreamToken call(
-      {@JsonKey(name: 'getStreamToken') String? getStreamToken}) {
-    return _GetStreamToken(
-      getStreamToken: getStreamToken,
-    );
-  }
-
-  GetStreamToken fromJson(Map<String, Object?> json) {
-    return GetStreamToken.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GetStreamToken = _$GetStreamTokenTearOff();
 
 /// @nodoc
 mixin _$GetStreamToken {
@@ -79,31 +60,31 @@ class _$GetStreamTokenCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GetStreamTokenCopyWith<$Res>
+abstract class _$$_GetStreamTokenCopyWith<$Res>
     implements $GetStreamTokenCopyWith<$Res> {
-  factory _$GetStreamTokenCopyWith(
-          _GetStreamToken value, $Res Function(_GetStreamToken) then) =
-      __$GetStreamTokenCopyWithImpl<$Res>;
+  factory _$$_GetStreamTokenCopyWith(
+          _$_GetStreamToken value, $Res Function(_$_GetStreamToken) then) =
+      __$$_GetStreamTokenCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'getStreamToken') String? getStreamToken});
 }
 
 /// @nodoc
-class __$GetStreamTokenCopyWithImpl<$Res>
+class __$$_GetStreamTokenCopyWithImpl<$Res>
     extends _$GetStreamTokenCopyWithImpl<$Res>
-    implements _$GetStreamTokenCopyWith<$Res> {
-  __$GetStreamTokenCopyWithImpl(
-      _GetStreamToken _value, $Res Function(_GetStreamToken) _then)
-      : super(_value, (v) => _then(v as _GetStreamToken));
+    implements _$$_GetStreamTokenCopyWith<$Res> {
+  __$$_GetStreamTokenCopyWithImpl(
+      _$_GetStreamToken _value, $Res Function(_$_GetStreamToken) _then)
+      : super(_value, (v) => _then(v as _$_GetStreamToken));
 
   @override
-  _GetStreamToken get _value => super._value as _GetStreamToken;
+  _$_GetStreamToken get _value => super._value as _$_GetStreamToken;
 
   @override
   $Res call({
     Object? getStreamToken = freezed,
   }) {
-    return _then(_GetStreamToken(
+    return _then(_$_GetStreamToken(
       getStreamToken: getStreamToken == freezed
           ? _value.getStreamToken
           : getStreamToken // ignore: cast_nullable_to_non_nullable
@@ -133,19 +114,20 @@ class _$_GetStreamToken implements _GetStreamToken {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GetStreamToken &&
+            other is _$_GetStreamToken &&
             const DeepCollectionEquality()
                 .equals(other.getStreamToken, getStreamToken));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(getStreamToken));
 
   @JsonKey(ignore: true)
   @override
-  _$GetStreamTokenCopyWith<_GetStreamToken> get copyWith =>
-      __$GetStreamTokenCopyWithImpl<_GetStreamToken>(this, _$identity);
+  _$$_GetStreamTokenCopyWith<_$_GetStreamToken> get copyWith =>
+      __$$_GetStreamTokenCopyWithImpl<_$_GetStreamToken>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -155,7 +137,7 @@ class _$_GetStreamToken implements _GetStreamToken {
 
 abstract class _GetStreamToken implements GetStreamToken {
   factory _GetStreamToken(
-          {@JsonKey(name: 'getStreamToken') String? getStreamToken}) =
+          {@JsonKey(name: 'getStreamToken') final String? getStreamToken}) =
       _$_GetStreamToken;
 
   factory _GetStreamToken.fromJson(Map<String, dynamic> json) =
@@ -163,9 +145,9 @@ abstract class _GetStreamToken implements GetStreamToken {
 
   @override
   @JsonKey(name: 'getStreamToken')
-  String? get getStreamToken;
+  String? get getStreamToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GetStreamTokenCopyWith<_GetStreamToken> get copyWith =>
+  _$$_GetStreamTokenCopyWith<_$_GetStreamToken> get copyWith =>
       throw _privateConstructorUsedError;
 }
