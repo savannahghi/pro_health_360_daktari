@@ -12,48 +12,11 @@ part of 'misc_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MiscState _$MiscStateFromJson(Map<String, dynamic> json) {
   return _MiscState.fromJson(json);
 }
-
-/// @nodoc
-class _$MiscStateTearOff {
-  const _$MiscStateTearOff();
-
-  _MiscState call(
-      {String? initialRoute,
-      String? error,
-      FAQsContentState? profileFAQsContentState,
-      ListContentCategory? categoriesList,
-      List<Member>? communityMembers,
-      Facility? selectedFacility,
-      GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState,
-      String? inactiveTime,
-      bool? resumeWithPin}) {
-    return _MiscState(
-      initialRoute: initialRoute,
-      error: error,
-      profileFAQsContentState: profileFAQsContentState,
-      categoriesList: categoriesList,
-      communityMembers: communityMembers,
-      selectedFacility: selectedFacility,
-      groupState: groupState,
-      searchUserResponseState: searchUserResponseState,
-      inactiveTime: inactiveTime,
-      resumeWithPin: resumeWithPin,
-    );
-  }
-
-  MiscState fromJson(Map<String, Object?> json) {
-    return MiscState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MiscState = _$MiscStateTearOff();
 
 /// @nodoc
 mixin _$MiscState {
@@ -223,10 +186,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
-  factory _$MiscStateCopyWith(
-          _MiscState value, $Res Function(_MiscState) then) =
-      __$MiscStateCopyWithImpl<$Res>;
+abstract class _$$_MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
+  factory _$$_MiscStateCopyWith(
+          _$_MiscState value, $Res Function(_$_MiscState) then) =
+      __$$_MiscStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? initialRoute,
@@ -253,13 +216,14 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
-    implements _$MiscStateCopyWith<$Res> {
-  __$MiscStateCopyWithImpl(_MiscState _value, $Res Function(_MiscState) _then)
-      : super(_value, (v) => _then(v as _MiscState));
+class __$$_MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
+    implements _$$_MiscStateCopyWith<$Res> {
+  __$$_MiscStateCopyWithImpl(
+      _$_MiscState _value, $Res Function(_$_MiscState) _then)
+      : super(_value, (v) => _then(v as _$_MiscState));
 
   @override
-  _MiscState get _value => super._value as _MiscState;
+  _$_MiscState get _value => super._value as _$_MiscState;
 
   @override
   $Res call({
@@ -274,7 +238,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? inactiveTime = freezed,
     Object? resumeWithPin = freezed,
   }) {
-    return _then(_MiscState(
+    return _then(_$_MiscState(
       initialRoute: initialRoute == freezed
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
@@ -292,7 +256,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           : categoriesList // ignore: cast_nullable_to_non_nullable
               as ListContentCategory?,
       communityMembers: communityMembers == freezed
-          ? _value.communityMembers
+          ? _value._communityMembers
           : communityMembers // ignore: cast_nullable_to_non_nullable
               as List<Member>?,
       selectedFacility: selectedFacility == freezed
@@ -327,12 +291,13 @@ class _$_MiscState implements _MiscState {
       this.error,
       this.profileFAQsContentState,
       this.categoriesList,
-      this.communityMembers,
+      final List<Member>? communityMembers,
       this.selectedFacility,
       this.groupState,
       this.searchUserResponseState,
       this.inactiveTime,
-      this.resumeWithPin});
+      this.resumeWithPin})
+      : _communityMembers = communityMembers;
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -345,8 +310,15 @@ class _$_MiscState implements _MiscState {
   final FAQsContentState? profileFAQsContentState;
   @override
   final ListContentCategory? categoriesList;
+  final List<Member>? _communityMembers;
   @override
-  final List<Member>? communityMembers;
+  List<Member>? get communityMembers {
+    final value = _communityMembers;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final Facility? selectedFacility;
   @override
@@ -367,7 +339,7 @@ class _$_MiscState implements _MiscState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MiscState &&
+            other is _$_MiscState &&
             const DeepCollectionEquality()
                 .equals(other.initialRoute, initialRoute) &&
             const DeepCollectionEquality().equals(other.error, error) &&
@@ -376,7 +348,7 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.categoriesList, categoriesList) &&
             const DeepCollectionEquality()
-                .equals(other.communityMembers, communityMembers) &&
+                .equals(other._communityMembers, _communityMembers) &&
             const DeepCollectionEquality()
                 .equals(other.selectedFacility, selectedFacility) &&
             const DeepCollectionEquality()
@@ -389,6 +361,7 @@ class _$_MiscState implements _MiscState {
                 .equals(other.resumeWithPin, resumeWithPin));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -396,7 +369,7 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(profileFAQsContentState),
       const DeepCollectionEquality().hash(categoriesList),
-      const DeepCollectionEquality().hash(communityMembers),
+      const DeepCollectionEquality().hash(_communityMembers),
       const DeepCollectionEquality().hash(selectedFacility),
       const DeepCollectionEquality().hash(groupState),
       const DeepCollectionEquality().hash(searchUserResponseState),
@@ -405,8 +378,8 @@ class _$_MiscState implements _MiscState {
 
   @JsonKey(ignore: true)
   @override
-  _$MiscStateCopyWith<_MiscState> get copyWith =>
-      __$MiscStateCopyWithImpl<_MiscState>(this, _$identity);
+  _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>
+      __$$_MiscStateCopyWithImpl<_$_MiscState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -416,42 +389,44 @@ class _$_MiscState implements _MiscState {
 
 abstract class _MiscState implements MiscState {
   factory _MiscState(
-      {String? initialRoute,
-      String? error,
-      FAQsContentState? profileFAQsContentState,
-      ListContentCategory? categoriesList,
-      List<Member>? communityMembers,
-      Facility? selectedFacility,
-      GroupState? groupState,
-      SearchUserResponseState? searchUserResponseState,
-      String? inactiveTime,
-      bool? resumeWithPin}) = _$_MiscState;
+      {final String? initialRoute,
+      final String? error,
+      final FAQsContentState? profileFAQsContentState,
+      final ListContentCategory? categoriesList,
+      final List<Member>? communityMembers,
+      final Facility? selectedFacility,
+      final GroupState? groupState,
+      final SearchUserResponseState? searchUserResponseState,
+      final String? inactiveTime,
+      final bool? resumeWithPin}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
 
   @override
-  String? get initialRoute;
+  String? get initialRoute => throw _privateConstructorUsedError;
   @override
-  String? get error;
+  String? get error => throw _privateConstructorUsedError;
   @override
-  FAQsContentState? get profileFAQsContentState;
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
   @override
-  ListContentCategory? get categoriesList;
+  ListContentCategory? get categoriesList => throw _privateConstructorUsedError;
   @override
-  List<Member>? get communityMembers;
+  List<Member>? get communityMembers => throw _privateConstructorUsedError;
   @override
-  Facility? get selectedFacility;
+  Facility? get selectedFacility => throw _privateConstructorUsedError;
   @override
-  GroupState? get groupState;
+  GroupState? get groupState => throw _privateConstructorUsedError;
   @override
-  SearchUserResponseState? get searchUserResponseState;
+  SearchUserResponseState? get searchUserResponseState =>
+      throw _privateConstructorUsedError;
   @override
-  String? get inactiveTime;
+  String? get inactiveTime => throw _privateConstructorUsedError;
   @override
-  bool? get resumeWithPin;
+  bool? get resumeWithPin => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MiscStateCopyWith<_MiscState> get copyWith =>
+  _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>
       throw _privateConstructorUsedError;
 }

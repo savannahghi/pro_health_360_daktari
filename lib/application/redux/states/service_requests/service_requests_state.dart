@@ -7,7 +7,7 @@ import 'package:prohealth360_daktari/domain/core/entities/service_requests/servi
 part 'service_requests_state.freezed.dart';
 part 'service_requests_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class ServiceRequestState with _$ServiceRequestState {
   factory ServiceRequestState({
     // Client service requests

@@ -25,7 +25,7 @@ class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (Duration timeStamp) async {
         await StoreProvider.dispatch<AppState>(
           context,

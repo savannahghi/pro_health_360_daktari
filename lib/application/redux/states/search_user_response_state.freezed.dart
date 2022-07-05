@@ -12,39 +12,12 @@ part of 'search_user_response_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchUserResponseState _$SearchUserResponseStateFromJson(
     Map<String, dynamic> json) {
   return _SearchUserResponseState.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchUserResponseStateTearOff {
-  const _$SearchUserResponseStateTearOff();
-
-  _SearchUserResponseState call(
-      {List<SearchUserResponse?>? searchUserResponses,
-      SearchUserResponse? selectedSearchUserResponse,
-      bool? errorSearchingUser,
-      bool? timeoutSearchingUser,
-      bool? noUserFound}) {
-    return _SearchUserResponseState(
-      searchUserResponses: searchUserResponses,
-      selectedSearchUserResponse: selectedSearchUserResponse,
-      errorSearchingUser: errorSearchingUser,
-      timeoutSearchingUser: timeoutSearchingUser,
-      noUserFound: noUserFound,
-    );
-  }
-
-  SearchUserResponseState fromJson(Map<String, Object?> json) {
-    return SearchUserResponseState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchUserResponseState = _$SearchUserResponseStateTearOff();
 
 /// @nodoc
 mixin _$SearchUserResponseState {
@@ -132,11 +105,11 @@ class _$SearchUserResponseStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SearchUserResponseStateCopyWith<$Res>
+abstract class _$$_SearchUserResponseStateCopyWith<$Res>
     implements $SearchUserResponseStateCopyWith<$Res> {
-  factory _$SearchUserResponseStateCopyWith(_SearchUserResponseState value,
-          $Res Function(_SearchUserResponseState) then) =
-      __$SearchUserResponseStateCopyWithImpl<$Res>;
+  factory _$$_SearchUserResponseStateCopyWith(_$_SearchUserResponseState value,
+          $Res Function(_$_SearchUserResponseState) then) =
+      __$$_SearchUserResponseStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<SearchUserResponse?>? searchUserResponses,
@@ -150,16 +123,16 @@ abstract class _$SearchUserResponseStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SearchUserResponseStateCopyWithImpl<$Res>
+class __$$_SearchUserResponseStateCopyWithImpl<$Res>
     extends _$SearchUserResponseStateCopyWithImpl<$Res>
-    implements _$SearchUserResponseStateCopyWith<$Res> {
-  __$SearchUserResponseStateCopyWithImpl(_SearchUserResponseState _value,
-      $Res Function(_SearchUserResponseState) _then)
-      : super(_value, (v) => _then(v as _SearchUserResponseState));
+    implements _$$_SearchUserResponseStateCopyWith<$Res> {
+  __$$_SearchUserResponseStateCopyWithImpl(_$_SearchUserResponseState _value,
+      $Res Function(_$_SearchUserResponseState) _then)
+      : super(_value, (v) => _then(v as _$_SearchUserResponseState));
 
   @override
-  _SearchUserResponseState get _value =>
-      super._value as _SearchUserResponseState;
+  _$_SearchUserResponseState get _value =>
+      super._value as _$_SearchUserResponseState;
 
   @override
   $Res call({
@@ -169,9 +142,9 @@ class __$SearchUserResponseStateCopyWithImpl<$Res>
     Object? timeoutSearchingUser = freezed,
     Object? noUserFound = freezed,
   }) {
-    return _then(_SearchUserResponseState(
+    return _then(_$_SearchUserResponseState(
       searchUserResponses: searchUserResponses == freezed
-          ? _value.searchUserResponses
+          ? _value._searchUserResponses
           : searchUserResponses // ignore: cast_nullable_to_non_nullable
               as List<SearchUserResponse?>?,
       selectedSearchUserResponse: selectedSearchUserResponse == freezed
@@ -198,20 +171,29 @@ class __$SearchUserResponseStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SearchUserResponseState implements _SearchUserResponseState {
   _$_SearchUserResponseState(
-      {this.searchUserResponses,
+      {final List<SearchUserResponse?>? searchUserResponses,
       this.selectedSearchUserResponse,
       this.errorSearchingUser,
       this.timeoutSearchingUser,
-      this.noUserFound});
+      this.noUserFound})
+      : _searchUserResponses = searchUserResponses;
 
   factory _$_SearchUserResponseState.fromJson(Map<String, dynamic> json) =>
       _$$_SearchUserResponseStateFromJson(json);
 
+  final List<SearchUserResponse?>? _searchUserResponses;
   @override
-  final List<SearchUserResponse?>? searchUserResponses;
+  List<SearchUserResponse?>? get searchUserResponses {
+    final value = _searchUserResponses;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final SearchUserResponse? selectedSearchUserResponse;
-  @override // when the user selects a specific user from the list
+// when the user selects a specific user from the list
+  @override
   final bool? errorSearchingUser;
   @override
   final bool? timeoutSearchingUser;
@@ -227,9 +209,9 @@ class _$_SearchUserResponseState implements _SearchUserResponseState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchUserResponseState &&
+            other is _$_SearchUserResponseState &&
             const DeepCollectionEquality()
-                .equals(other.searchUserResponses, searchUserResponses) &&
+                .equals(other._searchUserResponses, _searchUserResponses) &&
             const DeepCollectionEquality().equals(
                 other.selectedSearchUserResponse, selectedSearchUserResponse) &&
             const DeepCollectionEquality()
@@ -240,10 +222,11 @@ class _$_SearchUserResponseState implements _SearchUserResponseState {
                 .equals(other.noUserFound, noUserFound));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(searchUserResponses),
+      const DeepCollectionEquality().hash(_searchUserResponses),
       const DeepCollectionEquality().hash(selectedSearchUserResponse),
       const DeepCollectionEquality().hash(errorSearchingUser),
       const DeepCollectionEquality().hash(timeoutSearchingUser),
@@ -251,9 +234,10 @@ class _$_SearchUserResponseState implements _SearchUserResponseState {
 
   @JsonKey(ignore: true)
   @override
-  _$SearchUserResponseStateCopyWith<_SearchUserResponseState> get copyWith =>
-      __$SearchUserResponseStateCopyWithImpl<_SearchUserResponseState>(
-          this, _$identity);
+  _$$_SearchUserResponseStateCopyWith<_$_SearchUserResponseState>
+      get copyWith =>
+          __$$_SearchUserResponseStateCopyWithImpl<_$_SearchUserResponseState>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -263,27 +247,29 @@ class _$_SearchUserResponseState implements _SearchUserResponseState {
 
 abstract class _SearchUserResponseState implements SearchUserResponseState {
   factory _SearchUserResponseState(
-      {List<SearchUserResponse?>? searchUserResponses,
-      SearchUserResponse? selectedSearchUserResponse,
-      bool? errorSearchingUser,
-      bool? timeoutSearchingUser,
-      bool? noUserFound}) = _$_SearchUserResponseState;
+      {final List<SearchUserResponse?>? searchUserResponses,
+      final SearchUserResponse? selectedSearchUserResponse,
+      final bool? errorSearchingUser,
+      final bool? timeoutSearchingUser,
+      final bool? noUserFound}) = _$_SearchUserResponseState;
 
   factory _SearchUserResponseState.fromJson(Map<String, dynamic> json) =
       _$_SearchUserResponseState.fromJson;
 
   @override
-  List<SearchUserResponse?>? get searchUserResponses;
+  List<SearchUserResponse?>? get searchUserResponses =>
+      throw _privateConstructorUsedError;
   @override
-  SearchUserResponse? get selectedSearchUserResponse;
+  SearchUserResponse? get selectedSearchUserResponse =>
+      throw _privateConstructorUsedError;
   @override // when the user selects a specific user from the list
-  bool? get errorSearchingUser;
+  bool? get errorSearchingUser => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutSearchingUser;
+  bool? get timeoutSearchingUser => throw _privateConstructorUsedError;
   @override
-  bool? get noUserFound;
+  bool? get noUserFound => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SearchUserResponseStateCopyWith<_SearchUserResponseState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SearchUserResponseStateCopyWith<_$_SearchUserResponseState>
+      get copyWith => throw _privateConstructorUsedError;
 }

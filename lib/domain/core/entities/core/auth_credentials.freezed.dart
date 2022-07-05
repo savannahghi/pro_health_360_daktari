@@ -12,42 +12,11 @@ part of 'auth_credentials.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AuthCredentials _$AuthCredentialsFromJson(Map<String, dynamic> json) {
   return _AuthCredentials.fromJson(json);
 }
-
-/// @nodoc
-class _$AuthCredentialsTearOff {
-  const _$AuthCredentialsTearOff();
-
-  _AuthCredentials call(
-      {@JsonKey(name: 'idToken') String? idToken,
-      @JsonKey(name: 'expiresIn') String? expiresIn,
-      @JsonKey(name: 'refreshToken') String? refreshToken,
-      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
-      bool? isSignedIn,
-      String? signedInTime,
-      String? pushToken}) {
-    return _AuthCredentials(
-      idToken: idToken,
-      expiresIn: expiresIn,
-      refreshToken: refreshToken,
-      tokenExpiryTimestamp: tokenExpiryTimestamp,
-      isSignedIn: isSignedIn,
-      signedInTime: signedInTime,
-      pushToken: pushToken,
-    );
-  }
-
-  AuthCredentials fromJson(Map<String, Object?> json) {
-    return AuthCredentials.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AuthCredentials = _$AuthCredentialsTearOff();
 
 /// @nodoc
 mixin _$AuthCredentials {
@@ -138,11 +107,11 @@ class _$AuthCredentialsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AuthCredentialsCopyWith<$Res>
+abstract class _$$_AuthCredentialsCopyWith<$Res>
     implements $AuthCredentialsCopyWith<$Res> {
-  factory _$AuthCredentialsCopyWith(
-          _AuthCredentials value, $Res Function(_AuthCredentials) then) =
-      __$AuthCredentialsCopyWithImpl<$Res>;
+  factory _$$_AuthCredentialsCopyWith(
+          _$_AuthCredentials value, $Res Function(_$_AuthCredentials) then) =
+      __$$_AuthCredentialsCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'idToken') String? idToken,
@@ -155,15 +124,15 @@ abstract class _$AuthCredentialsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AuthCredentialsCopyWithImpl<$Res>
+class __$$_AuthCredentialsCopyWithImpl<$Res>
     extends _$AuthCredentialsCopyWithImpl<$Res>
-    implements _$AuthCredentialsCopyWith<$Res> {
-  __$AuthCredentialsCopyWithImpl(
-      _AuthCredentials _value, $Res Function(_AuthCredentials) _then)
-      : super(_value, (v) => _then(v as _AuthCredentials));
+    implements _$$_AuthCredentialsCopyWith<$Res> {
+  __$$_AuthCredentialsCopyWithImpl(
+      _$_AuthCredentials _value, $Res Function(_$_AuthCredentials) _then)
+      : super(_value, (v) => _then(v as _$_AuthCredentials));
 
   @override
-  _AuthCredentials get _value => super._value as _AuthCredentials;
+  _$_AuthCredentials get _value => super._value as _$_AuthCredentials;
 
   @override
   $Res call({
@@ -175,7 +144,7 @@ class __$AuthCredentialsCopyWithImpl<$Res>
     Object? signedInTime = freezed,
     Object? pushToken = freezed,
   }) {
-    return _then(_AuthCredentials(
+    return _then(_$_AuthCredentials(
       idToken: idToken == freezed
           ? _value.idToken
           : idToken // ignore: cast_nullable_to_non_nullable
@@ -235,7 +204,8 @@ class _$_AuthCredentials implements _AuthCredentials {
   @override
   @JsonKey(name: 'tokenExpiryTimestamp')
   final String? tokenExpiryTimestamp;
-  @override // Other supporting fields that are not returned by the backend
+// Other supporting fields that are not returned by the backend
+  @override
   final bool? isSignedIn;
   @override
   final String? signedInTime;
@@ -251,7 +221,7 @@ class _$_AuthCredentials implements _AuthCredentials {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthCredentials &&
+            other is _$_AuthCredentials &&
             const DeepCollectionEquality().equals(other.idToken, idToken) &&
             const DeepCollectionEquality().equals(other.expiresIn, expiresIn) &&
             const DeepCollectionEquality()
@@ -265,6 +235,7 @@ class _$_AuthCredentials implements _AuthCredentials {
             const DeepCollectionEquality().equals(other.pushToken, pushToken));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -278,8 +249,8 @@ class _$_AuthCredentials implements _AuthCredentials {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthCredentialsCopyWith<_AuthCredentials> get copyWith =>
-      __$AuthCredentialsCopyWithImpl<_AuthCredentials>(this, _$identity);
+  _$$_AuthCredentialsCopyWith<_$_AuthCredentials> get copyWith =>
+      __$$_AuthCredentialsCopyWithImpl<_$_AuthCredentials>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -289,37 +260,37 @@ class _$_AuthCredentials implements _AuthCredentials {
 
 abstract class _AuthCredentials implements AuthCredentials {
   factory _AuthCredentials(
-      {@JsonKey(name: 'idToken') String? idToken,
-      @JsonKey(name: 'expiresIn') String? expiresIn,
-      @JsonKey(name: 'refreshToken') String? refreshToken,
-      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
-      bool? isSignedIn,
-      String? signedInTime,
-      String? pushToken}) = _$_AuthCredentials;
+      {@JsonKey(name: 'idToken') final String? idToken,
+      @JsonKey(name: 'expiresIn') final String? expiresIn,
+      @JsonKey(name: 'refreshToken') final String? refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') final String? tokenExpiryTimestamp,
+      final bool? isSignedIn,
+      final String? signedInTime,
+      final String? pushToken}) = _$_AuthCredentials;
 
   factory _AuthCredentials.fromJson(Map<String, dynamic> json) =
       _$_AuthCredentials.fromJson;
 
   @override
   @JsonKey(name: 'idToken')
-  String? get idToken;
+  String? get idToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'expiresIn')
-  String? get expiresIn;
+  String? get expiresIn => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'refreshToken')
-  String? get refreshToken;
+  String? get refreshToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'tokenExpiryTimestamp')
-  String? get tokenExpiryTimestamp;
+  String? get tokenExpiryTimestamp => throw _privateConstructorUsedError;
   @override // Other supporting fields that are not returned by the backend
-  bool? get isSignedIn;
+  bool? get isSignedIn => throw _privateConstructorUsedError;
   @override
-  String? get signedInTime;
+  String? get signedInTime => throw _privateConstructorUsedError;
   @override
-  String? get pushToken;
+  String? get pushToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthCredentialsCopyWith<_AuthCredentials> get copyWith =>
+  _$$_AuthCredentialsCopyWith<_$_AuthCredentials> get copyWith =>
       throw _privateConstructorUsedError;
 }

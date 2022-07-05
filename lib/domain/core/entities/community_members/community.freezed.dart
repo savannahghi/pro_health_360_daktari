@@ -12,44 +12,11 @@ part of 'community.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Community _$CommunityFromJson(Map<String, dynamic> json) {
   return _Community.fromJson(json);
 }
-
-/// @nodoc
-class _$CommunityTearOff {
-  const _$CommunityTearOff();
-
-  _Community call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdBy') Member? createdBy,
-      @JsonKey(name: 'ageRange') AgeRange? ageRange,
-      @JsonKey(name: 'gender') List<Gender>? gender,
-      @JsonKey(name: 'clientType') List<ClientType>? clientType}) {
-    return _Community(
-      id: id,
-      name: name,
-      memberCount: memberCount,
-      description: description,
-      createdBy: createdBy,
-      ageRange: ageRange,
-      gender: gender,
-      clientType: clientType,
-    );
-  }
-
-  Community fromJson(Map<String, Object?> json) {
-    return Community.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Community = _$CommunityTearOff();
 
 /// @nodoc
 mixin _$Community {
@@ -173,10 +140,10 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
-  factory _$CommunityCopyWith(
-          _Community value, $Res Function(_Community) then) =
-      __$CommunityCopyWithImpl<$Res>;
+abstract class _$$_CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
+  factory _$$_CommunityCopyWith(
+          _$_Community value, $Res Function(_$_Community) then) =
+      __$$_CommunityCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -195,13 +162,14 @@ abstract class _$CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
-    implements _$CommunityCopyWith<$Res> {
-  __$CommunityCopyWithImpl(_Community _value, $Res Function(_Community) _then)
-      : super(_value, (v) => _then(v as _Community));
+class __$$_CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
+    implements _$$_CommunityCopyWith<$Res> {
+  __$$_CommunityCopyWithImpl(
+      _$_Community _value, $Res Function(_$_Community) _then)
+      : super(_value, (v) => _then(v as _$_Community));
 
   @override
-  _Community get _value => super._value as _Community;
+  _$_Community get _value => super._value as _$_Community;
 
   @override
   $Res call({
@@ -214,7 +182,7 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? clientType = freezed,
   }) {
-    return _then(_Community(
+    return _then(_$_Community(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -240,11 +208,11 @@ class __$CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
           : ageRange // ignore: cast_nullable_to_non_nullable
               as AgeRange?,
       gender: gender == freezed
-          ? _value.gender
+          ? _value._gender
           : gender // ignore: cast_nullable_to_non_nullable
               as List<Gender>?,
       clientType: clientType == freezed
-          ? _value.clientType
+          ? _value._clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
     ));
@@ -261,8 +229,10 @@ class _$_Community implements _Community {
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdBy') this.createdBy,
       @JsonKey(name: 'ageRange') this.ageRange,
-      @JsonKey(name: 'gender') this.gender,
-      @JsonKey(name: 'clientType') this.clientType});
+      @JsonKey(name: 'gender') final List<Gender>? gender,
+      @JsonKey(name: 'clientType') final List<ClientType>? clientType})
+      : _gender = gender,
+        _clientType = clientType;
 
   factory _$_Community.fromJson(Map<String, dynamic> json) =>
       _$$_CommunityFromJson(json);
@@ -285,12 +255,25 @@ class _$_Community implements _Community {
   @override
   @JsonKey(name: 'ageRange')
   final AgeRange? ageRange;
+  final List<Gender>? _gender;
   @override
   @JsonKey(name: 'gender')
-  final List<Gender>? gender;
+  List<Gender>? get gender {
+    final value = _gender;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ClientType>? _clientType;
   @override
   @JsonKey(name: 'clientType')
-  final List<ClientType>? clientType;
+  List<ClientType>? get clientType {
+    final value = _clientType;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -301,7 +284,7 @@ class _$_Community implements _Community {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Community &&
+            other is _$_Community &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -310,11 +293,12 @@ class _$_Community implements _Community {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.createdBy, createdBy) &&
             const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other._gender, _gender) &&
             const DeepCollectionEquality()
-                .equals(other.clientType, clientType));
+                .equals(other._clientType, _clientType));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -324,13 +308,13 @@ class _$_Community implements _Community {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(createdBy),
       const DeepCollectionEquality().hash(ageRange),
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(clientType));
+      const DeepCollectionEquality().hash(_gender),
+      const DeepCollectionEquality().hash(_clientType));
 
   @JsonKey(ignore: true)
   @override
-  _$CommunityCopyWith<_Community> get copyWith =>
-      __$CommunityCopyWithImpl<_Community>(this, _$identity);
+  _$$_CommunityCopyWith<_$_Community> get copyWith =>
+      __$$_CommunityCopyWithImpl<_$_Community>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -340,14 +324,14 @@ class _$_Community implements _Community {
 
 abstract class _Community implements Community {
   factory _Community(
-          {@JsonKey(name: 'id') String? id,
-          @JsonKey(name: 'name') String? name,
-          @JsonKey(name: 'memberCount') int? memberCount,
-          @JsonKey(name: 'description') String? description,
-          @JsonKey(name: 'createdBy') Member? createdBy,
-          @JsonKey(name: 'ageRange') AgeRange? ageRange,
-          @JsonKey(name: 'gender') List<Gender>? gender,
-          @JsonKey(name: 'clientType') List<ClientType>? clientType}) =
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'memberCount') final int? memberCount,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdBy') final Member? createdBy,
+          @JsonKey(name: 'ageRange') final AgeRange? ageRange,
+          @JsonKey(name: 'gender') final List<Gender>? gender,
+          @JsonKey(name: 'clientType') final List<ClientType>? clientType}) =
       _$_Community;
 
   factory _Community.fromJson(Map<String, dynamic> json) =
@@ -355,30 +339,30 @@ abstract class _Community implements Community {
 
   @override
   @JsonKey(name: 'id')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'memberCount')
-  int? get memberCount;
+  int? get memberCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'description')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'createdBy')
-  Member? get createdBy;
+  Member? get createdBy => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ageRange')
-  AgeRange? get ageRange;
+  AgeRange? get ageRange => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gender')
-  List<Gender>? get gender;
+  List<Gender>? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientType')
-  List<ClientType>? get clientType;
+  List<ClientType>? get clientType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CommunityCopyWith<_Community> get copyWith =>
+  _$$_CommunityCopyWith<_$_Community> get copyWith =>
       throw _privateConstructorUsedError;
 }

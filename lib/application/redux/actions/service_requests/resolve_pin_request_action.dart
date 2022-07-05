@@ -105,13 +105,15 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
             state.serviceRequestState?.clientServiceRequests;
 
         if (serviceRequests != null) {
-          serviceRequests.removeWhere(
-            (ServiceRequest request) => request.id == serviceRequestId,
-          );
-
+          final List<ServiceRequest> removed = serviceRequests
+              .where(
+                (ServiceRequest request) => request.id != serviceRequestId,
+              )
+              .toList();
+              
           dispatch(
             UpdateServiceRequestsStateAction(
-              clientServiceRequests: serviceRequests,
+              clientServiceRequests: removed,
             ),
           );
 
@@ -135,7 +137,7 @@ class ResolvePinRequestAction extends ReduxAction<AppState> {
       throw UserException(getErrorMessage());
     }
 
-    return null;
+    return state;
   }
 
   @override

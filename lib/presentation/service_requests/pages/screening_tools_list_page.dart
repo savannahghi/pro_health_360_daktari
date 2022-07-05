@@ -28,7 +28,7 @@ class _ScreeningToolsListPageState extends State<ScreeningToolsListPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       StoreProvider.dispatch<AppState>(
         context,
         FetchAvailableFacilityScreeningToolsAction(

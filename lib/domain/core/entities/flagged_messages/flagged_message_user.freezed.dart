@@ -12,34 +12,11 @@ part of 'flagged_message_user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 FlaggedMessageUser _$FlaggedMessageUserFromJson(Map<String, dynamic> json) {
   return _FlaggedMessageUser.fromJson(json);
 }
-
-/// @nodoc
-class _$FlaggedMessageUserTearOff {
-  const _$FlaggedMessageUserTearOff();
-
-  _FlaggedMessageUser call(
-      {@JsonKey(name: 'userID') String? userID,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'username') String? username}) {
-    return _FlaggedMessageUser(
-      userID: userID,
-      name: name,
-      username: username,
-    );
-  }
-
-  FlaggedMessageUser fromJson(Map<String, Object?> json) {
-    return FlaggedMessageUser.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FlaggedMessageUser = _$FlaggedMessageUserTearOff();
 
 /// @nodoc
 mixin _$FlaggedMessageUser {
@@ -100,11 +77,11 @@ class _$FlaggedMessageUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$FlaggedMessageUserCopyWith<$Res>
+abstract class _$$_FlaggedMessageUserCopyWith<$Res>
     implements $FlaggedMessageUserCopyWith<$Res> {
-  factory _$FlaggedMessageUserCopyWith(
-          _FlaggedMessageUser value, $Res Function(_FlaggedMessageUser) then) =
-      __$FlaggedMessageUserCopyWithImpl<$Res>;
+  factory _$$_FlaggedMessageUserCopyWith(_$_FlaggedMessageUser value,
+          $Res Function(_$_FlaggedMessageUser) then) =
+      __$$_FlaggedMessageUserCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'userID') String? userID,
@@ -113,15 +90,15 @@ abstract class _$FlaggedMessageUserCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FlaggedMessageUserCopyWithImpl<$Res>
+class __$$_FlaggedMessageUserCopyWithImpl<$Res>
     extends _$FlaggedMessageUserCopyWithImpl<$Res>
-    implements _$FlaggedMessageUserCopyWith<$Res> {
-  __$FlaggedMessageUserCopyWithImpl(
-      _FlaggedMessageUser _value, $Res Function(_FlaggedMessageUser) _then)
-      : super(_value, (v) => _then(v as _FlaggedMessageUser));
+    implements _$$_FlaggedMessageUserCopyWith<$Res> {
+  __$$_FlaggedMessageUserCopyWithImpl(
+      _$_FlaggedMessageUser _value, $Res Function(_$_FlaggedMessageUser) _then)
+      : super(_value, (v) => _then(v as _$_FlaggedMessageUser));
 
   @override
-  _FlaggedMessageUser get _value => super._value as _FlaggedMessageUser;
+  _$_FlaggedMessageUser get _value => super._value as _$_FlaggedMessageUser;
 
   @override
   $Res call({
@@ -129,7 +106,7 @@ class __$FlaggedMessageUserCopyWithImpl<$Res>
     Object? name = freezed,
     Object? username = freezed,
   }) {
-    return _then(_FlaggedMessageUser(
+    return _then(_$_FlaggedMessageUser(
       userID: userID == freezed
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
@@ -176,12 +153,13 @@ class _$_FlaggedMessageUser implements _FlaggedMessageUser {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FlaggedMessageUser &&
+            other is _$_FlaggedMessageUser &&
             const DeepCollectionEquality().equals(other.userID, userID) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.username, username));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -191,8 +169,9 @@ class _$_FlaggedMessageUser implements _FlaggedMessageUser {
 
   @JsonKey(ignore: true)
   @override
-  _$FlaggedMessageUserCopyWith<_FlaggedMessageUser> get copyWith =>
-      __$FlaggedMessageUserCopyWithImpl<_FlaggedMessageUser>(this, _$identity);
+  _$$_FlaggedMessageUserCopyWith<_$_FlaggedMessageUser> get copyWith =>
+      __$$_FlaggedMessageUserCopyWithImpl<_$_FlaggedMessageUser>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -202,24 +181,25 @@ class _$_FlaggedMessageUser implements _FlaggedMessageUser {
 
 abstract class _FlaggedMessageUser implements FlaggedMessageUser {
   factory _FlaggedMessageUser(
-      {@JsonKey(name: 'userID') String? userID,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'username') String? username}) = _$_FlaggedMessageUser;
+          {@JsonKey(name: 'userID') final String? userID,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'username') final String? username}) =
+      _$_FlaggedMessageUser;
 
   factory _FlaggedMessageUser.fromJson(Map<String, dynamic> json) =
       _$_FlaggedMessageUser.fromJson;
 
   @override
   @JsonKey(name: 'userID')
-  String? get userID;
+  String? get userID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'username')
-  String? get username;
+  String? get username => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FlaggedMessageUserCopyWith<_FlaggedMessageUser> get copyWith =>
+  _$$_FlaggedMessageUserCopyWith<_$_FlaggedMessageUser> get copyWith =>
       throw _privateConstructorUsedError;
 }

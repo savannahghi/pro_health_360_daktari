@@ -5,7 +5,7 @@ import 'package:prohealth360_daktari/application/redux/states/service_requests/a
 part 'tool_service_request_response.freezed.dart';
 part 'tool_service_request_response.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class ToolAssessmentRequestResponse with _$ToolAssessmentRequestResponse {
   factory ToolAssessmentRequestResponse({
     @JsonKey(name: 'serviceRequestID') String? serviceRequestID,

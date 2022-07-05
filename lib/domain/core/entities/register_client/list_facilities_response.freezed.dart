@@ -12,31 +12,12 @@ part of 'list_facilities_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ListFacilitiesResponse _$ListFacilitiesResponseFromJson(
     Map<String, dynamic> json) {
   return _ListFacilitiesResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ListFacilitiesResponseTearOff {
-  const _$ListFacilitiesResponseTearOff();
-
-  _ListFacilitiesResponse call(
-      {@JsonKey(name: 'Facilities') List<Facility>? facilities}) {
-    return _ListFacilitiesResponse(
-      facilities: facilities,
-    );
-  }
-
-  ListFacilitiesResponse fromJson(Map<String, Object?> json) {
-    return ListFacilitiesResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ListFacilitiesResponse = _$ListFacilitiesResponseTearOff();
 
 /// @nodoc
 mixin _$ListFacilitiesResponse {
@@ -80,33 +61,34 @@ class _$ListFacilitiesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ListFacilitiesResponseCopyWith<$Res>
+abstract class _$$_ListFacilitiesResponseCopyWith<$Res>
     implements $ListFacilitiesResponseCopyWith<$Res> {
-  factory _$ListFacilitiesResponseCopyWith(_ListFacilitiesResponse value,
-          $Res Function(_ListFacilitiesResponse) then) =
-      __$ListFacilitiesResponseCopyWithImpl<$Res>;
+  factory _$$_ListFacilitiesResponseCopyWith(_$_ListFacilitiesResponse value,
+          $Res Function(_$_ListFacilitiesResponse) then) =
+      __$$_ListFacilitiesResponseCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'Facilities') List<Facility>? facilities});
 }
 
 /// @nodoc
-class __$ListFacilitiesResponseCopyWithImpl<$Res>
+class __$$_ListFacilitiesResponseCopyWithImpl<$Res>
     extends _$ListFacilitiesResponseCopyWithImpl<$Res>
-    implements _$ListFacilitiesResponseCopyWith<$Res> {
-  __$ListFacilitiesResponseCopyWithImpl(_ListFacilitiesResponse _value,
-      $Res Function(_ListFacilitiesResponse) _then)
-      : super(_value, (v) => _then(v as _ListFacilitiesResponse));
+    implements _$$_ListFacilitiesResponseCopyWith<$Res> {
+  __$$_ListFacilitiesResponseCopyWithImpl(_$_ListFacilitiesResponse _value,
+      $Res Function(_$_ListFacilitiesResponse) _then)
+      : super(_value, (v) => _then(v as _$_ListFacilitiesResponse));
 
   @override
-  _ListFacilitiesResponse get _value => super._value as _ListFacilitiesResponse;
+  _$_ListFacilitiesResponse get _value =>
+      super._value as _$_ListFacilitiesResponse;
 
   @override
   $Res call({
     Object? facilities = freezed,
   }) {
-    return _then(_ListFacilitiesResponse(
+    return _then(_$_ListFacilitiesResponse(
       facilities: facilities == freezed
-          ? _value.facilities
+          ? _value._facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility>?,
     ));
@@ -116,14 +98,22 @@ class __$ListFacilitiesResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
-  _$_ListFacilitiesResponse({@JsonKey(name: 'Facilities') this.facilities});
+  _$_ListFacilitiesResponse(
+      {@JsonKey(name: 'Facilities') final List<Facility>? facilities})
+      : _facilities = facilities;
 
   factory _$_ListFacilitiesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ListFacilitiesResponseFromJson(json);
 
+  final List<Facility>? _facilities;
   @override
   @JsonKey(name: 'Facilities')
-  final List<Facility>? facilities;
+  List<Facility>? get facilities {
+    final value = _facilities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -134,19 +124,20 @@ class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ListFacilitiesResponse &&
+            other is _$_ListFacilitiesResponse &&
             const DeepCollectionEquality()
-                .equals(other.facilities, facilities));
+                .equals(other._facilities, _facilities));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(facilities));
 
   @JsonKey(ignore: true)
   @override
-  _$ListFacilitiesResponseCopyWith<_ListFacilitiesResponse> get copyWith =>
-      __$ListFacilitiesResponseCopyWithImpl<_ListFacilitiesResponse>(
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_facilities));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ListFacilitiesResponseCopyWith<_$_ListFacilitiesResponse> get copyWith =>
+      __$$_ListFacilitiesResponseCopyWithImpl<_$_ListFacilitiesResponse>(
           this, _$identity);
 
   @override
@@ -157,7 +148,7 @@ class _$_ListFacilitiesResponse implements _ListFacilitiesResponse {
 
 abstract class _ListFacilitiesResponse implements ListFacilitiesResponse {
   factory _ListFacilitiesResponse(
-          {@JsonKey(name: 'Facilities') List<Facility>? facilities}) =
+          {@JsonKey(name: 'Facilities') final List<Facility>? facilities}) =
       _$_ListFacilitiesResponse;
 
   factory _ListFacilitiesResponse.fromJson(Map<String, dynamic> json) =
@@ -165,9 +156,9 @@ abstract class _ListFacilitiesResponse implements ListFacilitiesResponse {
 
   @override
   @JsonKey(name: 'Facilities')
-  List<Facility>? get facilities;
+  List<Facility>? get facilities => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ListFacilitiesResponseCopyWith<_ListFacilitiesResponse> get copyWith =>
+  _$$_ListFacilitiesResponseCopyWith<_$_ListFacilitiesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

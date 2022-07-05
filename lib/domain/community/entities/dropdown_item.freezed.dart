@@ -12,22 +12,7 @@ part of 'dropdown_item.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DropdownItemTearOff {
-  const _$DropdownItemTearOff();
-
-  _DropdownItem call({required String description, required String value}) {
-    return _DropdownItem(
-      description: description,
-      value: value,
-    );
-  }
-}
-
-/// @nodoc
-const $DropdownItem = _$DropdownItemTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DropdownItem {
@@ -74,31 +59,32 @@ class _$DropdownItemCopyWithImpl<$Res> implements $DropdownItemCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DropdownItemCopyWith<$Res>
+abstract class _$$_DropdownItemCopyWith<$Res>
     implements $DropdownItemCopyWith<$Res> {
-  factory _$DropdownItemCopyWith(
-          _DropdownItem value, $Res Function(_DropdownItem) then) =
-      __$DropdownItemCopyWithImpl<$Res>;
+  factory _$$_DropdownItemCopyWith(
+          _$_DropdownItem value, $Res Function(_$_DropdownItem) then) =
+      __$$_DropdownItemCopyWithImpl<$Res>;
   @override
   $Res call({String description, String value});
 }
 
 /// @nodoc
-class __$DropdownItemCopyWithImpl<$Res> extends _$DropdownItemCopyWithImpl<$Res>
-    implements _$DropdownItemCopyWith<$Res> {
-  __$DropdownItemCopyWithImpl(
-      _DropdownItem _value, $Res Function(_DropdownItem) _then)
-      : super(_value, (v) => _then(v as _DropdownItem));
+class __$$_DropdownItemCopyWithImpl<$Res>
+    extends _$DropdownItemCopyWithImpl<$Res>
+    implements _$$_DropdownItemCopyWith<$Res> {
+  __$$_DropdownItemCopyWithImpl(
+      _$_DropdownItem _value, $Res Function(_$_DropdownItem) _then)
+      : super(_value, (v) => _then(v as _$_DropdownItem));
 
   @override
-  _DropdownItem get _value => super._value as _DropdownItem;
+  _$_DropdownItem get _value => super._value as _$_DropdownItem;
 
   @override
   $Res call({
     Object? description = freezed,
     Object? value = freezed,
   }) {
-    return _then(_DropdownItem(
+    return _then(_$_DropdownItem(
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -130,7 +116,7 @@ class _$_DropdownItem implements _DropdownItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DropdownItem &&
+            other is _$_DropdownItem &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.value, value));
@@ -144,20 +130,21 @@ class _$_DropdownItem implements _DropdownItem {
 
   @JsonKey(ignore: true)
   @override
-  _$DropdownItemCopyWith<_DropdownItem> get copyWith =>
-      __$DropdownItemCopyWithImpl<_DropdownItem>(this, _$identity);
+  _$$_DropdownItemCopyWith<_$_DropdownItem> get copyWith =>
+      __$$_DropdownItemCopyWithImpl<_$_DropdownItem>(this, _$identity);
 }
 
 abstract class _DropdownItem implements DropdownItem {
-  factory _DropdownItem({required String description, required String value}) =
-      _$_DropdownItem;
+  factory _DropdownItem(
+      {required final String description,
+      required final String value}) = _$_DropdownItem;
 
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  String get value;
+  String get value => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DropdownItemCopyWith<_DropdownItem> get copyWith =>
+  _$$_DropdownItemCopyWith<_$_DropdownItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

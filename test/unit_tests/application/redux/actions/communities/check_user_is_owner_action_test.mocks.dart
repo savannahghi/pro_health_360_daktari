@@ -134,6 +134,10 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
               returnValue: Stream<_i2.ChannelConfig?>.empty())
           as _i3.Stream<_i2.ChannelConfig?>);
   @override
+  _i3.Stream<_i2.Member?> get membershipStream =>
+      (super.noSuchMethod(Invocation.getter(#membershipStream),
+          returnValue: Stream<_i2.Member?>.empty()) as _i3.Stream<_i2.Member?>);
+  @override
   _i3.Stream<_i2.User?> get createdByStream =>
       (super.noSuchMethod(Invocation.getter(#createdByStream),
           returnValue: Stream<_i2.User?>.empty()) as _i3.Stream<_i2.User?>);
@@ -145,6 +149,26 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
   _i3.Stream<bool> get frozenStream =>
       (super.noSuchMethod(Invocation.getter(#frozenStream),
           returnValue: Stream<bool>.empty()) as _i3.Stream<bool>);
+  @override
+  bool get disabled =>
+      (super.noSuchMethod(Invocation.getter(#disabled), returnValue: false)
+          as bool);
+  @override
+  _i3.Stream<bool> get disabledStream =>
+      (super.noSuchMethod(Invocation.getter(#disabledStream),
+          returnValue: Stream<bool>.empty()) as _i3.Stream<bool>);
+  @override
+  bool get hidden =>
+      (super.noSuchMethod(Invocation.getter(#hidden), returnValue: false)
+          as bool);
+  @override
+  _i3.Stream<bool> get hiddenStream =>
+      (super.noSuchMethod(Invocation.getter(#hiddenStream),
+          returnValue: Stream<bool>.empty()) as _i3.Stream<bool>);
+  @override
+  _i3.Stream<DateTime?> get truncatedAtStream =>
+      (super.noSuchMethod(Invocation.getter(#truncatedAtStream),
+          returnValue: Stream<DateTime?>.empty()) as _i3.Stream<DateTime?>);
   @override
   int get cooldown =>
       (super.noSuchMethod(Invocation.getter(#cooldown), returnValue: 0) as int);
@@ -179,6 +203,14 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
   Map<String, Object?> get extraData =>
       (super.noSuchMethod(Invocation.getter(#extraData),
           returnValue: <String, Object?>{}) as Map<String, Object?>);
+  @override
+  List<String> get ownCapabilities =>
+      (super.noSuchMethod(Invocation.getter(#ownCapabilities),
+          returnValue: <String>[]) as List<String>);
+  @override
+  _i3.Stream<List<String>> get ownCapabilitiesStream => (super.noSuchMethod(
+      Invocation.getter(#ownCapabilitiesStream),
+      returnValue: Stream<List<String>>.empty()) as _i3.Stream<List<String>>);
   @override
   _i3.Stream<Map<String, Object?>> get extraDataStream =>
       (super.noSuchMethod(Invocation.getter(#extraDataStream),
@@ -215,15 +247,19 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
   _i3.Future<_i2.SendMessageResponse> sendMessage(_i2.Message? message,
-          {bool? skipPush = false}) =>
+          {bool? skipPush = false, bool? skipEnrichUrl = false}) =>
       (super.noSuchMethod(
-              Invocation.method(#sendMessage, [message], {#skipPush: skipPush}),
+              Invocation.method(#sendMessage, [message],
+                  {#skipPush: skipPush, #skipEnrichUrl: skipEnrichUrl}),
               returnValue: Future<_i2.SendMessageResponse>.value(
                   _FakeSendMessageResponse_1()))
           as _i3.Future<_i2.SendMessageResponse>);
   @override
-  _i3.Future<_i2.UpdateMessageResponse> updateMessage(_i2.Message? message) =>
-      (super.noSuchMethod(Invocation.method(#updateMessage, [message]),
+  _i3.Future<_i2.UpdateMessageResponse> updateMessage(_i2.Message? message,
+          {bool? skipEnrichUrl = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #updateMessage, [message], {#skipEnrichUrl: skipEnrichUrl}),
               returnValue: Future<_i2.UpdateMessageResponse>.value(
                   _FakeUpdateMessageResponse_2()))
           as _i3.Future<_i2.UpdateMessageResponse>);
@@ -231,10 +267,11 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
   _i3.Future<_i2.UpdateMessageResponse> partialUpdateMessage(
           _i2.Message? message,
           {Map<String, Object?>? set,
-          List<String>? unset}) =>
+          List<String>? unset,
+          bool? skipEnrichUrl = false}) =>
       (super.noSuchMethod(
-              Invocation.method(
-                  #partialUpdateMessage, [message], {#set: set, #unset: unset}),
+              Invocation.method(#partialUpdateMessage, [message],
+                  {#set: set, #unset: unset, #skipEnrichUrl: skipEnrichUrl}),
               returnValue: Future<_i2.UpdateMessageResponse>.value(
                   _FakeUpdateMessageResponse_2()))
           as _i3.Future<_i2.UpdateMessageResponse>);
@@ -263,21 +300,33 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           as _i3.Future<_i2.UpdateMessageResponse>);
   @override
   _i3.Future<_i2.SendFileResponse> sendFile(_i2.AttachmentFile? file,
-          {_i2.ProgressCallback? onSendProgress,
-          _i4.CancelToken? cancelToken}) =>
+          {_i4.ProgressCallback? onSendProgress,
+          _i4.CancelToken? cancelToken,
+          Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-              Invocation.method(#sendFile, [file],
-                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              Invocation.method(#sendFile, [
+                file
+              ], {
+                #onSendProgress: onSendProgress,
+                #cancelToken: cancelToken,
+                #extraData: extraData
+              }),
               returnValue:
                   Future<_i2.SendFileResponse>.value(_FakeSendFileResponse_4()))
           as _i3.Future<_i2.SendFileResponse>);
   @override
   _i3.Future<_i2.SendImageResponse> sendImage(_i2.AttachmentFile? file,
-          {_i2.ProgressCallback? onSendProgress,
-          _i4.CancelToken? cancelToken}) =>
+          {_i4.ProgressCallback? onSendProgress,
+          _i4.CancelToken? cancelToken,
+          Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-              Invocation.method(#sendImage, [file],
-                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              Invocation.method(#sendImage, [
+                file
+              ], {
+                #onSendProgress: onSendProgress,
+                #cancelToken: cancelToken,
+                #extraData: extraData
+              }),
               returnValue: Future<_i2.SendImageResponse>.value(
                   _FakeSendImageResponse_5()))
           as _i3.Future<_i2.SendImageResponse>);
@@ -299,20 +348,22 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           as _i3.Future<_i2.SearchMessagesResponse>);
   @override
   _i3.Future<_i2.EmptyResponse> deleteFile(String? url,
-          {_i4.CancelToken? cancelToken}) =>
+          {_i4.CancelToken? cancelToken, Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteFile, [url], {#cancelToken: cancelToken}),
-          returnValue:
-              Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3())) as _i3
-          .Future<_i2.EmptyResponse>);
+              Invocation.method(#deleteFile, [url],
+                  {#cancelToken: cancelToken, #extraData: extraData}),
+              returnValue:
+                  Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
+          as _i3.Future<_i2.EmptyResponse>);
   @override
   _i3.Future<_i2.EmptyResponse> deleteImage(String? url,
-          {_i4.CancelToken? cancelToken}) =>
+          {_i4.CancelToken? cancelToken, Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteImage, [url], {#cancelToken: cancelToken}),
-          returnValue:
-              Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3())) as _i3
-          .Future<_i2.EmptyResponse>);
+              Invocation.method(#deleteImage, [url],
+                  {#cancelToken: cancelToken, #extraData: extraData}),
+              returnValue:
+                  Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
+          as _i3.Future<_i2.EmptyResponse>);
   @override
   _i3.Future<_i2.EmptyResponse> sendEvent(_i2.Event? event) =>
       (super.noSuchMethod(Invocation.method(#sendEvent, [event]),
@@ -559,22 +610,9 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           returnValue: Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
       as _i3.Future<_i2.EmptyResponse>);
   @override
-  _i3.Future<_i2.EmptyResponse> banUser(
-          String? userID, Map<String, dynamic>? options) =>
-      (super.noSuchMethod(Invocation.method(#banUser, [userID, options]),
-              returnValue:
-                  Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
-          as _i3.Future<_i2.EmptyResponse>);
-  @override
   _i3.Future<_i2.EmptyResponse> banMember(
           String? userID, Map<String, dynamic>? options) =>
       (super.noSuchMethod(Invocation.method(#banMember, [userID, options]),
-              returnValue:
-                  Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
-          as _i3.Future<_i2.EmptyResponse>);
-  @override
-  _i3.Future<_i2.EmptyResponse> unbanUser(String? userID) =>
-      (super.noSuchMethod(Invocation.method(#unbanUser, [userID]),
               returnValue:
                   Future<_i2.EmptyResponse>.value(_FakeEmptyResponse_3()))
           as _i3.Future<_i2.EmptyResponse>);

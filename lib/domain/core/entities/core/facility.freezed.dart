@@ -12,42 +12,11 @@ part of 'facility.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Facility _$FacilityFromJson(Map<String, dynamic> json) {
   return _Facility.fromJson(json);
 }
-
-/// @nodoc
-class _$FacilityTearOff {
-  const _$FacilityTearOff();
-
-  _Facility call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'code') int? code,
-      @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'county') String? county,
-      @JsonKey(name: 'description') String? description}) {
-    return _Facility(
-      id: id,
-      name: name,
-      code: code,
-      phone: phone,
-      active: active,
-      county: county,
-      description: description,
-    );
-  }
-
-  Facility fromJson(Map<String, Object?> json) {
-    return Facility.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Facility = _$FacilityTearOff();
 
 /// @nodoc
 mixin _$Facility {
@@ -138,9 +107,10 @@ class _$FacilityCopyWithImpl<$Res> implements $FacilityCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FacilityCopyWith<$Res> implements $FacilityCopyWith<$Res> {
-  factory _$FacilityCopyWith(_Facility value, $Res Function(_Facility) then) =
-      __$FacilityCopyWithImpl<$Res>;
+abstract class _$$_FacilityCopyWith<$Res> implements $FacilityCopyWith<$Res> {
+  factory _$$_FacilityCopyWith(
+          _$_Facility value, $Res Function(_$_Facility) then) =
+      __$$_FacilityCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? id,
@@ -153,13 +123,14 @@ abstract class _$FacilityCopyWith<$Res> implements $FacilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$FacilityCopyWithImpl<$Res> extends _$FacilityCopyWithImpl<$Res>
-    implements _$FacilityCopyWith<$Res> {
-  __$FacilityCopyWithImpl(_Facility _value, $Res Function(_Facility) _then)
-      : super(_value, (v) => _then(v as _Facility));
+class __$$_FacilityCopyWithImpl<$Res> extends _$FacilityCopyWithImpl<$Res>
+    implements _$$_FacilityCopyWith<$Res> {
+  __$$_FacilityCopyWithImpl(
+      _$_Facility _value, $Res Function(_$_Facility) _then)
+      : super(_value, (v) => _then(v as _$_Facility));
 
   @override
-  _Facility get _value => super._value as _Facility;
+  _$_Facility get _value => super._value as _$_Facility;
 
   @override
   $Res call({
@@ -171,7 +142,7 @@ class __$FacilityCopyWithImpl<$Res> extends _$FacilityCopyWithImpl<$Res>
     Object? county = freezed,
     Object? description = freezed,
   }) {
-    return _then(_Facility(
+    return _then(_$_Facility(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -250,7 +221,7 @@ class _$_Facility implements _Facility {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Facility &&
+            other is _$_Facility &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.code, code) &&
@@ -261,6 +232,7 @@ class _$_Facility implements _Facility {
                 .equals(other.description, description));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -274,8 +246,8 @@ class _$_Facility implements _Facility {
 
   @JsonKey(ignore: true)
   @override
-  _$FacilityCopyWith<_Facility> get copyWith =>
-      __$FacilityCopyWithImpl<_Facility>(this, _$identity);
+  _$$_FacilityCopyWith<_$_Facility> get copyWith =>
+      __$$_FacilityCopyWithImpl<_$_Facility>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -285,39 +257,39 @@ class _$_Facility implements _Facility {
 
 abstract class _Facility implements Facility {
   factory _Facility(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'code') int? code,
-      @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'county') String? county,
-      @JsonKey(name: 'description') String? description}) = _$_Facility;
+      {@JsonKey(name: 'ID') final String? id,
+      @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'code') final int? code,
+      @JsonKey(name: 'phone') final String? phone,
+      @JsonKey(name: 'active', defaultValue: false) final bool? active,
+      @JsonKey(name: 'county') final String? county,
+      @JsonKey(name: 'description') final String? description}) = _$_Facility;
 
   factory _Facility.fromJson(Map<String, dynamic> json) = _$_Facility.fromJson;
 
   @override
   @JsonKey(name: 'ID')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'code')
-  int? get code;
+  int? get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'phone')
-  String? get phone;
+  String? get phone => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'county')
-  String? get county;
+  String? get county => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'description')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FacilityCopyWith<_Facility> get copyWith =>
+  _$$_FacilityCopyWith<_$_Facility> get copyWith =>
       throw _privateConstructorUsedError;
 }

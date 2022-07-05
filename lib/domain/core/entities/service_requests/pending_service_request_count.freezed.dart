@@ -12,35 +12,12 @@ part of 'pending_service_request_count.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PendingServiceRequestCount _$PendingServiceRequestCountFromJson(
     Map<String, dynamic> json) {
   return _PendingServiceRequestCount.fromJson(json);
 }
-
-/// @nodoc
-class _$PendingServiceRequestCountTearOff {
-  const _$PendingServiceRequestCountTearOff();
-
-  _PendingServiceRequestCount call(
-      {@JsonKey(name: 'clientsServiceRequestCount')
-          ServiceRequestTypeCount? clientsServiceRequestCount,
-      @JsonKey(name: 'staffServiceRequestCount')
-          ServiceRequestTypeCount? staffServiceRequestCount}) {
-    return _PendingServiceRequestCount(
-      clientsServiceRequestCount: clientsServiceRequestCount,
-      staffServiceRequestCount: staffServiceRequestCount,
-    );
-  }
-
-  PendingServiceRequestCount fromJson(Map<String, Object?> json) {
-    return PendingServiceRequestCount.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PendingServiceRequestCount = _$PendingServiceRequestCountTearOff();
 
 /// @nodoc
 mixin _$PendingServiceRequestCount {
@@ -124,12 +101,12 @@ class _$PendingServiceRequestCountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PendingServiceRequestCountCopyWith<$Res>
+abstract class _$$_PendingServiceRequestCountCopyWith<$Res>
     implements $PendingServiceRequestCountCopyWith<$Res> {
-  factory _$PendingServiceRequestCountCopyWith(
-          _PendingServiceRequestCount value,
-          $Res Function(_PendingServiceRequestCount) then) =
-      __$PendingServiceRequestCountCopyWithImpl<$Res>;
+  factory _$$_PendingServiceRequestCountCopyWith(
+          _$_PendingServiceRequestCount value,
+          $Res Function(_$_PendingServiceRequestCount) then) =
+      __$$_PendingServiceRequestCountCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'clientsServiceRequestCount')
@@ -144,23 +121,24 @@ abstract class _$PendingServiceRequestCountCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PendingServiceRequestCountCopyWithImpl<$Res>
+class __$$_PendingServiceRequestCountCopyWithImpl<$Res>
     extends _$PendingServiceRequestCountCopyWithImpl<$Res>
-    implements _$PendingServiceRequestCountCopyWith<$Res> {
-  __$PendingServiceRequestCountCopyWithImpl(_PendingServiceRequestCount _value,
-      $Res Function(_PendingServiceRequestCount) _then)
-      : super(_value, (v) => _then(v as _PendingServiceRequestCount));
+    implements _$$_PendingServiceRequestCountCopyWith<$Res> {
+  __$$_PendingServiceRequestCountCopyWithImpl(
+      _$_PendingServiceRequestCount _value,
+      $Res Function(_$_PendingServiceRequestCount) _then)
+      : super(_value, (v) => _then(v as _$_PendingServiceRequestCount));
 
   @override
-  _PendingServiceRequestCount get _value =>
-      super._value as _PendingServiceRequestCount;
+  _$_PendingServiceRequestCount get _value =>
+      super._value as _$_PendingServiceRequestCount;
 
   @override
   $Res call({
     Object? clientsServiceRequestCount = freezed,
     Object? staffServiceRequestCount = freezed,
   }) {
-    return _then(_PendingServiceRequestCount(
+    return _then(_$_PendingServiceRequestCount(
       clientsServiceRequestCount: clientsServiceRequestCount == freezed
           ? _value.clientsServiceRequestCount
           : clientsServiceRequestCount // ignore: cast_nullable_to_non_nullable
@@ -201,13 +179,14 @@ class _$_PendingServiceRequestCount implements _PendingServiceRequestCount {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PendingServiceRequestCount &&
+            other is _$_PendingServiceRequestCount &&
             const DeepCollectionEquality().equals(
                 other.clientsServiceRequestCount, clientsServiceRequestCount) &&
             const DeepCollectionEquality().equals(
                 other.staffServiceRequestCount, staffServiceRequestCount));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -216,9 +195,9 @@ class _$_PendingServiceRequestCount implements _PendingServiceRequestCount {
 
   @JsonKey(ignore: true)
   @override
-  _$PendingServiceRequestCountCopyWith<_PendingServiceRequestCount>
-      get copyWith => __$PendingServiceRequestCountCopyWithImpl<
-          _PendingServiceRequestCount>(this, _$identity);
+  _$$_PendingServiceRequestCountCopyWith<_$_PendingServiceRequestCount>
+      get copyWith => __$$_PendingServiceRequestCountCopyWithImpl<
+          _$_PendingServiceRequestCount>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -230,9 +209,9 @@ abstract class _PendingServiceRequestCount
     implements PendingServiceRequestCount {
   factory _PendingServiceRequestCount(
           {@JsonKey(name: 'clientsServiceRequestCount')
-              ServiceRequestTypeCount? clientsServiceRequestCount,
+              final ServiceRequestTypeCount? clientsServiceRequestCount,
           @JsonKey(name: 'staffServiceRequestCount')
-              ServiceRequestTypeCount? staffServiceRequestCount}) =
+              final ServiceRequestTypeCount? staffServiceRequestCount}) =
       _$_PendingServiceRequestCount;
 
   factory _PendingServiceRequestCount.fromJson(Map<String, dynamic> json) =
@@ -240,12 +219,14 @@ abstract class _PendingServiceRequestCount
 
   @override
   @JsonKey(name: 'clientsServiceRequestCount')
-  ServiceRequestTypeCount? get clientsServiceRequestCount;
+  ServiceRequestTypeCount? get clientsServiceRequestCount =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staffServiceRequestCount')
-  ServiceRequestTypeCount? get staffServiceRequestCount;
+  ServiceRequestTypeCount? get staffServiceRequestCount =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PendingServiceRequestCountCopyWith<_PendingServiceRequestCount>
+  _$$_PendingServiceRequestCountCopyWith<_$_PendingServiceRequestCount>
       get copyWith => throw _privateConstructorUsedError;
 }

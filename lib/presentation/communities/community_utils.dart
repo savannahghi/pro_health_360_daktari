@@ -34,7 +34,7 @@ Widget channelPreviewBuilder(BuildContext context, Channel channel) {
         ),
       );
     },
-    leading: ChannelAvatar(channel: channel),
+    leading: StreamChannelAvatar(channel: channel),
     title: Text(
       channelName,
       style: theme.channelPreviewTheme.titleStyle?.copyWith(

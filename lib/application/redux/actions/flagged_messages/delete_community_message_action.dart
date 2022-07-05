@@ -75,10 +75,13 @@ class DeleteCommunityMessageAction extends ReduxAction<AppState> {
     if (data?['deleteCommunityMessage'] == true) {
       final List<Message?>? messages =
           state.staffState?.communitiesState?.flaggedMessages;
-      messages?.removeWhere((Message? message) => message?.id == messageID);
+
+      final List<Message?>? removed = messages
+          ?.where((Message? message) => message?.id != messageID)
+          .toList();
 
       dispatch(
-        UpdateCommunitiesStateAction(flaggedMessages: messages),
+        UpdateCommunitiesStateAction(flaggedMessages: removed),
       );
       onSuccess?.call();
     }

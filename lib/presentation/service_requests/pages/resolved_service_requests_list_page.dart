@@ -31,7 +31,7 @@ class _ResolvedServiceRequestsListPageState
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
         FetchResolvedServiceRequestsAction(

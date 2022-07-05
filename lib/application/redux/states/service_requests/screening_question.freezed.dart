@@ -12,30 +12,11 @@ part of 'screening_question.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ScreeningQuestion _$ScreeningQuestionFromJson(Map<String, dynamic> json) {
   return _ScreeningQuestion.fromJson(json);
 }
-
-/// @nodoc
-class _$ScreeningQuestionTearOff {
-  const _$ScreeningQuestionTearOff();
-
-  _ScreeningQuestion call({String? questionText, String? answer}) {
-    return _ScreeningQuestion(
-      questionText: questionText,
-      answer: answer,
-    );
-  }
-
-  ScreeningQuestion fromJson(Map<String, Object?> json) {
-    return ScreeningQuestion.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ScreeningQuestion = _$ScreeningQuestionTearOff();
 
 /// @nodoc
 mixin _$ScreeningQuestion {
@@ -84,32 +65,32 @@ class _$ScreeningQuestionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScreeningQuestionCopyWith<$Res>
+abstract class _$$_ScreeningQuestionCopyWith<$Res>
     implements $ScreeningQuestionCopyWith<$Res> {
-  factory _$ScreeningQuestionCopyWith(
-          _ScreeningQuestion value, $Res Function(_ScreeningQuestion) then) =
-      __$ScreeningQuestionCopyWithImpl<$Res>;
+  factory _$$_ScreeningQuestionCopyWith(_$_ScreeningQuestion value,
+          $Res Function(_$_ScreeningQuestion) then) =
+      __$$_ScreeningQuestionCopyWithImpl<$Res>;
   @override
   $Res call({String? questionText, String? answer});
 }
 
 /// @nodoc
-class __$ScreeningQuestionCopyWithImpl<$Res>
+class __$$_ScreeningQuestionCopyWithImpl<$Res>
     extends _$ScreeningQuestionCopyWithImpl<$Res>
-    implements _$ScreeningQuestionCopyWith<$Res> {
-  __$ScreeningQuestionCopyWithImpl(
-      _ScreeningQuestion _value, $Res Function(_ScreeningQuestion) _then)
-      : super(_value, (v) => _then(v as _ScreeningQuestion));
+    implements _$$_ScreeningQuestionCopyWith<$Res> {
+  __$$_ScreeningQuestionCopyWithImpl(
+      _$_ScreeningQuestion _value, $Res Function(_$_ScreeningQuestion) _then)
+      : super(_value, (v) => _then(v as _$_ScreeningQuestion));
 
   @override
-  _ScreeningQuestion get _value => super._value as _ScreeningQuestion;
+  _$_ScreeningQuestion get _value => super._value as _$_ScreeningQuestion;
 
   @override
   $Res call({
     Object? questionText = freezed,
     Object? answer = freezed,
   }) {
-    return _then(_ScreeningQuestion(
+    return _then(_$_ScreeningQuestion(
       questionText: questionText == freezed
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
@@ -144,12 +125,13 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScreeningQuestion &&
+            other is _$_ScreeningQuestion &&
             const DeepCollectionEquality()
                 .equals(other.questionText, questionText) &&
             const DeepCollectionEquality().equals(other.answer, answer));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -158,8 +140,9 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
 
   @JsonKey(ignore: true)
   @override
-  _$ScreeningQuestionCopyWith<_ScreeningQuestion> get copyWith =>
-      __$ScreeningQuestionCopyWithImpl<_ScreeningQuestion>(this, _$identity);
+  _$$_ScreeningQuestionCopyWith<_$_ScreeningQuestion> get copyWith =>
+      __$$_ScreeningQuestionCopyWithImpl<_$_ScreeningQuestion>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,18 +151,19 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
 }
 
 abstract class _ScreeningQuestion implements ScreeningQuestion {
-  factory _ScreeningQuestion({String? questionText, String? answer}) =
-      _$_ScreeningQuestion;
+  factory _ScreeningQuestion(
+      {final String? questionText,
+      final String? answer}) = _$_ScreeningQuestion;
 
   factory _ScreeningQuestion.fromJson(Map<String, dynamic> json) =
       _$_ScreeningQuestion.fromJson;
 
   @override
-  String? get questionText;
+  String? get questionText => throw _privateConstructorUsedError;
   @override
-  String? get answer;
+  String? get answer => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScreeningQuestionCopyWith<_ScreeningQuestion> get copyWith =>
+  _$$_ScreeningQuestionCopyWith<_$_ScreeningQuestion> get copyWith =>
       throw _privateConstructorUsedError;
 }

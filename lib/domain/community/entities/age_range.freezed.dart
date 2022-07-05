@@ -12,32 +12,11 @@ part of 'age_range.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AgeRange _$AgeRangeFromJson(Map<String, dynamic> json) {
   return _AgeRange.fromJson(json);
 }
-
-/// @nodoc
-class _$AgeRangeTearOff {
-  const _$AgeRangeTearOff();
-
-  _AgeRange call(
-      {@JsonKey(name: 'lowerBound') int? lowerBound,
-      @JsonKey(name: 'upperBound') int? upperBound}) {
-    return _AgeRange(
-      lowerBound: lowerBound,
-      upperBound: upperBound,
-    );
-  }
-
-  AgeRange fromJson(Map<String, Object?> json) {
-    return AgeRange.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AgeRange = _$AgeRangeTearOff();
 
 /// @nodoc
 mixin _$AgeRange {
@@ -88,9 +67,10 @@ class _$AgeRangeCopyWithImpl<$Res> implements $AgeRangeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
-  factory _$AgeRangeCopyWith(_AgeRange value, $Res Function(_AgeRange) then) =
-      __$AgeRangeCopyWithImpl<$Res>;
+abstract class _$$_AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
+  factory _$$_AgeRangeCopyWith(
+          _$_AgeRange value, $Res Function(_$_AgeRange) then) =
+      __$$_AgeRangeCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'lowerBound') int? lowerBound,
@@ -98,20 +78,21 @@ abstract class _$AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AgeRangeCopyWithImpl<$Res> extends _$AgeRangeCopyWithImpl<$Res>
-    implements _$AgeRangeCopyWith<$Res> {
-  __$AgeRangeCopyWithImpl(_AgeRange _value, $Res Function(_AgeRange) _then)
-      : super(_value, (v) => _then(v as _AgeRange));
+class __$$_AgeRangeCopyWithImpl<$Res> extends _$AgeRangeCopyWithImpl<$Res>
+    implements _$$_AgeRangeCopyWith<$Res> {
+  __$$_AgeRangeCopyWithImpl(
+      _$_AgeRange _value, $Res Function(_$_AgeRange) _then)
+      : super(_value, (v) => _then(v as _$_AgeRange));
 
   @override
-  _AgeRange get _value => super._value as _AgeRange;
+  _$_AgeRange get _value => super._value as _$_AgeRange;
 
   @override
   $Res call({
     Object? lowerBound = freezed,
     Object? upperBound = freezed,
   }) {
-    return _then(_AgeRange(
+    return _then(_$_AgeRange(
       lowerBound: lowerBound == freezed
           ? _value.lowerBound
           : lowerBound // ignore: cast_nullable_to_non_nullable
@@ -150,13 +131,14 @@ class _$_AgeRange implements _AgeRange {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AgeRange &&
+            other is _$_AgeRange &&
             const DeepCollectionEquality()
                 .equals(other.lowerBound, lowerBound) &&
             const DeepCollectionEquality()
                 .equals(other.upperBound, upperBound));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -165,8 +147,8 @@ class _$_AgeRange implements _AgeRange {
 
   @JsonKey(ignore: true)
   @override
-  _$AgeRangeCopyWith<_AgeRange> get copyWith =>
-      __$AgeRangeCopyWithImpl<_AgeRange>(this, _$identity);
+  _$$_AgeRangeCopyWith<_$_AgeRange> get copyWith =>
+      __$$_AgeRangeCopyWithImpl<_$_AgeRange>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -176,19 +158,19 @@ class _$_AgeRange implements _AgeRange {
 
 abstract class _AgeRange implements AgeRange {
   factory _AgeRange(
-      {@JsonKey(name: 'lowerBound') int? lowerBound,
-      @JsonKey(name: 'upperBound') int? upperBound}) = _$_AgeRange;
+      {@JsonKey(name: 'lowerBound') final int? lowerBound,
+      @JsonKey(name: 'upperBound') final int? upperBound}) = _$_AgeRange;
 
   factory _AgeRange.fromJson(Map<String, dynamic> json) = _$_AgeRange.fromJson;
 
   @override
   @JsonKey(name: 'lowerBound')
-  int? get lowerBound;
+  int? get lowerBound => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'upperBound')
-  int? get upperBound;
+  int? get upperBound => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AgeRangeCopyWith<_AgeRange> get copyWith =>
+  _$$_AgeRangeCopyWith<_$_AgeRange> get copyWith =>
       throw _privateConstructorUsedError;
 }

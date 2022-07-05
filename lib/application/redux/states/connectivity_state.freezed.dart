@@ -12,29 +12,11 @@ part of 'connectivity_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ConnectivityState _$ConnectivityStateFromJson(Map<String, dynamic> json) {
   return _ConnectivityState.fromJson(json);
 }
-
-/// @nodoc
-class _$ConnectivityStateTearOff {
-  const _$ConnectivityStateTearOff();
-
-  _ConnectivityState call({required bool isConnected}) {
-    return _ConnectivityState(
-      isConnected: isConnected,
-    );
-  }
-
-  ConnectivityState fromJson(Map<String, Object?> json) {
-    return ConnectivityState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ConnectivityState = _$ConnectivityStateTearOff();
 
 /// @nodoc
 mixin _$ConnectivityState {
@@ -77,31 +59,31 @@ class _$ConnectivityStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ConnectivityStateCopyWith<$Res>
+abstract class _$$_ConnectivityStateCopyWith<$Res>
     implements $ConnectivityStateCopyWith<$Res> {
-  factory _$ConnectivityStateCopyWith(
-          _ConnectivityState value, $Res Function(_ConnectivityState) then) =
-      __$ConnectivityStateCopyWithImpl<$Res>;
+  factory _$$_ConnectivityStateCopyWith(_$_ConnectivityState value,
+          $Res Function(_$_ConnectivityState) then) =
+      __$$_ConnectivityStateCopyWithImpl<$Res>;
   @override
   $Res call({bool isConnected});
 }
 
 /// @nodoc
-class __$ConnectivityStateCopyWithImpl<$Res>
+class __$$_ConnectivityStateCopyWithImpl<$Res>
     extends _$ConnectivityStateCopyWithImpl<$Res>
-    implements _$ConnectivityStateCopyWith<$Res> {
-  __$ConnectivityStateCopyWithImpl(
-      _ConnectivityState _value, $Res Function(_ConnectivityState) _then)
-      : super(_value, (v) => _then(v as _ConnectivityState));
+    implements _$$_ConnectivityStateCopyWith<$Res> {
+  __$$_ConnectivityStateCopyWithImpl(
+      _$_ConnectivityState _value, $Res Function(_$_ConnectivityState) _then)
+      : super(_value, (v) => _then(v as _$_ConnectivityState));
 
   @override
-  _ConnectivityState get _value => super._value as _ConnectivityState;
+  _$_ConnectivityState get _value => super._value as _$_ConnectivityState;
 
   @override
   $Res call({
     Object? isConnected = freezed,
   }) {
-    return _then(_ConnectivityState(
+    return _then(_$_ConnectivityState(
       isConnected: isConnected == freezed
           ? _value.isConnected
           : isConnected // ignore: cast_nullable_to_non_nullable
@@ -130,19 +112,21 @@ class _$_ConnectivityState implements _ConnectivityState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ConnectivityState &&
+            other is _$_ConnectivityState &&
             const DeepCollectionEquality()
                 .equals(other.isConnected, isConnected));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(isConnected));
 
   @JsonKey(ignore: true)
   @override
-  _$ConnectivityStateCopyWith<_ConnectivityState> get copyWith =>
-      __$ConnectivityStateCopyWithImpl<_ConnectivityState>(this, _$identity);
+  _$$_ConnectivityStateCopyWith<_$_ConnectivityState> get copyWith =>
+      __$$_ConnectivityStateCopyWithImpl<_$_ConnectivityState>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -151,16 +135,16 @@ class _$_ConnectivityState implements _ConnectivityState {
 }
 
 abstract class _ConnectivityState implements ConnectivityState {
-  factory _ConnectivityState({required bool isConnected}) =
+  factory _ConnectivityState({required final bool isConnected}) =
       _$_ConnectivityState;
 
   factory _ConnectivityState.fromJson(Map<String, dynamic> json) =
       _$_ConnectivityState.fromJson;
 
   @override
-  bool get isConnected;
+  bool get isConnected => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ConnectivityStateCopyWith<_ConnectivityState> get copyWith =>
+  _$$_ConnectivityStateCopyWith<_$_ConnectivityState> get copyWith =>
       throw _privateConstructorUsedError;
 }

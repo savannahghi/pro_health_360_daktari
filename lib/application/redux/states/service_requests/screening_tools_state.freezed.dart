@@ -12,34 +12,11 @@ part of 'screening_tools_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ScreeningToolsState _$ScreeningToolsStateFromJson(Map<String, dynamic> json) {
   return _ScreeningToolsState.fromJson(json);
 }
-
-/// @nodoc
-class _$ScreeningToolsStateTearOff {
-  const _$ScreeningToolsStateTearOff();
-
-  _ScreeningToolsState call(
-      {@JsonKey(name: 'getAvailableFacilityScreeningTools')
-          List<ToolType>? availableTools,
-      @JsonKey(name: 'getAssessmentResponsesByToolType')
-          List<ToolAssessmentResponse>? toolAssessmentResponses}) {
-    return _ScreeningToolsState(
-      availableTools: availableTools,
-      toolAssessmentResponses: toolAssessmentResponses,
-    );
-  }
-
-  ScreeningToolsState fromJson(Map<String, Object?> json) {
-    return ScreeningToolsState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ScreeningToolsState = _$ScreeningToolsStateTearOff();
 
 /// @nodoc
 mixin _$ScreeningToolsState {
@@ -95,11 +72,11 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScreeningToolsStateCopyWith<$Res>
+abstract class _$$_ScreeningToolsStateCopyWith<$Res>
     implements $ScreeningToolsStateCopyWith<$Res> {
-  factory _$ScreeningToolsStateCopyWith(_ScreeningToolsState value,
-          $Res Function(_ScreeningToolsState) then) =
-      __$ScreeningToolsStateCopyWithImpl<$Res>;
+  factory _$$_ScreeningToolsStateCopyWith(_$_ScreeningToolsState value,
+          $Res Function(_$_ScreeningToolsState) then) =
+      __$$_ScreeningToolsStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getAvailableFacilityScreeningTools')
@@ -109,22 +86,22 @@ abstract class _$ScreeningToolsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScreeningToolsStateCopyWithImpl<$Res>
+class __$$_ScreeningToolsStateCopyWithImpl<$Res>
     extends _$ScreeningToolsStateCopyWithImpl<$Res>
-    implements _$ScreeningToolsStateCopyWith<$Res> {
-  __$ScreeningToolsStateCopyWithImpl(
-      _ScreeningToolsState _value, $Res Function(_ScreeningToolsState) _then)
-      : super(_value, (v) => _then(v as _ScreeningToolsState));
+    implements _$$_ScreeningToolsStateCopyWith<$Res> {
+  __$$_ScreeningToolsStateCopyWithImpl(_$_ScreeningToolsState _value,
+      $Res Function(_$_ScreeningToolsState) _then)
+      : super(_value, (v) => _then(v as _$_ScreeningToolsState));
 
   @override
-  _ScreeningToolsState get _value => super._value as _ScreeningToolsState;
+  _$_ScreeningToolsState get _value => super._value as _$_ScreeningToolsState;
 
   @override
   $Res call({
     Object? availableTools = freezed,
     Object? toolAssessmentResponses = freezed,
   }) {
-    return _then(_ScreeningToolsState(
+    return _then(_$_ScreeningToolsState(
       availableTools: availableTools == freezed
           ? _value.availableTools
           : availableTools // ignore: cast_nullable_to_non_nullable
@@ -165,13 +142,14 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScreeningToolsState &&
+            other is _$_ScreeningToolsState &&
             const DeepCollectionEquality()
                 .equals(other.availableTools, availableTools) &&
             const DeepCollectionEquality().equals(
                 other.toolAssessmentResponses, toolAssessmentResponses));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -180,8 +158,8 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
   @JsonKey(ignore: true)
   @override
-  _$ScreeningToolsStateCopyWith<_ScreeningToolsState> get copyWith =>
-      __$ScreeningToolsStateCopyWithImpl<_ScreeningToolsState>(
+  _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>
+      __$$_ScreeningToolsStateCopyWithImpl<_$_ScreeningToolsState>(
           this, _$identity);
 
   @override
@@ -193,9 +171,9 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 abstract class _ScreeningToolsState implements ScreeningToolsState {
   factory _ScreeningToolsState(
           {@JsonKey(name: 'getAvailableFacilityScreeningTools')
-              List<ToolType>? availableTools,
+              final List<ToolType>? availableTools,
           @JsonKey(name: 'getAssessmentResponsesByToolType')
-              List<ToolAssessmentResponse>? toolAssessmentResponses}) =
+              final List<ToolAssessmentResponse>? toolAssessmentResponses}) =
       _$_ScreeningToolsState;
 
   factory _ScreeningToolsState.fromJson(Map<String, dynamic> json) =
@@ -203,12 +181,13 @@ abstract class _ScreeningToolsState implements ScreeningToolsState {
 
   @override
   @JsonKey(name: 'getAvailableFacilityScreeningTools')
-  List<ToolType>? get availableTools;
+  List<ToolType>? get availableTools => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'getAssessmentResponsesByToolType')
-  List<ToolAssessmentResponse>? get toolAssessmentResponses;
+  List<ToolAssessmentResponse>? get toolAssessmentResponses =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScreeningToolsStateCopyWith<_ScreeningToolsState> get copyWith =>
+  _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>
       throw _privateConstructorUsedError;
 }

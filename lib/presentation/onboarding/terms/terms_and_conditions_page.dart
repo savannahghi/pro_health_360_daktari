@@ -30,7 +30,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) => StoreProvider.dispatch<AppState>(
         context,
         GetTermsAction(client: AppWrapperBase.of(context)!.graphQLClient),
@@ -104,7 +104,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     // Terms and Conditions scrollable view
                     Expanded(
                       child: Scrollbar(
-                        isAlwaysShown: true,
+                        thumbVisibility: true,
                         thickness: 10.0,
                         radius: const Radius.circular(10),
                         child: ClipRRect(

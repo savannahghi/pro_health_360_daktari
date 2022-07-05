@@ -12,35 +12,12 @@ part of 'assessment_question_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AssessmentQuestionResponse _$AssessmentQuestionResponseFromJson(
     Map<String, dynamic> json) {
   return _AssessmentQuestionResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$AssessmentQuestionResponseTearOff {
-  const _$AssessmentQuestionResponseTearOff();
-
-  _AssessmentQuestionResponse call(
-      {@JsonKey(name: 'toolIndex') int? index,
-      @JsonKey(name: 'tool') String? tool,
-      @JsonKey(name: 'response') String? response}) {
-    return _AssessmentQuestionResponse(
-      index: index,
-      tool: tool,
-      response: response,
-    );
-  }
-
-  AssessmentQuestionResponse fromJson(Map<String, Object?> json) {
-    return AssessmentQuestionResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AssessmentQuestionResponse = _$AssessmentQuestionResponseTearOff();
 
 /// @nodoc
 mixin _$AssessmentQuestionResponse {
@@ -101,12 +78,12 @@ class _$AssessmentQuestionResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AssessmentQuestionResponseCopyWith<$Res>
+abstract class _$$_AssessmentQuestionResponseCopyWith<$Res>
     implements $AssessmentQuestionResponseCopyWith<$Res> {
-  factory _$AssessmentQuestionResponseCopyWith(
-          _AssessmentQuestionResponse value,
-          $Res Function(_AssessmentQuestionResponse) then) =
-      __$AssessmentQuestionResponseCopyWithImpl<$Res>;
+  factory _$$_AssessmentQuestionResponseCopyWith(
+          _$_AssessmentQuestionResponse value,
+          $Res Function(_$_AssessmentQuestionResponse) then) =
+      __$$_AssessmentQuestionResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'toolIndex') int? index,
@@ -115,16 +92,17 @@ abstract class _$AssessmentQuestionResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AssessmentQuestionResponseCopyWithImpl<$Res>
+class __$$_AssessmentQuestionResponseCopyWithImpl<$Res>
     extends _$AssessmentQuestionResponseCopyWithImpl<$Res>
-    implements _$AssessmentQuestionResponseCopyWith<$Res> {
-  __$AssessmentQuestionResponseCopyWithImpl(_AssessmentQuestionResponse _value,
-      $Res Function(_AssessmentQuestionResponse) _then)
-      : super(_value, (v) => _then(v as _AssessmentQuestionResponse));
+    implements _$$_AssessmentQuestionResponseCopyWith<$Res> {
+  __$$_AssessmentQuestionResponseCopyWithImpl(
+      _$_AssessmentQuestionResponse _value,
+      $Res Function(_$_AssessmentQuestionResponse) _then)
+      : super(_value, (v) => _then(v as _$_AssessmentQuestionResponse));
 
   @override
-  _AssessmentQuestionResponse get _value =>
-      super._value as _AssessmentQuestionResponse;
+  _$_AssessmentQuestionResponse get _value =>
+      super._value as _$_AssessmentQuestionResponse;
 
   @override
   $Res call({
@@ -132,7 +110,7 @@ class __$AssessmentQuestionResponseCopyWithImpl<$Res>
     Object? tool = freezed,
     Object? response = freezed,
   }) {
-    return _then(_AssessmentQuestionResponse(
+    return _then(_$_AssessmentQuestionResponse(
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -179,12 +157,13 @@ class _$_AssessmentQuestionResponse implements _AssessmentQuestionResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AssessmentQuestionResponse &&
+            other is _$_AssessmentQuestionResponse &&
             const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.tool, tool) &&
             const DeepCollectionEquality().equals(other.response, response));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -194,9 +173,9 @@ class _$_AssessmentQuestionResponse implements _AssessmentQuestionResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$AssessmentQuestionResponseCopyWith<_AssessmentQuestionResponse>
-      get copyWith => __$AssessmentQuestionResponseCopyWithImpl<
-          _AssessmentQuestionResponse>(this, _$identity);
+  _$$_AssessmentQuestionResponseCopyWith<_$_AssessmentQuestionResponse>
+      get copyWith => __$$_AssessmentQuestionResponseCopyWithImpl<
+          _$_AssessmentQuestionResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -207,9 +186,9 @@ class _$_AssessmentQuestionResponse implements _AssessmentQuestionResponse {
 abstract class _AssessmentQuestionResponse
     implements AssessmentQuestionResponse {
   factory _AssessmentQuestionResponse(
-          {@JsonKey(name: 'toolIndex') int? index,
-          @JsonKey(name: 'tool') String? tool,
-          @JsonKey(name: 'response') String? response}) =
+          {@JsonKey(name: 'toolIndex') final int? index,
+          @JsonKey(name: 'tool') final String? tool,
+          @JsonKey(name: 'response') final String? response}) =
       _$_AssessmentQuestionResponse;
 
   factory _AssessmentQuestionResponse.fromJson(Map<String, dynamic> json) =
@@ -217,15 +196,15 @@ abstract class _AssessmentQuestionResponse
 
   @override
   @JsonKey(name: 'toolIndex')
-  int? get index;
+  int? get index => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'tool')
-  String? get tool;
+  String? get tool => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'response')
-  String? get response;
+  String? get response => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AssessmentQuestionResponseCopyWith<_AssessmentQuestionResponse>
+  _$$_AssessmentQuestionResponseCopyWith<_$_AssessmentQuestionResponse>
       get copyWith => throw _privateConstructorUsedError;
 }

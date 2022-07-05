@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +19,11 @@ import 'package:prohealth360_daktari/presentation/router/routes.dart';
 // Project imports:
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
+
+import 'mock_utils.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -1997,34 +1999,7 @@ final MockFirebaseMessaging kMockMessagingPlatform = MockFirebaseMessaging();
 void setupFirebaseMessagingMocks() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFirebase.channel
-      .setMockMethodCallHandler((MethodCall call) async {
-    if (call.method == 'Firebase#initializeCore') {
-      return <Map<String, dynamic>>[
-        <String, dynamic>{
-          'name': defaultFirebaseAppName,
-          'options': <String, dynamic>{
-            'apiKey': '123',
-            'appId': '123',
-            'messagingSenderId': '123',
-            'projectId': '123',
-          },
-          'pluginConstants': <String, dynamic>{},
-        }
-      ];
-    }
-
-    if (call.method == 'Firebase#initializeApp') {
-      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
-      return <String, dynamic>{
-        'name': args['appName'],
-        'options': args['options'],
-        'pluginConstants': <String, dynamic>{},
-      };
-    }
-
-    return null;
-  });
+  setupFirebaseCoreMocks();
 
   // // Mock Platform Interface Methods
   // // ignore: invalid_use_of_protected_member
@@ -2533,46 +2508,16 @@ final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
   }
 };
 
-Future<void> setupFirebaseAnalyticsMocks({
-  Function(MethodCall)? updateLogFunc,
-}) async {
+final List<MethodCall> methodCallLog = <MethodCall>[];
+
+void setupFirebaseAnalyticsMocks([Callback? customHandlers]) {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFirebase.channel
-      .setMockMethodCallHandler((MethodCall call) async {
-    if (call.method == 'Firebase#initializeCore') {
-      return <Map<String, dynamic>>[
-        <String, dynamic>{
-          'name': defaultFirebaseAppName,
-          'options': <String, dynamic>{
-            'apiKey': '123',
-            'appId': '123',
-            'messagingSenderId': '123',
-            'projectId': '123',
-          },
-          'pluginConstants': <String, dynamic>{},
-        }
-      ];
-    }
-
-    if (call.method == 'Firebase#initializeApp') {
-      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
-      return <String, dynamic>{
-        'name': args['appName'],
-        'options': args['options'],
-        'pluginConstants': <String, dynamic>{},
-      };
-    }
-
-    return null;
-  });
+  setupFirebaseCoreMocks();
 
   MethodChannelFirebaseAnalytics.channel
       .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (updateLogFunc != null) {
-      updateLogFunc.call(methodCall);
-    }
-
+    methodCallLog.add(methodCall);
     switch (methodCall.method) {
       default:
         return false;

@@ -70,12 +70,12 @@ class RetrieveFacilityAction extends ReduxAction<AppState> {
       if (facility.name == facilityName) {
         final List<Facility> facilities =
             state.staffState?.facilities ?? <Facility>[];
-        if (facilities.isNotEmpty) {
-          facilities
-              .removeWhere((Facility element) => element.name == facilityName);
-        }
-        facilities.add(facility);
-        dispatch(UpdateStaffProfileAction(facilities: facilities));
+
+        final List<Facility> removed = facilities
+            .where((Facility element) => element.name != facilityName)
+            .toList();
+        dispatch(UpdateStaffProfileAction(
+            facilities: <Facility>[facility, ...removed],),);
       }
     } else {
       throw UserException(processedResponse.message);

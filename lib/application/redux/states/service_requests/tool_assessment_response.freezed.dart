@@ -12,41 +12,12 @@ part of 'tool_assessment_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ToolAssessmentResponse _$ToolAssessmentResponseFromJson(
     Map<String, dynamic> json) {
   return _ToolAssessmentResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ToolAssessmentResponseTearOff {
-  const _$ToolAssessmentResponseTearOff();
-
-  _ToolAssessmentResponse call(
-      {@JsonKey(name: 'clientName')
-          String? name,
-      @JsonKey(name: 'dateAnswered')
-          String? date,
-      @JsonKey(name: 'clientID')
-          String? clientID,
-      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
-          ToolAssessmentRequestResponse? toolAssessmentRequestResponse}) {
-    return _ToolAssessmentResponse(
-      name: name,
-      date: date,
-      clientID: clientID,
-      toolAssessmentRequestResponse: toolAssessmentRequestResponse,
-    );
-  }
-
-  ToolAssessmentResponse fromJson(Map<String, Object?> json) {
-    return ToolAssessmentResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ToolAssessmentResponse = _$ToolAssessmentResponseTearOff();
 
 /// @nodoc
 mixin _$ToolAssessmentResponse {
@@ -136,11 +107,11 @@ class _$ToolAssessmentResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ToolAssessmentResponseCopyWith<$Res>
+abstract class _$$_ToolAssessmentResponseCopyWith<$Res>
     implements $ToolAssessmentResponseCopyWith<$Res> {
-  factory _$ToolAssessmentResponseCopyWith(_ToolAssessmentResponse value,
-          $Res Function(_ToolAssessmentResponse) then) =
-      __$ToolAssessmentResponseCopyWithImpl<$Res>;
+  factory _$$_ToolAssessmentResponseCopyWith(_$_ToolAssessmentResponse value,
+          $Res Function(_$_ToolAssessmentResponse) then) =
+      __$$_ToolAssessmentResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'clientName')
@@ -158,15 +129,16 @@ abstract class _$ToolAssessmentResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ToolAssessmentResponseCopyWithImpl<$Res>
+class __$$_ToolAssessmentResponseCopyWithImpl<$Res>
     extends _$ToolAssessmentResponseCopyWithImpl<$Res>
-    implements _$ToolAssessmentResponseCopyWith<$Res> {
-  __$ToolAssessmentResponseCopyWithImpl(_ToolAssessmentResponse _value,
-      $Res Function(_ToolAssessmentResponse) _then)
-      : super(_value, (v) => _then(v as _ToolAssessmentResponse));
+    implements _$$_ToolAssessmentResponseCopyWith<$Res> {
+  __$$_ToolAssessmentResponseCopyWithImpl(_$_ToolAssessmentResponse _value,
+      $Res Function(_$_ToolAssessmentResponse) _then)
+      : super(_value, (v) => _then(v as _$_ToolAssessmentResponse));
 
   @override
-  _ToolAssessmentResponse get _value => super._value as _ToolAssessmentResponse;
+  _$_ToolAssessmentResponse get _value =>
+      super._value as _$_ToolAssessmentResponse;
 
   @override
   $Res call({
@@ -175,7 +147,7 @@ class __$ToolAssessmentResponseCopyWithImpl<$Res>
     Object? clientID = freezed,
     Object? toolAssessmentRequestResponse = freezed,
   }) {
-    return _then(_ToolAssessmentResponse(
+    return _then(_$_ToolAssessmentResponse(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -234,7 +206,7 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ToolAssessmentResponse &&
+            other is _$_ToolAssessmentResponse &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.clientID, clientID) &&
@@ -243,6 +215,7 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
                 toolAssessmentRequestResponse));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -253,8 +226,8 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$ToolAssessmentResponseCopyWith<_ToolAssessmentResponse> get copyWith =>
-      __$ToolAssessmentResponseCopyWithImpl<_ToolAssessmentResponse>(
+  _$$_ToolAssessmentResponseCopyWith<_$_ToolAssessmentResponse> get copyWith =>
+      __$$_ToolAssessmentResponseCopyWithImpl<_$_ToolAssessmentResponse>(
           this, _$identity);
 
   @override
@@ -265,33 +238,34 @@ class _$_ToolAssessmentResponse implements _ToolAssessmentResponse {
 
 abstract class _ToolAssessmentResponse implements ToolAssessmentResponse {
   factory _ToolAssessmentResponse(
-          {@JsonKey(name: 'clientName')
-              String? name,
-          @JsonKey(name: 'dateAnswered')
-              String? date,
-          @JsonKey(name: 'clientID')
-              String? clientID,
-          @JsonKey(name: 'getScreeningToolServiceRequestResponses')
-              ToolAssessmentRequestResponse? toolAssessmentRequestResponse}) =
-      _$_ToolAssessmentResponse;
+      {@JsonKey(name: 'clientName')
+          final String? name,
+      @JsonKey(name: 'dateAnswered')
+          final String? date,
+      @JsonKey(name: 'clientID')
+          final String? clientID,
+      @JsonKey(name: 'getScreeningToolServiceRequestResponses')
+          final ToolAssessmentRequestResponse?
+              toolAssessmentRequestResponse}) = _$_ToolAssessmentResponse;
 
   factory _ToolAssessmentResponse.fromJson(Map<String, dynamic> json) =
       _$_ToolAssessmentResponse.fromJson;
 
   @override
   @JsonKey(name: 'clientName')
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dateAnswered')
-  String? get date;
+  String? get date => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientID')
-  String? get clientID;
+  String? get clientID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'getScreeningToolServiceRequestResponses')
-  ToolAssessmentRequestResponse? get toolAssessmentRequestResponse;
+  ToolAssessmentRequestResponse? get toolAssessmentRequestResponse =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ToolAssessmentResponseCopyWith<_ToolAssessmentResponse> get copyWith =>
+  _$$_ToolAssessmentResponseCopyWith<_$_ToolAssessmentResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

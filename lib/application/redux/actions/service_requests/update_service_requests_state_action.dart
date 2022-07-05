@@ -20,7 +20,7 @@ class UpdateServiceRequestsStateAction extends ReduxAction<AppState> {
   final PendingServiceRequestCount? pendingServiceRequestsCount;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final ServiceRequestState? serviceRequestsState =
         state.serviceRequestState?.copyWith(
       clientServiceRequests: clientServiceRequests ??

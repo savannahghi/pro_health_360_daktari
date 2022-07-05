@@ -12,29 +12,11 @@ part of 'message_object.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MessageObject _$MessageObjectFromJson(Map<String, dynamic> json) {
   return _MessageObject.fromJson(json);
 }
-
-/// @nodoc
-class _$MessageObjectTearOff {
-  const _$MessageObjectTearOff();
-
-  _MessageObject call({@JsonKey(name: 'message') Message? message}) {
-    return _MessageObject(
-      message: message,
-    );
-  }
-
-  MessageObject fromJson(Map<String, Object?> json) {
-    return MessageObject.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MessageObject = _$MessageObjectTearOff();
 
 /// @nodoc
 mixin _$MessageObject {
@@ -78,31 +60,31 @@ class _$MessageObjectCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MessageObjectCopyWith<$Res>
+abstract class _$$_MessageObjectCopyWith<$Res>
     implements $MessageObjectCopyWith<$Res> {
-  factory _$MessageObjectCopyWith(
-          _MessageObject value, $Res Function(_MessageObject) then) =
-      __$MessageObjectCopyWithImpl<$Res>;
+  factory _$$_MessageObjectCopyWith(
+          _$_MessageObject value, $Res Function(_$_MessageObject) then) =
+      __$$_MessageObjectCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'message') Message? message});
 }
 
 /// @nodoc
-class __$MessageObjectCopyWithImpl<$Res>
+class __$$_MessageObjectCopyWithImpl<$Res>
     extends _$MessageObjectCopyWithImpl<$Res>
-    implements _$MessageObjectCopyWith<$Res> {
-  __$MessageObjectCopyWithImpl(
-      _MessageObject _value, $Res Function(_MessageObject) _then)
-      : super(_value, (v) => _then(v as _MessageObject));
+    implements _$$_MessageObjectCopyWith<$Res> {
+  __$$_MessageObjectCopyWithImpl(
+      _$_MessageObject _value, $Res Function(_$_MessageObject) _then)
+      : super(_value, (v) => _then(v as _$_MessageObject));
 
   @override
-  _MessageObject get _value => super._value as _MessageObject;
+  _$_MessageObject get _value => super._value as _$_MessageObject;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_MessageObject(
+    return _then(_$_MessageObject(
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -132,18 +114,19 @@ class _$_MessageObject implements _MessageObject {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MessageObject &&
+            other is _$_MessageObject &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
-  _$MessageObjectCopyWith<_MessageObject> get copyWith =>
-      __$MessageObjectCopyWithImpl<_MessageObject>(this, _$identity);
+  _$$_MessageObjectCopyWith<_$_MessageObject> get copyWith =>
+      __$$_MessageObjectCopyWithImpl<_$_MessageObject>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -152,7 +135,7 @@ class _$_MessageObject implements _MessageObject {
 }
 
 abstract class _MessageObject implements MessageObject {
-  factory _MessageObject({@JsonKey(name: 'message') Message? message}) =
+  factory _MessageObject({@JsonKey(name: 'message') final Message? message}) =
       _$_MessageObject;
 
   factory _MessageObject.fromJson(Map<String, dynamic> json) =
@@ -160,9 +143,9 @@ abstract class _MessageObject implements MessageObject {
 
   @override
   @JsonKey(name: 'message')
-  Message? get message;
+  Message? get message => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageObjectCopyWith<_MessageObject> get copyWith =>
+  _$$_MessageObjectCopyWith<_$_MessageObject> get copyWith =>
       throw _privateConstructorUsedError;
 }

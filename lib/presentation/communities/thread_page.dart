@@ -12,19 +12,17 @@ class ThreadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ThreadHeader(
+      appBar: StreamThreadHeader(
         parent: parent!,
       ),
       body: Column(
         children: <Widget>[
           Expanded(
-            child: MessageListView(
+            child: StreamMessageListView(
               parentMessage: parent,
             ),
           ),
-          MessageInput(
-            parentMessage: parent,
-          ),
+          const StreamMessageInput(),
         ],
       ),
     );

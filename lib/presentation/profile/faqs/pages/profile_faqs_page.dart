@@ -23,7 +23,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       StoreProvider.dispatch<AppState>(
         context,
         // retrieve the FAQS

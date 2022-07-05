@@ -12,42 +12,11 @@ part of 'search_user_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchUserResponse _$SearchUserResponseFromJson(Map<String, dynamic> json) {
   return _SearchUserResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchUserResponseTearOff {
-  const _$SearchUserResponseTearOff();
-
-  _SearchUserResponse call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
-      @JsonKey(name: 'Active') bool? isActive,
-      @JsonKey(name: 'StaffNumber') String? staffNumber,
-      @JsonKey(name: 'User') UserData? user,
-      @JsonKey(name: 'FacilityID') String? facilityID,
-      @JsonKey(name: 'rolesList') RolesList? rolesList}) {
-    return _SearchUserResponse(
-      id: id,
-      clientCCCNumber: clientCCCNumber,
-      isActive: isActive,
-      staffNumber: staffNumber,
-      user: user,
-      facilityID: facilityID,
-      rolesList: rolesList,
-    );
-  }
-
-  SearchUserResponse fromJson(Map<String, Object?> json) {
-    return SearchUserResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchUserResponse = _$SearchUserResponseTearOff();
 
 /// @nodoc
 mixin _$SearchUserResponse {
@@ -168,11 +137,11 @@ class _$SearchUserResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SearchUserResponseCopyWith<$Res>
+abstract class _$$_SearchUserResponseCopyWith<$Res>
     implements $SearchUserResponseCopyWith<$Res> {
-  factory _$SearchUserResponseCopyWith(
-          _SearchUserResponse value, $Res Function(_SearchUserResponse) then) =
-      __$SearchUserResponseCopyWithImpl<$Res>;
+  factory _$$_SearchUserResponseCopyWith(_$_SearchUserResponse value,
+          $Res Function(_$_SearchUserResponse) then) =
+      __$$_SearchUserResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID') String? id,
@@ -190,15 +159,15 @@ abstract class _$SearchUserResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SearchUserResponseCopyWithImpl<$Res>
+class __$$_SearchUserResponseCopyWithImpl<$Res>
     extends _$SearchUserResponseCopyWithImpl<$Res>
-    implements _$SearchUserResponseCopyWith<$Res> {
-  __$SearchUserResponseCopyWithImpl(
-      _SearchUserResponse _value, $Res Function(_SearchUserResponse) _then)
-      : super(_value, (v) => _then(v as _SearchUserResponse));
+    implements _$$_SearchUserResponseCopyWith<$Res> {
+  __$$_SearchUserResponseCopyWithImpl(
+      _$_SearchUserResponse _value, $Res Function(_$_SearchUserResponse) _then)
+      : super(_value, (v) => _then(v as _$_SearchUserResponse));
 
   @override
-  _SearchUserResponse get _value => super._value as _SearchUserResponse;
+  _$_SearchUserResponse get _value => super._value as _$_SearchUserResponse;
 
   @override
   $Res call({
@@ -210,7 +179,7 @@ class __$SearchUserResponseCopyWithImpl<$Res>
     Object? facilityID = freezed,
     Object? rolesList = freezed,
   }) {
-    return _then(_SearchUserResponse(
+    return _then(_$_SearchUserResponse(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -264,13 +233,16 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   @override
   @JsonKey(name: 'CCCNumber')
   final String? clientCCCNumber;
-  @override // This is the CCCNumber if the person being searched is a client
+// This is the CCCNumber if the person being searched is a client
+  @override
   @JsonKey(name: 'Active')
   final bool? isActive;
-  @override // This is a boolean for checking if the user was deactivated from the platform
+// This is a boolean for checking if the user was deactivated from the platform
+  @override
   @JsonKey(name: 'StaffNumber')
   final String? staffNumber;
-  @override // this is the staff number if the person being searched is a staff member
+// this is the staff number if the person being searched is a staff member
+  @override
   @JsonKey(name: 'User')
   final UserData? user;
   @override
@@ -289,7 +261,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchUserResponse &&
+            other is _$_SearchUserResponse &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.clientCCCNumber, clientCCCNumber) &&
@@ -302,6 +274,7 @@ class _$_SearchUserResponse implements _SearchUserResponse {
             const DeepCollectionEquality().equals(other.rolesList, rolesList));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -315,8 +288,9 @@ class _$_SearchUserResponse implements _SearchUserResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$SearchUserResponseCopyWith<_SearchUserResponse> get copyWith =>
-      __$SearchUserResponseCopyWithImpl<_SearchUserResponse>(this, _$identity);
+  _$$_SearchUserResponseCopyWith<_$_SearchUserResponse> get copyWith =>
+      __$$_SearchUserResponseCopyWithImpl<_$_SearchUserResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -326,13 +300,13 @@ class _$_SearchUserResponse implements _SearchUserResponse {
 
 abstract class _SearchUserResponse implements SearchUserResponse {
   factory _SearchUserResponse(
-          {@JsonKey(name: 'ID') String? id,
-          @JsonKey(name: 'CCCNumber') String? clientCCCNumber,
-          @JsonKey(name: 'Active') bool? isActive,
-          @JsonKey(name: 'StaffNumber') String? staffNumber,
-          @JsonKey(name: 'User') UserData? user,
-          @JsonKey(name: 'FacilityID') String? facilityID,
-          @JsonKey(name: 'rolesList') RolesList? rolesList}) =
+          {@JsonKey(name: 'ID') final String? id,
+          @JsonKey(name: 'CCCNumber') final String? clientCCCNumber,
+          @JsonKey(name: 'Active') final bool? isActive,
+          @JsonKey(name: 'StaffNumber') final String? staffNumber,
+          @JsonKey(name: 'User') final UserData? user,
+          @JsonKey(name: 'FacilityID') final String? facilityID,
+          @JsonKey(name: 'rolesList') final RolesList? rolesList}) =
       _$_SearchUserResponse;
 
   factory _SearchUserResponse.fromJson(Map<String, dynamic> json) =
@@ -340,27 +314,27 @@ abstract class _SearchUserResponse implements SearchUserResponse {
 
   @override
   @JsonKey(name: 'ID')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'CCCNumber')
-  String? get clientCCCNumber;
+  String? get clientCCCNumber => throw _privateConstructorUsedError;
   @override // This is the CCCNumber if the person being searched is a client
   @JsonKey(name: 'Active')
-  bool? get isActive;
+  bool? get isActive => throw _privateConstructorUsedError;
   @override // This is a boolean for checking if the user was deactivated from the platform
   @JsonKey(name: 'StaffNumber')
-  String? get staffNumber;
+  String? get staffNumber => throw _privateConstructorUsedError;
   @override // this is the staff number if the person being searched is a staff member
   @JsonKey(name: 'User')
-  UserData? get user;
+  UserData? get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'FacilityID')
-  String? get facilityID;
+  String? get facilityID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'rolesList')
-  RolesList? get rolesList;
+  RolesList? get rolesList => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SearchUserResponseCopyWith<_SearchUserResponse> get copyWith =>
+  _$$_SearchUserResponseCopyWith<_$_SearchUserResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

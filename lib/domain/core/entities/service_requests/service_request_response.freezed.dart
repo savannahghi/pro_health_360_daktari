@@ -12,37 +12,12 @@ part of 'service_request_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequestResponse _$ServiceRequestResponseFromJson(
     Map<String, dynamic> json) {
   return _ServiceRequestResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestResponseTearOff {
-  const _$ServiceRequestResponseTearOff();
-
-  _ServiceRequestResponse call(
-      {@JsonKey(name: 'getServiceRequests')
-          List<ServiceRequest>? serviceRequests,
-      @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequestCount? pendingServiceRequests,
-      bool? errorFetchingServiceRequests}) {
-    return _ServiceRequestResponse(
-      serviceRequests: serviceRequests,
-      pendingServiceRequests: pendingServiceRequests,
-      errorFetchingServiceRequests: errorFetchingServiceRequests,
-    );
-  }
-
-  ServiceRequestResponse fromJson(Map<String, Object?> json) {
-    return ServiceRequestResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequestResponse = _$ServiceRequestResponseTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestResponse {
@@ -120,11 +95,11 @@ class _$ServiceRequestResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestResponseCopyWith<$Res>
+abstract class _$$_ServiceRequestResponseCopyWith<$Res>
     implements $ServiceRequestResponseCopyWith<$Res> {
-  factory _$ServiceRequestResponseCopyWith(_ServiceRequestResponse value,
-          $Res Function(_ServiceRequestResponse) then) =
-      __$ServiceRequestResponseCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestResponseCopyWith(_$_ServiceRequestResponse value,
+          $Res Function(_$_ServiceRequestResponse) then) =
+      __$$_ServiceRequestResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getServiceRequests')
@@ -138,15 +113,16 @@ abstract class _$ServiceRequestResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestResponseCopyWithImpl<$Res>
+class __$$_ServiceRequestResponseCopyWithImpl<$Res>
     extends _$ServiceRequestResponseCopyWithImpl<$Res>
-    implements _$ServiceRequestResponseCopyWith<$Res> {
-  __$ServiceRequestResponseCopyWithImpl(_ServiceRequestResponse _value,
-      $Res Function(_ServiceRequestResponse) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestResponse));
+    implements _$$_ServiceRequestResponseCopyWith<$Res> {
+  __$$_ServiceRequestResponseCopyWithImpl(_$_ServiceRequestResponse _value,
+      $Res Function(_$_ServiceRequestResponse) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequestResponse));
 
   @override
-  _ServiceRequestResponse get _value => super._value as _ServiceRequestResponse;
+  _$_ServiceRequestResponse get _value =>
+      super._value as _$_ServiceRequestResponse;
 
   @override
   $Res call({
@@ -154,9 +130,9 @@ class __$ServiceRequestResponseCopyWithImpl<$Res>
     Object? pendingServiceRequests = freezed,
     Object? errorFetchingServiceRequests = freezed,
   }) {
-    return _then(_ServiceRequestResponse(
+    return _then(_$_ServiceRequestResponse(
       serviceRequests: serviceRequests == freezed
-          ? _value.serviceRequests
+          ? _value._serviceRequests
           : serviceRequests // ignore: cast_nullable_to_non_nullable
               as List<ServiceRequest>?,
       pendingServiceRequests: pendingServiceRequests == freezed
@@ -176,17 +152,25 @@ class __$ServiceRequestResponseCopyWithImpl<$Res>
 class _$_ServiceRequestResponse implements _ServiceRequestResponse {
   _$_ServiceRequestResponse(
       {@JsonKey(name: 'getServiceRequests')
-          this.serviceRequests,
+          final List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
           this.pendingServiceRequests,
-      this.errorFetchingServiceRequests});
+      this.errorFetchingServiceRequests})
+      : _serviceRequests = serviceRequests;
 
   factory _$_ServiceRequestResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestResponseFromJson(json);
 
+  final List<ServiceRequest>? _serviceRequests;
   @override
   @JsonKey(name: 'getServiceRequests')
-  final List<ServiceRequest>? serviceRequests;
+  List<ServiceRequest>? get serviceRequests {
+    final value = _serviceRequests;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'getPendingServiceRequestsCount')
   final PendingServiceRequestCount? pendingServiceRequests;
@@ -202,9 +186,9 @@ class _$_ServiceRequestResponse implements _ServiceRequestResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestResponse &&
+            other is _$_ServiceRequestResponse &&
             const DeepCollectionEquality()
-                .equals(other.serviceRequests, serviceRequests) &&
+                .equals(other._serviceRequests, _serviceRequests) &&
             const DeepCollectionEquality()
                 .equals(other.pendingServiceRequests, pendingServiceRequests) &&
             const DeepCollectionEquality().equals(
@@ -212,17 +196,18 @@ class _$_ServiceRequestResponse implements _ServiceRequestResponse {
                 errorFetchingServiceRequests));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(serviceRequests),
+      const DeepCollectionEquality().hash(_serviceRequests),
       const DeepCollectionEquality().hash(pendingServiceRequests),
       const DeepCollectionEquality().hash(errorFetchingServiceRequests));
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestResponseCopyWith<_ServiceRequestResponse> get copyWith =>
-      __$ServiceRequestResponseCopyWithImpl<_ServiceRequestResponse>(
+  _$$_ServiceRequestResponseCopyWith<_$_ServiceRequestResponse> get copyWith =>
+      __$$_ServiceRequestResponseCopyWithImpl<_$_ServiceRequestResponse>(
           this, _$identity);
 
   @override
@@ -234,24 +219,26 @@ class _$_ServiceRequestResponse implements _ServiceRequestResponse {
 abstract class _ServiceRequestResponse implements ServiceRequestResponse {
   factory _ServiceRequestResponse(
       {@JsonKey(name: 'getServiceRequests')
-          List<ServiceRequest>? serviceRequests,
+          final List<ServiceRequest>? serviceRequests,
       @JsonKey(name: 'getPendingServiceRequestsCount')
-          PendingServiceRequestCount? pendingServiceRequests,
-      bool? errorFetchingServiceRequests}) = _$_ServiceRequestResponse;
+          final PendingServiceRequestCount? pendingServiceRequests,
+      final bool? errorFetchingServiceRequests}) = _$_ServiceRequestResponse;
 
   factory _ServiceRequestResponse.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestResponse.fromJson;
 
   @override
   @JsonKey(name: 'getServiceRequests')
-  List<ServiceRequest>? get serviceRequests;
+  List<ServiceRequest>? get serviceRequests =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'getPendingServiceRequestsCount')
-  PendingServiceRequestCount? get pendingServiceRequests;
+  PendingServiceRequestCount? get pendingServiceRequests =>
+      throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingServiceRequests;
+  bool? get errorFetchingServiceRequests => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestResponseCopyWith<_ServiceRequestResponse> get copyWith =>
+  _$$_ServiceRequestResponseCopyWith<_$_ServiceRequestResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

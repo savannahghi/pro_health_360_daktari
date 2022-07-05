@@ -12,40 +12,11 @@ part of 'service_requests_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ServiceRequestState _$ServiceRequestStateFromJson(Map<String, dynamic> json) {
   return _ServiceRequestState.fromJson(json);
 }
-
-/// @nodoc
-class _$ServiceRequestStateTearOff {
-  const _$ServiceRequestStateTearOff();
-
-  _ServiceRequestState call(
-      {List<ServiceRequest>? clientServiceRequests,
-      List<ServiceRequest>? staffServiceRequests,
-      List<ServiceRequest>? resolvedServiceRequests,
-      PendingServiceRequestCount? pendingServiceRequestsCount,
-      ScreeningToolsState? screeningToolsState,
-      bool? errorFetchingPendingServiceRequests}) {
-    return _ServiceRequestState(
-      clientServiceRequests: clientServiceRequests,
-      staffServiceRequests: staffServiceRequests,
-      resolvedServiceRequests: resolvedServiceRequests,
-      pendingServiceRequestsCount: pendingServiceRequestsCount,
-      screeningToolsState: screeningToolsState,
-      errorFetchingPendingServiceRequests: errorFetchingPendingServiceRequests,
-    );
-  }
-
-  ServiceRequestState fromJson(Map<String, Object?> json) {
-    return ServiceRequestState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ServiceRequestState = _$ServiceRequestStateTearOff();
 
 /// @nodoc
 mixin _$ServiceRequestState {
@@ -161,11 +132,11 @@ class _$ServiceRequestStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ServiceRequestStateCopyWith<$Res>
+abstract class _$$_ServiceRequestStateCopyWith<$Res>
     implements $ServiceRequestStateCopyWith<$Res> {
-  factory _$ServiceRequestStateCopyWith(_ServiceRequestState value,
-          $Res Function(_ServiceRequestState) then) =
-      __$ServiceRequestStateCopyWithImpl<$Res>;
+  factory _$$_ServiceRequestStateCopyWith(_$_ServiceRequestState value,
+          $Res Function(_$_ServiceRequestState) then) =
+      __$$_ServiceRequestStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<ServiceRequest>? clientServiceRequests,
@@ -182,15 +153,15 @@ abstract class _$ServiceRequestStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ServiceRequestStateCopyWithImpl<$Res>
+class __$$_ServiceRequestStateCopyWithImpl<$Res>
     extends _$ServiceRequestStateCopyWithImpl<$Res>
-    implements _$ServiceRequestStateCopyWith<$Res> {
-  __$ServiceRequestStateCopyWithImpl(
-      _ServiceRequestState _value, $Res Function(_ServiceRequestState) _then)
-      : super(_value, (v) => _then(v as _ServiceRequestState));
+    implements _$$_ServiceRequestStateCopyWith<$Res> {
+  __$$_ServiceRequestStateCopyWithImpl(_$_ServiceRequestState _value,
+      $Res Function(_$_ServiceRequestState) _then)
+      : super(_value, (v) => _then(v as _$_ServiceRequestState));
 
   @override
-  _ServiceRequestState get _value => super._value as _ServiceRequestState;
+  _$_ServiceRequestState get _value => super._value as _$_ServiceRequestState;
 
   @override
   $Res call({
@@ -201,7 +172,7 @@ class __$ServiceRequestStateCopyWithImpl<$Res>
     Object? screeningToolsState = freezed,
     Object? errorFetchingPendingServiceRequests = freezed,
   }) {
-    return _then(_ServiceRequestState(
+    return _then(_$_ServiceRequestState(
       clientServiceRequests: clientServiceRequests == freezed
           ? _value.clientServiceRequests
           : clientServiceRequests // ignore: cast_nullable_to_non_nullable
@@ -245,19 +216,24 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   factory _$_ServiceRequestState.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceRequestStateFromJson(json);
 
-  @override // Client service requests
-  final List<ServiceRequest>? clientServiceRequests;
-  @override // Staff service requests
-  final List<ServiceRequest>? staffServiceRequests;
-  @override // Resolved service requests
-  final List<ServiceRequest>? resolvedServiceRequests;
-  @override // Service requests count
-  final PendingServiceRequestCount? pendingServiceRequestsCount;
-  @override // Screening tools
-  final ScreeningToolsState? screeningToolsState;
+// Client service requests
   @override
+  final List<ServiceRequest>? clientServiceRequests;
+// Staff service requests
+  @override
+  final List<ServiceRequest>? staffServiceRequests;
+// Resolved service requests
+  @override
+  final List<ServiceRequest>? resolvedServiceRequests;
+// Service requests count
+  @override
+  final PendingServiceRequestCount? pendingServiceRequestsCount;
+// Screening tools
+  @override
+  final ScreeningToolsState? screeningToolsState;
 
   /// Other booleans
+  @override
   final bool? errorFetchingPendingServiceRequests;
 
   @override
@@ -269,7 +245,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ServiceRequestState &&
+            other is _$_ServiceRequestState &&
             const DeepCollectionEquality()
                 .equals(other.clientServiceRequests, clientServiceRequests) &&
             const DeepCollectionEquality()
@@ -286,6 +262,7 @@ class _$_ServiceRequestState implements _ServiceRequestState {
                 errorFetchingPendingServiceRequests));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -298,8 +275,8 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
   @JsonKey(ignore: true)
   @override
-  _$ServiceRequestStateCopyWith<_ServiceRequestState> get copyWith =>
-      __$ServiceRequestStateCopyWithImpl<_ServiceRequestState>(
+  _$$_ServiceRequestStateCopyWith<_$_ServiceRequestState> get copyWith =>
+      __$$_ServiceRequestStateCopyWithImpl<_$_ServiceRequestState>(
           this, _$identity);
 
   @override
@@ -310,32 +287,39 @@ class _$_ServiceRequestState implements _ServiceRequestState {
 
 abstract class _ServiceRequestState implements ServiceRequestState {
   factory _ServiceRequestState(
-      {List<ServiceRequest>? clientServiceRequests,
-      List<ServiceRequest>? staffServiceRequests,
-      List<ServiceRequest>? resolvedServiceRequests,
-      PendingServiceRequestCount? pendingServiceRequestsCount,
-      ScreeningToolsState? screeningToolsState,
-      bool? errorFetchingPendingServiceRequests}) = _$_ServiceRequestState;
+          {final List<ServiceRequest>? clientServiceRequests,
+          final List<ServiceRequest>? staffServiceRequests,
+          final List<ServiceRequest>? resolvedServiceRequests,
+          final PendingServiceRequestCount? pendingServiceRequestsCount,
+          final ScreeningToolsState? screeningToolsState,
+          final bool? errorFetchingPendingServiceRequests}) =
+      _$_ServiceRequestState;
 
   factory _ServiceRequestState.fromJson(Map<String, dynamic> json) =
       _$_ServiceRequestState.fromJson;
 
   @override // Client service requests
-  List<ServiceRequest>? get clientServiceRequests;
+  List<ServiceRequest>? get clientServiceRequests =>
+      throw _privateConstructorUsedError;
   @override // Staff service requests
-  List<ServiceRequest>? get staffServiceRequests;
+  List<ServiceRequest>? get staffServiceRequests =>
+      throw _privateConstructorUsedError;
   @override // Resolved service requests
-  List<ServiceRequest>? get resolvedServiceRequests;
+  List<ServiceRequest>? get resolvedServiceRequests =>
+      throw _privateConstructorUsedError;
   @override // Service requests count
-  PendingServiceRequestCount? get pendingServiceRequestsCount;
+  PendingServiceRequestCount? get pendingServiceRequestsCount =>
+      throw _privateConstructorUsedError;
   @override // Screening tools
-  ScreeningToolsState? get screeningToolsState;
+  ScreeningToolsState? get screeningToolsState =>
+      throw _privateConstructorUsedError;
   @override
 
   /// Other booleans
-  bool? get errorFetchingPendingServiceRequests;
+  bool? get errorFetchingPendingServiceRequests =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ServiceRequestStateCopyWith<_ServiceRequestState> get copyWith =>
+  _$$_ServiceRequestStateCopyWith<_$_ServiceRequestState> get copyWith =>
       throw _privateConstructorUsedError;
 }

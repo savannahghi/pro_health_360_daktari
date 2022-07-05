@@ -12,31 +12,11 @@ part of 'invited_communities.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 InvitedCommunities _$InvitedCommunitiesFromJson(Map<String, dynamic> json) {
   return _InvitedCommunities.fromJson(json);
 }
-
-/// @nodoc
-class _$InvitedCommunitiesTearOff {
-  const _$InvitedCommunitiesTearOff();
-
-  _InvitedCommunities call(
-      {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities}) {
-    return _InvitedCommunities(
-      invitedCommunities: invitedCommunities,
-    );
-  }
-
-  InvitedCommunities fromJson(Map<String, Object?> json) {
-    return InvitedCommunities.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $InvitedCommunities = _$InvitedCommunitiesTearOff();
 
 /// @nodoc
 mixin _$InvitedCommunities {
@@ -82,11 +62,11 @@ class _$InvitedCommunitiesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InvitedCommunitiesCopyWith<$Res>
+abstract class _$$_InvitedCommunitiesCopyWith<$Res>
     implements $InvitedCommunitiesCopyWith<$Res> {
-  factory _$InvitedCommunitiesCopyWith(
-          _InvitedCommunities value, $Res Function(_InvitedCommunities) then) =
-      __$InvitedCommunitiesCopyWithImpl<$Res>;
+  factory _$$_InvitedCommunitiesCopyWith(_$_InvitedCommunities value,
+          $Res Function(_$_InvitedCommunities) then) =
+      __$$_InvitedCommunitiesCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'invitedCommunities')
@@ -94,23 +74,23 @@ abstract class _$InvitedCommunitiesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InvitedCommunitiesCopyWithImpl<$Res>
+class __$$_InvitedCommunitiesCopyWithImpl<$Res>
     extends _$InvitedCommunitiesCopyWithImpl<$Res>
-    implements _$InvitedCommunitiesCopyWith<$Res> {
-  __$InvitedCommunitiesCopyWithImpl(
-      _InvitedCommunities _value, $Res Function(_InvitedCommunities) _then)
-      : super(_value, (v) => _then(v as _InvitedCommunities));
+    implements _$$_InvitedCommunitiesCopyWith<$Res> {
+  __$$_InvitedCommunitiesCopyWithImpl(
+      _$_InvitedCommunities _value, $Res Function(_$_InvitedCommunities) _then)
+      : super(_value, (v) => _then(v as _$_InvitedCommunities));
 
   @override
-  _InvitedCommunities get _value => super._value as _InvitedCommunities;
+  _$_InvitedCommunities get _value => super._value as _$_InvitedCommunities;
 
   @override
   $Res call({
     Object? invitedCommunities = freezed,
   }) {
-    return _then(_InvitedCommunities(
+    return _then(_$_InvitedCommunities(
       invitedCommunities: invitedCommunities == freezed
-          ? _value.invitedCommunities
+          ? _value._invitedCommunities
           : invitedCommunities // ignore: cast_nullable_to_non_nullable
               as List<Community>?,
     ));
@@ -121,14 +101,22 @@ class __$InvitedCommunitiesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_InvitedCommunities implements _InvitedCommunities {
   _$_InvitedCommunities(
-      {@JsonKey(name: 'invitedCommunities') this.invitedCommunities});
+      {@JsonKey(name: 'invitedCommunities')
+          final List<Community>? invitedCommunities})
+      : _invitedCommunities = invitedCommunities;
 
   factory _$_InvitedCommunities.fromJson(Map<String, dynamic> json) =>
       _$$_InvitedCommunitiesFromJson(json);
 
+  final List<Community>? _invitedCommunities;
   @override
   @JsonKey(name: 'invitedCommunities')
-  final List<Community>? invitedCommunities;
+  List<Community>? get invitedCommunities {
+    final value = _invitedCommunities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -139,19 +127,21 @@ class _$_InvitedCommunities implements _InvitedCommunities {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InvitedCommunities &&
+            other is _$_InvitedCommunities &&
             const DeepCollectionEquality()
-                .equals(other.invitedCommunities, invitedCommunities));
+                .equals(other._invitedCommunities, _invitedCommunities));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(invitedCommunities));
 
   @JsonKey(ignore: true)
   @override
-  _$InvitedCommunitiesCopyWith<_InvitedCommunities> get copyWith =>
-      __$InvitedCommunitiesCopyWithImpl<_InvitedCommunities>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_invitedCommunities));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InvitedCommunitiesCopyWith<_$_InvitedCommunities> get copyWith =>
+      __$$_InvitedCommunitiesCopyWithImpl<_$_InvitedCommunities>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -162,16 +152,16 @@ class _$_InvitedCommunities implements _InvitedCommunities {
 abstract class _InvitedCommunities implements InvitedCommunities {
   factory _InvitedCommunities(
       {@JsonKey(name: 'invitedCommunities')
-          List<Community>? invitedCommunities}) = _$_InvitedCommunities;
+          final List<Community>? invitedCommunities}) = _$_InvitedCommunities;
 
   factory _InvitedCommunities.fromJson(Map<String, dynamic> json) =
       _$_InvitedCommunities.fromJson;
 
   @override
   @JsonKey(name: 'invitedCommunities')
-  List<Community>? get invitedCommunities;
+  List<Community>? get invitedCommunities => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InvitedCommunitiesCopyWith<_InvitedCommunities> get copyWith =>
+  _$$_InvitedCommunitiesCopyWith<_$_InvitedCommunities> get copyWith =>
       throw _privateConstructorUsedError;
 }

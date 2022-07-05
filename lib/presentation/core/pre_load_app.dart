@@ -98,7 +98,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     connectivityCheckerSubscription?.cancel();
     super.dispose();
   }
@@ -106,7 +106,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -181,7 +181,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
               child: StreamChat(
                 client: widget.streamClient,
                 streamChatThemeData: StreamChatThemeData(
-                  channelHeaderTheme: const ChannelHeaderThemeData(),
+                  channelHeaderTheme: const StreamChannelHeaderThemeData(),
                 ),
                 child: childWidget,
               ),

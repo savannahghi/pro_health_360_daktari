@@ -12,33 +12,12 @@ part of 'list_group_info_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ListGroupInfoResponse _$ListGroupInfoResponseFromJson(
     Map<String, dynamic> json) {
   return _ListGroupInfoResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ListGroupInfoResponseTearOff {
-  const _$ListGroupInfoResponseTearOff();
-
-  _ListGroupInfoResponse call(
-      {@JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
-      @JsonKey(name: 'listCommunities') List<Community?>? communities}) {
-    return _ListGroupInfoResponse(
-      groupMembers: groupMembers,
-      communities: communities,
-    );
-  }
-
-  ListGroupInfoResponse fromJson(Map<String, Object?> json) {
-    return ListGroupInfoResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ListGroupInfoResponse = _$ListGroupInfoResponseTearOff();
 
 /// @nodoc
 mixin _$ListGroupInfoResponse {
@@ -91,11 +70,11 @@ class _$ListGroupInfoResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ListGroupInfoResponseCopyWith<$Res>
+abstract class _$$_ListGroupInfoResponseCopyWith<$Res>
     implements $ListGroupInfoResponseCopyWith<$Res> {
-  factory _$ListGroupInfoResponseCopyWith(_ListGroupInfoResponse value,
-          $Res Function(_ListGroupInfoResponse) then) =
-      __$ListGroupInfoResponseCopyWithImpl<$Res>;
+  factory _$$_ListGroupInfoResponseCopyWith(_$_ListGroupInfoResponse value,
+          $Res Function(_$_ListGroupInfoResponse) then) =
+      __$$_ListGroupInfoResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
@@ -103,28 +82,29 @@ abstract class _$ListGroupInfoResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ListGroupInfoResponseCopyWithImpl<$Res>
+class __$$_ListGroupInfoResponseCopyWithImpl<$Res>
     extends _$ListGroupInfoResponseCopyWithImpl<$Res>
-    implements _$ListGroupInfoResponseCopyWith<$Res> {
-  __$ListGroupInfoResponseCopyWithImpl(_ListGroupInfoResponse _value,
-      $Res Function(_ListGroupInfoResponse) _then)
-      : super(_value, (v) => _then(v as _ListGroupInfoResponse));
+    implements _$$_ListGroupInfoResponseCopyWith<$Res> {
+  __$$_ListGroupInfoResponseCopyWithImpl(_$_ListGroupInfoResponse _value,
+      $Res Function(_$_ListGroupInfoResponse) _then)
+      : super(_value, (v) => _then(v as _$_ListGroupInfoResponse));
 
   @override
-  _ListGroupInfoResponse get _value => super._value as _ListGroupInfoResponse;
+  _$_ListGroupInfoResponse get _value =>
+      super._value as _$_ListGroupInfoResponse;
 
   @override
   $Res call({
     Object? groupMembers = freezed,
     Object? communities = freezed,
   }) {
-    return _then(_ListGroupInfoResponse(
+    return _then(_$_ListGroupInfoResponse(
       groupMembers: groupMembers == freezed
-          ? _value.groupMembers
+          ? _value._groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
       communities: communities == freezed
-          ? _value.communities
+          ? _value._communities
           : communities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
     ));
@@ -135,18 +115,35 @@ class __$ListGroupInfoResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ListGroupInfoResponse implements _ListGroupInfoResponse {
   _$_ListGroupInfoResponse(
-      {@JsonKey(name: 'listCommunityMembers') this.groupMembers,
-      @JsonKey(name: 'listCommunities') this.communities});
+      {@JsonKey(name: 'listCommunityMembers')
+          final List<GroupMember?>? groupMembers,
+      @JsonKey(name: 'listCommunities')
+          final List<Community?>? communities})
+      : _groupMembers = groupMembers,
+        _communities = communities;
 
   factory _$_ListGroupInfoResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ListGroupInfoResponseFromJson(json);
 
+  final List<GroupMember?>? _groupMembers;
   @override
   @JsonKey(name: 'listCommunityMembers')
-  final List<GroupMember?>? groupMembers;
+  List<GroupMember?>? get groupMembers {
+    final value = _groupMembers;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Community?>? _communities;
   @override
   @JsonKey(name: 'listCommunities')
-  final List<Community?>? communities;
+  List<Community?>? get communities {
+    final value = _communities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -157,23 +154,24 @@ class _$_ListGroupInfoResponse implements _ListGroupInfoResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ListGroupInfoResponse &&
+            other is _$_ListGroupInfoResponse &&
             const DeepCollectionEquality()
-                .equals(other.groupMembers, groupMembers) &&
+                .equals(other._groupMembers, _groupMembers) &&
             const DeepCollectionEquality()
-                .equals(other.communities, communities));
+                .equals(other._communities, _communities));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(groupMembers),
-      const DeepCollectionEquality().hash(communities));
 
   @JsonKey(ignore: true)
   @override
-  _$ListGroupInfoResponseCopyWith<_ListGroupInfoResponse> get copyWith =>
-      __$ListGroupInfoResponseCopyWithImpl<_ListGroupInfoResponse>(
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_groupMembers),
+      const DeepCollectionEquality().hash(_communities));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ListGroupInfoResponseCopyWith<_$_ListGroupInfoResponse> get copyWith =>
+      __$$_ListGroupInfoResponseCopyWithImpl<_$_ListGroupInfoResponse>(
           this, _$identity);
 
   @override
@@ -185,21 +183,21 @@ class _$_ListGroupInfoResponse implements _ListGroupInfoResponse {
 abstract class _ListGroupInfoResponse implements ListGroupInfoResponse {
   factory _ListGroupInfoResponse(
       {@JsonKey(name: 'listCommunityMembers')
-          List<GroupMember?>? groupMembers,
+          final List<GroupMember?>? groupMembers,
       @JsonKey(name: 'listCommunities')
-          List<Community?>? communities}) = _$_ListGroupInfoResponse;
+          final List<Community?>? communities}) = _$_ListGroupInfoResponse;
 
   factory _ListGroupInfoResponse.fromJson(Map<String, dynamic> json) =
       _$_ListGroupInfoResponse.fromJson;
 
   @override
   @JsonKey(name: 'listCommunityMembers')
-  List<GroupMember?>? get groupMembers;
+  List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'listCommunities')
-  List<Community?>? get communities;
+  List<Community?>? get communities => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ListGroupInfoResponseCopyWith<_ListGroupInfoResponse> get copyWith =>
+  _$$_ListGroupInfoResponseCopyWith<_$_ListGroupInfoResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

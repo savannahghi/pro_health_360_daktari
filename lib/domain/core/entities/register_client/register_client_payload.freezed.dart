@@ -12,59 +12,12 @@ part of 'register_client_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RegisterClientPayload _$RegisterClientPayloadFromJson(
     Map<String, dynamic> json) {
   return _RegisterClientPayload.fromJson(json);
 }
-
-/// @nodoc
-class _$RegisterClientPayloadTearOff {
-  const _$RegisterClientPayloadTearOff();
-
-  _RegisterClientPayload call(
-      {@JsonKey(name: 'facility')
-          String? facility,
-      @JsonKey(name: 'clientTypes')
-          List<ClientType>? clientTypes,
-      @JsonKey(name: 'clientName')
-          String? clientName,
-      @JsonKey(name: 'gender', fromJson: genderFromJson)
-          Gender? gender,
-      @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-          DateTime? dateOfBirth,
-      @JsonKey(name: 'phoneNumber')
-          String? phoneNumber,
-      @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
-          DateTime? enrollmentDate,
-      @JsonKey(name: 'cccNumber')
-          String? cccNumber,
-      @JsonKey(name: 'counselled')
-          bool? counselled,
-      @JsonKey(name: 'inviteClient')
-          bool? inviteClient}) {
-    return _RegisterClientPayload(
-      facility: facility,
-      clientTypes: clientTypes,
-      clientName: clientName,
-      gender: gender,
-      dateOfBirth: dateOfBirth,
-      phoneNumber: phoneNumber,
-      enrollmentDate: enrollmentDate,
-      cccNumber: cccNumber,
-      counselled: counselled,
-      inviteClient: inviteClient,
-    );
-  }
-
-  RegisterClientPayload fromJson(Map<String, Object?> json) {
-    return RegisterClientPayload.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $RegisterClientPayload = _$RegisterClientPayloadTearOff();
 
 /// @nodoc
 mixin _$RegisterClientPayload {
@@ -191,11 +144,11 @@ class _$RegisterClientPayloadCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RegisterClientPayloadCopyWith<$Res>
+abstract class _$$_RegisterClientPayloadCopyWith<$Res>
     implements $RegisterClientPayloadCopyWith<$Res> {
-  factory _$RegisterClientPayloadCopyWith(_RegisterClientPayload value,
-          $Res Function(_RegisterClientPayload) then) =
-      __$RegisterClientPayloadCopyWithImpl<$Res>;
+  factory _$$_RegisterClientPayloadCopyWith(_$_RegisterClientPayload value,
+          $Res Function(_$_RegisterClientPayload) then) =
+      __$$_RegisterClientPayloadCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'facility')
@@ -221,15 +174,16 @@ abstract class _$RegisterClientPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RegisterClientPayloadCopyWithImpl<$Res>
+class __$$_RegisterClientPayloadCopyWithImpl<$Res>
     extends _$RegisterClientPayloadCopyWithImpl<$Res>
-    implements _$RegisterClientPayloadCopyWith<$Res> {
-  __$RegisterClientPayloadCopyWithImpl(_RegisterClientPayload _value,
-      $Res Function(_RegisterClientPayload) _then)
-      : super(_value, (v) => _then(v as _RegisterClientPayload));
+    implements _$$_RegisterClientPayloadCopyWith<$Res> {
+  __$$_RegisterClientPayloadCopyWithImpl(_$_RegisterClientPayload _value,
+      $Res Function(_$_RegisterClientPayload) _then)
+      : super(_value, (v) => _then(v as _$_RegisterClientPayload));
 
   @override
-  _RegisterClientPayload get _value => super._value as _RegisterClientPayload;
+  _$_RegisterClientPayload get _value =>
+      super._value as _$_RegisterClientPayload;
 
   @override
   $Res call({
@@ -244,13 +198,13 @@ class __$RegisterClientPayloadCopyWithImpl<$Res>
     Object? counselled = freezed,
     Object? inviteClient = freezed,
   }) {
-    return _then(_RegisterClientPayload(
+    return _then(_$_RegisterClientPayload(
       facility: facility == freezed
           ? _value.facility
           : facility // ignore: cast_nullable_to_non_nullable
               as String?,
       clientTypes: clientTypes == freezed
-          ? _value.clientTypes
+          ? _value._clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
       clientName: clientName == freezed
@@ -294,7 +248,7 @@ class __$RegisterClientPayloadCopyWithImpl<$Res>
 class _$_RegisterClientPayload implements _RegisterClientPayload {
   _$_RegisterClientPayload(
       {@JsonKey(name: 'facility') this.facility,
-      @JsonKey(name: 'clientTypes') this.clientTypes,
+      @JsonKey(name: 'clientTypes') final List<ClientType>? clientTypes,
       @JsonKey(name: 'clientName') this.clientName,
       @JsonKey(name: 'gender', fromJson: genderFromJson) this.gender,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson) this.dateOfBirth,
@@ -302,7 +256,8 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
       @JsonKey(name: 'enrollmentDate', toJson: dobToJson) this.enrollmentDate,
       @JsonKey(name: 'cccNumber') this.cccNumber,
       @JsonKey(name: 'counselled') this.counselled,
-      @JsonKey(name: 'inviteClient') this.inviteClient});
+      @JsonKey(name: 'inviteClient') this.inviteClient})
+      : _clientTypes = clientTypes;
 
   factory _$_RegisterClientPayload.fromJson(Map<String, dynamic> json) =>
       _$$_RegisterClientPayloadFromJson(json);
@@ -310,9 +265,16 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
   @override
   @JsonKey(name: 'facility')
   final String? facility;
+  final List<ClientType>? _clientTypes;
   @override
   @JsonKey(name: 'clientTypes')
-  final List<ClientType>? clientTypes;
+  List<ClientType>? get clientTypes {
+    final value = _clientTypes;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'clientName')
   final String? clientName;
@@ -347,10 +309,10 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RegisterClientPayload &&
+            other is _$_RegisterClientPayload &&
             const DeepCollectionEquality().equals(other.facility, facility) &&
             const DeepCollectionEquality()
-                .equals(other.clientTypes, clientTypes) &&
+                .equals(other._clientTypes, _clientTypes) &&
             const DeepCollectionEquality()
                 .equals(other.clientName, clientName) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
@@ -367,11 +329,12 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
                 .equals(other.inviteClient, inviteClient));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(facility),
-      const DeepCollectionEquality().hash(clientTypes),
+      const DeepCollectionEquality().hash(_clientTypes),
       const DeepCollectionEquality().hash(clientName),
       const DeepCollectionEquality().hash(gender),
       const DeepCollectionEquality().hash(dateOfBirth),
@@ -383,8 +346,8 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
 
   @JsonKey(ignore: true)
   @override
-  _$RegisterClientPayloadCopyWith<_RegisterClientPayload> get copyWith =>
-      __$RegisterClientPayloadCopyWithImpl<_RegisterClientPayload>(
+  _$$_RegisterClientPayloadCopyWith<_$_RegisterClientPayload> get copyWith =>
+      __$$_RegisterClientPayloadCopyWithImpl<_$_RegisterClientPayload>(
           this, _$identity);
 
   @override
@@ -396,61 +359,61 @@ class _$_RegisterClientPayload implements _RegisterClientPayload {
 abstract class _RegisterClientPayload implements RegisterClientPayload {
   factory _RegisterClientPayload(
       {@JsonKey(name: 'facility')
-          String? facility,
+          final String? facility,
       @JsonKey(name: 'clientTypes')
-          List<ClientType>? clientTypes,
+          final List<ClientType>? clientTypes,
       @JsonKey(name: 'clientName')
-          String? clientName,
+          final String? clientName,
       @JsonKey(name: 'gender', fromJson: genderFromJson)
-          Gender? gender,
+          final Gender? gender,
       @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-          DateTime? dateOfBirth,
+          final DateTime? dateOfBirth,
       @JsonKey(name: 'phoneNumber')
-          String? phoneNumber,
+          final String? phoneNumber,
       @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
-          DateTime? enrollmentDate,
+          final DateTime? enrollmentDate,
       @JsonKey(name: 'cccNumber')
-          String? cccNumber,
+          final String? cccNumber,
       @JsonKey(name: 'counselled')
-          bool? counselled,
+          final bool? counselled,
       @JsonKey(name: 'inviteClient')
-          bool? inviteClient}) = _$_RegisterClientPayload;
+          final bool? inviteClient}) = _$_RegisterClientPayload;
 
   factory _RegisterClientPayload.fromJson(Map<String, dynamic> json) =
       _$_RegisterClientPayload.fromJson;
 
   @override
   @JsonKey(name: 'facility')
-  String? get facility;
+  String? get facility => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientTypes')
-  List<ClientType>? get clientTypes;
+  List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientName')
-  String? get clientName;
+  String? get clientName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson)
-  Gender? get gender;
+  Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dateOfBirth', toJson: dobToJson)
-  DateTime? get dateOfBirth;
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'phoneNumber')
-  String? get phoneNumber;
+  String? get phoneNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'enrollmentDate', toJson: dobToJson)
-  DateTime? get enrollmentDate;
+  DateTime? get enrollmentDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'cccNumber')
-  String? get cccNumber;
+  String? get cccNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'counselled')
-  bool? get counselled;
+  bool? get counselled => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'inviteClient')
-  bool? get inviteClient;
+  bool? get inviteClient => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RegisterClientPayloadCopyWith<_RegisterClientPayload> get copyWith =>
+  _$$_RegisterClientPayloadCopyWith<_$_RegisterClientPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }

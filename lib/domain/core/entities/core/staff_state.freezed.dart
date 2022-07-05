@@ -12,50 +12,11 @@ part of 'staff_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 StaffState _$StaffStateFromJson(Map<String, dynamic> json) {
   return _StaffState.fromJson(json);
 }
-
-/// @nodoc
-class _$StaffStateTearOff {
-  const _$StaffStateTearOff();
-
-  _StaffState call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'staff_number') String? staffNumber,
-      @JsonKey(name: 'facilities') List<Facility>? facilities,
-      @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
-      @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState,
-      List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      List<NotificationDetails?>? notifications}) {
-    return _StaffState(
-      id: id,
-      userId: userId,
-      active: active,
-      staffNumber: staffNumber,
-      facilities: facilities,
-      defaultFacility: defaultFacility,
-      defaultFacilityName: defaultFacilityName,
-      user: user,
-      communitiesState: communitiesState,
-      clientSharedDiaryEntries: clientSharedDiaryEntries,
-      notifications: notifications,
-    );
-  }
-
-  StaffState fromJson(Map<String, Object?> json) {
-    return StaffState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $StaffState = _$StaffStateTearOff();
 
 /// @nodoc
 mixin _$StaffState {
@@ -204,10 +165,11 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
-  factory _$StaffStateCopyWith(
-          _StaffState value, $Res Function(_StaffState) then) =
-      __$StaffStateCopyWithImpl<$Res>;
+abstract class _$$_StaffStateCopyWith<$Res>
+    implements $StaffStateCopyWith<$Res> {
+  factory _$$_StaffStateCopyWith(
+          _$_StaffState value, $Res Function(_$_StaffState) then) =
+      __$$_StaffStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -229,14 +191,14 @@ abstract class _$StaffStateCopyWith<$Res> implements $StaffStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
-    implements _$StaffStateCopyWith<$Res> {
-  __$StaffStateCopyWithImpl(
-      _StaffState _value, $Res Function(_StaffState) _then)
-      : super(_value, (v) => _then(v as _StaffState));
+class __$$_StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
+    implements _$$_StaffStateCopyWith<$Res> {
+  __$$_StaffStateCopyWithImpl(
+      _$_StaffState _value, $Res Function(_$_StaffState) _then)
+      : super(_value, (v) => _then(v as _$_StaffState));
 
   @override
-  _StaffState get _value => super._value as _StaffState;
+  _$_StaffState get _value => super._value as _$_StaffState;
 
   @override
   $Res call({
@@ -252,7 +214,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
     Object? clientSharedDiaryEntries = freezed,
     Object? notifications = freezed,
   }) {
-    return _then(_StaffState(
+    return _then(_$_StaffState(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -270,7 +232,7 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
           : staffNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       facilities: facilities == freezed
-          ? _value.facilities
+          ? _value._facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility>?,
       defaultFacility: defaultFacility == freezed
@@ -290,11 +252,11 @@ class __$StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
           : communitiesState // ignore: cast_nullable_to_non_nullable
               as CommunitiesState?,
       clientSharedDiaryEntries: clientSharedDiaryEntries == freezed
-          ? _value.clientSharedDiaryEntries
+          ? _value._clientSharedDiaryEntries
           : clientSharedDiaryEntries // ignore: cast_nullable_to_non_nullable
               as List<HealthDiaryEntry?>?,
       notifications: notifications == freezed
-          ? _value.notifications
+          ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationDetails?>?,
     ));
@@ -309,13 +271,16 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'user_id') this.userId,
       @JsonKey(name: 'active', defaultValue: false) this.active,
       @JsonKey(name: 'staff_number') this.staffNumber,
-      @JsonKey(name: 'facilities') this.facilities,
+      @JsonKey(name: 'facilities') final List<Facility>? facilities,
       @JsonKey(name: 'default_facility') this.defaultFacility,
       @JsonKey(name: 'defaultFacilityName') this.defaultFacilityName,
       @JsonKey(name: 'user') this.user,
       this.communitiesState,
-      this.clientSharedDiaryEntries,
-      this.notifications});
+      final List<HealthDiaryEntry?>? clientSharedDiaryEntries,
+      final List<NotificationDetails?>? notifications})
+      : _facilities = facilities,
+        _clientSharedDiaryEntries = clientSharedDiaryEntries,
+        _notifications = notifications;
 
   factory _$_StaffState.fromJson(Map<String, dynamic> json) =>
       _$$_StaffStateFromJson(json);
@@ -332,9 +297,16 @@ class _$_StaffState implements _StaffState {
   @override
   @JsonKey(name: 'staff_number')
   final String? staffNumber;
+  final List<Facility>? _facilities;
   @override
   @JsonKey(name: 'facilities')
-  final List<Facility>? facilities;
+  List<Facility>? get facilities {
+    final value = _facilities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'default_facility')
   final String? defaultFacility;
@@ -344,12 +316,30 @@ class _$_StaffState implements _StaffState {
   @override
   @JsonKey(name: 'user')
   final User? user;
-  @override // invited communities
+// invited communities
+  @override
   final CommunitiesState? communitiesState;
-  @override // recently shared health diary entries
-  final List<HealthDiaryEntry?>? clientSharedDiaryEntries;
-  @override // staff notifications
-  final List<NotificationDetails?>? notifications;
+// recently shared health diary entries
+  final List<HealthDiaryEntry?>? _clientSharedDiaryEntries;
+// recently shared health diary entries
+  @override
+  List<HealthDiaryEntry?>? get clientSharedDiaryEntries {
+    final value = _clientSharedDiaryEntries;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+// staff notifications
+  final List<NotificationDetails?>? _notifications;
+// staff notifications
+  @override
+  List<NotificationDetails?>? get notifications {
+    final value = _notifications;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -360,14 +350,14 @@ class _$_StaffState implements _StaffState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _StaffState &&
+            other is _$_StaffState &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.active, active) &&
             const DeepCollectionEquality()
                 .equals(other.staffNumber, staffNumber) &&
             const DeepCollectionEquality()
-                .equals(other.facilities, facilities) &&
+                .equals(other._facilities, _facilities) &&
             const DeepCollectionEquality()
                 .equals(other.defaultFacility, defaultFacility) &&
             const DeepCollectionEquality()
@@ -376,11 +366,12 @@ class _$_StaffState implements _StaffState {
             const DeepCollectionEquality()
                 .equals(other.communitiesState, communitiesState) &&
             const DeepCollectionEquality().equals(
-                other.clientSharedDiaryEntries, clientSharedDiaryEntries) &&
+                other._clientSharedDiaryEntries, _clientSharedDiaryEntries) &&
             const DeepCollectionEquality()
-                .equals(other.notifications, notifications));
+                .equals(other._notifications, _notifications));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -388,18 +379,18 @@ class _$_StaffState implements _StaffState {
       const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(active),
       const DeepCollectionEquality().hash(staffNumber),
-      const DeepCollectionEquality().hash(facilities),
+      const DeepCollectionEquality().hash(_facilities),
       const DeepCollectionEquality().hash(defaultFacility),
       const DeepCollectionEquality().hash(defaultFacilityName),
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(communitiesState),
-      const DeepCollectionEquality().hash(clientSharedDiaryEntries),
-      const DeepCollectionEquality().hash(notifications));
+      const DeepCollectionEquality().hash(_clientSharedDiaryEntries),
+      const DeepCollectionEquality().hash(_notifications));
 
   @JsonKey(ignore: true)
   @override
-  _$StaffStateCopyWith<_StaffState> get copyWith =>
-      __$StaffStateCopyWithImpl<_StaffState>(this, _$identity);
+  _$$_StaffStateCopyWith<_$_StaffState> get copyWith =>
+      __$$_StaffStateCopyWithImpl<_$_StaffState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -409,53 +400,55 @@ class _$_StaffState implements _StaffState {
 
 abstract class _StaffState implements StaffState {
   factory _StaffState(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'active', defaultValue: false) bool? active,
-      @JsonKey(name: 'staff_number') String? staffNumber,
-      @JsonKey(name: 'facilities') List<Facility>? facilities,
-      @JsonKey(name: 'default_facility') String? defaultFacility,
-      @JsonKey(name: 'defaultFacilityName') String? defaultFacilityName,
-      @JsonKey(name: 'user') User? user,
-      CommunitiesState? communitiesState,
-      List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      List<NotificationDetails?>? notifications}) = _$_StaffState;
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'user_id') final String? userId,
+      @JsonKey(name: 'active', defaultValue: false) final bool? active,
+      @JsonKey(name: 'staff_number') final String? staffNumber,
+      @JsonKey(name: 'facilities') final List<Facility>? facilities,
+      @JsonKey(name: 'default_facility') final String? defaultFacility,
+      @JsonKey(name: 'defaultFacilityName') final String? defaultFacilityName,
+      @JsonKey(name: 'user') final User? user,
+      final CommunitiesState? communitiesState,
+      final List<HealthDiaryEntry?>? clientSharedDiaryEntries,
+      final List<NotificationDetails?>? notifications}) = _$_StaffState;
 
   factory _StaffState.fromJson(Map<String, dynamic> json) =
       _$_StaffState.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'user_id')
-  String? get userId;
+  String? get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'staff_number')
-  String? get staffNumber;
+  String? get staffNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'facilities')
-  List<Facility>? get facilities;
+  List<Facility>? get facilities => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'default_facility')
-  String? get defaultFacility;
+  String? get defaultFacility => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'defaultFacilityName')
-  String? get defaultFacilityName;
+  String? get defaultFacilityName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'user')
-  User? get user;
+  User? get user => throw _privateConstructorUsedError;
   @override // invited communities
-  CommunitiesState? get communitiesState;
+  CommunitiesState? get communitiesState => throw _privateConstructorUsedError;
   @override // recently shared health diary entries
-  List<HealthDiaryEntry?>? get clientSharedDiaryEntries;
+  List<HealthDiaryEntry?>? get clientSharedDiaryEntries =>
+      throw _privateConstructorUsedError;
   @override // staff notifications
-  List<NotificationDetails?>? get notifications;
+  List<NotificationDetails?>? get notifications =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$StaffStateCopyWith<_StaffState> get copyWith =>
+  _$$_StaffStateCopyWith<_$_StaffState> get copyWith =>
       throw _privateConstructorUsedError;
 }

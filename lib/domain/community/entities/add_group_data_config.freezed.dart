@@ -12,28 +12,7 @@ part of 'add_group_data_config.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AddGroupDataConfigTearOff {
-  const _$AddGroupDataConfigTearOff();
-
-  _AddGroupDataConfig call(
-      {required List<DropdownItem> band,
-      required List<DropdownItem> age,
-      required List<DropdownItem> location,
-      required List<DropdownItem> clinic}) {
-    return _AddGroupDataConfig(
-      band: band,
-      age: age,
-      location: location,
-      clinic: clinic,
-    );
-  }
-}
-
-/// @nodoc
-const $AddGroupDataConfig = _$AddGroupDataConfigTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AddGroupDataConfig {
@@ -97,11 +76,11 @@ class _$AddGroupDataConfigCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AddGroupDataConfigCopyWith<$Res>
+abstract class _$$_AddGroupDataConfigCopyWith<$Res>
     implements $AddGroupDataConfigCopyWith<$Res> {
-  factory _$AddGroupDataConfigCopyWith(
-          _AddGroupDataConfig value, $Res Function(_AddGroupDataConfig) then) =
-      __$AddGroupDataConfigCopyWithImpl<$Res>;
+  factory _$$_AddGroupDataConfigCopyWith(_$_AddGroupDataConfig value,
+          $Res Function(_$_AddGroupDataConfig) then) =
+      __$$_AddGroupDataConfigCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<DropdownItem> band,
@@ -111,15 +90,15 @@ abstract class _$AddGroupDataConfigCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AddGroupDataConfigCopyWithImpl<$Res>
+class __$$_AddGroupDataConfigCopyWithImpl<$Res>
     extends _$AddGroupDataConfigCopyWithImpl<$Res>
-    implements _$AddGroupDataConfigCopyWith<$Res> {
-  __$AddGroupDataConfigCopyWithImpl(
-      _AddGroupDataConfig _value, $Res Function(_AddGroupDataConfig) _then)
-      : super(_value, (v) => _then(v as _AddGroupDataConfig));
+    implements _$$_AddGroupDataConfigCopyWith<$Res> {
+  __$$_AddGroupDataConfigCopyWithImpl(
+      _$_AddGroupDataConfig _value, $Res Function(_$_AddGroupDataConfig) _then)
+      : super(_value, (v) => _then(v as _$_AddGroupDataConfig));
 
   @override
-  _AddGroupDataConfig get _value => super._value as _AddGroupDataConfig;
+  _$_AddGroupDataConfig get _value => super._value as _$_AddGroupDataConfig;
 
   @override
   $Res call({
@@ -128,21 +107,21 @@ class __$AddGroupDataConfigCopyWithImpl<$Res>
     Object? location = freezed,
     Object? clinic = freezed,
   }) {
-    return _then(_AddGroupDataConfig(
+    return _then(_$_AddGroupDataConfig(
       band: band == freezed
-          ? _value.band
+          ? _value._band
           : band // ignore: cast_nullable_to_non_nullable
               as List<DropdownItem>,
       age: age == freezed
-          ? _value.age
+          ? _value._age
           : age // ignore: cast_nullable_to_non_nullable
               as List<DropdownItem>,
       location: location == freezed
-          ? _value.location
+          ? _value._location
           : location // ignore: cast_nullable_to_non_nullable
               as List<DropdownItem>,
       clinic: clinic == freezed
-          ? _value.clinic
+          ? _value._clinic
           : clinic // ignore: cast_nullable_to_non_nullable
               as List<DropdownItem>,
     ));
@@ -153,19 +132,42 @@ class __$AddGroupDataConfigCopyWithImpl<$Res>
 
 class _$_AddGroupDataConfig implements _AddGroupDataConfig {
   _$_AddGroupDataConfig(
-      {required this.band,
-      required this.age,
-      required this.location,
-      required this.clinic});
+      {required final List<DropdownItem> band,
+      required final List<DropdownItem> age,
+      required final List<DropdownItem> location,
+      required final List<DropdownItem> clinic})
+      : _band = band,
+        _age = age,
+        _location = location,
+        _clinic = clinic;
 
+  final List<DropdownItem> _band;
   @override
-  final List<DropdownItem> band;
+  List<DropdownItem> get band {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_band);
+  }
+
+  final List<DropdownItem> _age;
   @override
-  final List<DropdownItem> age;
+  List<DropdownItem> get age {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_age);
+  }
+
+  final List<DropdownItem> _location;
   @override
-  final List<DropdownItem> location;
+  List<DropdownItem> get location {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_location);
+  }
+
+  final List<DropdownItem> _clinic;
   @override
-  final List<DropdownItem> clinic;
+  List<DropdownItem> get clinic {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_clinic);
+  }
 
   @override
   String toString() {
@@ -176,44 +178,45 @@ class _$_AddGroupDataConfig implements _AddGroupDataConfig {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AddGroupDataConfig &&
-            const DeepCollectionEquality().equals(other.band, band) &&
-            const DeepCollectionEquality().equals(other.age, age) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
-            const DeepCollectionEquality().equals(other.clinic, clinic));
+            other is _$_AddGroupDataConfig &&
+            const DeepCollectionEquality().equals(other._band, _band) &&
+            const DeepCollectionEquality().equals(other._age, _age) &&
+            const DeepCollectionEquality().equals(other._location, _location) &&
+            const DeepCollectionEquality().equals(other._clinic, _clinic));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(band),
-      const DeepCollectionEquality().hash(age),
-      const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(clinic));
+      const DeepCollectionEquality().hash(_band),
+      const DeepCollectionEquality().hash(_age),
+      const DeepCollectionEquality().hash(_location),
+      const DeepCollectionEquality().hash(_clinic));
 
   @JsonKey(ignore: true)
   @override
-  _$AddGroupDataConfigCopyWith<_AddGroupDataConfig> get copyWith =>
-      __$AddGroupDataConfigCopyWithImpl<_AddGroupDataConfig>(this, _$identity);
+  _$$_AddGroupDataConfigCopyWith<_$_AddGroupDataConfig> get copyWith =>
+      __$$_AddGroupDataConfigCopyWithImpl<_$_AddGroupDataConfig>(
+          this, _$identity);
 }
 
 abstract class _AddGroupDataConfig implements AddGroupDataConfig {
   factory _AddGroupDataConfig(
-      {required List<DropdownItem> band,
-      required List<DropdownItem> age,
-      required List<DropdownItem> location,
-      required List<DropdownItem> clinic}) = _$_AddGroupDataConfig;
+      {required final List<DropdownItem> band,
+      required final List<DropdownItem> age,
+      required final List<DropdownItem> location,
+      required final List<DropdownItem> clinic}) = _$_AddGroupDataConfig;
 
   @override
-  List<DropdownItem> get band;
+  List<DropdownItem> get band => throw _privateConstructorUsedError;
   @override
-  List<DropdownItem> get age;
+  List<DropdownItem> get age => throw _privateConstructorUsedError;
   @override
-  List<DropdownItem> get location;
+  List<DropdownItem> get location => throw _privateConstructorUsedError;
   @override
-  List<DropdownItem> get clinic;
+  List<DropdownItem> get clinic => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddGroupDataConfigCopyWith<_AddGroupDataConfig> get copyWith =>
+  _$$_AddGroupDataConfigCopyWith<_$_AddGroupDataConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
