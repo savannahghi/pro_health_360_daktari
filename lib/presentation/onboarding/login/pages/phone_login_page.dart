@@ -242,12 +242,11 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                           );
                         }
                       },
-                      buttonColor: Theme.of(context).primaryColor,
-                      borderColor: Theme.of(context).primaryColor,
+                      buttonColor: isAppTest
+                          ? AppColors.greenHappyColor
+                          : AppColors.primaryColor,
+                      borderColor: Colors.transparent,
                       text: phoneLoginText,
-                      textColor: isAppTest
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
                     ),
                   ),
                 ),
