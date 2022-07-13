@@ -8,6 +8,7 @@ import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.d
 import 'package:prohealth360_daktari/application/redux/actions/service_requests/resolve_service_request_action.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/application/redux/view_models/service_requests/service_requests_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
 import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
@@ -27,12 +28,12 @@ class RedFlagActionsPage extends StatelessWidget {
 
     final String phoneNumber = serviceRequest?.clientPhoneNumber ?? '';
     final String clientName = serviceRequest?.clientName ?? '';
-    final String staffFirstName =
-        StoreProvider.state<AppState>(context)?.staffState?.user?.firstName ??
-            '';
-    final String staffLastName =
-        StoreProvider.state<AppState>(context)?.staffState?.user?.lastName ??
-            '';
+    final StaffState? staffState =
+        StoreProvider.state<AppState>(context)?.staffState;
+    final String staffFirstName = staffState?.user?.firstName ?? '';
+    final String staffLastName = staffState?.user?.lastName ?? '';
+    final String facilityName = staffState?.defaultFacilityName ?? '';
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:
@@ -72,6 +73,7 @@ class RedFlagActionsPage extends StatelessWidget {
                 clientName: clientName,
                 staffFirstName: staffFirstName,
                 staffLastName: staffLastName,
+                facilityName: facilityName,
               ),
               mediumVerticalSizedBox,
               Text(

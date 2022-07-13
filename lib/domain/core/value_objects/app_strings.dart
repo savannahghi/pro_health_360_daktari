@@ -727,8 +727,9 @@ String redFlagSMSTemplate({
   required String clientName,
   required String staffFirstName,
   required String staffLastName,
+  required String facilityName,
 }) {
-  return 'Hi $clientName, my name is $staffFirstName $staffLastName from myCareHub.';
+  return 'Hi $clientName, my name is $staffFirstName $staffLastName working at $facilityName for ProHealth360.';
 }
 
 const String spacedIsFeelingString = ' is feeling ';
@@ -883,8 +884,8 @@ const String noConversationsDescription =
 const String viewInvites = 'View Invites';
 const String orString = 'or';
 
-
-const String contactUpdateSuccessfulString = 'Facility contact updated successfully';
+const String contactUpdateSuccessfulString =
+    'Facility contact updated successfully';
 
 const String enterAgeFromString = 'Please enter an age range from';
 const String ageConstraintsString = ' 14 to 25';

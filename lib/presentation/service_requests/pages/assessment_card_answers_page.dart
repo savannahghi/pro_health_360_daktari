@@ -10,6 +10,7 @@ import 'package:prohealth360_daktari/application/redux/actions/service_requests/
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/application/redux/states/service_requests/tool_assessment_response.dart';
 import 'package:prohealth360_daktari/application/redux/view_models/service_requests/screening_tools_view_model.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
@@ -62,12 +63,11 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
         widget.payload['assessmentResponse'] as ToolAssessmentResponse;
     final ScreeningToolsType toolsType =
         widget.payload['toolType'] as ScreeningToolsType;
-    final String staffFirstName =
-        StoreProvider.state<AppState>(context)?.staffState?.user?.firstName ??
-            '';
-    final String staffLastName =
-        StoreProvider.state<AppState>(context)?.staffState?.user?.lastName ??
-            '';
+    final StaffState? staffState =
+        StoreProvider.state<AppState>(context)?.staffState;
+    final String staffFirstName = staffState?.user?.firstName ?? '';
+    final String staffLastName = staffState?.user?.lastName ?? '';
+    final String facilityName = staffState?.defaultFacilityName ?? '';
     return Scaffold(
       appBar: const CustomAppBar(title: assessmentCardTitle),
       body: Padding(
@@ -145,6 +145,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                     clientName: assessmentResponse.name ?? '',
                     staffFirstName: staffFirstName,
                     staffLastName: staffLastName,
+                    facilityName: facilityName,
                   ),
                   mediumVerticalSizedBox,
                   Text(
