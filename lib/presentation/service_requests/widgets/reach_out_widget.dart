@@ -17,12 +17,14 @@ class ReachOutWidget extends StatelessWidget {
     required this.staffFirstName,
     required this.staffLastName,
     required this.platform,
+    required this.facilityName,
   });
 
   final String phoneNumber;
   final String clientName;
   final String staffFirstName;
   final String staffLastName;
+  final String facilityName;
   final TargetPlatform platform;
 
   @override
@@ -72,6 +74,7 @@ class ReachOutWidget extends StatelessWidget {
                               clientName: clientName,
                               staffFirstName: staffFirstName,
                               staffLastName: staffLastName,
+                              facilityName: facilityName,
                             ),
                           },
                         ),
