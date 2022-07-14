@@ -171,6 +171,7 @@ const String ifYouHaveReachedOutString = 'If you have reached out to ';
 const String tapTapBelowToResolveString =
     ', please tap the button below to resolve this service request.\n\nYou can also describe any action you took below';
 const String actionTakenString = 'Action taken';
+const String notesString = 'Notes';
 
 const String serviceRequestsNoDataBodyString =
     'Great job! You have handled all your service requests. Take a coffee and enjoy your day.';
@@ -897,3 +898,8 @@ const String searchFacilityActionString = 'Tap to search for a facility...';
 const String searchFacilityPageDescription =
     'Search for a facility using its MFL code or name';
 const String invalidPhoneNumber = 'Invalid phone number';
+
+// service request actions
+const String noFurtherActionRequiredString = 'No further action required';
+const String followUpVisitBookedString = 'Follow up visit booked';
+const String referredToCommunityString = 'Referred to community services';

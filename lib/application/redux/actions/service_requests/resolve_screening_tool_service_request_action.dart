@@ -15,12 +15,16 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String serviceRequestId;
+  final String? comments;
+  final String actionTaken;
   final ScreeningToolsType screeningToolsType;
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
 
   ResolveScreeningToolServiceRequestAction({
     required this.serviceRequestId,
+    required this.actionTaken,
+    this.comments,
     required this.client,
     required this.screeningToolsType,
     this.onSuccess,
@@ -54,6 +58,8 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'staffID': staffId,
       'requestID': serviceRequestId,
+      'comment': comments,
+      'action': actionTaken,
     };
 
     final Response result = await client.query(

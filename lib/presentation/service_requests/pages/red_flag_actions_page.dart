@@ -16,18 +16,31 @@ import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.da
 import 'package:prohealth360_daktari/presentation/service_requests/widgets/reach_out_widget.dart';
 import 'package:prohealth360_daktari/presentation/service_requests/widgets/red_flag_list_item.dart';
 
-class RedFlagActionsPage extends StatelessWidget {
+class RedFlagActionsPage extends StatefulWidget {
   const RedFlagActionsPage({Key? key, this.serviceRequest}) : super(key: key);
 
   final ServiceRequest? serviceRequest;
+
+  @override
+  State<RedFlagActionsPage> createState() => _RedFlagActionsPageState();
+}
+
+class _RedFlagActionsPageState extends State<RedFlagActionsPage> {
+  Map<String, bool> actionsList = <String, bool>{
+    noFurtherActionRequiredString: false,
+    followUpVisitBookedString: false,
+    referredToCommunityString: false,
+  };
+
+  String actionText = '';
 
   @override
   Widget build(BuildContext context) {
     final TargetPlatform _platform = Theme.of(context).platform;
     final TextEditingController actionInputController = TextEditingController();
 
-    final String phoneNumber = serviceRequest?.clientPhoneNumber ?? '';
-    final String clientName = serviceRequest?.clientName ?? '';
+    final String phoneNumber = widget.serviceRequest?.clientPhoneNumber ?? '';
+    final String clientName = widget.serviceRequest?.clientName ?? '';
     final StaffState? staffState =
         StoreProvider.state<AppState>(context)?.staffState;
     final String staffFirstName = staffState?.user?.firstName ?? '';
@@ -47,7 +60,7 @@ class RedFlagActionsPage extends StatelessWidget {
               smallVerticalSizedBox,
               RichText(
                 text: TextSpan(
-                  text: serviceRequest?.clientName ?? '',
+                  text: widget.serviceRequest?.clientName ?? '',
                   style: veryBoldSize16Text(AppColors.greyTextColor),
                   children: <TextSpan>[
                     TextSpan(
@@ -65,7 +78,7 @@ class RedFlagActionsPage extends StatelessWidget {
                 ),
               ),
               mediumVerticalSizedBox,
-              RedFlagListItem(serviceRequest: serviceRequest),
+              RedFlagListItem(serviceRequest: widget.serviceRequest),
               largeVerticalSizedBox,
               ReachOutWidget(
                 platform: _platform,
@@ -96,9 +109,15 @@ class RedFlagActionsPage extends StatelessWidget {
                   ],
                 ),
               ),
-              smallVerticalSizedBox,
+              mediumVerticalSizedBox,
               Text(
                 actionTakenString,
+                style: veryBoldSize18Text(AppColors.greyTextColor),
+              ),
+              ...getActionsCheckBoxes(actionsList),
+              mediumVerticalSizedBox,
+              Text(
+                notesString,
                 style: veryBoldSize18Text(AppColors.greyTextColor),
               ),
               smallVerticalSizedBox,
@@ -147,29 +166,34 @@ class RedFlagActionsPage extends StatelessWidget {
                     height: 48,
                     child: vm.wait.isWaitingFor(resolveServiceRequestFlag)
                         ? const PlatformLoader()
-                        : MyAfyaHubPrimaryButton(
-                            buttonKey: resolveRequestButtonKey,
-                            text: resolveString,
-                            onPressed: () => StoreProvider.dispatch<AppState>(
-                              context,
-                              ResolveServiceRequestAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                serviceRequestId: serviceRequest?.id ?? '',
-                                actionTakenDescription:
-                                    actionInputController.text,
-                                onSuccess: () {
-                                  showTextSnackbar(
-                                    ScaffoldMessenger.of(context),
-                                    content: requestResolvedSuccessText,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                onFailure: () => showTextSnackbar(
-                                  ScaffoldMessenger.of(context),
-                                  content: somethingWentWrongText,
-                                ),
-                              ),
+                        : ElevatedButton(
+                            key: resolveRequestButtonKey,
+                            onPressed: actionText.isNotEmpty
+                                ? () => StoreProvider.dispatch<AppState>(
+                                      context,
+                                      ResolveServiceRequestAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        serviceRequestId:
+                                            widget.serviceRequest?.id ?? '',
+                                        comments: actionInputController.text,
+                                        actionTaken: actionText,
+                                        onSuccess: () {
+                                          showTextSnackbar(
+                                            ScaffoldMessenger.of(context),
+                                            content: requestResolvedSuccessText,
+                                          );
+                                          Navigator.of(context).pop();
+                                        },
+                                        onFailure: () => showTextSnackbar(
+                                          ScaffoldMessenger.of(context),
+                                          content: somethingWentWrongText,
+                                        ),
+                                      ),
+                                    )
+                                : null,
+                            child: const Text(
+                              resolveString,
                             ),
                           ),
                   );
@@ -181,5 +205,36 @@ class RedFlagActionsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> getActionsCheckBoxes(Map<String, bool> actions) {
+    final List<Widget> result = <Widget>[];
+
+    actions.forEach((String key, bool value) {
+      result.add(
+        CheckboxListTile(
+          contentPadding: EdgeInsets.zero,
+          key: ValueKey<String>(key.replaceAll(' ', '_').toLowerCase()),
+          activeColor: Theme.of(context).primaryColor,
+          controlAffinity: ListTileControlAffinity.leading,
+          title: Text(
+            key,
+            style: const TextStyle(color: AppColors.grey50),
+          ),
+          value: value,
+          onChanged: (_) {
+            setState(() {
+              actionsList.forEach((String _key, bool value) {
+                if (_key != key) actionsList[_key] = false;
+              });
+              actionsList[key] = !value;
+              actionText = actionsList[key] ?? false ? key : '';
+            });
+          },
+        ),
+      );
+    });
+
+    return result;
   }
 }

@@ -187,8 +187,8 @@ mutation deleteCommunityMessage($messageID: String!){
 }
 ''';
 const String resolveServiceRequestMutation = r'''
-mutation resolveServiceRequest($staffID: String!, $requestID: String!, $comment: String){
-  resolveServiceRequest(staffID: $staffID, requestID: $requestID, comment: $comment)
+mutation ResolveServiceRequest($staffID: String!, $requestID: String!, $action: String!, $comment: String){
+  resolveServiceRequest(staffID: $staffID, requestID: $requestID, action: $action, comment: $comment)
 }
 ''';
 

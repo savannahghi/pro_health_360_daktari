@@ -32,6 +32,13 @@ class AssessmentCardAnswersPage extends StatefulWidget {
 }
 
 class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
+  Map<String, bool> actionsList = <String, bool>{
+    noFurtherActionRequiredString: false,
+    followUpVisitBookedString: false,
+    referredToCommunityString: false,
+  };
+
+  String actionText = '';
   @override
   void initState() {
     super.initState();
@@ -168,9 +175,15 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                       ],
                     ),
                   ),
-                  smallVerticalSizedBox,
+                  mediumVerticalSizedBox,
                   Text(
                     actionTakenString,
+                    style: veryBoldSize18Text(AppColors.greyTextColor),
+                  ),
+                  ...getActionsCheckBoxes(actionsList),
+                  mediumVerticalSizedBox,
+                  Text(
+                    notesString,
                     style: veryBoldSize18Text(AppColors.greyTextColor),
                   ),
                   smallVerticalSizedBox,
@@ -215,31 +228,36 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                     height: 48,
                     child: vm.wait.isWaitingFor(resolveServiceRequestFlag)
                         ? const PlatformLoader()
-                        : MyAfyaHubPrimaryButton(
-                            buttonKey: resolveRequestButtonKey,
-                            text: resolveString,
-                            onPressed: () => StoreProvider.dispatch<AppState>(
-                              context,
-                              ResolveScreeningToolServiceRequestAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                serviceRequestId: toolResponse
-                                        ?.toolAssessmentRequestResponse
-                                        ?.serviceRequestID ??
-                                    '',
-                                screeningToolsType: toolsType,
-                                onSuccess: () {
-                                  showTextSnackbar(
-                                    ScaffoldMessenger.of(context),
-                                    content: requestResolvedSuccessText,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                onFailure: () => showTextSnackbar(
-                                  ScaffoldMessenger.of(context),
-                                  content: somethingWentWrongText,
-                                ),
-                              ),
+                        : ElevatedButton(
+                            key: resolveRequestButtonKey,
+                            onPressed: actionText.isNotEmpty
+                                ? () => StoreProvider.dispatch<AppState>(
+                                      context,
+                                      ResolveScreeningToolServiceRequestAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        serviceRequestId: toolResponse
+                                                ?.toolAssessmentRequestResponse
+                                                ?.serviceRequestID ??
+                                            '',
+                                        screeningToolsType: toolsType,
+                                        actionTaken: actionText,
+                                        onSuccess: () {
+                                          showTextSnackbar(
+                                            ScaffoldMessenger.of(context),
+                                            content: requestResolvedSuccessText,
+                                          );
+                                          Navigator.of(context).pop();
+                                        },
+                                        onFailure: () => showTextSnackbar(
+                                          ScaffoldMessenger.of(context),
+                                          content: somethingWentWrongText,
+                                        ),
+                                      ),
+                                    )
+                                : null,
+                            child: const Text(
+                              resolveString,
                             ),
                           ),
                   ),
@@ -251,5 +269,36 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
         ),
       ),
     );
+  }
+
+  List<Widget> getActionsCheckBoxes(Map<String, bool> actions) {
+    final List<Widget> result = <Widget>[];
+
+    actions.forEach((String key, bool value) {
+      result.add(
+        CheckboxListTile(
+          contentPadding: EdgeInsets.zero,
+          key: ValueKey<String>(key.replaceAll(' ', '_').toLowerCase()),
+          activeColor: Theme.of(context).primaryColor,
+          controlAffinity: ListTileControlAffinity.leading,
+          title: Text(
+            key,
+            style: const TextStyle(color: AppColors.grey50),
+          ),
+          value: value,
+          onChanged: (_) {
+            setState(() {
+              actionsList.forEach((String _key, bool value) {
+                if (_key != key) actionsList[_key] = false;
+              });
+              actionsList[key] = !value;
+              actionText = actionsList[key] ?? false ? key : '';
+            });
+          },
+        ),
+      );
+    });
+
+    return result;
   }
 }
