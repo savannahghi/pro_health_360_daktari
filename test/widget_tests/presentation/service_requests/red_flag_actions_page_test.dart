@@ -128,7 +128,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder resolveRequestButton = find.byKey(resolveRequestButtonKey);
+      final Finder noActionCheckBox =
+          find.byKey(const Key('no_further_action_required'));
       expect(resolveRequestButton, findsOneWidget);
+      expect(noActionCheckBox, findsOneWidget);
+
+      await tester.ensureVisible(noActionCheckBox);
+      await tester.tap(noActionCheckBox);
+      await tester.pumpAndSettle();
       await tester.ensureVisible(resolveRequestButton);
       await tester.tap(resolveRequestButton);
       await tester.pump(const Duration(seconds: 4));
@@ -161,7 +168,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder resolveRequestButton = find.byKey(resolveRequestButtonKey);
+      final Finder followUpActionCheckBox =
+          find.byKey(const Key('follow_up_visit_booked'));
       expect(resolveRequestButton, findsOneWidget);
+      expect(followUpActionCheckBox, findsOneWidget);
+
+      await tester.ensureVisible(followUpActionCheckBox);
+      await tester.tap(followUpActionCheckBox);
+      await tester.pumpAndSettle();
       await tester.ensureVisible(resolveRequestButton);
       await tester.tap(resolveRequestButton);
       await tester.pump(const Duration(seconds: 4));
@@ -195,7 +209,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder resolveRequestButton = find.byKey(resolveRequestButtonKey);
+      final Finder referredActionCheckBox =
+          find.byKey(const Key('referred_to_community_services'));
       expect(resolveRequestButton, findsOneWidget);
+      expect(referredActionCheckBox, findsOneWidget);
+
+      await tester.ensureVisible(referredActionCheckBox);
+      await tester.tap(referredActionCheckBox);
+      await tester.pumpAndSettle();
       await tester.ensureVisible(resolveRequestButton);
       await tester.tap(resolveRequestButton);
       await tester.pump(const Duration(seconds: 4));
