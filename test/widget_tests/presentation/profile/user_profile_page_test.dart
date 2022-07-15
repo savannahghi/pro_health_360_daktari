@@ -11,6 +11,7 @@ import 'package:http/http.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:prohealth360_daktari/domain/core/entities/core/facility.dart';
 import 'package:prohealth360_daktari/domain/core/entities/core/staff_state.dart';
+import 'package:prohealth360_daktari/domain/core/entities/core/user.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_widget_keys.dart';
 import 'package:prohealth360_daktari/presentation/communities/invited_groups/pages/invited_groups_page.dart';
@@ -132,6 +133,15 @@ void main() {
             defaultFacility: 'test',
             defaultFacilityName: 'test',
             facilities: <Facility>[Facility.initial()],
+            user: User(
+              roles: <Role>[
+                Role(
+                  active: true,
+                  name: RoleValue.SYSTEM_ADMINISTRATOR,
+                  roleID: 'test',
+                )
+              ],
+            ),
           ),
         ),
       );

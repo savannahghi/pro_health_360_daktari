@@ -11,7 +11,32 @@ import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart'
 import 'package:prohealth360_daktari/presentation/core/app_bar/custom_app_bar.dart';
 import 'package:prohealth360_daktari/presentation/router/routes.dart';
 
-class FacilityContactsPage extends StatelessWidget {
+class FacilityContactsPage extends StatefulWidget {
+  @override
+  State<FacilityContactsPage> createState() => _FacilityContactsPageState();
+}
+
+class _FacilityContactsPageState extends State<FacilityContactsPage> {
+  bool canUpdateContact = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final List<Role>? staffRoles =
+          StoreProvider.state<AppState>(context)?.staffState?.user?.roles;
+      if (staffRoles?.isNotEmpty ?? false) {
+        for (final Role role in staffRoles!) {
+          if (role.name == RoleValue.SYSTEM_ADMINISTRATOR) {
+            setState(() {
+              canUpdateContact = true;
+            });
+          }
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,11 +103,13 @@ class FacilityContactsPage extends StatelessWidget {
                             child: SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () => Navigator.pushNamed(
-                                  context,
-                                  AppRoutes.addFacilityContactPage,
-                                  arguments: phoneNumber,
-                                ),
+                                onPressed: canUpdateContact
+                                    ? () => Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.addFacilityContactPage,
+                                          arguments: phoneNumber,
+                                        )
+                                    : null,
                                 child: const Text(updateContactString),
                               ),
                             ),
@@ -112,11 +139,13 @@ class FacilityContactsPage extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () => Navigator.pushNamed(
-                                context,
-                                AppRoutes.addFacilityContactPage,
-                                arguments: phoneNumber,
-                              ),
+                              onPressed: canUpdateContact
+                                  ? () => Navigator.pushNamed(
+                                        context,
+                                        AppRoutes.addFacilityContactPage,
+                                        arguments: phoneNumber,
+                                      )
+                                  : null,
                               child: const Text(createContactString),
                             ),
                           ),
