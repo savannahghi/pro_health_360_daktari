@@ -16,14 +16,14 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String serviceRequestId;
   final String? comments;
-  final String actionTaken;
+  final List<String> actionsTaken;
   final ScreeningToolsType screeningToolsType;
   final VoidCallback? onSuccess;
   final VoidCallback? onFailure;
 
   ResolveScreeningToolServiceRequestAction({
     required this.serviceRequestId,
-    required this.actionTaken,
+    required this.actionsTaken,
     this.comments,
     required this.client,
     required this.screeningToolsType,
@@ -58,8 +58,8 @@ class ResolveScreeningToolServiceRequestAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'staffID': staffId,
       'requestID': serviceRequestId,
-      'comment': comments,
-      'action': actionTaken,
+      'comment': comments ?? '',
+      'action': actionsTaken,
     };
 
     final Response result = await client.query(

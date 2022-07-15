@@ -903,3 +903,8 @@ const String invalidPhoneNumber = 'Invalid phone number';
 const String noFurtherActionRequiredString = 'No further action required';
 const String followUpVisitBookedString = 'Follow up visit booked';
 const String referredToCommunityString = 'Referred to community services';
+
+//Facility contacts zero state
+const String noFacilityContactsTitle = 'No facility contacts available';
+const String noFacilityContactsDescription =
+    'No Worries though. They will show up here once they have been added';

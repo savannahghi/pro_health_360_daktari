@@ -38,7 +38,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
     referredToCommunityString: false,
   };
 
-  String actionText = '';
+  List<String> actionsTaken = <String>[];
   @override
   void initState() {
     super.initState();
@@ -230,7 +230,7 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                         ? const PlatformLoader()
                         : ElevatedButton(
                             key: resolveRequestButtonKey,
-                            onPressed: actionText.isNotEmpty
+                            onPressed: actionsTaken.isNotEmpty
                                 ? () => StoreProvider.dispatch<AppState>(
                                       context,
                                       ResolveScreeningToolServiceRequestAction(
@@ -241,7 +241,11 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
                                                 ?.serviceRequestID ??
                                             '',
                                         screeningToolsType: toolsType,
-                                        actionTaken: actionText,
+                                        actionsTaken: actionsTaken.contains(
+                                          noFurtherActionRequiredString,
+                                        )
+                                            ? <String>[]
+                                            : actionsTaken,
                                         onSuccess: () {
                                           showTextSnackbar(
                                             ScaffoldMessenger.of(context),
@@ -288,11 +292,24 @@ class _AssessmentCardAnswersPageState extends State<AssessmentCardAnswersPage> {
           value: value,
           onChanged: (_) {
             setState(() {
-              actionsList.forEach((String _key, bool value) {
-                if (_key != key) actionsList[_key] = false;
-              });
               actionsList[key] = !value;
-              actionText = actionsList[key] ?? false ? key : '';
+              if (key == noFurtherActionRequiredString) {
+                if (actionsList[key] ?? false) {
+                  actionsTaken = <String>[noFurtherActionRequiredString];
+                  actionsList.forEach((String _key, bool value) {
+                    if (_key != key) actionsList[_key] = false;
+                  });
+                } else {
+                  actionsTaken = <String>[];
+                }
+              } else {
+                if (actionsList[key] ?? false) {
+                  actionsTaken.add(key);
+                  actionsList[noFurtherActionRequiredString] = false;
+                } else {
+                  actionsTaken.removeWhere((String action) => action == key);
+                }
+              }
             });
           },
         ),

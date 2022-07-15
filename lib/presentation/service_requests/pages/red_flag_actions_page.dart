@@ -32,8 +32,7 @@ class _RedFlagActionsPageState extends State<RedFlagActionsPage> {
     referredToCommunityString: false,
   };
 
-  String actionText = '';
-
+  List<String> actionsTaken = <String>[];
   @override
   Widget build(BuildContext context) {
     final TargetPlatform _platform = Theme.of(context).platform;
@@ -168,7 +167,7 @@ class _RedFlagActionsPageState extends State<RedFlagActionsPage> {
                         ? const PlatformLoader()
                         : ElevatedButton(
                             key: resolveRequestButtonKey,
-                            onPressed: actionText.isNotEmpty
+                            onPressed: actionsTaken.isNotEmpty
                                 ? () => StoreProvider.dispatch<AppState>(
                                       context,
                                       ResolveServiceRequestAction(
@@ -177,7 +176,11 @@ class _RedFlagActionsPageState extends State<RedFlagActionsPage> {
                                         serviceRequestId:
                                             widget.serviceRequest?.id ?? '',
                                         comments: actionInputController.text,
-                                        actionTaken: actionText,
+                                        actionsTaken: actionsTaken.contains(
+                                          noFurtherActionRequiredString,
+                                        )
+                                            ? <String>[]
+                                            : actionsTaken,
                                         onSuccess: () {
                                           showTextSnackbar(
                                             ScaffoldMessenger.of(context),
@@ -224,11 +227,24 @@ class _RedFlagActionsPageState extends State<RedFlagActionsPage> {
           value: value,
           onChanged: (_) {
             setState(() {
-              actionsList.forEach((String _key, bool value) {
-                if (_key != key) actionsList[_key] = false;
-              });
               actionsList[key] = !value;
-              actionText = actionsList[key] ?? false ? key : '';
+              if (key == noFurtherActionRequiredString) {
+                if (actionsList[key] ?? false) {
+                  actionsTaken = <String>[noFurtherActionRequiredString];
+                  actionsList.forEach((String _key, bool value) {
+                    if (_key != key) actionsList[_key] = false;
+                  });
+                } else {
+                  actionsTaken = <String>[];
+                }
+              } else {
+                if (actionsList[key] ?? false) {
+                  actionsTaken.add(key);
+                  actionsList[noFurtherActionRequiredString] = false;
+                } else {
+                  actionsTaken.removeWhere((String action) => action == key);
+                }
+              }
             });
           },
         ),
