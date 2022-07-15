@@ -145,14 +145,39 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder resolveRequestButton = find.byKey(resolveRequestButtonKey);
-      final Finder noActionCheckBox =
-          find.byKey(const Key('no_further_action_required'));
+      const Key noActionCheckBoxKey = Key('no_further_action_required');
+      const Key followUpActionCheckBoxKey = Key('follow_up_visit_booked');
+      final Finder noActionCheckBox = find.byKey(noActionCheckBoxKey);
+      final Finder followUpActionCheckBox =
+          find.byKey(followUpActionCheckBoxKey);
       expect(resolveRequestButton, findsOneWidget);
+      expect(followUpActionCheckBox, findsOneWidget);
       expect(noActionCheckBox, findsOneWidget);
 
       await tester.ensureVisible(noActionCheckBox);
       await tester.tap(noActionCheckBox);
       await tester.pumpAndSettle();
+      expect(
+        tester.widget<CheckboxListTile>(find.byKey(noActionCheckBoxKey)).value,
+        true,
+      );
+
+      await tester.tap(noActionCheckBox);
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<CheckboxListTile>(find.byKey(noActionCheckBoxKey)).value,
+        false,
+      );
+
+      await tester.ensureVisible(followUpActionCheckBox);
+      await tester.tap(followUpActionCheckBox);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(find.byKey(followUpActionCheckBoxKey))
+            .value,
+        true,
+      );
 
       await tester.ensureVisible(resolveRequestButton);
       await tester.tap(resolveRequestButton);
@@ -201,15 +226,42 @@ void main() {
       );
       await tester.pumpAndSettle();
       final Finder resolveRequestButton = find.byKey(resolveRequestButtonKey);
+      const Key noActionCheckBoxKey = Key('no_further_action_required');
+      const Key followUpActionCheckBoxKey = Key('follow_up_visit_booked');
+      final Finder noActionCheckBox = find.byKey(noActionCheckBoxKey);
       final Finder followUpActionCheckBox =
-          find.byKey(const Key('follow_up_visit_booked'));
+          find.byKey(followUpActionCheckBoxKey);
       expect(resolveRequestButton, findsOneWidget);
       expect(followUpActionCheckBox, findsOneWidget);
+      expect(noActionCheckBox, findsOneWidget);
 
       await tester.ensureVisible(followUpActionCheckBox);
       await tester.tap(followUpActionCheckBox);
       await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(find.byKey(followUpActionCheckBoxKey))
+            .value,
+        true,
+      );
 
+      await tester.ensureVisible(followUpActionCheckBox);
+      await tester.tap(followUpActionCheckBox);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(find.byKey(followUpActionCheckBoxKey))
+            .value,
+        false,
+      );
+
+      await tester.ensureVisible(noActionCheckBox);
+      await tester.tap(noActionCheckBox);
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<CheckboxListTile>(find.byKey(noActionCheckBoxKey)).value,
+        true,
+      );
       await tester.ensureVisible(resolveRequestButton);
       await tester.pumpAndSettle();
       await tester.tap(resolveRequestButton);
@@ -243,7 +295,7 @@ void main() {
                   serviceRequestId: 'test',
                   screeningToolsType:
                       ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
-                  actionTaken: '',
+                  actionsTaken: <String>[],
                   onFailure: () => testString = 'error',
                 ),
               ),

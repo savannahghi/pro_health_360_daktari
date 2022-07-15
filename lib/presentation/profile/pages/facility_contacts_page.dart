@@ -98,22 +98,21 @@ class _FacilityContactsPageState extends State<FacilityContactsPage> {
                             ),
                           ),
                           const Spacer(),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: canUpdateContact
-                                    ? () => Navigator.pushNamed(
-                                          context,
-                                          AppRoutes.addFacilityContactPage,
-                                          arguments: phoneNumber,
-                                        )
-                                    : null,
-                                child: const Text(updateContactString),
+                          if (canUpdateContact)
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () => Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.addFacilityContactPage,
+                                    arguments: phoneNumber,
+                                  ),
+                                  child: const Text(updateContactString),
+                                ),
                               ),
                             ),
-                          ),
                           mediumVerticalSizedBox,
                         ],
                       )
@@ -124,31 +123,44 @@ class _FacilityContactsPageState extends State<FacilityContactsPage> {
                             facilityContactZeroStateSvgPath,
                           ),
                           mediumVerticalSizedBox,
-                          Text(
-                            addFacilityContactDescriptionString,
-                            style: normalSize14Text(darkGreyTextColor),
-                            textAlign: TextAlign.center,
-                          ),
-                          mediumVerticalSizedBox,
-                          Text(
-                            noContactForFacilityDescriptionString,
-                            style: normalSize14Text(darkGreyTextColor),
-                            textAlign: TextAlign.center,
-                          ),
-                          mediumVerticalSizedBox,
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: canUpdateContact
-                                  ? () => Navigator.pushNamed(
-                                        context,
-                                        AppRoutes.addFacilityContactPage,
-                                        arguments: phoneNumber,
-                                      )
-                                  : null,
-                              child: const Text(createContactString),
+                          if (canUpdateContact) ...<Widget>{
+                            Text(
+                              addFacilityContactDescriptionString,
+                              style: normalSize14Text(darkGreyTextColor),
+                              textAlign: TextAlign.center,
                             ),
-                          ),
+                            mediumVerticalSizedBox,
+                            Text(
+                              noContactForFacilityDescriptionString,
+                              style: normalSize14Text(darkGreyTextColor),
+                              textAlign: TextAlign.center,
+                            ),
+                          } else ...<Widget>{
+                            Text(
+                              noFacilityContactsTitle,
+                              style: veryBoldSize18Text(darkGreyTextColor),
+                              textAlign: TextAlign.center,
+                            ),
+                            mediumVerticalSizedBox,
+                            Text(
+                              noFacilityContactsDescription,
+                              style: normalSize14Text(darkGreyTextColor),
+                              textAlign: TextAlign.center,
+                            ),
+                          },
+                          mediumVerticalSizedBox,
+                          if (canUpdateContact)
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () => Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.addFacilityContactPage,
+                                  arguments: phoneNumber,
+                                ),
+                                child: const Text(createContactString),
+                              ),
+                            ),
                         ],
                       );
           },
