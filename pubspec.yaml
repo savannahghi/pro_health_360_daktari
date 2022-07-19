@@ -13,11 +13,8 @@ dependencies:
   afya_moja_core: ^0.2.5
   app_wrapper: ^0.1.36
   async_redux: ^15.0.0
-  collection: ^1.16.0
   connectivity_plus: ^2.3.5
-  cupertino_icons: ^1.0.5
   debug_logger: ^0.0.23
-  dotted_decoration: ^2.0.0
   firebase_analytics: ^9.1.12
   firebase_core: ^1.19.1
   firebase_messaging: ^11.4.4
