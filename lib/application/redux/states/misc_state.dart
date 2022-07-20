@@ -14,7 +14,6 @@ class MiscState with _$MiscState {
     String? initialRoute,
     String? error,
     FAQsContentState? profileFAQsContentState,
-    ListContentCategory? categoriesList,
     List<Member>? communityMembers,
     Facility? selectedFacility,
     GroupState? groupState,
@@ -35,6 +34,5 @@ class MiscState with _$MiscState {
         searchUserResponseState: SearchUserResponseState.initial(),
         inactiveTime: UNKNOWN,
         resumeWithPin: false,
-        categoriesList: ListContentCategory.initial(),
       );
 }

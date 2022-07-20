@@ -2422,34 +2422,6 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
   ],
 };
 
-final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'id': 2,
-    'name': 'recommended',
-    'iconUrl': 'test-image.png',
-  },
-  <String, dynamic>{
-    'id': 1,
-    'name': 'welcome',
-    'iconUrl': 'test-image.png',
-  },
-  <String, dynamic>{
-    'id': 3,
-    'name': 'exercise',
-    'iconUrl': 'test-image.png',
-  },
-  <String, dynamic>{
-    'id': 4,
-    'name': 'diet',
-    'iconUrl': 'test-image.png',
-  },
-  <String, dynamic>{
-    'id': 10002,
-    'name': 'pro-faqs',
-    'iconUrl': 'test-image.png',
-  }
-];
-
 final core.Content mockVideoContent =
     core.Content.fromJson(videoContentMock.first);
 

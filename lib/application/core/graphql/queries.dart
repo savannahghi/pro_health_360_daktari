@@ -324,12 +324,9 @@ query listContentCategories{
 }
 ''';
 
-const String getContentQuery = r'''
-query getContent($categoryID: Int, $Limit: String!){
-  getContent(categoryID: $categoryID, Limit: $Limit) {
-    meta{
-      totalCount
-    }
+const String getFAQsQuery = r'''
+query getFAQs($flavour: Flavour!){
+  getFAQs(flavour: $flavour){
     items {
       ID
       title

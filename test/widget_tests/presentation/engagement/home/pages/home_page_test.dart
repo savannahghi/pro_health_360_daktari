@@ -41,7 +41,6 @@ void main() {
                 documentContentMock,
               ]
             },
-            'listContentCategories': categoriesMock,
           },
         }),
         201,
