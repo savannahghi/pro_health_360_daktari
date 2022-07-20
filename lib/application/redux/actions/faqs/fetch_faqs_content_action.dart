@@ -11,7 +11,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:prohealth360_daktari/application/core/graphql/queries.dart';
-import 'package:prohealth360_daktari/application/redux/actions/faqs/fetch_content_categories_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/faqs/update_faqs_content_action.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
@@ -32,7 +31,6 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
         timeoutFetchingFAQs: false,
       ),
     );
-    dispatch(FetchContentCategoriesAction(client: client));
     super.before();
   }
 
@@ -44,22 +42,12 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final int? faqCategoryId =
-        state.miscState?.categoriesList?.contentCategories
-            ?.firstWhere(
-              (ContentCategory? contentCategory) =>
-                  contentCategory?.name == 'pro-faqs',
-              orElse: () => ContentCategory.initial().copyWith(id: -1),
-            )
-            ?.id;
-
     final Map<String, dynamic> variables = <String, dynamic>{
-      'categoryID': faqCategoryId,
-      'Limit': '20',
+      'flavour': Flavour.pro.name,
     };
 
     final http.Response result = await client.query(
-      getContentQuery,
+      getFAQsQuery,
       variables,
     );
 
@@ -80,7 +68,7 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    final FeedContent profileFAQsData = FeedContent.fromJson(
+    final FAQContent profileFAQsData = FAQContent.fromJson(
       responseMap['data'] as Map<String, dynamic>,
     );
 
