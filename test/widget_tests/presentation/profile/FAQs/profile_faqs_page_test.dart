@@ -30,13 +30,12 @@ void main() {
     http.Response(
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
-          'getContent': <String, dynamic>{
+          'getFAQs': <String, dynamic>{
             'items': <dynamic>[
               contentMock.first,
               documentContentMock,
             ]
           },
-          'listContentCategories': categoriesMock,
         },
       }),
       201,
@@ -46,13 +45,6 @@ void main() {
 
   setUp(() {
     store = Store<AppState>(initialState: AppState.initial());
-    store.dispatch(
-      UpdateFAQsContentAction(
-        contentCategories: <ContentCategory>[
-          ContentCategory(id: 10002, name: 'pro-faqs', icon: 'test')
-        ],
-      ),
-    );
   });
   group('ProfileFaqsPage', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
@@ -86,7 +78,7 @@ void main() {
 
     testWidgets('Shows loading indicator when fetching FAQs',
         (WidgetTester tester) async {
-      store.dispatch(WaitAction<AppState>.add(fetchContentCategoriesFlag));
+      store.dispatch(WaitAction<AppState>.add(getFAQsFlag));
       final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
@@ -115,8 +107,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'listContentCategories': categoriesMock,
-              'getContent': <String, dynamic>{
+              'getFAQs': <String, dynamic>{
                 'items': <dynamic>[documentContentMock]
               }
             }
@@ -179,7 +170,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'getContent': <String, dynamic>{'items': <dynamic>[]},
+              'getFAQs': <String, dynamic>{'items': <dynamic>[]},
             },
           }),
           201,
@@ -280,13 +271,6 @@ void main() {
         'and there is no id', (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
-      store.dispatch(
-        UpdateFAQsContentAction(
-          contentCategories: <ContentCategory>[
-            ContentCategory(id: 0, name: 'test', icon: 'test')
-          ],
-        ),
-      );
       mockNetworkImages(() async {
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
@@ -325,8 +309,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'listContentCategories': categoriesMock,
-              'getContent': <String, dynamic>{
+              'getFAQs': <String, dynamic>{
                 'items': <dynamic>[contentMock.last]
               }
             }

@@ -8,17 +8,11 @@ class UpdateFAQsContentAction extends ReduxAction<AppState> {
     this.profileFAQs,
     this.errorFetchingFAQs,
     this.timeoutFetchingFAQs,
-    this.errorFetchingContentCategories,
-    this.timeoutFetchingContentCategories,
-    this.contentCategories,
   });
 
   final List<Content?>? profileFAQs;
   final bool? errorFetchingFAQs;
   final bool? timeoutFetchingFAQs;
-  final List<ContentCategory?>? contentCategories;
-  final bool? errorFetchingContentCategories;
-  final bool? timeoutFetchingContentCategories;
 
   @override
   AppState reduce() {
@@ -32,14 +26,6 @@ class UpdateFAQsContentAction extends ReduxAction<AppState> {
           state.miscState?.profileFAQsContentState?.timeoutFetchingFAQs,
     );
     final MiscState? miscState = state.miscState?.copyWith(
-      categoriesList: state.miscState?.categoriesList?.copyWith(
-        errorFetchingContentCategories: errorFetchingContentCategories ??
-            state.miscState?.categoriesList?.errorFetchingContentCategories,
-        timeoutFetchingContentCategories: timeoutFetchingContentCategories ??
-            state.miscState?.categoriesList?.timeoutFetchingContentCategories,
-        contentCategories: contentCategories ??
-            state.miscState?.categoriesList?.contentCategories,
-      ),
       profileFAQsContentState: newFAQsContentState,
     );
     return state.copyWith(

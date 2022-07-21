@@ -46,16 +46,13 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
             converter: (Store<AppState> store) =>
                 FAQsContentViewModel.fromStore(store.state),
             builder: (BuildContext context, FAQsContentViewModel vm) {
-              if ((vm.wait?.isWaitingFor(getFAQsFlag) ?? false) ||
-                  (vm.wait?.isWaitingFor(fetchContentCategoriesFlag) ??
-                      false)) {
+              if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
                   child: const PlatformLoader(),
                 );
-              } else if (vm.timeoutFetchingFAQs! ||
-                  vm.timeoutFetchingContentCategories!) {
+              } else if (vm.timeoutFetchingFAQs ?? false) {
                 return GenericErrorWidget(
                   actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
@@ -71,8 +68,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                     TextSpan(text: getErrorMessage(fetchingFAQsSting))
                   ],
                 );
-              } else if (vm.errorFetchingFAQs! ||
-                  vm.errorFetchingContentCategories!) {
+              } else if (vm.errorFetchingFAQs ?? false) {
                 return GenericErrorWidget(
                   actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {

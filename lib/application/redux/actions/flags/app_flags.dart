@@ -117,6 +117,3 @@ const String fetchNotificationsFlag = 'fetch_notifications_flag';
 // surveys
 const String fetchSurveysFlag = 'fetch_surveys_flag';
 const String sendSurveysFlag = 'send_surveys_flag';
-
-//content categories
-const String fetchContentCategoriesFlag = 'fetch_content_categories_flag';
