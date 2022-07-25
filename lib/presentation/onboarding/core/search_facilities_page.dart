@@ -122,34 +122,31 @@ class _SearchFacilitiesPageState extends State<SearchFacilitiesPage> {
                               right: 4.0,
                             ),
                             child: IconButton(
-                              onPressed: () {
-                                StoreProvider.dispatch(
-                                  context,
-                                  SearchFacilitiesAction(
-                                    client: AppWrapperBase.of(context)!
-                                        .graphQLClient,
-                                    onFailure: (String message) {
-                                      ScaffoldMessenger.of(context)
-                                        ..hideCurrentSnackBar()
-                                        ..showSnackBar(
-                                          SnackBar(
-                                            content: const Text(
-                                              connectionLostText,
-                                            ),
-                                            duration:
-                                                const Duration(seconds: 5),
-                                            action: dismissSnackBar(
-                                              closeString,
-                                              Colors.white,
-                                              context,
-                                            ),
+                              onPressed: () => StoreProvider.dispatch(
+                                context,
+                                SearchFacilitiesAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                  onFailure: (String message) {
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                            connectionLostText,
                                           ),
-                                        );
-                                    },
-                                    mflCode: facilitySearchCode,
-                                  ),
-                                );
-                              },
+                                          duration: const Duration(seconds: 5),
+                                          action: dismissSnackBar(
+                                            closeString,
+                                            Colors.white,
+                                            context,
+                                          ),
+                                        ),
+                                      );
+                                  },
+                                  mflCode: facilitySearchCode,
+                                ),
+                              ),
                               icon: const Icon(Icons.search),
                             ),
                           ),
@@ -252,7 +249,8 @@ class _SearchFacilitiesPageState extends State<SearchFacilitiesPage> {
                                   ),
                                 );
                             },
-                            messageTitle: getNoDataTile(noAvailableFacilitiesText),
+                            messageTitle:
+                                getNoDataTile(noAvailableFacilitiesText),
                             messageBody: <TextSpan>[
                               TextSpan(
                                 text: noAvailableMemberDescription,

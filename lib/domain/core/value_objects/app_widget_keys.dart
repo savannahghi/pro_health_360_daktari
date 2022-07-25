@@ -182,3 +182,5 @@ const Key sendClientInviteButtonKey = Key('send_client_invite_button_key');
 const Key resendClientInviteButtonKey = Key('resend_client_invite_button_key');
 const Key searchFacilityIconBtnKey = Key('search_facility_icon_btn_key');
 const Key searchNotFoundKey = Key('search_not_found_key');
+
+const Key searchIconButtonKey = Key('search_icon_button_key');

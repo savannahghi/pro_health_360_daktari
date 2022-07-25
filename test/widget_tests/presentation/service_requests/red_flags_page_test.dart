@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
@@ -31,12 +32,23 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const RedFlagsPage(),
+        widget: RedFlagsPage(),
       );
       await tester.pumpAndSettle();
       final Finder redFlagItem = find.byType(RedFlagListItem);
 
       expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(redFlagItem, findsNWidgets(5));
+
+      final Finder searchNameFinder = find.byType(CustomTextField);
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, 'test');
+
+      final Finder searchBtn = find.byType(IconButton);
+      await tester.tap(searchBtn);
+      await tester.pumpAndSettle();
+
       expect(redFlagItem, findsNWidgets(5));
     });
 
@@ -46,7 +58,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const RedFlagsPage(),
+        widget: RedFlagsPage(),
       );
       await tester.pumpAndSettle();
 
@@ -73,7 +85,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: MockTestGraphQlClient(),
-        widget: const RedFlagsPage(),
+        widget: RedFlagsPage(),
       );
       await tester.pumpAndSettle();
       final Finder redFlagListItem = find.byType(RedFlagListItem);
@@ -83,6 +95,50 @@ void main() {
 
       expect(find.byType(RedFlagActionsPage), findsOneWidget);
     });
+
+    testWidgets(
+      'should show GenericErrorWidget when there is no red flags when searching',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getServiceRequests': mockServiceRequestsResponse,
+                'searchServiceRequests': <dynamic>[]
+              }
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          graphQlClient: mockShortGraphQlClient,
+          store: store,
+          widget: RedFlagsPage(),
+        );
+        await tester.pumpAndSettle();
+        final Finder redFlagItem = find.byType(RedFlagListItem);
+
+        expect(find.byType(CustomAppBar), findsOneWidget);
+        expect(redFlagItem, findsNWidgets(5));
+
+        final Finder searchNameFinder = find.byType(CustomTextField);
+        expect(searchNameFinder, findsOneWidget);
+        await tester.tap(searchNameFinder);
+        await tester.enterText(searchNameFinder, 'test');
+
+        final Finder searchBtn = find.byType(IconButton);
+        await tester.tap(searchBtn);
+        await tester.pumpAndSettle();
+
+        expect(redFlagItem, findsNothing);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
+      },
+    );
 
     testWidgets(
       'should show an error widget when fetching red flags',
@@ -101,7 +157,7 @@ void main() {
           tester: tester,
           store: store,
           graphQlClient: mockShortGraphQlClient,
-          widget: const RedFlagsPage(),
+          widget: RedFlagsPage(),
         );
 
         await tester.pumpAndSettle();
@@ -137,7 +193,7 @@ void main() {
         tester: tester,
         store: store,
         graphQlClient: mockShortGraphQlClient,
-        widget: const RedFlagsPage(),
+        widget: RedFlagsPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
@@ -161,7 +217,7 @@ void main() {
         tester: tester,
         graphQlClient: mockShortGraphQlClient,
         store: store,
-        widget: const RedFlagsPage(),
+        widget: RedFlagsPage(),
       );
       await tester.pumpAndSettle();
 

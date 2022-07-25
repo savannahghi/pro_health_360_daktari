@@ -55,6 +55,19 @@ void main() {
                   }
                 }
               ],
+              'searchServiceRequests': <Map<String, dynamic>>[
+                <String, dynamic>{
+                  'ID': 'some-id',
+                  'RequestType': 'PIN_RESET',
+                  'ClientName': 'John Doe',
+                  'ClientContact': '+254798000000',
+                  'Status': 'PENDING',
+                  'Meta': <String, dynamic>{
+                    'ccc_number': '12345678',
+                    'is_ccc_number_valid': true,
+                  }
+                },
+              ],
             }
           }),
           201,
@@ -76,6 +89,16 @@ void main() {
       expect(acceptFinder, findsOneWidget);
 
       await tester.tap(acceptFinder);
+      await tester.pumpAndSettle();
+      expect(find.text(pinApprovedSuccessText), findsOneWidget);
+
+      final Finder searchNameFinder = find.byType(CustomTextField);
+      final Finder searchIconButton = find.byKey(searchIconButtonKey);
+      expect(searchNameFinder, findsOneWidget);
+      await tester.tap(searchNameFinder);
+      await tester.enterText(searchNameFinder, 'test');
+
+      await tester.tap(searchIconButton);
       await tester.pumpAndSettle();
       expect(find.text(pinApprovedSuccessText), findsOneWidget);
     });
@@ -279,5 +302,98 @@ void main() {
       await tester.tap(phoneIcon);
       await tester.pumpAndSettle();
     });
+
+    testWidgets(
+      'should show GenericErrorWidget when there is no PIN resets when searching',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getServiceRequests': <Map<String, dynamic>>[
+                  <String, dynamic>{
+                    'ID': 'some-id',
+                    'RequestType': 'PIN_RESET',
+                    'ClientName': 'John Doe',
+                    'ClientContact': '+254798000000',
+                    'Status': 'PENDING',
+                    'Meta': <String, dynamic>{
+                      'ccc_number': '12345678',
+                      'is_ccc_number_valid': true,
+                    }
+                  }
+                ],
+                'searchServiceRequests': <dynamic>[]
+              }
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          graphQlClient: mockShortGraphQlClient,
+          store: store,
+          widget: const PinResetRequestsPage(),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byType(PinResetRequestsPage), findsOneWidget);
+
+        final Finder acceptFinder =
+            find.byKey(const ValueKey<String>('accept_key_some-id'));
+
+        expect(acceptFinder, findsOneWidget);
+
+        final Finder searchNameFinder = find.byType(CustomTextField);
+        final Finder searchIconButton = find.byKey(searchIconButtonKey);
+        expect(searchNameFinder, findsOneWidget);
+        await tester.tap(searchNameFinder);
+        await tester.enterText(searchNameFinder, 'test');
+
+        await tester.tap(searchIconButton);
+        await tester.pumpAndSettle();
+
+        expect(acceptFinder, findsNothing);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
+      },
+    );
+    testWidgets(
+      'should show an error widget when fetching PIN reset requests',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'some error occurred'}),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          graphQlClient: mockShortGraphQlClient,
+          store: store,
+          widget: const PinResetRequestsPage(),
+        );
+
+        await tester.pumpAndSettle();
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
+
+        expect(genericNoDataButton, findsOneWidget);
+
+        /// Refresh and expect the same thing
+        await tester.ensureVisible(genericNoDataButton);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
+
+        await tester.pumpAndSettle();
+        expect(genericNoDataButton, findsOneWidget);
+      },
+    );
   });
 }

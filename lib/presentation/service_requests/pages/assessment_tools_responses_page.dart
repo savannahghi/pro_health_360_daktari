@@ -22,9 +22,7 @@ class AssessmentToolResponsesPage extends StatefulWidget {
     Key? key,
     required this.screeningToolsType,
   }) : super(key: key);
-
   final ScreeningToolsType screeningToolsType;
-
   @override
   State<AssessmentToolResponsesPage> createState() =>
       _AssessmentToolResponsesPageState();
