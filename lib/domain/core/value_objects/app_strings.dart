@@ -435,6 +435,13 @@ String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
 String fetchingResolvedRedFlagsString =
     'fetching ${redFlagString.toLowerCase()}';
+String fetchingPINResetRequestsString =
+    'fetching $pinResetRequestsTitle';
+String fetchingStaffPINResetRequestsString =
+    'fetching $staffPinResetRequestsTitle';
+String redFlagsSearchBarString = 'Search using their name or phone number...';
+String redFlagsDescString =
+    "These are responses captured in the client's health diary entries";
 
 String fetchingPendingServiceString = 'fetching pending service requests';
 
@@ -525,14 +532,19 @@ const String noAvailableMemberDescription =
 const String inviteMembersSuccessfulText = 'Members invited successfully';
 const String noMemberFoundText = 'No member found with that name';
 const String noFacilityFoundText = 'No facility found with that code';
+const String noRecordFoundText = 'No record found with that keyword';
 const String couldNotFindAMemberText =
     'It seems like we could not find a member by the name ';
 const String couldNotFindFacilityText =
     'It seems like we could not find a facility by the code ';
+const String couldNotFindRedFlagsText =
+    'It seems like we could not find any red flags by the keyword ';
 const String confirmTheNamesAreCorrectText =
-    '. Confirm that the names are correct before searching again, or use different names';
+    '. Confirm that the names are correct before searching again, or use different names.';
 const String confirmTheCodeIsCorrectText =
-    '. Confirm that the code is correct before searching again';
+    '. Confirm that the code is correct before searching again.';
+const String confirmTheKeywordIsCorrectText =
+    '. Confirm that the keyword is correct before searching again';
 const String staffMemberText = 'Staff member';
 
 // group info

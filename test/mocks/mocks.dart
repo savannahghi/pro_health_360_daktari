@@ -805,6 +805,16 @@ class MockTestGraphQlClient extends IGraphQlClient {
         ),
       );
     }
+    if (queryString.contains(searchServiceRequestsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': mockSearchServiceRequests,
+          }),
+          201,
+        ),
+      );
+    }
 
     if (queryString.contains(getResolvedServiceRequestsQuery)) {
       return Future<http.Response>.value(
@@ -1426,97 +1436,103 @@ final Map<String, dynamic> mockStaffState = <String, dynamic>{
     'tokenExpiryTime': 'UNKNOWN'
   }
 };
+
+final List<dynamic> mockServiceRequestsResponse = <dynamic>[
+  <String, dynamic>{
+    'ID': 'test',
+    'RequestType': 'RED_FLAG',
+    'Request': 'test',
+    'ClientID': 'test',
+    'FacilityID': 'test',
+    'ClientName': 'test',
+    'ClientContact': 'test',
+    'ResolvedAt': 'test',
+    'ResolvedBy': 'test',
+    'ResolvedByName': 'test',
+    'CreatedAt': '2022-02-09T08:40:46Z'
+  },
+  <String, dynamic>{
+    'ID': 'test',
+    'RequestType': 'STAFF_PIN_RESET',
+    'Request': 'I have not been myself lately',
+    'ClientID': 'test',
+    'FacilityID': 'test',
+    'ClientName': 'Calvin Ojiambo',
+    'ClientContact': '+254712345678',
+    'StaffName': 'Calvin Ojiambo',
+    'StaffContact': '+254712345678',
+    'ResolvedAt': '2022-02-09T08:40:46Z',
+    'ResolvedBy': 'test',
+    'ResolvedByName': 'test',
+    'CreatedAt': '2022-02-09T08:40:46Z',
+    'Meta': <String, dynamic>{
+      'ccc_number': '1234567890',
+      'is_ccc_number_valid': true
+    }
+  },
+  <String, dynamic>{
+    'ID': 'test',
+    'RequestType': 'PIN_RESET',
+    'Request': 'I am feeling very bad',
+    'ClientID': 'test',
+    'FacilityID': 'test',
+    'ClientName': 'Jenny McLaren',
+    'ClientContact': '+254712345678',
+    'StaffName': 'Jenny McLaren',
+    'StaffContact': '+254712345678',
+    'ResolvedAt': 'test',
+    'ResolvedBy': 'test',
+    'ResolvedByName': 'test',
+    'CreatedAt': '2022-02-09T08:40:46Z',
+    'Meta': <String, dynamic>{
+      'ccc_number': '1234567890',
+      'is_ccc_number_valid': false
+    }
+  },
+  <String, dynamic>{
+    'ID': 'test',
+    'RequestType': 'SCREENING_TOOLS_RED_FLAG',
+    'Request': 'I have not been myself lately',
+    'ClientID': 'test',
+    'FacilityID': 'test',
+    'ClientName': 'Calvin Ojiambo',
+    'ClientContact': '+254712345678',
+    'StaffName': 'Calvin Ojiambo',
+    'StaffContact': '+254712345678',
+    'ResolvedAt': '2022-02-09T08:40:46Z',
+    'ResolvedBy': 'test',
+    'ResolvedByName': 'test',
+    'CreatedAt': '2022-02-09T08:40:46Z',
+    'Meta': <String, dynamic>{
+      'ccc_number': '1234567890',
+      'is_ccc_number_valid': true
+    }
+  },
+  <String, dynamic>{
+    'ID': 'test',
+    'Request': 'I have not been myself lately',
+    'ClientID': 'test',
+    'FacilityID': 'test',
+    'ClientName': 'Calvin Ojiambo',
+    'ClientContact': '+254712345678',
+    'StaffName': 'Calvin Ojiambo',
+    'StaffContact': '+254712345678',
+    'ResolvedAt': '2022-02-09T08:40:46Z',
+    'ResolvedBy': 'test',
+    'ResolvedByName': 'test',
+    'CreatedAt': '2022-02-09T08:40:46Z',
+    'Meta': <String, dynamic>{
+      'ccc_number': '1234567890',
+      'is_ccc_number_valid': true
+    }
+  },
+];
+
 final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
-  'getServiceRequests': <dynamic>[
-    <String, dynamic>{
-      'ID': 'test',
-      'RequestType': 'RED_FLAG',
-      'Request': 'test',
-      'ClientID': 'test',
-      'FacilityID': 'test',
-      'ClientName': 'test',
-      'ClientContact': 'test',
-      'ResolvedAt': 'test',
-      'ResolvedBy': 'test',
-      'ResolvedByName': 'test',
-      'CreatedAt': '2022-02-09T08:40:46Z'
-    },
-    <String, dynamic>{
-      'ID': 'test',
-      'RequestType': 'STAFF_PIN_RESET',
-      'Request': 'I have not been myself lately',
-      'ClientID': 'test',
-      'FacilityID': 'test',
-      'ClientName': 'Calvin Ojiambo',
-      'ClientContact': '+254712345678',
-      'StaffName': 'Calvin Ojiambo',
-      'StaffContact': '+254712345678',
-      'ResolvedAt': '2022-02-09T08:40:46Z',
-      'ResolvedBy': 'test',
-      'ResolvedByName': 'test',
-      'CreatedAt': '2022-02-09T08:40:46Z',
-      'Meta': <String, dynamic>{
-        'ccc_number': '1234567890',
-        'is_ccc_number_valid': true
-      }
-    },
-    <String, dynamic>{
-      'ID': 'test',
-      'RequestType': 'PIN_RESET',
-      'Request': 'I am feeling very bad',
-      'ClientID': 'test',
-      'FacilityID': 'test',
-      'ClientName': 'Jenny McLaren',
-      'ClientContact': '+254712345678',
-      'StaffName': 'Jenny McLaren',
-      'StaffContact': '+254712345678',
-      'ResolvedAt': 'test',
-      'ResolvedBy': 'test',
-      'ResolvedByName': 'test',
-      'CreatedAt': '2022-02-09T08:40:46Z',
-      'Meta': <String, dynamic>{
-        'ccc_number': '1234567890',
-        'is_ccc_number_valid': false
-      }
-    },
-    <String, dynamic>{
-      'ID': 'test',
-      'RequestType': 'SCREENING_TOOLS_RED_FLAG',
-      'Request': 'I have not been myself lately',
-      'ClientID': 'test',
-      'FacilityID': 'test',
-      'ClientName': 'Calvin Ojiambo',
-      'ClientContact': '+254712345678',
-      'StaffName': 'Calvin Ojiambo',
-      'StaffContact': '+254712345678',
-      'ResolvedAt': '2022-02-09T08:40:46Z',
-      'ResolvedBy': 'test',
-      'ResolvedByName': 'test',
-      'CreatedAt': '2022-02-09T08:40:46Z',
-      'Meta': <String, dynamic>{
-        'ccc_number': '1234567890',
-        'is_ccc_number_valid': true
-      }
-    },
-    <String, dynamic>{
-      'ID': 'test',
-      'Request': 'I have not been myself lately',
-      'ClientID': 'test',
-      'FacilityID': 'test',
-      'ClientName': 'Calvin Ojiambo',
-      'ClientContact': '+254712345678',
-      'StaffName': 'Calvin Ojiambo',
-      'StaffContact': '+254712345678',
-      'ResolvedAt': '2022-02-09T08:40:46Z',
-      'ResolvedBy': 'test',
-      'ResolvedByName': 'test',
-      'CreatedAt': '2022-02-09T08:40:46Z',
-      'Meta': <String, dynamic>{
-        'ccc_number': '1234567890',
-        'is_ccc_number_valid': true
-      }
-    },
-  ]
+  'getServiceRequests': mockServiceRequestsResponse
+};
+final Map<String, dynamic> mockSearchServiceRequests = <String, dynamic>{
+  'searchServiceRequests': mockServiceRequestsResponse
 };
 
 final Map<String, dynamic> groupStateMock = <String, dynamic>{

@@ -297,7 +297,7 @@ class RouteGenerator {
 
       case AppRoutes.redFlagsPage:
         return MaterialPageRoute<RedFlagsPage>(
-          builder: (_) => const RedFlagsPage(),
+          builder: (_) => RedFlagsPage(),
           settings: const RouteSettings(name: 'Red flags page'),
         );
 
