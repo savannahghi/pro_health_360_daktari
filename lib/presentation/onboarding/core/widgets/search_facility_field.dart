@@ -68,6 +68,8 @@ class _SearchFacilityFieldState extends State<SearchFacilityField> {
             if (isFacilityChosen) {
               widget.onChanged.call(facilityName);
               _controller.text = facilityName;
+            } else {
+              _controller.clear();
             }
             return TextFormField(
               controller: _controller,
