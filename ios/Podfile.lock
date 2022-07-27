@@ -187,9 +187,9 @@ PODS:
     - FlutterMacOS
   - PromisesObjC (2.1.1)
   - ReachabilitySwift (5.0.0)
-  - SDWebImage (5.13.1):
-    - SDWebImage/Core (= 5.13.1)
-  - SDWebImage/Core (5.13.1)
+  - SDWebImage (5.13.0):
+    - SDWebImage/Core (= 5.13.0)
+  - SDWebImage/Core (5.13.0)
   - Sentry (7.19.0):
     - Sentry/Core (= 7.19.0)
   - Sentry/Core (7.19.0)
@@ -352,7 +352,7 @@ SPEC CHECKSUMS:
   photo_manager: 4f6810b7dfc4feb03b461ac1a70dacf91fba7604
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca
+  SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
   Sentry: d6b16e66a0ad0c39a0b76d9a1194e68e78c37ce6
   sentry_flutter: 609b096af497fa64af7c6c94e792d0780aa472a6
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68

@@ -265,6 +265,7 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed',
   'id': 'some-id',
+  'title': 'title',
 };
 Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
   'fetchNotifications': <String, dynamic>{
@@ -279,7 +280,8 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'isRead': false,
         'createdAt': '2022-04-28T07:00:20Z',
         'actions': <dynamic>[mockNotificationActions],
-        'status': 'Missed'
+        'status': 'Missed',
+        'description': 'Your Teleconsult ',
       },
     ]
   }
@@ -761,6 +763,17 @@ class MockTestGraphQlClient extends IGraphQlClient {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{'completeOnboardingTour': true}
           }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains(fetchNotificationFilters)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{'data': mockNotificationFiltersResponse},
+          ),
           201,
         ),
       );
@@ -1533,6 +1546,13 @@ final Map<String, dynamic> mockServiceRequests = <String, dynamic>{
 };
 final Map<String, dynamic> mockSearchServiceRequests = <String, dynamic>{
   'searchServiceRequests': mockServiceRequestsResponse
+};
+
+final Map<String, dynamic> mockNotificationFiltersResponse = <String, dynamic>{
+  'fetchNotificationTypeFilters': <dynamic>[
+    <String, dynamic>{'name': 'Communities', 'enum': 'COMMUNITIES'},
+    <String, dynamic>{'name': 'Moderator Demotion', 'enum': 'DEMOTE_MODERATOR'},
+  ]
 };
 
 final Map<String, dynamic> groupStateMock = <String, dynamic>{

@@ -13,9 +13,24 @@ import 'package:prohealth360_daktari/domain/core/entities/notification/notificat
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchNotificationsAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
+  FetchNotificationsAction({
+    required this.client,
+    this.filters,
+    this.isRead = true,
+  });
 
-  FetchNotificationsAction({required this.client});
+  final IGraphQlClient client;
+  // any filters that may be needed to be applied
+  final String? filters;
+
+  // if to only fetch Read notifications and defaults to false
+  final bool? isRead;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
+    super.after();
+  }
 
   @override
   void before() {
@@ -25,19 +40,17 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
   }
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
-    super.after();
-  }
-
-  @override
   Future<AppState?> reduce() async {
     final String userID = state.staffState?.user?.userId ?? '';
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
       'flavour': Flavour.pro.name,
-      'paginationInput': <String, dynamic>{'Limit': 10, 'CurrentPage': 1}
+      'paginationInput': <String, dynamic>{'Limit': 10, 'CurrentPage': 1},
+      'filters': <String, dynamic>{
+        'notificationTypes': filters,
+        'isRead': isRead,
+      }
     };
 
     final Response response =
@@ -47,7 +60,6 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
-      client.close();
 
       final String? errors = client.parseError(body);
 

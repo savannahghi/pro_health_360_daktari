@@ -42,6 +42,8 @@ mixin _$StaffState {
       throw _privateConstructorUsedError; // staff notifications
   List<NotificationDetails?>? get notifications =>
       throw _privateConstructorUsedError;
+  NotificationFilterState? get notificationFilterState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,10 +67,12 @@ abstract class $StaffStateCopyWith<$Res> {
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      List<NotificationDetails?>? notifications});
+      List<NotificationDetails?>? notifications,
+      NotificationFilterState? notificationFilterState});
 
   $UserCopyWith<$Res>? get user;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
+  $NotificationFilterStateCopyWith<$Res>? get notificationFilterState;
 }
 
 /// @nodoc
@@ -92,6 +96,7 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
     Object? communitiesState = freezed,
     Object? clientSharedDiaryEntries = freezed,
     Object? notifications = freezed,
+    Object? notificationFilterState = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -138,6 +143,10 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
           ? _value.notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationDetails?>?,
+      notificationFilterState: notificationFilterState == freezed
+          ? _value.notificationFilterState
+          : notificationFilterState // ignore: cast_nullable_to_non_nullable
+              as NotificationFilterState?,
     ));
   }
 
@@ -162,6 +171,18 @@ class _$StaffStateCopyWithImpl<$Res> implements $StaffStateCopyWith<$Res> {
       return _then(_value.copyWith(communitiesState: value));
     });
   }
+
+  @override
+  $NotificationFilterStateCopyWith<$Res>? get notificationFilterState {
+    if (_value.notificationFilterState == null) {
+      return null;
+    }
+
+    return $NotificationFilterStateCopyWith<$Res>(
+        _value.notificationFilterState!, (value) {
+      return _then(_value.copyWith(notificationFilterState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -182,12 +203,15 @@ abstract class _$$_StaffStateCopyWith<$Res>
       @JsonKey(name: 'user') User? user,
       CommunitiesState? communitiesState,
       List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      List<NotificationDetails?>? notifications});
+      List<NotificationDetails?>? notifications,
+      NotificationFilterState? notificationFilterState});
 
   @override
   $UserCopyWith<$Res>? get user;
   @override
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
+  @override
+  $NotificationFilterStateCopyWith<$Res>? get notificationFilterState;
 }
 
 /// @nodoc
@@ -213,6 +237,7 @@ class __$$_StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
     Object? communitiesState = freezed,
     Object? clientSharedDiaryEntries = freezed,
     Object? notifications = freezed,
+    Object? notificationFilterState = freezed,
   }) {
     return _then(_$_StaffState(
       id: id == freezed
@@ -259,6 +284,10 @@ class __$$_StaffStateCopyWithImpl<$Res> extends _$StaffStateCopyWithImpl<$Res>
           ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationDetails?>?,
+      notificationFilterState: notificationFilterState == freezed
+          ? _value.notificationFilterState
+          : notificationFilterState // ignore: cast_nullable_to_non_nullable
+              as NotificationFilterState?,
     ));
   }
 }
@@ -277,7 +306,8 @@ class _$_StaffState implements _StaffState {
       @JsonKey(name: 'user') this.user,
       this.communitiesState,
       final List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      final List<NotificationDetails?>? notifications})
+      final List<NotificationDetails?>? notifications,
+      this.notificationFilterState})
       : _facilities = facilities,
         _clientSharedDiaryEntries = clientSharedDiaryEntries,
         _notifications = notifications;
@@ -342,8 +372,11 @@ class _$_StaffState implements _StaffState {
   }
 
   @override
+  final NotificationFilterState? notificationFilterState;
+
+  @override
   String toString() {
-    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, defaultFacilityName: $defaultFacilityName, user: $user, communitiesState: $communitiesState, clientSharedDiaryEntries: $clientSharedDiaryEntries, notifications: $notifications)';
+    return 'StaffState(id: $id, userId: $userId, active: $active, staffNumber: $staffNumber, facilities: $facilities, defaultFacility: $defaultFacility, defaultFacilityName: $defaultFacilityName, user: $user, communitiesState: $communitiesState, clientSharedDiaryEntries: $clientSharedDiaryEntries, notifications: $notifications, notificationFilterState: $notificationFilterState)';
   }
 
   @override
@@ -368,7 +401,9 @@ class _$_StaffState implements _StaffState {
             const DeepCollectionEquality().equals(
                 other._clientSharedDiaryEntries, _clientSharedDiaryEntries) &&
             const DeepCollectionEquality()
-                .equals(other._notifications, _notifications));
+                .equals(other._notifications, _notifications) &&
+            const DeepCollectionEquality().equals(
+                other.notificationFilterState, notificationFilterState));
   }
 
   @JsonKey(ignore: true)
@@ -385,7 +420,8 @@ class _$_StaffState implements _StaffState {
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(communitiesState),
       const DeepCollectionEquality().hash(_clientSharedDiaryEntries),
-      const DeepCollectionEquality().hash(_notifications));
+      const DeepCollectionEquality().hash(_notifications),
+      const DeepCollectionEquality().hash(notificationFilterState));
 
   @JsonKey(ignore: true)
   @override
@@ -410,7 +446,8 @@ abstract class _StaffState implements StaffState {
       @JsonKey(name: 'user') final User? user,
       final CommunitiesState? communitiesState,
       final List<HealthDiaryEntry?>? clientSharedDiaryEntries,
-      final List<NotificationDetails?>? notifications}) = _$_StaffState;
+      final List<NotificationDetails?>? notifications,
+      final NotificationFilterState? notificationFilterState}) = _$_StaffState;
 
   factory _StaffState.fromJson(Map<String, dynamic> json) =
       _$_StaffState.fromJson;
@@ -446,6 +483,9 @@ abstract class _StaffState implements StaffState {
       throw _privateConstructorUsedError;
   @override // staff notifications
   List<NotificationDetails?>? get notifications =>
+      throw _privateConstructorUsedError;
+  @override
+  NotificationFilterState? get notificationFilterState =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

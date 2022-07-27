@@ -300,7 +300,7 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           as _i3.Future<_i2.UpdateMessageResponse>);
   @override
   _i3.Future<_i2.SendFileResponse> sendFile(_i2.AttachmentFile? file,
-          {_i2.ProgressCallback? onSendProgress,
+          {_i4.ProgressCallback? onSendProgress,
           _i4.CancelToken? cancelToken,
           Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(
@@ -316,7 +316,7 @@ class MockChannel extends _i1.Mock implements _i2.Channel {
           as _i3.Future<_i2.SendFileResponse>);
   @override
   _i3.Future<_i2.SendImageResponse> sendImage(_i2.AttachmentFile? file,
-          {_i2.ProgressCallback? onSendProgress,
+          {_i4.ProgressCallback? onSendProgress,
           _i4.CancelToken? cancelToken,
           Map<String, Object?>? extraData}) =>
       (super.noSuchMethod(

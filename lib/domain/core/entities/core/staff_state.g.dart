@@ -35,6 +35,10 @@ _$_StaffState _$$_StaffStateFromJson(Map<String, dynamic> json) =>
               ? null
               : NotificationDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
+      notificationFilterState: json['notificationFilterState'] == null
+          ? null
+          : NotificationFilterState.fromJson(
+              json['notificationFilterState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
@@ -50,4 +54,5 @@ Map<String, dynamic> _$$_StaffStateToJson(_$_StaffState instance) =>
       'communitiesState': instance.communitiesState,
       'clientSharedDiaryEntries': instance.clientSharedDiaryEntries,
       'notifications': instance.notifications,
+      'notificationFilterState': instance.notificationFilterState,
     };

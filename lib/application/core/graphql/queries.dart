@@ -305,11 +305,13 @@ query listNotifications(
   $flavour: Flavour!
   $userID: ID!
   $paginationInput: PaginationsInput!
+  $filters: NotificationFilters
 ) {
   fetchNotifications(
     flavour: $flavour
     userID: $userID
     paginationInput: $paginationInput
+    filters: $filters
   ) {
     notifications {
       id
@@ -415,6 +417,15 @@ query retrieveFacility($id: String!, $active: Boolean!){
     name
     code
     phone
+  }
+}
+''';
+
+const String fetchNotificationFilters = r'''
+query fetchNotificationTypeFilters($flavour: Flavour!) {
+  fetchNotificationTypeFilters(flavour: $flavour) {
+  name,
+  enum  
   }
 }
 ''';

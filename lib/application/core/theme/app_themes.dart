@@ -88,6 +88,7 @@ class AppColors {
   static const Color verySadColor = Color(0xffFF642A);
   static const Color searchBackgroundColor = Color(0xffeeeeee);
   static const Color searchIconColor = Color(0xff8f8fa2);
+  static const Color unSelectedReactionBackgroundColor = Color(0xffeaebf4);
 }
 
 class ThemeColors {

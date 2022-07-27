@@ -920,3 +920,5 @@ const String referredToCommunityString = 'Referred to community services';
 const String noFacilityContactsTitle = 'No facility contacts available';
 const String noFacilityContactsDescription =
     'No Worries though. They will show up here once they have been added';
+const String all = 'All';
+const String unread = 'Unread';
