@@ -48,6 +48,25 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
 }
 ''';
 
+const String searchServiceRequestsQuery = r'''
+query searchServiceRequests($searchTerm: String!, $flavour: Flavour!, $requestType: String!){
+  searchServiceRequests(searchTerm: $searchTerm, flavour: $flavour, requestType: $requestType){
+      ID
+    RequestType
+    ClientName
+    StaffName
+    Status
+    ClientID
+    CreatedAt
+    StaffContact
+    ClientContact
+    Meta
+    ClientContact
+    StaffContact
+  }
+}
+''';
+
 const String getResolvedServiceRequestsQuery = r'''
 query getServiceRequests($type: String, $status: String, $facilityID: String!, $flavour: Flavour!){
   getServiceRequests(requestType: $type, requestStatus: $status, facilityID: $facilityID, flavour: $flavour){

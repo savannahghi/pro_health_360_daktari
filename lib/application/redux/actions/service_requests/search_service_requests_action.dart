@@ -8,20 +8,20 @@ import 'package:prohealth360_daktari/application/redux/actions/flags/app_flags.d
 import 'package:prohealth360_daktari/application/redux/actions/service_requests/update_service_requests_state_action.dart';
 import 'package:prohealth360_daktari/application/redux/states/app_state.dart';
 import 'package:http/http.dart';
+import 'package:prohealth360_daktari/domain/core/entities/service_requests/search_service_request_response.dart';
 import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request.dart';
-import 'package:prohealth360_daktari/domain/core/entities/service_requests/service_request_response.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class FetchServiceRequestsAction extends ReduxAction<AppState> {
+class SearchServiceRequestsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
-  final RequestStatus serviceRequestStatus;
+  final String searchTerm;
   final ServiceRequestType? serviceRequestType;
   final Flavour flavour;
 
-  FetchServiceRequestsAction({
+  SearchServiceRequestsAction({
     required this.client,
-    required this.serviceRequestStatus,
+    required this.searchTerm,
     required this.flavour,
     this.serviceRequestType,
   });
@@ -45,17 +45,14 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String facilityID = state.staffState?.defaultFacility ?? '';
-
     final Map<String, dynamic> variables = <String, dynamic>{
-      'status': serviceRequestStatus.name,
-      'facilityID': facilityID,
-      'type': serviceRequestType?.name,
+      'searchTerm': searchTerm,
+      'requestType': serviceRequestType?.name,
       'flavour': flavour.name,
     };
 
     final Response response = await client.query(
-      getServiceRequestsQuery,
+      searchServiceRequestsQuery,
       variables,
     );
     client.close();
@@ -67,16 +64,11 @@ class FetchServiceRequestsAction extends ReduxAction<AppState> {
     if (error != null) {
       Sentry.captureException(UserException(error));
 
-      dispatch(
-        UpdateServiceRequestsStateAction(
-          errorFetchingPendingServiceRequests: true,
-        ),
-      );
-      return null;
+      throw UserException(getErrorMessage('searching'));
     }
 
-    final ServiceRequestResponse serviceRequestResponse =
-        ServiceRequestResponse.fromJson(
+    final SearchServiceRequestResponse serviceRequestResponse =
+        SearchServiceRequestResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
     if (serviceRequestType == ServiceRequestType.STAFF_PIN_RESET) {
