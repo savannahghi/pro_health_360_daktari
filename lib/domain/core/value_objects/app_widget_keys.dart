@@ -31,7 +31,6 @@ const Key contentCardKey = Key('content_card_key');
 const Key surveysCardKey = Key('surveys_card_key');
 const Key faqsCardKey = Key('faqs_card_key');
 
-
 //Service Requests keys
 const Key pinRequestApproveButtonKey = Key('pin_request_approve_button_key');
 const Key pinRequestApproveCheckboxKey =
@@ -165,7 +164,8 @@ const Key clientPINResetActionCardKey = Key('client_pin_reset_action_card_key');
 const Key staffPINResetActionCardKey = Key('staff_pin_reset_action_card_key');
 const Key lowerBoundKey = Key('lower_bound_key');
 const Key higherBoundKey = Key('higher_bound_key');
-const Key serviceRequestNotesTextFieldKey = Key('service_request_notes_text_field_key');
+const Key serviceRequestNotesTextFieldKey =
+    Key('service_request_notes_text_field_key');
 
 const Key resolveRequestButtonKey = Key('resolve_request_button_key');
 
@@ -184,3 +184,5 @@ const Key searchFacilityIconBtnKey = Key('search_facility_icon_btn_key');
 const Key searchNotFoundKey = Key('search_not_found_key');
 
 const Key searchIconButtonKey = Key('search_icon_button_key');
+const Key notificationFiltersKey = Key('notification_filters_key');
+const Key notificationsListViewKey = Key('notifications_list_view_key');
