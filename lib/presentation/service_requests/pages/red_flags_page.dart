@@ -119,7 +119,7 @@ class _RedFlagsPageState extends State<RedFlagsPage> {
                                     SearchServiceRequestsAction(
                                       client: AppWrapperBase.of(context)!
                                           .graphQLClient,
-                                      flavour: Flavour.pro,
+                                      flavour: Flavour.consumer,
                                       serviceRequestType:
                                           ServiceRequestType.RED_FLAG,
                                       searchTerm: searchKeyWord,

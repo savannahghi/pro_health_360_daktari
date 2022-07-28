@@ -45,8 +45,11 @@ class SearchServiceRequestsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final String facilityID = state.staffState?.defaultFacility ?? '';
+
     final Map<String, dynamic> variables = <String, dynamic>{
       'searchTerm': searchTerm,
+      'facilityID': facilityID,
       'requestType': serviceRequestType?.name,
       'flavour': flavour.name,
     };
