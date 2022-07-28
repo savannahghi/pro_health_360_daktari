@@ -49,9 +49,9 @@ query getServiceRequests($type: String, $status: String, $facilityID: String!, $
 ''';
 
 const String searchServiceRequestsQuery = r'''
-query searchServiceRequests($searchTerm: String!, $flavour: Flavour!, $requestType: String!){
-  searchServiceRequests(searchTerm: $searchTerm, flavour: $flavour, requestType: $requestType){
-      ID
+query searchServiceRequests($searchTerm: String!, $flavour: Flavour!, $requestType: String!, $facilityID: String!){
+  searchServiceRequests(searchTerm: $searchTerm, flavour: $flavour, requestType: $requestType, facilityID: $facilityID){
+    ID
     RequestType
     ClientName
     StaffName

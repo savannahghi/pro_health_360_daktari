@@ -87,21 +87,19 @@ class ResolveServiceRequestAction extends ReduxAction<AppState> {
     final bool? isResolved = data?['resolveServiceRequest'] as bool?;
 
     if (isResolved ?? false) {
-      final List<ServiceRequest>? clientServiceRequests =
-          state.serviceRequestState?.clientServiceRequests;
+      ///A list of the [clientServiceRequests] excluding the one resolved
+      final List<ServiceRequest>? clientServiceRequests = state
+          .serviceRequestState?.clientServiceRequests
+          ?.where((ServiceRequest element) => element.id != serviceRequestId)
+          .toList();
 
-      if (clientServiceRequests?.isNotEmpty ?? false) {
-        clientServiceRequests!.removeWhere(
-          (ServiceRequest request) => request.id == serviceRequestId,
-        );
-        dispatch(
-          UpdateServiceRequestsStateAction(
-            clientServiceRequests: clientServiceRequests,
-          ),
-        );
+      dispatch(
+        UpdateServiceRequestsStateAction(
+          clientServiceRequests: clientServiceRequests,
+        ),
+      );
 
-        dispatch(FetchServiceRequestsCountAction(client: client));
-      }
+      dispatch(FetchServiceRequestsCountAction(client: client));
 
       onSuccess?.call();
       await AnalyticsService().logEvent(
