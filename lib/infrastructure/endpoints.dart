@@ -128,3 +128,45 @@ const String kProdVerifySecurityQuestionsEndpoint =
     'https://mycarehub-prod.savannahghi.org/verify_security_questions';
 const String kProdOptInEndpoint =
     'https://mycarehub-prod.savannahghi.org/opt-in';
+
+/* EXTERNAL DEMO ENDPOINTS */
+const String kExternalGraphqlEndpoint =
+    'https://mycarehub-demo.savannahghi.org/graphql';
+const String kExternalLoginByPhoneEndpoint =
+    'https://mycarehub-demo.savannahghi.org/login_by_phone';
+const String kExternalPinResetEndpoint =
+    'https://mycarehub-demo.savannahghi.org/request_pin_reset';
+const String kExternalUpdateUserPinEndpoint =
+    'https://mycarehub-demo.savannahghi.org/reset_pin';
+const String kExternalVerifyPhoneEndpoint =
+    'https://mycarehub-demo.savannahghi.org/verify_phone';
+const String kExternalCreateUserByPhoneEndpoint =
+    'https://mycarehub-demo.savannahghi.org/create_user_by_phone';
+const String kExternalRetryResendOtpEndpoint =
+    'https://mycarehub-demo.savannahghi.org/send_retry_otp';
+const String kExternalRefreshTokenEndpoint =
+    'https://mycarehub-demo.savannahghi.org/refresh_token';
+const String kExternalRefreshStreamTokenEndpoint =
+    'https://mycarehub-demo.savannahghi.org/refresh_getstream_token';
+const String kExternalAnonymousLoginEndpoint =
+    'https://mycarehub-demo.savannahghi.org/login_anonymous';
+const String kExternalUserRecoveryPhoneNumbersEndpoint =
+    'https://mycarehub-demo.savannahghi.org/user_recovery_phonenumbers';
+const String kExternalSendRecoverAccountOtpEndpoint =
+    'https://mycarehub-demo.savannahghi.org/send_otp';
+const String kExternalSetPrimaryPhoneNumberEndpoint =
+    'https://mycarehub-demo.savannahghi.org/set_primary_phonenumber';
+const String kExternalUploadFileEndPoint =
+    'https://engagement-demo.savannahghi.org/upload';
+const String kExternalSendContactVerificationOTPEndpoint =
+    'https://edi-demo.healthcloud.co.ke/send_otp';
+const String kExternalVerifyContactOTPEndpoint =
+    'https://mycarehub-demo.savannahghi.org/verify_otp';
+const String kExternalPINResetServiceRequestEndpoint =
+    'https://mycarehub-demo.savannahghi.org/service-requests';
+const String kExternalGetRecordedSecurityQuestionsEndpoint =
+    'https://mycarehub-demo.savannahghi.org/get_user_responded_security_questions';
+const String kExternalVerifySecurityQuestionsEndpoint =
+    'https://mycarehub-demo.savannahghi.org/verify_security_questions';
+const String kExternalOptInEndpoint =
+    'https://mycarehub-demo.savannahghi.org/opt-in';

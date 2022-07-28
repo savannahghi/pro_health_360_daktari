@@ -208,6 +208,28 @@ jobs:
             echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-prod has been deployed successfully"
 
 
+  deploy_to_external_alpha:
+    resource_class: xlarge
+    docker:
+      - image: cimg/android:2022.03.1-ndk
+    steps:
+      - install_packages
+      - download_and_setup_keystore
+      - setup_env_vars
+      - restore_cache:
+          keys:
+            - flutter_root_and_dependencies_cache
+            - keystore_and_properties_cache
+      - run:
+          name: "Build and publish to play store alpha track"
+          command: |
+            echo "Building and releasing QA build to Firebase App Tester"
+            flutter build apk --release --target=$HOME/project/lib/bin/main_external.dart --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-external 
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/demo-release-notes.txt
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-external has been deployed successfully to Firebase app tester"
+
+
 workflows:
   version: 2
   test_and_deploy:
@@ -241,3 +263,10 @@ workflows:
            branches:
              only:
                - prod
+     - deploy_to_external_alpha:
+        #  requires:
+        #    - run_tests_and_generate_coverage
+         filters:
+           branches:
+             only:
+               - setup-external-demo-env

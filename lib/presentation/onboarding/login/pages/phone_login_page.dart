@@ -49,6 +49,12 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
+        final String appNameString =
+            AppWrapperBase.of(context)?.appName ?? appName;
+
+        final List<AppContext>? appContexts =
+            AppWrapperBase.of(context)?.appContexts;
+
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
@@ -66,8 +72,8 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                 child: ListView(
                   children: <Widget>[
                     SizedBox(height: sizedBoxHeight),
-                    const OnboardingScaffoldHeader(
-                      title: phoneLoginPageTitle,
+                    OnboardingScaffoldHeader(
+                      title: '$phoneLoginPageTitle $appNameString',
                       description: phoneLoginPageDescription,
                     ),
                     smallVerticalSizedBox,
@@ -176,12 +182,15 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                       ),
                     ],
                     largeVerticalSizedBox,
-                    Center(
-                      child: Text(
-                        copyrightString,
-                        style: normalSize10Text(Colors.grey),
+                    if (appContexts?.contains(AppContext.AppE2E) ?? false)
+                      const SizedBox()
+                    else
+                      Center(
+                        child: Text(
+                          copyrightString,
+                          style: normalSize10Text(Colors.grey),
+                        ),
                       ),
-                    ),
                     smallVerticalSizedBox,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),

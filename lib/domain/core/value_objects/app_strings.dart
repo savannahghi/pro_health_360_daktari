@@ -93,7 +93,7 @@ const String joinGroup = 'Join Group';
 const String declineInvite = 'Decline Invite';
 
 //Phone Login
-const String phoneLoginPageTitle = 'Welcome to ProHealth360 Daktari';
+const String phoneLoginPageTitle = 'Welcome to ';
 const String phoneLoginPageDescription = 'Enter your provided PIN to continue';
 const String pinString = 'PIN';
 const String forgotPinString = 'Forgot Pin';
@@ -435,8 +435,7 @@ String fetchingResolvedRequestsString =
     'fetching ${resolvedRequestsString.toLowerCase()}';
 String fetchingResolvedRedFlagsString =
     'fetching ${redFlagString.toLowerCase()}';
-String fetchingPINResetRequestsString =
-    'fetching $pinResetRequestsTitle';
+String fetchingPINResetRequestsString = 'fetching $pinResetRequestsTitle';
 String fetchingStaffPINResetRequestsString =
     'fetching $staffPinResetRequestsTitle';
 String redFlagsSearchBarString = 'Search using their name or phone number...';
