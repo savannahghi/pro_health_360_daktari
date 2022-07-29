@@ -121,8 +121,8 @@ class _AddNewStaffPageState extends State<AddNewStaffPage> {
                 const SizedBox(height: 24),
                 // Facility
                 SearchFacilityField(
-                  onChanged: (String facilityName) =>
-                      _formManager.inFacility.add(facilityName),
+                  onChanged: (String facilityCode) =>
+                      _formManager.inFacility.add(facilityCode),
                   onFieldCleared: () => _formManager.inFacility.add(''),
                 ),
                 const SizedBox(height: 24),

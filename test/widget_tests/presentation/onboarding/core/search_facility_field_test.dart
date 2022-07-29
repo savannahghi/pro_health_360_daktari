@@ -24,7 +24,7 @@ void main() {
         store: store,
         tester: tester,
         widget: SearchFacilityField(
-          onChanged: (String facilityName) => testValue = facilityName,
+          onChanged: (String facilityCode) => testValue = facilityCode,
           onFieldCleared: () {},
         ),
         graphQlClient: MockTestGraphQlClient(),
@@ -44,16 +44,22 @@ void main() {
       await tester.tap(saveFacilityBtnFinder);
       await tester.pumpAndSettle();
 
-      expect(store.state.miscState?.selectedFacility?.name, testValue);
-      expect(find.text(testValue), findsOneWidget);
+      expect(store.state.miscState?.selectedFacility?.name, 'Kanairo');
+      expect(
+        find.text(
+          store.state.miscState?.selectedFacility?.name ?? '',
+        ),
+        findsOneWidget,
+      );
 
       await tester.tap(searchFacilityIconBtnFinder);
       await tester.pumpAndSettle();
-      expect(find.text(testValue), findsNothing);
+      expect(find.text('Kanairo'), findsNothing);
 
       await tester.tap(searchFacilityIconBtnFinder);
       await tester.pumpAndSettle();
       expect(find.text('Kanairo'), findsOneWidget);
+      expect(testValue, '5678');
     });
   });
 }
