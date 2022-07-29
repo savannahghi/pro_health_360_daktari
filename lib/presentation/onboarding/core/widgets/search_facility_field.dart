@@ -17,7 +17,7 @@ class SearchFacilityField extends StatefulWidget {
     required this.onFieldCleared,
   }) : super(key: key);
 
-  final void Function(String) onChanged;
+  final void Function(String mflCode) onChanged;
   final VoidCallback onFieldCleared;
 
   @override
@@ -65,8 +65,15 @@ class _SearchFacilityFieldState extends State<SearchFacilityField> {
             final String facilityName = vm.selectedFacility.name ?? '';
             final bool isFacilityChosen =
                 facilityName.isNotEmpty && facilityName != UNKNOWN;
+
+            final String facilityCode = vm.selectedFacility.code != null
+                ? vm.selectedFacility.code.toString()
+                : '';
+
             if (isFacilityChosen) {
-              widget.onChanged.call(facilityName);
+              widget.onChanged.call(
+                facilityCode,
+              );
               _controller.text = facilityName;
             } else {
               _controller.clear();

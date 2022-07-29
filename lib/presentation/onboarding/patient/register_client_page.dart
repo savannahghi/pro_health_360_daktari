@@ -60,7 +60,7 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
-        title: addNewClientTitleText,
+        title: addNewPatientTitleText,
         showShadow: false,
       ),
       body: SafeArea(
@@ -113,8 +113,8 @@ class _RegisterClientPageState extends State<RegisterClientPage> {
                 // Facilities
                 Flexible(
                   child: SearchFacilityField(
-                    onChanged: (String facilityName) =>
-                        _formManager.inFacility.add(facilityName),
+                    onChanged: (String facilityCode) =>
+                        _formManager.inFacility.add(facilityCode),
                     onFieldCleared: () => _formManager.inFacility.add(''),
                   ),
                 ),
