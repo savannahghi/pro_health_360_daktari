@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'
+    as local_notifications;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:prohealth360_daktari/application/core/theme/app_themes.dart';
@@ -436,4 +439,46 @@ String? encodeQueryParameters(Map<String, String> params) {
             '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
       )
       .join('&');
+}
+
+void initializeFCMListener(
+  local_notifications.FlutterLocalNotificationsPlugin localNotificationsPlugin,
+) {
+  const local_notifications.AndroidInitializationSettings androidInit =
+      local_notifications.AndroidInitializationSettings(
+          '@mipmap/ic_launcher',); //for logo
+  const local_notifications.IOSInitializationSettings iosInit =
+      local_notifications.IOSInitializationSettings();
+  const local_notifications.InitializationSettings initSetting =
+      local_notifications.InitializationSettings(
+    android: androidInit,
+    iOS: iosInit,
+  );
+  localNotificationsPlugin.initialize(initSetting);
+  const local_notifications.AndroidNotificationDetails androidDetails =
+      local_notifications.AndroidNotificationDetails(
+    '1',
+    'channelName',
+    channelDescription: 'channel Description',
+  );
+  const local_notifications.IOSNotificationDetails iosDetails =
+      local_notifications.IOSNotificationDetails();
+
+  const local_notifications.NotificationDetails generalNotificationDetails =
+      local_notifications.NotificationDetails(
+          android: androidDetails, iOS: iosDetails,);
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    final RemoteNotification? notification = message.notification;
+    final AndroidNotification? android = message.notification?.android;
+    final AppleNotification? apple = message.notification?.apple;
+    if (notification != null && (android != null || apple != null)) {
+      localNotificationsPlugin.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        generalNotificationDetails,
+      );
+    }
+  });
 }

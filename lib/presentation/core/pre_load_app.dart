@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:prohealth360_daktari/application/core/services/utils.dart';
 import 'package:prohealth360_daktari/application/redux/actions/core/batch_update_misc_state_action.dart';
 import 'package:rxdart/src/streams/merge.dart';
@@ -47,6 +48,9 @@ class PreLoadApp extends StatefulWidget {
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
   StreamSubscription<bool>? connectivityCheckerSubscription;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -90,10 +94,11 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
     StoreProvider.dispatch(
       context,
       SetPushToken(
-        firebaseMessaging: FirebaseMessaging.instance,
+        firebaseMessaging: _firebaseMessaging,
         client: AppWrapperBase.of(context)!.graphQLClient,
       ),
     );
+    initializeFCMListener(flutterLocalNotificationsPlugin);
   }
 
   @override
