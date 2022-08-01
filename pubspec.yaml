@@ -23,6 +23,7 @@ dependencies:
   flutter_config: ^2.0.0
   flutter_graphql_client: ^0.1.23
   flutter_html: ^3.0.0-alpha.5
+  flutter_local_notifications: ^9.7.0
   flutter_localizations:
     sdk: flutter
   flutter_pdfview: ^1.2.1

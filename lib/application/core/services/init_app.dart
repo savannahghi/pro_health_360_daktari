@@ -38,8 +38,9 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 /// - The sentry client for error logging
 Future<void> initApp(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await FlutterConfig.loadEnvVariables();
+
+  await Firebase.initializeApp();
 
   await SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
