@@ -11,6 +11,7 @@ void main() {
       appContexts: <AppContext>[AppContext.AfyaMoja],
       sentryDNS: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
+      appName: '',
     );
 
     expect(appSetup.sentryDNS, 'some sentryDNS');
@@ -20,6 +21,7 @@ void main() {
       appContexts: <AppContext>[AppContext.AfyaMoja],
       sentryDNS: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
+      appName: '',
     );
 
     expect(appSetup, sameSetup);

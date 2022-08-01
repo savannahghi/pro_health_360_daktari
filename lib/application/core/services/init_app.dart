@@ -107,6 +107,7 @@ Future<void> initApp(List<AppContext> appContexts) async {
         appRunner: () => runApp(
           MyCareHubProApp(
             store: store,
+            appName: appSetupData.appName,
             appSetupData: appSetupData,
             streamClient: streamClient,
             analyticsObserver: AnalyticsService().getAnalyticsObserver(),

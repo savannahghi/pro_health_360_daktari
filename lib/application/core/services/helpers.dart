@@ -5,6 +5,7 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:prohealth360_daktari/application/core/services/app_setup_data.dart';
 // Project imports:
 import 'package:prohealth360_daktari/domain/core/value_objects/app_contexts.dart';
+import 'package:prohealth360_daktari/domain/core/value_objects/app_name_constants.dart';
 import 'package:prohealth360_daktari/domain/core/value_objects/app_strings.dart';
 import 'package:prohealth360_daktari/infrastructure/endpoints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -28,7 +29,7 @@ AppSetupData getAppSetupData(AppContext context) {
     case AppContext.AppProd:
       return prodAppSetupData;
     case AppContext.AppE2E:
-      return devAppSetupData;
+      return externalAppSetupData;
     default:
       return devAppSetupData;
   }
@@ -36,6 +37,7 @@ AppSetupData getAppSetupData(AppContext context) {
 
 final AppSetupData devAppSetupData = AppSetupData(
   appContexts: testAppContexts,
+  appName: appName,
   sentryDNS: FlutterConfig.get('DEV_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEV_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -67,6 +69,7 @@ final AppSetupData devAppSetupData = AppSetupData(
 
 final AppSetupData demoAppSetupData = AppSetupData(
   appContexts: demoAppContexts,
+  appName: appName,
   sentryDNS: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -100,6 +103,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
   appContexts: prodAppContexts,
   sentryDNS: FlutterConfig.get('PROD_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('PROD_STREAM_API_KEY') as String,
+  appName: appName,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kProdAnonymousLoginEndpoint,
     graphqlEndpoint: kProdGraphqlEndpoint,
@@ -124,6 +128,39 @@ final AppSetupData prodAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kProdRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kProdPINResetServiceRequestEndpoint,
     optInClientEndpoint: kProdOptInEndpoint,
+  ),
+);
+
+final AppSetupData externalAppSetupData = AppSetupData(
+  appContexts: externalAppContexts,
+  sentryDNS: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
+  streamAPIKey: FlutterConfig.get('EXTERNAL_STREAM_API_KEY') as String,
+  appName: externalAppName,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kExternalAnonymousLoginEndpoint,
+    graphqlEndpoint: kExternalGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kExternalSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kExternalRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kExternalRetryResendOtpEndpoint,
+    pinResetEndpoint: kExternalPinResetEndpoint,
+    userRecoveryPhoneNumbersEndpoint: kExternalUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: kExternalVerifyContactOTPEndpoint,
+    verifyPhoneEndpoint: kExternalVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint:
+        kExternalSendContactVerificationOTPEndpoint,
+    sendRecoverAccountOtpEndpoint: kExternalSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kExternalLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kExternalUpdateUserPinEndpoint,
+    uploadFileEndPoint: kExternalUploadFileEndPoint,
+    createUserByPhoneEndpoint: kExternalCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
+    requestPinResetEndpoint: '',
+    respondedSecurityQuestionsEndpoint:
+        kExternalGetRecordedSecurityQuestionsEndpoint,
+    verifySecurityQuestionsEndpoint: kExternalVerifySecurityQuestionsEndpoint,
+    refreshStreamTokenEndpoint: kExternalRefreshStreamTokenEndpoint,
+    pinResetServiceRequestEndpoint: kExternalPINResetServiceRequestEndpoint,
+    optInClientEndpoint: kExternalOptInEndpoint,
   ),
 );
 

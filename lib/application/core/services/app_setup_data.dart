@@ -22,10 +22,13 @@ class AppSetupData {
   // The Stream API key
   final String streamAPIKey;
 
+  final String appName;
+
   AppSetupData({
     required this.appContexts,
     required this.sentryDNS,
     required this.streamAPIKey,
+    required this.appName,
     this.customContext,
   });
 
